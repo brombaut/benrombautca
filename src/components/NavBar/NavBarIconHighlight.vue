@@ -9,7 +9,7 @@ import { bus } from '@/main';
 export default {
     name: 'IconHighlight',
     mounted() {
-        bus.$on('navIconClicked', this.updateNacIconHighlightPosition);
+        bus.$on('setNavIconHighlight', this.updateNacIconHighlightPosition);
     },
     methods: {
         updateNacIconHighlightPosition(boundingClientRect) {

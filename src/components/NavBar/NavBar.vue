@@ -2,17 +2,23 @@
     <nav id='navbar'>
         <NavBarIconHighlight />
         <div class='icons-section top-icons'>
-            <NavBarIcon class='top-icon' iconStyle="fas" iconName="home"/>
+            <NavBarIcon
+                v-for="icon in topIcons"
+                :key="icon.name"
+                :icon="icon"
+                :class='icon.classString' />
         </div>
         <div class='icons-section middle-icons'>
-            <NavBarIcon iconStyle="fas" iconName="street-view"/>
-            <NavBarIcon iconStyle="far" iconName="folder-open"/>
-            <NavBarIcon iconStyle="far" iconName="map"/>
-            <NavBarIcon iconStyle="far" iconName="envelope"/>
+            <NavBarIcon
+                v-for="icon in middleIcons"
+                :key="icon.name"
+                :icon="icon"/>
         </div>
         <div class='icons-section bottom-icons'>
-            <NavBarIcon iconStyle="fab" iconName="github"/>
-            <NavBarIcon iconStyle="fab" iconName="linkedin"/>
+            <NavBarIcon
+                v-for="icon in bottomIcons"
+                :key="icon.name"
+                :icon="icon"/>
         </div>
     </nav>
 </template>
@@ -28,10 +34,90 @@ export default {
         NavBarIcon,
         NavBarIconHighlight,
     },
+    data() {
+        const emitHighlightPosition = function(boundingRect, iconName) {
+            bus.$emit('setNavIconHighlight', boundingRect);
+            bus.$emit('navIconClicked', iconName);
+        };
+        const topIcons = [
+            {
+                name: 'home',
+                hoverText: 'Home',
+                iconStyle: 'fas',
+                iconName: 'home',
+                classString: 'top-icon',
+                iconClickCallback: emitHighlightPosition,
+            },
+        ];
+        const middleIcons = [
+            {
+                name: 'aboutMe',
+                hoverText: 'About Me',
+                iconStyle: 'fas',
+                iconName: 'street-view',
+                classString: '',
+                iconClickCallback: emitHighlightPosition,
+            },
+            {
+                name: 'portfolio',
+                hoverText: 'Portfolio',
+                iconStyle: 'far',
+                iconName: 'folder-open',
+                classString: '',
+                iconClickCallback: emitHighlightPosition,
+            },
+            {
+                name: 'recentActivity',
+                hoverText: 'What I\'ve been up to',
+                iconStyle: 'far',
+                iconName: 'map',
+                classString: '',
+                iconClickCallback: emitHighlightPosition,
+            },
+            {
+                name: 'contactMe',
+                hoverText: 'Contact Me',
+                iconStyle: 'far',
+                iconName: 'envelope',
+                classString: '',
+                iconClickCallback: emitHighlightPosition,
+            },
+        ];
+        const openGithub = function() {
+            window.open('https://github.com/brombaut', '_blank').focus();
+        };
+        const openLinkedIn = function() {
+            window.open('https://www.linkedin.com/in/benjamin-rombaut/', '_blank').focus();
+        };
+        const bottomIcons = [
+            {
+                name: 'github',
+                hoverText: 'Github',
+                iconStyle: 'fab',
+                iconName: 'github',
+                classString: '',
+                iconClickCallback: openGithub,
+            },
+            {
+                name: 'linkedin',
+                hoverText: 'LinkediIn',
+                iconStyle: 'fab',
+                iconName: 'linkedin',
+                classString: '',
+                iconClickCallback: openLinkedIn,
+            },
+        ];
+        return {
+            topIcons,
+            middleIcons,
+            bottomIcons,
+        };
+    },
     mounted() {
         const firstIconEl = document.querySelector('.top-icon');
         if (firstIconEl) {
-            bus.$emit('navIconClicked', firstIconEl.getBoundingClientRect());
+            bus.$emit('setNavIconHighlight', firstIconEl.getBoundingClientRect());
+            bus.$emit('navIconClicked', 'home');
         }
     },
 };

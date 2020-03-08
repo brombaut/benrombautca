@@ -1,6 +1,9 @@
 <template>
-  <div class='icon-container' @click="handleIconClick">
-        <font-awesome-icon :icon="[iconStyle, iconName]" />
+  <div
+    class='icon-container'
+    :class='{"selected": selected}'
+    @click="handleIconClick">
+        <font-awesome-icon :icon="[icon.iconStyle, icon.iconName]" />
     </div>
 </template>
 
@@ -10,13 +13,24 @@ import { bus } from '@/main';
 export default {
     name: 'NavBarIcon',
     props: {
-        iconStyle: String,
-        iconName: String,
+        icon: Object,
+    },
+    data() {
+        return {
+            selected: false,
+        };
     },
     methods: {
         handleIconClick() {
-            bus.$emit('navIconClicked', this.$el.getBoundingClientRect());
+            this.icon.iconClickCallback(this.$el.getBoundingClientRect(), this.icon.name);
+            // bus.$emit('navIconClicked', this.$el.getBoundingClientRect());
         },
+        setSelectedIfNecessary(clickedIconName) {
+            this.selected = clickedIconName === this.icon.name;
+        },
+    },
+    mounted() {
+        bus.$on('navIconClicked', this.setSelectedIfNecessary);
     },
 };
 </script>
@@ -30,8 +44,12 @@ export default {
     z-index: 1;
     width: 60px;
 
+    &.selected {
+        color: darken(#3381db, 15%);
+    }
+
     &:hover {
-        color: lighten(#2c3e50, 20%);
+        color: #3381db;
         cursor: pointer;
     }
 }
