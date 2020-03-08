@@ -17,6 +17,9 @@ library.add(faMap);
 library.add(faGithub);
 library.add(faLinkedin);
 
+// eslint-disable-next-line import/prefer-default-export
+export const bus = new Vue();
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false;
