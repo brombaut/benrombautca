@@ -2,8 +2,13 @@
   <div
     class='icon-container'
     :class='{"selected": selected}'
-    @click="handleIconClick">
-        <font-awesome-icon :icon="[icon.iconStyle, icon.iconName]" />
+    @click="handleIconClick"
+    @mouseover="hovering = true"
+    @mouseleave="hovering = false" >
+        <font-awesome-icon
+            v-if="!hovering"
+            :icon="[icon.iconStyle, icon.iconName]" />
+        <div v-else class='hover-text'>{{ icon.hoverText }}</div>
     </div>
 </template>
 
@@ -18,12 +23,12 @@ export default {
     data() {
         return {
             selected: false,
+            hovering: false,
         };
     },
     methods: {
         handleIconClick() {
             this.icon.iconClickCallback(this.$el.getBoundingClientRect(), this.icon.name);
-            // bus.$emit('navIconClicked', this.$el.getBoundingClientRect());
         },
         setSelectedIfNecessary(clickedIconName) {
             this.selected = clickedIconName === this.icon.name;
@@ -43,6 +48,10 @@ export default {
     transition: 0.3s;
     z-index: 1;
     width: 60px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &.selected {
         color: darken(#3381db, 15%);
@@ -51,6 +60,35 @@ export default {
     &:hover {
         color: #3381db;
         cursor: pointer;
+    }
+
+    svg {
+        animation: roteateOutZ;
+        animation-duration: 0.3s;
+    }
+
+    .hover-text {
+        font-size: 12px;
+        animation: roteateInZ;
+        animation-duration: 0.3s;
+    }
+
+    @keyframes roteateInZ {
+        from {
+            transform: rotateZ(90deg);
+        }
+        to {
+            transform: rotateZ(0deg);;
+        }
+    }
+
+    @keyframes roteateOutZ {
+        from {
+            transform: rotateZ(-90deg);
+        }
+        to {
+            transform: rotateZ(0deg);;
+        }
     }
 }
 

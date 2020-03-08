@@ -100,7 +100,7 @@ export default {
             },
             {
                 name: 'linkedin',
-                hoverText: 'LinkediIn',
+                hoverText: 'LinkedIn',
                 iconStyle: 'fab',
                 iconName: 'linkedin',
                 classString: '',
