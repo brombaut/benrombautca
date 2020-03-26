@@ -32,7 +32,7 @@ export default {
 <style lang='scss'>
 main {
     flex: 1;
-    background-color: #1c1d25;
+    background-color: $secondary;
     display: flex;
     align-items: center;
 }

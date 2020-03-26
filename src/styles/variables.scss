@@ -1,7 +1,8 @@
 
 $primary: #3381db;
 $primaryDark: darken($primary, 15%);
-$secondary: lighten(#1c1d25, 3);
+
+$secondary: lighten(#1c1d25, 5%);
 $secondaryLight: lighten($secondary, 3%);
 $secondaryDark: darken($secondary, 8%);
 
