@@ -71,6 +71,7 @@ export default {
         font-size: 12px;
         animation: roteateInZ;
         animation-duration: 0.3s;
+        color: #3381db;
     }
 
     @keyframes roteateInZ {

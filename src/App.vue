@@ -1,19 +1,19 @@
 <template>
   <div id="app">
       <NavBar />
-      <Home />
+      <MainContentContainer />
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar/NavBar.vue';
-import Home from '@/components/Home.vue';
+import MainContentContainer from '@/components/MainContentContainer.vue';
 
 export default {
     name: 'App',
     components: {
         NavBar,
-        Home,
+        MainContentContainer,
     },
 };
 </script>
