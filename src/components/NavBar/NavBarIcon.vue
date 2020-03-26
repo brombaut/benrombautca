@@ -55,11 +55,11 @@ export default {
     user-select: none;
 
     &.selected {
-        color: darken(#3381db, 15%);
+        color: $primaryDark;
     }
 
     &:hover {
-        color: #3381db;
+        color: $primary;
         cursor: pointer;
     }
 
@@ -72,7 +72,7 @@ export default {
         font-size: 12px;
         animation: roteateInZ;
         animation-duration: 0.3s;
-        color: #3381db;
+        color: $primary;
     }
 
     @keyframes roteateInZ {

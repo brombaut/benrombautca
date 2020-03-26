@@ -127,7 +127,7 @@ export default {
 nav {
     width: 100px;
     height: auto;
-    background-color: darken(#1c1d25, 5%);
+    background-color: $secondaryDark;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

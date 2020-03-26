@@ -29,9 +29,9 @@ export default {
 #nav-icon-highlight {
     position: absolute;
     border-radius: 8px;;
-    background-color: lighten(#1c1d25, 3%);
+    background-color: $secondaryLight;
     transition: 0.3s;
-    widyj: 60px;
+    width: 60px;
     height: 60px;
 
 }

@@ -4,12 +4,18 @@
         <h1 class='main-header'>Ben Rombaut</h1>
         <h4 class='sub-header'>Software Developer</h4>
       </div>
+      <MicrochipArt />
   </main>
 </template>
 
 <script>
+import MicrochipArt from '@/components/Home/MicrochipArt.vue';
+
 export default {
     name: 'Home',
+    components: {
+        MicrochipArt,
+    },
 };
 </script>
 
@@ -18,7 +24,6 @@ main {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    position: relative;
     padding: 100px;
     position: relative;
 

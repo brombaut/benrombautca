@@ -1,0 +1,12 @@
+
+$primary: #3381db;
+$primaryDark: darken($primary, 15%);
+$secondary: lighten(#1c1d25, 3);
+$secondaryLight: lighten($secondary, 3%);
+$secondaryDark: darken($secondary, 8%);
+
+
+$primaryPulse1: $primaryDark;
+$primaryPulse2: darken($primaryDark, 10%);
+$primaryPulse3: lighten($primaryDark, 10%);
+$primaryPulse4: darken($primaryDark, 15%);
