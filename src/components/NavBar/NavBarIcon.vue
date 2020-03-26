@@ -52,6 +52,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
 
     &.selected {
         color: darken(#3381db, 15%);
