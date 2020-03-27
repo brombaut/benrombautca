@@ -77,14 +77,14 @@ export default {
 };
 </script>
 
-<style lang='scss' scoped>
+<style lang='scss'>
 $connectorLongPixels: 40px;
 $connectorShortPixels: 8px;
 
 
 #microchip {
     position: absolute;
-    top: 00px;
+    top: 25%;
     left: 240px;
 
     .horizontal-connectors-container {
@@ -135,7 +135,7 @@ $connectorShortPixels: 8px;
             border: 4px solid $primaryDark;
             border-radius: 4px;
             transition: border 0.3s;
-            animation: borderColorChange 10s infinite;
+            animation: borderColorChange $pulseAnimationTime infinite;
 
             .inner-border {
                 box-sizing: border-box;
@@ -207,7 +207,7 @@ $connectorShortPixels: 8px;
             align-items: center;
             justify-content: center;
             transition: 0.3s;
-            animation: backgroundColorChange 10s infinite;
+            animation: backgroundColorChange $pulseAnimationTime infinite;
 
             @keyframes backgroundColorChange {
                 0% {

@@ -74,14 +74,14 @@ export default {
                 classString: '',
                 iconClickCallback: emitHighlightPosition,
             },
-            {
-                name: 'contactMe',
-                hoverText: 'Contact Me',
-                iconStyle: 'far',
-                iconName: 'envelope',
-                classString: '',
-                iconClickCallback: emitHighlightPosition,
-            },
+            // {
+            //     name: 'contactMe',
+            //     hoverText: 'Contact Me',
+            //     iconStyle: 'far',
+            //     iconName: 'envelope',
+            //     classString: '',
+            //     iconClickCallback: emitHighlightPosition,
+            // },
         ];
         const openGithub = function() {
             window.open('https://github.com/brombaut', '_blank').focus();

@@ -2,12 +2,14 @@
 $primary: #3381db;
 $primaryDark: darken($primary, 15%);
 
-$secondary: lighten(#1c1d25, 5%);
+$secondary: lighten(#1c1d25, 9%);
 $secondaryLight: lighten($secondary, 3%);
+$secondaryLightest: lighten($secondary, 20%);
 $secondaryDark: darken($secondary, 8%);
 
 
-$primaryPulse1: $primaryDark;
-$primaryPulse2: darken($primaryDark, 10%);
-$primaryPulse3: lighten($primaryDark, 10%);
-$primaryPulse4: darken($primaryDark, 15%);
+$primaryPulse1: $primary;
+$primaryPulse2: darken($primary, 15%);
+$primaryPulse3: lighten($primary, 15%);
+$primaryPulse4: darken($primary, 20%);
+$pulseAnimationTime: 15s;

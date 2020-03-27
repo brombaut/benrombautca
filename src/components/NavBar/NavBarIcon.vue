@@ -53,6 +53,7 @@ export default {
     justify-content: center;
     align-items: center;
     user-select: none;
+    color: $secondaryLightest;
 
     &.selected {
         color: $primaryDark;

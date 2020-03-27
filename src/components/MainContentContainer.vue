@@ -1,17 +1,26 @@
 <template>
   <main>
       <Home v-if="currView === 'home'"/>
+      <AboutMe v-else-if="currView === 'aboutMe'"/>
+      <Portfolio v-else-if="currView === 'portfolio'"/>
+      <RecentActivity v-else-if="currView === 'recentActivity'"/>
   </main>
 </template>
 
 <script>
 import { bus } from '@/main';
-import Home from '@/components/Views/Home.vue';
+import Home from '@/components/Home/Home.vue';
+import AboutMe from '@/components/AboutMe/AboutMe.vue';
+import Portfolio from '@/components/Portfolio/Portfolio.vue';
+import RecentActivity from '@/components/RecentActivity/RecentActivity.vue';
 
 export default {
     name: 'MainContentContainer',
     components: {
         Home,
+        AboutMe,
+        Portfolio,
+        RecentActivity,
     },
     data() {
         return {
