@@ -69,7 +69,7 @@ export default {
         handleProjectCardClick() {
             const url = this.project.url ? this.project.url : this.project.sourceUrl;
             if (url) {
-                window.open(this.project.url, '_blank').focus();
+                window.open(url, '_blank').focus();
             }
         },
         handleSourceIconClick() {
