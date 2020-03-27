@@ -1,23 +1,26 @@
 <template>
-  <main>
-      <div class='headers-container'>
-        <h1 class='main-header'>Ben Rombaut</h1>
-        <h4 class='sub-header'>Software Developer</h4>
-      </div>
-      <MicrochipArt />
-      <ConnectorElement1 />
+    <main>
+        <div class='headers-container'>
+            <h1 class='main-header'>Ben Rombaut</h1>
+            <h4 class='sub-header'>Software Developer</h4>
+        </div>
+        <MicrochipArt />
+        <ConnectorElement1 />
+        <ConnectorElement2 />
   </main>
 </template>
 
 <script>
 import MicrochipArt from '@/components/Home/MicrochipArt.vue';
 import ConnectorElement1 from '@/components/ConnectorElements/ConnectorElement1.vue';
+import ConnectorElement2 from '@/components/ConnectorElements/ConnectorElement2.vue';
 
 export default {
     name: 'Home',
     components: {
         MicrochipArt,
         ConnectorElement1,
+        ConnectorElement2,
     },
 };
 </script>

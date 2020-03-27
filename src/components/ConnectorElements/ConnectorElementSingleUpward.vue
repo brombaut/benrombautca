@@ -1,5 +1,5 @@
 <template>
-    <div class='connector-element-1'>
+    <div class='connector-element-2'>
         <div class='point start-point-middle'>
             <div class='highlight-point'>
                 <div class='inner-point'></div>
@@ -8,13 +8,13 @@
         <div class='outer start-middle'>
             <div class='highlight'></div>
         </div>
-        <div class='outer slant-down'>
+        <div class='outer slant-up'>
             <div class='highlight'></div>
         </div>
-        <div class='outer end-low'>
+        <div class='outer end-high'>
             <div class='highlight'></div>
         </div>
-        <div class='point end-point-low'>
+        <div class='point end-point-high'>
             <div class='highlight-point'>
                 <div class='inner-point'></div>
             </div>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    name: 'ConnectorElement1',
+    name: 'ConnectorElement2',
 };
 </script>
 
@@ -32,7 +32,7 @@ export default {
 $connectorELementHeight: 16px;
 $connectorELementHighlightWidth: 2px;
 
-.connector-element-1 {
+.connector-element-2 {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -113,8 +113,8 @@ $connectorELementHighlightWidth: 2px;
     $pointTopOffset: 8px;
     $pointLeftOffset: 10px;
 
-    $startPointMiddleTop: 150px;
-    $startPointMiddleLeft: 100px;
+    $startPointMiddleTop: calc(100% - 170px);
+    $startPointMiddleLeft: 180px;
 
     $outerRadius: 4px;
     $outerWidthPad: 4px;
@@ -124,18 +124,18 @@ $connectorELementHighlightWidth: 2px;
     $startMiddleWidth: 500px;
     $startMiddleRotate: 0deg;
 
-    $slantDownTop: #{$startMiddleTop};
-    $slantDownLeft: calc(#{$startPointMiddleLeft} + #{$startMiddleWidth});
-    $slantDownWidth: calc(200px + #{$outerWidthPad});
-    $slantDownRotate: 45deg;
+    $slantUpTop: #{$startMiddleTop};
+    $slantUpLeft: calc(#{$startPointMiddleLeft} + #{$startMiddleWidth});
+    $slantUpWidth: calc(200px + #{$outerWidthPad});
+    $slantUpRotate: -45deg;
 
-    $endLowTop: calc(#{$slantDownTop} + #{$sin45Times200});
-    $endLowLeft: calc(#{$slantDownLeft} + #{$cos45Times200});
-    $endLowWidth: calc(100% - #{$endLowLeft} - 200px);
-    $endLowRotate: 0deg;
+    $endHighTop: calc(#{$slantUpTop} - #{$sin45Times200});
+    $endHighLeft: calc(#{$slantUpLeft} + #{$cos45Times200});
+    $endHighWidth: calc(100% - #{$endHighLeft} - 100px);
+    $endHighRotate: 0deg;
 
-    $endPointLowTop: $endLowTop;
-    $endPointLowLeft: calc(#{$endLowLeft} + #{$endLowWidth});
+    $endPointHighTop: $endHighTop;
+    $endPointHighLeft: calc(#{$endHighLeft} + #{$endHighWidth});
 
 
     .start-point-middle {
@@ -149,24 +149,24 @@ $connectorELementHighlightWidth: 2px;
         transform: rotate(#{$startMiddleRotate});
         border-top-right-radius: $outerRadius;
     }
-    .slant-down {
-        width: $slantDownWidth;
-        top: $slantDownTop;
-        left: $slantDownLeft;
-        transform: rotate(#{$slantDownRotate});
+    .slant-up {
+        width: $slantUpWidth;
+        top: $slantUpTop;
+        left: $slantUpLeft;
+        transform: rotate(#{$slantUpRotate});
         border-top-left-radius: $outerRadius;
         border-bottom-right-radius: $outerRadius;
     }
-    .end-low {
-        width: $endLowWidth;
-        top: $endLowTop;
-        left: $endLowLeft;
-        transform: rotate(#{$endLowRotate});
+    .end-high {
+        width: $endHighWidth;
+        top: $endHighTop;
+        left: $endHighLeft;
+        transform: rotate(#{$endHighRotate});
         border-bottom-left-radius: $outerRadius;
     }
-    .end-point-low {
-        left: calc(#{$endPointLowLeft} - #{$pointLeftOffset});
-        top: calc(#{$endPointLowTop} - #{$pointTopOffset});
+    .end-point-high {
+        left: calc(#{$endPointHighLeft} - #{$pointLeftOffset});
+        top: calc(#{$endPointHighTop} - #{$pointTopOffset});
     }
 
 }
