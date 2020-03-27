@@ -1,5 +1,5 @@
 <template>
-    <div class='connector-element-1'>
+    <div class='connector-element-single-downward'>
         <div class='point start-point-middle'>
             <div class='highlight-point'>
                 <div class='inner-point'></div>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-    name: 'ConnectorElement1',
+    name: 'ConnectorElementSingleDownward',
 };
 </script>
 
@@ -32,7 +32,7 @@ export default {
 $connectorELementHeight: 16px;
 $connectorELementHighlightWidth: 2px;
 
-.connector-element-1 {
+.connector-element-single-downward {
     position: absolute;
     width: 100%;
     height: 100%;

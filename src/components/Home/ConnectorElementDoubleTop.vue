@@ -1,5 +1,5 @@
 <template>
-    <div class='connector-element-single-upward'>
+    <div class='connector-element-double'>
         <div class='point start-point-middle'>
             <div class='highlight-point'>
                 <div class='inner-point'></div>
@@ -11,10 +11,21 @@
         <div class='outer slant-up'>
             <div class='highlight'></div>
         </div>
+        <div class='outer slant-down'>
+            <div class='highlight'></div>
+        </div>
         <div class='outer end-high'>
             <div class='highlight'></div>
         </div>
+        <div class='outer end-low'>
+            <div class='highlight'></div>
+        </div>
         <div class='point end-point-high'>
+            <div class='highlight-point'>
+                <div class='inner-point'></div>
+            </div>
+        </div>
+        <div class='point end-point-low'>
             <div class='highlight-point'>
                 <div class='inner-point'></div>
             </div>
@@ -24,7 +35,7 @@
 
 <script>
 export default {
-    name: 'ConnectorElementSingleUpward',
+    name: 'ConnectorElementDouble',
 };
 </script>
 
@@ -32,7 +43,7 @@ export default {
 $connectorELementHeight: 16px;
 $connectorELementHighlightWidth: 2px;
 
-.connector-element-single-upward {
+.connector-element-double {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -109,14 +120,16 @@ $connectorELementHighlightWidth: 2px;
 
     $sin45Times200: 141px;
     $cos45Times200: 141px;
+    $sin25Times230: 97px;
+    $cos25Times230: 208px;
 
     $pointTopOffset: 8px;
     $pointLeftOffset: 10px;
 
-    $startPointMiddleTop: calc(100% - 170px);
-    $startPointMiddleLeft: 180px;
+    $startPointMiddleTop: 150px;
+    $startPointMiddleLeft: 100px;
 
-    $outerRadius: 4px;
+    $outerRadius: 8px;
     $outerWidthPad: 4px;
 
     $startMiddleTop: $startPointMiddleTop;
@@ -126,16 +139,29 @@ $connectorELementHighlightWidth: 2px;
 
     $slantUpTop: #{$startMiddleTop};
     $slantUpLeft: calc(#{$startPointMiddleLeft} + #{$startMiddleWidth});
-    $slantUpWidth: calc(200px + #{$outerWidthPad});
-    $slantUpRotate: -45deg;
+    $slantUpWidth: calc(230px + #{$outerWidthPad});
+    $slantUpRotate: -25deg;
 
-    $endHighTop: calc(#{$slantUpTop} - #{$sin45Times200});
-    $endHighLeft: calc(#{$slantUpLeft} + #{$cos45Times200});
-    $endHighWidth: calc(100% - #{$endHighLeft} - 100px);
+    $slantDownTop: #{$startMiddleTop};
+    $slantDownLeft: calc(#{$startPointMiddleLeft} + #{$startMiddleWidth});
+    $slantDownWidth: calc(200px + #{$outerWidthPad});
+    $slantDownRotate: 45deg;
+
+    $endHighTop: calc(#{$slantUpTop} - #{$sin25Times230});
+    $endHighLeft: calc(#{$slantUpLeft} + #{$cos25Times230});
+    $endHighWidth: calc(100% - #{$endHighLeft} - 300px);
     $endHighRotate: 0deg;
+
+    $endLowTop: calc(#{$slantDownTop} + #{$sin45Times200});
+    $endLowLeft: calc(#{$slantDownLeft} + #{$cos45Times200});
+    $endLowWidth: calc(100% - #{$endLowLeft} - 200px);
+    $endLowRotate: 0deg;
 
     $endPointHighTop: $endHighTop;
     $endPointHighLeft: calc(#{$endHighLeft} + #{$endHighWidth});
+
+    $endPointLowTop: $endLowTop;
+    $endPointLowLeft: calc(#{$endLowLeft} + #{$endLowWidth});
 
 
     .start-point-middle {
@@ -157,6 +183,14 @@ $connectorELementHighlightWidth: 2px;
         border-top-left-radius: $outerRadius;
         border-bottom-right-radius: $outerRadius;
     }
+    .slant-down {
+        width: $slantDownWidth;
+        top: $slantDownTop;
+        left: $slantDownLeft;
+        transform: rotate(#{$slantDownRotate});
+        border-top-left-radius: $outerRadius;
+        border-bottom-right-radius: $outerRadius;
+    }
     .end-high {
         width: $endHighWidth;
         top: $endHighTop;
@@ -164,10 +198,20 @@ $connectorELementHighlightWidth: 2px;
         transform: rotate(#{$endHighRotate});
         border-bottom-left-radius: $outerRadius;
     }
+    .end-low {
+        width: $endLowWidth;
+        top: $endLowTop;
+        left: $endLowLeft;
+        transform: rotate(#{$endLowRotate});
+        border-bottom-left-radius: $outerRadius;
+    }
     .end-point-high {
         left: calc(#{$endPointHighLeft} - #{$pointLeftOffset});
         top: calc(#{$endPointHighTop} - #{$pointTopOffset});
     }
-
+    .end-point-low {
+        left: calc(#{$endPointLowLeft} - #{$pointLeftOffset});
+        top: calc(#{$endPointLowTop} - #{$pointTopOffset});
+    }
 }
 </style>

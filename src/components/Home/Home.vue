@@ -5,22 +5,22 @@
             <h4 class='sub-header'>Software Developer</h4>
         </div>
         <MicrochipArt />
-        <ConnectorElement1 />
-        <ConnectorElement2 />
+        <ConnectorElementDoubleTop />
+        <ConnectorElementDoubleBottom />
   </main>
 </template>
 
 <script>
 import MicrochipArt from '@/components/Home/MicrochipArt.vue';
-import ConnectorElement1 from '@/components/ConnectorElements/ConnectorElement1.vue';
-import ConnectorElement2 from '@/components/ConnectorElements/ConnectorElement2.vue';
+import ConnectorElementDoubleTop from '@/components/Home/ConnectorElementDoubleTop.vue';
+import ConnectorElementDoubleBottom from '@/components/Home/ConnectorElementDoubleBottom.vue';
 
 export default {
     name: 'Home',
     components: {
         MicrochipArt,
-        ConnectorElement1,
-        ConnectorElement2,
+        ConnectorElementDoubleTop,
+        ConnectorElementDoubleBottom,
     },
 };
 </script>
