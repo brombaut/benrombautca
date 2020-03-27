@@ -36,10 +36,6 @@ export default {
     align-items: center;
     overflow-x: auto;
 
-    h1 {
-        margin-top: 32px;
-    }
-
     .project-card-container {
         display: flex;
         justify-content: center;

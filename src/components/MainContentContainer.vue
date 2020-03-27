@@ -48,6 +48,7 @@ main {
 
 h1 {
     color: $primary;
+    margin-top: 48px;
 }
 
 </style>

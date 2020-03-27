@@ -1,6 +1,9 @@
 <template>
     <div id='recent-activity'>
-        What I've Been Up To
+        <h1>What I've Been Up To</h1>
+        <div class='content-container'>
+
+        </div>
     </div>
 </template>
 
@@ -11,5 +14,13 @@ export default {
 </script>
 
 <style lang='scss'>
+#recent-activity {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: auto;
+}
 
 </style>
