@@ -121,7 +121,7 @@ $connectorELementHighlightWidth: 2px;
 
     $startMiddleTop: $startPointMiddleTop;
     $startMiddleLeft: $startPointMiddleLeft;
-    $startMiddleWidth: 500px;
+    $startMiddleWidth: max(350px, 35%);
     $startMiddleRotate: 0deg;
 
     $slantDownTop: #{$startMiddleTop};

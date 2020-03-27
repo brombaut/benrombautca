@@ -35,13 +35,15 @@ main {
     width: 100%;
 
     .headers-container {
-        z-index: 1;
         padding: 60px;
+        z-index: 10;
+
         .main-header {
             color: $primary;
             font-size: 100px;
             text-align: right;
             animation: colorChange $pulseAnimationTime infinite;
+            -webkit-text-stroke: 1px black;
         }
 
         .sub-header {
@@ -49,6 +51,7 @@ main {
             font-size: 40px;
             text-align: right;
             animation: colorChange $pulseAnimationTime infinite;
+            -webkit-text-stroke: 2px black;
         }
 
         @keyframes colorChange {

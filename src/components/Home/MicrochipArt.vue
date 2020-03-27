@@ -85,7 +85,7 @@ $connectorShortPixels: 8px;
 #microchip {
     position: absolute;
     top: 25%;
-    left: 240px;
+    left: 10%;
 
     .horizontal-connectors-container {
         margin: 0 40px;
