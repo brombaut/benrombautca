@@ -28,7 +28,7 @@ export default {
 };
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 $connectorELementHeight: 16px;
 $connectorELementHighlightWidth: 2px;
 

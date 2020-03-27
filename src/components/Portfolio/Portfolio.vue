@@ -1,23 +1,31 @@
 <template>
     <div id='portfolio'>
-        <h1>Projects</h1>
-        <div class='project-card-container'>
-            <ProjectCard
-                v-for="project in projects"
-                :key="project.id"
-                :project="project" />
+        <div class='scroll-container'>
+            <h1>Projects</h1>
+            <div class='project-card-container'>
+                <ProjectCard
+                    v-for="project in projects"
+                    :key="project.id"
+                    :project="project" />
+            </div>
         </div>
+        <ConnectorElementSingleUpward />
+        <ConnectorElementDouble />
     </div>
 </template>
 
 <script>
 import ProjectCard from '@/components/Portfolio/ProjectCard.vue';
+import ConnectorElementSingleUpward from '@/components/Portfolio/ConnectorElementSingleUpward.vue';
+import ConnectorElementDouble from '@/components/Portfolio/ConnectorElementDouble.vue';
 import projects from '@/data/projects';
 
 export default {
     name: 'Portfolio',
     components: {
         ProjectCard,
+        ConnectorElementSingleUpward,
+        ConnectorElementDouble,
     },
     data() {
         return {
@@ -34,12 +42,18 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-x: auto;
+    position: relative;
 
-    .project-card-container {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+    .scroll-container {
+        z-index: 1;
+        overflow-x: auto;
+
+        .project-card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
     }
 }
 

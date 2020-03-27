@@ -49,6 +49,9 @@ main {
 h1 {
     color: $primary;
     margin-top: 48px;
+    z-index: 1;
+    -webkit-text-stroke: 1px black;
+    font-size: 50px;
 }
 
 </style>

@@ -38,6 +38,7 @@ $connectorELementHighlightWidth: 2px;
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 0;
 
     .outer {
         height: $connectorELementHeight;
@@ -113,7 +114,7 @@ $connectorELementHighlightWidth: 2px;
     $pointTopOffset: 8px;
     $pointLeftOffset: 10px;
 
-    $startPointMiddleTop: calc(100% - 170px);
+    $startPointMiddleTop: 360px;
     $startPointMiddleLeft: 180px;
 
     $outerRadius: 4px;
