@@ -60,7 +60,7 @@ export default {
             },
             {
                 name: 'portfolio',
-                hoverText: 'Portfolio',
+                hoverText: 'Projects',
                 iconStyle: 'far',
                 iconName: 'folder-open',
                 classString: '',
@@ -126,6 +126,7 @@ export default {
 <style lang='scss'>
 nav {
     width: 100px;
+    min-width: 100px;
     height: auto;
     background-color: $secondaryDark;
     display: flex;

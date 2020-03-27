@@ -43,6 +43,7 @@ main {
             font-size: 100px;
             text-align: right;
             animation: colorChange $pulseAnimationTime infinite;
+            margin: 20px 0;
             -webkit-text-stroke: 1px black;
         }
 
@@ -51,6 +52,7 @@ main {
             font-size: 40px;
             text-align: right;
             animation: colorChange $pulseAnimationTime infinite;
+            margin: 0;
             -webkit-text-stroke: 2px black;
         }
 

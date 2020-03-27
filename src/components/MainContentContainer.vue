@@ -46,4 +46,8 @@ main {
     align-items: center;
 }
 
+h1 {
+    color: $primary;
+}
+
 </style>
