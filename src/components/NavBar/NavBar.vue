@@ -97,6 +97,7 @@ export default {
                 iconName: 'github',
                 classString: '',
                 iconClickCallback: openGithub,
+                url: 'https://github.com/brombaut',
             },
             {
                 name: 'linkedin',
@@ -105,6 +106,7 @@ export default {
                 iconName: 'linkedin',
                 classString: '',
                 iconClickCallback: openLinkedIn,
+                url: 'https://www.linkedin.com/in/benjamin-rombaut/',
             },
         ];
         return {

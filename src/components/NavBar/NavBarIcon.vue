@@ -2,9 +2,10 @@
   <div
     class='icon-container'
     :class='{"selected": selected}'
-    @click="handleIconClick"
+    @click.prevent="handleIconClick"
     @mouseover="hovering = true"
     @mouseleave="hovering = false" >
+        <a v-if="icon.url" :href="icon.url" />
         <font-awesome-icon
             v-if="!hovering"
             :icon="[icon.iconStyle, icon.iconName]" />
@@ -54,6 +55,14 @@ export default {
     align-items: center;
     user-select: none;
     color: $secondaryLightest;
+    position: relative;
+
+    a {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+    }
 
     &.selected {
         color: $primaryDark;

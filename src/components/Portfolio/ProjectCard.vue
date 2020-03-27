@@ -1,5 +1,8 @@
 <template>
-    <div class='project-card'>
+    <a
+        class='project-card'
+        :href="project.url || project.sourceUrl"
+        @click.prevent='handleProjectCardClick()'>
         <div class='upper-container'>
             <div class='name'>
                 {{ project.name }}
@@ -10,22 +13,41 @@
         </div>
 
         <div class='lower-container'>
-            <div class='tech-used'>
-                <h5>Tech Used</h5>
-                <ul>
-                    <li
-                        v-for="tech in project.techUsed"
-                        :key="tech">
-                        {{ tech }}
-                    </li>
-                </ul>
+            <div
+                v-if="project.inProgress"
+                class='in-progress'>
+                Work In Progress...
             </div>
-            <div class='thumbnail-container'>
+            <div
+                v-else
+                class='left-lower-container'>
+                <div
+                    v-if="project.techUsed"
+                    class='tech-used'>
+                    <h5>Tech Used</h5>
+                    <ul>
+                        <li
+                            v-for="tech in project.techUsed"
+                            :key="tech">
+                            {{ tech }}
+                        </li>
+                    </ul>
+                </div>
+                <div class='view-source-container'>
+                    <a :href="project.sourceUrl">
+                        <font-awesome-icon
+                            @click.stop.prevent='handleSourceIconClick()'
+                            :icon="['fas', 'code']" />
+                    </a>
+                </div>
+            </div>
+            <div
+                v-if="imageSource"
+                class='thumbnail-container'>
                 <img :src='imageSource' />
             </div>
         </div>
-
-    </div>
+    </a>
 </template>
 
 <script>
@@ -36,8 +58,25 @@ export default {
     },
     computed: {
         imageSource() {
+            if (!this.project.thumbnail) {
+                return '';
+            }
             const images = require.context('../../assets/images/', false, /\.png$/);
             return images(`./${this.project.thumbnail}`);
+        },
+    },
+    methods: {
+        handleProjectCardClick() {
+            const url = this.project.url ? this.project.url : this.project.sourceUrl;
+            if (url) {
+                window.open(this.project.url, '_blank').focus();
+            }
+        },
+        handleSourceIconClick() {
+            if (!this.project.sourceUrl) {
+                return;
+            }
+            window.open(this.project.sourceUrl, '_blank').focus();
         },
     },
 };
@@ -45,8 +84,9 @@ export default {
 
 <style lang='scss'>
 .project-card {
+    text-decoration: none;
     width: 550px;
-    min-height: 380px;
+    min-height: 200px;
     background: $secondaryLight;
     border: 1px solid $primaryDark;
     margin: 40px;
@@ -79,24 +119,55 @@ export default {
         display: flex;
         justify-content: space-between;
 
-        .tech-used {
+        .in-progress {
+            margin: 40px 0;
+            padding: 8px 0px;
+            width: 100%;
             color: white;
-            padding-left: 16px;
+            background: $primaryDark;
+        }
 
-            h5 {
-                color: $primaryDark;
-                margin: 0;
-                font-size: 20px;
+        .left-lower-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .tech-used {
+                color: white;
+                padding-left: 16px;
+
+                h5 {
+                    color: $primaryDark;
+                    margin: 0;
+                    font-size: 20px;
+                }
+
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+
+                    li {
+                        padding: 8px;
+                        text-align: left;
+                    }
+                }
             }
 
-            ul {
-                list-style-type: none;
-                margin: 0;
-                padding: 0;
+            .view-source-container {
+                color: $primaryDark;
+                display: flex;
+                justify-content: flex-start;
+                margin: 8px 16px;
+                font-size: 24px;
+                transition: color 0.3s;
 
-                li {
-                    padding: 8px;
-                    text-align: left;
+                a:visited {
+                    color: inherit;
+                }
+
+                &:hover {
+                    color: $primary;
                 }
             }
         }
@@ -116,24 +187,6 @@ export default {
     &:hover {
         transform: scale(1.03);
         cursor: pointer;
-    }
-
-    @keyframes borderColorChange {
-        0% {
-            border-color: $primaryPulse1;
-        }
-        25% {
-            border-color: $primaryPulse2;
-        }
-        50% {
-            border-color: $primaryPulse3;
-        }
-        75% {
-            border-color: $primaryPulse4;
-        }
-        100% {
-            border-color: $primaryPulse1;
-        }
     }
 }
 </style>

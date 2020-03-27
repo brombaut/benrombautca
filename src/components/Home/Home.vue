@@ -44,7 +44,7 @@ main {
             text-align: right;
             animation: colorChange $pulseAnimationTime infinite;
             margin: 20px 0;
-            -webkit-text-stroke: 1px black;
+            -webkit-text-stroke: 3px black;
         }
 
         .sub-header {

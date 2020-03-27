@@ -1,7 +1,12 @@
 import Vue from 'vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { faUserSecret, faHome, faStreetView } from '@fortawesome/free-solid-svg-icons';
+import {
+    faUserSecret,
+    faHome,
+    faStreetView,
+    faCode,
+} from '@fortawesome/free-solid-svg-icons';
 import { faFolderOpen, faEnvelope, faMap } from '@fortawesome/free-regular-svg-icons';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
@@ -16,6 +21,7 @@ library.add(faStreetView);
 library.add(faMap);
 library.add(faGithub);
 library.add(faLinkedin);
+library.add(faCode);
 
 // eslint-disable-next-line import/prefer-default-export
 export const bus = new Vue();

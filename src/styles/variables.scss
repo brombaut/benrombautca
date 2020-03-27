@@ -13,3 +13,40 @@ $primaryPulse2: darken($primary, 15%);
 $primaryPulse3: lighten($primary, 15%);
 $primaryPulse4: darken($primary, 20%);
 $pulseAnimationTime: 15s;
+
+
+@keyframes borderColorChange {
+  0% {
+      border-color: $primaryPulse1;
+  }
+  25% {
+      border-color: $primaryPulse2;
+  }
+  50% {
+      border-color: $primaryPulse3;
+  }
+  75% {
+      border-color: $primaryPulse4;
+  }
+  100% {
+      border-color: $primaryPulse1;
+  }
+}
+
+@keyframes backgroundColorChange {
+  0% {
+      background: $primaryPulse1;
+  }
+  25% {
+      background: $primaryPulse2;
+  }
+  50% {
+      background: $primaryPulse3;
+  }
+  75% {
+      background: $primaryPulse4;
+  }
+  100% {
+      background: $primaryPulse1;
+  }
+}

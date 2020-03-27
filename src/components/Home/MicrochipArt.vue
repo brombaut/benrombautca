@@ -157,24 +157,6 @@ $connectorShortPixels: 8px;
             }
         }
 
-        @keyframes borderColorChange {
-            0% {
-                border-color: $primaryPulse1;
-            }
-            25% {
-                border-color: $primaryPulse2;
-            }
-            50% {
-                border-color: $primaryPulse3;
-            }
-            75% {
-                border-color: $primaryPulse4;
-            }
-            100% {
-                border-color: $primaryPulse1;
-            }
-        }
-
         &:hover {
             .highlight-border {
                 border-color: $primary !important;
@@ -208,24 +190,6 @@ $connectorShortPixels: 8px;
             justify-content: center;
             transition: 0.3s;
             animation: backgroundColorChange $pulseAnimationTime infinite;
-
-            @keyframes backgroundColorChange {
-                0% {
-                    background: $primaryPulse1;
-                }
-                25% {
-                    background: $primaryPulse2;
-                }
-                50% {
-                    background: $primaryPulse3;
-                }
-                75% {
-                    background: $primaryPulse4;
-                }
-                100% {
-                    background: $primaryPulse1;
-                }
-            }
 
             .inner-point {
                 height: 10px;

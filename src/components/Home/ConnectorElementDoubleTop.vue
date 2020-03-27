@@ -100,24 +100,6 @@ $connectorELementHighlightWidth: 2px;
         }
     }
 
-    @keyframes backgroundColorChange {
-        0% {
-            background: $primaryPulse1;
-        }
-        25% {
-            background: $primaryPulse2;
-        }
-        50% {
-            background: $primaryPulse3;
-        }
-        75% {
-            background: $primaryPulse4;
-        }
-        100% {
-            background: $primaryPulse1;
-        }
-    }
-
     $sin45Times200: 141px;
     $cos45Times200: 141px;
     $sin25Times230: 97px;
