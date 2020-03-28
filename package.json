@@ -1,6 +1,6 @@
 {
-  "name": "benrombaut.ca",
-  "version": "0.1.0",
+  "name": "benrombautca",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
