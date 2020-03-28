@@ -13,7 +13,11 @@ $primaryPulse2: darken($primary, 15%);
 $primaryPulse3: lighten($primary, 15%);
 $primaryPulse4: darken($primary, 20%);
 $pulseAnimationTime: 15s;
+$pulseAnimationDimmedTime: 25s;
 
+
+$backgroundHihglightAnimation: backgroundColorChange $pulseAnimationTime infinite;
+$backgroundHihglightDimmedAnimation: backgroundColorChangeDimmed $pulseAnimationDimmedTime infinite;
 
 @keyframes borderColorChange {
   0% {
@@ -50,3 +54,22 @@ $pulseAnimationTime: 15s;
       background: $primaryPulse1;
   }
 }
+
+
+@keyframes backgroundColorChangeDimmed {
+    0% {
+        background: darken($primaryPulse1, 15%);
+    }
+    25% {
+        background: darken($primaryPulse2, 15%);
+    }
+    50% {
+        background: darken($primaryPulse3, 25%);
+    }
+    75% {
+        background: darken($primaryPulse4, 15%);
+    }
+    100% {
+        background: darken($primaryPulse1, 15%);
+    }
+  }

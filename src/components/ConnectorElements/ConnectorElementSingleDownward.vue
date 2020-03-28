@@ -52,7 +52,7 @@ $connectorELementHighlightWidth: 2px;
     .highlight {
         position: absolute;
         background: $primary;
-        animation: backgroundColorChange $pulseAnimationTime infinite;
+        animation: $backgroundHihglightAnimation;
         width: calc(100% + 2px);
         height: $connectorELementHighlightWidth;
         top: calc(6px);
@@ -78,7 +78,7 @@ $connectorELementHighlightWidth: 2px;
             align-items: center;
             justify-content: center;
             transition: 0.3s;
-            animation: backgroundColorChange $pulseAnimationTime infinite;
+            animation: $backgroundHihglightAnimation;
 
             .inner-point {
                 height: 14px;
