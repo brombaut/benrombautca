@@ -49,7 +49,7 @@ export default [
         title: 'Clean Code',
         subtitle: 'A Handbook of Agile Software Craftsmanship',
         inProgress: false,
-        description: 'I would consider this book to be one of my favourite tech-related book, only behind The Pragmatic Programmer. The idea of really appeals to me.',
+        description: 'I would consider this book to be one of my favourite tech-related book, only behind The Pragmatic Programmer. The idea of treating Software Development as a craft really appeals to me.',
         thumbnail: 'CleanCode.jpg',
         url: null,
     },

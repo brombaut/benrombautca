@@ -79,6 +79,7 @@ export default {
             animation: borderColorChange $pulseAnimationTime infinite;
             display: flex;
             align-items: center;
+            box-shadow: 5px 5px 5px $secondaryDark;
 
             .paragraphs-container {
                 flex: 1;

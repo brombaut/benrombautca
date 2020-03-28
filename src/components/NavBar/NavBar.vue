@@ -44,7 +44,7 @@ export default {
                 name: 'home',
                 hoverText: 'Home',
                 iconStyle: 'fas',
-                iconName: 'home',
+                iconName: 'microchip',
                 classString: 'top-icon',
                 iconClickCallback: emitHighlightPosition,
             },

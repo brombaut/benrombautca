@@ -66,6 +66,7 @@ export default {
 
     &.selected {
         color: $primaryDark;
+        animation: $colorHighlightAnimation;
     }
 
     &:hover {

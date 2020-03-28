@@ -55,7 +55,7 @@ export default {
 <style lang='scss'>
 #books {
     background: $secondaryLight;
-    width: 1000px;
+    width: 1200px;
     padding: 8px 16px;
     border-radius: 8px;;
     border: 1px solid $primaryDark;
@@ -65,6 +65,7 @@ export default {
     align-items: center;
     color: white;
     margin-bottom: 16px;
+    box-shadow: 5px 5px 5px $secondaryDark;
 
     h3 {
         padding: 12px;
