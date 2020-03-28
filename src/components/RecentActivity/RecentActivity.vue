@@ -6,16 +6,22 @@
                 <Books />
             </div>
         </div>
+        <ConnectorElementSingleUpward />
+        <ConnectorElementDouble />
     </div>
 </template>
 
 <script>
 import Books from '@/components/RecentActivity/Books.vue';
+import ConnectorElementSingleUpward from '@/components/RecentActivity/ConnectorElementSingleUpward.vue';
+import ConnectorElementDouble from '@/components/RecentActivity/ConnectorElementDouble.vue';
 
 export default {
     name: 'RecentActivity',
     components: {
         Books,
+        ConnectorElementDouble,
+        ConnectorElementSingleUpward,
     },
 };
 </script>
@@ -32,8 +38,11 @@ export default {
 
     .scroll-container {
         z-index: 1;
-        // overflow-x: auto;
-
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        overflow-y: auto;
     }
 }
 
