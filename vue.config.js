@@ -1,7 +1,7 @@
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    publicPath: '/',
+    publicPath: '/benrombaut.ca/',
     css: {
         loaderOptions: {
             sass: {
