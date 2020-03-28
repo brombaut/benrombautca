@@ -1,12 +1,24 @@
 <template>
     <main>
         <div class='headers-container'>
-            <h1 class='main-header'>Ben Rombaut</h1>
-            <h4 class='sub-header'>Software Developer</h4>
+            <h1
+                class='main-header'
+                :class="isHovering ? 'is-hovering': ''"
+                @mouseenter="updateHoveringStatus(true)"
+                @mouseleave="updateHoveringStatus(false)">
+                Ben Rombaut
+            </h1>
+            <h4
+                class='sub-header'
+                :class="isHovering ? 'is-hovering': ''"
+                @mouseenter="updateHoveringStatus(true)"
+                @mouseleave="updateHoveringStatus(false)">
+                Software Developer
+            </h4>
         </div>
-        <MicrochipArt />
-        <ConnectorElementDoubleTop />
-        <ConnectorElementDoubleBottom />
+        <MicrochipArt @hoveringEvent='updateHoveringStatus' />
+        <ConnectorElementDoubleTop @hoveringEvent='updateHoveringStatus' />
+        <ConnectorElementDoubleBottom @hoveringEvent='updateHoveringStatus' />
   </main>
 </template>
 
@@ -21,6 +33,17 @@ export default {
         MicrochipArt,
         ConnectorElementDoubleTop,
         ConnectorElementDoubleBottom,
+    },
+    data() {
+        return {
+            isHovering: false,
+        };
+    },
+    methods: {
+        updateHoveringStatus(isHovering) {
+            this.isHovering = isHovering;
+            this.$children.forEach(child => child.setIsHovering(isHovering));
+        },
     },
 };
 </script>
@@ -42,35 +65,25 @@ main {
             color: $primary;
             font-size: 100px;
             text-align: right;
-            animation: colorChange $pulseAnimationTime infinite;
+            animation: $colorHighlightAnimation;
             margin: 20px 0;
             -webkit-text-stroke: 3px black;
+
+            &.is-hovering {
+                animation: $colorHighlightAnimationQuick;
+            }
         }
 
         .sub-header {
             color: $primaryDark;
             font-size: 40px;
             text-align: right;
-            animation: colorChange $pulseAnimationTime infinite;
+            animation: $colorHighlightAnimation;
             margin: 0;
             -webkit-text-stroke: 2px black;
-        }
 
-        @keyframes colorChange {
-            0% {
-                color: $primaryPulse1;
-            }
-            25% {
-                color: $primaryPulse2;
-            }
-            50% {
-                color: $primaryPulse3;
-            }
-            75% {
-                color: $primaryPulse4;
-            }
-            100% {
-                color: $primaryPulse1;
+            &.is-hovering {
+                animation: $colorHighlightAnimationQuick;
             }
         }
     }

@@ -1,5 +1,9 @@
 <template>
-    <div id='microchip'>
+    <div
+        id='microchip'
+        :class="isHovering ? 'is-hovering': ''"
+        @mouseenter="emitHoveringStatus(true)"
+        @mouseleave="emitHoveringStatus(false)">
         <!-- Top Connectors -->
         <div class='horizontal-connectors-container'>
             <div
@@ -72,7 +76,16 @@ export default {
     data() {
         return {
             numberOfConnectors: 8,
+            isHovering: false,
         };
+    },
+    methods: {
+        emitHoveringStatus(isEnter) {
+            this.$emit('hoveringEvent', isEnter);
+        },
+        setIsHovering(newVal) {
+            this.isHovering = newVal;
+        },
     },
 };
 </script>
@@ -86,6 +99,7 @@ $connectorShortPixels: 8px;
     position: absolute;
     top: 25%;
     left: 10%;
+    z-index: 1;
 
     .horizontal-connectors-container {
         margin: 0 40px;
@@ -135,7 +149,7 @@ $connectorShortPixels: 8px;
             border: 4px solid $primaryDark;
             border-radius: 4px;
             transition: border 0.3s;
-            animation: borderColorChange $pulseAnimationTime infinite;
+            animation: $borderHighlightAnimation;
 
             .inner-border {
                 box-sizing: border-box;
@@ -156,17 +170,6 @@ $connectorShortPixels: 8px;
                 }
             }
         }
-
-        &:hover {
-            .highlight-border {
-                border-color: $primary !important;
-            }
-            .highlight-point {
-                background: $primary;
-            }
-        }
-
-
     }
 
     .end-point {
@@ -189,7 +192,7 @@ $connectorShortPixels: 8px;
             align-items: center;
             justify-content: center;
             transition: 0.3s;
-            animation: backgroundColorChange $pulseAnimationTime infinite;
+            animation: $backgroundHihglightAnimation;
 
             .inner-point {
                 height: 10px;
@@ -318,6 +321,16 @@ $connectorShortPixels: 8px;
         top: calc(#{$endPoint8Top} + 4px);
         left: calc(#{$endPoint8Left} + 7px);
         background: $secondaryDark;
+    }
+
+    &.is-hovering {
+        .highlight-border {
+            animation: $borderHighlightAnimationQuick;
+        }
+
+        .highlight-point {
+            animation: $backgroundHihglightAnimationQuick,
+        }
     }
 }
 

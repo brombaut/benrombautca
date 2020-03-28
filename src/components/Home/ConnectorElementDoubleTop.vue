@@ -1,5 +1,7 @@
 <template>
-    <div class='connector-element-double'>
+    <div
+        class='connector-element-double'
+        :class="isHovering ? 'is-hovering': ''">
         <div class='point start-point-middle'>
             <div class='highlight-point'>
                 <div class='inner-point'></div>
@@ -36,6 +38,19 @@
 <script>
 export default {
     name: 'ConnectorElementDouble',
+    data() {
+        return {
+            isHovering: false,
+        };
+    },
+    methods: {
+        emitHoveringStatus(isEnter) {
+            this.$emit('hoveringEvent', isEnter);
+        },
+        setIsHovering(newVal) {
+            this.isHovering = newVal;
+        },
+    },
 };
 </script>
 
@@ -50,6 +65,18 @@ $connectorELementHighlightWidth: 2px;
     top: 0;
     left: 0;
 
+    &.is-hovering {
+        .highlight {
+            animation: $backgroundHihglightAnimationQuick;
+        }
+
+        .point {
+            .highlight-point {
+                animation: $backgroundHihglightAnimationQuick,
+            }
+        }
+    }
+
     .outer {
         height: $connectorELementHeight;
         background: $secondaryDark;
@@ -63,7 +90,7 @@ $connectorELementHighlightWidth: 2px;
     .highlight {
         position: absolute;
         background: $primary;
-        animation: backgroundColorChange $pulseAnimationTime infinite;
+        animation: $backgroundHihglightAnimation;
         width: calc(100% + 2px);
         height: $connectorELementHighlightWidth;
         top: calc(6px);
@@ -89,7 +116,7 @@ $connectorELementHighlightWidth: 2px;
             align-items: center;
             justify-content: center;
             transition: 0.3s;
-            animation: backgroundColorChange $pulseAnimationTime infinite;
+            animation: $backgroundHihglightAnimation;
 
             .inner-point {
                 height: 14px;

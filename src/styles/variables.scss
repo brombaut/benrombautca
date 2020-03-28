@@ -14,10 +14,18 @@ $primaryPulse3: lighten($primary, 15%);
 $primaryPulse4: darken($primary, 20%);
 $pulseAnimationTime: 15s;
 $pulseAnimationDimmedTime: 25s;
+$pulseAnimationQuickTime: 5s;
 
+$borderHighlightAnimation: borderColorChange $pulseAnimationTime infinite;
+$borderHighlightAnimationQuick: borderColorChangeQuick $pulseAnimationQuickTime infinite;
+
+$colorHighlightAnimation: colorChange $pulseAnimationTime infinite;
+$colorHighlightAnimationQuick: colorChangeQuick $pulseAnimationQuickTime infinite;
 
 $backgroundHihglightAnimation: backgroundColorChange $pulseAnimationTime infinite;
 $backgroundHihglightDimmedAnimation: backgroundColorChangeDimmed $pulseAnimationDimmedTime infinite;
+$backgroundHihglightAnimationQuick: backgroundColorChangeQuick $pulseAnimationQuickTime infinite;
+
 
 @keyframes borderColorChange {
   0% {
@@ -36,6 +44,27 @@ $backgroundHihglightDimmedAnimation: backgroundColorChangeDimmed $pulseAnimation
       border-color: $primaryPulse1;
   }
 }
+
+@keyframes borderColorChangeQuick {
+    0% {
+        border-color: lighten($primaryPulse1, 0%);
+    }
+    20% {
+        border-color: lighten($primaryPulse2, 20%);
+    }
+    40% {
+        border-color: lighten($primaryPulse3, 20%);
+    }
+    60% {
+        border-color: lighten($primaryPulse4, 20%);
+    }
+    80% {
+        border-color: lighten($primaryPulse1, 20%);
+    }
+    100% {
+        border-color: lighten($primaryPulse1, 0%);
+    }
+  }
 
 @keyframes backgroundColorChange {
   0% {
@@ -71,5 +100,65 @@ $backgroundHihglightDimmedAnimation: backgroundColorChangeDimmed $pulseAnimation
     }
     100% {
         background: darken($primaryPulse1, 15%);
+    }
+}
+
+  @keyframes backgroundColorChangeQuick {
+    0% {
+        background: lighten($primaryPulse1, 0%);
+    }
+    20% {
+        background: lighten($primaryPulse2, 20%);
+    }
+    40% {
+        background: lighten($primaryPulse3, 20%);
+    }
+    60% {
+        background: lighten($primaryPulse4, 20%);
+    }
+    80% {
+        background: lighten($primaryPulse1, 20%);
+    }
+    100% {
+        background: lighten($primaryPulse1, 0%);
+    }
+}
+
+@keyframes colorChange {
+    0% {
+        color: $primaryPulse1;
+    }
+    25% {
+        color: $primaryPulse2;
+    }
+    50% {
+        color: $primaryPulse3;
+    }
+    75% {
+        color: $primaryPulse4;
+    }
+    100% {
+        color: $primaryPulse1;
+    }
+}
+
+@keyframes colorChangeQuick {
+    0% {
+        color: lighten($primaryPulse1, 0%);
+    }
+    20% {
+        color: lighten($primaryPulse2, 20%);
+    }
+    40% {
+        color: lighten($primaryPulse3, 20%);
+    }
+    60% {
+        color: lighten($primaryPulse4, 20%);
+    }
+    80% {
+        color: lighten($primaryPulse1, 20%);
+    }
+    100% {
+        color: lighten($primaryPulse1, 0%);
     }
   }

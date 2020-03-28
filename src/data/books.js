@@ -76,7 +76,7 @@ export default [
         title: 'Writing an Interpreter in Go',
         subtitle: null,
         inProgress: false,
-        description: 'I had been originally been looking for a good book on compilers that wasn\'t too dry. I came across "Writing a Compiler in Go", which is the sequel to this book, and decided to read this book first. I really enjoyed it, and feel that my understanding of the code I write has increased because if it.',
+        description: 'I had originally been looking for a good book on compilers that wasn\'t too dry. I came across "Writing a Compiler in Go", which is the sequel to this book, and decided to read this book first. I really enjoyed it, and feel that my understanding of the code I write has increased because if it.',
         thumbnail: 'InterpreterBook.png',
         url: 'https://github.com/brombaut/monkey-interpreter-and-compiler/tree/interpreter-finished',
     },
