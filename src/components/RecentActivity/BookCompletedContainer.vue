@@ -30,7 +30,7 @@ export default {
     .book-image-container {
         display: flex;
         overflow-x: auto;
-        padding: 20px 0;
+        padding: 32px 0;
     }
 }
 

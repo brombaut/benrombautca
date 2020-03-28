@@ -60,6 +60,11 @@ export default {
     background: $secondaryDark;
     padding: 16px 8px;
     height: fit-content;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 
     .image-container {
         height: 164px;

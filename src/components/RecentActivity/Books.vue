@@ -64,7 +64,7 @@ export default {
     flex-direction: column;
     align-items: center;
     color: white;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
     box-shadow: 5px 5px 5px $secondaryDark;
 
     h3 {
