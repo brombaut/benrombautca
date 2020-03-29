@@ -60,10 +60,11 @@ main {
     .headers-container {
         padding: 60px;
         z-index: 10;
+        font-weight: 900;
 
         .main-header {
             color: $primary;
-            font-size: 100px;
+            font-size: 120px;
             text-align: right;
             animation: $colorHighlightAnimation;
             margin: 20px 0;
@@ -76,11 +77,11 @@ main {
 
         .sub-header {
             color: $primaryDark;
-            font-size: 40px;
+            font-size: 60px;
             text-align: right;
             animation: $colorHighlightAnimation;
             margin: 0;
-            -webkit-text-stroke: 2px black;
+            -webkit-text-stroke: 1px black;
 
             &.is-hovering {
                 animation: $colorHighlightAnimationQuick;
