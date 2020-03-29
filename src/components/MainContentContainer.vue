@@ -25,15 +25,40 @@ export default {
     data() {
         return {
             currView: 'home',
+            showConnectors: true,
         };
+    },
+    watch: {
+        showConnectors(newVal) {
+            bus.$emit('emitConnectorsVisible', newVal);
+        },
     },
     methods: {
         handleViewChanged(clickedIconName) {
             this.currView = clickedIconName;
+            this.checkWindowWidth();
+        },
+        handleWindowResize(e) {
+            const windowWidth = e.target.innerWidth;
+            if (this.showConnectors && windowWidth < 1100) {
+                this.showConnectors = false;
+            } else if (!this.showConnectors && windowWidth >= 1350) {
+                this.showConnectors = true;
+            }
+        },
+        checkWindowWidth() {
+            if (window.innerWidth < 1100) {
+                this.showConnectors = false;
+            }
         },
     },
     mounted() {
         bus.$on('navIconClicked', this.handleViewChanged);
+        window.addEventListener('resize', this.handleWindowResize);
+        this.checkWindowWidth();
+    },
+    beforeDestroy() {
+        window.removeEventListener('resize', this.handleWindowResize);
     },
 };
 </script>
@@ -50,7 +75,7 @@ h1 {
     color: $primary;
     margin-top: 48px;
     z-index: 1;
-    -webkit-text-stroke: 1px black;
+    // -webkit-text-stroke: 1px black;
     font-size: 50px;
 }
 

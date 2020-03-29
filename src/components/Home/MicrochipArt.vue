@@ -1,6 +1,7 @@
 <template>
     <div
         id='microchip'
+        v-if="showMicrochip"
         :class="isHovering ? 'is-hovering': ''"
         @mouseenter="emitHoveringStatus(true)"
         @mouseleave="emitHoveringStatus(false)">
@@ -71,12 +72,15 @@
 </template>
 
 <script>
+import { bus } from '@/main';
+
 export default {
     name: 'MicrochipArt',
     data() {
         return {
             numberOfConnectors: 8,
             isHovering: false,
+            showMicrochip: true,
         };
     },
     methods: {
@@ -86,6 +90,21 @@ export default {
         setIsHovering(newVal) {
             this.isHovering = newVal;
         },
+        setMicrochipIsVisible(isVisible) {
+            this.isVisible = isVisible;
+        },
+        handleWindowResize(e) {
+            const windowWidth = window.innerWidth;
+            if (this.showMicrochip && windowWidth < 1350) {
+                this.showMicrochip = false;
+            } else if (!this.showMicrochip && windowWidth >= 1350) {
+                this.showMicrochip = true;
+            }
+        },
+    },
+    mounted() {
+        window.addEventListener('resize', this.handleWindowResize);
+        this.handleWindowResize();
     },
 };
 </script>

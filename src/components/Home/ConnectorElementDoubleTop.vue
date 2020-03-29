@@ -1,7 +1,5 @@
 <template>
-    <div
-        class='connector-element-double'
-        :class="isHovering ? 'is-hovering': ''">
+    <div class='connector-element-double'>
         <div class='point start-point-middle'>
             <div class='highlight-point'>
                 <div class='inner-point'></div>
@@ -38,25 +36,18 @@
 <script>
 export default {
     name: 'ConnectorElementDouble',
-    data() {
-        return {
-            isHovering: false,
-        };
-    },
-    methods: {
-        emitHoveringStatus(isEnter) {
-            this.$emit('hoveringEvent', isEnter);
-        },
-        setIsHovering(newVal) {
-            this.isHovering = newVal;
-        },
-    },
 };
 </script>
 
-<style lang='scss'>
+<style lang='scss' scoped>
 $connectorELementHeight: 16px;
 $connectorELementHighlightWidth: 2px;
+
+@media screen and (max-width: 1100px) {
+    .connector-element-double {
+        display: none;
+    }
+}
 
 .connector-element-double {
     position: absolute;
@@ -64,18 +55,6 @@ $connectorELementHighlightWidth: 2px;
     height: 100%;
     top: 0;
     left: 0;
-
-    &.is-hovering {
-        .highlight {
-            animation: $backgroundHihglightAnimationQuick;
-        }
-
-        .point {
-            .highlight-point {
-                animation: $backgroundHihglightAnimationQuick,
-            }
-        }
-    }
 
     .outer {
         height: $connectorELementHeight;
@@ -143,7 +122,7 @@ $connectorELementHighlightWidth: 2px;
 
     $startMiddleTop: $startPointMiddleTop;
     $startMiddleLeft: $startPointMiddleLeft;
-    $startMiddleWidth: max(400px, 35%);
+    $startMiddleWidth: 25%;
     $startMiddleRotate: 0deg;
 
     $slantUpTop: #{$startMiddleTop};

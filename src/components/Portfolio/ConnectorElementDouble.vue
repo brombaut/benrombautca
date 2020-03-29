@@ -43,6 +43,12 @@ export default {
 $connectorELementHeight: 16px;
 $connectorELementHighlightWidth: 2px;
 
+@media screen and (max-width: 1100px) {
+    .connector-element-double {
+        display: none;
+    }
+}
+
 .connector-element-double {
     position: absolute;
     width: 100%;
@@ -135,7 +141,7 @@ $connectorELementHighlightWidth: 2px;
 
     $startMiddleTop: $startPointMiddleTop;
     $startMiddleLeft: $startPointMiddleLeft;
-    $startMiddleWidth: max(350px, 35%);
+    $startMiddleWidth: 25%;
     $startMiddleRotate: 0deg;
 
     $slantUpTop: #{$startMiddleTop};

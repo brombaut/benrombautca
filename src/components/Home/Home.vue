@@ -42,7 +42,11 @@ export default {
     methods: {
         updateHoveringStatus(isHovering) {
             this.isHovering = isHovering;
-            this.$children.forEach(child => child.setIsHovering(isHovering));
+            this.$children.forEach(child => {
+                if (child.setIsHovering) {
+                    child.setIsHovering(isHovering);
+                }
+            });
         },
     },
 };
