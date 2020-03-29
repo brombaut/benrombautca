@@ -1,7 +1,6 @@
 <template>
     <div
         id='microchip'
-        v-if="showMicrochip"
         :class="isHovering ? 'is-hovering': ''"
         @mouseenter="emitHoveringStatus(true)"
         @mouseleave="emitHoveringStatus(false)">
@@ -80,7 +79,6 @@ export default {
         return {
             numberOfConnectors: 8,
             isHovering: false,
-            showMicrochip: true,
         };
     },
     methods: {
@@ -93,18 +91,6 @@ export default {
         setMicrochipIsVisible(isVisible) {
             this.isVisible = isVisible;
         },
-        handleWindowResize(e) {
-            const windowWidth = window.innerWidth;
-            if (this.showMicrochip && windowWidth < 1350) {
-                this.showMicrochip = false;
-            } else if (!this.showMicrochip && windowWidth >= 1350) {
-                this.showMicrochip = true;
-            }
-        },
-    },
-    mounted() {
-        window.addEventListener('resize', this.handleWindowResize);
-        this.handleWindowResize();
     },
 };
 </script>
@@ -113,6 +99,11 @@ export default {
 $connectorLongPixels: 40px;
 $connectorShortPixels: 8px;
 
+@media screen and (max-width: 1350px) {
+    #microchip {
+        display: none;
+    }
+}
 
 #microchip {
     position: absolute;
