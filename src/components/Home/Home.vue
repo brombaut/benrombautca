@@ -72,7 +72,8 @@ main {
             text-align: right;
             animation: $colorHighlightAnimation;
             margin: 20px 0;
-            -webkit-text-stroke: 3px black;
+            font-weight: 600;
+            -webkit-text-stroke: 1px black;
 
             &.is-hovering {
                 animation: $colorHighlightAnimationQuick;
@@ -85,6 +86,7 @@ main {
             text-align: right;
             animation: $colorHighlightAnimation;
             margin: 0;
+            font-weight: 500;
             -webkit-text-stroke: 1px black;
 
             &.is-hovering {
