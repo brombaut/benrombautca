@@ -31,7 +31,7 @@ export default [
         description: 'A frontend to consume data from the NHL API. Still a work in progress.',
         techUsed: [],
         url: null,
-        sourceUrl: 'https://github.com/brombaut/hockey-app',
+        sourceUrl: 'https://gitlab.com/brombaut/nhl-api-frontend',
         thumbnail: null,
         inProgress: true,
     },
