@@ -28,11 +28,15 @@ export default [
     {
         id: 3,
         name: 'NHL API Frontend',
-        description: 'A frontend to consume data from the NHL API. Still a work in progress.',
-        techUsed: [],
-        url: null,
-        sourceUrl: 'https://gitlab.com/brombaut/nhl-api-frontend',
-        thumbnail: null,
-        inProgress: true,
+        description: 'Web app to consume the publicly accessible portions of the NHL API.',
+        techUsed: [
+            'TypeScript',
+            'Vue',
+            'Vuex',
+        ],
+        url: 'https://brombaut.github.io/nhl-api-frontend/#/',
+        sourceUrl: 'https://github.com/brombaut/nhl-api-frontend',
+        thumbnail: 'NhlApiFrontend.png',
+        inProgress: false,
     },
 ];
