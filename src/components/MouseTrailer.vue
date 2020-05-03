@@ -5,6 +5,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import Point from "../types/point";
+// https://noahyamamoto.com/blog/mousetrailanimation
 
 @Component
 export default class MouseTrailer extends Vue {
@@ -27,7 +28,7 @@ export default class MouseTrailer extends Vue {
   }
 
   setStateDimensions() {
-    this.cHeight = document.body.clientHeight - 8;
+    this.cHeight = document.body.clientHeight - 12;
     this.cWidth = document.body.clientWidth - 8;
   }
 

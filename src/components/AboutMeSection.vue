@@ -6,7 +6,7 @@
     </div>
     <div class="section-body">
       <div class="image-container align-left slide-in">
-        <img :src="imageSource"/>
+        <img :src="imageSource" alt="Ben Rombaut"/>
       </div>
       <div class="text-container">
         <p v-for="obj in aboutMe.description" :key="obj.section">{{ obj.paragraph }}</p>
@@ -30,7 +30,7 @@ export default class AboutMeSection extends Vue {
     if (!this.aboutMe.imageFileName) {
       return "";
     }
-    const images = require.context("../assets/images/", false, /\.jpg$/);
+    const images = require.context("../assets/images/", false, /(\.jpg || \.png)$/);
     return images(`./${this.aboutMe.imageFileName}`);
   }
 

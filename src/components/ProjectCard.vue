@@ -3,6 +3,7 @@
     <div class="image-container">
       <img
         :src="imageSource"
+        :alt="project.name"
         @click.stop.prevent="handleProjectUrlClick()" />
     </div>
     <h4 class="title">{{ project.name }}</h4>
