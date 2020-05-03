@@ -1,7 +1,7 @@
 <template>
   <section id="landing">
     <header>
-      <h1>Ben Rombaut</h1>
+      <h1>BEN ROMBAUT</h1>
       <h4>Software Developer</h4>
     </header>
   </section>
@@ -17,7 +17,6 @@ export default class LandingSection extends Vue {}
 <style lang="scss">
 #landing {
   height: 100vh;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -2,7 +2,7 @@ import Vue from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
-  faUserSecret,
+  faUser,
   faHome,
   faStreetView,
   faCode,
@@ -14,7 +14,7 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 import App from "./App.vue";
 
-library.add(faUserSecret);
+library.add(faUser);
 library.add(faHome);
 library.add(faFolderOpen);
 library.add(faEnvelope);

@@ -1,22 +1,30 @@
 <template>
   <div id="app">
     <LandingSection />
+    <AboutMeSection />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import LandingSection from "@/components/LandingSection.vue";
+import AboutMeSection from "@/components/AboutMeSection.vue";
 
 @Component({
   components: {
-    LandingSection
+    LandingSection,
+    AboutMeSection
   }
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+html,
+body {
+  margin: 0;
+}
+
 #app {
   font-family: League Spartan, Helvetica, Arial, sans-serif;
   font-family: "Share Tech Mono", Helvetica, Arial, sans-serif;
@@ -26,7 +34,15 @@ export default class App extends Vue {}
   color: white;
   background: $secondary;
   display: flex;
-  height: 100%;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
+  overflow-y: auto;
+
+  section {
+    width: calc(100% - 16px);
+    max-width: 1280px;
+    padding: 8px;
+  }
 }
 </style>

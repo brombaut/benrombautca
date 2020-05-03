@@ -16,9 +16,10 @@ const aboutMe: AboutMe = {
     },
     {
       section: "interests",
-      paragraph: "I enjoy learning about a broad range of topics related to Computer Science and Software Engineering. I am primarily interested in Software Reliability & Security, Software Architecture, Software Maintenance & Evolution, and Web Development. Check out the \"What I've Been Up To\" section to see what I've been learning about recently."
+      paragraph: "I enjoy learning about a broad range of topics related to Computer Science and Software Engineering. I am primarily interested in Software Architecture, Software Reliability & Security, Software Maintenance & Evolution, and Web Development."
     }
-  ]
+  ],
+  imageFileName: "benrombaut.jpg"
 };
 
 export default aboutMe;
