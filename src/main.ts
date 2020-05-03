@@ -2,11 +2,11 @@ import Vue from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
-    faUserSecret,
-    faHome,
-    faStreetView,
-    faCode,
-    faMicrochip,
+  faUserSecret,
+  faHome,
+  faStreetView,
+  faCode,
+  faMicrochip
 } from "@fortawesome/free-solid-svg-icons";
 import { faFolderOpen, faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -34,5 +34,5 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false;
 
 new Vue({
-    render: (h) => h(App),
+  render: (h) => h(App)
 }).$mount("#app");

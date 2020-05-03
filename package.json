@@ -66,13 +66,14 @@
       "no-plusplus": 0,
       "no-confusing-arrow": 0,
       "quotes": ["error", "double"],
+      "comma-dangle": ["error", "never"],
       "max-len": [
         "warn",
         400
       ],
       "indent": [
         "error",
-        4
+        2
       ]
     }
   },

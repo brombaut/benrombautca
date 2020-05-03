@@ -1,11 +1,18 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <LandingSection />
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import LandingSection from "@/components/LandingSection.vue";
 
-@Component
+@Component({
+  components: {
+    LandingSection
+  }
+})
 export default class App extends Vue {}
 </script>
 
@@ -17,7 +24,7 @@ export default class App extends Vue {}
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: white;
-  background: $secondaryDark;
+  background: $secondary;
   display: flex;
   height: 100%;
   width: 100%;
