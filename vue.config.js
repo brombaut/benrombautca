@@ -1,17 +1,17 @@
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    publicPath: '',
+    publicPath: "",
     chainWebpack: config => {
-        config.plugin('html').tap(args => {
-            args[0].title = 'Ben Rombaut';
+        config.plugin("html").tap(args => {
+            args[0].title = "Ben Rombaut";
             return args;
         });
     },
     css: {
         loaderOptions: {
             sass: {
-                prependData: '@import "@/styles/variables.scss";',
+                prependData: "@import \"@/styles/variables.scss\";",
             },
         },
     },
@@ -19,8 +19,8 @@ module.exports = {
         plugins: [
             new CopyPlugin([
                 {
-                    from: './CNAME',
-                    to: './',
+                    from: "./CNAME",
+                    to: "./",
                 },
             ]),
         ],
