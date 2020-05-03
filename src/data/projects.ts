@@ -9,7 +9,7 @@ const projects: Project[] = [
   {
     id: 2,
     name: "BEC Article Tracker",
-    description: "A simple tool I use to keep track of tech-related articles I have read and articles I would like to read.",
+    description: "A tool I built to keep track of tech-related articles I have read and articles I would like to read.",
     techUsed: [
       "Vue",
       "Firebase"
@@ -22,7 +22,7 @@ const projects: Project[] = [
   {
     id: 3,
     name: "Stack Overflow Question Scraper",
-    description: "A site that allows users to quickly build queries for questions on Stack Overflow, view summaries of these questions, and quickly view the full question on Stack Overflow.",
+    description: "A site that allows users to quickly build queries for questions and view summaries of these questions on Stack Overflow.",
     techUsed: [
       "Vue",
       "Cheerio"

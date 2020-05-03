@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <MouseTrailer />
     <LandingSection />
     <AboutMeSection />
     <ProjectsSection />
@@ -11,12 +12,14 @@ import { Component, Vue } from "vue-property-decorator";
 import LandingSection from "@/components/LandingSection.vue";
 import AboutMeSection from "@/components/AboutMeSection.vue";
 import ProjectsSection from "@/components/ProjectsSection.vue";
+import MouseTrailer from "@/components/MouseTrailer.vue";
 
 @Component({
   components: {
     LandingSection,
     AboutMeSection,
-    ProjectsSection
+    ProjectsSection,
+    MouseTrailer
   }
 })
 export default class App extends Vue {}
@@ -41,11 +44,14 @@ body {
   align-items: center;
   width: 100%;
   overflow-y: auto;
+  overflow-x: auto;
+  position: relative;
 
   section {
     width: calc(100% - 16px);
     max-width: 1280px;
     padding: 48px 8px;
+    z-index: 2;
   }
 }
 </style>

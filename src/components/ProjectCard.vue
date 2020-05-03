@@ -67,6 +67,7 @@ export default class ProjectCard extends Vue {
 <style lang="scss">
 .project-card {
   width: 340px;
+  max-width: calc(100vw - 56px);
   margin: 28px;
   display: flex;
   flex-direction: column;
@@ -75,6 +76,7 @@ export default class ProjectCard extends Vue {
   .image-container {
     height: 192px;
     width: 340px;
+    max-width: calc(100vw - 56px);
     border-radius: 12px;
     transition: 0.3s filter;
 
