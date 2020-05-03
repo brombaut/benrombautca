@@ -3,27 +3,24 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
   faUser,
-  faHome,
-  faStreetView,
   faCode,
-  faMicrochip
+  faFolderOpen,
+  faExternalLinkAlt
 } from "@fortawesome/free-solid-svg-icons";
-import { faFolderOpen, faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
+import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
 
 import App from "./App.vue";
 
 library.add(faUser);
-library.add(faHome);
 library.add(faFolderOpen);
 library.add(faEnvelope);
-library.add(faStreetView);
 library.add(faMap);
 library.add(faGithub);
 library.add(faLinkedin);
 library.add(faCode);
-library.add(faMicrochip);
+library.add(faExternalLinkAlt);
 
 
 // eslint-disable-next-line import/prefer-default-export

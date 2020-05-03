@@ -1,8 +1,13 @@
 import { Project } from "@/types/project";
 
+const sortProjects = function(a: Project, b: Project) {
+  if (a.id < b.id) return -1;
+  return 1;
+};
+
 const projects: Project[] = [
   {
-    id: 1,
+    id: 2,
     name: "BEC Article Tracker",
     description: "A simple tool I use to keep track of tech-related articles I have read and articles I would like to read.",
     techUsed: [
@@ -15,7 +20,7 @@ const projects: Project[] = [
     inProgress: false
   },
   {
-    id: 2,
+    id: 3,
     name: "Stack Overflow Question Scraper",
     description: "A site that allows users to quickly build queries for questions on Stack Overflow, view summaries of these questions, and quickly view the full question on Stack Overflow.",
     techUsed: [
@@ -28,7 +33,7 @@ const projects: Project[] = [
     inProgress: false
   },
   {
-    id: 3,
+    id: 1,
     name: "NHL API Frontend",
     description: "Web app to consume the publicly accessible portions of the NHL API.",
     techUsed: [
@@ -43,4 +48,4 @@ const projects: Project[] = [
   }
 ];
 
-export default projects;
+export default projects.sort(sortProjects);

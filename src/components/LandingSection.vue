@@ -16,6 +16,7 @@ export default class LandingSection extends Vue {}
 
 <style lang="scss">
 #landing {
+  padding: 0 0 !important;
   height: 100vh;
   display: flex;
   justify-content: center;

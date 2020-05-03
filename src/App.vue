@@ -2,6 +2,7 @@
   <div id="app">
     <LandingSection />
     <AboutMeSection />
+    <ProjectsSection />
   </div>
 </template>
 
@@ -9,11 +10,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import LandingSection from "@/components/LandingSection.vue";
 import AboutMeSection from "@/components/AboutMeSection.vue";
+import ProjectsSection from "@/components/ProjectsSection.vue";
 
 @Component({
   components: {
     LandingSection,
-    AboutMeSection
+    AboutMeSection,
+    ProjectsSection
   }
 })
 export default class App extends Vue {}
@@ -42,7 +45,7 @@ body {
   section {
     width: calc(100% - 16px);
     max-width: 1280px;
-    padding: 8px;
+    padding: 48px 8px;
   }
 }
 </style>
