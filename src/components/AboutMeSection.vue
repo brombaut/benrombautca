@@ -43,13 +43,12 @@ export default class AboutMeSection extends Vue {
     const isHalfScrolledPast = window.scrollY < imageBottom;
     if (isHalfShown && isHalfScrolledPast) {
       this.sliderImage.classList.add("active");
-    } else {
-      // this.sliderImage.classList.remove("active");
+      window.removeEventListener("scroll", this.checkSlide);
     }
   }
 
   mounted() {
-    this.sliderImage = document.querySelector(".slide-in") as HTMLDivElement;
+    this.sliderImage = this.$el.querySelector(".slide-in") as HTMLDivElement;
     window.addEventListener("scroll", this.checkSlide);
   }
 }
@@ -110,30 +109,6 @@ export default class AboutMeSection extends Vue {
         border-radius: 50%;
       }
     }
-  }
-
-  .align-left {
-    float: left;
-    margin-right: 20px;
-  }
-  .align-right {
-    float: right;
-    margin-left: 20px;
-  }
-  .slide-in {
-    opacity: 0;
-    transition: all .5s;
-  }
-  .align-left.slide-in {
-    transform: translateX(-30%) scale(0.95);
-  }
-
-  .align-right.slide-in {
-    transform: translateX(30%) scale(0.95);
-  }
-  .slide-in.active {
-    opacity: 1;
-    transform: translateX(0%) scale(1);
   }
 }
 </style>

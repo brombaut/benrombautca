@@ -1,5 +1,5 @@
 <template>
-  <li class="work-card">
+  <li class="work-card align-left slide-in">
     <div class="image-container">
       <img :src="imageSource" :alt="work.imageFile" />
     </div>
@@ -30,6 +30,8 @@ export default class WorkCard extends Vue {
   @Prop()
   private work!: Work;
 
+  private workCardElem!: HTMLLIElement;
+
   get imageSource() {
     try {
       if (!this.work || !this.work.imageFile) {
@@ -40,6 +42,24 @@ export default class WorkCard extends Vue {
     } catch (e) {
       return "";
     }
+  }
+
+  checkSlide(e: Event) {
+    const boundingRect: DOMRect = this.workCardElem.getBoundingClientRect();
+    const { width, height } = boundingRect;
+    const slideInAt = (window.scrollY + window.innerHeight - height / 2);
+    const imageBottom = this.workCardElem.offsetTop + height;
+    const isHalfShown = slideInAt > this.workCardElem.offsetTop;
+    const isHalfScrolledPast = window.scrollY < imageBottom;
+    if (isHalfShown && isHalfScrolledPast) {
+      this.workCardElem.classList.add("active");
+      window.removeEventListener("scroll", this.checkSlide);
+    }
+  }
+
+  mounted() {
+    this.workCardElem = this.$el as HTMLLIElement; // .querySelector(".slide-in") as HTMLLIElement;
+    window.addEventListener("scroll", this.checkSlide);
   }
 }
 </script>

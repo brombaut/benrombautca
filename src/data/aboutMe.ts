@@ -4,11 +4,11 @@ const aboutMe: AboutMe = {
   description: [
     {
       section: "general",
-      paragraph: "My name is Ben Rombaut. I am a Software Developer originally from Rothesay, New Brunswick, Canada, but now work in Fredericton, New Brunswick."
+      paragraph: "My name is Ben Rombaut. I am a Software Developer from Rothesay, New Brunswick, Canada. I now live in Fredericton, New Brunswick."
     },
     {
       section: "education",
-      paragraph: "I receieved my Bachelor's Degree in Software Engineering from the University of New Brunswick in May 2019. I also graduated from the Faculty of Computer Science's Co-operative Education Program alongside my degree, completing multiple work terms in both academia and industry."
+      paragraph: "I earned a Bachelor of Science in Software Engineering from the University of New Brunswick in May 2019. I also graduated from the Faculty of Computer Science's Co-operative Education Program alongside my degree, completing multiple work terms in both academia and industry."
     },
     {
       section: "work",

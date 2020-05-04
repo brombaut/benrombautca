@@ -1,5 +1,5 @@
 <template>
-  <li class="education-card">
+  <li class="education-card align-right slide-in">
     <div class="image-container">
       <img :src="imageSource" :alt="education.imageFile" />
     </div>
@@ -18,6 +18,8 @@ export default class EducationCard extends Vue {
   @Prop()
   private education!: Education;
 
+  private educationCardElem!: HTMLLIElement;
+
   get imageSource() {
     try {
       if (!this.education.imageFile) {
@@ -28,6 +30,24 @@ export default class EducationCard extends Vue {
     } catch (e) {
       return "";
     }
+  }
+
+  checkSlide(e: Event) {
+    const boundingRect: DOMRect = this.educationCardElem.getBoundingClientRect();
+    const { width, height } = boundingRect;
+    const slideInAt = (window.scrollY + window.innerHeight - height / 2);
+    const imageBottom = this.educationCardElem.offsetTop + height;
+    const isHalfShown = slideInAt > this.educationCardElem.offsetTop;
+    const isHalfScrolledPast = window.scrollY < imageBottom;
+    if (isHalfShown && isHalfScrolledPast) {
+      this.educationCardElem.classList.add("active");
+      window.removeEventListener("scroll", this.checkSlide);
+    }
+  }
+
+  mounted() {
+    this.educationCardElem = this.$el as HTMLLIElement; // .querySelector(".slide-in") as HTMLLIElement;
+    window.addEventListener("scroll", this.checkSlide);
   }
 }
 </script>
