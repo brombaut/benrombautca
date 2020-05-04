@@ -5,19 +5,21 @@
       <h4 class="section-title">{{ title }}</h4>
     </div>
     <div class="section-body">
-      <div class="vertical-line"></div>
-      <ul v-if="type === 'education'">
-        <EducationCard
-          v-for="education in timelineEntities"
-          :key="education.title"
-          :education="education" />
-      </ul>
-      <ul v-else-if="type === 'work'">
-        <WorkCard
-          v-for="work in timelineEntities"
-          :key="work.title"
-          :work="work" />
-      </ul>
+      <div class='wrapper'>
+        <div class="vertical-line"></div>
+        <ul v-if="type === 'education'">
+          <EducationCard
+            v-for="education in timelineEntities"
+            :key="education.title"
+            :education="education" />
+        </ul>
+        <ul v-else-if="type === 'work'">
+          <WorkCard
+            v-for="work in timelineEntities"
+            :key="work.title"
+            :work="work" />
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -49,6 +51,13 @@ export default class VerticalTimeline extends Vue {
 
   @Prop()
   private timelineEntities!: TimelineEntities;
+
+  mounted() {
+    const verticalLine = this.$el.querySelector(".vertical-line") as HTMLDivElement;
+    const wrapperEl = this.$el.querySelector(".wrapper") as HTMLDivElement;
+    const { height } = wrapperEl.getBoundingClientRect();
+    verticalLine.style.height = `${height}px`;
+  }
 }
 </script>
 
@@ -56,7 +65,7 @@ export default class VerticalTimeline extends Vue {
 .vertical-timeline {
   display: flex;
   flex-direction: column;
-  margin: 0 36px;
+  margin: 8px;
 
   &:hover {
     .section-header {
@@ -79,7 +88,13 @@ export default class VerticalTimeline extends Vue {
   .section-body {
     display: flex;
     align-items: center;
-    height: fit-content;
+
+    .wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+    }
 
     .vertical-line {
       height: calc(100% - 40px);

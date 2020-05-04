@@ -3,9 +3,11 @@
 </template>
 
 <script lang="ts">
+/**
+ * Ported to this Vue Class componentfrom https://noahyamamoto.com/blog/mousetrailanimation
+ */
 import { Component, Vue } from "vue-property-decorator";
 import Point from "../types/point";
-// https://noahyamamoto.com/blog/mousetrailanimation
 
 @Component
 export default class MouseTrailer extends Vue {
@@ -18,10 +20,7 @@ export default class MouseTrailer extends Vue {
   mounted() {
     this.canvas = this.$el as HTMLCanvasElement;
     this.setStateDimensions();
-
     window.addEventListener("resize", this.setStateDimensions, false);
-
-    // If the device supports cursors, start animation.
     if (matchMedia("(pointer:fine)").matches) {
       this.startAnimation();
     }

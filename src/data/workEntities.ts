@@ -22,6 +22,7 @@ const workEntities: Work[] = [
     location: "Fredericton, New Brunswick",
     workedWith: [
       "Vue",
+      "Web Development",
       "Product Design"
     ],
     imageFile: "eigenLogo_Large.png"
@@ -56,6 +57,7 @@ const workEntities: Work[] = [
     time: "(Jan '16 - Apr '16)",
     location: "Fredericton, New Brunswick",
     workedWith: [
+      "Web Development",
       "jQuery",
       "C#"
     ],

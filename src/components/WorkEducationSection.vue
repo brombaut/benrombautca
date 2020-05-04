@@ -6,6 +6,7 @@
       icon="briefcase"
       :timelineEntities="workEntities" />
     <VerticalTimeline
+      v-if="true"
       type="education"
       title="EDUCATION"
       icon="graduation-cap"
@@ -37,7 +38,7 @@ export default class WorkEducationSection extends Vue {
 #work-education {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  // flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 </style>

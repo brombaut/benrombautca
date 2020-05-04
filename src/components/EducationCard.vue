@@ -39,12 +39,13 @@ li {
 }
 .education-card {
   text-align: left;
-  padding: 0px 20px;
+  padding: 4px 20px;
 
   div {
     margin: 4px;
     font-size: 1rem;
     color: white;
+    transform: translateY(12px);
   }
 
   .image-container {

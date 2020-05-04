@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MouseTrailer v-if="false"/>
+    <MouseTrailer v-if="true"/>
     <LandingSection />
     <AboutMeSection />
     <WorkEducationSection />

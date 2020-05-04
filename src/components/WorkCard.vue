@@ -1,16 +1,22 @@
 <template>
   <li class="work-card">
-    <div v-if="true || work.imageFile" class="image-container">
+    <div class="image-container">
       <img :src="imageSource" :alt="work.imageFile" />
     </div>
     <div class="title">{{ work.title }}</div>
     <div class="company"><i>{{ work.company }}</i></div>
-      <!-- <span class="company">{{ work.company }}</span> -->
-      <!-- <span class="time"><i>{{ work.time }}</i></span> -->
-    <!-- </div> -->
     <div class="time">{{ work.time }}</div>
     <div class="location">
       {{ work.location }}
+    </div>
+    <div class="worked-with-list">
+      <span>Worked With: </span>
+      <span
+        v-for="ww in work.workedWith"
+        :key="ww"
+        class="worked-with">
+        {{ ww }}
+      </span>
     </div>
   </li>
 </template>
@@ -45,7 +51,7 @@ li {
 }
 .work-card {
   text-align: left;
-  padding: 0px 20px;
+  padding: 4px 20px;
 
   div {
     margin: 4px;
@@ -71,14 +77,22 @@ li {
     font-size: 1.2rem;
     font-weight: 800;
     color: $primary;
+    padding-top: 4px;
   }
 
-  .company {}
+  .worked-with-list {
+    display: flex;
+    align-items: center;
 
-  .time {
-    // margin-left: 4px;
-    // font-size: 0.8rem;
-    // color: $primaryDark;
+    .worked-with {
+      background: $primaryDark;
+      filter: brightness(85%);
+      margin: 4px;
+      padding: 4px;
+      border-radius: 4px;
+      text-align: center;
+      font-size: 0.8rem;
+    }
   }
 }
 </style>
