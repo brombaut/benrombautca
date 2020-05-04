@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MouseTrailer />
+    <MouseTrailer v-if="false"/>
     <LandingSection />
     <AboutMeSection />
     <WorkEducationSection />
@@ -32,6 +32,7 @@ export default class App extends Vue {}
 html,
 body {
   margin: 0;
+  background: $secondary;
 }
 
 #app {

@@ -13,7 +13,7 @@ const workEntities: Work[] = [
       "PSQL",
       "Electron"
     ],
-    imageFile: ""
+    imageFile: "eigenLogo_Large.png"
   },
   {
     title: "Front-End Developer (Co-op)",
@@ -24,7 +24,7 @@ const workEntities: Work[] = [
       "Vue",
       "Product Design"
     ],
-    imageFile: ""
+    imageFile: "eigenLogo_Large.png"
   },
   {
     title: "Research Assistant (Co-op)",
@@ -36,7 +36,7 @@ const workEntities: Work[] = [
       "Android Development",
       "Bluetooth LE"
     ],
-    imageFile: ""
+    imageFile: "hcilabLogo_Large.png"
   },
   {
     title: "Quality Assurance Analyst (Co-op)",
@@ -48,7 +48,7 @@ const workEntities: Work[] = [
       "JavaScript",
       "QA Practices"
     ],
-    imageFile: ""
+    imageFile: "siemensLogo_Large.png"
   },
   {
     title: "Software Developer (Co-op)",
@@ -59,7 +59,7 @@ const workEntities: Work[] = [
       "jQuery",
       "C#"
     ],
-    imageFile: ""
+    imageFile: "brunswickNewsLogo_Large.png"
   },
   {
     title: "IT Support Specialist (Co-op)",
@@ -69,7 +69,7 @@ const workEntities: Work[] = [
     workedWith: [
       "Customer/IT Support"
     ],
-    imageFile: ""
+    imageFile: "brunswickNewsLogo_Large.png"
   }
 ];
 

@@ -4,10 +4,11 @@
       <img :src="imageSource" :alt="work.imageFile" />
     </div>
     <div class="title">{{ work.title }}</div>
-    <div class="company-time">
-      <span class="company">{{ work.company }}</span>
-      <span class="time">{{ work.time }}</span>
-    </div>
+    <div class="company"><i>{{ work.company }}</i></div>
+      <!-- <span class="company">{{ work.company }}</span> -->
+      <!-- <span class="time"><i>{{ work.time }}</i></span> -->
+    <!-- </div> -->
+    <div class="time">{{ work.time }}</div>
     <div class="location">
       {{ work.location }}
     </div>
@@ -50,17 +51,19 @@ li {
     margin: 4px;
     font-size: 1rem;
     color: white;
-    transform: translateY(-20px);
+    transform: translateY(8px);
   }
 
   .image-container {
     height: 45px;
+    max-width: 144px;
     margin-bottom: 0px;
-    margin-top: 20px;
+    margin-top: 32px;
 
     img {
       height: 100%;
       width: 100%;
+      border-radius: 4px;
     }
   }
 
@@ -68,6 +71,14 @@ li {
     font-size: 1.2rem;
     font-weight: 800;
     color: $primary;
+  }
+
+  .company {}
+
+  .time {
+    // margin-left: 4px;
+    // font-size: 0.8rem;
+    // color: $primaryDark;
   }
 }
 </style>

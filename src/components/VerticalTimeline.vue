@@ -56,7 +56,7 @@ export default class VerticalTimeline extends Vue {
 .vertical-timeline {
   display: flex;
   flex-direction: column;
-  margin: 0 20px;
+  margin: 0 36px;
 
   &:hover {
     .section-header {
