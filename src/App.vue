@@ -4,6 +4,7 @@
     <LandingSection />
     <AboutMeSection />
     <ProjectsSection />
+    <WorkEducationSection />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import { Component, Vue } from "vue-property-decorator";
 import LandingSection from "@/components/LandingSection.vue";
 import AboutMeSection from "@/components/AboutMeSection.vue";
 import ProjectsSection from "@/components/ProjectsSection.vue";
+import WorkEducationSection from "@/components/WorkEducationSection.vue";
 import MouseTrailer from "@/components/MouseTrailer.vue";
 
 @Component({
@@ -19,7 +21,8 @@ import MouseTrailer from "@/components/MouseTrailer.vue";
     LandingSection,
     AboutMeSection,
     ProjectsSection,
-    MouseTrailer
+    MouseTrailer,
+    WorkEducationSection
   }
 })
 export default class App extends Vue {}
