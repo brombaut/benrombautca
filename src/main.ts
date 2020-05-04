@@ -5,7 +5,9 @@ import {
   faUser,
   faCode,
   faFolderOpen,
-  faExternalLinkAlt
+  faExternalLinkAlt,
+  faGraduationCap,
+  faBriefcase
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -21,7 +23,8 @@ library.add(faGithub);
 library.add(faLinkedin);
 library.add(faCode);
 library.add(faExternalLinkAlt);
-
+library.add(faGraduationCap);
+library.add(faBriefcase);
 
 // eslint-disable-next-line import/prefer-default-export
 export const bus = new Vue();

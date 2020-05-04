@@ -1,12 +1,25 @@
 <template>
   <section id="work-education">
-    <VerticalTimeline />
+    <VerticalTimeline
+      type="work"
+      title="WORK"
+      icon="briefcase"
+      :timelineEntities="workEntities" />
+    <VerticalTimeline
+      type="education"
+      title="EDUCATION"
+      icon="graduation-cap"
+      :timelineEntities="educationEntities" />
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import VerticalTimeline from "@/components/VerticalTimeline.vue";
+import educationEntities from "@/data/educationEntities";
+import workEntities from "@/data/workEntities";
+import { Education } from "../types/education";
+import { Work } from "../types/work";
 
 @Component({
   components: {
@@ -14,7 +27,9 @@ import VerticalTimeline from "@/components/VerticalTimeline.vue";
   }
 })
 export default class WorkEducationSection extends Vue {
+  private educationEntities: Education[] = educationEntities;
 
+  private workEntities: Work[] = workEntities;
 }
 </script>
 
@@ -23,6 +38,6 @@ export default class WorkEducationSection extends Vue {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 }
 </style>

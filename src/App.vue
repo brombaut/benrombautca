@@ -3,8 +3,8 @@
     <MouseTrailer />
     <LandingSection />
     <AboutMeSection />
-    <ProjectsSection />
     <WorkEducationSection />
+    <ProjectsSection />
   </div>
 </template>
 

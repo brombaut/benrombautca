@@ -1,34 +1,54 @@
 <template>
   <div class="vertical-timeline">
     <div class="section-header">
-      <font-awesome-icon :icon="['fas', 'user']" />
-      <h4 class="section-title">EDUCATION</h4>
+      <font-awesome-icon :icon="['fas', icon]" />
+      <h4 class="section-title">{{ title }}</h4>
     </div>
     <div class="section-body">
       <div class="vertical-line"></div>
-      <ul>
+      <ul v-if="type === 'education'">
         <EducationCard
-          v-for="education in educationEntities"
+          v-for="education in timelineEntities"
           :key="education.title"
           :education="education" />
+      </ul>
+      <ul v-else-if="type === 'work'">
+        <WorkCard
+          v-for="work in timelineEntities"
+          :key="work.title"
+          :work="work" />
       </ul>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import educationEntities from "@/data/educationEntities";
+import { Component, Vue, Prop } from "vue-property-decorator";
 import EducationCard from "@/components/EducationCard.vue";
+import WorkCard from "@/components/WorkCard.vue";
 import { Education } from "../types/education";
+import { Work } from "../types/work";
+import { TimelineEntities } from "../types/timeline-entities";
+
 
 @Component({
   components: {
-    EducationCard
+    EducationCard,
+    WorkCard
   }
 })
 export default class VerticalTimeline extends Vue {
-  private educationEntities: Education[] = educationEntities;
+  @Prop()
+  private type!: string;
+
+  @Prop()
+  private title!: string;
+
+  @Prop()
+  private icon!: string;
+
+  @Prop()
+  private timelineEntities!: TimelineEntities;
 }
 </script>
 
@@ -36,6 +56,7 @@ export default class VerticalTimeline extends Vue {
 .vertical-timeline {
   display: flex;
   flex-direction: column;
+  margin: 0 20px;
 
   &:hover {
     .section-header {
@@ -57,8 +78,8 @@ export default class VerticalTimeline extends Vue {
 
   .section-body {
     display: flex;
-    flex: 1;
     align-items: center;
+    height: fit-content;
 
     .vertical-line {
       height: calc(100% - 40px);
