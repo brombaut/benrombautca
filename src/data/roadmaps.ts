@@ -92,7 +92,7 @@ const roadmap2020: YearlyRoadmap = {
       description: "I want to learn WebAssembly",
       actionItems: [
         {
-          description: "I will build a manual floating-point conerver in C++, and build a frontend that uses it as a WASM module.",
+          description: "I will build a manual floating-point converter in C++, and build a front-end that uses it as a WASM module.",
           done: true,
           footnote: ""
         }
