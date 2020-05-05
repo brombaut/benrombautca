@@ -6,6 +6,7 @@
     <WorkEducationSection />
     <ProjectsSection />
     <RoadMapsSection />
+    <SiteFooter />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import ProjectsSection from "@/components/ProjectsSection.vue";
 import WorkEducationSection from "@/components/WorkEducationSection.vue";
 import RoadMapsSection from "@/components/RoadMapsSection.vue";
 import MouseTrailer from "@/components/MouseTrailer.vue";
+import SiteFooter from "@/components/SiteFooter.vue";
 
 @Component({
   components: {
@@ -25,7 +27,8 @@ import MouseTrailer from "@/components/MouseTrailer.vue";
     ProjectsSection,
     MouseTrailer,
     WorkEducationSection,
-    RoadMapsSection
+    RoadMapsSection,
+    SiteFooter
   }
 })
 export default class App extends Vue {}
@@ -60,5 +63,9 @@ body {
     padding: 48px 8px;
     z-index: 2;
   }
+
+  // footer {
+  //   z-index: 2;
+  // }
 }
 </style>

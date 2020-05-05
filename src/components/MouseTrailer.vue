@@ -34,7 +34,7 @@ export default class MouseTrailer extends Vue {
   }
 
   setStateDimensions() {
-    this.cHeight = document.body.clientHeight - 12;
+    this.cHeight = document.body.clientHeight - 4;
     this.cWidth = document.body.clientWidth - 8;
   }
 
