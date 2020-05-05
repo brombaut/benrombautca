@@ -4,7 +4,8 @@
       type="work"
       title="WORK"
       icon="briefcase"
-      :timelineEntities="workEntities" />
+      :timelineEntities="workEntities"
+      :showLimit="3" />
     <VerticalTimeline
       v-if="true"
       type="education"
