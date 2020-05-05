@@ -4,8 +4,20 @@
       <img :src="imageSource" :alt="education.imageFile" />
     </div>
     <div class="title">{{ education.title }}</div>
-    <div class="institution">{{ education.institution }}</div>
-    <div class="time">{{ education.time }}</div>
+    <div class="institution">
+      <font-awesome-icon
+        class="icon"
+        :icon="['fas', 'university']"
+      />
+      {{ education.institution }}
+    </div>
+    <div class="time">
+      <font-awesome-icon
+        class="icon"
+        :icon="['fas', 'calendar']"
+      />
+      {{ education.time }}
+    </div>
   </li>
 </template>
 
@@ -32,7 +44,7 @@ export default class EducationCard extends Vue {
     }
   }
 
-  checkSlide(e: Event) {
+  checkSlide() {
     const boundingRect: DOMRect = this.educationCardElem.getBoundingClientRect();
     const { width, height } = boundingRect;
     const slideInAt = (window.scrollY + window.innerHeight - height / 2);
@@ -48,6 +60,7 @@ export default class EducationCard extends Vue {
   mounted() {
     this.educationCardElem = this.$el as HTMLLIElement; // .querySelector(".slide-in") as HTMLLIElement;
     window.addEventListener("scroll", this.checkSlide);
+    this.checkSlide();
   }
 }
 </script>
@@ -84,6 +97,16 @@ li {
     font-size: 1.2rem;
     font-weight: 800;
     color: $primary;
+  }
+
+  .institution {
+    font-weight: bold;
+  }
+
+  .icon {
+    color: $primaryDark;
+    margin-right: 4px;
+    filter: brightness(85%);
   }
 }
 </style>

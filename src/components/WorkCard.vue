@@ -4,12 +4,28 @@
       <img :src="imageSource" :alt="work.imageFile" />
     </div>
     <div class="title">{{ work.title }}</div>
-    <div class="company"><i>{{ work.company }}</i></div>
-    <div class="time">{{ work.time }}</div>
+    <div class="company">
+      <font-awesome-icon
+        class="icon"
+        :icon="['fas', 'building']"
+      />
+      {{ work.company }}
+    </div>
+    <div class="time">
+      <font-awesome-icon
+        class="icon"
+        :icon="['fas', 'calendar']"
+      />
+      {{ work.time }}
+    </div>
     <div class="location">
+      <font-awesome-icon
+        class="icon"
+        :icon="['fas', 'map-marker-alt']"
+      />
       {{ work.location }}
     </div>
-    <div class="worked-with-list">
+    <!-- <div class="worked-with-list">
       <span>Worked With: </span>
       <span
         v-for="ww in work.workedWith"
@@ -17,7 +33,7 @@
         class="worked-with">
         {{ ww }}
       </span>
-    </div>
+    </div> -->
   </li>
 </template>
 
@@ -44,7 +60,7 @@ export default class WorkCard extends Vue {
     }
   }
 
-  checkSlide(e: Event) {
+  checkSlide() {
     const boundingRect: DOMRect = this.workCardElem.getBoundingClientRect();
     const { width, height } = boundingRect;
     const slideInAt = (window.scrollY + window.innerHeight - height / 2);
@@ -58,8 +74,9 @@ export default class WorkCard extends Vue {
   }
 
   mounted() {
-    this.workCardElem = this.$el as HTMLLIElement; // .querySelector(".slide-in") as HTMLLIElement;
+    this.workCardElem = this.$el as HTMLLIElement;
     window.addEventListener("scroll", this.checkSlide);
+    this.checkSlide();
   }
 }
 </script>
@@ -100,13 +117,23 @@ li {
     padding-top: 4px;
   }
 
+  .company {
+    font-weight: bold;
+  }
+
+  .icon {
+    color: $primaryDark;
+    margin-right: 4px;
+    filter: brightness(85%);
+  }
+
   .worked-with-list {
     display: flex;
     align-items: center;
 
     .worked-with {
       background: $primaryDark;
-      filter: brightness(85%);
+      filter: brightness(90%);
       margin: 4px;
       padding: 4px;
       border-radius: 4px;
