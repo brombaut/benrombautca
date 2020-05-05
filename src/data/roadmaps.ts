@@ -12,7 +12,7 @@ const roadmap2020: YearlyRoadmap = {
           footnote: ""
         },
         {
-          description: "I will watch the Practical Analyses of Software Engineering Data lecture series, which focuses on machine learning applications for software engineering.",
+          description: "I will complete the Practical Analyses of Software Engineering Data lecture and lab series, which focuses on machine learning applications for software engineering.",
           done: false,
           footnote: ""
         },
@@ -64,16 +64,6 @@ const roadmap2020: YearlyRoadmap = {
       ]
     },
     {
-      description: "I want to learn TypeScript",
-      actionItems: [
-        {
-          description: "I will build at least two projects with TypeScript.",
-          done: true,
-          footnote: ""
-        }
-      ]
-    },
-    {
       description: "I want to write more tests and learn TDD",
       actionItems: [
         {
@@ -84,6 +74,26 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "I will use Jest with my frontend projects.",
           done: false,
+          footnote: ""
+        }
+      ]
+    },
+    {
+      description: "I want to learn TypeScript",
+      actionItems: [
+        {
+          description: "I will build at least two projects with TypeScript.",
+          done: true,
+          footnote: ""
+        }
+      ]
+    },
+    {
+      description: "I want to learn WebAssembly",
+      actionItems: [
+        {
+          description: "I will build a manual floating-point conerver in C++, and build a frontend that uses it as a WASM module.",
+          done: true,
           footnote: ""
         }
       ]
