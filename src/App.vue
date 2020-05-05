@@ -5,6 +5,7 @@
     <AboutMeSection />
     <WorkEducationSection />
     <ProjectsSection />
+    <RoadMapsSection />
   </div>
 </template>
 
@@ -14,6 +15,7 @@ import LandingSection from "@/components/LandingSection.vue";
 import AboutMeSection from "@/components/AboutMeSection.vue";
 import ProjectsSection from "@/components/ProjectsSection.vue";
 import WorkEducationSection from "@/components/WorkEducationSection.vue";
+import RoadMapsSection from "@/components/RoadMapsSection.vue";
 import MouseTrailer from "@/components/MouseTrailer.vue";
 
 @Component({
@@ -22,7 +24,8 @@ import MouseTrailer from "@/components/MouseTrailer.vue";
     AboutMeSection,
     ProjectsSection,
     MouseTrailer,
-    WorkEducationSection
+    WorkEducationSection,
+    RoadMapsSection
   }
 })
 export default class App extends Vue {}
