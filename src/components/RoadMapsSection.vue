@@ -54,8 +54,8 @@ export default class RoadMapsSection extends Vue {
 
   .section-body {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 </style>

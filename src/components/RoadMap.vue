@@ -12,7 +12,15 @@
             v-for="actionItem in task.actionItems"
             :key="actionItem.description"
             class="action-item">
-            <div>{{ actionItem.description }}</div>
+            <div class="action-item-description">
+              <!-- <span v-if="actionItem.done">[DONE]</span> -->
+              <font-awesome-icon
+                v-if="actionItem.done"
+                :icon="['fas', 'check']"
+                class="task-done"
+              />
+              {{ actionItem.description }}
+            </div>
           </li>
         </ul>
       </div>
@@ -60,8 +68,17 @@ export default class RoadMap extends Vue {
       li {
         font-size: 1rem;
         text-align: left;
-        color: white;
+        color: $primaryDark;
         margin: 4px 0;
+
+        .action-item-description {
+          color: white;
+        }
+
+        .task-done {
+          color: $primaryDark
+        }
+
       }
     }
   }
