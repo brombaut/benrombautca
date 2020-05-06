@@ -8,7 +8,9 @@
       <RoadMap
         v-for="roadmap in roadmaps"
         :key="roadmap.year"
-        :roadmap="roadmap"/>
+        :roadmap="roadmap"
+        :openedYear="openedYear"
+        @yearClicked="updateYear"/>
     </div>
   </section>
 </template>
@@ -26,6 +28,12 @@ import { YearlyRoadmap } from "../types/yearly-roadmap";
 })
 export default class RoadMapsSection extends Vue {
   private roadmaps: YearlyRoadmap[] = roadmaps;
+
+  private openedYear = 2020;
+
+  updateYear(year: number) {
+    this.openedYear = year;
+  }
 }
 </script>
 

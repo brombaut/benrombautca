@@ -7,6 +7,11 @@ const roadmap2019: YearlyRoadmap = {
       description: "Books I want to read",
       actionItems: [
         {
+          description: "\"The Pragmatic Programmer: From Journeyman to Master\"",
+          done: true,
+          footnote: ""
+        },
+        {
           description: "\"The C Programming Language\"",
           done: true,
           footnote: ""

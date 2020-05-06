@@ -7,6 +7,7 @@
  * Ported to this Vue Class Component from https://noahyamamoto.com/blog/mousetrailanimation
  */
 import { Component, Vue } from "vue-property-decorator";
+import { ResizeObserver } from "resize-observer";
 import Point from "../types/point";
 
 @Component
@@ -27,15 +28,19 @@ export default class MouseTrailer extends Vue {
     this.canvas = this.$el as HTMLCanvasElement;
     this.setStateDimensions();
     this.setDuration();
-    window.addEventListener("resize", this.setStateDimensions, false);
     if (matchMedia("(pointer:fine)").matches) {
       this.startAnimation();
     }
+
+    const resizeObserver = new ResizeObserver(() => {
+      this.setStateDimensions();
+    });
+    resizeObserver.observe(this.$parent.$el);
   }
 
   setStateDimensions() {
-    this.cHeight = document.body.clientHeight - 4;
-    this.cWidth = document.body.clientWidth - 8;
+    this.cHeight = this.$parent.$el.clientHeight - 8;
+    this.cWidth = this.$parent.$el.clientWidth - 8;
   }
 
   setDuration() {
