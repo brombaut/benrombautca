@@ -32,11 +32,7 @@ export default class AboutMeSection extends Vue {
   private sliderImage!: HTMLDivElement;
 
   get imageSource() {
-    if (!this.aboutMe.imageFileName) {
-      return "";
-    }
-    const images = require.context("../assets/images/", false, /(\.jpg || \.png)$/);
-    return images(`./${this.aboutMe.imageFileName}`);
+    return uiUtils.loadImage(this.aboutMe.imageFileName);
   }
 
   localCheckSlide() {

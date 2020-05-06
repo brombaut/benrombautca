@@ -50,15 +50,7 @@ export default class WorkCard extends Vue {
   private workCardElem!: HTMLLIElement;
 
   get imageSource() {
-    try {
-      if (!this.work || !this.work.imageFile) {
-        return "";
-      }
-      const images = require.context("../assets/images/", false, /(\.jpg || \.png)$/);
-      return images(`./${this.work.imageFile}`);
-    } catch (e) {
-      return "";
-    }
+    return uiUtils.loadImage(this.work.imageFile);
   }
 
   localCheckSlide() {

@@ -11,6 +11,15 @@ const checkSlide = function(elem: HTMLElement, elemEventListener: () => void) {
   }
 };
 
+const loadImage = function(imageFileName: string) {
+  if (!imageFileName) {
+    return "";
+  }
+  const images = require.context("../assets/images/", false, /(\.jpg || \.png)$/);
+  return images(`./${imageFileName}`);
+};
+
 export default {
-  checkSlide
+  checkSlide,
+  loadImage
 };

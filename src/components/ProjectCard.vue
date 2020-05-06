@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import uiUtils from "@/utils/ui-utils";
 import { Project } from "../types/project";
 
 @Component
@@ -36,11 +37,7 @@ export default class ProjectCard extends Vue {
   project!: Project;
 
   get imageSource() {
-    if (!this.project.thumbnail) {
-      return "";
-    }
-    const images = require.context("../assets/images/", false, /\.png$/);
-    return images(`./${this.project.thumbnail}`);
+    return uiUtils.loadImage(this.project.thumbnail);
   }
 
   handleProjectUrlClick() {

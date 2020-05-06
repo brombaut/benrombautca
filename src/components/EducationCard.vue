@@ -34,15 +34,7 @@ export default class EducationCard extends Vue {
   private educationCardElem!: HTMLLIElement;
 
   get imageSource() {
-    try {
-      if (!this.education.imageFile) {
-        return "";
-      }
-      const images = require.context("../assets/images/", false, /(\.jpg || \.png)$/);
-      return images(`./${this.education.imageFile}`);
-    } catch (e) {
-      return "";
-    }
+    return uiUtils.loadImage(this.education.imageFile);
   }
 
   localCheckSlide() {
