@@ -148,7 +148,7 @@ export default class VerticalTimeline extends Vue {
   }
 
   .show-more-wrapper {
-    margin-top: 12px;
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: flex-end;

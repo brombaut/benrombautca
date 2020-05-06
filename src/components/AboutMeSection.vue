@@ -9,7 +9,11 @@
         <img :src="imageSource" alt="Ben Rombaut"/>
       </div>
       <div class="text-container">
-        <p v-for="obj in aboutMe.description" :key="obj.section">{{ obj.paragraph }}</p>
+        <p
+          v-for="obj in aboutMe.description"
+          :key="obj.section">
+          {{ obj.paragraph }}
+        </p>
       </div>
     </div>
   </section>
@@ -18,6 +22,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import aboutMe from "@/data/aboutMe";
+import uiUtils from "@/utils/ui-utils";
 import { AboutMe } from "../types/about-me";
 
 @Component
@@ -27,29 +32,17 @@ export default class AboutMeSection extends Vue {
   private sliderImage!: HTMLDivElement;
 
   get imageSource() {
-    if (!this.aboutMe.imageFileName) {
-      return "";
-    }
-    const images = require.context("../assets/images/", false, /(\.jpg || \.png)$/);
-    return images(`./${this.aboutMe.imageFileName}`);
+    return uiUtils.loadImage(this.aboutMe.imageFileName);
   }
 
-  checkSlide(e: Event) {
-    const boundingRect: DOMRect = this.sliderImage.getBoundingClientRect();
-    const { width, height } = boundingRect;
-    const slideInAt = (window.scrollY + window.innerHeight - height / 2);
-    const imageBottom = this.sliderImage.offsetTop + height;
-    const isHalfShown = slideInAt > this.sliderImage.offsetTop;
-    const isHalfScrolledPast = window.scrollY < imageBottom;
-    if (isHalfShown && isHalfScrolledPast) {
-      this.sliderImage.classList.add("active");
-      window.removeEventListener("scroll", this.checkSlide);
-    }
+  localCheckSlide() {
+    uiUtils.checkSlide(this.sliderImage, this.localCheckSlide);
   }
 
   mounted() {
     this.sliderImage = this.$el.querySelector(".slide-in") as HTMLDivElement;
-    window.addEventListener("scroll", this.checkSlide);
+    window.addEventListener("scroll", this.localCheckSlide);
+    this.localCheckSlide();
   }
 }
 </script>

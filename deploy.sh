@@ -1,8 +1,5 @@
 #!/usr/bin/env sh
 
-# abort on errors
-set -e
-
 rm "./src/data/last-deployed.ts"
 touch "./src/data/last-deployed.ts"
 currDate=$(date +'%d/%m/%Y')
@@ -11,6 +8,9 @@ echo "export default \"${currDate}\";" >> "./src/data/last-deployed.ts"
 git add -A
 git commit -m "Updating last deployed"
 git push
+
+# abort on errors
+set -e
 
 # build
 npm run build

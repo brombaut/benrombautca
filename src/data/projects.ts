@@ -7,6 +7,20 @@ const sortProjects = function(a: Project, b: Project) {
 
 const projects: Project[] = [
   {
+    id: 1,
+    name: "NHL API Frontend",
+    description: "Web app to consume the publicly accessible portions of the NHL API.",
+    techUsed: [
+      "TypeScript",
+      "Vue",
+      "Vuex"
+    ],
+    url: "https://brombaut.github.io/nhl-api-frontend/#/",
+    sourceUrl: "https://github.com/brombaut/nhl-api-frontend",
+    thumbnail: "NhlApiFrontend.png",
+    inProgress: false
+  },
+  {
     id: 2,
     name: "BEC Article Tracker",
     description: "A tool I built to keep track of tech-related articles I have read and articles I would like to read.",
@@ -33,18 +47,15 @@ const projects: Project[] = [
     inProgress: false
   },
   {
-    id: 1,
-    name: "NHL API Frontend",
-    description: "Web app to consume the publicly accessible portions of the NHL API.",
-    techUsed: [
-      "TypeScript",
-      "Vue",
-      "Vuex"
-    ],
-    url: "https://brombaut.github.io/nhl-api-frontend/#/",
-    sourceUrl: "https://github.com/brombaut/nhl-api-frontend",
-    thumbnail: "NhlApiFrontend.png",
-    inProgress: false
+    id: 4,
+    name: "Ben's Exocortex",
+    description: "A collection of resources, examples, and simple projects I'm making, to solidify some stuff I've learnt and just for practice.",
+    techUsed: [],
+    url: "",
+    sourceUrl: "https://github.com/brombaut/BEC",
+    thumbnail: "",
+    inProgress: false,
+    acronym: "B.E.C."
   }
 ];
 
