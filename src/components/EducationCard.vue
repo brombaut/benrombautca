@@ -23,6 +23,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import uiUtils from "@/utils/ui-utils";
 import { Education } from "../types/education";
 
 @Component
@@ -44,23 +45,14 @@ export default class EducationCard extends Vue {
     }
   }
 
-  checkSlide() {
-    const boundingRect: DOMRect = this.educationCardElem.getBoundingClientRect();
-    const { width, height } = boundingRect;
-    const slideInAt = (window.scrollY + window.innerHeight - height / 2);
-    const imageBottom = this.educationCardElem.offsetTop + height;
-    const isHalfShown = slideInAt > this.educationCardElem.offsetTop;
-    const isHalfScrolledPast = window.scrollY < imageBottom;
-    if (isHalfShown && isHalfScrolledPast) {
-      this.educationCardElem.classList.add("active");
-      window.removeEventListener("scroll", this.checkSlide);
-    }
+  localCheckSlide() {
+    uiUtils.checkSlide(this.educationCardElem, this.localCheckSlide);
   }
 
   mounted() {
-    this.educationCardElem = this.$el as HTMLLIElement; // .querySelector(".slide-in") as HTMLLIElement;
-    window.addEventListener("scroll", this.checkSlide);
-    this.checkSlide();
+    this.educationCardElem = this.$el as HTMLLIElement;
+    window.addEventListener("scroll", this.localCheckSlide);
+    this.localCheckSlide();
   }
 }
 </script>

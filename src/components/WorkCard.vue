@@ -39,6 +39,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import uiUtils from "@/utils/ui-utils";
 import { Work } from "../types/work";
 
 @Component
@@ -60,23 +61,14 @@ export default class WorkCard extends Vue {
     }
   }
 
-  checkSlide() {
-    const boundingRect: DOMRect = this.workCardElem.getBoundingClientRect();
-    const { width, height } = boundingRect;
-    const slideInAt = (window.scrollY + window.innerHeight - height / 2);
-    const imageBottom = this.workCardElem.offsetTop + height;
-    const isHalfShown = slideInAt > this.workCardElem.offsetTop;
-    const isHalfScrolledPast = window.scrollY < imageBottom;
-    if (isHalfShown && isHalfScrolledPast) {
-      this.workCardElem.classList.add("active");
-      window.removeEventListener("scroll", this.checkSlide);
-    }
+  localCheckSlide() {
+    uiUtils.checkSlide(this.workCardElem, this.localCheckSlide);
   }
 
   mounted() {
     this.workCardElem = this.$el as HTMLLIElement;
-    window.addEventListener("scroll", this.checkSlide);
-    this.checkSlide();
+    window.addEventListener("scroll", this.localCheckSlide);
+    this.localCheckSlide();
   }
 }
 </script>
