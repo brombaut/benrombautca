@@ -13,7 +13,10 @@ import {
   faCalendar,
   faBuilding,
   faUniversity,
-  faMapMarkedAlt
+  faMapMarkedAlt,
+  faCheck,
+  faCircle,
+  faEllipsisH
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -37,6 +40,9 @@ library.add(faCalendar);
 library.add(faBuilding);
 library.add(faUniversity);
 library.add(faMapMarkedAlt);
+library.add(faCheck);
+library.add(faCircle);
+library.add(faEllipsisH);
 
 // eslint-disable-next-line import/prefer-default-export
 export const bus = new Vue();

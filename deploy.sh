@@ -3,6 +3,11 @@
 # abort on errors
 set -e
 
+rm "./src/data/last-deployed.ts"
+touch "./src/data/last-deployed.ts"
+currDate=$(date +'%d/%m/%Y')
+echo "export default \"${currDate}\";" >> "./src/data/last-deployed.ts"
+
 # build
 npm run build
 
