@@ -66,8 +66,10 @@ export default class RoadMap extends Vue {
     const content = this.$refs.accordionContent as HTMLDivElement;
     if (this.roadmap.year === this.openedYear) {
       content.style.maxHeight = `${content.scrollHeight}px`;
+      content.style.opacity = "1";
     } else {
       content.style.maxHeight = "";
+      content.style.opacity = "0";
     }
   }
 
@@ -115,9 +117,10 @@ export default class RoadMap extends Vue {
 
 .content {
   margin: 16px;
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.3s ease-out, opacity 0.5s ease-out;
   overflow: hidden;
   max-height: 0;
+  opacity: 0;
 
   .task {
     margin: 8px 0;

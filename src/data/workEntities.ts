@@ -54,7 +54,7 @@ const workEntities: Work[] = [
   {
     title: "Software Developer (Co-op)",
     company: "Brunswick News Inc.",
-    time: "(Jan '16 - Apr '16)",
+    time: "Jan '16 - Apr '16",
     location: "Fredericton, New Brunswick",
     workedWith: [
       "Web Development",
