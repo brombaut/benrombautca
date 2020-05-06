@@ -5,6 +5,14 @@
       :class="{'selected':  roadmap.year === openedYear }"
       @click="yearClicked()">
       {{ roadmap.year }}
+      <div
+        v-if="roadmap.year !== openedYear"
+        class="expand-icon" >
+        <font-awesome-icon
+          :icon="['fas', 'ellipsis-h']"
+          class="expand-road-map"
+        />
+      </div>
     </h2>
     <div ref="accordionContent" class="content">
       <div
@@ -18,7 +26,6 @@
             :key="actionItem.description"
             class="action-item">
             <div class="action-item-description">
-              <!-- <span v-if="actionItem.done">[DONE]</span> -->
               <div class='icon-container'>
                 <font-awesome-icon
                   v-if="actionItem.done"
@@ -90,6 +97,11 @@ export default class RoadMap extends Vue {
 
 .year-selector {
   transition: color 0.3s ease-out;
+  display: flex;
+
+  .expand-icon {
+    margin-left: 20px;
+  }
 
   &:hover {
     cursor: pointer;
