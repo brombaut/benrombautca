@@ -1,7 +1,7 @@
 
 .slide-in {
   opacity: 0;
-  transition: all .5s;
+  transition: all 0.7s;
 }
 
 .align-left.slide-in {
@@ -9,7 +9,7 @@
 }
 
 .align-right.slide-in {
-  transform: translateX(5%) scale(0.95);
+  transform: translateX(50%) scale(0.95);
 }
 
 .slide-in.active {
@@ -17,12 +17,6 @@
   transform: translateX(0%) scale(1);
 }
 
-.align-left {
-  
-}
-.align-right {
-  
-}
 
 
 a {

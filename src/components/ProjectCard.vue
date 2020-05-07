@@ -1,5 +1,5 @@
 <template>
-  <div class="project-card">
+  <div class="project-card slide-in">
     <a
       :href="projectCardHref"
       class="image-container"
@@ -61,6 +61,8 @@ export default class ProjectCard extends Vue {
   @Prop()
   project!: Project;
 
+  private projectCardElem!: HTMLDivElement;
+
   get imageSource() {
     return uiUtils.loadImage(this.project.thumbnail);
   }
@@ -87,6 +89,16 @@ export default class ProjectCard extends Vue {
     if (result) {
       result.focus();
     }
+  }
+
+  localCheckHorizontalFadeIn() {
+    uiUtils.checkHorizontalFadeIn(this.projectCardElem, this.localCheckHorizontalFadeIn);
+  }
+
+  mounted() {
+    this.projectCardElem = this.$el as HTMLDivElement;
+    window.addEventListener("scroll", this.localCheckHorizontalFadeIn);
+    this.localCheckHorizontalFadeIn();
   }
 }
 </script>
