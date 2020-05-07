@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <MouseTrailer v-if="false"/>
-    <LandingSection />
+    <MouseTrailer v-if="showMouseTrailer"/>
+    <LandingSection @headerClicked="toggleMouseTrailer"/>
     <AboutMeSection />
     <WorkEducationSection />
     <ProjectsSection />
@@ -31,7 +31,13 @@ import SiteFooter from "@/components/SiteFooter.vue";
     SiteFooter
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private showMouseTrailer = false;
+
+  toggleMouseTrailer() {
+    this.showMouseTrailer = !this.showMouseTrailer;
+  }
+}
 </script>
 
 <style lang="scss">

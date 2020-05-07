@@ -1,6 +1,6 @@
 <template>
   <section id="landing">
-    <header>
+    <header @click="$emit('headerClicked')">
       <h1>BEN ROMBAUT</h1>
       <h4>Software Developer</h4>
     </header>

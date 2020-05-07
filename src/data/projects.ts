@@ -49,7 +49,7 @@ const projects: Project[] = [
   {
     id: 4,
     name: "Ben's Exocortex",
-    description: "A collection of resources, examples, and simple projects I'm making, to solidify some stuff I've learnt and just for practice.",
+    description: "A collection of resources, examples, and simple projects I'm making, to solidify some stuff I've learned and for practice.",
     techUsed: [],
     url: "",
     sourceUrl: "https://github.com/brombaut/BEC",

@@ -38,6 +38,10 @@ export default class MouseTrailer extends Vue {
     resizeObserver.observe(this.$parent.$el);
   }
 
+  beforeDestroy() {
+    document.removeEventListener("mousemove", this.mouseMoveListener);
+  }
+
   setStateDimensions() {
     this.cHeight = this.$parent.$el.clientHeight - 8;
     this.cWidth = this.$parent.$el.clientWidth - 8;
