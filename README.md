@@ -1,3 +1,10 @@
-# benrombaut.ca
+# Ben Rombaut's Personal Website
 
-- [ ] Animation for images coming in
+Source repository for my personal website. To check out the live version of the site, head over to:
+
+### https://www.benrombaut.ca
+
+
+#### To Do List:
+- [ ] Skills
+- [ ] Drawing animation

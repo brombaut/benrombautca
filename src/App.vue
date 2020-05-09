@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <MouseTrailer v-if="showMouseTrailer"/>
-    <LandingSection @headerClicked="toggleMouseTrailer"/>
+    <LandingSection
+      :mouseTrailerVisible="showMouseTrailer"
+      @headerClicked="toggleMouseTrailer"/>
     <AboutMeSection />
     <WorkEducationSection />
     <ProjectsSection />
