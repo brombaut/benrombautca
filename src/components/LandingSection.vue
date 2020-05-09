@@ -1,6 +1,6 @@
 <template>
   <section id="landing">
-    <header @click="$emit('headerClicked')">
+    <header ref="header" @click="handleHeaderClicked()">
       <h1>BEN ROMBAUT</h1>
       <h4>Software Developer</h4>
     </header>
@@ -26,7 +26,9 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import {
+  Component, Vue, Prop, Watch
+} from "vue-property-decorator";
 
 @Component
 export default class LandingSection extends Vue {
@@ -35,6 +37,20 @@ export default class LandingSection extends Vue {
     github: "https://github.com/brombaut"
   };
 
+  private mainHeader!: HTMLHeadingElement;
+
+  @Prop()
+  mouseTrailerVisible!: boolean;
+
+  mounted() {
+    this.mainHeader = this.$refs.header as HTMLHeadingElement;
+    this.mainHeader.classList.add("slide-in");
+  }
+
+  handleHeaderClicked() {
+    this.$emit("headerClicked");
+  }
+
   handleExternalProfileClicked(key: string) {
     const url = this.externalProfiles[key];
     if (url) {
@@ -42,6 +58,16 @@ export default class LandingSection extends Vue {
       if (result) {
         result.focus();
       }
+    }
+  }
+
+  @Watch("mouseTrailerVisible")
+  setMainHeaderAnimation() {
+    this.mainHeader.classList.remove("slide-in");
+    if (this.mouseTrailerVisible) {
+      this.mainHeader.classList.add("drawing-active");
+    } else {
+      this.mainHeader.classList.remove("drawing-active");
     }
   }
 }
@@ -60,14 +86,11 @@ export default class LandingSection extends Vue {
     background: $primaryDark;
     padding: 80px;
     border-radius: 50%;
-    animation: slideUp 0.7s ease-out forwards;
-    animation-delay: 0.5s;
-    opacity: 0;
     position: relative;
+    transition: 0.3s all;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
       0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 8.5px 10px rgba(0, 0, 0, 0.06),
       0 12.3px 7.9px rgba(0, 0, 0, 0.072), 0 21.8px 33.4px rgba(0, 0, 0, 0.086);
-    // 0 30px 40px rgba(0, 0, 0, 0.12);
 
     h1 {
       font-size: 3.5rem;
@@ -75,6 +98,24 @@ export default class LandingSection extends Vue {
 
     h4 {
       font-size: 2rem;
+    }
+
+    &.slide-in {
+      animation: slideUp 0.7s ease-out forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+    }
+
+    &.drawing-active {
+      animation: pulse 4s ease infinite;
+    }
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 2.2px rgba(51, 129, 219, 0.134),
+        0 0 5.3px rgba(51, 129, 219, 0.148), 0 0 10px rgba(51, 129, 219, 0.16),
+        0 0 7.9px rgba(51, 129, 219, 0.172),
+        0 0 33.4px rgba(51, 129, 219, 0.186);
     }
   }
 
@@ -105,17 +146,6 @@ export default class LandingSection extends Vue {
     }
     #github-icon {
       animation-delay: 1.5s;
-    }
-  }
-
-  @keyframes slideUp {
-    from {
-      transform: translateY(20%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
     }
   }
 }

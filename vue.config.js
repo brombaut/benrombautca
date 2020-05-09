@@ -11,7 +11,7 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData: "@import \"@/styles/variables.scss\"; @import \"@/styles/common.scss\";"
+        prependData: "@import \"@/styles/variables.scss\"; @import \"@/styles/common.scss\"; @import \"@/styles/keyframes.scss\";"
       }
     }
   },
