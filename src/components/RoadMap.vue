@@ -65,7 +65,8 @@ export default class RoadMap extends Vue {
   toggleAccordionContent() {
     const content = this.$refs.accordionContent as HTMLDivElement;
     if (this.roadmap.year === this.openedYear) {
-      content.style.maxHeight = `${content.scrollHeight}px`;
+      // content.style.maxHeight = `${content.scrollHeight}px`;
+      content.style.maxHeight = "none";
       content.style.opacity = "1";
     } else {
       content.style.maxHeight = "";
@@ -78,7 +79,7 @@ export default class RoadMap extends Vue {
   }
 
   mounted() {
-    this.toggleAccordionContent();
+    setTimeout(this.toggleAccordionContent, 1000);
   }
 }
 </script>
@@ -117,7 +118,7 @@ export default class RoadMap extends Vue {
 
 .content {
   margin: 16px;
-  transition: max-height 0.3s ease-out, opacity 0.5s ease-out;
+  transition: max-height 0.0s ease-out, opacity 0.8s ease-out;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
