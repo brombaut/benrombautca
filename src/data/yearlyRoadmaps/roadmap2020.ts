@@ -48,7 +48,7 @@ const roadmap2020: YearlyRoadmap = {
       actionItems: [
         {
           description: "I will read \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\".",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
@@ -108,7 +108,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "\"The Mythical Man-Month: Essays on Software Engineering\"",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
