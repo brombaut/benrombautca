@@ -108,7 +108,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "\"The Mythical Man-Month: Essays on Software Engineering\"",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
