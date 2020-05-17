@@ -8,7 +8,7 @@ const roadmap2020: YearlyRoadmap = {
       actionItems: [
         {
           description: "I will complete the Stanford University Machine Learning online course.",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
