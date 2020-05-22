@@ -123,7 +123,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "\"97 Things Every Programmer Should Know: Collective Wisdom from the Experts\"",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
