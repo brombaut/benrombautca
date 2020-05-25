@@ -33,7 +33,7 @@ const roadmap2020: YearlyRoadmap = {
       actionItems: [
         {
           description: "I will read \"Hands-On Network Programming with C\".",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
