@@ -4,6 +4,7 @@ interface BookDTO {
   title: string;
   author: string;
   isbn: string;
+  isbn13: string;
   imageUrl: string;
   smallImageUrl: string;
   largeImageUrl: string;

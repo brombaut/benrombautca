@@ -6,6 +6,7 @@
     <WorkEducationSection />
     <ProjectsSection />
     <RoadMapsSection />
+    <BookshelfSection />
     <SiteFooter />
   </div>
 </template>
@@ -19,11 +20,12 @@ import WorkEducationSection from "@/components/WorkEducationSection.vue";
 import RoadMapsSection from "@/components/RoadMapsSection.vue";
 import MouseTrailer from "@/components/MouseTrailer.vue";
 import SiteFooter from "@/components/SiteFooter.vue";
-import BookDataFetcher from "@/bookshelf/book-data-fetcher";
-import BookDataFileReader from "@/bookshelf/book-data-file-reader";
-import BookDataParser from "@/bookshelf/book-data-parser";
-import BookXmlParser from "@/bookshelf/book-xml-parser";
-import BookshelfBuilder from "@/bookshelf/bookshelf-builder";
+import BookshelfSection from "@/bookshelf/components/BookshelfSection.vue";
+// import BookDataFetcher from "@/bookshelf/book-data-fetcher";
+// import BookDataFileReader from "@/bookshelf/book-data-file-reader";
+// import BookDataParser from "@/bookshelf/book-data-parser";
+// import BookXmlParser from "@/bookshelf/book-xml-parser";
+// import BookshelfBuilder from "@/bookshelf/bookshelf-builder";
 
 @Component({
   components: {
@@ -33,7 +35,8 @@ import BookshelfBuilder from "@/bookshelf/bookshelf-builder";
     MouseTrailer,
     WorkEducationSection,
     RoadMapsSection,
-    SiteFooter
+    SiteFooter,
+    BookshelfSection
   }
 })
 export default class App extends Vue {
@@ -43,19 +46,19 @@ export default class App extends Vue {
     this.showMouseTrailer = !this.showMouseTrailer;
   }
 
-  async getData() {
-    const fetcher: BookDataFetcher = new BookDataFileReader();
-    const parser: BookDataParser = new BookXmlParser();
-    const bookshelfBuilder: BookshelfBuilder = new BookshelfBuilder(
-      fetcher,
-      parser
-    );
-    bookshelfBuilder.build();
-  }
+  // async getData() {
+  //   const fetcher: BookDataFetcher = new BookDataFileReader();
+  //   const parser: BookDataParser = new BookXmlParser();
+  //   const bookshelfBuilder: BookshelfBuilder = new BookshelfBuilder(
+  //     fetcher,
+  //     parser
+  //   );
+  //   bookshelfBuilder.build();
+  // }
 
-  mounted() {
-    this.getData();
-  }
+  // mounted() {
+  //   this.getData();
+  // }
 }
 </script>
 

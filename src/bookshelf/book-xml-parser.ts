@@ -9,22 +9,29 @@ class BookXmlParser implements BookDataParser {
     const result = await parseStringPromise(rawData);
     const rawBookList = result.GoodreadsResponse.reviews[0].review;
     const bookList: BookDTO[] = [];
-    rawBookList.forEach((raw: any) => {
-      bookList.push({
-        title: raw.book[0].title[0],
-        author: raw.book[0].authors[0].author[0].name[0],
-        isbn: raw.book[0].isbn[0],
-        imageUrl: raw.book[0].image_url[0],
-        smallImageUrl: raw.book[0].image_url[0],
-        largeImageUrl: raw.book[0].large_image_url[0],
-        link: raw.book[0].link[0],
-        dateStarted: raw.date_added[0],
-        dateFinished: raw.read_at[0],
-        rating: raw.rating[0],
-        shelf: raw.shelves[0].shelf[0].$.name
-      });
+    rawBookList.forEach((review: any) => {
+      bookList.push(this.parseBookDto(review));
     });
     return bookList;
+  }
+
+  private parseBookDto(review: any): BookDTO {
+    // console.log(review);
+    const bookDto = {
+      title: review.book[0].title[0],
+      author: review.book[0].authors[0].author[0].name[0],
+      isbn: review.book[0].isbn[0],
+      isbn13: review.book[0].isbn13[0],
+      imageUrl: review.book[0].image_url[0],
+      smallImageUrl: review.book[0].image_url[0],
+      largeImageUrl: review.book[0].large_image_url[0],
+      link: review.book[0].link[0],
+      dateStarted: review.date_added[0],
+      dateFinished: review.read_at[0],
+      rating: review.rating[0],
+      shelf: review.shelves[0].shelf[0].$.name
+    };
+    return bookDto;
   }
 
 }

@@ -9,8 +9,8 @@ class Book {
   private _smallImageUrl: string;
   private _largeImageUrl: string;
   private _link: string;
-  private _dateStarted: string;
-  private _dateFinished: string;
+  private _dateStarted: Date;
+  private _dateFinished: Date;
   private _rating: string;
   private _shelf: Shelf;
 
@@ -22,10 +22,42 @@ class Book {
     this._smallImageUrl = bookDto.smallImageUrl;
     this._largeImageUrl = bookDto.largeImageUrl;
     this._link = bookDto.link;
-    this._dateStarted = bookDto.dateStarted;
-    this._dateFinished = bookDto.dateFinished;
+    this._dateStarted = new Date(bookDto.dateStarted);
+    this._dateFinished = new Date(bookDto.dateFinished);
     this._rating = bookDto.rating;
     this._shelf = bookDto.shelf;
+  }
+
+  title(): string {
+    return this._title;
+  }
+
+  author(): string {
+    return this._author;
+  }
+
+  imageUrl(): string {
+    return this._imageUrl;
+  }
+
+  link(): string {
+    return this._link;
+  }
+
+  dateStarted(): Date {
+    return this._dateStarted;
+  }
+
+  dateFinished(): Date {
+    return this._dateFinished;
+  }
+
+  rating(): string {
+    return this._rating;
+  }
+
+  shelf(): Shelf {
+    return this._shelf;
   }
 
 }

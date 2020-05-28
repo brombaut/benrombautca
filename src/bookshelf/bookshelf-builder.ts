@@ -23,7 +23,6 @@ class BookshelfBuilder {
       const bookBuilder: BookBuilder = new BookBuilder(bj);
       books.push(bookBuilder.build());
     });
-    console.log(books);
     return new Bookshelf(books);
   }
 }

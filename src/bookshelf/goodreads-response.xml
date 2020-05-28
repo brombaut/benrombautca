@@ -6,31 +6,31 @@
     <method><![CDATA[review_list]]></method>
   </Request>
   
-<reviews start="1" end="30" total="30">
+<reviews start="1" end="29" total="29">
     <review>
   <id>3360025395</id>
     <book>
-  <id type="integer">28257707</id>
-  <isbn nil="true"/>
-  <isbn13 nil="true"/>
-  <text_reviews_count type="integer">23136</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.ysvaV5CVuyQiR6PtHSekJw</uri>
+  <id type="integer">29875487</id>
+  <isbn>0062641549</isbn>
+  <isbn13>9780062641540</isbn13>
+  <text_reviews_count type="integer">591</text_reviews_count>
+  <uri>kca://book/amzn1.gr.book.v1.Hv4zzQEdhSCJDDH1PKLBLw</uri>
   <title>The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life</title>
   <title_without_series>The Subtle Art of Not Giving a F*ck: A Counterintuitive Approach to Living a Good Life</title_without_series>
-  <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1465761302l/28257707._SX98_.jpg</image_url>
-  <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1465761302l/28257707._SX50_.jpg</small_image_url>
+  <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1468228399l/29875487._SX98_.jpg</image_url>
+  <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1468228399l/29875487._SX50_.jpg</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/28257707-the-subtle-art-of-not-giving-a-f-ck</link>
-  <num_pages>224</num_pages>
-  <format>ebook</format>
+  <link>https://www.goodreads.com/book/show/29875487-the-subtle-art-of-not-giving-a-f-ck</link>
+  <num_pages>206</num_pages>
+  <format>Paperback</format>
   <edition_information/>
   <publisher>Harper</publisher>
   <publication_day>13</publication_day>
   <publication_year>2016</publication_year>
   <publication_month>9</publication_month>
   <average_rating>3.95</average_rating>
-  <ratings_count>460283</ratings_count>
-  <description>&lt;i&gt;Alternate cover edition of ISBN 9780062457738&lt;/i&gt;&lt;br /&gt;&lt;br /&gt;In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be "positive" all the time so that we can truly become better, happier people.&lt;br /&gt;&lt;br /&gt;For decades, we’ve been told that positive thinking is the key to a happy, rich life. "F**k positivity," Mark Manson says. "Let’s be honest, shit is f**ked and we have to live with it." In his wildly popular Internet blog, Manson doesn’t sugarcoat or equivocate. He tells it like it is—a dose of raw, refreshing, honest truth that is sorely lacking today. &lt;em&gt;The Subtle Art of Not Giving a F**k&lt;/em&gt; is his antidote to the coddling, let’s-all-feel-good mindset that has infected American society and spoiled a generation, rewarding them with gold medals just for showing up.&lt;br /&gt;&lt;br /&gt;Manson makes the argument, backed both by academic research and well-timed poop jokes, that improving our lives hinges not on our ability to turn lemons into lemonade, but on learning to stomach lemons better. Human beings are flawed and limited—"not everybody can be extraordinary, there are winners and losers in society, and some of it is not fair or your fault." Manson advises us to get to know our limitations and accept them. Once we embrace our fears, faults, and uncertainties, once we stop running and avoiding and start confronting painful truths, we can begin to find the courage, perseverance, honesty, responsibility, curiosity, and forgiveness we seek.&lt;br /&gt;&lt;br /&gt;There are only so many things we can give a f**k about so we need to figure out which ones really matter, Manson makes clear. While money is nice, caring about what you do with your life is better, because true wealth is about experience. A much-needed grab-you-by-the-shoulders-and-look-you-in-the-eye moment of real-talk, filled with entertaining stories and profane, ruthless humor, &lt;em&gt;The Subtle Art of Not Giving a F**k&lt;/em&gt; is a refreshing slap for a generation to help them lead contented, grounded lives.</description>
+  <ratings_count>460371</ratings_count>
+  <description>&lt;strong&gt;&lt;em&gt;New York Times&lt;/em&gt; Bestseller&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;In this generation-defining self-help guide, a superstar blogger cuts through the crap to show us how to stop trying to be "positive" all the time so that we can truly become better, happier people.&lt;br /&gt;&lt;br /&gt;For decades, we’ve been told that positive thinking is the key to a happy, rich life. "F**k positivity," Mark Manson says. "Let’s be honest, shit is f**ked and we have to live with it." In his wildly popular Internet blog, Manson doesn’t sugarcoat or equivocate. He tells it like it is—a dose of raw, refreshing, honest truth that is sorely lacking today. &lt;em&gt;The Subtle Art of Not Giving a F**k&lt;/em&gt; is his antidote to the coddling, let’s-all-feel-good mindset that has infected American society and spoiled a generation, rewarding them with gold medals just for showing up.&lt;br /&gt;&lt;br /&gt;Manson makes the argument, backed both by academic research and well-timed poop jokes, that improving our lives hinges not on our ability to turn lemons into lemonade, but on learning to stomach lemons better. Human beings are flawed and limited—"not everybody can be extraordinary, there are winners and losers in society, and some of it is not fair or your fault." Manson advises us to get to know our limitations and accept them. Once we embrace our fears, faults, and uncertainties, once we stop running and avoiding and start confronting painful truths, we can begin to find the courage, perseverance, honesty, responsibility, curiosity, and forgiveness we seek.&lt;br /&gt;&lt;br /&gt;There are only so many things we can give a f**k about so we need to figure out which ones really matter, Manson makes clear. While money is nice, caring about what you do with your life is better, because true wealth is about experience. A much-needed grab-you-by-the-shoulders-and-look-you-in-the-eye moment of real-talk, filled with entertaining stories and profane, ruthless humor, &lt;em&gt;The Subtle Art of Not Giving a F**k&lt;/em&gt; is a refreshing slap for a generation to help them lead contented, grounded lives.</description>
 <authors>
 <author>
 <id>8529755</id>
@@ -44,8 +44,8 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/8529755.Mark_Manson]]></link>
 <average_rating>3.95</average_rating>
-<ratings_count>500848</ratings_count>
-<text_reviews_count>33767</text_reviews_count>
+<ratings_count>500939</ratings_count>
+<text_reviews_count>33771</text_reviews_count>
 </author>
 </authors>
   <published>2016</published>
@@ -70,7 +70,7 @@
   <started_at></started_at>
   <read_at>Fri Nov 01 00:00:00 -0700 2019</read_at>
   <date_added>Wed May 27 12:55:04 -0700 2020</date_added>
-  <date_updated>Thu May 28 08:30:03 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:02:50 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -89,7 +89,7 @@
   <id type="integer">23692271</id>
   <isbn nil="true"/>
   <isbn13 nil="true"/>
-  <text_reviews_count type="integer">23302</text_reviews_count>
+  <text_reviews_count type="integer">23307</text_reviews_count>
   <uri>kca://book/amzn1.gr.book.v1.4aaEOknMj7166lgef5EmXw</uri>
   <title>Sapiens: A Brief History of Humankind</title>
   <title_without_series>Sapiens: A Brief History of Humankind</title_without_series>
@@ -105,7 +105,7 @@
   <publication_year>2014</publication_year>
   <publication_month/>
   <average_rating>4.43</average_rating>
-  <ratings_count>421991</ratings_count>
+  <ratings_count>422100</ratings_count>
   <description>100,000 years ago, at least six human species inhabited the earth. Today there is just one. Us. Homo sapiens. &lt;br /&gt;&lt;br /&gt;How did our species succeed in the battle for dominance? Why did our foraging ancestors come together to create cities and kingdoms? How did we come to believe in gods, nations and human rights; to trust money, books and laws; and to be enslaved by bureaucracy, timetables and consumerism? And what will our world be like in the millennia to come? &lt;br /&gt;&lt;br /&gt;In &lt;i&gt;Sapiens&lt;/i&gt;, Dr Yuval Noah Harari spans the whole of human history, from the very first humans to walk the earth to the radical – and sometimes devastating – breakthroughs of the Cognitive, Agricultural and Scientific Revolutions. Drawing on insights from biology, anthropology, paleontology and economics, he explores how the currents of history have shaped our human societies, the animals and plants around us, and even our personalities. Have we become happier as history has unfolded? Can we ever free our behaviour from the heritage of our ancestors? And what, if anything, can we do to influence the course of the centuries to come? &lt;br /&gt;&lt;br /&gt;Bold, wide-ranging and provocative, Sapiens challenges everything we thought we knew about being human: our thoughts, our actions, our power ... and our future.</description>
 <authors>
 <author>
@@ -120,8 +120,8 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/395812.Yuval_Noah_Harari]]></link>
 <average_rating>4.37</average_rating>
-<ratings_count>620202</ratings_count>
-<text_reviews_count>45611</text_reviews_count>
+<ratings_count>620397</ratings_count>
+<text_reviews_count>45620</text_reviews_count>
 </author>
 </authors>
   <published>2014</published>
@@ -165,7 +165,7 @@
   <id type="integer">12609433</id>
   <isbn>1400069289</isbn>
   <isbn13>9781400069286</isbn13>
-  <text_reviews_count type="integer">13602</text_reviews_count>
+  <text_reviews_count type="integer">13603</text_reviews_count>
   <uri>kca://book/amzn1.gr.book.v1.REBUj2CAxWQRRLVC3k8QKw</uri>
   <title>The Power of Habit: Why We Do What We Do in Life and Business</title>
   <title_without_series>The Power of Habit: Why We Do What We Do in Life and Business</title_without_series>
@@ -181,7 +181,7 @@
   <publication_year>2012</publication_year>
   <publication_month>2</publication_month>
   <average_rating>4.10</average_rating>
-  <ratings_count>314563</ratings_count>
+  <ratings_count>314601</ratings_count>
   <description>A young woman walks into a laboratory. Over the past two years, she has transformed almost every aspect of her life. She has quit smoking, run a marathon, and been promoted at work. The patterns inside her brain, neurologists discover, have fundamentally changed.&lt;br /&gt;&lt;br /&gt;Marketers at Procter &amp;amp; Gamble study videos of people making their beds. They are desperately trying to figure out how to sell a new product called Febreze, on track to be one of the biggest flops in company history. Suddenly, one of them detects a nearly imperceptible pattern—and with a slight shift in advertising, Febreze goes on to earn a billion dollars a year.&lt;br /&gt;&lt;br /&gt;An untested CEO takes over one of the largest companies in America. His first order of business is attacking a single pattern among his employees—how they approach worker safety—and soon the firm, Alcoa, becomes the top performer in the Dow Jones.&lt;br /&gt;&lt;br /&gt;What do all these people have in common? They achieved success by focusing on the patterns that shape every aspect of our lives. &lt;br /&gt;&lt;br /&gt;They succeeded by transforming habits.&lt;br /&gt;&lt;br /&gt;In &lt;i&gt;The Power of Habit, &lt;/i&gt;award-winning &lt;i&gt;New York Times&lt;/i&gt; business reporter Charles Duhigg takes us to the thrilling edge of scientific discoveries that explain why habits exist and how they can be changed. With penetrating intelligence and an ability to distill vast amounts of information into engrossing narratives, Duhigg brings to life a whole new understanding of human nature and its potential for transformation. &lt;br /&gt;&lt;br /&gt;Along the way we learn why some people and companies struggle to change, despite years of trying, while others seem to remake themselves overnight. We visit laboratories where neuroscientists explore how habits work and where, exactly, they reside in our brains. We discover how the right habits were crucial to the success of Olympic swimmer Michael Phelps, Starbucks CEO Howard Schultz, and civil-rights hero Martin Luther King, Jr. We go inside Procter &amp;amp; Gamble, Target superstores, Rick Warren’s Saddleback Church, NFL locker rooms, and the nation’s largest hospitals and see how implementing so-called keystone habits can earn billions and mean the difference between failure and success, life and death.&lt;br /&gt;&lt;br /&gt;At its core, &lt;i&gt;The Power of Habit&lt;/i&gt; contains an exhilarating argument: The key to exercising regularly, losing weight, raising exceptional children, becoming more productive, building revolutionary companies and social movements, and achieving success is understanding how habits work. &lt;br /&gt;&lt;br /&gt;Habits aren’t destiny. As Charles Duhigg shows, by harnessing this new science, we can transform our businesses, our communities, and our lives.</description>
 <authors>
 <author>
@@ -196,8 +196,8 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/5201530.Charles_Duhigg]]></link>
 <average_rating>4.09</average_rating>
-<ratings_count>339299</ratings_count>
-<text_reviews_count>18107</text_reviews_count>
+<ratings_count>339339</ratings_count>
+<text_reviews_count>18108</text_reviews_count>
 </author>
 </authors>
   <published>2012</published>
@@ -222,7 +222,7 @@
   <started_at></started_at>
   <read_at>Sat Feb 01 00:00:00 -0800 2020</read_at>
   <date_added>Thu May 21 12:58:24 -0700 2020</date_added>
-  <date_updated>Thu May 28 08:30:01 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:04:12 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -257,7 +257,7 @@
   <publication_year>2018</publication_year>
   <publication_month>1</publication_month>
   <average_rating>3.95</average_rating>
-  <ratings_count>85182</ratings_count>
+  <ratings_count>85200</ratings_count>
   <description>What does everyone in the modern world need to know? Renowned psychologist Jordan B. Peterson's answer to this most difficult of questions uniquely combines the hard-won truths of ancient tradition with the stunning revelations of cutting-edge scientific research.&lt;br /&gt;&lt;br /&gt;Humorous, surprising, and informative, Dr. Peterson tells us why skateboarding boys and girls must be left alone, what terrible fate awaits those who criticize too easily, and why you should always pet a cat when you meet one on the street.&lt;br /&gt;&lt;br /&gt;What does the nervous system of the lowly lobster have to tell us about standing up straight (with our shoulders back) and about success in life? Why did ancient Egyptians worship the capacity to pay careful attention as the highest of gods? What dreadful paths do people tread when they become resentful, arrogant, and vengeful? Dr. Peterson journeys broadly, discussing discipline, freedom, adventure, and responsibility, distilling the world's wisdom into 12 practical and profound rules for life. 12 Rules for Life shatters the modern commonplaces of science, faith, and human nature while transforming and ennobling the mind and spirit of its listeners.</description>
 <authors>
 <author>
@@ -272,7 +272,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/282885.Jordan_B_Peterson]]></link>
 <average_rating>3.96</average_rating>
-<ratings_count>88741</ratings_count>
+<ratings_count>88759</ratings_count>
 <text_reviews_count>8315</text_reviews_count>
 </author>
 </authors>
@@ -374,7 +374,7 @@
   <started_at></started_at>
   <read_at>Tue Jan 01 00:00:00 -0800 2019</read_at>
   <date_added>Thu May 21 12:57:28 -0700 2020</date_added>
-  <date_updated>Wed May 27 12:54:19 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:08:50 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -408,8 +408,8 @@
   <publication_day>1</publication_day>
   <publication_year>2006</publication_year>
   <publication_month>12</publication_month>
-  <average_rating>4.58</average_rating>
-  <ratings_count>12</ratings_count>
+  <average_rating>4.62</average_rating>
+  <ratings_count>13</ratings_count>
   <description>This is a softcover version of the original hardcover edition released December 28, 2006 (ISBN 9781593271046).&lt;br /&gt;&lt;br /&gt;Computers perform countless tasks ranging from the business critical to the recreational, but regardless of how differently they may look and behave, they're all amazingly similar in basic function. Once you understand how the microprocessor-or central processing unit (CPU)-works, you'll have a firm grasp of the fundamental concepts at the heart of all modern computing.&lt;br /&gt;&lt;br /&gt;&lt;i&gt;Inside the Machine&lt;/i&gt;, from the co-founder of the highly respected Ars Technica website, explains how microprocessors operate-what they do and how they do it. Now in softcover, the book uses analogies, full-color diagrams, and clear language to convey the ideas that form the basis of modern computing. After discussing computers in the abstract, the book examines specific microprocessors from Intel, IBM, and Motorola, from the original models up through today's leading processors. It contains the most comprehensive and up-to-date information available (online or in print) on Intel's latest processors: the Pentium M, Core, and Core 2 Duo. &lt;i&gt;Inside the Machine&lt;/i&gt; also explains technology terms and concepts that readers often hear but may not fully understand, such as "pipelining," "L1 cache," "main memory," "superscalar processing," and "out-of-order execution."&lt;br /&gt;&lt;br /&gt;Includes discussion of:&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;Parts of the computer and microprocessor&lt;br /&gt;Programming fundamentals (arithmetic instructions, memory accesses, control flow instructions, and data types)&lt;br /&gt;Intermediate and advanced microprocessor concepts (branch prediction and speculative execution)&lt;br /&gt;Intermediate and advanced microprocessor concepts (branch prediction and speculative execution)&lt;br /&gt;Intermediate and advanced computing concepts (instruction set architectures, RISC and CISC, the memory hierarchy, and encoding and decoding machine language instructions)&lt;br /&gt;64-bit computing vs. 32-bit computing&lt;br /&gt;Caching and performance&lt;br /&gt;&lt;i&gt;Inside the Machine&lt;/i&gt; is perfect for students of science and engineering, IT and business professionals, and the growing community of hardware tinkerers who like to dig into the guts of their machines.</description>
 <authors>
 <author>
@@ -434,7 +434,7 @@
 </work></book>
 
 
-  <rating>0</rating>
+  <rating>5</rating>
   <votes>0</votes>
   <spoiler_flag>false</spoiler_flag>
   <spoilers_state>none</spoilers_state>
@@ -450,7 +450,7 @@
   <started_at>Tue Jan 01 00:00:00 -0800 2019</started_at>
   <read_at>Fri Feb 01 00:00:00 -0800 2019</read_at>
   <date_added>Thu May 21 12:56:48 -0700 2020</date_added>
-  <date_updated>Thu May 21 13:00:57 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:06:42 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -485,7 +485,7 @@
   <publication_year>2008</publication_year>
   <publication_month>9</publication_month>
   <average_rating>4.12</average_rating>
-  <ratings_count>3779</ratings_count>
+  <ratings_count>3780</ratings_count>
   <description>Software development happens in your head. Not in an editor, IDE, or design tool. You're well educated on how to work with software and hardware, but what about &lt;i&gt;wetware&lt;/i&gt;--our own brains? Learning new skills and new technology is critical to your career, and it's all in your head.&lt;br /&gt;&lt;br /&gt; In this book by Andy Hunt, you'll learn how our brains are wired, and how to take advantage of your brain's architecture. You'll learn new tricks and tips to learn more, faster, and retain more of what you learn.&lt;br /&gt;&lt;br /&gt; You need a pragmatic approach to thinking and learning. You need to &lt;i&gt;Refactor Your Wetware.&lt;/i&gt;&lt;br /&gt;&lt;br /&gt; Programmers have to learn constantly; not just the stereotypical new technologies, but also the problem domain of the application, the whims of the user community, the quirks of your teammates, the shifting sands of the industry, and the evolving characteristics of the project itself as it is built.&lt;br /&gt;&lt;br /&gt; We'll journey together through bits of cognitive and neuroscience, learning and behavioral theory. You'll see some surprising aspects of how our brains work, and how you can take advantage of the system to improve your own learning and thinking skills.&lt;br /&gt;&lt;br /&gt;In this book you'll learn how to:&lt;br /&gt;&lt;br /&gt;Use the Dreyfus Model of Skill Acquisition to become more expert&lt;br /&gt;&lt;br /&gt;Leverage the architecture of the brain to strengthen different thinking modes&lt;br /&gt;&lt;br /&gt;Avoid common "known bugs" in your mind&lt;br /&gt;&lt;br /&gt;Learn more deliberately and more effectively&lt;br /&gt;&lt;br /&gt;Manage knowledge more efficiently&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Printed in full color.&lt;/b&gt;</description>
 <authors>
 <author>
@@ -500,7 +500,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/2815.Andy_Hunt]]></link>
 <average_rating>4.22</average_rating>
-<ratings_count>19820</ratings_count>
+<ratings_count>19821</ratings_count>
 <text_reviews_count>1123</text_reviews_count>
 </author>
 </authors>
@@ -543,32 +543,32 @@
     <review>
   <id>3336134169</id>
     <book>
-  <id type="integer">67825</id>
-  <isbn>0932633439</isbn>
-  <isbn13>9780932633439</isbn13>
-  <text_reviews_count type="integer">375</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.RnSqM3r5_SOSoXh4dnBv0g</uri>
+  <id type="integer">17624351</id>
+  <isbn>0321934113</isbn>
+  <isbn13>9780321934116</isbn13>
+  <text_reviews_count type="integer">14</text_reviews_count>
+  <uri>kca://book/amzn1.gr.book.v1.xGln3p1LY-nPnmqceCAaUg</uri>
   <title>Peopleware: Productive Projects and Teams</title>
   <title_without_series>Peopleware: Productive Projects and Teams</title_without_series>
-  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
-  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1374634985l/17624351._SX98_.jpg</image_url>
+  <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1374634985l/17624351._SX50_.jpg</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/67825.Peopleware</link>
-  <num_pages>245</num_pages>
+  <link>https://www.goodreads.com/book/show/17624351-peopleware</link>
+  <num_pages>272</num_pages>
   <format>Paperback</format>
-  <edition_information>Second Edition</edition_information>
-  <publisher>Dorset House Publishing Company, Incorporated</publisher>
-  <publication_day>1</publication_day>
-  <publication_year>1999</publication_year>
-  <publication_month>1</publication_month>
+  <edition_information>Third Edition</edition_information>
+  <publisher>Addison-Wesley Professional</publisher>
+  <publication_day>28</publication_day>
+  <publication_year>2013</publication_year>
+  <publication_month>6</publication_month>
   <average_rating>4.17</average_rating>
-  <ratings_count>7877</ratings_count>
-  <description>Two of the computer industry's most popular authors and lecturers return with a new edition of the software management book that started a revolution.With humor and wisdom drawn from years of management and consulting experience, DeMarco and Lister demonstrate that the major issues of software development are human, not technical -- and that managers ignore them at their peril.&lt;br /&gt;&lt;br /&gt;Now, with a new preface and eight new chapters -- expanding the original edition by one third -- the authors enlarge upon their previous ideas and add fresh insights, examples, and potent anecdotes.&lt;br /&gt;&lt;br /&gt;Discover dozens of ingenious tips on how to&lt;br /&gt;&lt;br /&gt;-- put more quality into a product&lt;br /&gt;&lt;br /&gt;-- loosen up formal methodologies&lt;br /&gt;&lt;br /&gt;-- fight corporate entropy&lt;br /&gt;&lt;br /&gt;-- make it acceptable to be uninterruptible&lt;br /&gt;&lt;br /&gt;Peopleware shows you how to cultivate teams that are healthy and productive. The answers aren't easy -- just incredibly successful.</description>
+  <ratings_count>7878</ratings_count>
+  <description></description>
 <authors>
 <author>
 <id>38238</id>
 <name>Tom DeMarco</name>
-<role></role>
+<role>Contributor</role>
 <image_url nophoto='false'>
 <![CDATA[https://images.gr-assets.com/authors/1373411425p5/38238.jpg]]>
 </image_url>
@@ -577,11 +577,11 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/38238.Tom_DeMarco]]></link>
 <average_rating>4.13</average_rating>
-<ratings_count>12006</ratings_count>
+<ratings_count>12007</ratings_count>
 <text_reviews_count>787</text_reviews_count>
 </author>
 </authors>
-  <published>1999</published>
+  <published>2013</published>
 <work>  <id>65773</id>
   <uri>kca://work/amzn1.gr.work.v1.wXws6nGwHDDR2KFtXU01pQ</uri>
 </work></book>
@@ -604,7 +604,7 @@
   <started_at></started_at>
   <read_at></read_at>
   <date_added>Thu May 14 07:35:34 -0700 2020</date_added>
-  <date_updated>Thu May 14 07:35:35 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:11:39 -0700 2020</date_updated>
   <read_count>0</read_count>
   <body>
   </body>
@@ -620,27 +620,29 @@
     <review>
   <id>3334151239</id>
     <book>
-  <id type="integer">7912517</id>
-  <isbn>193435659X</isbn>
-  <isbn13>9781934356593</isbn13>
-  <text_reviews_count type="integer">74</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.jFCbXjvBTNDhEej7dr5wZw</uri>
-  <title>Seven Languages in Seven Weeks</title>
-  <title_without_series>Seven Languages in Seven Weeks</title_without_series>
+  <id type="integer">18674905</id>
+  <isbn nil="true"/>
+  <isbn13 nil="true"/>
+  <text_reviews_count type="integer">2</text_reviews_count>
+  <uri>kca://book/amzn1.gr.book.v1.9746u_e9U_lBQtJ8yTAywg</uri>
+  <title>Seven Languages in Seven Weeks: A Pragmatic Guide to Learning Programming Languages</title>
+  <title_without_series>Seven Languages in Seven Weeks: A Pragmatic Guide to Learning Programming Languages</title_without_series>
   <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
   <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/7912517-seven-languages-in-seven-weeks</link>
-  <num_pages>328</num_pages>
-  <format>Paperback</format>
+  <link>https://www.goodreads.com/book/show/18674905-seven-languages-in-seven-weeks</link>
+  <num_pages></num_pages>
+  <format></format>
   <edition_information/>
-  <publisher>Pragmatic Bookshelf</publisher>
-  <publication_day>17</publication_day>
-  <publication_year>2010</publication_year>
-  <publication_month>11</publication_month>
+  <publisher></publisher>
+  <publication_day></publication_day>
+  <publication_year></publication_year>
+  <publication_month></publication_month>
   <average_rating>3.96</average_rating>
   <ratings_count>1586</ratings_count>
-  <description>You should learn a programming language every year, as recommended by &lt;i&gt;The Pragmatic Programmer&lt;/i&gt;. But if one per year is good, how about &lt;i&gt;Seven Languages in Seven Weeks&lt;/i&gt;? In this book you'll get a hands-on tour of Clojure, Haskell, Io, Prolog, Scala, Erlang, and Ruby. Whether or not your favorite language is on that list, you'll broaden your perspective of programming by examining these languages side-by-side. You'll learn something new from each, and best of all, you'll learn how to learn a language quickly.&lt;br /&gt;&lt;br /&gt; Ruby, Io, Prolog, Scala, Erlang, Clojure, Haskell. With &lt;i&gt;Seven Languages in Seven Weeks,&lt;/i&gt; by Bruce A. Tate, you'll go beyond the syntax-and beyond the 20-minute tutorial you'll find someplace online. This book has an audacious goal: to present a meaningful exploration of seven languages within a single book. Rather than serve as a complete reference or installation guide, &lt;i&gt;Seven Languages&lt;/i&gt; hits what's essential and unique about each language. Moreover, this approach will help teach you how to grok new languages.&lt;br /&gt;&lt;br /&gt; For each language, you'll solve a nontrivial problem, using techniques that show off the language's most important features. As the book proceeds, you'll discover the strengths and weaknesses of the languages, while dissecting the process of learning languages quickly--for example, finding the typing and programming models, decision structures, and how you interact with them.&lt;br /&gt;&lt;br /&gt; Among this group of seven, you'll explore the most critical programming models of our time. Learn the dynamic typing that makes Ruby, Python, and Perl so flexible and compelling. Understand the underlying prototype system that's at the heart of JavaScript. See how pattern matching in Prolog shaped the development of Scala and Erlang. Discover how pure functional programming in Haskell is different from the Lisp family of languages, including Clojure.&lt;br /&gt;&lt;br /&gt; Explore the concurrency techniques that are quickly becoming the backbone of a new generation of Internet applications. Find out how to use Erlang's let-it-crash philosophy for building fault-tolerant systems. Understand the actor model that drives concurrency design in Io and Scala. Learn how Clojure uses versioning to solve some of the most difficult concurrency problems.&lt;br /&gt;&lt;br /&gt; It's all here, all in one place. Use the concepts from one language to find creative solutions in another-or discover a language that may become one of your favorites.</description>
+  <description>&lt;div&gt;
+  &lt;p&gt;Ruby, Io, Prolog, Scala, Erlang, Clojure, Haskell. With &lt;i&gt;Seven Languages in Seven Weeks,&lt;/i&gt; by Bruce A. Tate, you'll go beyond the syntax-and beyond the 20-minute tutorial you'll find someplace online. This book has an audacious goal: to present a meaningful exploration of seven languages within a single book. Rather than serve as a complete reference or installation guide, &lt;i&gt;Seven Languages&lt;/i&gt; hits what's essential and unique about each language. Moreover, this approach will help teach you how to grok new languages.&lt;br /&gt;&lt;br /&gt; For each language, you'll solve a nontrivial problem, using techniques that show off the language's most important features. As the book proceeds, you'll discover the strengths and weaknesses of the languages, while dissecting the process of learning languages quickly--for example, finding the typing and programming models, decision structures, and how you interact with them.&lt;br /&gt;&lt;br /&gt; Among this group of seven, you'll explore the most critical programming models of our time. Learn the dynamic typing that makes Ruby, Python, and Perl so flexible and compelling. Understand the underlying prototype system that's at the heart of JavaScript. See how pattern matching in Prolog shaped the development of Scala and Erlang. Discover how pure functional programming in Haskell is different from the Lisp family of languages, including Clojure.&lt;br /&gt;&lt;br /&gt; Explore the concurrency techniques that are quickly becoming the backbone of a new generation of Internet applications. Find out how to use Erlang's let-it-crash philosophy for building fault-tolerant systems. Understand the actor model that drives concurrency design in Io and Scala. Learn how Clojure uses versioning to solve some of the most difficult concurrency problems.&lt;br /&gt;&lt;br /&gt; It's all here, all in one place. Use the concepts from one language to find creative solutions in another-or discover a language that may become one of your favorites.&lt;/p&gt;
+&lt;/div&gt;</description>
 <authors>
 <author>
 <id>1326270</id>
@@ -658,7 +660,7 @@
 <text_reviews_count>141</text_reviews_count>
 </author>
 </authors>
-  <published>2010</published>
+  <published></published>
 <work>  <id>11194134</id>
   <uri>kca://work/amzn1.gr.work.v1.w_MXgkSC1huGTreUlvvPZQ</uri>
 </work></book>
@@ -681,7 +683,7 @@
   <started_at></started_at>
   <read_at></read_at>
   <date_added>Wed May 13 05:20:04 -0700 2020</date_added>
-  <date_updated>Wed May 13 05:20:05 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:11:14 -0700 2020</date_updated>
   <read_count>0</read_count>
   <body>
   </body>
@@ -851,27 +853,27 @@
     <review>
   <id>3334149690</id>
     <book>
-  <id type="integer">44936</id>
-  <isbn>0201485672</isbn>
-  <isbn13>9780201485677</isbn13>
-  <text_reviews_count type="integer">228</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.tvlCUJCxXCxh4ofnQ2R0lQ</uri>
+  <id type="integer">35135772</id>
+  <isbn>0134757599</isbn>
+  <isbn13>9780134757599</isbn13>
+  <text_reviews_count type="integer">16</text_reviews_count>
+  <uri>kca://book/amzn1.gr.book.v1.Wjsyb_U_ou_c_01YdZAbAg</uri>
   <title>Refactoring: Improving the Design of Existing Code</title>
   <title_without_series>Refactoring: Improving the Design of Existing Code</title_without_series>
-  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
-  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
+  <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1543958218l/35135772._SX98_.jpg</image_url>
+  <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1543958218l/35135772._SX50_.jpg</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/44936.Refactoring</link>
-  <num_pages>431</num_pages>
+  <link>https://www.goodreads.com/book/show/35135772-refactoring</link>
+  <num_pages>448</num_pages>
   <format>Hardcover</format>
-  <edition_information/>
+  <edition_information>Second edition</edition_information>
   <publisher>Addison-Wesley Professional</publisher>
-  <publication_day>8</publication_day>
-  <publication_year>1999</publication_year>
-  <publication_month>7</publication_month>
+  <publication_day>29</publication_day>
+  <publication_year>2018</publication_year>
+  <publication_month>11</publication_month>
   <average_rating>4.24</average_rating>
   <ratings_count>6721</ratings_count>
-  <description>As the application of object technology—particularly the Java programming language—has become commonplace, a new problem has emerged to confront the software development community. Significant numbers of poorly designed programs have been created by less-experienced developers, resulting in applications that are inefficient and hard to maintain and extend. Increasingly, software system professionals are discovering just how difficult it is to work with these inherited, non-optimal applications. For several years, expert-level object programmers have employed a growing collection of techniques to improve the structural integrity and performance of such existing software programs. Referred to as refactoring, these practices have remained in the domain of experts because no attempt has been made to transcribe the lore into a form that all developers could use... until now. In &lt;i&gt;Refactoring: Improving the Design of Existing Software&lt;/i&gt;, renowned object technology mentor Martin Fowler breaks new ground, demystifying these master practices and demonstrating how software practitioners can realize the significant benefits of this new process.</description>
+  <description>&lt;b&gt;Fully Revised and Updated-Includes New Refactorings and Code Examples&lt;/b&gt; &lt;i&gt;"Any fool can write code that a computer can understand. Good programmers write code that humans can understand."&lt;/i&gt; &lt;br /&gt; --M. Fowler (1999) For more than twenty years, experienced programmers worldwide have relied on Martin Fowler's &lt;i&gt;Refactoring&lt;/i&gt; to improve the design of existing code and to enhance software maintainability, as well as to make existing code easier to understand. &lt;br /&gt; This eagerly awaited new edition has been fully updated to reflect crucial changes in the programming landscape. &lt;i&gt; &lt;b&gt;Refactoring, Second Edition, &lt;/b&gt; &lt;/i&gt; features an updated catalog of refactorings and includes JavaScript code examples, as well as new functional examples that demonstrate refactoring without classes. &lt;br /&gt; Like the original, this edition explains what refactoring is; why you should refactor; how to recognize code that needs refactoring; and how to actually do it successfully, no matter what language you use.&lt;br /&gt;Understand the process and general principles of refactoring Quickly apply useful refactorings to make a program easier to comprehend and change Recognize "bad smells" in code that signal opportunities to refactor Explore the refactorings, each with explanations, motivation, mechanics, and simple examples Build solid tests for your refactorings Recognize tradeoffs and obstacles to refactoring &lt;i&gt;Includes free access to the canonical web edition, with even more refactoring resources. (See inside the book for details about how to access the web edition.)&lt;/i&gt;</description>
 <authors>
 <author>
 <id>25215</id>
@@ -889,7 +891,7 @@
 <text_reviews_count>670</text_reviews_count>
 </author>
 </authors>
-  <published>1999</published>
+  <published>2018</published>
 <work>  <id>44258</id>
   <uri>kca://work/amzn1.gr.work.v1.Abb9QBtAyZJAcHcgyDLJ3Q</uri>
 </work></book>
@@ -912,7 +914,7 @@
   <started_at></started_at>
   <read_at></read_at>
   <date_added>Wed May 13 05:18:34 -0700 2020</date_added>
-  <date_updated>Wed May 13 05:18:35 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:12:03 -0700 2020</date_updated>
   <read_count>0</read_count>
   <body>
   </body>
@@ -947,7 +949,7 @@
   <publication_year>1994</publication_year>
   <publication_month>11</publication_month>
   <average_rating>4.18</average_rating>
-  <ratings_count>9572</ratings_count>
+  <ratings_count>9573</ratings_count>
   <description>Capturing a wealth of experience about the design of object-oriented software, four top-notch designers present a catalog of simple and succinct solutions to commonly occurring design problems. Previously undocumented, these 23 patterns allow designers to create more flexible, elegant, and ultimately reusable designs without having to rediscover the design solutions themselves.&lt;br /&gt;&lt;br /&gt;The authors begin by describing what patterns are and how they can help you design object-oriented software. They then go on to systematically name, explain, evaluate, and catalog recurring designs in object-oriented systems. With Design Patterns as your guide, you will learn how these important patterns fit into the software development process, and how you can leverage them to solve your own design problems most efficiently.&lt;p&gt; Each pattern describes the circumstances in which it is applicable, when it can be applied in view of other design constraints, and the consequences and trade-offs of using the pattern within a larger design. All patterns are compiled from real systems and are based on real-world examples. Each pattern also includes code that demonstrates how it may be implemented in object-oriented programming languages like C++ or Smalltalk.&lt;/p&gt;</description>
 <authors>
 <author>
@@ -962,7 +964,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/48622.Erich_Gamma]]></link>
 <average_rating>4.20</average_rating>
-<ratings_count>15809</ratings_count>
+<ratings_count>15810</ratings_count>
 <text_reviews_count>568</text_reviews_count>
 </author>
 </authors>
@@ -1041,7 +1043,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/25169.Charles_Petzold]]></link>
 <average_rating>4.25</average_rating>
-<ratings_count>9229</ratings_count>
+<ratings_count>9228</ratings_count>
 <text_reviews_count>655</text_reviews_count>
 </author>
 </authors>
@@ -1103,7 +1105,7 @@
   <publication_year>2013</publication_year>
   <publication_month>1</publication_month>
   <average_rating>4.27</average_rating>
-  <ratings_count>26466</ratings_count>
+  <ratings_count>26470</ratings_count>
   <description>Bill is an IT manager at Parts Unlimited. It's Tuesday morning and on his drive into the office, Bill gets a call from the CEO. &lt;br /&gt;&lt;br /&gt;The company's new IT initiative, code named Phoenix Project, is critical to the future of Parts Unlimited, but the project is massively over budget and very late. The CEO wants Bill to report directly to him and fix the mess in ninety days or else Bill's entire department will be outsourced. &lt;br /&gt;&lt;br /&gt;With the help of a prospective board member and his mysterious philosophy of The Three Ways, Bill starts to see that IT work has more in common with manufacturing plant work than he ever imagined. With the clock ticking, Bill must organize work flow streamline interdepartmental communications, and effectively serve the other business functions at Parts Unlimited. &lt;br /&gt;&lt;br /&gt;In a fast-paced and entertaining style, three luminaries of the DevOps movement deliver a story that anyone who works in IT will recognize. Readers will not only learn how to improve their own IT organizations, they'll never view IT the same way again.</description>
 <authors>
 <author>
@@ -1118,7 +1120,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/328437.Gene_Kim]]></link>
 <average_rating>4.24</average_rating>
-<ratings_count>35669</ratings_count>
+<ratings_count>35674</ratings_count>
 <text_reviews_count>3373</text_reviews_count>
 </author>
 </authors>
@@ -1180,7 +1182,7 @@
   <publication_year>2010</publication_year>
   <publication_month>2</publication_month>
   <average_rating>3.65</average_rating>
-  <ratings_count>1604</ratings_count>
+  <ratings_count>1605</ratings_count>
   <description>Tap into the wisdom of experts to learn what every programmer should know, no matter what language you use. With the 97 short and extremely useful tips for programmers in this book, you'll expand your skills by adopting new approaches to old problems, learning appropriate best practices, and honing your craft through sound advice.&lt;br /&gt;&lt;br /&gt;With contributions from some of the most experienced and respected practitioners in the industry--including Michael Feathers, Pete Goodliffe, Diomidis Spinellis, Cay Horstmann, Verity Stob, and many more--this book contains practical knowledge and principles that you can apply to all kinds of projects.&lt;br /&gt;&lt;br /&gt;A few of the 97 things you should know:&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;"Code in the Language of the Domain" by Dan North&lt;br /&gt;"Write Tests for People" by Gerard Meszaros&lt;br /&gt;"Convenience Is Not an -ility" by Gregor Hohpe&lt;br /&gt;"Know Your IDE" by Heinz Kabutz&lt;br /&gt;"A Message to the Future" by Linda Rising&lt;br /&gt;"The Boy Scout Rule" by Robert C. Martin (Uncle Bob)&lt;br /&gt;"Beware the Share" by Udi Dahan</description>
 <authors>
 <author>
@@ -1195,7 +1197,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/45368.Kevlin_Henney]]></link>
 <average_rating>3.68</average_rating>
-<ratings_count>1738</ratings_count>
+<ratings_count>1739</ratings_count>
 <text_reviews_count>162</text_reviews_count>
 </author>
 </authors>
@@ -1237,17 +1239,17 @@
     <review>
   <id>3334146264</id>
     <book>
-  <id type="integer">46021769</id>
-  <isbn nil="true"/>
-  <isbn13 nil="true"/>
+  <id type="integer">50198096</id>
+  <isbn>1789349869</isbn>
+  <isbn13>9781789349863</isbn13>
   <text_reviews_count type="integer">0</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.-7fdmq1dbBgJNgoouDbddg</uri>
+  <uri>kca://book/amzn1.gr.book.v3.m5O3prTDzsrmJxFg</uri>
   <title>Hands-On Network Programming with C: Learn socket programming in C and write secure and optimized network code</title>
   <title_without_series>Hands-On Network Programming with C: Learn socket programming in C and write secure and optimized network code</title_without_series>
   <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
   <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/46021769-hands-on-network-programming-with-c</link>
+  <link>https://www.goodreads.com/book/show/50198096-hands-on-network-programming-with-c</link>
   <num_pages></num_pages>
   <format></format>
   <edition_information/>
@@ -1297,7 +1299,7 @@
   <started_at>Wed May 13 00:00:00 -0700 2020</started_at>
   <read_at>Mon May 25 15:54:26 -0700 2020</read_at>
   <date_added>Wed May 13 05:15:28 -0700 2020</date_added>
-  <date_updated>Mon May 25 18:13:51 -0700 2020</date_updated>
+  <date_updated>Thu May 28 11:59:53 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -1332,7 +1334,7 @@
   <publication_year>1995</publication_year>
   <publication_month>8</publication_month>
   <average_rating>4.04</average_rating>
-  <ratings_count>10899</ratings_count>
+  <ratings_count>10898</ratings_count>
   <description>Few books on software project management have been as influential and timeless as The Mythical Man-Month. With a blend of software engineering facts and thought-provoking opinions, Fred Brooks offers insight for anyone managing complex projects. These essays draw from his experience as project manager for the IBM System/360 computer family and then for OS/360, its massive software system. Now, 20 years after the initial publication of his book, Brooks has revisited his original ideas and added new thoughts and advice, both for readers already familiar with his work and for readers discovering it for the first time.&lt;p&gt;The added chapters contain (1) a crisp condensation of all the propositions asserted in the original book, including Brooks' central argument in The Mythical Man-Month: that large programming projects suffer management problems different from small ones due to the division of labor; that the conceptual integrity of the product is therefore critical; and that it is difficult but possible to achieve this unity; (2) Brooks' view of these propositions a generation later; (3) a reprint of his classic 1986 paper "No Silver Bullet"; and (4) today's thoughts on the 1986 assertion, "There will be no silver bullet within ten years."&lt;/p&gt;</description>
 <authors>
 <author>
@@ -1347,7 +1349,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/3174788.Frederick_P_Brooks_Jr_]]></link>
 <average_rating>4.03</average_rating>
-<ratings_count>11467</ratings_count>
+<ratings_count>11466</ratings_count>
 <text_reviews_count>769</text_reviews_count>
 </author>
 </authors>
@@ -1389,27 +1391,27 @@
     <review>
   <id>3334145413</id>
     <book>
-  <id type="integer">12544648</id>
-  <isbn>1466208686</isbn>
-  <isbn13>9781466208681</isbn13>
-  <text_reviews_count type="integer">123</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.GmqxAeYO6jhfUU0t3JhoWw</uri>
-  <title>Cracking the Coding Interview: 150 Programming Questions and Solutions</title>
-  <title_without_series>Cracking the Coding Interview: 150 Programming Questions and Solutions</title_without_series>
+  <id type="integer">25707092</id>
+  <isbn>0984782850</isbn>
+  <isbn13>9780984782857</isbn13>
+  <text_reviews_count type="integer">51</text_reviews_count>
+  <uri>kca://book/amzn1.gr.book.v1.YyiJgniaHlSEJbGhwkburw</uri>
+  <title>Cracking the Coding Interview: 189 Programming Questions and Solutions</title>
+  <title_without_series>Cracking the Coding Interview: 189 Programming Questions and Solutions</title_without_series>
   <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
   <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/12544648-cracking-the-coding-interview</link>
-  <num_pages>500</num_pages>
+  <link>https://www.goodreads.com/book/show/25707092-cracking-the-coding-interview</link>
+  <num_pages>708</num_pages>
   <format>Paperback</format>
-  <edition_information>5th Revised and enlarged</edition_information>
-  <publisher>Createspace</publisher>
+  <edition_information>6th Edition</edition_information>
+  <publisher>Careercup</publisher>
   <publication_day>1</publication_day>
-  <publication_year>2011</publication_year>
-  <publication_month>8</publication_month>
+  <publication_year>2015</publication_year>
+  <publication_month>7</publication_month>
   <average_rating>4.35</average_rating>
-  <ratings_count>4879</ratings_count>
-  <description>&lt;p&gt;Now in the 5th edition, Cracking the Coding Interview gives you the interview preparation you need to get the top software developer jobs. This is a deeply technical book and focuses on the software engineering skills to ace your interview. The book is over 500 pages and includes 150 programming interview questions and answers, as well as other advice.&lt;br /&gt;&lt;br /&gt;The full list of topics are as follows:&lt;br /&gt;&lt;br /&gt;The Interview Process&lt;br /&gt;This section offers an overview on questions are selected and how you will be evaluated. What happens when you get a question wrong? When should you start preparing, and how? What language should you use? All these questions and more are answered.&lt;br /&gt;&lt;br /&gt;Behind the Scenes&lt;br /&gt;Learn what happens behind the scenes during your interview, how decisions really get made, who you interview with, and what they ask you. Companies covered include Google, Amazon, Yahoo, Microsoft, Apple and Facebook.&lt;br /&gt;&lt;br /&gt;Special Situations&lt;br /&gt;This section explains the process for experience candidates, Program Managers, Dev Managers, Testers / SDETs, and more. Learn what your interviewers are looking for and how much code you need to know.&lt;br /&gt;&lt;br /&gt;Before the Interview&lt;br /&gt;In order to ace the interview, you first need to get an interview. This section describes what a software engineer's resume should look like and what you should be doing well before your interview.&lt;br /&gt;&lt;br /&gt;Behavioral Preparation&lt;br /&gt;Although most of a software engineering interview will be technical, behavioral questions matter too. This section covers how to prepare for behavioral questions and how to give strong, structured responses.&lt;br /&gt;&lt;br /&gt;Technical Questions (+ 5 Algorithm Approaches)&lt;br /&gt;This section covers how to prepare for technical questions (without wasting your time) and teaches actionable ways to solve the trickiest algorithm problems. It also teaches you what exactly "good coding" is when it comes to an interview.&lt;br /&gt;&lt;br /&gt;150 Programming Questions and Answers&lt;br /&gt;This section forms the bulk of the book. Each section opens with a discussion of the core knowledge and strategies to tackle this type of question, diving into exactly how you break down and solve it. Topics covered include&lt;br /&gt;•	Arrays and Strings&lt;br /&gt;•	Linked Lists&lt;br /&gt;•	Stacks and Queues&lt;br /&gt;•	Trees and Graphs&lt;br /&gt;•	Bit Manipulation&lt;br /&gt;•	Brain Teasers&lt;br /&gt;•	Mathematics and Probability&lt;br /&gt;•	Object-Oriented Design&lt;br /&gt;•	Recursion and Dynamic Programming&lt;br /&gt;•	Sorting and Searching&lt;br /&gt;•	Scalability and Memory Limits&lt;br /&gt;•	Testing&lt;br /&gt;•	C and C++&lt;br /&gt;•	Java&lt;br /&gt;•	Databases&lt;br /&gt;•	Threads and Locks&lt;br /&gt;&lt;br /&gt;For the widest degree of readability, the solutions are almost entirely written with Java (with the exception of C / C++ questions). A link is provided with the book so that you can download, compile, and play with the solutions yourself.&lt;br /&gt;&lt;br /&gt;Changes from the Fourth Edition: The fifth edition includes over 200 pages of new content, bringing the book from 300 pages to over 500 pages. Major revisions were done to almost every solution, including a number of alternate solutions added. The introductory chapters were massively expanded, as were the opening of each of the chapters under Technical Questions. In addition, 24 new questions were added.&lt;br /&gt;&lt;br /&gt;Cracking the Coding Interview, Fifth Edition is the most expansive, detailed guide on how to ace your software development / programming interviews.&lt;/p&gt;</description>
+  <ratings_count>4880</ratings_count>
+  <description>I am not a recruiter. I am a software engineer. And as such, I know what it's like to be asked to whip up brilliant algorithms on the spot and then write flawless code on a whiteboard. I've been through this as a candidate and as an interviewer.&lt;br /&gt;&lt;br /&gt;&lt;i&gt;Cracking the Coding Interview, 6th Edition&lt;/i&gt; is here to help you through this process, teaching you what you need to know and enabling you to perform at your very best. I've coached and interviewed hundreds of software engineers. The result is this book.&lt;br /&gt;&lt;br /&gt;Learn how to uncover the hints and hidden details in a question, discover how to break down a problem into manageable chunks, develop techniques to unstick yourself when stuck, learn (or re-learn) core computer science concepts, and practice on 189 interview questions and solutions.&lt;br /&gt;&lt;br /&gt;These interview questions are real; they are not pulled out of computer science textbooks. They reflect what's truly being asked at the top companies, so that you can be as prepared as possible. &lt;b&gt;WHAT'S INSIDE?&lt;/b&gt;&lt;br /&gt;• 189 programming interview questions, ranging from the basics to the trickiest algorithm problems.&lt;br /&gt;• A walk-through of how to derive each solution, so that you can learn how to get there yourself.&lt;br /&gt;• Hints on how to solve each of the 189 questions, just like what you would get in a real interview.&lt;br /&gt;• Five proven strategies to tackle algorithm questions, so that you can solve questions you haven't seen.&lt;br /&gt;• Extensive coverage of essential topics, such as big O time, data structures, and core algorithms.&lt;br /&gt;• A behind the scenes look at how top companies like Google and Facebook hire developers.&lt;br /&gt;• Techniques to prepare for and ace the soft side of the interview: behavioral questions.&lt;br /&gt;• For interviewers and companies: details on what makes a good interview question and hiring process.</description>
 <authors>
 <author>
 <id>4692311</id>
@@ -1423,11 +1425,11 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/4692311.Gayle_Laakmann_McDowell]]></link>
 <average_rating>4.24</average_rating>
-<ratings_count>8117</ratings_count>
+<ratings_count>8119</ratings_count>
 <text_reviews_count>406</text_reviews_count>
 </author>
 </authors>
-  <published>2011</published>
+  <published>2015</published>
 <work>  <id>17531766</id>
   <uri>kca://work/amzn1.gr.work.v1.5snPGdi6KzdfpMtEHIQKbw</uri>
 </work></book>
@@ -1450,7 +1452,7 @@
   <started_at>Wed May 13 05:14:41 -0700 2020</started_at>
   <read_at></read_at>
   <date_added>Wed May 13 05:14:41 -0700 2020</date_added>
-  <date_updated>Wed May 13 05:14:41 -0700 2020</date_updated>
+  <date_updated>Thu May 28 11:57:56 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -1500,7 +1502,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/45372.Robert_C_Martin]]></link>
 <average_rating>4.34</average_rating>
-<ratings_count>25290</ratings_count>
+<ratings_count>25292</ratings_count>
 <text_reviews_count>1657</text_reviews_count>
 </author>
 </authors>
@@ -1576,7 +1578,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/45372.Robert_C_Martin]]></link>
 <average_rating>4.34</average_rating>
-<ratings_count>25290</ratings_count>
+<ratings_count>25292</ratings_count>
 <text_reviews_count>1657</text_reviews_count>
 </author>
 </authors>
@@ -1618,19 +1620,19 @@
     <review>
   <id>3334142921</id>
     <book>
-  <id type="integer">41022931</id>
-  <isbn nil="true"/>
-  <isbn13 nil="true"/>
-  <text_reviews_count type="integer">2</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.OImPBlzexhAgKj57C-I6kA</uri>
+  <id type="integer">41215829</id>
+  <isbn>398201610X</isbn>
+  <isbn13>9783982016108</isbn13>
+  <text_reviews_count type="integer">0</text_reviews_count>
+  <uri>kca://book/amzn1.gr.book.v1.2Fk2NWYET4oj_FjPMcJFlg</uri>
   <title>Writing A Compiler In Go</title>
   <title_without_series>Writing A Compiler In Go</title_without_series>
   <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
   <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/41022931-writing-a-compiler-in-go</link>
-  <num_pages>271</num_pages>
-  <format>ebook</format>
+  <link>https://www.goodreads.com/book/show/41215829-writing-a-compiler-in-go</link>
+  <num_pages></num_pages>
+  <format></format>
   <edition_information/>
   <publisher></publisher>
   <publication_day></publication_day>
@@ -1678,7 +1680,7 @@
   <started_at></started_at>
   <read_at>Fri Nov 01 00:00:00 -0700 2019</read_at>
   <date_added>Wed May 13 05:12:16 -0700 2020</date_added>
-  <date_updated>Thu May 21 13:01:40 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:00:29 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -1694,24 +1696,24 @@
     <review>
   <id>3334142596</id>
     <book>
-  <id type="integer">32681092</id>
-  <isbn nil="true"/>
-  <isbn13 nil="true"/>
-  <text_reviews_count type="integer">13</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.j0eir1_XTt6Pn1Sfd18mUQ</uri>
+  <id type="integer">41632715</id>
+  <isbn>3982016118</isbn>
+  <isbn13>9783982016115</isbn13>
+  <text_reviews_count type="integer">2</text_reviews_count>
+  <uri>kca://book/amzn1.gr.book.v1.1JCoBR85w1qD05E8YkYEzw</uri>
   <title>Writing An Interpreter In Go</title>
   <title_without_series>Writing An Interpreter In Go</title_without_series>
-  <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1480949814l/32681092._SX98_.jpg</image_url>
-  <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1480949814l/32681092._SX50_.jpg</small_image_url>
+  <image_url>https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png</image_url>
+  <small_image_url>https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png</small_image_url>
   <large_image_url/>
-  <link>https://www.goodreads.com/book/show/32681092-writing-an-interpreter-in-go</link>
-  <num_pages>200</num_pages>
-  <format>ebook</format>
+  <link>https://www.goodreads.com/book/show/41632715-writing-an-interpreter-in-go</link>
+  <num_pages></num_pages>
+  <format></format>
   <edition_information/>
   <publisher></publisher>
-  <publication_day>23</publication_day>
-  <publication_year>2016</publication_year>
-  <publication_month>11</publication_month>
+  <publication_day></publication_day>
+  <publication_year></publication_year>
+  <publication_month></publication_month>
   <average_rating>4.53</average_rating>
   <ratings_count>85</ratings_count>
   <description>In this book we will create a programming language together.&lt;br /&gt;&lt;br /&gt;We'll start with 0 lines of code and end up with a fully working interpreter for the Monkey programming language. Monkey has been specifically designed for this book: it's a language that looks a lot like C, has first class functions, closures, strings, hashes and arrays and its only implementation is the one we build in the book.&lt;br /&gt;&lt;br /&gt;In contrast to text books on interpreters &amp;amp; compilers, the focus of this book is working code. Code is not just found in the appendix -- no, nearly every page contains a snippet! And not only that, but also tests. The code presented in the book is fully tested and the test suite is included.&lt;br /&gt;&lt;br /&gt;For more information, check out: &lt;a target="_blank" href="http://interpreterbook.com/" rel="nofollow"&gt;http://interpreterbook.com/&lt;/a&gt;</description>
@@ -1732,7 +1734,7 @@
 <text_reviews_count>17</text_reviews_count>
 </author>
 </authors>
-  <published>2016</published>
+  <published></published>
 <work>  <id>53255286</id>
   <uri>kca://work/amzn1.gr.work.v1.FNOwR59Ovi_VQmIxhzfSfw</uri>
 </work></book>
@@ -1754,7 +1756,7 @@
   <started_at></started_at>
   <read_at>Sun Sep 01 00:00:00 -0700 2019</read_at>
   <date_added>Wed May 13 05:11:58 -0700 2020</date_added>
-  <date_updated>Thu May 21 13:01:46 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:06:11 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -1830,7 +1832,7 @@
   <started_at></started_at>
   <read_at>Sun Dec 01 00:00:00 -0800 2019</read_at>
   <date_added>Wed May 13 05:11:38 -0700 2020</date_added>
-  <date_updated>Thu May 21 13:00:45 -0700 2020</date_updated>
+  <date_updated>Thu May 28 12:04:31 -0700 2020</date_updated>
   <read_count>1</read_count>
   <body>
   </body>
@@ -1865,7 +1867,7 @@
   <publication_year>2004</publication_year>
   <publication_month>11</publication_month>
   <average_rating>4.28</average_rating>
-  <ratings_count>6921</ratings_count>
+  <ratings_count>6920</ratings_count>
   <description>You're not alone.&lt;br /&gt; &lt;br /&gt; At any given moment, somewhere in the world someone struggles with the same software design problems you have. You know you don't want to reinvent the wheel (or worse, a flat tire), so you look to Design Patterns--the lessons learned by those who've faced the same problems. With Design Patterns, you get to take advantage of the best practices and experience of others, so that you can spend your time on...something else. Something more challenging. Something more complex. Something more fun.&lt;br /&gt; &lt;br /&gt; You want to learn about the patterns that matter--why to use them, when to use them, how to use them (and when NOT to use them). But you don't just want to see how patterns look in a book, you want to know how they look "in the wild". In their native environment. In other words, in real world applications. You also want to learn how patterns are used in the Java API, and how to exploit Java's built-in pattern support in your own code.&lt;br /&gt; &lt;br /&gt; You want to learn the real OO design principles and why everything your boss told you about inheritance might be wrong (and what to do instead). You want to learn how those principles will help the next time you're up a creek without a design pattern.&lt;br /&gt; &lt;br /&gt; Most importantly, you want to learn the "secret language" of Design Patterns so that you can hold your own with your co-worker (and impress cocktail party guests) when he casually mentions his stunningly clever use of Command, Facade, Proxy, and Factory in between sips of a martini. You'll easily counter with your deep understanding of why Singleton isn't as simple as it sounds, how the Factory is so often misunderstood, or on the real relationship between Decorator, Facade and Adapter.&lt;br /&gt; &lt;br /&gt; With &lt;i&gt;Head First Design Patterns&lt;/i&gt;, you'll avoid the embarrassment of thinking Decorator is something from the "Trading Spaces" show. Best of all, in a way that won't put you to sleep! We think your time is too important (and too short) to spend it struggling with academic texts.&lt;br /&gt; &lt;br /&gt; If you've read a Head First book, you know what to expect--a visually rich format designed for the way your brain works. Using the latest research in neurobiology, cognitive science, and learning theory, &lt;i&gt;Head First Design Patterns&lt;/i&gt; will load patterns into your brain in a way that sticks. In a way that lets you put them to work immediately. In a way that makes you better at solving software design problems, and better at speaking the language of patterns with others on your team.</description>
 <authors>
 <author>
@@ -1880,7 +1882,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/32731.Eric_Freeman]]></link>
 <average_rating>4.24</average_rating>
-<ratings_count>9701</ratings_count>
+<ratings_count>9700</ratings_count>
 <text_reviews_count>657</text_reviews_count>
 </author>
 </authors>
@@ -1920,82 +1922,6 @@
 </review>
 
     <review>
-  <id>3334141432</id>
-    <book>
-  <id type="integer">610830</id>
-  <isbn>1593271042</isbn>
-  <isbn13>9781593271046</isbn13>
-  <text_reviews_count type="integer">9</text_reviews_count>
-  <uri>kca://book/amzn1.gr.book.v1.wH_5KOXo1uudIYxvxu7fAg</uri>
-  <title>Inside the Machine</title>
-  <title_without_series>Inside the Machine</title_without_series>
-  <image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328753443l/610830._SX98_.jpg</image_url>
-  <small_image_url>https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1328753443l/610830._SX50_.jpg</small_image_url>
-  <large_image_url/>
-  <link>https://www.goodreads.com/book/show/610830.Inside_the_Machine</link>
-  <num_pages>320</num_pages>
-  <format>Hardcover</format>
-  <edition_information/>
-  <publisher>No Starch Press</publisher>
-  <publication_day>8</publication_day>
-  <publication_year>2006</publication_year>
-  <publication_month>12</publication_month>
-  <average_rating>4.12</average_rating>
-  <ratings_count>161</ratings_count>
-  <description>Computers perform countless tasks ranging from the business critical to the recreational, but regardless of how differently they may look and behave, they're all amazingly similar in basic function. Once you understand how the microprocessor-or central processing unit (CPU)-works, you'll have a firm grasp of the fundamental concepts at the heart of all modern computing.&lt;br /&gt;&lt;br /&gt;&lt;i&gt;Inside the Machine&lt;/i&gt;, from the co-founder of the highly respected Ars Technica website, explains how microprocessors operate-what they do and how they do it. The book uses analogies, full-color diagrams, and clear language to convey the ideas that form the basis of modern computing. After discussing computers in the abstract, the book examines specific microprocessors from Intel, IBM, and Motorola, from the original models up through today's leading processors. It contains the most comprehensive and up-to-date information available (online or in print) on Intel's latest processors: the Pentium M, Core, and Core 2 Duo. Inside the Machine also explains technology terms and concepts that readers often hear but may not fully understand, such as "pipelining," "L1 cache," "main memory," "superscalar processing," and "out-of-order execution."&lt;br /&gt;&lt;br /&gt;Includes discussion of:&lt;br /&gt;&lt;br /&gt;Parts of the computer and microprocessor Programming fundamentals (arithmetic instructions, memory accesses, control flow instructions, and data types) Intermediate and advanced microprocessor concepts (branch prediction and speculative execution) Intermediate and advanced microprocessor concepts (branch prediction and speculative execution) Intermediate and advanced computing concepts (instruction set architectures, RISC and CISC, the memory hierarchy, and encoding and decoding machine language instructions) 64-bit computing vs. 32-bit computing Caching and performance &lt;i&gt;Inside the Machine&lt;/i&gt; is perfect for students of science and engineering, IT and business professionals, and the growing community of hardware tinkerers who like to dig into the guts of their machines.</description>
-<authors>
-<author>
-<id>330891</id>
-<name>Jon Stokes</name>
-<role></role>
-<image_url nophoto='true'>
-<![CDATA[https://s.gr-assets.com/assets/nophoto/user/u_200x266-e183445fd1a1b5cc7075bb1cf7043306.png]]>
-</image_url>
-<small_image_url nophoto='true'>
-<![CDATA[https://s.gr-assets.com/assets/nophoto/user/u_50x66-632230dc9882b4352d753eedf9396530.png]]>
-</small_image_url>
-<link><![CDATA[https://www.goodreads.com/author/show/330891.Jon_Stokes]]></link>
-<average_rating>4.17</average_rating>
-<ratings_count>195</ratings_count>
-<text_reviews_count>12</text_reviews_count>
-</author>
-</authors>
-  <published>2006</published>
-<work>  <id>597308</id>
-  <uri>kca://work/amzn1.gr.work.v1.8TVTrS96j1AIavh1r-FKiQ</uri>
-</work></book>
-
-
-  <rating>5</rating>
-  <votes>0</votes>
-  <spoiler_flag>false</spoiler_flag>
-  <spoilers_state>none</spoilers_state>
-  
-
-<shelves>
-    <shelf name="read" exclusive="true" id="373159602" review_shelf_id= ""/>
-
-</shelves>
-
-  <recommended_for></recommended_for>
-  <recommended_by></recommended_by>
-  <started_at></started_at>
-  <read_at>Fri Feb 01 00:00:00 -0800 2019</read_at>
-  <date_added>Wed May 13 05:10:53 -0700 2020</date_added>
-  <date_updated>Thu May 21 13:02:09 -0700 2020</date_updated>
-  <read_count>1</read_count>
-  <body>
-  </body>
-
-  
-
-  <comments_count>0</comments_count>
-    <url><![CDATA[https://www.goodreads.com/review/show/3334141432]]></url>
-  <link><![CDATA[https://www.goodreads.com/review/show/3334141432]]></link>
-    <owned>0</owned>
-</review>
-
-    <review>
   <id>3334141060</id>
     <book>
   <id type="integer">3735293</id>
@@ -2017,7 +1943,7 @@
   <publication_year>2008</publication_year>
   <publication_month>8</publication_month>
   <average_rating>4.40</average_rating>
-  <ratings_count>14044</ratings_count>
+  <ratings_count>14046</ratings_count>
   <description>Even bad code can function. But if code isn t clean, it can bring a development organization to its knees. Every year, countless hours and significant resources are lost because of poorly written code. But it doesn t have to be that way. &lt;br /&gt;Noted software expert Robert C. Martin presents a revolutionary paradigm with &lt;i&gt; &lt;b&gt;Clean Code: A Handbook of Agile Software Craftsmanship&lt;/b&gt; &lt;/i&gt;. Martin has teamed up with his colleagues from Object Mentor to distill their best agile practice of cleaning code on the fly into a book that will instill within you the values of a software craftsman and make you a better programmer but only if you work at it. &lt;br /&gt;What kind of work will you be doing? You ll be reading code lots of code. And you will be challenged to think about what s right about that code, and what s wrong with it. More importantly, you will be challenged to reassess your professional values and your commitment to your craft. &lt;br /&gt;&lt;i&gt; &lt;b&gt;Clean Code&lt;/b&gt; &lt;/i&gt; is divided into three parts. The first describes the principles, patterns, and practices of writing clean code. The second part consists of several case studies of increasing complexity. Each case study is an exercise in cleaning up code of transforming a code base that has some problems into one that is sound and efficient. The third part is the payoff: a single chapter containing a list of heuristics and smells gathered while creating the case studies. The result is a knowledge base that describes the way we think when we write, read, and clean code. &lt;br /&gt;Readers will come away from this book understanding&lt;br /&gt;&lt;br /&gt;How to tell the difference between good and bad code How to write good code and how to transform bad code into good code How to create good names, good functions, good objects, and good classes How to format code for maximum readability How to implement complete error handling without obscuring code logic How to unit test and practice test-driven development This book is a must for any developer, software engineer, project manager, team lead, or systems analyst with an interest in producing better code. &lt;br /&gt;"</description>
 <authors>
 <author>
@@ -2032,7 +1958,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/45372.Robert_C_Martin]]></link>
 <average_rating>4.34</average_rating>
-<ratings_count>25290</ratings_count>
+<ratings_count>25292</ratings_count>
 <text_reviews_count>1657</text_reviews_count>
 </author>
 </authors>
@@ -2169,7 +2095,7 @@
   <publication_year>1988</publication_year>
   <publication_month>4</publication_month>
   <average_rating>4.42</average_rating>
-  <ratings_count>8939</ratings_count>
+  <ratings_count>8937</ratings_count>
   <description>This book is meant to help the reader learn how to program in C. It is the definitive reference guide, now in a second edition. Although the first edition was written in 1978, it continues to be a worldwide best-seller. This second edition brings the classic original up to date to include the ANSI standard. &lt;br /&gt;&lt;br /&gt; From the Preface: &lt;br /&gt; We have tried to retain the brevity of the first edition. C is not a big language, and it is not well served by a big book. We have improved the exposition of critical features, such as pointers, that are central to C programming. We have refined the original examples, and have added new examples in several chapters. For instance, the treatment of complicated declarations is augmented by programs that convert declarations into words and vice versa. As before, all examples have been tested directly from the text, which is in machine-readable form.  &lt;p&gt; As we said in the first preface to the first edition, C "wears well as one's experience with it grows." With a decade more experience, we still feel that way. We hope that this book will help you to learn C and use it well.&lt;/p&gt;</description>
 <authors>
 <author>
@@ -2184,7 +2110,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/153350.Brian_W_Kernighan]]></link>
 <average_rating>4.29</average_rating>
-<ratings_count>15840</ratings_count>
+<ratings_count>15838</ratings_count>
 <text_reviews_count>764</text_reviews_count>
 </author>
 </authors>
@@ -2260,7 +2186,7 @@
 </small_image_url>
 <link><![CDATA[https://www.goodreads.com/author/show/2815.Andy_Hunt]]></link>
 <average_rating>4.22</average_rating>
-<ratings_count>19820</ratings_count>
+<ratings_count>19821</ratings_count>
 <text_reviews_count>1123</text_reviews_count>
 </author>
 </authors>
