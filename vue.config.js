@@ -21,6 +21,10 @@ module.exports = {
         {
           from: "./CNAME",
           to: "./"
+        },
+        {
+          from: "./src/bookshelf/goodreads-response.xml",
+          to: "./"
         }
       ])
     ]
