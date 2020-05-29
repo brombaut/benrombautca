@@ -12,14 +12,15 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import Book from "../book";
-import Bookshelf from "../bookshelf";
-import BookDataFetcher from "../book-data-fetcher";
-import BookDataFileReader from "../book-data-file-reader";
-import BookDataParser from "../book-data-parser";
-import BookXmlParser from "../book-xml-parser";
-import BookshelfBuilder from "../bookshelf-builder";
+import Book from "./book";
+import Bookshelf from "./bookshelf";
+import BookDataFetcher from "./book-data-fetcher";
+import BookDataFileReader from "./book-data-file-reader";
+import BookDataParser from "./book-data-parser";
+import BookXmlParser from "./book-xml-parser";
+import BookshelfBuilder from "./bookshelf-builder";
 import BookCard from "./BookCard.vue";
+import GoodreadsApiFetcher from "./goodreads-api-fetcher";
 
 @Component({
   components: {
@@ -36,7 +37,7 @@ export default class BookshelfSection extends Vue {
   }
 
   private async setBookshelf() {
-    const fetcher: BookDataFetcher = new BookDataFileReader();
+    const fetcher: BookDataFetcher = new GoodreadsApiFetcher();
     const parser: BookDataParser = new BookXmlParser();
     const bookshelfBuilder: BookshelfBuilder = new BookshelfBuilder(
       fetcher,

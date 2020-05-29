@@ -20,7 +20,7 @@ import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
 import RoadMapsSection from "@/roadmaps/RoadMapsSection.vue";
 import MouseTrailer from "@/mouseTrailer/MouseTrailer.vue";
 import SiteFooter from "@/footer/SiteFooter.vue";
-import BookshelfSection from "@/bookshelf/components/BookshelfSection.vue";
+import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
 
 @Component({
   components: {

@@ -23,8 +23,8 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
-import Book from "../book";
-import Shelf from "../shelf";
+import Book from "./book";
+import Shelf from "./shelf";
 
 @Component
 export default class BookCard extends Vue {
