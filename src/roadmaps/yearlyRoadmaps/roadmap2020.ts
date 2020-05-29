@@ -1,4 +1,4 @@
-import { YearlyRoadmap } from "@/types/yearly-roadmap";
+import { YearlyRoadmap } from "@/roadmaps/yearly-roadmap";
 
 const roadmap2020: YearlyRoadmap = {
   year: 2020,

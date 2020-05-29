@@ -13,19 +13,14 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import LandingSection from "@/components/LandingSection.vue";
-import AboutMeSection from "@/components/AboutMeSection.vue";
-import ProjectsSection from "@/components/ProjectsSection.vue";
-import WorkEducationSection from "@/components/WorkEducationSection.vue";
-import RoadMapsSection from "@/components/RoadMapsSection.vue";
-import MouseTrailer from "@/components/MouseTrailer.vue";
-import SiteFooter from "@/components/SiteFooter.vue";
+import LandingSection from "@/landing/LandingSection.vue";
+import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
+import ProjectsSection from "@/projects/ProjectsSection.vue";
+import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
+import RoadMapsSection from "@/roadmaps/RoadMapsSection.vue";
+import MouseTrailer from "@/mouseTrailer/MouseTrailer.vue";
+import SiteFooter from "@/footer/SiteFooter.vue";
 import BookshelfSection from "@/bookshelf/components/BookshelfSection.vue";
-// import BookDataFetcher from "@/bookshelf/book-data-fetcher";
-// import BookDataFileReader from "@/bookshelf/book-data-file-reader";
-// import BookDataParser from "@/bookshelf/book-data-parser";
-// import BookXmlParser from "@/bookshelf/book-xml-parser";
-// import BookshelfBuilder from "@/bookshelf/bookshelf-builder";
 
 @Component({
   components: {
@@ -45,20 +40,6 @@ export default class App extends Vue {
   toggleMouseTrailer() {
     this.showMouseTrailer = !this.showMouseTrailer;
   }
-
-  // async getData() {
-  //   const fetcher: BookDataFetcher = new BookDataFileReader();
-  //   const parser: BookDataParser = new BookXmlParser();
-  //   const bookshelfBuilder: BookshelfBuilder = new BookshelfBuilder(
-  //     fetcher,
-  //     parser
-  //   );
-  //   bookshelfBuilder.build();
-  // }
-
-  // mounted() {
-  //   this.getData();
-  // }
 }
 </script>
 

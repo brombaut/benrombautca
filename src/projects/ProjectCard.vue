@@ -3,49 +3,26 @@
     <a
       :href="projectCardHref"
       class="image-container"
-      @click.stop.prevent="handleProjectUrlClick()">
-      <img
-        v-if="imageSource"
-        :src="imageSource"
-        :alt="project.name" />
-      <div
-        v-else
-        class="project-acronym">
-        {{ project.acronym }}
-      </div>
+      @click.stop.prevent="handleProjectUrlClick()"
+    >
+      <img v-if="imageSource" :src="imageSource" :alt="project.name" />
+      <div v-else class="project-acronym">{{ project.acronym }}</div>
     </a>
     <h4 class="title">{{ project.name }}</h4>
     <p class="description">{{ project.description }}</p>
-    <h6
-      v-if="project.techUsed.length > 0"
-      class="tech-used-title">
-      Tech Used
-    </h6>
-    <div
-      v-if="project.techUsed.length > 0"
-      class="tech-used">
-      <span
-        v-for="tech in project.techUsed"
-        :key="tech">
-        {{ tech }}
-      </span>
+    <h6 v-if="project.techUsed.length > 0" class="tech-used-title">Tech Used</h6>
+    <div v-if="project.techUsed.length > 0" class="tech-used">
+      <span v-for="tech in project.techUsed" :key="tech">{{ tech }}</span>
     </div>
     <div class="links">
-      <a
-        v-if="project.url"
-        :href="project.url">
+      <a v-if="project.url" :href="project.url">
         <font-awesome-icon
           @click.stop.prevent="handleProjectUrlClick()"
           :icon="['fas', 'external-link-alt']"
         />
       </a>
-      <a
-        v-if="project.sourceUrl"
-        :href="project.sourceUrl">
-        <font-awesome-icon
-          @click.stop.prevent="handleSourceIconClick()"
-          :icon="['fas', 'code']"
-        />
+      <a v-if="project.sourceUrl" :href="project.sourceUrl">
+        <font-awesome-icon @click.stop.prevent="handleSourceIconClick()" :icon="['fas', 'code']" />
       </a>
     </div>
   </div>
@@ -54,7 +31,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
-import { Project } from "../types/project";
+import { Project } from "./project";
 
 @Component
 export default class ProjectCard extends Vue {
@@ -92,7 +69,10 @@ export default class ProjectCard extends Vue {
   }
 
   localCheckHorizontalFadeIn() {
-    uiUtils.checkHorizontalFadeIn(this.projectCardElem, this.localCheckHorizontalFadeIn);
+    uiUtils.checkHorizontalFadeIn(
+      this.projectCardElem,
+      this.localCheckHorizontalFadeIn
+    );
   }
 
   mounted() {

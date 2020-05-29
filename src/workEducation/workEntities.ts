@@ -1,4 +1,4 @@
-import { Work } from "@/types/work";
+import { Work } from "./work";
 
 const workEntities: Work[] = [
   {

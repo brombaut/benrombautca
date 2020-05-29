@@ -5,24 +5,15 @@
     </div>
     <div class="title">{{ work.title }}</div>
     <div class="company">
-      <font-awesome-icon
-        class="icon"
-        :icon="['fas', 'building']"
-      />
+      <font-awesome-icon class="icon" :icon="['fas', 'building']" />
       {{ work.company }}
     </div>
     <div class="time">
-      <font-awesome-icon
-        class="icon"
-        :icon="['fas', 'calendar']"
-      />
+      <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
       {{ work.time }}
     </div>
     <div class="location">
-      <font-awesome-icon
-        class="icon"
-        :icon="['fas', 'map-marker-alt']"
-      />
+      <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
       {{ work.location }}
     </div>
     <!-- <div class="worked-with-list">
@@ -33,14 +24,14 @@
         class="worked-with">
         {{ ww }}
       </span>
-    </div> -->
+    </div>-->
   </li>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
-import { Work } from "../types/work";
+import { Work } from "./work";
 
 @Component
 export default class WorkCard extends Vue {

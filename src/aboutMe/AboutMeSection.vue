@@ -6,14 +6,10 @@
     </div>
     <div class="section-body">
       <div class="image-container align-left slide-in">
-        <img :src="imageSource" alt="Ben Rombaut"/>
+        <img :src="imageSource" alt="Ben Rombaut" />
       </div>
       <div class="text-container">
-        <p
-          v-for="obj in aboutMe.description"
-          :key="obj.section">
-          {{ obj.paragraph }}
-        </p>
+        <p v-for="obj in aboutMe.description" :key="obj.section">{{ obj.paragraph }}</p>
       </div>
     </div>
   </section>
@@ -21,9 +17,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import aboutMe from "@/data/aboutMe";
 import uiUtils from "@/utils/ui-utils";
-import { AboutMe } from "../types/about-me";
+import aboutMe from "./aboutMe";
+import { AboutMe } from "./about-me";
 
 @Component
 export default class AboutMeSection extends Vue {

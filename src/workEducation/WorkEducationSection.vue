@@ -5,23 +5,25 @@
       title="WORK"
       icon="briefcase"
       :timelineEntities="workEntities"
-      :showLimit="3" />
+      :showLimit="3"
+    />
     <VerticalTimeline
       v-if="true"
       type="education"
       title="EDUCATION"
       icon="graduation-cap"
-      :timelineEntities="educationEntities" />
+      :timelineEntities="educationEntities"
+    />
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import VerticalTimeline from "@/components/VerticalTimeline.vue";
-import educationEntities from "@/data/educationEntities";
-import workEntities from "@/data/workEntities";
-import { Education } from "../types/education";
-import { Work } from "../types/work";
+import VerticalTimeline from "./VerticalTimeline.vue";
+import educationEntities from "./educationEntities";
+import workEntities from "./workEntities";
+import { Education } from "./education";
+import { Work } from "./work";
 
 @Component({
   components: {

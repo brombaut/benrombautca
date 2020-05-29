@@ -3,40 +3,30 @@
     <h2
       class="year-selector"
       :class="{'selected':  roadmap.year === openedYear }"
-      @click="yearClicked()">
+      @click="yearClicked()"
+    >
       {{ roadmap.year }}
-      <div
-        v-if="roadmap.year !== openedYear"
-        class="expand-icon" >
-        <font-awesome-icon
-          :icon="['fas', 'ellipsis-h']"
-          class="expand-road-map"
-        />
+      <div v-if="roadmap.year !== openedYear" class="expand-icon">
+        <font-awesome-icon :icon="['fas', 'ellipsis-h']" class="expand-road-map" />
       </div>
     </h2>
     <div ref="accordionContent" class="content">
-      <div
-        v-for="task in roadmap.tasks"
-        :key="task.description"
-        class="task">
+      <div v-for="task in roadmap.tasks" :key="task.description" class="task">
         <h4 class="description">{{ task.description }}</h4>
         <ul class="action-items-list">
           <li
             v-for="actionItem in task.actionItems"
             :key="actionItem.description"
-            class="action-item">
+            class="action-item"
+          >
             <div class="action-item-description">
-              <div class='icon-container'>
+              <div class="icon-container">
                 <font-awesome-icon
                   v-if="actionItem.done"
                   :icon="['fas', 'check']"
                   class="task-done"
                 />
-                <font-awesome-icon
-                  v-else
-                  :icon="['fas', 'circle']"
-                  class="task-not-done"
-                />
+                <font-awesome-icon v-else :icon="['fas', 'circle']" class="task-not-done" />
               </div>
               {{ actionItem.description }}
             </div>
@@ -51,7 +41,7 @@
 import {
   Component, Vue, Prop, Watch
 } from "vue-property-decorator";
-import { YearlyRoadmap } from "../types/yearly-roadmap";
+import { YearlyRoadmap } from "./yearly-roadmap";
 
 @Component
 export default class RoadMap extends Vue {
@@ -118,7 +108,7 @@ export default class RoadMap extends Vue {
 
 .content {
   margin: 16px;
-  transition: max-height 0.0s ease-out, opacity 0.8s ease-out;
+  transition: max-height 0s ease-out, opacity 0.8s ease-out;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
@@ -165,6 +155,4 @@ export default class RoadMap extends Vue {
     }
   }
 }
-
-
 </style>

@@ -10,16 +10,17 @@
         :key="roadmap.year"
         :roadmap="roadmap"
         :openedYear="openedYear"
-        @yearClicked="updateYear"/>
+        @yearClicked="updateYear"
+      />
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import RoadMap from "@/components/RoadMap.vue";
-import roadmaps from "@/data/roadmaps";
-import { YearlyRoadmap } from "../types/yearly-roadmap";
+import RoadMap from "./RoadMap.vue";
+import roadmaps from "./roadmaps";
+import { YearlyRoadmap } from "./yearly-roadmap";
 
 @Component({
   components: {

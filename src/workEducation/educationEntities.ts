@@ -1,4 +1,4 @@
-import { Education } from "@/types/education";
+import { Education } from "./education";
 
 const educationEntities: Education[] = [
   {

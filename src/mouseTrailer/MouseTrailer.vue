@@ -8,7 +8,7 @@
  */
 import { Component, Vue } from "vue-property-decorator";
 import { ResizeObserver } from "resize-observer";
-import Point from "../types/point";
+import Point from "./point";
 
 @Component
 export default class MouseTrailer extends Vue {

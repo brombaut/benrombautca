@@ -5,19 +5,16 @@
       <h4 class="section-title">PROJECTS</h4>
     </div>
     <div class="section-body">
-      <ProjectCard
-        v-for="project in projects"
-        :key="project.id"
-        :project="project" />
+      <ProjectCard v-for="project in projects" :key="project.id" :project="project" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import projects from "@/data/projects";
-import ProjectCard from "@/components/ProjectCard.vue";
-import { Project } from "../types/project";
+import projects from "./projects";
+import ProjectCard from "./ProjectCard.vue";
+import { Project } from "./project";
 
 @Component({
   components: {

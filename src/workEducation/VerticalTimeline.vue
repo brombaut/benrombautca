@@ -5,33 +5,25 @@
       <h4 class="section-title">{{ title }}</h4>
     </div>
     <div class="section-body">
-      <div class='wrapper'>
+      <div class="wrapper">
         <div class="vertical-line"></div>
         <ul v-if="type === 'education'">
           <EducationCard
             v-for="education in entitiesToShow"
             :key="education.title"
-            :education="education" />
+            :education="education"
+          />
         </ul>
         <ul v-else-if="type === 'work'">
-          <WorkCard
-            v-for="work in entitiesToShow"
-            :key="work.title"
-            :work="work" />
+          <WorkCard v-for="work in entitiesToShow" :key="work.title" :work="work" />
         </ul>
       </div>
     </div>
-    <div
-      v-if="showLimit && !showMore"
-      class="show-more-wrapper">
-        <div
-          class="show-more"
-          @click="showMoreClicked()">
-          <font-awesome-icon
-            :icon="['fas', 'caret-down']"
-          />
-          <span>SHOW MORE</span>
-        </div>
+    <div v-if="showLimit && !showMore" class="show-more-wrapper">
+      <div class="show-more" @click="showMoreClicked()">
+        <font-awesome-icon :icon="['fas', 'caret-down']" />
+        <span>SHOW MORE</span>
+      </div>
     </div>
   </div>
 </template>
@@ -40,12 +32,11 @@
 import {
   Component, Vue, Prop, Watch
 } from "vue-property-decorator";
-import EducationCard from "@/components/EducationCard.vue";
-import WorkCard from "@/components/WorkCard.vue";
-import { Education } from "../types/education";
-import { Work } from "../types/work";
-import { TimelineEntities } from "../types/timeline-entities";
-
+import EducationCard from "./EducationCard.vue";
+import WorkCard from "./WorkCard.vue";
+import { Education } from "./education";
+import { Work } from "./work";
+import { TimelineEntities } from "./timeline-entities";
 
 @Component({
   components: {
@@ -84,7 +75,9 @@ export default class VerticalTimeline extends Vue {
   }
 
   setVerticalLine() {
-    const verticalLine = this.$el.querySelector(".vertical-line") as HTMLDivElement;
+    const verticalLine = this.$el.querySelector(
+      ".vertical-line"
+    ) as HTMLDivElement;
     const wrapperEl = this.$el.querySelector(".wrapper") as HTMLDivElement;
     const { height } = wrapperEl.getBoundingClientRect();
     verticalLine.style.height = `${height}px`;

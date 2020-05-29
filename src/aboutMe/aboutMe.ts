@@ -1,4 +1,4 @@
-import { AboutMe } from "@/types/about-me";
+import { AboutMe } from "./about-me";
 
 const aboutMe: AboutMe = {
   description: [

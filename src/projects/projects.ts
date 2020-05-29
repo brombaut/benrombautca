@@ -1,6 +1,6 @@
-import { Project } from "@/types/project";
+import { Project } from "@/projects/project";
 
-const sortProjects = function(a: Project, b: Project) {
+const sortProjects = function (a: Project, b: Project) {
   if (a.id < b.id) return -1;
   return 1;
 };

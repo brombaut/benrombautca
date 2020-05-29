@@ -8,7 +8,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import lastDeployed from "@/data/last-deployed";
+import lastDeployed from "./last-deployed";
 
 @Component
 export default class SiteFooter extends Vue {

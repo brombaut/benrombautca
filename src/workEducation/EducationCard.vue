@@ -5,17 +5,11 @@
     </div>
     <div class="title">{{ education.title }}</div>
     <div class="institution">
-      <font-awesome-icon
-        class="icon"
-        :icon="['fas', 'university']"
-      />
+      <font-awesome-icon class="icon" :icon="['fas', 'university']" />
       {{ education.institution }}
     </div>
     <div class="time">
-      <font-awesome-icon
-        class="icon"
-        :icon="['fas', 'calendar']"
-      />
+      <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
       {{ education.time }}
     </div>
   </li>
@@ -24,7 +18,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
-import { Education } from "../types/education";
+import { Education } from "./education";
 
 @Component
 export default class EducationCard extends Vue {
