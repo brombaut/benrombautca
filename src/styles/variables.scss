@@ -1,13 +1,20 @@
 
+$oldPaper: #f2eecb;
+$benBlue: #3381db;
+$vsCodeDullBlue: #33343C; // lighten(#1c1d25, 9%);
+$white: white;
+
 $primary: #3381db;
 $primaryDark: darken($primary, 15%);
 $primaryDarkest: darken($primary, 25%);
 
-$secondary: lighten(#1c1d25, 9%);
+$secondary: $vsCodeDullBlue;
 $secondaryLight: lighten($secondary, 3%);
 $secondaryLightest: lighten($secondary, 20%);
 $secondaryDark: darken($secondary, 8%);
 
+$hFontColor: $white;
+$pFontColor: $white;
 
 $primaryPulse1: $primary;
 $primaryPulse2: darken($primary, 15%);

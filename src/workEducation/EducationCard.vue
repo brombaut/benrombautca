@@ -55,7 +55,6 @@ li {
   div {
     margin: 4px;
     font-size: 1rem;
-    color: white;
     transform: translateY(12px);
   }
 
@@ -79,12 +78,16 @@ li {
 
   .institution {
     font-weight: bold;
+    color: $pFontColor;
+  }
+
+  .time {
+    color: $pFontColor;
   }
 
   .icon {
     color: $primaryDark;
     margin-right: 4px;
-    filter: brightness(85%);
   }
 }
 </style>

@@ -79,6 +79,7 @@ export default class LandingSection extends Vue {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: $hFontColor;
 
   header {
     background: $primaryDark;

@@ -33,6 +33,7 @@ export default class NavBar extends Vue {
   background: $primaryDark;
   display: flex;
   justify-content: center;
+  color: $hFontColor;
 
   .wrapper {
     width: calc(100% - 16px);

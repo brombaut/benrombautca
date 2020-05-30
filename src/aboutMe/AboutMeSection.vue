@@ -79,7 +79,6 @@ export default class AboutMeSection extends Vue {
       flex: 1;
       p {
         text-align: left;
-        color: white;
         font-size: 20px;
       }
     }

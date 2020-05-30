@@ -53,7 +53,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: white;
+  color: $pFontColor;
   background: $secondary;
   display: flex;
   flex-direction: column;

@@ -59,7 +59,7 @@ export default class WorkCard extends Vue {
 <style lang="scss">
 li {
   font-size: 2.5rem;
-  color: $primary;
+  // color: $primary;
 }
 .work-card {
   text-align: left;
@@ -68,7 +68,7 @@ li {
   div {
     margin: 4px;
     font-size: 1rem;
-    color: white;
+    // color: white;
     transform: translateY(8px);
   }
 
@@ -94,12 +94,20 @@ li {
 
   .company {
     font-weight: bold;
+    color: $pFontColor;
+  }
+
+  .time {
+    color: $pFontColor;
+  }
+
+  .location {
+    color: $pFontColor;
   }
 
   .icon {
-    color: $primaryDark;
     margin-right: 4px;
-    filter: brightness(85%);
+    color: $primaryDark;
   }
 
   .worked-with-list {
