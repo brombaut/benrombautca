@@ -26,9 +26,7 @@
 </template>
 
 <script lang="ts">
-import {
-  Component, Vue, Prop, Watch
-} from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class LandingSection extends Vue {
@@ -76,7 +74,7 @@ export default class LandingSection extends Vue {
 <style lang="scss">
 #landing {
   padding: 0 0 !important;
-  height: 100vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

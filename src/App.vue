@@ -1,12 +1,15 @@
 <template>
   <div id="app">
-    <MouseTrailer v-if="showMouseTrailer" />
-    <LandingSection :mouseTrailerVisible="showMouseTrailer" @headerClicked="toggleMouseTrailer" />
-    <AboutMeSection />
-    <WorkEducationSection />
-    <ProjectsSection />
-    <RoadMapsSection />
-    <BookshelfSection />
+    <NavBar />
+    <main>
+      <router-view />
+      <!-- <LandingSection />
+      <AboutMeSection />
+      <WorkEducationSection />
+      <ProjectsSection />
+      <RoadMapsSection />
+      <BookshelfSection />-->
+    </main>
     <SiteFooter />
   </div>
 </template>
@@ -18,29 +21,23 @@ import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
 import ProjectsSection from "@/projects/ProjectsSection.vue";
 import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
 import RoadMapsSection from "@/roadmaps/RoadMapsSection.vue";
-import MouseTrailer from "@/mouseTrailer/MouseTrailer.vue";
 import SiteFooter from "@/footer/SiteFooter.vue";
 import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
+import NavBar from "@/navigation/NavBar.vue";
 
 @Component({
   components: {
     LandingSection,
     AboutMeSection,
     ProjectsSection,
-    MouseTrailer,
     WorkEducationSection,
     RoadMapsSection,
     SiteFooter,
-    BookshelfSection
+    BookshelfSection,
+    NavBar
   }
 })
-export default class App extends Vue {
-  private showMouseTrailer = false;
-
-  toggleMouseTrailer() {
-    this.showMouseTrailer = !this.showMouseTrailer;
-  }
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">
@@ -72,9 +69,5 @@ body {
     padding: 48px 8px;
     z-index: 2;
   }
-
-  // footer {
-  //   z-index: 2;
-  // }
 }
 </style>

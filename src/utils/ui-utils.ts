@@ -1,12 +1,12 @@
 
-const checkSlide = function(elem: HTMLElement, elemEventListener: () => void) {
+const checkSlide = function (elem: HTMLElement, elemEventListener: () => void) {
   if (elementIsVisible(elem)) {
     elem.classList.add("active");
     window.removeEventListener("scroll", elemEventListener);
   }
 };
 
-const checkHorizontalFadeIn = function(elem: HTMLElement, elemEventListener: () => void) {
+const checkHorizontalFadeIn = function (elem: HTMLElement, elemEventListener: () => void) {
   if (elementIsVisible(elem)) {
     window.removeEventListener("scroll", elemEventListener);
     setTimeout(() => {
@@ -15,17 +15,17 @@ const checkHorizontalFadeIn = function(elem: HTMLElement, elemEventListener: () 
   }
 };
 
-const elementIsVisible = function(elem: HTMLElement) {
+const elementIsVisible = function (elem: HTMLElement) {
   const boundingRect: DOMRect = elem.getBoundingClientRect();
   const { width, height } = boundingRect;
-  const slideInAt = (window.scrollY + window.innerHeight - height / 2);
+  const slideInAt = (window.scrollY + window.innerHeight - height / 4);
   const imageBottom = elem.offsetTop + height;
-  const isHalfShown = slideInAt > elem.offsetTop;
-  const isHalfScrolledPast = window.scrollY < imageBottom;
-  return isHalfShown && isHalfScrolledPast;
+  const isShown = slideInAt > elem.offsetTop;
+  const isScrolledPast = window.scrollY < imageBottom;
+  return isShown && isScrolledPast;
 };
 
-const calculateHorizontalElemFadeInDelay = function(elem: HTMLElement) {
+const calculateHorizontalElemFadeInDelay = function (elem: HTMLElement) {
   const boundingRect: DOMRect = elem.getBoundingClientRect();
   const parentElem: HTMLElement = elem.parentNode as HTMLElement;
   const parendBoundingRect: DOMRect = parentElem.getBoundingClientRect();
@@ -37,7 +37,7 @@ const calculateHorizontalElemFadeInDelay = function(elem: HTMLElement) {
   return elemFadeIn;
 };
 
-const loadImage = function(imageFileName: string) {
+const loadImage = function (imageFileName: string) {
   if (!imageFileName) {
     return "";
   }

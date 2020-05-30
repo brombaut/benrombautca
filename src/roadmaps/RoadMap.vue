@@ -38,9 +38,7 @@
 </template>
 
 <script lang="ts">
-import {
-  Component, Vue, Prop, Watch
-} from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { YearlyRoadmap } from "./yearly-roadmap";
 
 @Component
@@ -69,7 +67,7 @@ export default class RoadMap extends Vue {
   }
 
   mounted() {
-    setTimeout(this.toggleAccordionContent, 1000);
+    setTimeout(this.toggleAccordionContent, 0);
   }
 }
 </script>
