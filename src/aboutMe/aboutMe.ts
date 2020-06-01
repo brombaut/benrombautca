@@ -12,7 +12,7 @@ const aboutMe: AboutMe = {
     },
     {
       section: "work",
-      paragraph: "Currently, I work as a Software Developer at Eigen Innovations Inc., where I work with a wide range of technologies and activities, from Systems Programming to Full Stack Development."
+      paragraph: "Currently, I'm a Software Developer at Eigen Innovations Inc., where I work with a wide range of technologies and activities, from Systems Programming to Full Stack Development."
     },
     {
       section: "interests",

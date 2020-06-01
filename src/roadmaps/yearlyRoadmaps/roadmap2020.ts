@@ -22,8 +22,48 @@ const roadmap2020: YearlyRoadmap = {
           footnote: ""
         },
         {
+          description: "I will read \"An Introduction to Statistical Learning: With Applications in R\".",
+          done: false,
+          footnote: ""
+        },
+        {
           description: "I will implement a machine learning model that predicts whether an NHL team will win or lose a game.",
           done: false,
+          footnote: ""
+        }
+      ]
+    },
+    {
+      description: "I want to learn more about OOP principles and Software Architecture and Design",
+      actionItems: [
+        {
+          description: "I will read \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\".",
+          done: true,
+          footnote: ""
+        },
+        {
+          description: "I will read \"Design Patterns: Elements of Reusable Object-Oriented Software\".",
+          done: false,
+          footnote: ""
+        },
+        {
+          description: "I will create UML diagrams for my projects.",
+          done: false,
+          footnote: ""
+        },
+        {
+          description: "I will read \"The Object-Oriented Thought Process\".",
+          done: true,
+          footnote: ""
+        },
+        {
+          description: "I will read \"Elegant Objects\".",
+          done: true,
+          footnote: ""
+        },
+        {
+          description: "I will read \"Growing Object-Oriented Software, Guided by Tests\".",
+          done: true,
           footnote: ""
         }
       ]
@@ -38,26 +78,6 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "I will build some sort of project related to networking (BitTorrent client, web client).",
-          done: false,
-          footnote: ""
-        }
-      ]
-    },
-    {
-      description: "I want to learn more about Software Architecture and Design",
-      actionItems: [
-        {
-          description: "I will read \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\".",
-          done: true,
-          footnote: ""
-        },
-        {
-          description: "I will read \"Design Patterns: Elements of Reusable Object-Oriented Software\".",
-          done: false,
-          footnote: ""
-        },
-        {
-          description: "I will create UML diagrams for my projects.",
           done: false,
           footnote: ""
         }
