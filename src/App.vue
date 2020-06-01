@@ -3,12 +3,6 @@
     <NavBar />
     <main>
       <router-view />
-      <!-- <LandingSection />
-      <AboutMeSection />
-      <WorkEducationSection />
-      <ProjectsSection />
-      <RoadMapsSection />
-      <BookshelfSection />-->
     </main>
     <SiteFooter />
   </div>
@@ -16,28 +10,35 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import LandingSection from "@/landing/LandingSection.vue";
-import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
-import ProjectsSection from "@/projects/ProjectsSection.vue";
-import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
-import RoadMapsSection from "@/roadmaps/RoadMapsSection.vue";
 import SiteFooter from "@/footer/SiteFooter.vue";
-import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
 import NavBar from "@/navigation/NavBar.vue";
+import CachedBookshelf from "@/bookshelf/cached-bookshelf";
+import BookDataFetcher from "./bookshelf/book-data-fetcher";
+import GoodreadsApiFetcher from "./bookshelf/goodreads-api-fetcher";
+import BookDataParser from "./bookshelf/book-data-parser";
+import BookXmlParser from "./bookshelf/book-xml-parser";
+import BookshelfBuilder from "./bookshelf/bookshelf-builder";
+import Bookshelf from "./bookshelf/bookshelf";
 
 @Component({
   components: {
-    LandingSection,
-    AboutMeSection,
-    ProjectsSection,
-    WorkEducationSection,
-    RoadMapsSection,
     SiteFooter,
-    BookshelfSection,
     NavBar
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private initCaches() {
+    this.initBookshelfCache();
+  }
+
+  private initBookshelfCache() {
+    const cachedBookshelf: CachedBookshelf = CachedBookshelf.getInstance();
+  }
+
+  mounted() {
+    this.initCaches();
+  }
+}
 </script>
 
 <style lang="scss">

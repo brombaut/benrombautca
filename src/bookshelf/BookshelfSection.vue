@@ -14,36 +14,26 @@
 import { Component, Vue, Watch } from "vue-property-decorator";
 import Book from "./book";
 import Bookshelf from "./bookshelf";
-import BookDataFetcher from "./book-data-fetcher";
-import BookDataFileReader from "./book-data-file-reader";
-import BookDataParser from "./book-data-parser";
-import BookXmlParser from "./book-xml-parser";
-import BookshelfBuilder from "./bookshelf-builder";
 import BookCard from "./BookCard.vue";
-import GoodreadsApiFetcher from "./goodreads-api-fetcher";
+import CachedBookshelf from "./cached-bookshelf";
+import Observer from "./observer";
 
 @Component({
   components: {
     BookCard
   }
 })
-export default class BookshelfSection extends Vue {
-  private bookshelf: Bookshelf;
+export default class BookshelfSection extends Vue implements Observer {
+  bookshelf: Bookshelf;
 
   constructor() {
     super();
-    this.bookshelf = new Bookshelf([]);
-    this.setBookshelf();
+    this.bookshelf = CachedBookshelf.getInstance().bookshelf();
+    CachedBookshelf.getInstance().registerObserver(this);
   }
 
-  private async setBookshelf() {
-    const fetcher: BookDataFetcher = new GoodreadsApiFetcher();
-    const parser: BookDataParser = new BookXmlParser();
-    const bookshelfBuilder: BookshelfBuilder = new BookshelfBuilder(
-      fetcher,
-      parser
-    );
-    this.bookshelf = await bookshelfBuilder.build();
+  update(bookshelf: Bookshelf): void {
+    this.bookshelf = bookshelf;
   }
 
   get readBooks(): Book[] {
