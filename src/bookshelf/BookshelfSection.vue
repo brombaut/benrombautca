@@ -1,9 +1,6 @@
 <template>
   <section id="bookshelf">
-    <div class="section-header">
-      <font-awesome-icon :icon="['fas', 'book-open']" />
-      <h4 class="section-title">BOOKSHELF</h4>
-    </div>
+    <SectionHeader title="BEN'S BOOKSHELF" icon="book-open" />
     <div class="section-body">
       <div class="book-group">
         <h2>Currently Reading</h2>
@@ -34,12 +31,14 @@ import Bookshelf from "./bookshelf";
 import BookCard from "./BookCard.vue";
 import CachedBookshelf from "./cached-bookshelf";
 import Observer from "./observer";
+import SectionHeader from "../shared/SectionHeader.vue";
 
 type YearBooksPair = {year: number, books: Book[]};
 
 @Component({
   components: {
-    BookCard
+    BookCard,
+    SectionHeader
   }
 })
 export default class BookshelfSection extends Vue implements Observer {
@@ -81,21 +80,29 @@ export default class BookshelfSection extends Vue implements Observer {
   display: flex;
   flex-direction: column;
 
-  &:hover {
-    .section-header {
-      color: $primary;
-    }
-  }
-
   .section-header {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    transition: 0.3s color;
+    flex-direction: column;
+    padding: 16px 0;
+    width: fit-content;
+    margin-bottom: 16px;
 
-    .section-title {
-      margin: 0 8px;
-      font-size: 1.2rem;
+    .section-header_content {
+      display: flex;
+      lex-direction: row;
+      transition: 0.3s color;
+      font-size: 2rem;
+      align-items: center;
+      line-height: 2;
+
+      .section-title {
+        margin: 0 16px;
+      }
+    }
+
+    .section-header-underline {
+      background: $primary;
+      height: 4px;
     }
   }
 

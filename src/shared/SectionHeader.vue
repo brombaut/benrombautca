@@ -1,0 +1,50 @@
+<template>
+  <header class="section-header">
+    <div class="section-header_content">
+      <font-awesome-icon :icon="['fas', icon ]" />
+      <h1 class="section-title">{{ title }}</h1>
+    </div>
+    <div class="section-header-underline"></div>
+  </header>
+</template>
+
+<script lang="ts">
+import { Component, Vue, Prop } from "vue-property-decorator";
+
+@Component
+export default class SectionHeader extends Vue {
+  @Prop()
+  title!: string;
+
+  @Prop()
+  icon!: string;
+}
+</script>
+
+<style lang="scss">
+.section-header {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  width: fit-content;
+  margin-bottom: 16px;
+
+  .section-header_content {
+    display: flex;
+    lex-direction: row;
+    transition: 0.3s color;
+    font-size: 2rem;
+    align-items: center;
+    line-height: 2;
+
+    .section-title {
+      margin: 0 16px;
+    }
+  }
+
+  .section-header-underline {
+    background: $primary;
+    height: 4px;
+  }
+}
+</style>

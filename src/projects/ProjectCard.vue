@@ -87,7 +87,7 @@ export default class ProjectCard extends Vue {
 .project-card {
   width: 340px;
   max-width: calc(100vw - 56px);
-  margin: 28px;
+  padding: 28px;
   display: flex;
   flex-direction: column;
   text-align: left;

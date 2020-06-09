@@ -1,9 +1,6 @@
 <template>
   <section id="road-maps-section">
-    <div class="section-header">
-      <font-awesome-icon :icon="['fas', 'map-marked-alt']" />
-      <h4 class="section-title">YEALY ROADMAP</h4>
-    </div>
+    <SectionHeader title="YEARLY ROADMAPS" icon="map-marked-alt" />
     <div class="section-body">
       <RoadMap
         v-for="roadmap in roadmaps"
@@ -21,10 +18,12 @@ import { Component, Vue } from "vue-property-decorator";
 import RoadMap from "./RoadMap.vue";
 import roadmaps from "./roadmaps";
 import { YearlyRoadmap } from "./yearly-roadmap";
+import SectionHeader from "../shared/SectionHeader.vue";
 
 @Component({
   components: {
-    RoadMap
+    RoadMap,
+    SectionHeader
   }
 })
 export default class RoadMapsSection extends Vue {
@@ -42,24 +41,6 @@ export default class RoadMapsSection extends Vue {
 #road-maps-section {
   display: flex;
   flex-direction: column;
-
-  &:hover {
-    .section-header {
-      color: $primary;
-    }
-  }
-
-  .section-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    transition: 0.3s color;
-
-    .section-title {
-      margin: 0 8px;
-      font-size: 1.2rem;
-    }
-  }
 
   .section-body {
     display: flex;
