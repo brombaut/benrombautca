@@ -58,6 +58,10 @@ class Book {
     return this._dateFinished;
   }
 
+  yearFinished(): number {
+    return this._dateFinished.getFullYear();
+  }
+
   rating(): string {
     return this._rating;
   }

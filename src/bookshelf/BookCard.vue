@@ -5,8 +5,7 @@
     </div>
     <h5 class="title">{{ book.title() }}</h5>
     <h6 class="author">{{ book.author() }}</h6>
-    <div v-if="currentlyReading" class="currently-reading">Currently Reading</div>
-    <div v-else class="rating">
+    <div v-if="!currentlyReading" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
         <font-awesome-icon :icon="['fas', 'star']" />
       </span>
@@ -34,10 +33,6 @@ export default class BookCard extends Vue {
   private bookCardElem!: HTMLDivElement;
 
   private imageSource: string = this.book.imageUrl();
-
-  // get imageSource(): string {
-  //   return this.book.imageUrl();
-  // }
 
   get currentlyReading(): boolean {
     return this.book.shelf() === Shelf.CURRENTLYREADING;
@@ -71,18 +66,17 @@ export default class BookCard extends Vue {
 
 <style lang="scss">
 .book-card {
-  height: 320px;
-  width: 180px;
+  height: 360px;
+  width: 210px;
   display: flex;
   flex-direction: column;
   text-align: left;
   margin: 8px 12px;
 
   .image-container {
-    height: 170px;
-    width: 132px;
+    height: 192px;
+    width: 148px;
     margin: 4px 0;
-    // max-width: calc(100vw - 56px);
 
     img {
       height: 100%;
@@ -94,6 +88,7 @@ export default class BookCard extends Vue {
     margin-top: 8px;
     margin-bottom: 4px;
     color: $primary;
+    font-size: 1rem;
   }
 
   .author {
@@ -131,6 +126,7 @@ export default class BookCard extends Vue {
 
     a {
       font-size: 0.7rem;
+      color: white;
 
       svg {
         color: white !important;
