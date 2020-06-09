@@ -115,6 +115,7 @@ export default class ProjectCard extends Vue {
       background-color: $primaryDarkest;
       font-size: 4rem;
       font-weight: 900;
+      color: white;
     }
 
     &:hover {

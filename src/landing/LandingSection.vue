@@ -108,14 +108,6 @@ export default class LandingSection extends Vue {
     &.drawing-active {
       animation: pulse 4s ease infinite;
     }
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: 0 0 2.2px rgba(51, 129, 219, 0.134),
-        0 0 5.3px rgba(51, 129, 219, 0.148), 0 0 10px rgba(51, 129, 219, 0.16),
-        0 0 7.9px rgba(51, 129, 219, 0.172),
-        0 0 33.4px rgba(51, 129, 219, 0.186);
-    }
   }
 
   #external-profiles-container {

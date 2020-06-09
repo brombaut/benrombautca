@@ -118,6 +118,7 @@ export default class RoadMap extends Vue {
       color: $primary;
       margin: 0;
       text-align: left;
+      font-size: 1.3rem;
     }
 
     .action-items-list {
@@ -127,7 +128,7 @@ export default class RoadMap extends Vue {
       li {
         font-size: 1rem;
         text-align: left;
-        color: $primaryDark;
+        color: $primary;
         margin: 4px 0;
 
         .action-item-description {
@@ -137,7 +138,7 @@ export default class RoadMap extends Vue {
 
           .icon-container {
             min-width: 24px;
-            color: $primaryDark;
+            color: $primary;
             align-self: flex-start;
 
             .task-done {
