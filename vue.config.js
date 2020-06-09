@@ -24,9 +24,11 @@ module.exports = {
         },
         {
           from: "./src/bookshelf/goodreads-response.xml",
-          to: "./"
+        },
+        {
+          from: "./src/bookshelf/book-thumbnails",
         }
-      ])
+      ]),
     ]
   }
 };

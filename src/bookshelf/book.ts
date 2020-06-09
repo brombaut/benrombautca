@@ -5,6 +5,7 @@ class Book {
   private _title: string;
   private _author: string;
   private _isbn: string;
+  private _isbn13: string;
   private _imageUrl: string;
   private _smallImageUrl: string;
   private _largeImageUrl: string;
@@ -18,6 +19,7 @@ class Book {
     this._title = bookDto.title;
     this._author = bookDto.author;
     this._isbn = bookDto.isbn;
+    this._isbn13 = bookDto.isbn13;
     this._imageUrl = bookDto.imageUrl;
     this._smallImageUrl = bookDto.smallImageUrl;
     this._largeImageUrl = bookDto.largeImageUrl;
@@ -38,6 +40,10 @@ class Book {
 
   imageUrl(): string {
     return this._imageUrl;
+  }
+
+  localImageUrl(): string {
+    return `${this._isbn13}.jpg`;
   }
 
   link(): string {

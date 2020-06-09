@@ -46,6 +46,7 @@ html,
 body {
   margin: 0;
   background: $secondary;
+  min-height: 100vh;
 }
 
 #app {
@@ -63,6 +64,11 @@ body {
   overflow-y: auto;
   overflow-x: auto;
   position: relative;
+  min-height: 100vh;
+
+  main {
+    flex: 1;
+  }
 
   section {
     width: calc(100% - 16px);
