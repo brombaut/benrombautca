@@ -148,6 +148,7 @@ export default class RoadMap extends Vue {
             .task-not-done {
               font-size: 0.5rem;
               padding-bottom: 2px;
+              color: $primaryDarkest;
             }
           }
         }
