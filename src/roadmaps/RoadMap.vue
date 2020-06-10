@@ -129,7 +129,7 @@ export default class RoadMap extends Vue {
         font-size: 1rem;
         text-align: left;
         color: $primary;
-        margin: 4px 0;
+        margin: 10px 0;
 
         .action-item-description {
           color: white;

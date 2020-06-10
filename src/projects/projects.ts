@@ -55,7 +55,21 @@ const projects: Project[] = [
     sourceUrl: "https://github.com/brombaut/BEC",
     thumbnail: "",
     inProgress: false,
-    acronym: "B.E.C."
+    acronym: "BEC"
+  },
+  {
+    id: 5,
+    name: "Monkey Parser",
+    description: "",
+    techUsed: [
+      "TypeScript",
+      "Jest"
+    ],
+    url: "https://github.com/brombaut/monkey-ast-visualizer",
+    sourceUrl: "https://github.com/brombaut/monkey-parser",
+    thumbnail: "",
+    inProgress: false,
+    acronym: "AST"
   }
 ];
 
