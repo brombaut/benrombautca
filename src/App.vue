@@ -1,43 +1,42 @@
 <template>
   <div id="app">
-    <MouseTrailer v-if="showMouseTrailer"/>
-    <LandingSection
-      :mouseTrailerVisible="showMouseTrailer"
-      @headerClicked="toggleMouseTrailer"/>
-    <AboutMeSection />
-    <WorkEducationSection />
-    <ProjectsSection />
-    <RoadMapsSection />
+    <NavBar />
+    <main>
+      <router-view />
+    </main>
     <SiteFooter />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import LandingSection from "@/components/LandingSection.vue";
-import AboutMeSection from "@/components/AboutMeSection.vue";
-import ProjectsSection from "@/components/ProjectsSection.vue";
-import WorkEducationSection from "@/components/WorkEducationSection.vue";
-import RoadMapsSection from "@/components/RoadMapsSection.vue";
-import MouseTrailer from "@/components/MouseTrailer.vue";
-import SiteFooter from "@/components/SiteFooter.vue";
+import SiteFooter from "@/footer/SiteFooter.vue";
+import NavBar from "@/navigation/NavBar.vue";
+import CachedBookshelf from "@/bookshelf/cached-bookshelf";
+import BookDataFetcher from "./bookshelf/book-data-fetcher";
+import GoodreadsApiFetcher from "./bookshelf/goodreads-api-fetcher";
+import BookDataParser from "./bookshelf/book-data-parser";
+import BookXmlParser from "./bookshelf/book-xml-parser";
+import BookshelfBuilder from "./bookshelf/bookshelf-builder";
+import Bookshelf from "./bookshelf/bookshelf";
 
 @Component({
   components: {
-    LandingSection,
-    AboutMeSection,
-    ProjectsSection,
-    MouseTrailer,
-    WorkEducationSection,
-    RoadMapsSection,
-    SiteFooter
+    SiteFooter,
+    NavBar
   }
 })
 export default class App extends Vue {
-  private showMouseTrailer = false;
+  private initCaches() {
+    this.initBookshelfCache();
+  }
 
-  toggleMouseTrailer() {
-    this.showMouseTrailer = !this.showMouseTrailer;
+  private initBookshelfCache() {
+    const cachedBookshelf: CachedBookshelf = CachedBookshelf.getInstance();
+  }
+
+  mounted() {
+    this.initCaches();
   }
 }
 </script>
@@ -47,6 +46,7 @@ html,
 body {
   margin: 0;
   background: $secondary;
+  min-height: 100vh;
 }
 
 #app {
@@ -55,7 +55,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: white;
+  color: $pFontColor;
   background: $secondary;
   display: flex;
   flex-direction: column;
@@ -64,16 +64,17 @@ body {
   overflow-y: auto;
   overflow-x: auto;
   position: relative;
+  min-height: 100vh;
+
+  main {
+    flex: 1;
+  }
 
   section {
     width: calc(100% - 16px);
-    max-width: 1280px;
+    max-width: 1200px;
     padding: 48px 8px;
     z-index: 2;
   }
-
-  // footer {
-  //   z-index: 2;
-  // }
 }
 </style>
