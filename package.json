@@ -18,7 +18,9 @@
     "resize-observer": "^1.0.0",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
-    "vue-property-decorator": "^8.4.1"
+    "vue-property-decorator": "^8.4.1",
+    "vue-router": "^3.3.2",
+    "xml2js": "^0.4.23"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.18.0",
@@ -66,6 +68,11 @@
       "no-use-before-define": 0,
       "no-plusplus": 0,
       "no-confusing-arrow": 0,
+      "class-methods-use-this": 0,
+      "no-underscore-dangle": 0,
+      "padded-blocks": 0,
+      "lines-between-class-members": 0,
+      "object-curly-newline": 0,
       "quotes": [
         "error",
         "double"

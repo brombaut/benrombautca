@@ -4,7 +4,7 @@ module.exports = {
   publicPath: "",
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-      args[0].title = "Ben Rombaut";
+      args[0].title = "Ben Rombaut | Software Developer";
       return args;
     });
   },
@@ -21,6 +21,12 @@ module.exports = {
         {
           from: "./CNAME",
           to: "./"
+        },
+        {
+          from: "./src/bookshelf/goodreads-response.xml"
+        },
+        {
+          from: "./src/bookshelf/book-thumbnails"
         }
       ])
     ]
