@@ -3,7 +3,7 @@
     <div class="image-container">
       <img :src="imageSource" :alt="book.title()" />
     </div>
-    <h5 class="title">{{ book.title() }}</h5>
+    <h5 class="title">{{ formattedTitle }}</h5>
     <h6 class="author">{{ book.author() }}</h6>
     <div v-if="!currentlyReading" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
@@ -40,6 +40,18 @@ export default class BookCard extends Vue {
 
   get bookRating(): number {
     return Number(this.book.rating());
+  }
+
+  get formattedTitle(): string {
+    const title: string = this.book.title();
+    if (title.length < 70) {
+      return title;
+    }
+    const colonIndex = title.indexOf(":");
+    if (colonIndex >= 0) {
+      return title.substring(0, colonIndex);
+    }
+    return title;
   }
 
   localCheckHorizontalFadeIn() {

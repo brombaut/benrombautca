@@ -112,7 +112,7 @@ export default class ProjectCard extends Vue {
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: $primaryDarkest;
+      background-color: $primary;
       font-size: 4rem;
       font-weight: 900;
       color: white;

@@ -39,6 +39,7 @@ export default class SectionHeader extends Vue {
 
     .section-title {
       margin: 0 16px;
+      text-align: left;
     }
   }
 
