@@ -44,7 +44,7 @@ export default class BookCard extends Vue {
 
   get formattedTitle(): string {
     const title: string = this.book.title();
-    if (title.length < 70) {
+    if (title.length < 100) {
       return title;
     }
     const colonIndex = title.indexOf(":");
