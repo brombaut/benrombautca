@@ -3,7 +3,7 @@
 rm "./src/footer/last-deployed.ts"
 touch "./src/footer/last-deployed.ts"
 currDate=$(date +'%d/%m/%Y')
-echo "export default \"${currDate}\";" >> "./src/data/last-deployed.ts"
+echo "export default \"${currDate}\";" >> "./src/footer/last-deployed.ts"
 
 git add -A
 git commit -m "Updating last deployed"
