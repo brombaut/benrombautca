@@ -43,7 +43,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "I will read \"Design Patterns: Elements of Reusable Object-Oriented Software\".",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
@@ -63,7 +63,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "I will read \"Growing Object-Oriented Software, Guided by Tests\".",
-          done: true,
+          done: false,
           footnote: ""
         }
       ]
