@@ -98,7 +98,7 @@
   ],
   "husky": {
     "hooks": {
-      "pre-commit": "cd scripts && ./setLastDeployed.sh"
+      "pre-commit": "./setLastDeployed.sh"
     }
   }
 }
