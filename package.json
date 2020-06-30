@@ -35,6 +35,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-vue": "^6.1.2",
+    "husky": "^4.2.5",
     "sass": "^1.25.0",
     "sass-loader": "^8.0.2",
     "typescript": "~3.8.3",
@@ -94,5 +95,10 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "cd scripts && ./setLastDeployed.sh"
+    }
+  }
 }
