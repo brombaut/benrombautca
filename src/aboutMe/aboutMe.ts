@@ -4,15 +4,15 @@ const aboutMe: AboutMe = {
   description: [
     {
       section: "general",
-      paragraph: "My name is Ben Rombaut. I am a Software Developer from Rothesay, New Brunswick, Canada. I now live in Fredericton, New Brunswick."
+      paragraph: "My name is Ben Rombaut. I am a Software Developer from Rothesay, New Brunswick, Canada."
     },
     {
       section: "education",
       paragraph: "I earned a Bachelor of Science in Software Engineering from the University of New Brunswick in May 2019. I also graduated from the Faculty of Computer Science's Co-operative Education Program alongside my degree, completing multiple work terms in both academia and industry."
     },
     {
-      section: "work",
-      paragraph: "Currently, I'm a Software Developer at Eigen Innovations Inc., where I work with a wide range of technologies and activities, from Systems Programming to Full Stack Development."
+      section: "current",
+      paragraph: "I will be starting a Master of Science in Computing at Queen's University in September 2020. I will be joining the Software Analysis & Intelligence Lab under the supervision of Dr. Ahmed Hassan."
     },
     {
       section: "interests",
