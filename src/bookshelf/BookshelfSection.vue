@@ -8,16 +8,10 @@
           <BookCard v-for="book in currentlyReadingBooks" :key="book.title()" :book="book" />
         </div>
       </div>
-      <div
-        v-for="yearBookGroup in readBooksByYear"
-        :key="yearBookGroup.year"
-        class="book-group">
+      <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
         <h2>{{ yearBookGroup.year }}</h2>
         <div class="books">
-          <BookCard
-            v-for="book in yearBookGroup.books"
-            :key="book.title()"
-            :book="book" />
+          <BookCard v-for="book in yearBookGroup.books" :key="book.title()" :book="book" />
         </div>
       </div>
     </div>
@@ -33,7 +27,7 @@ import CachedBookshelf from "./cached-bookshelf";
 import Observer from "./observer";
 import SectionHeader from "../shared/SectionHeader.vue";
 
-type YearBooksPair = {year: number, books: Book[]};
+type YearBooksPair = { year: number; books: Book[] };
 
 @Component({
   components: {
@@ -71,7 +65,6 @@ export default class BookshelfSection extends Vue implements Observer {
   get currentlyReadingBooks(): Book[] {
     return this.bookshelf.readingBooks();
   }
-
 }
 </script>
 

@@ -1,6 +1,9 @@
 import BookDataFetcher from "./book-data-fetcher";
 
 class BookDataFileReader implements BookDataFetcher {
+  incrementPage(): void {
+    throw new Error("Method not implemented.");
+  }
   async fetch() {
     return new Promise((resolve, reject) => {
       const rawFile = new XMLHttpRequest();

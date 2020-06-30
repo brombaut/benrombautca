@@ -16,8 +16,13 @@ class BookshelfBuilder {
   }
 
   async build(): Promise<Bookshelf> {
-    const rawData: string = await this._dataFetcher.fetch();
-    const jsonBooks: BookDTO[] = await this._dataParser.parse(rawData);
+    // TODO: Make parallel calls
+    while (!this._dataParser.done()) {
+      const rawData: string = await this._dataFetcher.fetch();
+      this._dataFetcher.incrementPage();
+      await this._dataParser.parse(rawData);
+    }
+    const jsonBooks: BookDTO[] = this._dataParser.booklist();
     const books: Book[] = [];
     jsonBooks.forEach((bj: BookDTO) => {
       const bookBuilder: BookBuilder = new BookBuilder(bj);

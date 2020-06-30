@@ -3,20 +3,40 @@ import BookDTO from "./book-dto";
 
 const { parseStringPromise } = require("xml2js");
 
-class BookXmlParser implements BookDataParser {
+interface Pagination {
+  start: string;
+  end: string;
+  total: string;
+}
 
-  async parse(rawData: string): Promise<BookDTO[]> {
+class BookXmlParser implements BookDataParser {
+  private readonly _bookList: BookDTO[];
+  private _done: boolean;
+
+  constructor() {
+    this._bookList = [];
+    this._done = false;
+  }
+
+  done(): boolean {
+    return this._done;
+  }
+
+  public booklist() {
+    return this._bookList;
+  }
+
+  async parse(rawData: string): Promise<void> {
     const result = await parseStringPromise(rawData);
-    const rawBookList = result.GoodreadsResponse.reviews[0].review;
-    const bookList: BookDTO[] = [];
+    const rawReviewStruct = result.GoodreadsResponse.reviews[0];
+    const rawBookList = rawReviewStruct.review;
     rawBookList.forEach((review: any) => {
-      bookList.push(this.parseBookDto(review));
+      this._bookList.push(this.parseBookDto(review));
     });
-    return bookList;
+    this.checkIfDone(rawReviewStruct.$);
   }
 
   private parseBookDto(review: any): BookDTO {
-    // console.log(review);
     const bookDto = {
       title: review.book[0].title[0],
       author: review.book[0].authors[0].author[0].name[0],
@@ -32,6 +52,14 @@ class BookXmlParser implements BookDataParser {
       shelf: review.shelves[0].shelf[0].$.name
     };
     return bookDto;
+  }
+
+  private checkIfDone(page: Pagination) {
+    try {
+      this._done = Number(page.end) >= Number(page.total);
+    } catch {
+      this._done = true;
+    }
   }
 
 }

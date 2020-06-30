@@ -1,7 +1,9 @@
 import BookDTO from "./book-dto";
 
 interface BookDataParser {
-  parse(rawData: string): Promise<BookDTO[]>;
+  booklist(): BookDTO[];
+  parse(rawData: string): Promise<void>;
+  done(): boolean;
 }
 
 export default BookDataParser;
