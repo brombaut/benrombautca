@@ -7,7 +7,11 @@
           <span>ABOUT ME</span>
           <span class="underline"></span>
         </a>
-        <a :class="{'active': curRoute === 'projects'}" @click="navigate('/projects')">
+        <a
+          class="projects-route"
+          :class="{'active': curRoute === 'projects'}"
+          @click="navigate('/projects')"
+        >
           <span>PROJECTS</span>
           <span class="underline"></span>
         </a>
@@ -29,7 +33,11 @@
         <span>ABOUT ME</span>
         <span class="underline"></span>
       </a>
-      <a :class="{'active': curRoute === 'projects'}" @click="navigateMobile('/projects')">
+      <a
+        class="projects-route"
+        :class="{'active': curRoute === 'projects'}"
+        @click="navigateMobile('/projects')"
+      >
         <span>PROJECTS</span>
         <span class="underline"></span>
       </a>
@@ -191,6 +199,12 @@ export default class NavBar extends Vue {
       .underline {
         width: 100%;
       }
+    }
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .projects-route {
+      display: none;
     }
   }
 }

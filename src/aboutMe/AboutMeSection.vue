@@ -97,6 +97,14 @@ export default class AboutMeSection extends Vue {
         border-radius: 50%;
       }
     }
+
+    @media only screen and (max-width: 500px) {
+      .image-container {
+        height: 200px;
+        width: 200px;
+        margin: 0;
+      }
+    }
   }
 }
 </style>

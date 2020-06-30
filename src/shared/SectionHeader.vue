@@ -41,6 +41,12 @@ export default class SectionHeader extends Vue {
       margin: 0 16px;
       text-align: left;
     }
+
+    @media only screen and (max-width: 600px) {
+      .section-title {
+        font-size: 1.7rem;
+      }
+    }
   }
 
   .section-header-underline {

@@ -83,8 +83,8 @@ export default class LandingSection extends Vue {
 
   header {
     background: $primaryDark;
-    padding: 80px;
     border-radius: 50%;
+    padding: 80px;
     position: relative;
     transition: 0.3s all;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -107,6 +107,20 @@ export default class LandingSection extends Vue {
 
     &.drawing-active {
       animation: pulse 4s ease infinite;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    header {
+      padding: 40px;
+
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h4 {
+        font-size: 1.5rem;
+      }
     }
   }
 
