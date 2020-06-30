@@ -133,7 +133,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "\"The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win\"",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
