@@ -12,7 +12,7 @@ const aboutMe: AboutMe = {
     },
     {
       section: "current",
-      paragraph: "I will be starting a Master of Science in Computing at Queen's University in September 2020. I will be joining the Software Analysis & Intelligence Lab under the supervision of Dr. Ahmed Hassan."
+      paragraph: "I will begin research for a Master of Science in Computing at Queen's University in September 2020. I will be joining the Software Analysis & Intelligence Lab under the supervision of Dr. Ahmed Hassan."
     },
     {
       section: "interests",
