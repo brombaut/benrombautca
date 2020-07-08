@@ -61,10 +61,7 @@ export default class BookCard extends Vue {
     );
   }
 
-  mounted() {
-    this.bookCardElem = this.$el as HTMLDivElement;
-    window.addEventListener("scroll", this.localCheckHorizontalFadeIn);
-    this.localCheckHorizontalFadeIn();
+  attemptLocalImageLoad(): void {
     fetch(this.book.localImageUrl())
       .then(response => response.blob())
       .then(blob => {
@@ -72,6 +69,15 @@ export default class BookCard extends Vue {
           this.imageSource = this.book.localImageUrl();
         }
       });
+  }
+
+  mounted() {
+    this.bookCardElem = this.$el as HTMLDivElement;
+    window.addEventListener("scroll", this.localCheckHorizontalFadeIn);
+    this.localCheckHorizontalFadeIn();
+    if (this.book.localImageUrl()) {
+      this.attemptLocalImageLoad();
+    }
   }
 }
 </script>

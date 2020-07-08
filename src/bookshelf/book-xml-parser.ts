@@ -51,6 +51,12 @@ class BookXmlParser implements BookDataParser {
       rating: review.rating[0],
       shelf: review.shelves[0].shelf[0].$.name
     };
+    if (typeof bookDto.isbn === "object") {
+      bookDto.isbn = "";
+    }
+    if (typeof bookDto.isbn13 === "object") {
+      bookDto.isbn13 = "";
+    }
     return bookDto;
   }
 

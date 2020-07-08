@@ -43,7 +43,7 @@ class Book {
   }
 
   localImageUrl(): string {
-    return `${this._isbn13}.jpg`;
+    return this._isbn13 ? `${this._isbn13}.jpg` : "";
   }
 
   link(): string {
