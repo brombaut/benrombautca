@@ -13,7 +13,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "I will complete the Practical Analyses of Software Engineering Data lecture and lab series, which focuses on machine learning applications for software engineering.",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
@@ -138,7 +138,7 @@ const roadmap2020: YearlyRoadmap = {
         },
         {
           description: "\"The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine\"",
-          done: false,
+          done: true,
           footnote: ""
         },
         {
