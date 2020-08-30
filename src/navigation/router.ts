@@ -13,6 +13,11 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
+    name: "landing",
+    component: LandingSection
+  },
+  {
+    path: "/about-me",
     name: "aboutMe",
     component: AboutMeExtended
   },

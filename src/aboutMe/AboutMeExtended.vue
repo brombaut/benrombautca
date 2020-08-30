@@ -1,6 +1,5 @@
 <template>
   <div class="about-me-extended">
-    <LandingSection />
     <AboutMeSection />
     <WorkEducationSection />
   </div>

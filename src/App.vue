@@ -71,7 +71,6 @@ body {
   }
 
   section {
-    width: calc(100% - 16px);
     max-width: 1200px;
     padding: 48px 8px;
     z-index: 2;

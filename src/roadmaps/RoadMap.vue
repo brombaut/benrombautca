@@ -15,7 +15,7 @@
         <h4 class="description">{{ task.description }}</h4>
         <ul class="action-items-list">
           <li
-            v-for="actionItem in task.actionItems"
+            v-for="actionItem in task.actionItems.filter(t => t.done)"
             :key="actionItem.description"
             class="action-item"
           >
