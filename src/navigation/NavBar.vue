@@ -1,54 +1,59 @@
 <template>
   <header class="nav-bar">
     <div class="wrapper">
-      <h1>BEN ROMBAUT</h1>
+      <h1>
+        <a :class="{ active: curRoute === 'landing' }" @click="navigate('/')">
+          <span>BEN ROMBAUT</span>
+          <span class="underline"></span>
+        </a>
+      </h1>
       <nav class="full-navbar">
-        <a :class="{'active': curRoute === 'aboutMe'}" @click="navigate('/')">
+        <a :class="{ active: curRoute === 'aboutMe' }" @click="navigate('/about-me')">
           <span>ABOUT ME</span>
           <span class="underline"></span>
         </a>
         <a
           class="projects-route"
-          :class="{'active': curRoute === 'projects'}"
+          :class="{ active: curRoute === 'projects' }"
           @click="navigate('/projects')"
         >
           <span>PROJECTS</span>
           <span class="underline"></span>
         </a>
-        <a :class="{'active': curRoute === 'bookshelf'}" @click="navigate('/bookshelf')">
+        <a :class="{ active: curRoute === 'bookshelf' }" @click="navigate('/bookshelf')">
           <span>BOOKSHELF</span>
           <span class="underline"></span>
         </a>
-        <a :class="{'active': curRoute === 'roadmaps'}" @click="navigate('/roadmaps')">
+        <!-- <a :class="{'active': curRoute === 'roadmaps'}" @click="navigate('/roadmaps')">
           <span>ROADMAPS</span>
           <span class="underline"></span>
-        </a>
+        </a>-->
       </nav>
       <div class="condensed-navbar-icon">
         <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" @click="toggleMobileNavBar" />
       </div>
     </div>
-    <nav class="condensed-navbar" ref="mobileNavbar" :class="{'showNavBar': mobileNavbarVisible}">
-      <a :class="{'active': curRoute === 'aboutMe'}" @click="navigateMobile('/')">
+    <nav class="condensed-navbar" ref="mobileNavbar" :class="{ showNavBar: mobileNavbarVisible }">
+      <a :class="{ active: curRoute === 'aboutMe' }" @click="navigateMobile('/about-me')">
         <span>ABOUT ME</span>
         <span class="underline"></span>
       </a>
       <a
         class="projects-route"
-        :class="{'active': curRoute === 'projects'}"
+        :class="{ active: curRoute === 'projects' }"
         @click="navigateMobile('/projects')"
       >
         <span>PROJECTS</span>
         <span class="underline"></span>
       </a>
-      <a :class="{'active': curRoute === 'bookshelf'}" @click="navigateMobile('/bookshelf')">
+      <a :class="{ active: curRoute === 'bookshelf' }" @click="navigateMobile('/bookshelf')">
         <span>BOOKSHELF</span>
         <span class="underline"></span>
       </a>
-      <a :class="{'active': curRoute === 'roadmaps'}" @click="navigateMobile('/roadmaps')">
+      <!-- <a :class="{'active': curRoute === 'roadmaps'}" @click="navigateMobile('/roadmaps')">
         <span>ROADMAPS</span>
         <span class="underline"></span>
-      </a>
+      </a>-->
     </nav>
   </header>
 </template>
@@ -113,6 +118,18 @@ export default class NavBar extends Vue {
     display: flex;
     justify-content: space-between;
     position: relative;
+
+    h1 {
+      a {
+        margin: 0;
+
+        &.active {
+          .underline {
+            width: 100%;
+          }
+        }
+      }
+    }
 
     .full-navbar {
       display: flex;

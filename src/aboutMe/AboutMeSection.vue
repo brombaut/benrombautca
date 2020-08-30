@@ -1,9 +1,6 @@
 <template>
   <section id="about-me">
-    <div class="section-header">
-      <font-awesome-icon :icon="['fas', 'user']" />
-      <h4 class="section-title">ABOUT ME</h4>
-    </div>
+    <SectionHeader title="ABOUT ME" icon="user" />
     <div class="section-body">
       <div class="image-container align-left slide-in">
         <img :src="imageSource" alt="Ben Rombaut" />
@@ -20,8 +17,13 @@ import { Component, Vue } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
 import aboutMe from "./aboutMe";
 import { AboutMe } from "./about-me";
+import SectionHeader from "../shared/SectionHeader.vue";
 
-@Component
+@Component({
+  components: {
+    SectionHeader
+  }
+})
 export default class AboutMeSection extends Vue {
   private aboutMe: AboutMe = aboutMe;
 
@@ -51,18 +53,6 @@ export default class AboutMeSection extends Vue {
   &:hover {
     .section-header {
       color: $primary;
-    }
-  }
-
-  .section-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    transition: 0.3s color;
-
-    .section-title {
-      margin: 0 8px;
-      font-size: 1.2rem;
     }
   }
 
