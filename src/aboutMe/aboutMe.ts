@@ -5,7 +5,7 @@ const aboutMe: AboutMe = {
     {
       section: "general",
       paragraph:
-        "My name is Ben Rombaut. I am a Software Developer from Rothesay, New Brunswick, Canada."
+        "My name is Ben Rombaut. I am a Software Developer from Rothesay, New Brunswick, Canada, but now live in Kingston, Ontario."
     },
     {
       section: "education",
@@ -15,12 +15,12 @@ const aboutMe: AboutMe = {
     {
       section: "current",
       paragraph:
-        "I will begin research for a Master of Science in Computing at Queen's University in September 2020. I will be joining the Software Analysis & Intelligence Lab under the supervision of Dr. Ahmed Hassan."
+        "I began research for a Master of Science in Computing at Queen's University in September 2020. I am a member of the Software Analysis & Intelligence Lab under the supervision of Dr. Ahmed E. Hassan."
     },
     {
       section: "interests",
       paragraph:
-        "I enjoy learning about a broad range of topics related to Computer Science and Software Engineering. I am primarily interested in Software Architecture, Software Reliability & Security, Software Maintenance & Evolution, and Web Development."
+        "I enjoy learning about a broad range of topics related to Computer Science and Software Engineering. I am primarily interested in Empirical Software Engineering, Software Reliability & Security, Software Maintenance & Evolution, and Web Development."
     }
   ],
   imageFileName: "benrombaut.jpg"

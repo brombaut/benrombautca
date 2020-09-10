@@ -5,7 +5,7 @@ const educationEntities: Education[] = [
     imageFile: "queensLogo.png",
     title: "Master of Science in Computing",
     institution: "Queen's University",
-    time: "Beginning Sep '20"
+    time: "Sep '20 - Present"
   },
   {
     imageFile: "unbLogo.png",
