@@ -24,10 +24,36 @@ class Book {
     this._smallImageUrl = bookDto.smallImageUrl;
     this._largeImageUrl = bookDto.largeImageUrl;
     this._link = bookDto.link;
-    this._dateStarted = new Date(bookDto.dateStarted);
-    this._dateFinished = new Date(bookDto.dateFinished);
+    this._dateStarted = this.parseDate(bookDto.dateStarted);
+    this._dateFinished = this.parseDate(bookDto.dateFinished);
     this._rating = bookDto.rating;
     this._shelf = bookDto.shelf;
+  }
+
+  private parseDate(input: string) {
+    const parts = input.split(" ");
+    const monthIndex = this.monthIndex(parts[1]);
+    const day = Number(parts[2]);
+    const year = Number(parts[5]);
+    return new Date(year, monthIndex, day);
+  }
+
+  private monthIndex(monthAbbr: string): number {
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ];
+    return months.findIndex((a: string) => a === monthAbbr);
   }
 
   title(): string {
@@ -69,7 +95,6 @@ class Book {
   shelf(): Shelf {
     return this._shelf;
   }
-
 }
 
 export default Book;
