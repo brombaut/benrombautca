@@ -9,51 +9,51 @@ const roadmap2019: YearlyRoadmap = {
         {
           description: "\"The Pragmatic Programmer: From Journeyman to Master\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"The C Programming Language\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"Grokking Algorithms: An Illustrated Guide For Programmers And Other Curious People\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"Clean Code: A Handbook of Agile Software Craftsmanship\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"Head First Design Patterns: A Brain-Friendly Guide\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"Operating Systems: Three Easy Pieces\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"Writing An Interpreter In Go\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"Writing A Compiler In Go\"",
           done: true,
-          footnote: ""
-        }
-      ]
-    }
-  ]
+          footnote: "",
+        },
+      ],
+    },
+  ],
 };
 
 export default roadmap2019;

@@ -21,8 +21,8 @@ import SectionHeader from "../shared/SectionHeader.vue";
 
 @Component({
   components: {
-    SectionHeader
-  }
+    SectionHeader,
+  },
 })
 export default class AboutMeSection extends Vue {
   private aboutMe: AboutMe = aboutMe;

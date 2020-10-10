@@ -48,5 +48,5 @@ const loadImage = function (imageFileName: string) {
 export default {
   checkSlide,
   checkHorizontalFadeIn,
-  loadImage
+  loadImage,
 };

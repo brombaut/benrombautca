@@ -11,24 +11,24 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData: "@import \"@/styles/variables.scss\"; @import \"@/styles/common.scss\"; @import \"@/styles/keyframes.scss\";"
-      }
-    }
+        prependData: "@import \"@/styles/variables.scss\"; @import \"@/styles/common.scss\"; @import \"@/styles/keyframes.scss\";",
+      },
+    },
   },
   configureWebpack: {
     plugins: [
       new CopyPlugin([
         {
           from: "./CNAME",
-          to: "./"
+          to: "./",
         },
         {
-          from: "./src/bookshelf/goodreads-response.xml"
+          from: "./src/bookshelf/goodreads-response.xml",
         },
         {
-          from: "./src/bookshelf/book-thumbnails"
-        }
-      ])
-    ]
-  }
+          from: "./src/bookshelf/book-thumbnails",
+        },
+      ]),
+    ],
+  },
 };

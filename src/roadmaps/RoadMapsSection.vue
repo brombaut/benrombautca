@@ -23,8 +23,8 @@ import SectionHeader from "../shared/SectionHeader.vue";
 @Component({
   components: {
     RoadMap,
-    SectionHeader
-  }
+    SectionHeader,
+  },
 })
 export default class RoadMapsSection extends Vue {
   private roadmaps: YearlyRoadmap[] = roadmaps;

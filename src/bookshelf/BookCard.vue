@@ -55,10 +55,7 @@ export default class BookCard extends Vue {
   }
 
   localCheckHorizontalFadeIn() {
-    uiUtils.checkHorizontalFadeIn(
-      this.bookCardElem,
-      this.localCheckHorizontalFadeIn
-    );
+    uiUtils.checkHorizontalFadeIn(this.bookCardElem, this.localCheckHorizontalFadeIn);
   }
 
   attemptLocalImageLoad(): void {

@@ -14,39 +14,39 @@ const routes = [
   {
     path: "/",
     name: "landing",
-    component: LandingSection
+    component: LandingSection,
   },
   {
     path: "/about-me",
     name: "aboutMe",
-    component: AboutMeExtended
+    component: AboutMeExtended,
   },
   {
     path: "/work-education",
     name: "workEducation",
-    component: WorkEducationSection
+    component: WorkEducationSection,
   },
   {
     path: "/projects",
     name: "projects",
-    component: ProjectsSection
+    component: ProjectsSection,
   },
   {
     path: "/bookshelf",
     name: "bookshelf",
-    component: BookshelfSection
+    component: BookshelfSection,
   },
   {
     path: "/roadmaps",
     name: "roadmaps",
-    component: RoadMapsSection
-  }
+    component: RoadMapsSection,
+  },
 ];
 
 const router = new VueRouter({
   mode: "hash",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

@@ -32,8 +32,8 @@ type YearBooksPair = { year: number; books: Book[] };
 @Component({
   components: {
     BookCard,
-    SectionHeader
-  }
+    SectionHeader,
+  },
 })
 export default class BookshelfSection extends Vue implements Observer {
   bookshelf: Bookshelf;
@@ -82,7 +82,7 @@ export default class BookshelfSection extends Vue implements Observer {
 
     .section-header_content {
       display: flex;
-      lex-direction: row;
+      flex-direction: row;
       transition: 0.3s color;
       font-size: 2rem;
       align-items: center;

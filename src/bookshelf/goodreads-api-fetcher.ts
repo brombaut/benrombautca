@@ -9,8 +9,7 @@ class GoodreadsApiFetcher implements BookDataFetcher {
 
   async fetch() {
     const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-    return fetch(`${proxyUrl}${this.url}`)
-      .then(res => res.text());
+    return fetch(`${proxyUrl}${this.url}`).then(res => res.text());
   }
 
   incrementPage(): void {

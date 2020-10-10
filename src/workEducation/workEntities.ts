@@ -7,7 +7,7 @@ const workEntities: Work[] = [
     time: "Sep '20 - Present",
     location: "Kingston, Ontario",
     workedWith: [],
-    imageFile: "queensName.png"
+    imageFile: "queensName.png",
   },
   {
     title: "Software Developer",
@@ -15,7 +15,7 @@ const workEntities: Work[] = [
     time: "May '19 - Apr '20",
     location: "Fredericton, New Brunswick",
     workedWith: ["C/C++", "Django", "Vue", "PSQL", "Electron"],
-    imageFile: "eigenLogo_Large.png"
+    imageFile: "eigenLogo_Large.png",
   },
   {
     title: "Front-End Developer (Co-op)",
@@ -23,7 +23,7 @@ const workEntities: Work[] = [
     time: "Apr '18 - Aug '18",
     location: "Fredericton, New Brunswick",
     workedWith: ["Vue", "Web Development", "Product Design"],
-    imageFile: "eigenLogo_Large.png"
+    imageFile: "eigenLogo_Large.png",
   },
   {
     title: "Research Assistant (Co-op)",
@@ -31,7 +31,7 @@ const workEntities: Work[] = [
     time: "May '17 - Aug '17",
     location: "Fredericton, New Brunswick",
     workedWith: ["Java", "Android Development", "Bluetooth LE"],
-    imageFile: "hcilabLogo_Large.png"
+    imageFile: "hcilabLogo_Large.png",
   },
   {
     title: "Quality Assurance Analyst (Co-op)",
@@ -39,7 +39,7 @@ const workEntities: Work[] = [
     time: "Sep '16 - Dec '16",
     location: "Fredericton, New Brunswick",
     workedWith: ["Java", "JavaScript", "QA Practices"],
-    imageFile: "siemensLogo_Large.png"
+    imageFile: "siemensLogo_Large.png",
   },
   {
     title: "Software Developer (Co-op)",
@@ -47,7 +47,7 @@ const workEntities: Work[] = [
     time: "Jan '16 - Apr '16",
     location: "Fredericton, New Brunswick",
     workedWith: ["Web Development", "jQuery", "C#"],
-    imageFile: "brunswickNewsLogo_Large.png"
+    imageFile: "brunswickNewsLogo_Large.png",
   },
   {
     title: "IT Support Specialist (Co-op)",
@@ -55,8 +55,8 @@ const workEntities: Work[] = [
     time: "May '15 - Aug '15",
     location: "Saint John, New Brunswick",
     workedWith: ["Customer/IT Support"],
-    imageFile: "brunswickNewsLogo_Large.png"
-  }
+    imageFile: "brunswickNewsLogo_Large.png",
+  },
 ];
 
 export default workEntities;

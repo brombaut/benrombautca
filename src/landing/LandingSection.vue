@@ -32,7 +32,7 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 export default class LandingSection extends Vue {
   private externalProfiles: { [key: string]: string } = {
     linkedin: "https://www.linkedin.com/in/benjamin-rombaut/",
-    github: "https://github.com/brombaut"
+    github: "https://github.com/brombaut",
   };
 
   private mainHeader!: HTMLHeadingElement;

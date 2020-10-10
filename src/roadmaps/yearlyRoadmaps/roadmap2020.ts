@@ -9,29 +9,29 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "I will complete the Stanford University Machine Learning online course.",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will complete the Practical Analyses of Software Engineering Data lecture and lab series, which focuses on machine learning applications for software engineering.",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will read the \"MIT Deep Learning Book\".",
           done: false,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will read \"An Introduction to Statistical Learning: With Applications in R\".",
           done: false,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will implement a machine learning model that predicts whether an NHL team will win or lose a game.",
           done: false,
-          footnote: ""
-        }
-      ]
+          footnote: "",
+        },
+      ],
     },
     {
       description: "I want to learn more about OOP principles and Software Architecture and Design",
@@ -39,34 +39,34 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "I will read \"Clean Architecture: A Craftsman's Guide to Software Structure and Design\".",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will read \"Design Patterns: Elements of Reusable Object-Oriented Software\".",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will create UML diagrams for my projects.",
           done: false,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will read \"The Object-Oriented Thought Process\".",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will read \"Elegant Objects\".",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will read \"Growing Object-Oriented Software, Guided by Tests\".",
           done: false,
-          footnote: ""
-        }
-      ]
+          footnote: "",
+        },
+      ],
     },
     {
       description: "I want to get more experience with network protocols",
@@ -74,14 +74,14 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "I will read \"Hands-On Network Programming with C\".",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will build some sort of project related to networking (BitTorrent client, web client).",
           done: false,
-          footnote: ""
-        }
-      ]
+          footnote: "",
+        },
+      ],
     },
     {
       description: "I want to write more tests and learn TDD",
@@ -89,14 +89,14 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "I will complete problems from \"Cracking the Coding Interview\" following TDD.",
           done: false,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "I will use Jest with my frontend projects.",
           done: false,
-          footnote: ""
-        }
-      ]
+          footnote: "",
+        },
+      ],
     },
     {
       description: "I want to learn TypeScript",
@@ -104,9 +104,9 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "I will build at least two projects with TypeScript.",
           done: true,
-          footnote: ""
-        }
-      ]
+          footnote: "",
+        },
+      ],
     },
     {
       description: "I want to learn WebAssembly",
@@ -114,9 +114,9 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "I will build a manual floating-point converter in C++, and build a front-end that uses it as a WASM module.",
           done: false,
-          footnote: ""
-        }
-      ]
+          footnote: "",
+        },
+      ],
     },
     {
       description: "Books I want to read",
@@ -124,36 +124,36 @@ const roadmap2020: YearlyRoadmap = {
         {
           description: "\"The Clean Coder: A Code of Conduct for Professional Programmers\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"The Mythical Man-Month: Essays on Software Engineering\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"The Annotated Turing: A Guided Tour Through Alan Turing's Historic Paper on Computability and the Turing Machine\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"97 Things Every Programmer Should Know: Collective Wisdom from the Experts\"",
           done: true,
-          footnote: ""
+          footnote: "",
         },
         {
           description: "\"How Linux Works: What Every Superuser Should Know\"",
           done: false,
-          footnote: ""
-        }
-      ]
-    }
-  ]
+          footnote: "",
+        },
+      ],
+    },
+  ],
 };
 
 export default roadmap2020;

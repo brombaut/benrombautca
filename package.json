@@ -81,7 +81,7 @@
       ],
       "comma-dangle": [
         "error",
-        "never"
+        "always-multiline"
       ],
       "max-len": [
         "warn",

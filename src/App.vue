@@ -23,8 +23,8 @@ import Bookshelf from "./bookshelf/bookshelf";
 @Component({
   components: {
     SiteFooter,
-    NavBar
-  }
+    NavBar,
+  },
 })
 export default class App extends Vue {
   private initCaches() {
