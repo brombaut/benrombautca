@@ -51,7 +51,7 @@ class Book {
       "Sep",
       "Oct",
       "Nov",
-      "Dec"
+      "Dec",
     ];
     return months.findIndex((a: string) => a === monthAbbr);
   }

@@ -71,7 +71,7 @@ export default class ProjectCard extends Vue {
   localCheckHorizontalFadeIn() {
     uiUtils.checkHorizontalFadeIn(
       this.projectCardElem,
-      this.localCheckHorizontalFadeIn
+      this.localCheckHorizontalFadeIn,
     );
   }
 

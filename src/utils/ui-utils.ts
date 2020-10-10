@@ -1,4 +1,3 @@
-
 const checkSlide = function (elem: HTMLElement, elemEventListener: () => void) {
   if (elementIsVisible(elem)) {
     elem.classList.add("active");
@@ -48,5 +47,5 @@ const loadImage = function (imageFileName: string) {
 export default {
   checkSlide,
   checkHorizontalFadeIn,
-  loadImage
+  loadImage,
 };

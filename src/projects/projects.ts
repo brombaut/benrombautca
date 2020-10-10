@@ -13,12 +13,12 @@ const projects: Project[] = [
     techUsed: [
       "TypeScript",
       "Vue",
-      "Vuex"
+      "Vuex",
     ],
     url: "https://brombaut.github.io/nhl-api-frontend/#/",
     sourceUrl: "https://github.com/brombaut/nhl-api-frontend",
     thumbnail: "NhlApiFrontend.png",
-    inProgress: false
+    inProgress: false,
   },
   {
     id: 2,
@@ -26,12 +26,12 @@ const projects: Project[] = [
     description: "A tool I built to keep track of tech-related articles I have read and articles I would like to read.",
     techUsed: [
       "Vue",
-      "Firebase"
+      "Firebase",
     ],
     url: "https://brombaut.github.io/article-tracker/",
     sourceUrl: "https://github.com/brombaut/article-tracker",
     thumbnail: "BecArticleTracker.png",
-    inProgress: false
+    inProgress: false,
   },
   {
     id: 3,
@@ -39,12 +39,12 @@ const projects: Project[] = [
     description: "A site that allows users to quickly build queries for questions and view summaries of these questions on Stack Overflow.",
     techUsed: [
       "Vue",
-      "Cheerio"
+      "Cheerio",
     ],
     url: "https://brombaut.github.io/stack-overflow-question-scraper/",
     sourceUrl: "https://github.com/brombaut/stack-overflow-question-scraper",
     thumbnail: "StackOverflowQuestionScraper.png",
-    inProgress: false
+    inProgress: false,
   },
   {
     id: 4,
@@ -55,7 +55,7 @@ const projects: Project[] = [
     sourceUrl: "https://github.com/brombaut/BEC",
     thumbnail: "",
     inProgress: false,
-    acronym: "BEC"
+    acronym: "BEC",
   },
   {
     id: 5,
@@ -63,14 +63,14 @@ const projects: Project[] = [
     description: "Port to TypeScript of the components from \"Writing An Interpreter In Go\" by Thorsten Bell for generating an AST.",
     techUsed: [
       "TypeScript",
-      "Jest"
+      "Jest",
     ],
     url: "https://brombaut.github.io/monkey-ast-visualizer/",
     sourceUrl: "https://github.com/brombaut/monkey-parser",
     thumbnail: "MonkeyParser_Large.png",
     inProgress: false,
-    acronym: "AST"
-  }
+    acronym: "AST",
+  },
 ];
 
 export default projects.sort(sortProjects);

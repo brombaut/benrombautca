@@ -9,7 +9,7 @@ const sortByYear = function (a: YearlyRoadmap, b: YearlyRoadmap) {
 
 const roadmaps: YearlyRoadmap[] = [
   roadmap2019,
-  roadmap2020
+  roadmap2020,
 ];
 
 export default roadmaps.sort(sortByYear);

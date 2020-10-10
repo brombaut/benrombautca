@@ -15,8 +15,8 @@ import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
   components: {
     LandingSection,
     AboutMeSection,
-    WorkEducationSection
-  }
+    WorkEducationSection,
+  },
 })
 export default class AboutMeExtended extends Vue {}
 </script>

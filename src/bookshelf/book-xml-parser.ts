@@ -49,7 +49,7 @@ class BookXmlParser implements BookDataParser {
       dateStarted: review.date_added[0],
       dateFinished: review.read_at[0],
       rating: review.rating[0],
-      shelf: review.shelves[0].shelf[0].$.name
+      shelf: review.shelves[0].shelf[0].$.name,
     };
     if (typeof bookDto.isbn === "object") {
       bookDto.isbn = "";

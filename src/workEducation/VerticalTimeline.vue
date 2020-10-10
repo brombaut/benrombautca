@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import {
-  Component, Vue, Prop, Watch
+  Component, Vue, Prop, Watch,
 } from "vue-property-decorator";
 import EducationCard from "./EducationCard.vue";
 import WorkCard from "./WorkCard.vue";
@@ -41,8 +41,8 @@ import { TimelineEntities } from "./timeline-entities";
 @Component({
   components: {
     EducationCard,
-    WorkCard
-  }
+    WorkCard,
+  },
 })
 export default class VerticalTimeline extends Vue {
   @Prop()
@@ -76,7 +76,7 @@ export default class VerticalTimeline extends Vue {
 
   setVerticalLine() {
     const verticalLine = this.$el.querySelector(
-      ".vertical-line"
+      ".vertical-line",
     ) as HTMLDivElement;
     const wrapperEl = this.$el.querySelector(".wrapper") as HTMLDivElement;
     const { height } = wrapperEl.getBoundingClientRect();

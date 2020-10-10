@@ -37,10 +37,7 @@ class CachedBookshelf implements Subject {
     // const fetcher: BookDataFetcher = new BookDataFileReader();
     const fetcher: BookDataFetcher = new GoodreadsApiFetcher();
     const parser: BookDataParser = new BookXmlParser();
-    const bookshelfBuilder: BookshelfBuilder = new BookshelfBuilder(
-      fetcher,
-      parser
-    );
+    const bookshelfBuilder: BookshelfBuilder = new BookshelfBuilder(fetcher, parser);
     this._bookshelf = await bookshelfBuilder.build();
     this.notifyObservers();
   }

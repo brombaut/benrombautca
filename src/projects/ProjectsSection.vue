@@ -17,8 +17,8 @@ import SectionHeader from "../shared/SectionHeader.vue";
 @Component({
   components: {
     ProjectCard,
-    SectionHeader
-  }
+    SectionHeader,
+  },
 })
 export default class ProjectsSection extends Vue {
   private projects: Project[] = projects;

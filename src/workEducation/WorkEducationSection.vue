@@ -27,8 +27,8 @@ import { Work } from "./work";
 
 @Component({
   components: {
-    VerticalTimeline
-  }
+    VerticalTimeline,
+  },
 })
 export default class WorkEducationSection extends Vue {
   private educationEntities: Education[] = educationEntities;

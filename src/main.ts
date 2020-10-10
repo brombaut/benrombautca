@@ -19,12 +19,11 @@ import {
   faEllipsisH,
   faBookOpen,
   faStar,
-  faBars
+  faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import router from "./navigation/router";
-
 
 import App from "./App.vue";
 
@@ -60,5 +59,5 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
-  render: (h) => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
