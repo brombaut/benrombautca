@@ -25,7 +25,6 @@ import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import router from "./navigation/router";
 
-
 import App from "./App.vue";
 
 library.add(faUser);
