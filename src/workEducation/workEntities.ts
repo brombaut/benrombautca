@@ -16,7 +16,7 @@ const workEntities: Work[] = [
     time: "May '19 - Apr '20",
     location: "Fredericton, New Brunswick",
     workedWith: ["C/C++", "Django", "Vue", "PSQL", "Electron"],
-    imageFile: "eigenLogo_Large.png",
+    imageFile: "eigenLogo_Large_dark_font.png",
     link: "https://eigen.io/",
   },
   {
@@ -25,7 +25,7 @@ const workEntities: Work[] = [
     time: "Apr '18 - Aug '18",
     location: "Fredericton, New Brunswick",
     workedWith: ["Vue", "Web Development", "Product Design"],
-    imageFile: "eigenLogo_Large.png",
+    imageFile: "eigenLogo_Large_dark_font.png",
     link: "https://eigen.io/",
   },
   {
@@ -34,7 +34,7 @@ const workEntities: Work[] = [
     time: "May '17 - Aug '17",
     location: "Fredericton, New Brunswick",
     workedWith: ["Java", "Android Development", "Bluetooth LE"],
-    imageFile: "hcilabLogo_Large.png",
+    imageFile: "hcilabLogo_Large_red_font.png",
     link: "https://hcilab.github.io/",
   },
   {
