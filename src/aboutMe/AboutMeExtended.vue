@@ -7,6 +7,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
+import { bus } from "@/main";
 import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
 import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
 
@@ -47,13 +48,9 @@ export default class AboutMeExtended extends Vue {
     }
   }
 
-  @Watch("$route", { immediate: true, deep: true })
-  onUrlChange(newVal: any) {
-    this.scrollToRouteElement();
-  }
-
   mounted() {
     setTimeout(this.scrollToRouteElement, 150);
+    bus.$on("routeClicked", this.scrollToRouteElement);
   }
 }
 </script>

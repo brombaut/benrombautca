@@ -38,6 +38,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { bus } from "@/main";
 import SiteHeader from "./SiteHeader.vue";
 
 @Component
@@ -49,10 +50,10 @@ export default class NavBar extends Vue {
   private startingNavBarOffset!: number;
 
   private navigate(routeName: string): void {
-    if (routeName === this.$route.path) {
-      return;
+    if (routeName !== this.$route.path) {
+      this.$router.push(routeName);
     }
-    this.$router.push(routeName);
+    bus.$emit("routeClicked");
   }
 
   private navigateMobile(routeName: string): void {

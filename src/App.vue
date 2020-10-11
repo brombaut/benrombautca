@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <SiteHeader />
+    <SiteHeader @routeClicked="hamdleRouteClickEvent"/>
     <main>
       <router-view />
     </main>
@@ -33,6 +33,10 @@ export default class App extends Vue {
 
   private initBookshelfCache() {
     const cachedBookshelf: CachedBookshelf = CachedBookshelf.getInstance();
+  }
+
+  private hamdleRouteClickEvent() {
+    console.log("ROUTE CLICKED");
   }
 
   mounted() {

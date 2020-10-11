@@ -111,8 +111,7 @@ export default class VerticalTimeline extends Vue {
       width: 4px;
       margin-top: 32px;
       background: $primaryDark;
-      transform: translateX(18px);
-      filter: brightness(75%);
+      transform: translateX(17px);
     }
 
     ul {
@@ -125,11 +124,13 @@ export default class VerticalTimeline extends Vue {
         font-size: 2.5rem;
         text-align: left;
         padding: 4px 20px;
+        color: $primary;
 
         div {
           margin: 4px;
           font-size: 1rem;
           transform: translateY(8px);
+          color: $fontColor;
         }
 
         .title {
