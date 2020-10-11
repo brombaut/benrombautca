@@ -4,7 +4,10 @@ Source repository for my personal website. To check out the live version of the 
 
 ### https://www.benrombaut.ca
 
+#### V4 To Do List:
 
-#### To Do List:
-- [ ] Skills
-- [ ] Drawing animation
+- [ ] Work Education List Dot Colors
+- [ ] Responsive work
+- [ ] Router work
+- [ ] Sticky nav
+- [ ] Loading Bookshelf animation

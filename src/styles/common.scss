@@ -30,12 +30,18 @@
 }
 
 
-// a {
-//   text-decoration: none;
-//   &:visited {
-//     color: inherit;
-//     svg {
-//       color: inherit;
-//     }
-//   }
-// }
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  &:link {
+    color: $primary;
+  }
+  &:visited {
+    color: $primary;
+    svg {
+      color: $primary;
+    }
+  }
+}

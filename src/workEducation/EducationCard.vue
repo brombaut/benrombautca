@@ -4,9 +4,17 @@
       <img :src="imageSource" :alt="education.imageFile" />
     </div>
     <div class="title">{{ education.title }}</div>
+    <div class="faculty">
+      <font-awesome-icon class="icon" :icon="['fas', 'school']" />
+      {{ education.faculty }}
+    </div>
     <div class="institution">
       <font-awesome-icon class="icon" :icon="['fas', 'university']" />
       {{ education.institution }}
+    </div>
+    <div class="location">
+      <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
+      {{ education.location }}
     </div>
     <div class="time">
       <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
@@ -44,19 +52,7 @@ export default class EducationCard extends Vue {
 </script>
 
 <style lang="scss">
-li {
-  font-size: 2.5rem;
-  color: $primary;
-}
 .education-card {
-  text-align: left;
-  padding: 4px 20px;
-
-  div {
-    margin: 4px;
-    font-size: 1rem;
-    transform: translateY(12px);
-  }
 
   .image-container {
     height: 45px;
@@ -68,26 +64,6 @@ li {
       height: 100%;
       width: 100%;
     }
-  }
-
-  .title {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: $primary;
-  }
-
-  .institution {
-    font-weight: bold;
-    color: $pFontColor;
-  }
-
-  .time {
-    color: $pFontColor;
-  }
-
-  .icon {
-    color: $primaryDark;
-    margin-right: 4px;
   }
 }
 </style>

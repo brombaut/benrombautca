@@ -6,7 +6,7 @@
     <div class="title">{{ work.title }}</div>
     <div class="company">
       <font-awesome-icon class="icon" :icon="['fas', 'building']" />
-      {{ work.company }}
+      <a :href="work.link" target="_blank">{{ work.company }}</a>
     </div>
     <div class="time">
       <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
@@ -16,15 +16,6 @@
       <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
       {{ work.location }}
     </div>
-    <!-- <div class="worked-with-list">
-      <span>Worked With: </span>
-      <span
-        v-for="ww in work.workedWith"
-        :key="ww"
-        class="worked-with">
-        {{ ww }}
-      </span>
-    </div>-->
   </li>
 </template>
 
@@ -57,20 +48,7 @@ export default class WorkCard extends Vue {
 </script>
 
 <style lang="scss">
-li {
-  font-size: 2.5rem;
-  // color: $primary;
-}
 .work-card {
-  text-align: left;
-  padding: 4px 20px;
-
-  div {
-    margin: 4px;
-    font-size: 1rem;
-    // color: white;
-    transform: translateY(8px);
-  }
 
   .image-container {
     height: 45px;
@@ -85,44 +63,8 @@ li {
     }
   }
 
-  .title {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: $primary;
-    padding-top: 4px;
-  }
-
   .company {
     font-weight: bold;
-    color: $pFontColor;
-  }
-
-  .time {
-    color: $pFontColor;
-  }
-
-  .location {
-    color: $pFontColor;
-  }
-
-  .icon {
-    margin-right: 4px;
-    color: $primaryDark;
-  }
-
-  .worked-with-list {
-    display: flex;
-    align-items: center;
-
-    .worked-with {
-      background: $primaryDark;
-      filter: brightness(90%);
-      margin: 4px;
-      padding: 4px;
-      border-radius: 4px;
-      text-align: center;
-      font-size: 0.8rem;
-    }
   }
 }
 </style>

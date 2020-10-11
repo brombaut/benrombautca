@@ -10,12 +10,10 @@
         <font-awesome-icon :icon="['fas', 'star']" />
       </span>
     </div>
-    <div class="link-container">
-      <a class="link" :href="book.link()" target="_blank">
-        On Goodreads
-        <font-awesome-icon :icon="['fas', 'external-link-alt']" />
-      </a>
-    </div>
+    <a class="link" :href="book.link()" target="_blank">
+      On Goodreads
+      <font-awesome-icon :icon="['fas', 'external-link-alt']" />
+    </a>
   </div>
 </template>
 
@@ -123,37 +121,21 @@ export default class BookCard extends Vue {
     }
   }
 
-  .link-container {
-    background: $secondaryLightest;
-    color: white;
-    padding: 4px 8px;
-    width: fit-content;
-    border-radius: 4px;
-    margin: 4px 0;
-    transition: filter 0.3s;
-    display: flex;
-    align-items: center;
-
-    &:hover {
-      cursor: pointer;
-      filter: brightness(80%);
-    }
-
     a {
+      margin: 4px 0;
       font-size: 0.7rem;
-      color: white;
+      color: $primaryDark;
 
       svg {
-        color: white !important;
+        color: $primaryDark !important;
       }
 
       &:visited {
-        color: inherit;
+        color: $primaryDark;
         svg {
-          color: inherit;
+          color: $primaryDark;
         }
       }
     }
-  }
 }
 </style>

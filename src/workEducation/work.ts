@@ -5,4 +5,5 @@ export interface Work {
   location: string;
   workedWith: string[];
   imageFile: string;
+  link: string;
 }

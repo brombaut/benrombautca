@@ -2,15 +2,15 @@
   <section id="work-education">
     <VerticalTimeline
       type="work"
-      title="WORK"
-      icon="briefcase"
+      title="Work"
+      icon="code"
       :timelineEntities="workEntities"
-      :showLimit="3"
+      :showLimit="4"
     />
     <VerticalTimeline
       v-if="true"
       type="education"
-      title="EDUCATION"
+      title="Education"
       icon="graduation-cap"
       :timelineEntities="educationEntities"
     />

@@ -163,6 +163,7 @@ export default class NavBar extends Vue {
 
     &:hover {
       cursor: pointer;
+      text-decoration: none;
 
       .underline {
         width: 100%;

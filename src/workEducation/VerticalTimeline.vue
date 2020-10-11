@@ -93,6 +93,8 @@ export default class VerticalTimeline extends Vue {
   display: flex;
   flex-direction: column;
   margin: 8px;
+  flex: 1;
+  min-width: 340px;
 
   .section-body {
     display: flex;
@@ -118,6 +120,31 @@ export default class VerticalTimeline extends Vue {
       margin: 0;
       flex: 1;
       z-index: 1;
+
+      // Common card styles
+      li {
+        font-size: 2.5rem;
+        text-align: left;
+        padding: 4px 20px;
+
+        div {
+          margin: 4px;
+          font-size: 1rem;
+          transform: translateY(8px);
+        }
+
+        .title {
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: $primary;
+        }
+
+        .icon {
+          margin-right: 4px;
+          color: $primaryDark;
+          width: 20px;
+        }
+      }
     }
   }
 
@@ -132,7 +159,7 @@ export default class VerticalTimeline extends Vue {
       font-size: 1rem;
       padding: 4px;
       border-radius: 4px;
-      transition: 0.3s background-color;
+      transition: 0.3s all;
 
       svg {
         margin: 0 4px;
@@ -144,7 +171,8 @@ export default class VerticalTimeline extends Vue {
 
       &:hover {
         cursor: pointer;
-        background: $primaryDark;
+        background: $primary;
+        color: white;
       }
     }
   }

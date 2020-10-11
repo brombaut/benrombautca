@@ -73,7 +73,6 @@ h1,h2,h3,h4,h5,h6 {
   }
 
   section {
-    width: 1100px;
     max-width: 1100px;
     margin: 16px 0;
     padding: 16px 8px;

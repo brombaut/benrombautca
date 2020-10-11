@@ -20,6 +20,7 @@ import {
   faBookOpen,
   faStar,
   faBars,
+  faSchool,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
@@ -49,6 +50,7 @@ library.add(faEllipsisH);
 library.add(faBookOpen);
 library.add(faStar);
 library.add(faBars);
+library.add(faSchool);
 
 // eslint-disable-next-line import/prefer-default-export
 export const bus = new Vue();
