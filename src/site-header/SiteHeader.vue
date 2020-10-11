@@ -106,5 +106,27 @@ export default class SiteHeader extends Vue {
       }
     }
   }
+
+  @media only screen and (max-width: 640px) {
+    .banner {
+      padding: 16px 0;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h4 {
+      font-size: 0.8rem;
+    }
+
+    #external-profiles-container {
+      margin-top: 20px;
+
+      a {
+        margin: 0 20px;
+        font-size: 1.5rem;
+      }
+    }
+  }
 }
 </style>

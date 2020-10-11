@@ -2,19 +2,19 @@
   <header class="nav-bar header-dark">
     <div class="wrapper">
       <nav class="full-navbar">
-        <a :class="{ active: curRoute === 'aboutMe' }" @click="navigate('/about-me')">
+        <a @click="navigate('/about-me')">
           <span>ABOUT ME</span>
           <span class="underline"></span>
         </a>
-        <a :class="{ active: curRoute === 'work' }" @click="navigate('/work')">
+        <a @click="navigate('/work')">
           <span>WORK</span>
           <span class="underline"></span>
         </a>
-        <a :class="{ active: curRoute === 'education' }" @click="navigate('/education')">
+        <a @click="navigate('/education')">
           <span>EDUCATION</span>
           <span class="underline"></span>
         </a>
-        <a :class="{ active: curRoute === 'bookshelf' }" @click="navigate('/bookshelf')">
+        <a @click="navigate('/bookshelf')">
           <span>BOOKSHELF</span>
           <span class="underline"></span>
         </a>
@@ -24,11 +24,19 @@
       </div>
     </div>
     <nav class="condensed-navbar" ref="mobileNavbar" :class="{ showNavBar: mobileNavbarVisible }">
-      <a :class="{ active: curRoute === 'aboutMe' }" @click="navigateMobile('/about-me')">
+      <a @click="navigateMobile('/about-me')">
         <span>ABOUT ME</span>
         <span class="underline"></span>
       </a>
-      <a :class="{ active: curRoute === 'bookshelf' }" @click="navigateMobile('/bookshelf')">
+      <a @click="navigateMobile('/work')">
+        <span>WORK</span>
+        <span class="underline"></span>
+      </a>
+      <a @click="navigateMobile('/education')">
+        <span>EDUCATION</span>
+        <span class="underline"></span>
+      </a>
+      <a @click="navigateMobile('/bookshelf')">
         <span>BOOKSHELF</span>
         <span class="underline"></span>
       </a>
@@ -129,6 +137,8 @@ export default class NavBar extends Vue {
     }
 
     @media only screen and (max-width: 640px) {
+      justify-content: flex-end;
+
       .full-navbar {
         display: none;
       }
@@ -149,6 +159,7 @@ export default class NavBar extends Vue {
     top: 100%;
     flex-direction: column;
     align-items: flex-start;
+    background: $primaryDark;
 
     &.showNavBar {
       display: flex;
@@ -188,18 +199,6 @@ export default class NavBar extends Vue {
       .underline {
         width: 100%;
       }
-    }
-
-    // &.active {
-    //   .underline {
-    //     width: 100%;
-    //   }
-    // }
-  }
-
-  @media only screen and (max-width: 1200px) {
-    .projects-route {
-      display: none;
     }
   }
 }
