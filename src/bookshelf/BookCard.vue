@@ -80,7 +80,7 @@ export default class BookCard extends Vue {
 <style lang="scss">
 .book-card {
   height: 360px;
-  width: 210px;
+  width: 190px;
   display: flex;
   flex-direction: column;
   text-align: left;

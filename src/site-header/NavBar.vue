@@ -62,16 +62,6 @@ export default class NavBar extends Vue {
   get curRoute(): string {
     return this.$route.name || "";
   }
-
-  get curRouteName(): string {
-    if (this.curRoute === "aboutMe") {
-      return "ABOUT ME";
-    }
-    if (this.curRoute === "bookshelf") {
-      return "BOOKSHELF";
-    }
-    return "";
-  }
 }
 </script>
 

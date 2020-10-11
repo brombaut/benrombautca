@@ -1,6 +1,7 @@
 <template>
   <section id="work-education">
     <VerticalTimeline
+      id="work"
       type="work"
       title="Work"
       icon="code"
@@ -8,6 +9,7 @@
       :showLimit="4"
     />
     <VerticalTimeline
+      id="education"
       v-if="true"
       type="education"
       title="Education"

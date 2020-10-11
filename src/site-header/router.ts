@@ -1,9 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import LandingSection from "@/landing/LandingSection.vue";
-import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
 import AboutMeExtended from "@/aboutMe/AboutMeExtended.vue";
-import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
 import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
 
 Vue.use(VueRouter);
@@ -11,8 +8,8 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/",
-    name: "landing",
-    component: LandingSection,
+    name: "land",
+    component: AboutMeExtended,
   },
   {
     path: "/about-me",
@@ -20,9 +17,14 @@ const routes = [
     component: AboutMeExtended,
   },
   {
-    path: "/work-education",
-    name: "workEducation",
-    component: WorkEducationSection,
+    path: "/work",
+    name: "work",
+    component: AboutMeExtended,
+  },
+  {
+    path: "/education",
+    name: "education",
+    component: AboutMeExtended,
   },
   {
     path: "/bookshelf",
