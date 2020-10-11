@@ -1,12 +1,11 @@
 <template>
   <section id="about-me">
-    <SectionHeader title="ABOUT ME" icon="user" />
+    <SectionHeader title="About Me" icon="user" />
     <div class="section-body">
       <div class="image-container align-left slide-in">
         <img :src="imageSource" alt="Ben Rombaut" />
       </div>
-      <div class="text-container">
-        <p v-for="obj in aboutMe.description" :key="obj.section">{{ obj.paragraph }}</p>
+      <div class="text-container" v-html="aboutMe.description">
       </div>
     </div>
   </section>
@@ -50,12 +49,6 @@ export default class AboutMeSection extends Vue {
   display: flex;
   flex-direction: column;
 
-  &:hover {
-    .section-header {
-      color: $primary;
-    }
-  }
-
   .section-body {
     display: flex;
     flex-direction: row;
@@ -77,7 +70,6 @@ export default class AboutMeSection extends Vue {
       height: 300px;
       width: 300px;
       border: 2px solid $primaryDark;
-      animation: borderColorChange $pulseAnimationTime infinite;
       border-radius: 50%;
       margin: 0 32px;
 

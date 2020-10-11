@@ -1,26 +1,20 @@
 
-$oldPaper: #f2eecb;
+$oldPaper: #f7f5e7;
 $benBlue: #3381db;
 $vsCodeDullBlue: #33343C; // lighten(#1c1d25, 9%);
 $white: white;
+$fontColor: $vsCodeDullBlue;
+$fontColorInverted: $oldPaper;
 
 $primary: #3381db;
 $primaryDark: darken($primary, 15%);
 $primaryDarkest: darken($primary, 25%);
 
-$secondary: $vsCodeDullBlue;
+$secondary: $oldPaper;
 $secondaryLight: lighten($secondary, 3%);
 $secondaryLightest: lighten($secondary, 20%);
 $secondaryDark: darken($secondary, 8%);
 
-$hFontColor: $white;
-$pFontColor: $white;
-
-$primaryPulse1: $primary;
-$primaryPulse2: darken($primary, 15%);
-$primaryPulse3: lighten($primary, 15%);
-$primaryPulse4: darken($primary, 20%);
-$pulseAnimationTime: 15s;
-$pulseAnimationDimmedTime: 25s;
-$pulseAnimationQuickTime: 5s;
+$hFontColor: $vsCodeDullBlue;
+$pFontColor: $vsCodeDullBlue;
 

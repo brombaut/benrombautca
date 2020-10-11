@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavBar />
+    <SiteHeader />
     <main>
       <router-view />
     </main>
@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import SiteFooter from "@/footer/SiteFooter.vue";
-import NavBar from "@/navigation/NavBar.vue";
+import SiteHeader from "@/site-header/SiteHeader.vue";
 import CachedBookshelf from "@/bookshelf/cached-bookshelf";
 import BookDataFetcher from "./bookshelf/book-data-fetcher";
 import GoodreadsApiFetcher from "./bookshelf/goodreads-api-fetcher";
@@ -23,7 +23,7 @@ import Bookshelf from "./bookshelf/bookshelf";
 @Component({
   components: {
     SiteFooter,
-    NavBar,
+    SiteHeader,
   },
 })
 export default class App extends Vue {
@@ -48,10 +48,12 @@ body {
   background: $secondary;
   min-height: 100vh;
 }
+h1,h2,h3,h4,h5,h6 {
+  margin: 0;
+}
 
 #app {
-  font-family: League Spartan, Helvetica, Arial, sans-serif;
-  font-family: "Share Tech Mono", Helvetica, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -71,9 +73,12 @@ body {
   }
 
   section {
-    max-width: 1200px;
-    padding: 48px 8px;
+    width: 1100px;
+    max-width: 1100px;
+    margin: 16px 0;
+    padding: 16px 8px;
     z-index: 2;
+    background: $secondaryLight;
   }
 }
 </style>

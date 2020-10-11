@@ -1,9 +1,6 @@
 <template>
   <div class="vertical-timeline">
-    <div class="section-header">
-      <font-awesome-icon :icon="['fas', icon]" />
-      <h4 class="section-title">{{ title }}</h4>
-    </div>
+    <SectionHeader :title="title" :icon="icon" />
     <div class="section-body">
       <div class="wrapper">
         <div class="vertical-line"></div>
@@ -37,11 +34,13 @@ import WorkCard from "./WorkCard.vue";
 import { Education } from "./education";
 import { Work } from "./work";
 import { TimelineEntities } from "./timeline-entities";
+import SectionHeader from "../shared/SectionHeader.vue";
 
 @Component({
   components: {
     EducationCard,
     WorkCard,
+    SectionHeader,
   },
 })
 export default class VerticalTimeline extends Vue {
@@ -94,24 +93,6 @@ export default class VerticalTimeline extends Vue {
   display: flex;
   flex-direction: column;
   margin: 8px;
-
-  &:hover {
-    .section-header {
-      color: $primary;
-    }
-  }
-
-  .section-header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    transition: 0.3s color;
-
-    .section-title {
-      margin: 0 8px;
-      font-size: 1.2rem;
-    }
-  }
 
   .section-body {
     display: flex;

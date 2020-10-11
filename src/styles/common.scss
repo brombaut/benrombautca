@@ -4,6 +4,16 @@
   transition: all 0.7s;
 }
 
+.header-bright {
+  background: $primary;
+  color: $fontColorInverted;
+}
+
+.header-dark {
+  background: $primaryDark;
+  color: $fontColorInverted;
+}
+
 @media only screen and (min-width: 600px) {
   .align-left.slide-in {
     transform: translateX(-50%) scale(0.95);
@@ -20,12 +30,12 @@
 }
 
 
-a {
-  text-decoration: none;
-  &:visited {
-    color: inherit;
-    svg {
-      color: inherit;
-    }
-  }
-}
+// a {
+//   text-decoration: none;
+//   &:visited {
+//     color: inherit;
+//     svg {
+//       color: inherit;
+//     }
+//   }
+// }

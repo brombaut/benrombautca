@@ -1,33 +1,23 @@
 <template>
-  <header class="nav-bar">
+  <header class="nav-bar header-dark">
     <div class="wrapper">
-      <h1>
-        <a :class="{ active: curRoute === 'landing' }" @click="navigate('/')">
-          <span>BEN ROMBAUT</span>
-          <span class="underline"></span>
-        </a>
-      </h1>
       <nav class="full-navbar">
         <a :class="{ active: curRoute === 'aboutMe' }" @click="navigate('/about-me')">
           <span>ABOUT ME</span>
           <span class="underline"></span>
         </a>
-        <a
-          class="projects-route"
-          :class="{ active: curRoute === 'projects' }"
-          @click="navigate('/projects')"
-        >
-          <span>PROJECTS</span>
+        <a :class="{ active: curRoute === 'work' }" @click="navigate('/work')">
+          <span>WORK</span>
+          <span class="underline"></span>
+        </a>
+        <a :class="{ active: curRoute === 'education' }" @click="navigate('/education')">
+          <span>EDUCATION</span>
           <span class="underline"></span>
         </a>
         <a :class="{ active: curRoute === 'bookshelf' }" @click="navigate('/bookshelf')">
           <span>BOOKSHELF</span>
           <span class="underline"></span>
         </a>
-        <!-- <a :class="{'active': curRoute === 'roadmaps'}" @click="navigate('/roadmaps')">
-          <span>ROADMAPS</span>
-          <span class="underline"></span>
-        </a>-->
       </nav>
       <div class="condensed-navbar-icon">
         <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" @click="toggleMobileNavBar" />
@@ -38,22 +28,10 @@
         <span>ABOUT ME</span>
         <span class="underline"></span>
       </a>
-      <a
-        class="projects-route"
-        :class="{ active: curRoute === 'projects' }"
-        @click="navigateMobile('/projects')"
-      >
-        <span>PROJECTS</span>
-        <span class="underline"></span>
-      </a>
       <a :class="{ active: curRoute === 'bookshelf' }" @click="navigateMobile('/bookshelf')">
         <span>BOOKSHELF</span>
         <span class="underline"></span>
       </a>
-      <!-- <a :class="{'active': curRoute === 'roadmaps'}" @click="navigateMobile('/roadmaps')">
-        <span>ROADMAPS</span>
-        <span class="underline"></span>
-      </a>-->
     </nav>
   </header>
 </template>
@@ -89,14 +67,8 @@ export default class NavBar extends Vue {
     if (this.curRoute === "aboutMe") {
       return "ABOUT ME";
     }
-    if (this.curRoute === "PROJECTS") {
-      return "PROJECTS";
-    }
     if (this.curRoute === "bookshelf") {
       return "BOOKSHELF";
-    }
-    if (this.curRoute === "roadmaps") {
-      return "ROADMAPS";
     }
     return "";
   }
@@ -106,30 +78,16 @@ export default class NavBar extends Vue {
 <style lang="scss">
 .nav-bar {
   width: 100%;
-  background: $primaryDark;
   display: flex;
   justify-content: center;
-  color: $hFontColor;
   position: relative;
 
   .wrapper {
     width: calc(100% - 16px);
     max-width: 1280px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     position: relative;
-
-    h1 {
-      a {
-        margin: 0;
-
-        &.active {
-          .underline {
-            width: 100%;
-          }
-        }
-      }
-    }
 
     .full-navbar {
       display: flex;
@@ -164,7 +122,6 @@ export default class NavBar extends Vue {
   .condensed-navbar {
     display: none;
     position: absolute;
-    background-color: $primaryDarkest;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     padding: 12px 16px;
     z-index: 99;
@@ -189,7 +146,7 @@ export default class NavBar extends Vue {
   }
 
   a {
-    margin: 12px;
+    margin: 16px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -2,7 +2,7 @@
   <header class="section-header">
     <div class="section-header_content">
       <font-awesome-icon :icon="['fas', icon]" />
-      <h1 class="section-title">{{ title }}</h1>
+      <h1 class="section-title"><b>{{ title }}</b></h1>
     </div>
     <div class="section-header-underline"></div>
   </header>
@@ -36,6 +36,7 @@ export default class SectionHeader extends Vue {
     font-size: 1.5rem;
     align-items: center;
     line-height: 2;
+    color: $primaryDark;
 
     .section-title {
       margin: 0 16px;
@@ -50,7 +51,7 @@ export default class SectionHeader extends Vue {
   }
 
   .section-header-underline {
-    background: $primary;
+    background: $primaryDark;
     height: 4px;
   }
 }
