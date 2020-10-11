@@ -41,7 +41,7 @@ export default class SiteHeader extends Vue {
     github: "https://github.com/brombaut",
   };
 
-  handleExternalProfileClicked(key: string) {
+  private handleExternalProfileClicked(key: string) {
     const url = this.externalProfiles[key];
     if (url) {
       const result: Window | null = window.open(url, "_blank");
@@ -50,10 +50,22 @@ export default class SiteHeader extends Vue {
       }
     }
   }
+
+  public addBottomMargin(): void {
+    this.$el.classList.add("bottom-margin");
+  }
+
+  public removeBottomMargin(): void {
+    this.$el.classList.remove("bottom-margin");
+  }
 }
 </script>
 
 <style lang="scss">
+
+.bottom-margin {
+  margin-bottom: 56px;
+}
 #site-header {
   width: 100%;
   display: flex;

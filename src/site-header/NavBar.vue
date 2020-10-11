@@ -38,10 +38,15 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import SiteHeader from "./SiteHeader.vue";
 
 @Component
 export default class NavBar extends Vue {
   private mobileNavbarVisible = false;
+
+  private navBarEl!: HTMLElement;
+
+  private startingNavBarOffset!: number;
 
   private navigate(routeName: string): void {
     if (routeName === this.$route.path) {
@@ -62,6 +67,23 @@ export default class NavBar extends Vue {
   get curRoute(): string {
     return this.$route.name || "";
   }
+
+  private watchStickyNav(): void {
+    const yOffset = window.pageYOffset;
+    if (window.pageYOffset >= this.startingNavBarOffset) {
+      this.navBarEl.classList.add("sticky");
+      (this.$parent as SiteHeader).addBottomMargin();
+    } else {
+      this.navBarEl.classList.remove("sticky");
+      (this.$parent as SiteHeader).removeBottomMargin();
+    }
+  }
+
+  mounted() {
+    this.navBarEl = this.$el as HTMLElement;
+    this.startingNavBarOffset = this.navBarEl.offsetTop;
+    window.onscroll = () => this.watchStickyNav();
+  }
 }
 </script>
 
@@ -71,6 +93,12 @@ export default class NavBar extends Vue {
   display: flex;
   justify-content: center;
   position: relative;
+  z-index: 20;
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+  }
 
   .wrapper {
     width: calc(100% - 16px);

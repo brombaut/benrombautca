@@ -7,13 +7,11 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import LandingSection from "@/landing/LandingSection.vue";
 import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
 import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
 
 @Component({
   components: {
-    LandingSection,
     AboutMeSection,
     WorkEducationSection,
   },

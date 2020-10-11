@@ -92,7 +92,6 @@ export default class VerticalTimeline extends Vue {
 .vertical-timeline {
   display: flex;
   flex-direction: column;
-  margin: 8px;
   flex: 1;
   min-width: 340px;
 
