@@ -26,21 +26,10 @@ import SectionHeader from "../shared/SectionHeader.vue";
 export default class AboutMeSection extends Vue {
   private aboutMe: AboutMe = aboutMe;
 
-  private sliderImage!: HTMLDivElement;
-
   get imageSource() {
     return uiUtils.loadImage(this.aboutMe.imageFileName);
   }
 
-  localCheckSlide() {
-    uiUtils.checkSlide(this.sliderImage, this.localCheckSlide);
-  }
-
-  mounted() {
-    this.sliderImage = this.$el.querySelector(".slide-in") as HTMLDivElement;
-    window.addEventListener("scroll", this.localCheckSlide);
-    this.localCheckSlide();
-  }
 }
 </script>
 
