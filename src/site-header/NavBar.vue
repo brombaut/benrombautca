@@ -94,6 +94,7 @@ export default class NavBar extends Vue {
   justify-content: center;
   position: relative;
   z-index: 20;
+  box-shadow: 1px 1px 5px $pFontColor;
 
   &.sticky {
     position: fixed;
@@ -164,7 +165,7 @@ export default class NavBar extends Vue {
   }
 
   a {
-    margin: 16px 20px;
+    margin: 16px 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,11 +189,11 @@ export default class NavBar extends Vue {
       }
     }
 
-    &.active {
-      .underline {
-        width: 100%;
-      }
-    }
+    // &.active {
+    //   .underline {
+    //     width: 100%;
+    //   }
+    // }
   }
 
   @media only screen and (max-width: 1200px) {
