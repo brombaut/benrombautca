@@ -93,7 +93,15 @@ export default class VerticalTimeline extends Vue {
   display: flex;
   flex-direction: column;
   flex: 1;
-  min-width: 340px;
+  min-width: 360px;
+
+  @media screen and (max-width: 600px) {
+    min-width: 260px;
+  }
+
+  @media screen and (max-width: 300px) {
+    min-width: 0px;
+  }
 
   .section-body {
     display: flex;
@@ -131,6 +139,10 @@ export default class VerticalTimeline extends Vue {
           font-size: 1rem;
           transform: translateY(8px);
           color: $fontColor;
+
+          @media screen and (max-width: 600px) {
+            font-size: 0.8rem;
+          }
         }
 
         .title {

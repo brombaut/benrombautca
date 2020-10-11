@@ -62,7 +62,15 @@ export default class AboutMeSection extends Vue {
       flex: 1;
       p {
         text-align: left;
-        font-size: 20px;
+        font-size: 1.2rem;
+
+        @media screen and (max-width: 600px) {
+          font-size: 1rem;
+        }
+
+        @media screen and (max-width: 300px) {
+          font-size: 0.8rem;
+        }
       }
     }
 
