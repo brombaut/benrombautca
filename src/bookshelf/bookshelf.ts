@@ -3,9 +3,15 @@ import Shelf from "./shelf";
 
 class Bookshelf {
   private _books: Book[];
+  private _isTempBookshelf: boolean;
 
-  constructor(books: Book[]) {
+  constructor(books: Book[], isTemp: boolean = false) {
     this._books = books;
+    this._isTempBookshelf = isTemp;
+  }
+
+  public isTemp(): boolean {
+    return this._isTempBookshelf;
   }
 
   public readBooks(): Book[] {

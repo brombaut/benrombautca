@@ -10,7 +10,7 @@ import Observer from "./observer";
 
 class CachedBookshelf implements Subject {
   private static _instance: CachedBookshelf;
-  private _bookshelf: Bookshelf = new Bookshelf([]);
+  private _bookshelf: Bookshelf = new Bookshelf([], true);
   private _observers: Observer[] = [];
 
   registerObserver(o: Observer): void {

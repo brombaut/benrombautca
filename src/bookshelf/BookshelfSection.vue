@@ -1,7 +1,12 @@
 <template>
   <section id="bookshelf">
     <SectionHeader title="BEN'S BOOKSHELF" icon="book-open" />
-    <div class="section-body">
+    <div v-if="loadingBookshelf" class="section-body">
+      <div class="loader-wrapper">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <div v-else class="section-body">
       <div class="book-group">
         <h2>Currently Reading</h2>
         <div class="books">
@@ -46,6 +51,10 @@ export default class BookshelfSection extends Vue implements Observer {
 
   update(bookshelf: Bookshelf): void {
     this.bookshelf = bookshelf;
+  }
+
+  get loadingBookshelf(): boolean {
+    return this.bookshelf.isTemp();
   }
 
   get readBooksByYear(): YearBooksPair[] {
@@ -103,6 +112,27 @@ export default class BookshelfSection extends Vue implements Observer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
+    .loader-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+
+      .loader {
+        border: 16px solid $primaryDarkest;
+        border-top: 16px solid $primary;
+        border-bottom: 16px solid $primary;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    }
 
     .book-group {
       display: flex;
