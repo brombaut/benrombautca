@@ -101,7 +101,7 @@ export default class SiteHeader extends Vue {
         cursor: pointer;
 
         .icon {
-          color: $secondaryDark;
+          color: $primaryDarkest;
         }
       }
     }
