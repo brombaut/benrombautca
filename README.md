@@ -4,6 +4,7 @@ Source repository for my personal website. To check out the live version of the 
 
 ### https://www.benrombaut.ca
 
-#### V4 To Do List:
+#### V4.1 To Do List:
 
-- [ ] Responsive work
+- [ ] Mobile nav touch issue
+- [ ] Mobile sticky nav is jumping
