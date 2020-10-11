@@ -78,7 +78,7 @@ h1,h2,h3,h4,h5,h6 {
 
   section {
     max-width: 1100px;
-    margin: 8px 0;
+    margin: 16px 0;
     padding: 16px;
     z-index: 2;
     background: $secondaryLight;

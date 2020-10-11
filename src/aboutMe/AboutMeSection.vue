@@ -2,7 +2,7 @@
   <section id="about-me">
     <SectionHeader title="About Me" icon="user" />
     <div class="section-body">
-      <div class="image-container align-left slide-in">
+      <div class="image-container">
         <img :src="imageSource" alt="Ben Rombaut" />
       </div>
       <div class="text-container" v-html="aboutMe.description">
