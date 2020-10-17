@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { bus } from "@/main";
 import SiteFooter from "@/footer/SiteFooter.vue";
 import SiteHeader from "@/site-header/SiteHeader.vue";
 import CachedBookshelf from "@/bookshelf/cached-bookshelf";
@@ -19,6 +20,12 @@ import BookDataParser from "./bookshelf/book-data-parser";
 import BookXmlParser from "./bookshelf/book-xml-parser";
 import BookshelfBuilder from "./bookshelf/bookshelf-builder";
 import Bookshelf from "./bookshelf/bookshelf";
+import UIUtils from "./utils/ui-utils";
+
+interface PercentVisible {
+  section: string;
+  percentVisible: number;
+}
 
 @Component({
   components: {
@@ -27,9 +34,6 @@ import Bookshelf from "./bookshelf/bookshelf";
   },
 })
 export default class App extends Vue {
-  private initCaches() {
-    this.initBookshelfCache();
-  }
 
   private initBookshelfCache() {
     const cachedBookshelf: CachedBookshelf = CachedBookshelf.getInstance();
@@ -39,8 +43,69 @@ export default class App extends Vue {
     console.log("ROUTE CLICKED");
   }
 
+  get curRoute(): string {
+    return this.$route.name || "";
+  }
+
+  getElToScrollTo(): HTMLElement | null {
+    let result: HTMLElement | null;
+    switch (this.curRoute) {
+    case "work": {
+      result = document.querySelector("#work");
+      break;
+    }
+    case "education": {
+      result = document.querySelector("#education");
+      break;
+    }
+    default: {
+      result = document.querySelector("#site-header");
+    }
+    }
+    return result;
+  }
+
+  scrollToRouteElement(): void {
+    const elToScrollTo: HTMLElement | null = this.getElToScrollTo();
+    console.log(elToScrollTo);
+    if (elToScrollTo) {
+      elToScrollTo.scrollIntoView({ behavior: "smooth" });
+    } else {
+      Vue.nextTick().then(() => {
+        this.scrollToRouteElement();
+      });
+    }
+  }
+
+  private setCorrectNavElements(): void {
+    const result: string[] = [];
+    const orderedMostVisibleSections: PercentVisible[] = UIUtils.getSectionsPercentVisible();
+    if (orderedMostVisibleSections[0].percentVisible < 0.1) {
+      return;
+    }
+    result.push(orderedMostVisibleSections[0].section);
+    const mostVisibleIsWorkOrEdu = orderedMostVisibleSections[0]?.section === "work"
+      || orderedMostVisibleSections[0]?.section === "education";
+    const secondMostVisibleIsWorkOrEdu = orderedMostVisibleSections[1]?.section === "work"
+      || orderedMostVisibleSections[1]?.section === "education";
+    if (mostVisibleIsWorkOrEdu && secondMostVisibleIsWorkOrEdu) {
+      if (orderedMostVisibleSections[1]?.percentVisible > 0.5) {
+        result.push(orderedMostVisibleSections[1].section);
+      }
+    }
+    if (this.curRoute !== result[0]) {
+      this.$router.push(result[0]);
+    }
+  }
+
+  private handleScrollEvent(): void {
+    this.setCorrectNavElements();
+  }
+
   mounted() {
-    this.initCaches();
+    this.initBookshelfCache();
+    bus.$on("routeClicked", this.scrollToRouteElement);
+    window.addEventListener("scroll", this.handleScrollEvent);
   }
 }
 </script>
