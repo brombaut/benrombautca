@@ -23,7 +23,7 @@ import {
   faSchool,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
-import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin, faDev, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
 import router from "./site-header/router";
 
 import App from "./App.vue";
@@ -51,6 +51,8 @@ library.add(faBookOpen);
 library.add(faStar);
 library.add(faBars);
 library.add(faSchool);
+library.add(faDev);
+library.add(faStackOverflow);
 
 // eslint-disable-next-line import/prefer-default-export
 export const bus = new Vue();

@@ -20,6 +20,22 @@
             :icon="['fab', 'linkedin']"
           />
         </a>
+        <a id="dev-link" :href="externalProfiles['dev']">
+          <font-awesome-icon
+            id="dev-icon"
+            class="icon"
+            @click.stop.prevent="handleExternalProfileClicked('dev')"
+            :icon="['fab', 'dev']"
+          />
+        </a>
+        <a id="stackoverflow-link" :href="externalProfiles['stackoverflow']">
+          <font-awesome-icon
+            id="dev-icon"
+            class="icon"
+            @click.stop.prevent="handleExternalProfileClicked('stackoverflow')"
+            :icon="['fab', 'stack-overflow']"
+          />
+        </a>
       </div>
     </div>
     <NavBar />
@@ -39,6 +55,8 @@ export default class SiteHeader extends Vue {
   private externalProfiles: { [key: string]: string } = {
     linkedin: "https://www.linkedin.com/in/benjamin-rombaut/",
     github: "https://github.com/brombaut",
+    dev: "https://dev.to/brombaut",
+    stackoverflow: "https://stackoverflow.com/users/5816686/ben",
   };
 
   private handleExternalProfileClicked(key: string) {
@@ -101,7 +119,7 @@ export default class SiteHeader extends Vue {
         cursor: pointer;
 
         .icon {
-          color: $primaryDarkest;
+          color: $secondaryDarkest;
         }
       }
     }

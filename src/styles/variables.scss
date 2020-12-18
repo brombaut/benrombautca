@@ -14,6 +14,8 @@ $secondary: $oldPaper;
 $secondaryLight: lighten($secondary, 3%);
 $secondaryLightest: lighten($secondary, 20%);
 $secondaryDark: darken($secondary, 8%);
+$secondaryDarkest: darken($secondary, 16%);
+
 
 $hFontColor: $vsCodeDullBlue;
 $pFontColor: $vsCodeDullBlue;
