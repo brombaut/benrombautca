@@ -2,19 +2,19 @@
   <header class="nav-bar header-dark">
     <div class="wrapper">
       <nav class="full-navbar">
-        <a @click="navigate('/about-me')">
+        <a class="about-me-nav" @click="navigate('/about-me')" :class="{ active: routeIsActive('about-me')}">
           <span>ABOUT ME</span>
           <span class="underline"></span>
         </a>
-        <a @click="navigate('/work')">
+        <a class="work-nav" @click="navigate('/work')" :class="{ active: routeIsActive('work')}">
           <span>WORK</span>
           <span class="underline"></span>
         </a>
-        <a @click="navigate('/education')">
+        <a class="education-nav" @click="navigate('/education')" :class="{ active: routeIsActive('education')}">
           <span>EDUCATION</span>
           <span class="underline"></span>
         </a>
-        <a @click="navigate('/bookshelf')">
+        <a class="bookshelf-nav" @click="navigate('/bookshelf')" :class="{ active: routeIsActive('bookshelf')}">
           <span>BOOKSHELF</span>
           <span class="underline"></span>
         </a>
@@ -51,16 +51,27 @@ import SiteHeader from "./SiteHeader.vue";
 
 @Component
 export default class NavBar extends Vue {
+  private enableActiveElHighlighter = false;
+
   private mobileNavbarVisible = false;
 
   private navBarEl!: HTMLElement;
 
   private startingNavBarOffset!: number;
 
+  private activeRoutes: string[] = [];
+
   private navigate(routeName: string): void {
     if (routeName !== this.$route.path) {
       this.$router.push(routeName);
     }
+    this.setActiveRoutes([this.$route.name || ""]);
+    const activeEls: NodeListOf<HTMLElement> = this.$el.querySelectorAll(".active");
+    const activeNavClasses: DOMTokenList[] = [];
+    activeEls.forEach((el: HTMLElement) => {
+      activeNavClasses.push(el.classList);
+    });
+
     bus.$emit("routeClicked");
   }
 
@@ -88,10 +99,20 @@ export default class NavBar extends Vue {
     }
   }
 
+  private setActiveRoutes(newRoutes: string[]): void {
+    this.activeRoutes = newRoutes;
+  }
+
+  private routeIsActive(route: string): boolean {
+    return this.enableActiveElHighlighter && this.activeRoutes.includes(route);
+  }
+
   mounted() {
     this.navBarEl = this.$el as HTMLElement;
     this.startingNavBarOffset = this.navBarEl.offsetTop;
     window.onscroll = () => this.watchStickyNav();
+    bus.$on("routeChanged", this.setActiveRoutes);
+    this.setActiveRoutes([this.$route.name || ""]);
   }
 }
 </script>
@@ -190,6 +211,12 @@ export default class NavBar extends Vue {
       border-radius: 4px;
       margin-top: 2px;
       transition: 0.2s all ease-in;
+    }
+
+    &.active {
+      .underline {
+        width: 100%;
+      }
     }
 
     &:hover {
