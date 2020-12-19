@@ -1,5 +1,6 @@
 <template>
   <a class="external-profile-link" :href="profile.url()">
+    <div class="hover-background"></div>
     <font-awesome-icon
       class="icon"
       @click.stop.prevent="handleExternalProfileClicked()"
@@ -32,19 +33,40 @@ export default class ExternalProfileIcon extends Vue {
 <style lang="scss">
 .external-profile-link {
   margin: 0 20px;
-  font-size: 2rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.5em;
+  width: 3.5em;
+
+  .hover-background {
+    background-color: $primaryDarkest;
+    border-radius: 50%;
+    position: absolute;
+    height: 0;
+    width: 0;
+    transition: 0.3s;
+  }
 
   .icon{
     color: inherit;
     transition: 0.3s;
     color: $secondary;
+    z-index: 1;
+    font-size: 2em;
   }
 
   &:hover {
     cursor: pointer;
 
     .icon {
-      color: $secondaryDarkest;
+      color: $secondaryDark;
+    }
+
+    .hover-background {
+      height: 100%;
+      width: 100%;
     }
   }
 }

@@ -60,6 +60,7 @@ export default class SiteHeader extends Vue {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .banner {
     padding: 32px 0;
@@ -75,7 +76,9 @@ export default class SiteHeader extends Vue {
   }
 
   #external-profiles-container {
-    margin-top: 32px;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
   }
 
   @media only screen and (max-width: 640px) {
