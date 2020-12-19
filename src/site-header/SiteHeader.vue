@@ -4,38 +4,10 @@
       <h1><b>BEN ROMBAUT</b></h1>
       <h4><i>Master of Science Candidate at the Software Analysis & Intelligence Lab, Queen's University</i></h4>
       <div id="external-profiles-container">
-        <a id="github-link" :href="externalProfiles['github']">
-          <font-awesome-icon
-            id="github-icon"
-            class="icon"
-            @click.stop.prevent="handleExternalProfileClicked('github')"
-            :icon="['fab', 'github']"
-          />
-        </a>
-        <a id="linkedin-link" :href="externalProfiles['linkedin']">
-          <font-awesome-icon
-            id="linkedin-icon"
-            class="icon"
-            @click.stop.prevent="handleExternalProfileClicked('linkedin')"
-            :icon="['fab', 'linkedin']"
-          />
-        </a>
-        <a id="dev-link" :href="externalProfiles['dev']">
-          <font-awesome-icon
-            id="dev-icon"
-            class="icon"
-            @click.stop.prevent="handleExternalProfileClicked('dev')"
-            :icon="['fab', 'dev']"
-          />
-        </a>
-        <a id="stackoverflow-link" :href="externalProfiles['stackoverflow']">
-          <font-awesome-icon
-            id="dev-icon"
-            class="icon"
-            @click.stop.prevent="handleExternalProfileClicked('stackoverflow')"
-            :icon="['fab', 'stack-overflow']"
-          />
-        </a>
+        <ExternalProfileIcon
+          v-for="ep in externalProfiles"
+          :key="ep.id()"
+          :profile="ep"/>
       </div>
     </div>
     <NavBar />
@@ -45,29 +17,29 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import NavBar from "@/site-header/NavBar.vue";
+import ExternalProfileIcon from "@/site-header/ExternalProfileIcon.vue";
+import ExternalProfile from "./external-profile";
 
 @Component({
   components: {
     NavBar,
+    ExternalProfileIcon,
   },
 })
 export default class SiteHeader extends Vue {
-  private externalProfiles: { [key: string]: string } = {
+  private externalProfileUrls: { [key: string]: string } = {
     linkedin: "https://www.linkedin.com/in/benjamin-rombaut/",
     github: "https://github.com/brombaut",
     dev: "https://dev.to/brombaut",
     stackoverflow: "https://stackoverflow.com/users/5816686/ben",
   };
 
-  private handleExternalProfileClicked(key: string) {
-    const url = this.externalProfiles[key];
-    if (url) {
-      const result: Window | null = window.open(url, "_blank");
-      if (result) {
-        result.focus();
-      }
-    }
-  }
+  private externalProfiles: ExternalProfile[] = [
+    new ExternalProfile("github", ["fab", "github"], this.externalProfileUrls.github),
+    new ExternalProfile("linkedin", ["fab", "linkedin"], this.externalProfileUrls.linkedin),
+    new ExternalProfile("dev", ["fab", "dev"], this.externalProfileUrls.dev),
+    new ExternalProfile("stackoverflow", ["fab", "stack-overflow"], this.externalProfileUrls.stackoverflow),
+  ]
 
   public addBottomMargin(): void {
     this.$el.classList.add("bottom-margin");
@@ -104,25 +76,6 @@ export default class SiteHeader extends Vue {
 
   #external-profiles-container {
     margin-top: 32px;
-
-    a {
-      margin: 0 20px;
-      font-size: 2rem;
-      color: $secondary !important;
-
-      .icon{
-        color: inherit;
-        transition: 0.3s;
-      }
-
-      &:hover {
-        cursor: pointer;
-
-        .icon {
-          color: $secondaryDarkest;
-        }
-      }
-    }
   }
 
   @media only screen and (max-width: 640px) {
@@ -139,7 +92,7 @@ export default class SiteHeader extends Vue {
 
     #external-profiles-container {
       margin-top: 20px;
-
+      // TODO: Confirm mobile works as expected
       a {
         margin: 0 20px;
         font-size: 1.5rem;
