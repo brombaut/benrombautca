@@ -1,9 +1,11 @@
 <template>
-  <a class="external-profile-link" :href="profile.url()">
+  <a
+    class="external-profile-link"
+    :href="profile.url()"
+    @click.stop.prevent="handleExternalProfileClicked()">
     <div class="hover-background"></div>
     <font-awesome-icon
       class="icon"
-      @click.stop.prevent="handleExternalProfileClicked()"
       :icon="profile.icon()"
     />
   </a>
