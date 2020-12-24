@@ -28,7 +28,7 @@ import { Book, GoodreadsBookshelf } from "goodreads-bookshelf";
 import { Component, Vue, Watch } from "vue-property-decorator";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
-import goodreadsconfig from "./goodreads-config";
+import CachedBookshelf from "./cached-bookshelf";
 
 type YearBooksPair = { year: number; books: Book[] };
 
@@ -48,8 +48,7 @@ export default class BookshelfSection extends Vue {
   }
 
   async initBookshelf() {
-    this.bookshelf = new GoodreadsBookshelf(goodreadsconfig.id, goodreadsconfig.key);
-    await this.bookshelf.getBooks();
+    this.bookshelf = await CachedBookshelf.getInstance();
     this.booksLoaded = true;
   }
 
@@ -58,6 +57,9 @@ export default class BookshelfSection extends Vue {
   }
 
   get readBooksByYear(): YearBooksPair[] {
+    if (this.loadingBookshelf) {
+      return [];
+    }
     const bookGroups: YearBooksPair[] = [];
     const keyVals = this.bookshelf.readBooksGroupedByYear();
     Object.entries(keyVals).forEach(keyVal => {
@@ -69,6 +71,9 @@ export default class BookshelfSection extends Vue {
   }
 
   get currentlyReadingBooks(): Book[] {
+    if (this.loadingBookshelf) {
+      return [];
+    }
     return this.bookshelf.readingBooks();
   }
 }

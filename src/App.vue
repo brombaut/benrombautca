@@ -12,6 +12,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import SiteFooter from "@/footer/SiteFooter.vue";
 import SiteHeader from "@/site-header/SiteHeader.vue";
+import CachedBookshelf from "./bookshelf/cached-bookshelf";
 
 @Component({
   components: {
@@ -19,7 +20,11 @@ import SiteHeader from "@/site-header/SiteHeader.vue";
     SiteHeader,
   },
 })
-export default class App extends Vue { }
+export default class App extends Vue {
+  mounted() {
+    CachedBookshelf.getInstance();
+  }
+}
 </script>
 
 <style lang="scss">
