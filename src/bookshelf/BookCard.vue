@@ -18,10 +18,9 @@
 </template>
 
 <script lang="ts">
+import { Book, Shelf } from "goodreads-bookshelf";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
-import Book from "./book";
-import Shelf from "./shelf";
 
 @Component
 export default class BookCard extends Vue {

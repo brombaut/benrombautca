@@ -23,9 +23,6 @@ module.exports = {
           to: "./",
         },
         {
-          from: "./src/bookshelf/goodreads-response.xml",
-        },
-        {
           from: "./src/bookshelf/book-thumbnails",
         },
       ]),

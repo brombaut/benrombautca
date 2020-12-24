@@ -24,13 +24,10 @@
 </template>
 
 <script lang="ts">
+import { Book, GoodreadsBookshelf } from "goodreads-bookshelf";
 import { Component, Vue, Watch } from "vue-property-decorator";
-import Book from "./book";
-import Bookshelf from "./bookshelf";
-import BookCard from "./BookCard.vue";
-import CachedBookshelf from "./cached-bookshelf";
-import Observer from "./observer";
 import SectionHeader from "../shared/SectionHeader.vue";
+import BookCard from "./BookCard.vue";
 
 type YearBooksPair = { year: number; books: Book[] };
 
@@ -40,21 +37,23 @@ type YearBooksPair = { year: number; books: Book[] };
     SectionHeader,
   },
 })
-export default class BookshelfSection extends Vue implements Observer {
-  bookshelf: Bookshelf;
+export default class BookshelfSection extends Vue {
+  bookshelf!: GoodreadsBookshelf;
+  booksLoaded = false;
 
   constructor() {
     super();
-    this.bookshelf = CachedBookshelf.getInstance().bookshelf();
-    CachedBookshelf.getInstance().registerObserver(this);
+    this.initBookshelf();
   }
 
-  update(bookshelf: Bookshelf): void {
-    this.bookshelf = bookshelf;
+  async initBookshelf() {
+    this.bookshelf = new GoodreadsBookshelf("115130270", "mlNe4pqsW02fhvEOKxu7mg");
+    await this.bookshelf.getBooks();
+    this.booksLoaded = true;
   }
 
   get loadingBookshelf(): boolean {
-    return this.bookshelf.isTemp();
+    return !this.booksLoaded;
   }
 
   get readBooksByYear(): YearBooksPair[] {
@@ -64,10 +63,7 @@ export default class BookshelfSection extends Vue implements Observer {
       bookGroups.push({ year: Number(keyVal[0]), books: keyVal[1] });
     });
     return bookGroups.sort((a: YearBooksPair, b: YearBooksPair) => {
-      if (a.year < b.year) {
-        return 1;
-      }
-      return -1;
+      return b.year - a.year;
     });
   }
 

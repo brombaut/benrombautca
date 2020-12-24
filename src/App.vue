@@ -12,13 +12,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import SiteFooter from "@/footer/SiteFooter.vue";
 import SiteHeader from "@/site-header/SiteHeader.vue";
-import CachedBookshelf from "@/bookshelf/cached-bookshelf";
-import BookDataFetcher from "./bookshelf/book-data-fetcher";
-import GoodreadsApiFetcher from "./bookshelf/goodreads-api-fetcher";
-import BookDataParser from "./bookshelf/book-data-parser";
-import BookXmlParser from "./bookshelf/book-xml-parser";
-import BookshelfBuilder from "./bookshelf/bookshelf-builder";
-import Bookshelf from "./bookshelf/bookshelf";
 
 @Component({
   components: {
@@ -26,19 +19,7 @@ import Bookshelf from "./bookshelf/bookshelf";
     SiteHeader,
   },
 })
-export default class App extends Vue {
-  private initCaches() {
-    this.initBookshelfCache();
-  }
-
-  private initBookshelfCache() {
-    const cachedBookshelf: CachedBookshelf = CachedBookshelf.getInstance();
-  }
-
-  mounted() {
-    this.initCaches();
-  }
-}
+export default class App extends Vue { }
 </script>
 
 <style lang="scss">
