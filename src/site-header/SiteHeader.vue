@@ -76,9 +76,14 @@ export default class SiteHeader extends Vue {
   }
 
   #external-profiles-container {
-    margin-top: 16px;
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+
+    a {
+      margin: 0 20px;
+      font-size: 1.5rem;
+    }
   }
 
   @media only screen and (max-width: 640px) {
@@ -94,11 +99,11 @@ export default class SiteHeader extends Vue {
     }
 
     #external-profiles-container {
-      margin-top: 20px;
-      // TODO: Confirm mobile works as expected
+      margin-top: 12px;
+
       a {
-        margin: 0 20px;
-        font-size: 1.5rem;
+        margin: 0 8px;
+        font-size: 1rem;
       }
     }
   }
