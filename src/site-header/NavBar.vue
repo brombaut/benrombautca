@@ -146,7 +146,7 @@ export default class NavBar extends Vue {
     .condensed-navbar-icon {
       display: none;
       align-items: center;
-      margin: 0 12px;
+      margin: 8px 12px;
 
       .nav-icon {
         font-size: 2rem;
