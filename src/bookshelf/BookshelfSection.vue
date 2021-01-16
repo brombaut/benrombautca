@@ -40,20 +40,30 @@ type YearBooksPair = { year: number; books: Book[] };
 })
 export default class BookshelfSection extends Vue {
   bookshelf!: GoodreadsBookshelf;
-  booksLoaded = false;
+  booksLoading = true;
 
   constructor() {
     super();
+    this.loadingBookshelf = true;
     this.initBookshelf();
   }
 
-  async initBookshelf() {
-    this.bookshelf = await CachedBookshelf.getInstance();
-    this.booksLoaded = true;
+  initBookshelf() {
+    const callback = (grBookshelf: GoodreadsBookshelf) => {
+      this.bookshelf = grBookshelf;
+      this.$nextTick().then(() => {
+        this.loadingBookshelf = false;
+      });
+    };
+    CachedBookshelf.getInstance(callback);
+  }
+
+  set loadingBookshelf(val: boolean) {
+    this.booksLoading = val;
   }
 
   get loadingBookshelf(): boolean {
-    return !this.booksLoaded;
+    return this.booksLoading;
   }
 
   get readBooksByYear(): YearBooksPair[] {
@@ -71,6 +81,7 @@ export default class BookshelfSection extends Vue {
   }
 
   get currentlyReadingBooks(): Book[] {
+    console.log(this.loadingBookshelf);
     if (this.loadingBookshelf) {
       return [];
     }
