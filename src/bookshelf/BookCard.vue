@@ -86,7 +86,7 @@ export default class BookCard extends Vue {
   margin: 8px 12px;
 
   .image-container {
-    height: 192px;
+    height: 204px;
     width: 148px;
     margin: 4px 0;
 
