@@ -81,7 +81,6 @@ export default class BookshelfSection extends Vue {
   }
 
   get currentlyReadingBooks(): Book[] {
-    console.log(this.loadingBookshelf);
     if (this.loadingBookshelf) {
       return [];
     }
@@ -151,6 +150,7 @@ export default class BookshelfSection extends Vue {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      width: 100%;
 
       .books {
         display: flex;
