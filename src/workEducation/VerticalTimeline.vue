@@ -106,6 +106,7 @@ export default class VerticalTimeline extends Vue {
   .section-body {
     display: flex;
     align-items: center;
+    overflow-x: hidden;
 
     .wrapper {
       display: flex;
