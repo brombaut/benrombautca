@@ -2,7 +2,9 @@
   <header id="site-header" class="header-bright">
     <div class="banner">
       <h1><b>BEN ROMBAUT</b></h1>
-      <h4><i>Master of Science Candidate at the Software Analysis & Intelligence Lab, Queen's University</i></h4>
+      <!-- <h4><i>Master of Science Candidate at the Software Analysis & Intelligence Lab, Queen's University</i></h4> -->
+      <h4><i>M.Sc. Candidate at the Software Analysis & Intelligence Lab, Queen's University</i></h4>
+      <h5>benjamin.rombaut@queensu.ca</h5>
       <div id="external-profiles-container">
         <ExternalProfileIcon
           v-for="ep in externalProfiles"
@@ -63,7 +65,7 @@ export default class SiteHeader extends Vue {
   align-items: center;
 
   .banner {
-    padding: 32px 0;
+    padding: 24px 0;
   }
 
   h1 {
@@ -78,7 +80,7 @@ export default class SiteHeader extends Vue {
   #external-profiles-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 8px;
 
     a {
       margin: 0 20px;
