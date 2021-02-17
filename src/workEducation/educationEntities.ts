@@ -3,7 +3,7 @@ import { Education } from "./education";
 const educationEntities: Education[] = [
   {
     imageFile: "queensLogo.png",
-    title: "Master of Science in Computing",
+    title: "Master of Science in Computing Candidate",
     faculty: "School of Computing",
     institution: "Queen's University",
     location: "Kingston, Ontario",
