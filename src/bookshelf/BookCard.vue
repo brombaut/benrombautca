@@ -1,16 +1,16 @@
 <template>
   <div class="book-card slide-in">
     <div class="image-container">
-      <img :src="imageSource" :alt="book.title()" />
+      <img :src="imageSource" :alt="book.title" />
     </div>
     <h5 class="title">{{ formattedTitle }}</h5>
-    <h6 class="author">{{ book.author() }}</h6>
+    <h6 class="author">{{ book.author }}</h6>
     <div v-if="!currentlyReading" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
         <font-awesome-icon :icon="['fas', 'star']" />
       </span>
     </div>
-    <a class="link" :href="book.link()" target="_blank">
+    <a class="link" :href="book.link" target="_blank">
       On Goodreads
       <font-awesome-icon :icon="['fas', 'external-link-alt']" />
     </a>
@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { Book, Shelf } from "goodreads-bookshelf";
+import { Book, Shelf } from "@brombaut/types";
 import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
 
@@ -29,18 +29,18 @@ export default class BookCard extends Vue {
 
   private bookCardElem!: HTMLDivElement;
 
-  private imageSource: string = this.book.imageUrl();
+  private imageSource: string = `${this.book.isbn13}.jpg`;
 
   get currentlyReading(): boolean {
-    return this.book.shelf() === Shelf.CURRENTLYREADING;
+    return this.book.shelf === Shelf.CURRENTLYREADING;
   }
 
   get bookRating(): number {
-    return Number(this.book.rating());
+    return Number(this.book.rating);
   }
 
   get formattedTitle(): string {
-    const title: string = this.book.title();
+    const { title } = this.book;
     if (title.length < 100) {
       return title;
     }
@@ -55,23 +55,10 @@ export default class BookCard extends Vue {
     uiUtils.checkHorizontalFadeIn(this.bookCardElem, this.localCheckHorizontalFadeIn);
   }
 
-  attemptLocalImageLoad(): void {
-    fetch(this.book.localImageUrl())
-      .then(response => response.blob())
-      .then(blob => {
-        if (!blob.type.includes("text/html")) {
-          this.imageSource = this.book.localImageUrl();
-        }
-      });
-  }
-
   mounted() {
     this.bookCardElem = this.$el as HTMLDivElement;
     window.addEventListener("scroll", this.localCheckHorizontalFadeIn);
     this.localCheckHorizontalFadeIn();
-    if (this.book.localImageUrl()) {
-      this.attemptLocalImageLoad();
-    }
   }
 }
 </script>

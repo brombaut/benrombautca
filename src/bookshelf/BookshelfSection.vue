@@ -10,13 +10,13 @@
       <div class="book-group">
         <h2>Currently Reading</h2>
         <div class="books">
-          <BookCard v-for="book in currentlyReadingBooks" :key="book.title()" :book="book" />
+          <BookCard v-for="book in currentlyReadingBooks" :key="book.title" :book="book" />
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
         <h2>{{ yearBookGroup.year }}</h2>
         <div class="books">
-          <BookCard v-for="book in yearBookGroup.books" :key="book.title()" :book="book" />
+          <BookCard v-for="book in yearBookGroup.books" :key="book.title" :book="book" />
         </div>
       </div>
     </div>
@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import { Book, GoodreadsBookshelf } from "goodreads-bookshelf";
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
+import { Book } from "@brombaut/types";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
-import CachedBookshelf from "./cached-bookshelf";
+import CachedF3Bookshelf from "./CachedF3Bookshelf";
 
 type YearBooksPair = { year: number; books: Book[] };
 
@@ -39,7 +39,6 @@ type YearBooksPair = { year: number; books: Book[] };
   },
 })
 export default class BookshelfSection extends Vue {
-  bookshelf!: GoodreadsBookshelf;
   booksLoading = true;
 
   constructor() {
@@ -48,14 +47,9 @@ export default class BookshelfSection extends Vue {
     this.initBookshelf();
   }
 
-  initBookshelf() {
-    const callback = (grBookshelf: GoodreadsBookshelf) => {
-      this.bookshelf = grBookshelf;
-      this.$nextTick().then(() => {
-        this.loadingBookshelf = false;
-      });
-    };
-    CachedBookshelf.getInstance(callback);
+  async initBookshelf() {
+    await CachedF3Bookshelf.init();
+    this.booksLoading = false;
   }
 
   set loadingBookshelf(val: boolean) {
@@ -71,7 +65,7 @@ export default class BookshelfSection extends Vue {
       return [];
     }
     const bookGroups: YearBooksPair[] = [];
-    const keyVals = this.bookshelf.readBooksGroupedByYear();
+    const keyVals = CachedF3Bookshelf.readBooksGroupedByYear();
     Object.entries(keyVals).forEach(keyVal => {
       bookGroups.push({ year: Number(keyVal[0]), books: keyVal[1] });
     });
@@ -84,7 +78,7 @@ export default class BookshelfSection extends Vue {
     if (this.loadingBookshelf) {
       return [];
     }
-    return this.bookshelf.readingBooks();
+    return CachedF3Bookshelf.readingBooks();
   }
 }
 </script>
