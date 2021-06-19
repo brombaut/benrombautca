@@ -9,6 +9,19 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
+      
+      - name: Create .env File
+        run: |
+          touch .env
+          echo VUE_APP_API_KEY=${{ secrets.VUE_APP_API_KEY }} >> .env
+          echo VUE_APP_AUTH_DOMAIN=${{ secrets.VUE_APP_AUTH_DOMAIN }} >> .env
+          echo VUE_APP_PROJECT_ID=${{ secrets.VUE_APP_PROJECT_ID }} >> .env
+          echo VUE_APP_STORAGE_BUCKET=${{ secrets.VUE_APP_STORAGE_BUCKET }} >> .env
+          echo VUE_APP_MESSAGING_SENDER_ID=${{ secrets.VUE_APP_MESSAGING_SENDER_ID }} >> .env
+          echo VUE_APP_APP_ID=${{ secrets.VUE_APP_APP_ID }} >> .env
+          echo VUE_APP_MEASUREMENT_ID=${{ secrets.VUE_APP_MEASUREMENT_ID }} >> .env
+          echo VUE_APP_TEST_USER_EMAIL=${{ secrets.VUE_APP_TEST_USER_EMAIL }} >> .env
+          echo VUE_APP_TEST_USER_PASSWORD=${{ secrets.VUE_APP_TEST_USER_PASSWORD }} >> .env
 
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
