@@ -4,16 +4,23 @@
       <img :src="imageSource" :alt="book.title" />
     </div>
     <h5 class="title">{{ formattedTitle }}</h5>
-    <h6 class="author">{{ book.author }}</h6>
+    <h6 class="author">{{ book.authors.join(' & ') }}</h6>
+    <a class="link" :href="book.link" target="_blank">
+      On Goodreads
+      <font-awesome-icon :icon="['fas', 'external-link-alt']" />
+    </a>
     <div v-if="!currentlyReading" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
         <font-awesome-icon :icon="['fas', 'star']" />
       </span>
     </div>
-    <a class="link" :href="book.link" target="_blank">
-      On Goodreads
-      <font-awesome-icon :icon="['fas', 'external-link-alt']" />
-    </a>
+    <div class='spacer'></div>
+    <div v-if="currentlyReading" class="on-page">
+      <div class='progress-bar' ref='progressBar'></div>
+      <div class='text'>
+        On page <span>{{ book.onPage }}</span>/<span>{{ book.numPages }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,7 +36,7 @@ export default class BookCard extends Vue {
 
   private bookCardElem!: HTMLDivElement;
 
-  private imageSource: string = `${this.book.isbn13}.jpg`;
+  // private imageSource: string = `${this.book.isbn13}.jpg`;
 
   get currentlyReading(): boolean {
     return this.book.shelf === Shelf.CURRENTLYREADING;
@@ -51,14 +58,28 @@ export default class BookCard extends Vue {
     return title;
   }
 
+  get imageSource(): string {
+    return `${this.book.isbn13}.jpg`;
+  }
+
   localCheckHorizontalFadeIn() {
     uiUtils.checkHorizontalFadeIn(this.bookCardElem, this.localCheckHorizontalFadeIn);
+  }
+
+  setCurrentlyReadingProgressBarIfNecessary() {
+    if (!this.currentlyReading) {
+      return;
+    }
+    const progressBarEl = this.$refs.progressBar as HTMLDivElement;
+    const percentDone = ((this.book.onPage || 0) / this.book.numPages) * 100;
+    progressBarEl.style.width = `${percentDone}%`;
   }
 
   mounted() {
     this.bookCardElem = this.$el as HTMLDivElement;
     window.addEventListener("scroll", this.localCheckHorizontalFadeIn);
     this.localCheckHorizontalFadeIn();
+    this.setCurrentlyReadingProgressBarIfNecessary();
   }
 }
 </script>
@@ -94,15 +115,41 @@ export default class BookCard extends Vue {
     margin: 4px 0;
   }
 
-  .star,
-  .currently-reading {
-    color: $primaryDark;
-    font-size: 0.8rem;
-    margin: 4px 0;
+  .spacer {
+    flex: 1;
+  }
+
+  .on-page {
+    background-color: $primaryDark;
+    border-radius: 4px;
+    padding: 6px 4px;
+    position: relative;
+    z-index: 0;
+
+    .text {
+      font-size: 0.8rem;
+      color: white;
+      z-index: 2;
+      position: relative;
+    }
+
+    .progress-bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $primary;
+      height: 100%;
+      width: 50%;
+      border-radius: 4px;
+      z-index: 1;
+    }
   }
 
   .rating {
     .star {
+      color: $primaryDark;
+      font-size: 0.9rem;
+      margin: 4px 0;
       margin-right: 4px;
     }
   }
