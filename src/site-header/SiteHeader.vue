@@ -1,7 +1,7 @@
 <template>
   <header id="site-header" class="header-bright">
     <div class="banner">
-      <h1><b>BEN ROMBAUT</b></h1>
+      <h1><b>Ben Rombaut</b></h1>
       <!-- <h4><i>Master of Science Candidate at the Software Analysis & Intelligence Lab, Queen's University</i></h4> -->
       <h4><i>M.Sc. Candidate at the Software Analysis & Intelligence Lab, Queen's University</i></h4>
       <h5>benjamin.rombaut@queensu.ca</h5>

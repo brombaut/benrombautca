@@ -36,8 +36,6 @@ export default class BookCard extends Vue {
 
   private bookCardElem!: HTMLDivElement;
 
-  // private imageSource: string = `${this.book.isbn13}.jpg`;
-
   get currentlyReading(): boolean {
     return this.book.shelf === Shelf.CURRENTLYREADING;
   }
