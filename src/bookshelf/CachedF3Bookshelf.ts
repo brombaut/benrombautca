@@ -7,7 +7,8 @@ export default class CachedF3Bookshelf {
 
   public static async init(): Promise<void> {
     if (!CachedF3Bookshelf._instance) {
-      CachedF3Bookshelf._instance = await new F3Bookshelf(firebaseConfig).init();
+      CachedF3Bookshelf._instance = new F3Bookshelf(firebaseConfig);
+      await CachedF3Bookshelf._instance.init();
       this._books = await CachedF3Bookshelf._instance.get();
     }
     return Promise.resolve();
