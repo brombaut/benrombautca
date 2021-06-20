@@ -12,19 +12,23 @@
           :profile="ep"/>
       </div>
     </div>
-    <NavBar />
+    <NewNavBar v-if="useNewDesign"/>
+    <NavBar v-else/>
   </header>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import appConfig from "@/app_config";
 import NavBar from "@/site-header/NavBar.vue";
+import NewNavBar from "@/site-header/NewNavBar.vue";
 import ExternalProfileIcon from "@/site-header/ExternalProfileIcon.vue";
 import ExternalProfile from "./external-profile";
 
 @Component({
   components: {
     NavBar,
+    NewNavBar,
     ExternalProfileIcon,
   },
 })
@@ -49,6 +53,10 @@ export default class SiteHeader extends Vue {
 
   public removeBottomMargin(): void {
     this.$el.classList.remove("bottom-margin");
+  }
+
+  get useNewDesign(): boolean {
+    return appConfig?.flagNewDesign;
   }
 }
 </script>

@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import AboutMeExtended from "@/aboutMe/AboutMeExtended.vue";
 import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
+import ArticlesSection from "@/articles/ArticlesSection.vue";
+import SoftwareSection from "@/software/SoftwareSection.vue";
 
 Vue.use(VueRouter);
 
@@ -30,6 +32,16 @@ const routes = [
     path: "/bookshelf",
     name: "bookshelf",
     component: BookshelfSection,
+  },
+  {
+    path: "/articles",
+    name: "articles",
+    component: ArticlesSection,
+  },
+  {
+    path: "/software",
+    name: "software",
+    component: SoftwareSection,
   },
 ];
 
