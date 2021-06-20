@@ -83,6 +83,11 @@ export default class BookCard extends Vue {
 </script>
 
 <style lang="scss">
+
+:root{
+  --image-width: 148px;
+}
+
 .book-card {
   height: 360px;
   width: 190px;
@@ -93,7 +98,7 @@ export default class BookCard extends Vue {
 
   .image-container {
     height: 204px;
-    width: 148px;
+    width: var(--image-width);
     margin: 4px 0;
 
     img {
@@ -123,6 +128,7 @@ export default class BookCard extends Vue {
     padding: 6px 4px;
     position: relative;
     z-index: 0;
+    width: var(--image-width);
 
     .text {
       font-size: 0.8rem;
