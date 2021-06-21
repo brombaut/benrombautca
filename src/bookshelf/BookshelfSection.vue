@@ -1,6 +1,6 @@
 <template>
   <section id="bookshelf">
-    <SectionHeader title="BEN'S BOOKSHELF" icon="book-open" />
+    <SectionHeader title="Ben's Bookshelf" icon="book-open" />
     <div v-if="loadingBookshelf" class="section-body">
       <div class="loader-wrapper">
         <div class="loader"></div>
