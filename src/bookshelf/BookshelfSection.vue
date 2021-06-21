@@ -14,7 +14,7 @@
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
-        <h2>{{ yearBookGroup.year }}</h2>
+        <h2 class='book-group-header'>{{ yearBookGroup.year }}</h2>
         <div class="books">
           <BookCard v-for="book in yearBookGroup.books" :key="book.title" :book="book" />
         </div>
@@ -145,6 +145,12 @@ export default class BookshelfSection extends Vue {
       flex-direction: column;
       align-items: flex-start;
       width: 100%;
+      margin-bottom: 16px;
+
+      .book-group-header {
+        // margin: 12px 0;
+        text-decoration: underline;
+      }
 
       .books {
         display: flex;
