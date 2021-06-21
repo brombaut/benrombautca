@@ -18,7 +18,7 @@
     <div v-if="currentlyReading" class="on-page">
       <div class='progress-bar' ref='progressBar'></div>
       <div class='text'>
-        On page <span>{{ book.onPage }}</span>/<span>{{ book.numPages }}</span>
+        On page <span>{{ book.onPage }}</span>/<span>{{ book.numPages }}</span> ({{ percentDone }}%)
       </div>
     </div>
   </div>
@@ -58,6 +58,12 @@ export default class BookCard extends Vue {
 
   get imageSource(): string {
     return `${this.book.isbn13}.jpg`;
+  }
+
+  get percentDone(): number {
+    if (!this.book.onPage) return 0;
+    if (!this.book.numPages) return 0;
+    return Math.floor((this.book.onPage / this.book.numPages) * 100);
   }
 
   localCheckHorizontalFadeIn() {
