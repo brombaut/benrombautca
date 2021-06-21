@@ -88,7 +88,7 @@ export default class BookCard extends Vue {
   --width-to-height-ratio: 0.53;
   --image-width-to-height-ratio: 0.725;
   --card-height-to-image-height-ratio: 0.57;
-  --card-height: 360px;
+  --card-height: 368px;
   --card-width: calc(var(--card-height) * var(--width-to-height-ratio));
   --image-height: calc(var(--card-height) * var(--card-height-to-image-height-ratio));
   --image-width: calc(var(--image-height) * var(--image-width-to-height-ratio));
@@ -125,12 +125,12 @@ export default class BookCard extends Vue {
     margin-top: 8px;
     margin-bottom: 4px;
     color: $primary;
-    font-size: 1em;
+    font-size: 0.9em;
   }
 
   .author {
     margin: 4px 0;
-    font-size: 1em;
+    font-size: 0.8em;
   }
 
   .spacer {
