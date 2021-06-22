@@ -8,7 +8,7 @@
     </div>
     <div v-else class="section-body">
       <div class="book-group">
-        <h2>Currently Reading</h2>
+        <h2 class='book-group-header'>Currently Reading</h2>
         <div class="books">
           <BookCard v-for="book in currentlyReadingBooks" :key="book.title" :book="book" />
         </div>
