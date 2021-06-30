@@ -1,0 +1,43 @@
+[
+  {
+    "_id": "deploy_ghpages_actions",
+    "_title": "🚀 Set up Continuous Deployment to GitHub Pages with GitHub Actions",
+    "_createdAt": "2021-06-24T14:13:24.709Z",
+    "_updatedAt": "2021-06-27T14:13:24.709Z",
+    "_description": "How to create a GitHub actions YAML file that deploys the project to GitHub pages. Also touches on using environment variables in the pipeline.",
+    "_tags": [
+      "github-pages",
+      "github-actions",
+      "deploy",
+      "how-to"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "init_npm_project",
+    "_title": "🔨 Initialize an NPM project with TypeScript",
+    "_createdAt": "2021-06-20T14:13:24.709Z",
+    "_updatedAt": "2021-06-27T14:13:24.709Z",
+    "_description": "How to initialize an npm & TypeScript project. Goes over configuration files for both.",
+    "_tags": [
+      "npm",
+      "typescript",
+      "init",
+      "how-to"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "publish_npm_project",
+    "_title": "📝 Publish an NPM project",
+    "_createdAt": "2021-06-22T14:13:24.709Z",
+    "_updatedAt": "2021-06-27T14:13:24.709Z",
+    "_description": "Explains how to set up the different npm scripts and the commands needed when publishing a package to npm.",
+    "_tags": [
+      "npm",
+      "publish",
+      "how-to"
+    ],
+    "_show": true
+  }
+]
