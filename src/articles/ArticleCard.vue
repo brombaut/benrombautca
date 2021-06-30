@@ -1,15 +1,14 @@
 <template>
-<div class="article-card">
+<div
+  class="article-card"
+  @click="cardClicked">
   <div class="dates">
     Created {{ formatDate(article.createdAt) }} • Updated {{ formatDate(article.updatedAt) }}
   </div>
   <h2 class="title">{{ article.title }}</h2>
   <div class="description"><p>{{article.description}}</p></div>
   <div class="tags">
-    <div
-      v-for="tag in article.tags"
-      :key=tag
-      class="tag">{{ tag }}</div>
+    <Tag v-for="tag in article.tags" :key="tag" :tag="tag" />
   </div>
 </div>
 </template>
@@ -17,9 +16,14 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
+import Tag from "@/shared/Tag.vue";
 import { AuthoredArticle } from "./AuthoredArticlesProxy";
 
-@Component
+@Component({
+  components: {
+    Tag,
+  },
+})
 export default class ArticleCard extends Vue {
 
   @Prop()
@@ -28,6 +32,10 @@ export default class ArticleCard extends Vue {
   formatDate(d: Date) {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+  }
+
+  cardClicked() {
+    this.$emit("clicked", this.article);
   }
 }
 </script>
@@ -38,7 +46,6 @@ export default class ArticleCard extends Vue {
   border-radius: 16px;
   margin: 12px 20px;
   padding: 24px 32px;
-  max-width: 692px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -66,15 +73,6 @@ export default class ArticleCard extends Vue {
   .tags {
     display: flex;
     flex-direction: row;
-
-    .tag {
-      font-size: 0.8em;
-      margin-right: 4px;
-      padding: 8px 12px;
-      border-radius: 8px;
-      color: $secondary;
-      background-color: $primaryDark;
-    }
   }
 }
 </style>

@@ -1,12 +1,14 @@
 <template>
   <section id="articles">
     <SectionHeader title="Articles" icon="pen-square" />
+    <p>A collection of how-to guides and notes I've written on different topics.</p>
     <div class="section-body">
       <div class="articles-list">
         <ArticleCard
           v-for="article in articlesToDisplay"
           :key="article.id"
-          :article="article" />
+          :article="article"
+          @clicked="articleClicked" />
       </div>
     </div>
   </section>
@@ -27,10 +29,12 @@ import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy"
 })
 export default class ArticlesSection extends Vue {
   authoredArticles: AuthoredArticle[];
+  selectedArticle: AuthoredArticle | null;
 
   constructor() {
     super();
     this.authoredArticles = new AuthoredArticlesProxy().authoredArticles;
+    this.selectedArticle = null;
   }
 
   get articlesToDisplay(): AuthoredArticle[] {
@@ -41,6 +45,11 @@ export default class ArticlesSection extends Vue {
       });
   }
 
+  articleClicked(article: AuthoredArticle) {
+    this.$router.push({ name: "selectedArticle", params: { articleId: article.id } });
+    this.selectedArticle = article;
+  }
+
 }
 </script>
 
@@ -48,6 +57,10 @@ export default class ArticlesSection extends Vue {
 #articles {
   display: flex;
   flex-direction: column;
+
+  p {
+    margin-top: 0;
+  }
 
   .section-body {
     display: flex;
@@ -58,7 +71,6 @@ export default class ArticlesSection extends Vue {
       display: flex;
       flex-direction: column;
       text-align: left;
-      padding: 0 96px; // TODO: Add media queries to reduce this with screen size
     }
   }
 }

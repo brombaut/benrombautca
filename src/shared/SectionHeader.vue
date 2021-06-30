@@ -1,7 +1,7 @@
 <template>
   <header class="section-header">
     <div class="section-header_content">
-      <font-awesome-icon :icon="['fas', icon]" />
+      <font-awesome-icon class="icon" :icon="['fas', icon]" v-if="icon"/>
       <h1 class="section-title"><b>{{ title }}</b></h1>
     </div>
     <div class="section-header-underline"></div>
@@ -47,6 +47,10 @@ export default class SectionHeader extends Vue {
       .section-title {
         font-size: 1.7rem;
       }
+    }
+
+    .icon {
+      font-size: 1.5em;
     }
   }
 

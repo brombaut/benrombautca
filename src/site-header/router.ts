@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import AboutMeExtended from "@/aboutMe/AboutMeExtended.vue";
 import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
 import ArticlesSection from "@/articles/ArticlesSection.vue";
+import SelectedArticleSection from "@/articles/SelectedArticleSection.vue";
 import SoftwareSection from "@/software/SoftwareSection.vue";
 
 Vue.use(VueRouter);
@@ -37,6 +38,11 @@ const routes = [
     path: "/articles",
     name: "articles",
     component: ArticlesSection,
+  },
+  {
+    path: "/articles/:articleId",
+    name: "selectedArticle",
+    component: SelectedArticleSection,
   },
   {
     path: "/software",

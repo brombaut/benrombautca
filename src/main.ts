@@ -9,6 +9,7 @@ import {
   faGraduationCap,
   faBriefcase,
   faCaretDown,
+  faChevronLeft,
   faMapMarkerAlt,
   faCalendar,
   faBuilding,
@@ -40,6 +41,7 @@ library.add(faExternalLinkAlt);
 library.add(faGraduationCap);
 library.add(faBriefcase);
 library.add(faCaretDown);
+library.add(faChevronLeft);
 library.add(faMapMarkerAlt);
 library.add(faCalendar);
 library.add(faBuilding);
