@@ -6,40 +6,23 @@
         <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" @click="toggleMobileNavBar" />
       </div>
     </div>
-    <nav class="condensed-navbar" ref="mobileNavbar" :class="{ showNavBar: mobileNavbarVisible }">
-      <a @click="navigateMobile('/about-me')">
-        <span>About Me</span>
-        <span class="underline"></span>
-      </a>
-      <a @click="navigateMobile('/bookshelf')">
-        <span>Bookshelf</span>
-        <span class="underline"></span>
-      </a>
-      <a @click="navigateMobile('/articles')">
-        <span>Articles</span>
-        <span class="underline"></span>
-      </a>
-      <a @click="navigateMobile('/software')">
-        <span>Software</span>
-        <span class="underline"></span>
-      </a>
-    </nav>
+    <CondensedNavBar :mobileNavbarVisible="mobileNavbarVisible" @closeMobileNavBar="closeMobileNavBar"/>
   </header>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { bus } from "@/main";
 import SiteHeader from "./SiteHeader.vue";
 import FullNavBar from "./FullNavBar.vue";
+import CondensedNavBar from "./CondensedNavBar.vue";
 
 @Component({
   components: {
     FullNavBar,
+    CondensedNavBar,
   },
 })
 export default class NewNavBar extends Vue {
-  private enableActiveElHighlighter = false;
 
   private mobileNavbarVisible = false;
 
@@ -47,32 +30,12 @@ export default class NewNavBar extends Vue {
 
   private startingNavBarOffset!: number;
 
-  private activeRoutes: string[] = [];
-
-  private navigate(routeName: string): void {
-    if (routeName !== this.$route.path) {
-      this.$router.push(routeName);
-    }
-    // this.setActiveRoutes([this.$route.name || ""]);
-    // const activeEls: NodeListOf<HTMLElement> = this.$el.querySelectorAll(".active");
-    // const activeNavClasses: DOMTokenList[] = [];
-    // activeEls.forEach((el: HTMLElement) => {
-    //   activeNavClasses.push(el.classList);
-    // });
-    bus.$emit("routeClicked");
-  }
-
-  private navigateMobile(routeName: string): void {
-    this.toggleMobileNavBar();
-    this.navigate(routeName);
-  }
-
   private toggleMobileNavBar(): void {
     this.mobileNavbarVisible = !this.mobileNavbarVisible;
   }
 
-  get curRoute(): string {
-    return this.$route.name || "";
+  private closeMobileNavBar(): void {
+    this.mobileNavbarVisible = false;
   }
 
   private watchStickyNav(): void {
@@ -85,16 +48,10 @@ export default class NewNavBar extends Vue {
     }
   }
 
-  private setActiveRoutes(newRoutes: string[]): void {
-    this.activeRoutes = newRoutes;
-  }
-
   mounted() {
     this.navBarEl = this.$el as HTMLElement;
     this.startingNavBarOffset = this.navBarEl.offsetTop;
     window.onscroll = () => this.watchStickyNav();
-    bus.$on("routeChanged", this.setActiveRoutes);
-    this.setActiveRoutes([this.$route.name || ""]);
   }
 }
 </script>
@@ -106,7 +63,6 @@ export default class NewNavBar extends Vue {
   justify-content: center;
   position: relative;
   z-index: 20;
-  // box-shadow: 1px 5px 5px $pFontColor;
 
   &.sticky {
     position: fixed;
@@ -123,10 +79,10 @@ export default class NewNavBar extends Vue {
     .condensed-navbar-icon {
       display: none;
       align-items: center;
-      margin: 8px 12px;
+      margin: 4px 12px;
 
       .nav-icon {
-        font-size: 2rem;
+        font-size: 2em;
 
         &:hover {
           cursor: pointer;
@@ -134,7 +90,7 @@ export default class NewNavBar extends Vue {
       }
     }
 
-    @media only screen and (max-width: 640px) {
+    @media only screen and (max-width: 400px) {
       justify-content: flex-end;
 
       .full-navbar {
@@ -147,64 +103,5 @@ export default class NewNavBar extends Vue {
     }
   }
 
-  .condensed-navbar {
-    display: none;
-    position: absolute;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
-    z-index: 99;
-    width: 100%;
-    top: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    background: $primaryDark;
-
-    &.showNavBar {
-      display: flex;
-    }
-  }
-
-  @media only screen and (min-width: 640px) {
-    .condensed-navbar {
-      display: none;
-
-      &.showNavBar {
-        display: none;
-      }
-    }
-  }
-
-  // TODO: Can this be moved into either condensed or full navbar?
-  a {
-    padding: 16px 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: bold;
-
-    .underline {
-      background: white;
-      height: 4px;
-      width: 0;
-      border-radius: 4px;
-      margin-top: 2px;
-      transition: 0.2s all ease-in;
-    }
-
-    &.active {
-      .underline {
-        width: 100%;
-      }
-    }
-
-    &:hover {
-      cursor: pointer;
-      text-decoration: none;
-
-      .underline {
-        width: 100%;
-      }
-    }
-  }
 }
 </style>

@@ -53,19 +53,14 @@ export default class FullNavBar extends Vue {
     highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
   }
 
-  private firstHighlightDraw() {
+  private getActiveRouteNavElRef(): string {
     let currRouteName: string = this.$route.name || "";
-    if (currRouteName) {
-      if (currRouteName === "selectedArticle") {
-        currRouteName = "articles";
-      }
-      if (currRouteName === "selectedSoftware") {
-        currRouteName = "software";
-      }
-      const navEl: string = `${currRouteName}Nav`;
-      this.updateHighlight(navEl);
-      this.$nextTick(this.addTransitionToHighlight);
-    }
+    if (!currRouteName) return "";
+    if (currRouteName === "land") currRouteName = "aboutMe";
+    if (currRouteName === "selectedArticle") currRouteName = "articles";
+    if (currRouteName === "selectedSoftware") currRouteName = "software";
+    const navEl: string = `${currRouteName}Nav`;
+    return navEl;
   }
 
   private addTransitionToHighlight(): void {
@@ -74,8 +69,24 @@ export default class FullNavBar extends Vue {
     highlight.style.transition = "all 0.2s";
   }
 
+  private removeTransitionFromHighlight(): void {
+    const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
+    if (!highlight) return;
+    highlight.style.transition = "";
+  }
+
+  private redrawHighlight(): void {
+    const activeRef = this.getActiveRouteNavElRef();
+    if (activeRef) {
+      this.removeTransitionFromHighlight();
+      this.updateHighlight(activeRef);
+      this.$nextTick(this.addTransitionToHighlight);
+    }
+  }
+
   mounted() {
-    this.firstHighlightDraw();
+    this.redrawHighlight();
+    window.addEventListener("resize", this.redrawHighlight);
   }
 
 }
@@ -127,9 +138,16 @@ export default class FullNavBar extends Vue {
       }
     }
   }
+
+  @media only screen and (max-width: 550px) {
+    a {
+      padding: 8px 16px;
+      font-size: 0.9em;
+    }
+  }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 400px) {
   .full-navbar {
     display: none;
   }
