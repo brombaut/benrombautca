@@ -1,7 +1,9 @@
 <template>
   <section id="articles">
-    <SectionHeader title="Articles" icon="pen-square" />
-    <p>A collection of how-to guides and notes I've written on different topics.</p>
+    <SectionHeader
+      title="Articles"
+      icon="pen-square"
+      subtext="A collection of how-to guides and notes I've written on different topics."/>
     <div class="section-body">
       <div class="articles-list">
         <ArticleCard
@@ -57,10 +59,6 @@ export default class ArticlesSection extends Vue {
 #articles {
   display: flex;
   flex-direction: column;
-
-  p {
-    margin-top: 0;
-  }
 
   .section-body {
     display: flex;

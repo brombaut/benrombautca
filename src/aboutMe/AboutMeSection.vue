@@ -42,6 +42,7 @@ export default class AboutMeSection extends Vue {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin: 8px 0px;
 
     @media screen and (max-width: 900px) {
       flex-direction: column;

@@ -5,6 +5,7 @@
       <h1 class="section-title"><b>{{ title }}</b></h1>
     </div>
     <div class="section-header-underline"></div>
+    <p v-if="subtext">{{ subtext }}</p>
   </header>
 </template>
 
@@ -18,6 +19,9 @@ export default class SectionHeader extends Vue {
 
   @Prop()
   icon!: string;
+
+  @Prop()
+  subtext!: string;
 }
 </script>
 
@@ -25,9 +29,8 @@ export default class SectionHeader extends Vue {
 .section-header {
   display: flex;
   flex-direction: column;
-  padding: 16px 0;
   width: fit-content;
-  margin-bottom: 16px;
+  // margin-bottom: 16px;
 
   .section-header_content {
     display: flex;

@@ -1,24 +1,7 @@
 <template>
-  <header class="nav-bar header-dark">
+  <header class="new-nav-bar header-dark">
     <div class="wrapper">
-      <nav class="full-navbar">
-        <a class="about-me-nav" @click="navigate('/about-me')" :class="{ active: routeIsActive('about-me')}">
-          <span>About Me</span>
-          <span class="underline"></span>
-        </a>
-        <a class="bookshelf-nav" @click="navigate('/bookshelf')" :class="{ active: routeIsActive('bookshelf')}">
-          <span>Bookshelf</span>
-          <span class="underline"></span>
-        </a>
-        <a class="articles-nav" @click="navigate('/articles')" :class="{ active: routeIsActive('articles')}">
-          <span>Articles</span>
-          <span class="underline"></span>
-        </a>
-        <a class="software-nav" @click="navigate('/software')" :class="{ active: routeIsActive('software')}">
-          <span>Software</span>
-          <span class="underline"></span>
-        </a>
-      </nav>
+      <FullNavBar />
       <div class="condensed-navbar-icon">
         <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" @click="toggleMobileNavBar" />
       </div>
@@ -48,8 +31,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import { bus } from "@/main";
 import SiteHeader from "./SiteHeader.vue";
+import FullNavBar from "./FullNavBar.vue";
 
-@Component
+@Component({
+  components: {
+    FullNavBar,
+  },
+})
 export default class NewNavBar extends Vue {
   private enableActiveElHighlighter = false;
 
@@ -65,13 +53,12 @@ export default class NewNavBar extends Vue {
     if (routeName !== this.$route.path) {
       this.$router.push(routeName);
     }
-    this.setActiveRoutes([this.$route.name || ""]);
-    const activeEls: NodeListOf<HTMLElement> = this.$el.querySelectorAll(".active");
-    const activeNavClasses: DOMTokenList[] = [];
-    activeEls.forEach((el: HTMLElement) => {
-      activeNavClasses.push(el.classList);
-    });
-
+    // this.setActiveRoutes([this.$route.name || ""]);
+    // const activeEls: NodeListOf<HTMLElement> = this.$el.querySelectorAll(".active");
+    // const activeNavClasses: DOMTokenList[] = [];
+    // activeEls.forEach((el: HTMLElement) => {
+    //   activeNavClasses.push(el.classList);
+    // });
     bus.$emit("routeClicked");
   }
 
@@ -89,7 +76,6 @@ export default class NewNavBar extends Vue {
   }
 
   private watchStickyNav(): void {
-    const yOffset = window.pageYOffset;
     if (window.pageYOffset >= this.startingNavBarOffset) {
       this.navBarEl.classList.add("sticky");
       (this.$parent as SiteHeader).addBottomMargin();
@@ -103,10 +89,6 @@ export default class NewNavBar extends Vue {
     this.activeRoutes = newRoutes;
   }
 
-  private routeIsActive(route: string): boolean {
-    return this.enableActiveElHighlighter && this.activeRoutes.includes(route);
-  }
-
   mounted() {
     this.navBarEl = this.$el as HTMLElement;
     this.startingNavBarOffset = this.navBarEl.offsetTop;
@@ -118,13 +100,13 @@ export default class NewNavBar extends Vue {
 </script>
 
 <style lang="scss">
-.nav-bar {
+.new-nav-bar {
   width: 100%;
   display: flex;
   justify-content: center;
   position: relative;
   z-index: 20;
-  box-shadow: 1px 1px 5px $pFontColor;
+  // box-shadow: 1px 5px 5px $pFontColor;
 
   &.sticky {
     position: fixed;
@@ -137,11 +119,6 @@ export default class NewNavBar extends Vue {
     display: flex;
     justify-content: center;
     position: relative;
-
-    .full-navbar {
-      display: flex;
-      align-items: center;
-    }
 
     .condensed-navbar-icon {
       display: none;
@@ -197,8 +174,9 @@ export default class NewNavBar extends Vue {
     }
   }
 
+  // TODO: Can this be moved into either condensed or full navbar?
   a {
-    margin: 16px 28px;
+    padding: 16px 28px;
     display: flex;
     flex-direction: column;
     align-items: center;

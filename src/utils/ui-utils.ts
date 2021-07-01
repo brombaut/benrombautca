@@ -31,7 +31,7 @@ const calculateHorizontalElemFadeInDelay = function (elem: HTMLElement) {
   const elemX: number = boundingRect.x;
   const parentWidth: number = parendBoundingRect.width;
   const xPositionRatio: number = elemX / parentWidth;
-  const maxFadeInDelayMilliseconds = 800;
+  const maxFadeInDelayMilliseconds = 500;
   const elemFadeIn: number = xPositionRatio * maxFadeInDelayMilliseconds;
   return elemFadeIn;
 };

@@ -1,6 +1,9 @@
 <template>
   <section id="bookshelf">
-    <SectionHeader title="Ben's Bookshelf" icon="book-open" />
+    <SectionHeader
+      title="Ben's Bookshelf"
+      icon="book-open"
+      subtext="Books I've read and am currently reading."/>
     <div v-if="loadingBookshelf" class="section-body">
       <div class="loader-wrapper">
         <div class="loader"></div>
@@ -87,32 +90,6 @@ export default class BookshelfSection extends Vue {
 #bookshelf {
   display: flex;
   flex-direction: column;
-
-  .section-header {
-    display: flex;
-    flex-direction: column;
-    padding: 16px 0;
-    width: fit-content;
-    margin-bottom: 16px;
-
-    .section-header_content {
-      display: flex;
-      flex-direction: row;
-      transition: 0.3s color;
-      font-size: 2rem;
-      align-items: center;
-      line-height: 2;
-
-      .section-title {
-        margin: 0 16px;
-      }
-    }
-
-    .section-header-underline {
-      background: $primary;
-      height: 4px;
-    }
-  }
 
   .section-body {
     display: flex;
