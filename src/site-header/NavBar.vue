@@ -198,7 +198,7 @@ export default class NavBar extends Vue {
   }
 
   a {
-    margin: 16px 28px;
+    padding: 16px 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
