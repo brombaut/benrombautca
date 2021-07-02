@@ -6,7 +6,7 @@
         <span>All Articles</span>
       </button>
     </div> -->
-    <SectionHeader :title="selectedArticle.title" icon="" />
+    <SectionHeader :title="selectedArticle.title" icon="" :subtext="selectedArticle.description"/>
     <div class="meta-container">
       <div class="dates">
         Created {{ formatDate(selectedArticle.createdAt) }} • Updated {{ formatDate(selectedArticle.updatedAt) }}
@@ -36,6 +36,7 @@ import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy"
 export default class ArticlesSection extends Vue {
   selectedArticleId: string;
   selectedArticle: AuthoredArticle | null;
+  resizeListeners: number[] = [];
 
   constructor() {
     super();
@@ -60,20 +61,32 @@ export default class ArticlesSection extends Vue {
     this.$router.push({ name: "articles" });
   }
 
-  // NOTE: Should move this to UI utils so software page can use it
+  // NOTE: Should move this to UI utils so software page can use it.
+  // Yes definitly...youll have to figure out all these timeouts
   resizeSourceCodeEl(preCodeEl: HTMLPreElement): void {
-    if (!preCodeEl.parentElement) return;
-    const { width: parentWidth } = preCodeEl.parentElement.getBoundingClientRect();
-    const oneSidePadding = 20;
-    preCodeEl.style.width = `${parentWidth - (oneSidePadding * 2)}px`;
+    preCodeEl.style.width = "";
+    setTimeout(() => {
+      if (!preCodeEl.parentElement) return;
+      const { width: parentWidth } = preCodeEl.parentElement.getBoundingClientRect();
+      const oneSidePadding = 20;
+      preCodeEl.style.width = `${parentWidth - (oneSidePadding * 2)}px`;
+    }, 0);
   }
 
-  mounted() {
+  resizeAllCodeEls() {
     const preCodeEls: NodeListOf<HTMLPreElement> = this.$el.querySelectorAll("pre.sourceCode");
     preCodeEls.forEach((preCodeEl: HTMLPreElement) => {
       this.resizeSourceCodeEl(preCodeEl);
-      window.addEventListener("resize", () => this.resizeSourceCodeEl(preCodeEl));
     });
+  }
+
+  mounted() {
+    this.resizeAllCodeEls();
+    window.addEventListener("resize", this.resizeAllCodeEls);
+  }
+
+  beforeUnmount() {
+    window.removeEventListener("resize", this.resizeAllCodeEls);
   }
 
 }
