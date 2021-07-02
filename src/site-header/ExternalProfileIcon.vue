@@ -34,13 +34,14 @@ export default class ExternalProfileIcon extends Vue {
 
 <style lang="scss">
 .external-profile-link {
-  margin: 0 20px;
+  margin: 0 16px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.5em;
-  width: 3.5em;
+  height: 3em;
+  width: 3em;
+  font-size: 1em;
 
   .hover-background {
     background-color: $primaryDarkest;
@@ -72,4 +73,11 @@ export default class ExternalProfileIcon extends Vue {
     }
   }
 }
+
+  @media only screen and (max-width: 640px) {
+    .external-profile-link {
+      font-size: 0.8em;
+      margin: 0 12px;
+    }
+  }
 </style>
