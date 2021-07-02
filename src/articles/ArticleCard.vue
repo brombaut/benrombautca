@@ -73,6 +73,39 @@ export default class ArticleCard extends Vue {
   .tags {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 680px) {
+  .article-card {
+    margin: 12px 20px;
+    padding: 12px 24px;
+
+    .title {
+      font-size: 1.5em;
+    }
+    .description {
+      font-size: 0.9em;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .article-card {
+    margin: 8px 8px;
+    padding: 8px 16px;
+
+    .dates {
+      margin: 8px 0;
+      font-size: 0.7em;
+    }
+    .title {
+      font-size: 1.2em;
+    }
+    .description {
+      font-size: 0.8em;
+    }
   }
 }
 </style>

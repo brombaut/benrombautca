@@ -17,7 +17,7 @@
     "_id": "init_npm_project",
     "_title": "🔨 Initialize an NPM project with TypeScript",
     "_createdAt": "2021-06-20T14:13:24.709Z",
-    "_updatedAt": "2021-06-30T22:14:25.589Z",
+    "_updatedAt": "2021-07-01T19:58:49.970Z",
     "_description": "How to initialize an npm & TypeScript project. Goes over configuration files for both.",
     "_tags": [
       "npm",
@@ -49,6 +49,20 @@
     "_tags": [
       "statistics",
       "notes"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "design_patterns",
+    "_title": "🏭 Design Patterns - Notes",
+    "_createdAt": "2021-07-01T16:50:05.379Z",
+    "_updatedAt": "2021-07-01T16:50:05.379Z",
+    "_description": "Notes about different design patterns from the 'Head First Design Patterns' book.",
+    "_tags": [
+      "design-patterns",
+      "software-architecture",
+      "notes",
+      "example-repo"
     ],
     "_show": true
   }

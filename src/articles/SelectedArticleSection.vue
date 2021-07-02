@@ -1,11 +1,11 @@
 <template>
   <section id="selected-article">
-    <div class='back-button-container'>
+    <!-- <div class='back-button-container'>
       <button class='button' @click="backToArticles">
         <font-awesome-icon class='icon' :icon="['fas', 'chevron-left']"/>
         <span>All Articles</span>
       </button>
-    </div>
+    </div> -->
     <SectionHeader :title="selectedArticle.title" icon="" />
     <div class="meta-container">
       <div class="dates">
@@ -23,7 +23,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import uiUtils from "@/utils/ui-utils";
 import SectionHeader from "../shared/SectionHeader.vue";
 import Tag from "../shared/Tag.vue";
 import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
@@ -59,6 +58,22 @@ export default class ArticlesSection extends Vue {
 
   backToArticles() {
     this.$router.push({ name: "articles" });
+  }
+
+  // NOTE: Should move this to UI utils so software page can use it
+  resizeSourceCodeEl(preCodeEl: HTMLPreElement): void {
+    if (!preCodeEl.parentElement) return;
+    const { width: parentWidth } = preCodeEl.parentElement.getBoundingClientRect();
+    const oneSidePadding = 20;
+    preCodeEl.style.width = `${parentWidth - (oneSidePadding * 2)}px`;
+  }
+
+  mounted() {
+    const preCodeEls: NodeListOf<HTMLPreElement> = this.$el.querySelectorAll("pre.sourceCode");
+    preCodeEls.forEach((preCodeEl: HTMLPreElement) => {
+      this.resizeSourceCodeEl(preCodeEl);
+      window.addEventListener("resize", () => this.resizeSourceCodeEl(preCodeEl));
+    });
   }
 
 }
@@ -101,6 +116,7 @@ export default class ArticlesSection extends Vue {
 
   .section-body {
     text-align: left;
+    width: 100%;
   }
 }
 

@@ -19,25 +19,6 @@
   SOFTWARE.
   */
   
-  body {
-    font-family: Helvetica, arial, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    background-color: white;
-    padding: 30px;
-    color: #333;
-  }
-  
-  body > *:first-child {
-    margin-top: 0 !important;
-  }
-  
-  body > *:last-child {
-    margin-bottom: 0 !important;
-  }
-  
   a {
     color: #4183c4;
     text-decoration: none;
@@ -432,7 +413,7 @@
   .highlight pre {
     background-color: #f8f8f8;
     border: 1px solid #cccccc;
-    font-size: 13px;
+    font-size: 1em;
     line-height: 19px;
     overflow: auto;
     padding: 6px 10px;
@@ -442,9 +423,9 @@
   pre {
     background-color: #f8f8f8;
     border: 1px solid #cccccc;
-    font-size: 13px;
+    font-size: 1em;
     line-height: 19px;
-    overflow: auto;
+    // overflow: auto;
     padding: 6px 10px;
     border-radius: 3px;
   }
@@ -454,4 +435,17 @@
     background-color: transparent;
     border: none;
   }
+
+  div.sourceCode {
   }
+
+  pre.sourceCode {
+    overflow: auto;
+    display: block;
+    // Note: This gets set programatically
+    width: 0;
+  }
+
+  code.sourceCode {
+  }
+}
