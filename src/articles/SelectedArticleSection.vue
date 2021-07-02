@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="section-body">
-      <div class="article-content github-markdown-style" v-html="selectedArticle.body"></div>
+      <GitHubMarkdown :content="selectedArticle.body" />
     </div>
   </section>
 </template>
@@ -25,18 +25,19 @@
 import { Component, Vue } from "vue-property-decorator";
 import SectionHeader from "../shared/SectionHeader.vue";
 import Tag from "../shared/Tag.vue";
+import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
 import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
 
 @Component({
   components: {
     SectionHeader,
     Tag,
+    GitHubMarkdown,
   },
 })
 export default class ArticlesSection extends Vue {
   selectedArticleId: string;
   selectedArticle: AuthoredArticle | null;
-  resizeListeners: number[] = [];
 
   constructor() {
     super();
@@ -60,41 +61,10 @@ export default class ArticlesSection extends Vue {
   backToArticles() {
     this.$router.push({ name: "articles" });
   }
-
-  // NOTE: Should move this to UI utils so software page can use it.
-  // Yes definitly...youll have to figure out all these timeouts
-  resizeSourceCodeEl(preCodeEl: HTMLPreElement): void {
-    preCodeEl.style.width = "";
-    setTimeout(() => {
-      if (!preCodeEl.parentElement) return;
-      const { width: parentWidth } = preCodeEl.parentElement.getBoundingClientRect();
-      const oneSidePadding = 20;
-      preCodeEl.style.width = `${parentWidth - (oneSidePadding * 2)}px`;
-    }, 0);
-  }
-
-  resizeAllCodeEls() {
-    const preCodeEls: NodeListOf<HTMLPreElement> = this.$el.querySelectorAll("pre.sourceCode");
-    preCodeEls.forEach((preCodeEl: HTMLPreElement) => {
-      this.resizeSourceCodeEl(preCodeEl);
-    });
-  }
-
-  mounted() {
-    this.resizeAllCodeEls();
-    window.addEventListener("resize", this.resizeAllCodeEls);
-  }
-
-  beforeUnmount() {
-    window.removeEventListener("resize", this.resizeAllCodeEls);
-  }
-
 }
 </script>
 
 <style lang="scss">
-@import "@/styles/github_article.scss";
-
 #selected-article {
   display: flex;
   flex-direction: column;
@@ -115,14 +85,14 @@ export default class ArticlesSection extends Vue {
     margin-bottom: 16px;
 
     .dates {
-      margin: 0px 12px;
+      margin: 0px 0;
     }
 
     .tags {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      margin: 8px;
+      margin: 8px 0;
     }
 
   }

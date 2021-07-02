@@ -3,7 +3,7 @@
     <SectionHeader
       title="Articles"
       icon="pen-square"
-      subtext="A collection of how-to guides and notes I've written on different topics."/>
+      subtext="A collection of how-to guides and notes I've written on different topics, mostly so that I can use them as references later."/>
     <div class="section-body">
       <div class="articles-list">
         <ArticleCard
