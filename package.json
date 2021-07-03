@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-env": "^7.14.7",
     "@brombaut/types": "^0.2.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
@@ -31,7 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "@vue/cli-plugin-babel": "~4.5.13",
-    "@vue/cli-plugin-eslint": "~4.5.12",
+    "@vue/cli-plugin-eslint": "~4.5.13",
     "@vue/cli-plugin-typescript": "^4.5.12",
     "@vue/cli-service": "~4.5.13",
     "@vue/eslint-config-airbnb": "^5.1.0",
