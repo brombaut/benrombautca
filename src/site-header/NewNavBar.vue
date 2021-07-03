@@ -70,8 +70,9 @@ export default class NewNavBar extends Vue {
   }
 
   .wrapper {
-    width: calc(100% - 16px);
-    max-width: 1280px;
+    // width: calc(100% - 16px);
+    width: 100%;
+    max-width: 1100px;
     display: flex;
     justify-content: center;
     position: relative;

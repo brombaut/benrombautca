@@ -60,13 +60,14 @@ h1,h2,h3,h4,h5,h6 {
 
   section {
     max-width: 1100px;
-    margin: 16px 0;
+    margin: 16px 4px;
     padding: 16px;
     z-index: 2;
     background: $secondaryLight;
     border-radius: 4px;
     box-shadow: 1px 1px 5px $pFontColor;
     text-align: left;
+    box-sizing: border-box;
   }
 }
 </style>

@@ -1,11 +1,5 @@
 <template>
   <section id="selected-article">
-    <!-- <div class='back-button-container'>
-      <button class='button' @click="backToArticles">
-        <font-awesome-icon class='icon' :icon="['fas', 'chevron-left']"/>
-        <span>All Articles</span>
-      </button>
-    </div> -->
     <SectionHeader :title="selectedArticle.title" icon="" :subtext="selectedArticle.description"/>
     <div class="meta-container">
       <div class="dates">

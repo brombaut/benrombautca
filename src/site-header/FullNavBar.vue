@@ -1,45 +1,39 @@
 <template>
   <nav class="full-navbar">
-    <span class='active-route-highlight' ref="activeRouteHighlight"></span>
-    <a class="about-me-nav" ref="aboutMeNav" @click="navigate('/about-me', 'aboutMeNav')">
-      <span>About Me</span>
+    <div class="back-button-wrapper">
+      <a class='back-button'>
+        <font-awesome-icon class='icon' :icon="['fas', 'chevron-left']"/>
+        <span>Back</span>
+      </a>
       <span class="underline"></span>
-    </a>
-    <a class="bookshelf-nav" ref="bookshelfNav" @click="navigate('/bookshelf', 'bookshelfNav')">
-      <span>Bookshelf</span>
-      <span class="underline"></span>
-    </a>
-    <a class="articles-nav" ref="articlesNav" @click="navigate('/articles', 'articlesNav')">
-      <span>Articles</span>
-      <span class="underline"></span>
-    </a>
-    <a class="software-nav" ref="softwareNav"  @click="navigate('/software', 'softwareNav')">
-      <span>Software</span>
-      <span class="underline"></span>
-    </a>
+    </div>
+    <div class="nav-items">
+      <span class='active-route-highlight' ref="activeRouteHighlight"></span>
+      <FullNavItem ref="aboutMeNav" route="/about-me" text="About Me" @clicked="updateHighlight" />
+      <FullNavItem ref="bookshelfNav" route="/bookshelf" text="Bookshelf" @clicked="updateHighlight" />
+      <FullNavItem ref="articlesNav" route="/articles" text="Articles" @clicked="updateHighlight" />
+      <FullNavItem ref="softwareNav" route="/software" text="Software" @clicked="updateHighlight" />
+    </div>
+    <div></div>
   </nav>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import FullNavItem from "./FullNavItem.vue";
 
-@Component
+@Component({
+  components: {
+    FullNavItem,
+  },
+})
 export default class FullNavBar extends Vue {
 
-  private navigate(routeName: string, refName: string): void {
-    if (routeName !== this.$route.path) {
-      this.$router.push(routeName);
-      this.updateHighlight(refName);
-    }
-  }
-
-  private updateHighlight(refName: string): void {
+  private updateHighlight(navItemEl: HTMLAnchorElement): void {
     const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
     if (!highlight) return;
-    const navAEl: HTMLAnchorElement = this.$refs[refName] as HTMLAnchorElement;
-    if (!navAEl) return;
-    const navBarEl: HTMLElement = navAEl.parentElement as HTMLElement;
-    const navAElCoords = navAEl.getBoundingClientRect();
+    const navBarEl: HTMLElement = navItemEl.parentElement as HTMLElement;
+    const navAElCoords = navItemEl.getBoundingClientRect();
     const navBarCoords = navBarEl.getBoundingClientRect();
     const coords = {
       width: navAElCoords.width,
@@ -63,6 +57,12 @@ export default class FullNavBar extends Vue {
     return navEl;
   }
 
+  private getNavElFromRef(ref: string): HTMLAnchorElement {
+    const fromRefs = this.$refs[ref] as Vue;
+    const activeNavEl: HTMLAnchorElement = fromRefs.$el as HTMLAnchorElement;
+    return activeNavEl;
+  }
+
   private addTransitionToHighlight(): void {
     const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
     if (!highlight) return;
@@ -77,11 +77,12 @@ export default class FullNavBar extends Vue {
 
   private redrawHighlight(): void {
     const activeRef = this.getActiveRouteNavElRef();
-    if (activeRef) {
-      this.removeTransitionFromHighlight();
-      this.updateHighlight(activeRef);
-      this.$nextTick(this.addTransitionToHighlight);
-    }
+    if (!activeRef) return;
+    const activeNavEl = this.getNavElFromRef(activeRef);
+    if (!activeNavEl) return;
+    this.removeTransitionFromHighlight();
+    this.updateHighlight(activeNavEl);
+    this.$nextTick(this.addTransitionToHighlight);
   }
 
   mounted() {
@@ -95,24 +96,32 @@ export default class FullNavBar extends Vue {
 <style lang="scss">
 .full-navbar {
   display: flex;
-  align-items: center;
-  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1100px;
 
-  .active-route-highlight {
-    position: absolute;
-    top: 0;
-    background: $primary;
-    left: 0;
-    z-index: -1;
-    display: block;
-  }
-
-  a {
-    padding: 16px 28px;
+  .back-button-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-weight: bold;
+    box-sizing: border-box;
+    padding: 16px 12px;
+
+    .back-button {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      height: 100%;
+      font-weight: bold;
+
+      .icon {
+        margin-right: 4px;
+        align-self: center;
+      }
+    }
 
     .underline {
       background: white;
@@ -123,15 +132,12 @@ export default class FullNavBar extends Vue {
       transition: 0.2s all ease-in;
     }
 
-    &.active {
-      .underline {
-        width: 100%;
-      }
-    }
-
     &:hover {
       cursor: pointer;
-      text-decoration: none;
+
+      .back-button {
+        text-decoration: none;
+      }
 
       .underline {
         width: 100%;
@@ -139,11 +145,19 @@ export default class FullNavBar extends Vue {
     }
   }
 
-  @media only screen and (max-width: 550px) {
-    a {
-      padding: 8px 16px;
-      font-size: 0.9em;
-    }
+  .nav-items {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .active-route-highlight {
+    position: absolute;
+    top: 0;
+    background: $primary;
+    left: 0;
+    z-index: -1;
+    display: block;
   }
 }
 
