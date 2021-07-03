@@ -113,7 +113,7 @@ export default class FullNavBar extends Vue {
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: $PHONE_DISPLAY_SIZE) {
   .full-navbar {
     display: none;
   }

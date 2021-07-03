@@ -70,9 +70,8 @@ export default class NewNavBar extends Vue {
   }
 
   .wrapper {
-    // width: calc(100% - 16px);
     width: 100%;
-    max-width: 1100px;
+    max-width: $MAX_SECTION_SIZE;
     display: flex;
     justify-content: center;
     position: relative;
@@ -91,7 +90,7 @@ export default class NewNavBar extends Vue {
       }
     }
 
-    @media only screen and (max-width: 400px) {
+    @media only screen and (max-width: $PHONE_DISPLAY_SIZE) {
       justify-content: flex-end;
 
       .full-navbar {

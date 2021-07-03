@@ -89,7 +89,7 @@ export default class SiteHeader extends Vue {
     margin-top: 8px;
   }
 
-  @media only screen and (max-width: 640px) {
+  @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
     .banner {
       padding: 16px 0;
     }

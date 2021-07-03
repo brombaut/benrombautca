@@ -77,7 +77,7 @@ export default class ArticleCard extends Vue {
   }
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
   .article-card {
     margin: 12px 20px;
     padding: 12px 24px;
@@ -91,7 +91,7 @@ export default class ArticleCard extends Vue {
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: $TINY_DISPLAY_SIZE) {
   .article-card {
     margin: 8px 8px;
     padding: 8px 16px;

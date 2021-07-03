@@ -196,7 +196,7 @@ export default class BookCard extends Vue {
     }
   }
 
-  @media only screen and (max-width: 680px) {
+  @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
     height: var(--small-card-height);
     width: var(--small-card-width);
 
@@ -234,7 +234,7 @@ export default class BookCard extends Vue {
     }
   }
 
-  @media only screen and (max-width: 400px) {
+  @media only screen and (max-width: $PHONE_DISPLAY_SIZE) {
     height: var(--smallest-card-height);
     width: var(--smallest-card-width);
 

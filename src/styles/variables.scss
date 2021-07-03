@@ -20,3 +20,11 @@ $secondaryDarkest: darken($secondary, 16%);
 $hFontColor: $vsCodeDullBlue;
 $pFontColor: $vsCodeDullBlue;
 
+// Screen sizes
+$MAX_SECTION_SIZE: 1100px;
+$MEDIUM_DISPLAY_SIZE: 900px;
+$SMALL_DISPLAY_SIZE: 640px;
+$TINY_DISPLAY_SIZE: 550px;
+$PHONE_DISPLAY_SIZE: 400px;
+// TODO: Try to remove this - its only used in the verticalTimeline
+$TINY_PHONE_RARELY_USED_SIZE: 300px;

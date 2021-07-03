@@ -24,7 +24,7 @@ export default class Tag extends Vue {
   background-color: $primaryDark;
 }
 
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
   .tag {
     font-size: 0.7em;
     margin-right: 8px;

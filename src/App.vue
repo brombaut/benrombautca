@@ -59,7 +59,7 @@ h1,h2,h3,h4,h5,h6 {
   }
 
   section {
-    max-width: 1100px;
+    max-width: $MAX_SECTION_SIZE;
     margin: 16px 4px;
     padding: 16px;
     z-index: 2;

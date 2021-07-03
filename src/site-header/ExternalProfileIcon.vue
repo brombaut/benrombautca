@@ -74,7 +74,7 @@ export default class ExternalProfileIcon extends Vue {
   }
 }
 
-  @media only screen and (max-width: 640px) {
+  @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
     .external-profile-link {
       font-size: 0.8em;
       margin: 0 12px;

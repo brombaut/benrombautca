@@ -44,7 +44,7 @@ export default class AboutMeSection extends Vue {
     align-items: center;
     margin: 8px 0px;
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: $MEDIUM_DISPLAY_SIZE) {
       flex-direction: column;
     }
 
@@ -54,11 +54,11 @@ export default class AboutMeSection extends Vue {
         text-align: left;
         font-size: 1.2rem;
 
-        @media screen and (max-width: 600px) {
+        @media screen and (max-width: $SMALL_DISPLAY_SIZE) {
           font-size: 1rem;
         }
 
-        @media screen and (max-width: 300px) {
+        @media screen and (max-width: $PHONE_DISPLAY_SIZE) {
           font-size: 0.8rem;
         }
       }
@@ -78,7 +78,7 @@ export default class AboutMeSection extends Vue {
       }
     }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: $TINY_DISPLAY_SIZE) {
       .image-container {
         height: 200px;
         width: 200px;

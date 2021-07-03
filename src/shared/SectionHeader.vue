@@ -53,7 +53,7 @@ export default class SectionHeader extends Vue {
         text-align: left;
       }
 
-      @media only screen and (max-width: 600px) {
+      @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
         .section-title {
           font-size: 1.7rem;
         }

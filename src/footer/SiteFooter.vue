@@ -21,12 +21,10 @@ export default class SiteFooter extends Vue {
 <style lang="scss">
 .site-footer {
   color: $primaryDark;
-  // margin-bottom: 16px;
   display: flex;
   justify-content: center;
   width: 100%;
   background: $primaryDarkest;
-  // padding: 16px;
 
   .wrapper {
     width: calc(100% - 16px);

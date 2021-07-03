@@ -64,7 +64,7 @@ export default class FullNavItem extends Vue {
   }
 }
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: $TINY_DISPLAY_SIZE) {
   .full-nav-item {
     padding: 8px 16px;
     font-size: 0.9em;

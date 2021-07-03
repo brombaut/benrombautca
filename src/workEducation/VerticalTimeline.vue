@@ -95,12 +95,13 @@ export default class VerticalTimeline extends Vue {
   flex: 1;
   min-width: 360px;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: $TINY_DISPLAY_SIZE) {
     min-width: 260px;
   }
 
-  @media screen and (max-width: 300px) {
-    min-width: 0px;
+  // TODO: Should this be used?
+  @media screen and (max-width: $TINY_PHONE_RARELY_USED_SIZE) {
+    min-width: 150px;
   }
 
   .section-body {
@@ -141,7 +142,7 @@ export default class VerticalTimeline extends Vue {
           transform: translateY(8px);
           color: $fontColor;
 
-          @media screen and (max-width: 600px) {
+          @media screen and (max-width: $SMALL_DISPLAY_SIZE) {
             font-size: 0.8rem;
           }
         }

@@ -76,7 +76,7 @@ export default class BackButton extends Vue {
   }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
   .back-button-wrapper {
     display: none;
   }
