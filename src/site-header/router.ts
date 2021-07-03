@@ -5,6 +5,7 @@ import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
 import ArticlesSection from "@/articles/ArticlesSection.vue";
 import SelectedArticleSection from "@/articles/SelectedArticleSection.vue";
 import SoftwareSection from "@/software/SoftwareSection.vue";
+import SelectedSoftwareSection from "@/software/SelectedSoftwareSection.vue";
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,11 @@ const routes = [
     path: "/software",
     name: "software",
     component: SoftwareSection,
+  },
+  {
+    path: "/software/:softwareId",
+    name: "selectedSoftware",
+    component: SelectedSoftwareSection,
   },
 ];
 

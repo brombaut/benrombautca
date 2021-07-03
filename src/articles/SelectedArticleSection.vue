@@ -29,7 +29,7 @@ import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy"
     GitHubMarkdown,
   },
 })
-export default class ArticlesSection extends Vue {
+export default class SelectedArticleSection extends Vue {
   selectedArticleId: string;
   selectedArticle: AuthoredArticle | null;
 
