@@ -1,12 +1,6 @@
 <template>
   <nav class="full-navbar">
-    <div class="back-button-wrapper">
-      <a class='back-button'>
-        <font-awesome-icon class='icon' :icon="['fas', 'chevron-left']"/>
-        <span>Back</span>
-      </a>
-      <span class="underline"></span>
-    </div>
+    <BackButton />
     <div class="nav-items">
       <span class='active-route-highlight' ref="activeRouteHighlight"></span>
       <FullNavItem ref="aboutMeNav" route="/about-me" text="About Me" @clicked="updateHighlight" />
@@ -14,17 +8,18 @@
       <FullNavItem ref="articlesNav" route="/articles" text="Articles" @clicked="updateHighlight" />
       <FullNavItem ref="softwareNav" route="/software" text="Software" @clicked="updateHighlight" />
     </div>
-    <div></div>
   </nav>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import FullNavItem from "./FullNavItem.vue";
+import BackButton from "./BackButton.vue";
 
 @Component({
   components: {
     FullNavItem,
+    BackButton,
   },
 })
 export default class FullNavBar extends Vue {
@@ -97,53 +92,10 @@ export default class FullNavBar extends Vue {
 .full-navbar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 1100px;
-
-  .back-button-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-weight: bold;
-    box-sizing: border-box;
-    padding: 16px 12px;
-
-    .back-button {
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-end;
-      height: 100%;
-      font-weight: bold;
-
-      .icon {
-        margin-right: 4px;
-        align-self: center;
-      }
-    }
-
-    .underline {
-      background: white;
-      height: 4px;
-      width: 0;
-      border-radius: 4px;
-      margin-top: 2px;
-      transition: 0.2s all ease-in;
-    }
-
-    &:hover {
-      cursor: pointer;
-
-      .back-button {
-        text-decoration: none;
-      }
-
-      .underline {
-        width: 100%;
-      }
-    }
-  }
+  position: relative;
 
   .nav-items {
     position: relative;

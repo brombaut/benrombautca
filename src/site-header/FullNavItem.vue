@@ -30,7 +30,10 @@ export default class FullNavItem extends Vue {
 
 <style lang="scss">
 .full-nav-item {
-  padding: 16px 28px;
+  padding-top: 20px;
+  padding-bottom: 12px;
+  padding-left: 28px;
+  padding-right: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
