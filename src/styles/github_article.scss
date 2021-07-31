@@ -18,6 +18,8 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
   */
+
+  line-height: 1.5;
   
   a {
     color: #4183c4;
@@ -447,5 +449,80 @@
   }
 
   code.sourceCode {
+
+    &.typescript,
+    &.bash {
+      .op {
+        color: #1c2786;
+      }
+
+      .fu {
+        color: #5c9cd4;
+      }
+
+      .kw {
+        color: #5c9cd4;
+      }
+
+      .bu {
+        color: #bd5193;
+      }
+
+      .dt {
+        color: #bd5193;
+      }
+
+      .ex {
+        color: #5c9cd4;
+      }
+
+      .st {
+        color: #57a86b;
+      }
+
+      .at {
+        color: #424242;
+      }
+    }
+
+    &.json {
+      .fu {
+        color: #7c7c7c;
+      }
+
+      .st {
+        color: #57a86b;
+      }
+
+      .dt {
+        color: #bd5193;
+      }
+
+      .kw {
+        color: #5c9cd4;
+      }
+
+      .ot {
+        color: #7c7c7c;
+      }
+
+      .er {
+        color: #8c8c8c;
+      }
+    }
+
+    &.yaml {
+      .fu {
+        color: #bd5193;
+      }
+
+      .at {
+        color: #57a86b;
+      }
+      
+      .co {
+        color: #8c8c8c;
+      }
+    }
   }
 }
