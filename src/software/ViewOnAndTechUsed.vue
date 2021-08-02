@@ -1,7 +1,7 @@
 <template>
   <div class="view-on-and-tech-used">
     <div class='icons-info'>
-      <span>View On:</span>
+      <span class='label'>View On:</span>
       <div class='icon-container'>
         <div
           v-for="repo in software.externalRepos"
@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class='icons-info'>
-      <span>Tech Used:</span>
+      <span class='label'>Tech Used:</span>
       <div class='icon-container'>
         <div
           v-for="tech in software.techUsed"
@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import { SoftwareArticle } from "./SoftwareArticlesProxy";
 import uiUtils from "@/utils/ui-utils";
+import { SoftwareArticle } from "./SoftwareArticlesProxy";
 
 @Component
 export default class ViewOnAndTechUsed extends Vue {
@@ -62,6 +62,11 @@ export default class ViewOnAndTechUsed extends Vue {
   .icons-info {
     display: flex;
     align-items: center;
+    margin: 4px 0;
+
+    .label {
+      font-size: 1em;
+    }
 
     .icon-container{
       display: flex;
@@ -121,6 +126,40 @@ export default class ViewOnAndTechUsed extends Vue {
             transform: scale(1.1);
           }
         }
+      }
+    }
+  }
+}
+@media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
+  .view-on-and-tech-used {
+    .icons-info {
+      .label {
+        font-size: 0.8em;
+      }
+      .icon-container {
+        .tooltip-text {
+          display: none;
+        }
+
+        .icon {
+          img {
+            height: 16px;
+            margin: 0 4px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $TINY_DISPLAY_SIZE) {
+  .view-on-and-tech-used {
+    flex-direction: column;
+
+    .icons-info {
+      .icon-container {
+        padding: 6px 6px 0px 6px;
+        margin: 0 6px;
       }
     }
   }
