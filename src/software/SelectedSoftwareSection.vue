@@ -1,6 +1,7 @@
 <template>
   <section id="selected-software">
     <SectionHeader :title="selectedSoftware.title" icon="" :subtext="selectedSoftware.description"/>
+    <ViewOnAndTechUsed :software="selectedSoftware" />
     <div class="meta-container">
       <div class="dates">
         Created {{ formatDate(selectedSoftware.createdAt) }} • Updated {{ formatDate(selectedSoftware.updatedAt) }}
@@ -16,6 +17,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import SectionHeader from "../shared/SectionHeader.vue";
 import Tag from "../shared/Tag.vue";
+import ViewOnAndTechUsed from "./ViewOnAndTechUsed.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
 import { SoftwareArticle, SoftwareArticlesProxy } from "./SoftwareArticlesProxy";
 
@@ -24,6 +26,7 @@ import { SoftwareArticle, SoftwareArticlesProxy } from "./SoftwareArticlesProxy"
     SectionHeader,
     Tag,
     GitHubMarkdown,
+    ViewOnAndTechUsed,
   },
 })
 export default class SelectedSoftwareSection extends Vue {
@@ -73,6 +76,7 @@ export default class SelectedSoftwareSection extends Vue {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-top: 16px;
     margin-bottom: 16px;
 
     .dates {

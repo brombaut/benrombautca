@@ -7,17 +7,20 @@
     </div>
     <h2 class="title">{{ software.title }}</h2>
     <div class="description"><p>{{software.description}}</p></div>
+    <ViewOnAndTechUsed :software="software" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import Tag from "@/shared/Tag.vue";
+import ViewOnAndTechUsed from "./ViewOnAndTechUsed.vue";
 import { SoftwareArticle } from "./SoftwareArticlesProxy";
 
 @Component({
   components: {
     Tag,
+    ViewOnAndTechUsed,
   },
 })
 export default class ArticleCard extends Vue {

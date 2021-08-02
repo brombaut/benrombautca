@@ -12,17 +12,36 @@ interface SoftwareArticleMeta {
   _createdAt: Date,
   _updatedAt: Date,
   _description: string,
-  _show: boolean
+  _show: boolean,
+  _externalRepos: ExternalRepo[];
+  _techUsed: Tech[];
+}
+
+export interface ExternalRepo {
+  _id: string;
+  _imagePath: string;
+  _url: string;
+  _title: string;
+  _hoverText: string;
+}
+
+export interface Tech {
+  _id: string;
+  _imagePath: string;
+  _title: string;
+  _hoverText: string;
 }
 
 export interface SoftwareArticle {
-  readonly id: string,
-  readonly title: string,
-  readonly createdAt: Date,
-  readonly updatedAt: Date,
-  readonly description: string,
-  readonly body: string,
-  readonly show: boolean
+  readonly id: string;
+  readonly title: string;
+  readonly createdAt: Date;
+  readonly updatedAt: Date;
+  readonly description: string;
+  readonly body: string;
+  readonly show: boolean;
+  readonly externalRepos: ExternalRepo[];
+  readonly techUsed: Tech[];
 }
 
 export class SoftwareArticlesProxy {
@@ -59,6 +78,8 @@ export class SoftwareArticlesProxy {
         description: dto._description,
         body: dto._body,
         show: dto._show,
+        externalRepos: dto._externalRepos,
+        techUsed: dto._techUsed,
       };
     };
     this._softwareArticles = merged.map(mapper);

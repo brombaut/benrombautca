@@ -5,6 +5,30 @@
     "_createdAt": "2021-07-03T18:21:47.105Z",
     "_updatedAt": "2021-07-03T18:21:47.105Z",
     "_description": "A project I built that serves as a facade between the official Firebase npm package and the client project. It provides a simplified CRUD interface for the Firestore submodule that requires minimal setup for clients to start using.",
-    "_show": true
+    "_show": true,
+    "_externalRepos": [
+      {
+        "_id": "github",
+        "_imagePath": "github_icon.png",
+        "_url": "https://github.com/brombaut/firebase-firestore-facade",
+        "_title": "GitHub",
+        "_hoverText": "View on GitHub"
+      },
+      {
+        "_id": "npm",
+        "_imagePath": "npm_icon.png",
+        "_url": "https://www.npmjs.com/package/firebase-firestore-facade",
+        "_title": "NPM",
+        "_hoverText": "View on NPM"
+      }
+    ],
+    "_techUsed": [
+      {
+        "_id": "typescript",
+        "_imagePath": "typescript_icon.png",
+        "_title": "TypeScript",
+        "_hoverText": "TypeScript"
+      }
+    ]
   }
 ]
