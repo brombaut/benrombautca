@@ -9,7 +9,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@babel/core": "^7.14.0",
+    "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.14.1",
     "@brombaut/types": "^0.2.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
