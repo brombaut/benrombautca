@@ -68,7 +68,7 @@
   },
   {
     "_id": "publish_npm_from_actions",
-    "_title": "📝🚀Publish NPM package from GitHub Actions",
+    "_title": "📝 🚀 Publish NPM package from GitHub Actions",
     "_createdAt": "2021-09-26T01:39:05.452Z",
     "_updatedAt": "2021-09-26T01:52:30.640Z",
     "_description": "Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.",
@@ -77,6 +77,20 @@
       "publish",
       "github-actions",
       "deploy",
+      "how-to"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "add_codecov_to_project",
+    "_title": "🎯 Track and Publish Test Coverage with CodeCov",
+    "_createdAt": "2021-09-26T13:58:54.629Z",
+    "_updatedAt": "2021-09-26T13:58:54.629Z",
+    "_description": "Explains how to track testing coverage with CodeCov and publish the results both from your local machine and automatically using GitHub Actions.",
+    "_tags": [
+      "testing",
+      "codecov",
+      "github-actions",
       "how-to"
     ],
     "_show": true
