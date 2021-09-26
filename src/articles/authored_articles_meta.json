@@ -17,7 +17,7 @@
     "_id": "init_npm_project",
     "_title": "🔨 Initialize an NPM project with TypeScript",
     "_createdAt": "2021-06-20T14:13:24.709Z",
-    "_updatedAt": "2021-07-31T00:25:48.235Z",
+    "_updatedAt": "2021-09-26T01:39:05.465Z",
     "_description": "How to initialize an npm & TypeScript project. Goes over configuration files for both.",
     "_tags": [
       "npm",
@@ -63,6 +63,21 @@
       "software-architecture",
       "notes",
       "example-repo"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "publish_npm_from_actions",
+    "_title": "Publish NPM package from GitHub Actions",
+    "_createdAt": "2021-09-26T01:39:05.452Z",
+    "_updatedAt": "2021-09-26T01:39:05.452Z",
+    "_description": "Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.",
+    "_tags": [
+      "npm",
+      "publish",
+      "github-actions",
+      "deploy",
+      "how-to"
     ],
     "_show": true
   }
