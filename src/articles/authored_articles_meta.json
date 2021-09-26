@@ -68,9 +68,9 @@
   },
   {
     "_id": "publish_npm_from_actions",
-    "_title": "Publish NPM package from GitHub Actions",
+    "_title": "📝🚀Publish NPM package from GitHub Actions",
     "_createdAt": "2021-09-26T01:39:05.452Z",
-    "_updatedAt": "2021-09-26T01:39:05.452Z",
+    "_updatedAt": "2021-09-26T01:52:30.640Z",
     "_description": "Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.",
     "_tags": [
       "npm",
