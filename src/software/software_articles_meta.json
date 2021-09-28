@@ -30,5 +30,37 @@
         "_hoverText": "TypeScript"
       }
     ]
+  },
+  {
+    "_id": "article_scraper",
+    "_title": "Article Scraper",
+    "_createdAt": "2021-09-28T00:27:35.140Z",
+    "_updatedAt": "2021-09-28T00:27:35.140Z",
+    "_description": "A project I built that scrapes articles on popular blogging sites for their meta-data (e.g., title, time-to-read, tags).",
+    "_show": true,
+    "_externalRepos": [
+      {
+        "_id": "github",
+        "_imagePath": "github_icon.png",
+        "_url": "https://github.com/brombaut/article-scraper",
+        "_title": "GitHub",
+        "_hoverText": "View on GitHub"
+      },
+      {
+        "_id": "npm",
+        "_imagePath": "npm_icon.png",
+        "_url": "https://www.npmjs.com/package/article_scraper",
+        "_title": "NPM",
+        "_hoverText": "View on NPM"
+      }
+    ],
+    "_techUsed": [
+      {
+        "_id": "typescript",
+        "_imagePath": "typescript_icon.png",
+        "_title": "TypeScript",
+        "_hoverText": "TypeScript"
+      }
+    ]
   }
 ]
