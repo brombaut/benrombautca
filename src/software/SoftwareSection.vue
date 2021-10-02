@@ -17,41 +17,42 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import uiUtils from "@/utils/ui-utils";
+import Vue from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import SoftwareCard from "./SoftwareCard.vue";
 import { SoftwareArticle, SoftwareArticlesProxy } from "./SoftwareArticlesProxy";
 
-@Component({
+export default Vue.extend({
+  name: "SoftwareSection",
   components: {
     SectionHeader,
     SoftwareCard,
   },
-})
-export default class SoftwareSection extends Vue {
-  softwareArticles: SoftwareArticle[];
-  selectedSoftware: SoftwareArticle | null;
-
-  constructor() {
-    super();
+  data() {
+    return {
+      softwareArticles: [] as SoftwareArticle[],
+      selectedSoftware: null as (SoftwareArticle | null),
+    };
+  },
+  computed: {
+    softwareProjectsToDisplay(): SoftwareArticle[] {
+      return this.softwareArticles
+        .filter((aa: SoftwareArticle) => aa.show)
+        .sort((a: SoftwareArticle, b: SoftwareArticle) => {
+          return b.createdAt.getTime() - a.createdAt.getTime();
+        });
+    },
+  },
+  methods: {
+    softwareClicked(software: SoftwareArticle): void {
+      this.$router.push({ name: "selectedSoftware", params: { softwareId: software.id } });
+      this.selectedSoftware = software;
+    },
+  },
+  created(): void {
     this.softwareArticles = new SoftwareArticlesProxy().softwareArticles;
-    this.selectedSoftware = null;
-  }
-
-  get softwareProjectsToDisplay(): SoftwareArticle[] {
-    return this.softwareArticles
-      .filter((aa: SoftwareArticle) => aa.show)
-      .sort((a: SoftwareArticle, b: SoftwareArticle) => {
-        return b.createdAt.getTime() - a.createdAt.getTime();
-      });
-  }
-
-  softwareClicked(software: SoftwareArticle) {
-    this.$router.push({ name: "selectedSoftware", params: { softwareId: software.id } });
-    this.selectedSoftware = software;
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">

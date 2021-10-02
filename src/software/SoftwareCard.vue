@@ -12,31 +12,31 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import Tag from "@/shared/Tag.vue";
+import Vue, { PropType } from "vue";
 import ViewOnAndTechUsed from "./ViewOnAndTechUsed.vue";
 import { SoftwareArticle } from "./SoftwareArticlesProxy";
 
-@Component({
+export default Vue.extend({
+  name: "SoftwareCard",
   components: {
-    Tag,
     ViewOnAndTechUsed,
   },
-})
-export default class ArticleCard extends Vue {
-
-  @Prop()
-  software!: SoftwareArticle;
-
-  formatDate(d: Date) {
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-  }
-
-  cardClicked() {
-    this.$emit("clicked", this.software);
-  }
-}
+  props: {
+    software: {
+      type: Object as PropType<SoftwareArticle>,
+      required: true,
+    },
+  },
+  methods: {
+    formatDate(d: Date): string {
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    },
+    cardClicked(): void {
+      this.$emit("clicked", this.software);
+    },
+  },
+});
 </script>
 
 <style lang='scss'>

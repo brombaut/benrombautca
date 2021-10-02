@@ -29,29 +29,32 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue, { PropType } from "vue";
 import uiUtils from "@/utils/ui-utils";
 import { SoftwareArticle } from "./SoftwareArticlesProxy";
 
-@Component
-export default class ViewOnAndTechUsed extends Vue {
-
-  @Prop()
-  software!: SoftwareArticle;
-
-  imageSource(imageName: string) {
-    return uiUtils.loadImage(imageName);
-  }
-
-  private handleExternalProfileClicked(url: string) {
-    if (url) {
-      const result: Window | null = window.open(url, "_blank");
-      if (result) {
-        result.focus();
+export default Vue.extend({
+  name: "ViewOnAndTechUsed",
+  props: {
+    software: {
+      type: Object as PropType<SoftwareArticle>,
+      required: true,
+    },
+  },
+  methods: {
+    imageSource(imageName: string): any {
+      return uiUtils.loadImage(imageName);
+    },
+    handleExternalProfileClicked(url: string): void {
+      if (url) {
+        const result: Window | null = window.open(url, "_blank");
+        if (result) {
+          result.focus();
+        }
       }
-    }
-  }
-}
+    },
+  },
+});
 </script>
 
 <style lang="scss">
