@@ -9,22 +9,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import SiteFooter from "@/footer/SiteFooter.vue";
 import SiteHeader from "@/site-header/SiteHeader.vue";
 import CachedF3Bookshelf from "./bookshelf/CachedF3Bookshelf";
 
-@Component({
+export default {
+  name: "App",
   components: {
     SiteFooter,
     SiteHeader,
   },
-})
-export default class App extends Vue {
   mounted() {
     CachedF3Bookshelf.init();
-  }
-}
+  },
+};
 </script>
 
 <style lang="scss">
