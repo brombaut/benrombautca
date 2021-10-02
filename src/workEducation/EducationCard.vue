@@ -24,31 +24,33 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue, { PropType } from "vue";
 import uiUtils from "@/utils/ui-utils";
 import { Education } from "./education";
 
-@Component
-export default class EducationCard extends Vue {
-  @Prop()
-  private education!: Education;
-
-  private educationCardElem!: HTMLLIElement;
-
-  get imageSource() {
-    return uiUtils.loadImage(this.education.imageFile);
-  }
-
-  localCheckSlide() {
-    uiUtils.checkSlide(this.educationCardElem, this.localCheckSlide);
-  }
-
-  mounted() {
-    this.educationCardElem = this.$el as HTMLLIElement;
+export default Vue.extend({
+  name: "EducationCard",
+  props: {
+    education: {
+      type: Object as PropType<Education>,
+      required: true,
+    },
+  },
+  computed: {
+    imageSource(): any {
+      return uiUtils.loadImage(this.education.imageFile);
+    },
+  },
+  methods: {
+    localCheckSlide(): void {
+      uiUtils.checkSlide(this.$el as HTMLLIElement, this.localCheckSlide);
+    },
+  },
+  mounted(): void {
     window.addEventListener("scroll", this.localCheckSlide);
     this.localCheckSlide();
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">

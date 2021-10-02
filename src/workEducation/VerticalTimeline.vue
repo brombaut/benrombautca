@@ -26,66 +26,73 @@
 </template>
 
 <script lang="ts">
-import {
-  Component, Vue, Prop, Watch,
-} from "vue-property-decorator";
+import Vue, { PropType } from "vue";
 import EducationCard from "./EducationCard.vue";
 import WorkCard from "./WorkCard.vue";
-import { Education } from "./education";
-import { Work } from "./work";
 import { TimelineEntities } from "./timeline-entities";
 import SectionHeader from "../shared/SectionHeader.vue";
 
-@Component({
+export default Vue.extend({
+  name: "VerticalTimeline",
   components: {
     EducationCard,
     WorkCard,
     SectionHeader,
   },
-})
-export default class VerticalTimeline extends Vue {
-  @Prop()
-  private type!: string;
-
-  @Prop()
-  private title!: string;
-
-  @Prop()
-  private icon!: string;
-
-  @Prop()
-  private timelineEntities!: TimelineEntities;
-
-  @Prop({ default: 0 })
-  private showLimit!: number;
-
-  private showMore = false;
-
-  get entitiesToShow(): TimelineEntities {
-    if (!this.showLimit || this.showMore) {
-      return this.timelineEntities;
-    }
-    return this.timelineEntities.slice(0, this.showLimit);
-  }
-
-  showMoreClicked() {
-    this.showMore = true;
-    this.$nextTick().then(() => this.setVerticalLine());
-  }
-
-  setVerticalLine() {
-    const verticalLine = this.$el.querySelector(
-      ".vertical-line",
-    ) as HTMLDivElement;
-    const wrapperEl = this.$el.querySelector(".wrapper") as HTMLDivElement;
-    const { height } = wrapperEl.getBoundingClientRect();
-    verticalLine.style.height = `${height}px`;
-  }
-
-  mounted() {
+  props: {
+    type: {
+      type: String,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
+    icon: {
+      type: String,
+      required: true,
+    },
+    timelineEntities: {
+      type: Object as PropType<TimelineEntities>,
+      required: true,
+    },
+    showLimit: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+  },
+  data() {
+    return {
+      showMore: false,
+    };
+  },
+  computed: {
+    entitiesToShow(): TimelineEntities {
+      if (!this.showLimit || this.showMore) {
+        return this.timelineEntities;
+      }
+      return this.timelineEntities.slice(0, this.showLimit);
+    },
+  },
+  methods: {
+    showMoreClicked(): void {
+      this.showMore = true;
+      this.$nextTick().then(() => this.setVerticalLine());
+    },
+    setVerticalLine(): void {
+      const verticalLine = this.$el.querySelector(
+        ".vertical-line",
+      ) as HTMLDivElement;
+      const wrapperEl = this.$el.querySelector(".wrapper") as HTMLDivElement;
+      const { height } = wrapperEl.getBoundingClientRect();
+      verticalLine.style.height = `${height}px`;
+    },
+  },
+  mounted(): void {
     this.setVerticalLine();
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">

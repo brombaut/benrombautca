@@ -20,23 +20,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
 import VerticalTimeline from "./VerticalTimeline.vue";
 import educationEntities from "./educationEntities";
 import workEntities from "./workEntities";
-import { Education } from "./education";
-import { Work } from "./work";
 
-@Component({
+export default {
+  name: "WorkEducationSection",
   components: {
     VerticalTimeline,
   },
-})
-export default class WorkEducationSection extends Vue {
-  private educationEntities: Education[] = educationEntities;
-
-  private workEntities: Work[] = workEntities;
-}
+  data() {
+    return {
+      educationEntities,
+      workEntities,
+    };
+  },
+};
 </script>
 
 <style lang="scss">

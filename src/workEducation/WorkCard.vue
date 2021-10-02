@@ -20,31 +20,33 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue, { PropType } from "vue";
 import uiUtils from "@/utils/ui-utils";
 import { Work } from "./work";
 
-@Component
-export default class WorkCard extends Vue {
-  @Prop()
-  private work!: Work;
-
-  private workCardElem!: HTMLLIElement;
-
-  get imageSource() {
-    return uiUtils.loadImage(this.work.imageFile);
-  }
-
-  localCheckSlide() {
-    uiUtils.checkSlide(this.workCardElem, this.localCheckSlide);
-  }
-
-  mounted() {
-    this.workCardElem = this.$el as HTMLLIElement;
+export default Vue.extend({
+  name: "WorkCard",
+  props: {
+    work: {
+      type: Object as PropType<Work>,
+      required: true,
+    },
+  },
+  computed: {
+    imageSource(): any {
+      return uiUtils.loadImage(this.$props.work.imageFile);
+    },
+  },
+  methods: {
+    localCheckSlide(): void {
+      uiUtils.checkSlide(this.$el as HTMLLIElement, this.localCheckSlide);
+    },
+  },
+  mounted(): void {
     window.addEventListener("scroll", this.localCheckSlide);
     this.localCheckSlide();
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">
