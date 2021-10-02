@@ -94,5 +94,28 @@
       "how-to"
     ],
     "_show": true
+  },
+  {
+    "_id": "github_actions_scheduled",
+    "_title": "🕒 Run GitHub Actions on a Schedule",
+    "_createdAt": "2021-10-02T01:16:09.641Z",
+    "_updatedAt": "2021-10-02T01:16:09.641Z",
+    "_description": "Explains how to configure a GitHub Action to run on a cron schedule.",
+    "_tags": [
+      "github-actions",
+      "scheduled",
+      "cron",
+      "how-to"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "oi_stats_residuals_correlation_lsr_r2",
+    "_title": "",
+    "_createdAt": "2021-10-02T01:16:09.642Z",
+    "_updatedAt": "2021-10-02T01:16:09.642Z",
+    "_description": "",
+    "_tags": [],
+    "_show": false
   }
 ]
