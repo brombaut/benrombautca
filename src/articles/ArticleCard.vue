@@ -14,30 +14,31 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
-import uiUtils from "@/utils/ui-utils";
+import Vue, { PropType } from "vue";
 import Tag from "@/shared/Tag.vue";
 import { AuthoredArticle } from "./AuthoredArticlesProxy";
 
-@Component({
+export default Vue.extend({
+  name: "ArticleCard",
   components: {
     Tag,
   },
-})
-export default class ArticleCard extends Vue {
-
-  @Prop()
-  article!: AuthoredArticle;
-
-  formatDate(d: Date) {
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-  }
-
-  cardClicked() {
-    this.$emit("clicked", this.article);
-  }
-}
+  props: {
+    article: {
+      type: Object as PropType<AuthoredArticle>,
+      required: true,
+    },
+  },
+  methods: {
+    formatDate(d: Date) {
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    },
+    cardClicked() {
+      this.$emit("clicked", this.article);
+    },
+  },
+});
 </script>
 
 <style lang='scss'>

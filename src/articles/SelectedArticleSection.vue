@@ -16,46 +16,45 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import Tag from "../shared/Tag.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
 import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
 
-@Component({
+export default Vue.extend({
+  name: "SelectedArticleSection",
   components: {
     SectionHeader,
     Tag,
     GitHubMarkdown,
   },
-})
-export default class SelectedArticleSection extends Vue {
-  selectedArticleId: string;
-  selectedArticle: AuthoredArticle | null;
-
-  constructor() {
-    super();
+  data() {
+    return {
+      selectedArticleId: "",
+      selectedArticle: null as (AuthoredArticle | null),
+    };
+  },
+  methods: {
+    loadSelectedArticle(aId: string): AuthoredArticle | null {
+      const allArticles: AuthoredArticle[] = new AuthoredArticlesProxy().authoredArticles;
+      const selectedArticle: AuthoredArticle | undefined = allArticles.find((aa: AuthoredArticle) => aa.id === aId);
+      return selectedArticle || null;
+    },
+    formatDate(d: Date) {
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    },
+    backToArticles() {
+      this.$router.push({ name: "articles" });
+    },
+  },
+  created() {
     window.scrollTo(0, 0);
     this.selectedArticleId = this.$router.currentRoute.params.articleId;
     this.selectedArticle = this.loadSelectedArticle(this.selectedArticleId);
-
-  }
-
-  loadSelectedArticle(aId: string): AuthoredArticle | null {
-    const allArticles: AuthoredArticle[] = new AuthoredArticlesProxy().authoredArticles;
-    const selectedArticle: AuthoredArticle | undefined = allArticles.find((aa: AuthoredArticle) => aa.id === aId);
-    return selectedArticle || null;
-  }
-
-  formatDate(d: Date) {
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-  }
-
-  backToArticles() {
-    this.$router.push({ name: "articles" });
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">

@@ -17,42 +17,39 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import uiUtils from "@/utils/ui-utils";
+import Vue from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import ArticleCard from "./ArticleCard.vue";
 import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
 
-@Component({
+export default Vue.extend({
+  name: "ArticlesSection",
   components: {
     SectionHeader,
     ArticleCard,
   },
-})
-export default class ArticlesSection extends Vue {
-  authoredArticles: AuthoredArticle[];
-  selectedArticle: AuthoredArticle | null;
-
-  constructor() {
-    super();
-    this.authoredArticles = new AuthoredArticlesProxy().authoredArticles;
-    this.selectedArticle = null;
-  }
-
-  get articlesToDisplay(): AuthoredArticle[] {
-    return this.authoredArticles
-      .filter((aa: AuthoredArticle) => aa.show)
-      .sort((a: AuthoredArticle, b: AuthoredArticle) => {
-        return b.createdAt.getTime() - a.createdAt.getTime();
-      });
-  }
-
-  articleClicked(article: AuthoredArticle) {
-    this.$router.push({ name: "selectedArticle", params: { articleId: article.id } });
-    this.selectedArticle = article;
-  }
-
-}
+  data() {
+    return {
+      authoredArticles: new AuthoredArticlesProxy().authoredArticles as AuthoredArticle[],
+      selectedArticle: null as (AuthoredArticle | null),
+    };
+  },
+  computed: {
+    articlesToDisplay(): AuthoredArticle[] {
+      return this.authoredArticles
+        .filter((aa: AuthoredArticle) => aa.show)
+        .sort((a: AuthoredArticle, b: AuthoredArticle) => {
+          return b.createdAt.getTime() - a.createdAt.getTime();
+        });
+    },
+  },
+  methods: {
+    articleClicked(article: AuthoredArticle) {
+      this.$router.push({ name: "selectedArticle", params: { articleId: article.id } });
+      this.selectedArticle = article;
+    },
+  },
+});
 </script>
 
 <style lang="scss">
