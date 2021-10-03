@@ -3,7 +3,7 @@
     "_id": "firebase_firestore_facade",
     "_title": "F3 - Firebase Firestore Facade",
     "_createdAt": "2021-07-03T18:21:47.105Z",
-    "_updatedAt": "2021-07-03T18:21:47.105Z",
+    "_updatedAt": "2021-10-03T13:49:21.817Z",
     "_description": "A project I built that serves as a facade between the official Firebase npm package and the client project. It provides a simplified CRUD interface for the Firestore submodule that requires minimal setup for clients to start using.",
     "_show": true,
     "_externalRepos": [
