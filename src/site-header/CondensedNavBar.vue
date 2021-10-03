@@ -41,24 +41,6 @@ export default Vue.extend({
     },
   },
 });
-
-// @Component
-// export default class CondensedNavBar extends Vue {
-
-//   @Prop()
-//   private mobileNavbarVisible!: boolean;
-
-//   private navigateMobile(routeName: string): void {
-//     this.$emit("closeMobileNavBar");
-//     this.navigate(routeName);
-//   }
-
-//   private navigate(routeName: string): void {
-//     if (routeName !== this.$route.path) {
-//       this.$router.push(routeName);
-//     }
-//   }
-// }
 </script>
 
 <style lang="scss">
