@@ -8,24 +8,29 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue from "vue";
 
-@Component
-export default class FullNavItem extends Vue {
-  @Prop()
-  route!: string;
-
-  @Prop()
-  text!: string;
-
-  private navigate(): void {
-    if (this.route !== this.$route.path) {
-      this.$router.push(this.route);
-      this.$emit("clicked", this.$el);
-      // this.updateHighlight(refName);
-    }
-  }
-}
+export default Vue.extend({
+  name: "FullNavItem",
+  props: {
+    route: {
+      type: String,
+      required: true,
+    },
+    text: {
+      type: String,
+      required: true,
+    },
+  },
+  methods: {
+    navigate(): void {
+      if (this.route !== this.$route.path) {
+        this.$router.push(this.route);
+        this.$emit("clicked", this.$el);
+      }
+    },
+  },
+});
 </script>
 
 <style lang="scss">

@@ -11,49 +11,51 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-import SiteHeader from "./SiteHeader.vue";
+import Vue from "vue";
+// import SiteHeader from "./SiteHeader.vue";
 import FullNavBar from "./FullNavBar.vue";
 import CondensedNavBar from "./CondensedNavBar.vue";
 
-@Component({
+interface SiteHeader {
+  addBottomMargin(): void;
+  removeBottomMargin(): void;
+}
+
+export default Vue.extend({
+  name: "NewNavBar",
   components: {
     FullNavBar,
     CondensedNavBar,
   },
-})
-export default class NewNavBar extends Vue {
-
-  private mobileNavbarVisible = false;
-
-  private navBarEl!: HTMLElement;
-
-  private startingNavBarOffset!: number;
-
-  private toggleMobileNavBar(): void {
-    this.mobileNavbarVisible = !this.mobileNavbarVisible;
-  }
-
-  private closeMobileNavBar(): void {
-    this.mobileNavbarVisible = false;
-  }
-
-  private watchStickyNav(): void {
-    if (window.pageYOffset >= this.startingNavBarOffset) {
-      this.navBarEl.classList.add("sticky");
-      (this.$parent as SiteHeader).addBottomMargin();
-    } else {
-      this.navBarEl.classList.remove("sticky");
-      (this.$parent as SiteHeader).removeBottomMargin();
-    }
-  }
-
+  data() {
+    return {
+      mobileNavbarVisible: false,
+      startingNavBarOffset: 0,
+    };
+  },
+  methods: {
+    toggleMobileNavBar(): void {
+      this.mobileNavbarVisible = !this.mobileNavbarVisible;
+    },
+    closeMobileNavBar(): void {
+      this.mobileNavbarVisible = false;
+    },
+    watchStickyNav(): void {
+      // TODO: Fix these type conversions
+      if (window.pageYOffset >= this.startingNavBarOffset) {
+        this.$el.classList.add("sticky");
+        (this.$parent as unknown as SiteHeader).addBottomMargin();
+      } else {
+        this.$el.classList.remove("sticky");
+        (this.$parent as unknown as SiteHeader).removeBottomMargin();
+      }
+    },
+  },
   mounted() {
-    this.navBarEl = this.$el as HTMLElement;
-    this.startingNavBarOffset = this.navBarEl.offsetTop;
+    this.startingNavBarOffset = (this.$el as HTMLElement).offsetTop;
     window.onscroll = () => this.watchStickyNav();
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">

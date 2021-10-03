@@ -12,80 +12,73 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 import FullNavItem from "./FullNavItem.vue";
 import BackButton from "./BackButton.vue";
 
-@Component({
+export default Vue.extend({
+  name: "FullNavBar",
   components: {
     FullNavItem,
     BackButton,
   },
-})
-export default class FullNavBar extends Vue {
+  methods: {
+    updateHighlight(navItemEl: HTMLAnchorElement): void {
+      const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
+      if (!highlight) return;
+      const navBarEl: HTMLElement = navItemEl.parentElement as HTMLElement;
+      const navAElCoords = navItemEl.getBoundingClientRect();
+      const navBarCoords = navBarEl.getBoundingClientRect();
+      const coords = {
+        width: navAElCoords.width,
+        height: navBarCoords.height - 0,
+        top: 0,
+        left: navAElCoords.left - navBarCoords.left,
+      };
+      highlight.style.width = `${coords.width}px`;
+      highlight.style.height = `${coords.height}px`;
 
-  private updateHighlight(navItemEl: HTMLAnchorElement): void {
-    const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
-    if (!highlight) return;
-    const navBarEl: HTMLElement = navItemEl.parentElement as HTMLElement;
-    const navAElCoords = navItemEl.getBoundingClientRect();
-    const navBarCoords = navBarEl.getBoundingClientRect();
-    const coords = {
-      width: navAElCoords.width,
-      height: navBarCoords.height - 0,
-      top: 0,
-      left: navAElCoords.left - navBarCoords.left,
-    };
-    highlight.style.width = `${coords.width}px`;
-    highlight.style.height = `${coords.height}px`;
-
-    highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
-  }
-
-  private getActiveRouteNavElRef(): string {
-    let currRouteName: string = this.$route.name || "";
-    if (!currRouteName) return "";
-    if (currRouteName === "land") currRouteName = "aboutMe";
-    if (currRouteName === "selectedArticle") currRouteName = "articles";
-    if (currRouteName === "selectedSoftware") currRouteName = "software";
-    const navEl: string = `${currRouteName}Nav`;
-    return navEl;
-  }
-
-  private getNavElFromRef(ref: string): HTMLAnchorElement {
-    const fromRefs = this.$refs[ref] as Vue;
-    const activeNavEl: HTMLAnchorElement = fromRefs.$el as HTMLAnchorElement;
-    return activeNavEl;
-  }
-
-  private addTransitionToHighlight(): void {
-    const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
-    if (!highlight) return;
-    highlight.style.transition = "all 0.2s";
-  }
-
-  private removeTransitionFromHighlight(): void {
-    const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
-    if (!highlight) return;
-    highlight.style.transition = "";
-  }
-
-  private redrawHighlight(): void {
-    const activeRef = this.getActiveRouteNavElRef();
-    if (!activeRef) return;
-    const activeNavEl = this.getNavElFromRef(activeRef);
-    if (!activeNavEl) return;
-    this.removeTransitionFromHighlight();
-    this.updateHighlight(activeNavEl);
-    this.$nextTick(this.addTransitionToHighlight);
-  }
-
+      highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+    },
+    getActiveRouteNavElRef(): string {
+      let currRouteName: string = this.$route.name || "";
+      if (!currRouteName) return "";
+      if (currRouteName === "land") currRouteName = "aboutMe";
+      if (currRouteName === "selectedArticle") currRouteName = "articles";
+      if (currRouteName === "selectedSoftware") currRouteName = "software";
+      const navEl: string = `${currRouteName}Nav`;
+      return navEl;
+    },
+    getNavElFromRef(ref: string): HTMLAnchorElement {
+      const fromRefs = this.$refs[ref] as Vue;
+      const activeNavEl: HTMLAnchorElement = fromRefs.$el as HTMLAnchorElement;
+      return activeNavEl;
+    },
+    addTransitionToHighlight(): void {
+      const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
+      if (!highlight) return;
+      highlight.style.transition = "all 0.2s";
+    },
+    removeTransitionFromHighlight(): void {
+      const highlight: HTMLSpanElement = this.$refs.activeRouteHighlight as HTMLSpanElement;
+      if (!highlight) return;
+      highlight.style.transition = "";
+    },
+    redrawHighlight(): void {
+      const activeRef = this.getActiveRouteNavElRef();
+      if (!activeRef) return;
+      const activeNavEl = this.getNavElFromRef(activeRef);
+      if (!activeNavEl) return;
+      this.removeTransitionFromHighlight();
+      this.updateHighlight(activeNavEl);
+      this.$nextTick(this.addTransitionToHighlight);
+    },
+  },
   mounted() {
     this.redrawHighlight();
     window.addEventListener("resize", this.redrawHighlight);
-  }
-
-}
+  },
+});
 </script>
 
 <style lang="scss">

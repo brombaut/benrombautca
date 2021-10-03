@@ -9,21 +9,23 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 
-@Component
-export default class BackButton extends Vue {
-  get isVisible(): boolean {
-    const currRouteName: string = this.$route.name || "";
-    if (currRouteName === "selectedArticle") return true;
-    if (currRouteName === "selectedSoftware") return true;
-    return false;
-  }
-
-  private goBack() {
-    this.$router.go(-1);
-  }
-}
+export default Vue.extend({
+  computed: {
+    isVisible(): boolean {
+      const currRouteName: string = this.$route.name || "";
+      if (currRouteName === "selectedArticle") return true;
+      if (currRouteName === "selectedSoftware") return true;
+      return false;
+    },
+  },
+  methods: {
+    goBack(): void {
+      this.$router.go(-1);
+    },
+  },
+});
 </script>
 
 <style lang="scss">

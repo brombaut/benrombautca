@@ -10,53 +10,49 @@
           :profile="ep"/>
       </div>
     </div>
-    <NewNavBar v-if="useNewDesign"/>
-    <NavBar v-else/>
+    <NewNavBar/>
   </header>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 import appConfig from "@/app_config";
-import NavBar from "@/site-header/NavBar.vue";
 import NewNavBar from "@/site-header/NewNavBar.vue";
 import ExternalProfileIcon from "@/site-header/ExternalProfileIcon.vue";
 import ExternalProfile from "./external-profile";
 
-@Component({
+export default Vue.extend({
+  name: "SiteHeader",
   components: {
-    NavBar,
     NewNavBar,
     ExternalProfileIcon,
   },
-})
-export default class SiteHeader extends Vue {
-  private externalProfileUrls: { [key: string]: string } = {
-    linkedin: "https://www.linkedin.com/in/benjamin-rombaut/",
-    github: "https://github.com/brombaut",
-    dev: "https://dev.to/brombaut",
-    stackoverflow: "https://stackoverflow.com/users/5816686/ben",
-  };
-
-  private externalProfiles: ExternalProfile[] = [
-    new ExternalProfile("github", ["fab", "github"], this.externalProfileUrls.github),
-    new ExternalProfile("linkedin", ["fab", "linkedin"], this.externalProfileUrls.linkedin),
-    new ExternalProfile("dev", ["fab", "dev"], this.externalProfileUrls.dev),
-    new ExternalProfile("stackoverflow", ["fab", "stack-overflow"], this.externalProfileUrls.stackoverflow),
-  ]
-
-  public addBottomMargin(): void {
-    this.$el.classList.add("bottom-margin");
-  }
-
-  public removeBottomMargin(): void {
-    this.$el.classList.remove("bottom-margin");
-  }
-
-  get useNewDesign(): boolean {
-    return appConfig?.flagNewDesign;
-  }
-}
+  data() {
+    const externalProfileUrls: { [key: string]: string } = {
+      linkedin: "https://www.linkedin.com/in/benjamin-rombaut/",
+      github: "https://github.com/brombaut",
+      dev: "https://dev.to/brombaut",
+      stackoverflow: "https://stackoverflow.com/users/5816686/ben",
+    };
+    const externalProfiles: ExternalProfile[] = [
+      new ExternalProfile("github", ["fab", "github"], externalProfileUrls.github),
+      new ExternalProfile("linkedin", ["fab", "linkedin"], externalProfileUrls.linkedin),
+      new ExternalProfile("dev", ["fab", "dev"], externalProfileUrls.dev),
+      new ExternalProfile("stackoverflow", ["fab", "stack-overflow"], externalProfileUrls.stackoverflow),
+    ];
+    return {
+      externalProfiles,
+    };
+  },
+  methods: {
+    addBottomMargin(): void {
+      this.$el.classList.add("bottom-margin");
+    },
+    removeBottomMargin(): void {
+      this.$el.classList.remove("bottom-margin");
+    },
+  },
+});
 </script>
 
 <style lang="scss">

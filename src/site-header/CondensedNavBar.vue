@@ -20,25 +20,45 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue from "vue";
 
-@Component
-export default class CondensedNavBar extends Vue {
+export default Vue.extend({
+  props: {
+    mobileNavbarVisible: {
+      type: Boolean,
+      required: true,
+    },
+  },
+  methods: {
+    navigateMobile(routeName: string): void {
+      this.$emit("closeMobileNavBar");
+      this.navigate(routeName);
+    },
+    navigate(routeName: string): void {
+      if (routeName !== this.$route.path) {
+        this.$router.push(routeName);
+      }
+    },
+  },
+});
 
-  @Prop()
-  private mobileNavbarVisible!: boolean;
+// @Component
+// export default class CondensedNavBar extends Vue {
 
-  private navigateMobile(routeName: string): void {
-    this.$emit("closeMobileNavBar");
-    this.navigate(routeName);
-  }
+//   @Prop()
+//   private mobileNavbarVisible!: boolean;
 
-  private navigate(routeName: string): void {
-    if (routeName !== this.$route.path) {
-      this.$router.push(routeName);
-    }
-  }
-}
+//   private navigateMobile(routeName: string): void {
+//     this.$emit("closeMobileNavBar");
+//     this.navigate(routeName);
+//   }
+
+//   private navigate(routeName: string): void {
+//     if (routeName !== this.$route.path) {
+//       this.$router.push(routeName);
+//     }
+//   }
+// }
 </script>
 
 <style lang="scss">

@@ -12,24 +12,28 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue, { PropType } from "vue";
 import ExternalProfile from "./external-profile";
 
-@Component
-export default class ExternalProfileIcon extends Vue {
-
-  @Prop()
-  profile!: ExternalProfile;
-
-  private handleExternalProfileClicked() {
-    if (this.profile.url()) {
-      const result: Window | null = window.open(this.profile.url(), "_blank");
-      if (result) {
-        result.focus();
+export default Vue.extend({
+  name: "ExternalProfileIcon",
+  props: {
+    profile: {
+      type: Object as PropType<ExternalProfile>,
+      required: true,
+    },
+  },
+  methods: {
+    handleExternalProfileClicked() {
+      if (this.profile.url()) {
+        const result: Window | null = window.open(this.profile.url(), "_blank");
+        if (result) {
+          result.focus();
+        }
       }
-    }
-  }
-}
+    },
+  },
+});
 </script>
 
 <style lang="scss">

@@ -53,12 +53,11 @@ export default Vue.extend({
       required: true,
     },
     timelineEntities: {
-      type: Object as PropType<TimelineEntities>,
+      type: Array as PropType<TimelineEntities>,
       required: true,
     },
     showLimit: {
       type: Number,
-      required: true,
       default: 0,
     },
   },
