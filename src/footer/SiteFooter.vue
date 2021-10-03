@@ -9,13 +9,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 import lastDeployed from "./last-deployed";
 
-@Component
-export default class SiteFooter extends Vue {
-  private lastDeployed: string = lastDeployed;
-}
+export default Vue.extend({
+  name: "SiteFooter",
+  data() {
+    return {
+      lastDeployed,
+    };
+  },
+});
 </script>
 
 <style lang="scss">
