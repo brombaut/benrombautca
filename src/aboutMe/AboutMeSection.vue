@@ -12,25 +12,28 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 import uiUtils from "@/utils/ui-utils";
 import aboutMe from "./aboutMe";
 import { AboutMe } from "./about-me";
 import SectionHeader from "../shared/SectionHeader.vue";
 
-@Component({
+export default Vue.extend({
+  name: "AboutMeSection",
   components: {
     SectionHeader,
   },
-})
-export default class AboutMeSection extends Vue {
-  private aboutMe: AboutMe = aboutMe;
-
-  get imageSource() {
-    return uiUtils.loadImage(this.aboutMe.imageFileName);
-  }
-
-}
+  data() {
+    return {
+      aboutMe: aboutMe as AboutMe, // B-E-A-U-tiful
+    };
+  },
+  computed: {
+    imageSource(): any {
+      return uiUtils.loadImage(this.aboutMe.imageFileName);
+    },
+  },
+});
 </script>
 
 <style lang="scss">

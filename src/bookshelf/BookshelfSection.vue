@@ -4,7 +4,7 @@
       title="Ben's Bookshelf"
       icon="book-open"
       subtext="Books I've read and am currently reading."/>
-    <div v-if="loadingBookshelf" class="section-body">
+    <div v-if="booksLoading" class="section-body">
       <div class="loader-wrapper">
         <div class="loader"></div>
       </div>
