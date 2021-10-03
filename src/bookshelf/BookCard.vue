@@ -25,67 +25,64 @@
 </template>
 
 <script lang="ts">
+import Vue, { PropType } from "vue";
 import { Book, Shelf } from "@brombaut/types";
-import { Component, Vue, Prop } from "vue-property-decorator";
 import uiUtils from "@/utils/ui-utils";
 
-@Component
-export default class BookCard extends Vue {
-  @Prop()
-  book!: Book;
-
-  private bookCardElem!: HTMLDivElement;
-
-  get currentlyReading(): boolean {
-    return this.book.shelf === Shelf.CURRENTLYREADING;
-  }
-
-  get bookRating(): number {
-    return Number(this.book.rating);
-  }
-
-  get formattedTitle(): string {
-    const { title } = this.book;
-    if (title.length < 100) {
+export default Vue.extend({
+  name: "BookCard",
+  props: {
+    book: {
+      type: Object as PropType<Book>,
+      required: true,
+    },
+  },
+  computed: {
+    currentlyReading(): boolean {
+      return this.book.shelf === Shelf.CURRENTLYREADING;
+    },
+    bookRating(): number {
+      return Number(this.book.rating);
+    },
+    formattedTitle(): string {
+      const { title } = this.book;
+      if (title.length < 100) {
+        return title;
+      }
+      const colonIndex = title.indexOf(":");
+      if (colonIndex >= 0) {
+        return title.substring(0, colonIndex);
+      }
       return title;
-    }
-    const colonIndex = title.indexOf(":");
-    if (colonIndex >= 0) {
-      return title.substring(0, colonIndex);
-    }
-    return title;
-  }
-
-  get imageSource(): string {
-    return `${this.book.isbn13}.jpg`;
-  }
-
-  get percentDone(): number {
-    if (!this.book.onPage) return 0;
-    if (!this.book.numPages) return 0;
-    return Math.floor((this.book.onPage / this.book.numPages) * 100);
-  }
-
-  localCheckHorizontalFadeIn() {
-    uiUtils.checkHorizontalFadeIn(this.bookCardElem, this.localCheckHorizontalFadeIn);
-  }
-
-  setCurrentlyReadingProgressBarIfNecessary() {
-    if (!this.currentlyReading) {
-      return;
-    }
-    const progressBarEl = this.$refs.progressBar as HTMLDivElement;
-    const percentDone = ((this.book.onPage || 0) / this.book.numPages) * 100;
-    progressBarEl.style.width = `${percentDone}%`;
-  }
-
+    },
+    imageSource(): string {
+      return `${this.book.isbn13}.jpg`;
+    },
+    percentDone(): number {
+      if (!this.book.onPage) return 0;
+      if (!this.book.numPages) return 0;
+      return Math.floor((this.book.onPage / this.book.numPages) * 100);
+    },
+  },
+  methods: {
+    localCheckHorizontalFadeIn() {
+      uiUtils.checkHorizontalFadeIn(this.$el as HTMLDivElement, this.localCheckHorizontalFadeIn);
+    },
+    setCurrentlyReadingProgressBarIfNecessary() {
+      if (!this.currentlyReading) {
+        return;
+      }
+      const progressBarEl = this.$refs.progressBar as HTMLDivElement;
+      const percentDone = ((this.book.onPage || 0) / this.book.numPages) * 100;
+      progressBarEl.style.width = `${percentDone}%`;
+    },
+  },
   mounted() {
-    this.bookCardElem = this.$el as HTMLDivElement;
     window.addEventListener("scroll", this.localCheckHorizontalFadeIn);
     this.localCheckHorizontalFadeIn();
     this.setCurrentlyReadingProgressBarIfNecessary();
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">

@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import Vue from "vue";
 import { Book } from "@brombaut/types";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
@@ -35,55 +35,48 @@ import CachedF3Bookshelf from "./CachedF3Bookshelf";
 
 type YearBooksPair = { year: number; books: Book[] };
 
-@Component({
+export default Vue.extend({
+  name: "BookshelfSection",
   components: {
     BookCard,
     SectionHeader,
   },
-})
-export default class BookshelfSection extends Vue {
-  booksLoading = true;
-
-  constructor() {
-    super();
-    this.loadingBookshelf = true;
+  data() {
+    return {
+      booksLoading: true,
+    };
+  },
+  computed: {
+    readBooksByYear(): YearBooksPair[] {
+      if (this.booksLoading) {
+        return [];
+      }
+      const bookGroups: YearBooksPair[] = [];
+      const keyVals = CachedF3Bookshelf.readBooksGroupedByYear();
+      Object.entries(keyVals).forEach(keyVal => {
+        bookGroups.push({ year: Number(keyVal[0]), books: keyVal[1] });
+      });
+      return bookGroups.sort((a: YearBooksPair, b: YearBooksPair) => {
+        return b.year - a.year;
+      });
+    },
+    currentlyReadingBooks(): Book[] {
+      if (this.booksLoading) {
+        return [];
+      }
+      return CachedF3Bookshelf.readingBooks();
+    },
+  },
+  methods: {
+    async initBookshelf() {
+      await CachedF3Bookshelf.init();
+      this.booksLoading = false;
+    },
+  },
+  created() {
     this.initBookshelf();
-  }
-
-  async initBookshelf() {
-    await CachedF3Bookshelf.init();
-    this.booksLoading = false;
-  }
-
-  set loadingBookshelf(val: boolean) {
-    this.booksLoading = val;
-  }
-
-  get loadingBookshelf(): boolean {
-    return this.booksLoading;
-  }
-
-  get readBooksByYear(): YearBooksPair[] {
-    if (this.loadingBookshelf) {
-      return [];
-    }
-    const bookGroups: YearBooksPair[] = [];
-    const keyVals = CachedF3Bookshelf.readBooksGroupedByYear();
-    Object.entries(keyVals).forEach(keyVal => {
-      bookGroups.push({ year: Number(keyVal[0]), books: keyVal[1] });
-    });
-    return bookGroups.sort((a: YearBooksPair, b: YearBooksPair) => {
-      return b.year - a.year;
-    });
-  }
-
-  get currentlyReadingBooks(): Book[] {
-    if (this.loadingBookshelf) {
-      return [];
-    }
-    return CachedF3Bookshelf.readingBooks();
-  }
-}
+  },
+});
 </script>
 
 <style lang="scss">
