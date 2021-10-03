@@ -12,19 +12,16 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue from "vue";
 
-@Component
-export default class SectionHeader extends Vue {
-  @Prop()
-  title!: string;
-
-  @Prop()
-  icon!: string;
-
-  @Prop()
-  subtext!: string;
-}
+export default Vue.extend({
+  name: "SectionHeader",
+  props: {
+    title: String,
+    icon: String,
+    subtext: String,
+  },
+});
 </script>
 
 <style lang="scss">

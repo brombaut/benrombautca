@@ -3,13 +3,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import Vue from "vue";
 
-@Component
-export default class Tag extends Vue {
-  @Prop()
-  tag!: string;
-}
+export default Vue.extend({
+  name: "Tag",
+  props: {
+    tag: String,
+  },
+});
 </script>
 
 <style lang="scss">
