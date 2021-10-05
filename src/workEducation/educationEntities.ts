@@ -4,6 +4,7 @@ const educationEntities: Education[] = [
   {
     imageFile: "queensLogo.png",
     title: "Master of Science in Computing Candidate",
+    lab: "Software Analysis & Intelligence Lab (SAIL)",
     faculty: "School of Computing",
     institution: "Queen's University",
     location: "Kingston, Ontario",
@@ -12,6 +13,7 @@ const educationEntities: Education[] = [
   {
     imageFile: "unbLogo.png",
     title: "Bachelor of Science in Software Engineering",
+    lab: "",
     faculty: "Faculty of Computer Science / Department of Electrical and Computer Engineering",
     institution: "University of New Brunswick",
     location: "Fredericton, New Brunswick",
@@ -20,6 +22,7 @@ const educationEntities: Education[] = [
   {
     imageFile: "unbLogo.png",
     title: "Co-operative Education Program",
+    lab: "",
     faculty: "Faculty of Computer Science",
     institution: "University of New Brunswick",
     location: "Fredericton, New Brunswick",

@@ -2,7 +2,7 @@ import { Work } from "./work";
 
 const workEntities: Work[] = [
   {
-    title: "Teaching Assistant",
+    title: "Head Teaching Assistant",
     company: "Queen's University",
     time: "Sep '20 - Present",
     location: "Kingston, Ontario",

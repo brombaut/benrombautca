@@ -4,6 +4,10 @@
       <img :src="imageSource" :alt="education.imageFile" />
     </div>
     <div class="title">{{ education.title }}</div>
+    <div class="lab" v-if="education.lab">
+      <font-awesome-icon class="icon" :icon="['fas', 'vial']" />
+      {{ education.lab }}
+    </div>
     <div class="faculty">
       <font-awesome-icon class="icon" :icon="['fas', 'school']" />
       {{ education.faculty }}
