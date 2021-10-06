@@ -17,7 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^2.0.0",
-    "copy-webpack-plugin": "^5.1.2",
+    "copy-webpack-plugin": "^9.0.1",
     "core-js": "^3.11.1",
     "firebase-firestore-facade": "^1.0.1",
     "vue": "^2.6.12",
