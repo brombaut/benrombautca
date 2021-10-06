@@ -7,7 +7,7 @@
     </div>
     <img
       v-show="!imageLoading"
-      :src="imageSource"
+      :src="imageSource()"
       :alt="imageAlt"
       :class="{'circle': isCircle}"/>
   </div>
@@ -41,17 +41,17 @@ export default Vue.extend({
   computed: {
     classObject(): Object {
       return {
-        "skeleton__loader": true,
-        "circle": this.$props.isCircle,
+        skeleton__loader: true,
+        circle: this.$props.isCircle,
       };
-    },
-    imageSource(): any {
-      const result = uiUtils.loadImage(this.$props.imagePath);
-      this.imageLoading = false
-      return result;
     },
   },
   methods: {
+    imageSource(): any {
+      const result = uiUtils.loadImage(this.$props.imagePath);
+      this.imageLoading = false;
+      return result;
+    },
   },
 });
 </script>
