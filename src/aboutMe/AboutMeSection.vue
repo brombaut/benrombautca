@@ -3,7 +3,10 @@
     <SectionHeader title="About Me" icon="user" />
     <div class="section-body">
       <div class="image-container">
-        <img :src="imageSource" alt="Ben Rombaut" />
+        <SkeletonLoader
+          :imagePath="aboutMe.imageFileName"
+          imageAlt="Ben Rombaut"
+          :isCircle="true" />
       </div>
       <div class="text-container" v-html="aboutMe.description">
       </div>
@@ -17,11 +20,13 @@ import uiUtils from "@/utils/ui-utils";
 import aboutMe from "./aboutMe";
 import { AboutMe } from "./about-me";
 import SectionHeader from "../shared/SectionHeader.vue";
+import SkeletonLoader from "../shared/SkeletonLoader.vue";
 
 export default Vue.extend({
   name: "AboutMeSection",
   components: {
     SectionHeader,
+    SkeletonLoader,
   },
   data() {
     return {
@@ -73,12 +78,6 @@ export default Vue.extend({
       border: 2px solid $primaryDark;
       border-radius: 50%;
       margin: 0 32px;
-
-      img {
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-      }
     }
 
     @media only screen and (max-width: $TINY_DISPLAY_SIZE) {
