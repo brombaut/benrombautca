@@ -9,7 +9,8 @@ venvs/*
 .env.local
 .env.*.local
 
-gr_response.*
+src/bookshelf/syncer/gr_response.*
+src/bookshelf/syncer/*.js
 
 
 # Log files
