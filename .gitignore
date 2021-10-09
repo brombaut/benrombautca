@@ -2,11 +2,15 @@
 node_modules
 dist/
 commit_message.txt
+venvs/*
 
 # local env files
 .env
 .env.local
 .env.*.local
+
+gr_response.*
+
 
 # Log files
 npm-debug.log*
