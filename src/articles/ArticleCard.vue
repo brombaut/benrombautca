@@ -2,14 +2,20 @@
 <div
   class="article-card"
   @click="cardClicked">
-  <div class="dates">
-    Created {{ formatDate(article.createdAt) }} • Updated {{ formatDate(article.updatedAt) }}
+  <header>
+    <h2 class="title">{{ article.title }}</h2>
+  </header>
+  <div class='body'>
+    <div class="dates">
+      Created {{ formatDate(article.createdAt) }} • Updated {{ formatDate(article.updatedAt) }}
+    </div>
+    <div class="description"><p>{{article.description}}</p></div>
   </div>
-  <h2 class="title">{{ article.title }}</h2>
-  <div class="description"><p>{{article.description}}</p></div>
-  <div class="tags">
-    <Tag v-for="tag in article.tags" :key="tag" :tag="tag" />
-  </div>
+  <footer>
+    <div class="tags">
+      <Tag v-for="tag in article.tags" :key="tag" :tag="tag" />
+    </div>
+  </footer>
 </div>
 </template>
 
@@ -42,20 +48,44 @@ export default Vue.extend({
 </script>
 
 <style lang='scss'>
+$borderRadius: 16px;
+$horizontalPadding: 24px;
+$verticalPadding: 8px;
+
 .article-card {
-  background-color: $secondary;
-  border-radius: 16px;
+  border-radius: $borderRadius;
   margin: 12px 20px;
-  padding: 24px 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border: 1px solid $secondaryDark;
   transition: 0.1s;
+  flex: 1 1 260px;
+  height: 100%;
+
+  header {
+    width: calc(100% - 2*$horizontalPadding);
+    padding: 2*$verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
+    background-color: darken($secondary, 2%);
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+  }
+  .body {
+    width: calc(100% - 2*$horizontalPadding);
+    padding: $verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
+    background-color: $secondary;
+  }
+  footer {
+    width: calc(100% - 2*$horizontalPadding);
+    padding: $verticalPadding $horizontalPadding 2*$verticalPadding $horizontalPadding;
+    background-color: darken($secondary, 2%);
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+  }
 
   &:hover {
     cursor: pointer;
-    box-shadow: 1px 1px 5px $pFontColor;
+    box-shadow: 0.5px 0.5px 5px $pFontColor;
   }
 
   .dates {
@@ -65,6 +95,7 @@ export default Vue.extend({
 
   .title {
     color: $primary;
+    font-size: 1.4em;
   }
 
   .description {

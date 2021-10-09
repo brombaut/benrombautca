@@ -64,8 +64,10 @@ export default Vue.extend({
 
     .articles-list {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
       text-align: left;
+      justify-content: center;
     }
   }
 }
