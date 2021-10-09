@@ -1,24 +1,23 @@
-import * as fs from 'fs';
-import { Book, F3Bookshelf, FirestoreBook, Shelf } from '@brombaut/types';
-// import { firebaseConfig } from './firebase.config';
-import { FirestoreDateTranslator } from "firebase-firestore-facade";
-import { FirebaseConfigurer } from "firebase-firestore-facade";
-// import dotenv = require('dotenv');
+import * as fs from "fs";
+import { Book, F3Bookshelf, FirestoreBook, Shelf } from "@brombaut/types";
+import { FirestoreDateTranslator, FirebaseConfigurer } from "firebase-firestore-facade";
 import * as dotenv from "dotenv";
 
 dotenv.config();
 
+const PARSE_INT_RADIX = 10;
+
 const firebaseConfig: FirebaseConfigurer = {
-  apiKey: process.env.VUE_APP_API_KEY || '',
-  authDomain: process.env.VUE_APP_AUTH_DOMAIN || '',
-  projectId: process.env.VUE_APP_PROJECT_ID || '',
-  storageBucket: process.env.VUE_APP_STORAGE_BUCKET || '',
-  messagingSenderId: process.env.VUE_APP_MESSAGING_SENDER_ID || '',
-  appId: process.env.VUE_APP_APP_ID || '',
-  measurementId: process.env.VUE_APP_MEASUREMENT_ID || '',
+  apiKey: process.env.VUE_APP_API_KEY || "",
+  authDomain: process.env.VUE_APP_AUTH_DOMAIN || "",
+  projectId: process.env.VUE_APP_PROJECT_ID || "",
+  storageBucket: process.env.VUE_APP_STORAGE_BUCKET || "",
+  messagingSenderId: process.env.VUE_APP_MESSAGING_SENDER_ID || "",
+  appId: process.env.VUE_APP_APP_ID || "",
+  measurementId: process.env.VUE_APP_MEASUREMENT_ID || "",
   auth: {
-    email: process.env.VUE_APP_TEST_USER_EMAIL || '',
-    password: process.env.VUE_APP_TEST_USER_PASSWORD || '',
+    email: process.env.VUE_APP_TEST_USER_EMAIL || "",
+    password: process.env.VUE_APP_TEST_USER_PASSWORD || "",
   },
 };
 
@@ -50,7 +49,7 @@ async function main() {
   console.log("Updating F3 with synced books");
   await updateF3WithSyncedBooks(f3, existingF3Books);
   console.log("Creating new F3 books");
-  const newF3Books = createNewF3Books(f3Books, booksFromGoodreads)
+  const newF3Books = createNewF3Books(f3Books, booksFromGoodreads);
   console.log("Updating F3 with added books");
   await addNewBooksToF3(f3, newF3Books);
   console.log("Closing F3 Connection");
@@ -60,12 +59,12 @@ async function main() {
 
 function readTranslatedBooksFile() {
   // TODO: Make the working directory a command line argument or env var
-  const data = fs.readFileSync('./src/bookshelf/syncer/translated_books_from_gr.json', 'utf8');
+  const data = fs.readFileSync("./src/bookshelf/syncer/translated_books_from_gr.json", "utf8");
   return JSON.parse(data);
 }
 
 async function fetchF3Books(f3: F3Bookshelf): Promise<Book[]> {
-  const books: Book[] = await f3.get()
+  const books: Book[] = await f3.get();
   return books;
 }
 
@@ -88,23 +87,23 @@ function syncExistingF3Books(f3Books: Book[], grBooks: GRBook[]): Book[] {
     if (b.onPage !== null && grBook.on_page !== null) {
       const changedAndGROnPageIsHigher = b.onPage !== grBook.on_page && grBook.on_page > b.onPage;
       if (changedAndGROnPageIsHigher) {
-        b.onPage = grBook.on_page
+        b.onPage = grBook.on_page;
         needsSyncing = true;
       }
     }
-    if (b.rating !== parseInt(grBook.rating)) {
-      b.rating = parseInt(grBook.rating)
+    if (b.rating !== parseInt(grBook.rating, PARSE_INT_RADIX)) {
+      b.rating = parseInt(grBook.rating, PARSE_INT_RADIX);
       needsSyncing = true;
     }
 
     const grIsbnIsDifferentThanF3 = grBook.isbn13 && b.isbn13 !== grBook.isbn13;
     if (grIsbnIsDifferentThanF3) {
-      console.warn(`WARNING - ReviewID=${b.goodreads_review_id} title=${b.title} :: ISBN13 do not match :: f3.isbn13=${b.isbn13} gr.isbn13=${grBook.isbn13}`)
+      console.warn(`WARNING - ReviewID=${b.goodreads_review_id} title=${b.title} :: ISBN13 do not match :: f3.isbn13=${b.isbn13} gr.isbn13=${grBook.isbn13}`);
     }
     if (needsSyncing) {
       result.push(b);
     }
-  })
+  });
   return result;
 }
 
@@ -121,7 +120,7 @@ function createNewF3Books(f3Books: Book[], grBooks: GRBook[]): FirestoreBook[] {
     if (i < 0) {
       newGRBooks.push(grb);
     }
-  })
+  });
 
   const newFirestoreBooks: FirestoreBook[] = newGRBooks.map((grb: GRBook) => {
     let sDate = null;
@@ -133,7 +132,7 @@ function createNewF3Books(f3Books: Book[], grBooks: GRBook[]): FirestoreBook[] {
       fDate = new FirestoreDateTranslator().fromDate(new Date(grb.dateFinished)).toFirestoreDate();
     }
     return {
-      id: '',
+      id: "",
       goodreads_review_id: grb.goodreads_review_id,
       isbn13: grb.isbn13,
       title: grb.title,
@@ -145,9 +144,9 @@ function createNewF3Books(f3Books: Book[], grBooks: GRBook[]): FirestoreBook[] {
       onPage: grb.on_page,
       dateStarted: sDate,
       dateFinished: fDate,
-      rating: parseInt(grb.rating),
-    }
-  })
+      rating: parseInt(grb.rating, PARSE_INT_RADIX),
+    };
+  });
   return newFirestoreBooks;
 }
 
