@@ -110,12 +110,18 @@
     "_show": true
   },
   {
-    "_id": "oi_stats_residuals_correlation_lsr_r2",
-    "_title": "",
-    "_createdAt": "2021-10-02T01:16:09.642Z",
-    "_updatedAt": "2021-10-02T01:16:09.642Z",
-    "_description": "",
-    "_tags": [],
-    "_show": false
+    "_id": "linear_regression",
+    "_title": "📈 Linear Regression - Notes",
+    "_createdAt": "2021-10-09T15:12:33.464Z",
+    "_updatedAt": "2021-10-09T15:21:52.078Z",
+    "_description": "Notes on topics related to linear regression.",
+    "_tags": [
+      "linear-regression",
+      "residuals",
+      "correlation",
+      "statistics",
+      "notes"
+    ],
+    "_show": true
   }
 ]
