@@ -84,8 +84,20 @@ $verticalPadding: 8px;
   }
 
   &:hover {
+    $darkenPercent: 4%;
     cursor: pointer;
-    box-shadow: 0.5px 0.5px 5px $pFontColor;
+
+    header {
+      background-color: darken($secondaryDark, $darkenPercent);
+    }
+
+    body {
+      background-color: darken($secondaryLight, $darkenPercent);
+    }
+
+    footer {
+      background-color: darken($secondary, $darkenPercent);
+    }
   }
 
   .dates {
