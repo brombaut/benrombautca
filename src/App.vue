@@ -42,7 +42,7 @@ h1,h2,h3,h4,h5,h6 {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $pFontColor;
-  background: $secondary;
+  background: $aliceBlue;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,7 +63,7 @@ h1,h2,h3,h4,h5,h6 {
     z-index: 2;
     background: $secondaryLight;
     border-radius: 4px;
-    box-shadow: 1px 1px 5px $pFontColor;
+    border: 1px solid $secondaryDark;
     text-align: left;
     box-sizing: border-box;
   }

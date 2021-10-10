@@ -1,6 +1,10 @@
 
 $oldPaper: #f7f5e7;
 $benBlue: #3381db;
+$aliceBlue: #f1f5fa;
+$offWhite: #FDFDFF;
+$onyx: #393D3F;
+$silver: #C6C5B9;
 $vsCodeDullBlue: #33343C; // lighten(#1c1d25, 9%);
 $white: white;
 $fontColor: $vsCodeDullBlue;
@@ -10,7 +14,7 @@ $primary: #3381db;
 $primaryDark: darken($primary, 15%);
 $primaryDarkest: darken($primary, 25%);
 
-$secondary: $oldPaper;
+$secondary: $aliceBlue;
 $secondaryLight: lighten($secondary, 3%);
 $secondaryLightest: lighten($secondary, 20%);
 $secondaryDark: darken($secondary, 8%);

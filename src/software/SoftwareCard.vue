@@ -2,12 +2,18 @@
   <div
     class="software-card"
     @click="cardClicked">
-    <div class="dates">
-      Created {{ formatDate(software.createdAt) }} • Updated {{ formatDate(software.updatedAt) }}
+    <header>
+      <h2 class="title">{{ software.title }}</h2>
+    </header>
+    <div class="body">
+      <div class="dates">
+        Created {{ formatDate(software.createdAt) }} • Updated {{ formatDate(software.updatedAt) }}
+      </div>
+      <div class="description"><p>{{software.description}}</p></div>
     </div>
-    <h2 class="title">{{ software.title }}</h2>
-    <div class="description"><p>{{software.description}}</p></div>
-    <ViewOnAndTechUsed :software="software" />
+    <footer>
+      <ViewOnAndTechUsed :software="software" />
+    </footer>
   </div>
 </template>
 
@@ -40,16 +46,39 @@ export default Vue.extend({
 </script>
 
 <style lang='scss'>
+$borderRadius: 16px;
+$horizontalPadding: 24px;
+$verticalPadding: 8px;
+
 .software-card {
-  background-color: $secondary;
-  border-radius: 16px;
+  background-color: lighten($secondary, 2%);
+  border-radius: $borderRadius;
   margin: 12px 20px;
-  padding: 24px 32px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border: 1px solid $secondaryDark;
   transition: 0.1s;
+
+  header {
+    width: calc(100% - 2*$horizontalPadding);
+    padding: 2*$verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
+    background-color: $secondaryDark;
+    border-top-left-radius: $borderRadius;
+    border-top-right-radius: $borderRadius;
+  }
+  .body {
+    width: calc(100% - 2*$horizontalPadding);
+    padding: $verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
+    background-color: $secondaryLight;
+  }
+  footer {
+    width: calc(100% - 2*$horizontalPadding);
+    padding: $verticalPadding $horizontalPadding 2*$verticalPadding $horizontalPadding;
+    background-color: $secondary;
+    border-bottom-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+  }
 
   &:hover {
     cursor: pointer;
@@ -73,7 +102,6 @@ export default Vue.extend({
 @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
   .software-card {
     margin: 12px 20px;
-    padding: 12px 24px;
 
     .title {
       font-size: 1.5em;
@@ -87,7 +115,6 @@ export default Vue.extend({
 @media only screen and (max-width: $TINY_DISPLAY_SIZE) {
   .software-card {
     margin: 8px 8px;
-    padding: 8px 16px;
 
     .dates {
       margin: 8px 0;

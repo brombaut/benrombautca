@@ -66,19 +66,19 @@ $verticalPadding: 8px;
   header {
     width: calc(100% - 2*$horizontalPadding);
     padding: 2*$verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
-    background-color: darken($secondary, 2%);
+    background-color: $secondaryDark;
     border-top-left-radius: $borderRadius;
     border-top-right-radius: $borderRadius;
   }
   .body {
     width: calc(100% - 2*$horizontalPadding);
     padding: $verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
-    background-color: $secondary;
+    background-color: $secondaryLight;
   }
   footer {
     width: calc(100% - 2*$horizontalPadding);
     padding: $verticalPadding $horizontalPadding 2*$verticalPadding $horizontalPadding;
-    background-color: darken($secondary, 2%);
+    background-color: $secondary;
     border-bottom-left-radius: $borderRadius;
     border-bottom-right-radius: $borderRadius;
   }
@@ -112,7 +112,6 @@ $verticalPadding: 8px;
 @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
   .article-card {
     margin: 12px 20px;
-    padding: 12px 24px;
 
     .title {
       font-size: 1.5em;
@@ -126,7 +125,6 @@ $verticalPadding: 8px;
 @media only screen and (max-width: $TINY_DISPLAY_SIZE) {
   .article-card {
     margin: 8px 8px;
-    padding: 8px 16px;
 
     .dates {
       margin: 8px 0;
