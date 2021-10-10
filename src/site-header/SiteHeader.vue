@@ -28,17 +28,13 @@ export default Vue.extend({
     ExternalProfileIcon,
   },
   data() {
-    const externalProfileUrls: { [key: string]: string } = {
-      linkedin: "https://www.linkedin.com/in/benjamin-rombaut/",
-      github: "https://github.com/brombaut",
-      dev: "https://dev.to/brombaut",
-      stackoverflow: "https://stackoverflow.com/users/5816686/ben",
-    };
     const externalProfiles: ExternalProfile[] = [
-      new ExternalProfile("github", ["fab", "github"], externalProfileUrls.github),
-      new ExternalProfile("linkedin", ["fab", "linkedin"], externalProfileUrls.linkedin),
-      new ExternalProfile("dev", ["fab", "dev"], externalProfileUrls.dev),
-      new ExternalProfile("stackoverflow", ["fab", "stack-overflow"], externalProfileUrls.stackoverflow),
+      new ExternalProfile("github", ["fab", "github"], "https://www.linkedin.com/in/benjamin-rombaut/"),
+      new ExternalProfile("linkedin", ["fab", "linkedin"], "https://github.com/brombaut"),
+      new ExternalProfile("dev", ["fab", "dev"], "https://dev.to/brombaut"),
+      new ExternalProfile("stackoverflow", ["fab", "stack-overflow"], "https://stackoverflow.com/users/5816686/ben"),
+      new ExternalProfile("resume", ["fas", "portrait"], "resumes/BenRombaut_Resume.pdf"),
+      new ExternalProfile("cv", ["fas", "address-card"], "resumes/BenRombaut_CV.pdf"),
     ];
     return {
       externalProfiles,

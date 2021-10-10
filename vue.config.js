@@ -24,6 +24,11 @@ module.exports = {
         },
         {
           from: "./src/bookshelf/book-thumbnails",
+          to: "./book-thumbails/"
+        },
+        {
+          from: "./src/assets/resumes",
+          to: "./resumes/",
         },
       ]),
     ],

@@ -24,6 +24,8 @@ import {
   faSchool,
   faPenSquare,
   faVial,
+  faPortrait,
+  faAddressCard,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin, faDev, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
@@ -59,6 +61,8 @@ library.add(faDev);
 library.add(faStackOverflow);
 library.add(faPenSquare);
 library.add(faVial);
+library.add(faPortrait);
+library.add(faAddressCard);
 
 // eslint-disable-next-line import/prefer-default-export
 export const bus = new Vue();

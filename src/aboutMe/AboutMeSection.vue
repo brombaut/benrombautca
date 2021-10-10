@@ -16,7 +16,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import uiUtils from "@/utils/ui-utils";
 import aboutMe from "./aboutMe";
 import { AboutMe } from "./about-me";
 import SectionHeader from "../shared/SectionHeader.vue";
@@ -32,11 +31,6 @@ export default Vue.extend({
     return {
       aboutMe: aboutMe as AboutMe, // B-E-A-U-tiful
     };
-  },
-  computed: {
-    imageSource(): any {
-      return uiUtils.loadImage(this.aboutMe.imageFileName);
-    },
   },
 });
 </script>

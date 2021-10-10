@@ -56,7 +56,7 @@ export default Vue.extend({
       return title;
     },
     imageSource(): string {
-      return `${this.book.isbn13}.jpg`;
+      return `book-thumbails/${this.book.isbn13}.jpg`;
     },
     percentDone(): number {
       if (!this.book.onPage) return 0;

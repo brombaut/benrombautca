@@ -46,7 +46,7 @@ export default Vue.extend({
 </script>
 
 <style lang='scss'>
-$borderRadius: 16px;
+$borderRadius: 4px;
 $horizontalPadding: 24px;
 $verticalPadding: 8px;
 
