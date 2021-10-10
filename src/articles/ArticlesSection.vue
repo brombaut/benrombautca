@@ -5,14 +5,12 @@
       icon="pen-square"
       subtext="A collection of how-to guides and notes I've written on different topics, mostly so that I can use them as references later."/>
     <div class="section-body">
-      <div id="tags-filter" v-if="false">
-        <h3 class='header'>Tags Filter</h3>
-        <hr>
-        <div class="tags-filter__container">
-          <Tag v-for="tag in listOfUniqueTags" :key="tag" :tag="tag" />
-        </div>
+      <div class="articles-table-container" v-if="tableView">
+        <ArticlesTable
+          :articles=articlesToDisplay
+          @clicked="articleClicked" />
       </div>
-      <div class="articles-list">
+      <div class="articles-cards-container" v-else>
         <ArticleCard
           v-for="article in articlesToDisplay"
           :key="article.id"
@@ -27,7 +25,7 @@
 import Vue from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import ArticleCard from "./ArticleCard.vue";
-import Tag from "@/shared/Tag.vue";
+import ArticlesTable from "./ArticlesTable.vue";
 import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
 
 export default Vue.extend({
@@ -35,10 +33,11 @@ export default Vue.extend({
   components: {
     SectionHeader,
     ArticleCard,
-    Tag,
+    ArticlesTable,
   },
   data() {
     return {
+      tableView: true,
       authoredArticles: new AuthoredArticlesProxy().authoredArticles as AuthoredArticle[],
       selectedArticle: null as (AuthoredArticle | null),
     };
@@ -52,6 +51,7 @@ export default Vue.extend({
         });
     },
     listOfUniqueTags(): string[] {
+      // TODO: Use it or remove it
       const arrayOfTagsArrays: string[][] = this.authoredArticles.map((aa: AuthoredArticle) => aa.tags);
       type TagCount = {
         tag: string,
@@ -108,7 +108,7 @@ export default Vue.extend({
       }
     }
 
-    .articles-list {
+    .articles-cards-container {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
