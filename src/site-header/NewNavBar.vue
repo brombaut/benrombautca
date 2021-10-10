@@ -12,7 +12,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-// import SiteHeader from "./SiteHeader.vue";
 import FullNavBar from "./FullNavBar.vue";
 import CondensedNavBar from "./CondensedNavBar.vue";
 

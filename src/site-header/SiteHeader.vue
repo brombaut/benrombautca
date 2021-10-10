@@ -16,7 +16,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import appConfig from "@/app_config";
 import NewNavBar from "@/site-header/NewNavBar.vue";
 import ExternalProfileIcon from "@/site-header/ExternalProfileIcon.vue";
 import ExternalProfile from "./external-profile";
@@ -29,12 +28,12 @@ export default Vue.extend({
   },
   data() {
     const externalProfiles: ExternalProfile[] = [
-      new ExternalProfile("github", ["fab", "github"], "https://www.linkedin.com/in/benjamin-rombaut/"),
-      new ExternalProfile("linkedin", ["fab", "linkedin"], "https://github.com/brombaut"),
-      new ExternalProfile("dev", ["fab", "dev"], "https://dev.to/brombaut"),
-      new ExternalProfile("stackoverflow", ["fab", "stack-overflow"], "https://stackoverflow.com/users/5816686/ben"),
-      new ExternalProfile("resume", ["fas", "portrait"], "resumes/BenRombaut_Resume.pdf"),
-      new ExternalProfile("cv", ["fas", "address-card"], "resumes/BenRombaut_CV.pdf"),
+      new ExternalProfile("GitHub", ["fab", "github"], "https://www.linkedin.com/in/benjamin-rombaut/"),
+      new ExternalProfile("LinkedIn", ["fab", "linkedin"], "https://github.com/brombaut"),
+      new ExternalProfile("Dev.to", ["fab", "dev"], "https://dev.to/brombaut"),
+      new ExternalProfile("Stack Overflow", ["fab", "stack-overflow"], "https://stackoverflow.com/users/5816686/ben"),
+      new ExternalProfile("Resume", ["fas", "portrait"], "resumes/BenRombaut_Resume.pdf"),
+      new ExternalProfile("CV", ["fas", "address-card"], "resumes/BenRombaut_CV.pdf"),
     ];
     return {
       externalProfiles,
@@ -63,7 +62,7 @@ export default Vue.extend({
   align-items: center;
 
   .banner {
-    padding: 24px 0;
+    padding: 24px 0 12px 0px;
   }
 
   h1 {

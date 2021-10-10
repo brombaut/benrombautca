@@ -1,14 +1,16 @@
 <template>
-  <a
-    class="external-profile-link"
-    :href="profile.url()"
-    @click.stop.prevent="handleExternalProfileClicked()">
-    <div class="hover-background"></div>
-    <font-awesome-icon
-      class="icon"
-      :icon="profile.icon()"
-    />
-  </a>
+  <div class="external-profile-link">
+    <a
+      class="link"
+      :href="profile.url()"
+      @click.stop.prevent="handleExternalProfileClicked()">
+      <font-awesome-icon
+        class="icon"
+        :icon="profile.icon()"
+      />
+    </a>
+    <div class="label">{{ profile.id() }}</div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -41,27 +43,25 @@ export default Vue.extend({
   margin: 0 16px;
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 3em;
   width: 3em;
   font-size: 1em;
 
-  .hover-background {
-    background-color: $primaryDarkest;
-    border-radius: 50%;
-    position: absolute;
-    height: 0;
-    width: 0;
-    transition: 0.3s;
-  }
-
   .icon{
+    margin: 8px 0px;
     color: inherit;
     transition: 0.3s;
     color: $secondary;
     z-index: 1;
     font-size: 2em;
+  }
+
+  .label {
+    white-space: nowrap;
+    opacity: 0;
+    transition: 0.1s all ease-in;
   }
 
   &:hover {
@@ -71,17 +71,23 @@ export default Vue.extend({
       color: $secondaryDark;
     }
 
-    .hover-background {
-      height: 100%;
-      width: 100%;
+    .label {
+      opacity: 1;
     }
   }
 }
 
-  @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
+@media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
+  .external-profile-link {
+    font-size: 0.8em;
+    margin: 0 12px;
+  }
+}
+
+  @media only screen and (max-width: $TINY_DISPLAY_SIZE) {
     .external-profile-link {
-      font-size: 0.8em;
-      margin: 0 12px;
+      font-size: 0.6em;
+      margin: 0 6px;
     }
   }
 </style>
