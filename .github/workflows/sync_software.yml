@@ -1,4 +1,4 @@
-name: Sync READMEs from Software Projects
+name: software-syncer
 on:
   workflow_dispatch:
 

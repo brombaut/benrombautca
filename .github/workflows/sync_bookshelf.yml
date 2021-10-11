@@ -1,4 +1,4 @@
-name: Sync F3 to Goodreads
+name: bookshelf-syncer
 on:
   schedule:
     # * is a special character in YAML so you have to quote this string
