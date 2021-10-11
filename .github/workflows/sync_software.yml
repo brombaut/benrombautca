@@ -16,4 +16,4 @@ jobs:
       - name: Run Software Syncer
         run: npm run sync-software
       - name: Commit changes (if they exist)
-        run: git add -A && git commit -m "Syncing software articles"
+        run: git add -A && git commit -m "Syncing software articles" && git push
