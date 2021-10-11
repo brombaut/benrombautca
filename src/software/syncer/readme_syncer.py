@@ -6,6 +6,7 @@ import logging
 import pypandoc
 
 from argparse import ArgumentParser
+from pypandoc.pandoc_download import download_pandoc
 
 logging.basicConfig(
     format='%(asctime)s :: %(message)s',
@@ -45,6 +46,11 @@ SOFTWARES = [
 
 
 def run():
+    try:
+        download_pandoc()
+    except Exception as e:
+        logging.error("")
+        raise e
     logging.info("Parsing args...")
     meta_file_path = args.software_meta_file
     logging.info(f"meta_file_path={meta_file_path}")

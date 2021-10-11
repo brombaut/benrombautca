@@ -18,5 +18,8 @@ pip install -r ./src/software/syncer/requirements.txt;
 echo "Running goodreads_translator.py"
 python3 ./src/software/syncer/readme_syncer.py --software-meta-file ./src/software/software_articles_meta.json --software-content-file ./src/software/software_articles_content.json;
 
+echo "Delete any pandoc* downloads"
+rm pandoc*
+
 echo "Deactivate venv"
 deactivate;
