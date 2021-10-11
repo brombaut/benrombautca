@@ -21,5 +21,15 @@ python3 ./src/software/syncer/readme_syncer.py --software-meta-file ./src/softwa
 echo "Delete any pandoc* downloads"
 rm pandoc*
 
+if [ -z "$(git status --porcelain)" ]; then 
+  # Working directory clean
+  echo "No changes to push"
+else 
+  # Uncommitted changes
+  git add -A;
+  git commit -m "Syncing software articles";
+  git push;
+fi
+
 echo "Deactivate venv"
 deactivate;
