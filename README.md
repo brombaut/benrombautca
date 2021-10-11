@@ -1,4 +1,4 @@
-# Ben Rombaut's Personal Website - Test
+# Ben Rombaut's Personal Website
 
 [![Build and Deploy](https://github.com/brombaut/benrombautca/actions/workflows/gh_pages_deploy.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/gh_pages_deploy.yml)
 
@@ -16,7 +16,7 @@ Showcases books I've read and am currently reading. This is built using the [Goo
 
 #### Future Work
 
-- **Merge Bookshelf-Syncer into this repo**  
+- **✅ Merge Bookshelf-Syncer into this repo**  
   Right now, the code for syncing my bookshelf on Goodreads and my own cloud database is in another project. The plan is to move the code under this directory, and set up a GitHub Action cron for this repo to sync the two.
 
 ### **Articles**
@@ -36,12 +36,12 @@ Showcases the README files of different software projects I've built. This proce
 
 #### Future Work
 
-- **Merge Software-Syncer into this repo**  
+- **✅ Merge Software-Syncer into this repo**  
   Right now, the code for syncing the READMEs from other software projects is in another repo (which I call _Software-Syncer_), and I have to manually run the script on my local machine to update the converted HTML README files here. The plan is to move the code under this directory, and set up a dispatchable GitHub Action that gets each projects README content from the GitHub repo, converts it to HTML, and syncs the version for this site.
 
 ### **General Future Work**
 
 - **Migrate to Vue 3**  
   I'm currently using Vue 2, but it's on my radar to update all my dependencies, including moving to using Vue 3.
-- **Add Resume & CV PDFs**  
+- **✅ Add Resume & CV PDFs**  
   Have the PDFs available in the external profiles section
