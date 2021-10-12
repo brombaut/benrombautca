@@ -59,6 +59,7 @@ export default Vue.extend({
   border-collapse: collapse;
   thead {
     background-color: $secondaryDarkest;
+    border: 1px solid $secondaryDark;
     color: $hFontColor;
     tr {
       th {
@@ -71,6 +72,10 @@ export default Vue.extend({
 
     tr {
       border: 1px solid $secondaryDark;
+
+      &:nth-child(2n) {
+        background-color: $secondaryLight;
+      }
 
       td {
         padding: 16px 20px;

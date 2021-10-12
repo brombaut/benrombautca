@@ -58,9 +58,9 @@ export default Vue.extend({
 <style lang="scss">
 .tag {
   font-size: 0.9em;
-  font-weight: bold;
+  font-weight: normal;
   margin: 4px 0;
-  margin-right: 12px;
+  margin-right: 8px;
   padding: 6px 8px;
   border-radius: 6px;
 }
