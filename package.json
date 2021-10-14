@@ -61,7 +61,8 @@
       "parser": "@typescript-eslint/parser"
     },
     "ignorePatterns": [
-      "f3_syncer.ts"
+      "f3_syncer.ts",
+      "f3_syncer.js"
     ],
     "rules": {
       "import/no-unresolved": 0,
