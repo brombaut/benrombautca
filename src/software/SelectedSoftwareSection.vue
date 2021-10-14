@@ -1,8 +1,20 @@
 <template>
   <section id="selected-software">
     <SectionHeader :title="selectedSoftware.title" icon="" :subtext="selectedSoftware.description"/>
-    <ViewOnAndTechUsed :software="selectedSoftware" />
     <div class="meta-container">
+      <div class="tech-used">
+        <TechUsedIcon
+          v-for="tech in selectedSoftware.techUsed"
+          :key="tech._id"
+          :tech=tech />
+      </div>
+      <div class="external-profiles">
+        <ExternalRepoIcon
+          v-for="repo in selectedSoftware.externalRepos"
+          :key="repo._id"
+          :externalRepo="repo"
+          :verbose="true" />
+      </div>
       <div class="dates">
         Created {{ formatDate(selectedSoftware.createdAt) }} • Updated {{ formatDate(selectedSoftware.updatedAt) }}
       </div>
@@ -16,8 +28,10 @@
 <script lang="ts">
 import Vue from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
-import ViewOnAndTechUsed from "./ViewOnAndTechUsed.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
+import TechUsedIcon from "./TechUsedIcon.vue";
+import ExternalRepoIcon from "./ExternalRepoIcon.vue";
+
 import { SoftwareArticle, SoftwareArticlesProxy } from "./SoftwareArticlesProxy";
 
 export default Vue.extend({
@@ -25,7 +39,8 @@ export default Vue.extend({
   components: {
     SectionHeader,
     GitHubMarkdown,
-    ViewOnAndTechUsed,
+    TechUsedIcon,
+    ExternalRepoIcon,
   },
   data() {
     return {
@@ -62,8 +77,6 @@ export default Vue.extend({
   align-items: flex-start;
 
   .section-header {
-    margin-bottom: 4px;
-
     .section-title {
       line-height: 1.5em;
     }
@@ -73,11 +86,20 @@ export default Vue.extend({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
-    .dates {
-      margin: 0px 0;
+    .tech-used,
+    .external-profiles {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .dates,
+    .tech-used,
+    .external-profiles {
+      margin: 6px 0px;
     }
 
   }

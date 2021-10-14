@@ -12,14 +12,14 @@
         "_imagePath": "github_icon.png",
         "_url": "https://github.com/brombaut/firebase-firestore-facade",
         "_title": "GitHub",
-        "_hoverText": "View on GitHub"
+        "_hoverText": "Source Code"
       },
       {
         "_id": "npm",
         "_imagePath": "npm_icon.png",
         "_url": "https://www.npmjs.com/package/firebase-firestore-facade",
         "_title": "NPM",
-        "_hoverText": "View on NPM"
+        "_hoverText": "Package"
       }
     ],
     "_techUsed": [
@@ -28,6 +28,18 @@
         "_imagePath": "typescript_icon.png",
         "_title": "TypeScript",
         "_hoverText": "TypeScript"
+      },
+      {
+        "_id": "node",
+        "_imagePath": "node_icon.png",
+        "_title": "Node",
+        "_hoverText": "Node"
+      },
+      {
+        "_id": "firebase",
+        "_imagePath": "firebase_icon.png",
+        "_title": "Firebase",
+        "_hoverText": "Firebase"
       }
     ]
   },
@@ -44,14 +56,14 @@
         "_imagePath": "github_icon.png",
         "_url": "https://github.com/brombaut/article-scraper",
         "_title": "GitHub",
-        "_hoverText": "View on GitHub"
+        "_hoverText": "Source Code"
       },
       {
         "_id": "npm",
         "_imagePath": "npm_icon.png",
         "_url": "https://www.npmjs.com/package/article_scraper",
         "_title": "NPM",
-        "_hoverText": "View on NPM"
+        "_hoverText": "Package"
       }
     ],
     "_techUsed": [
@@ -60,6 +72,12 @@
         "_imagePath": "typescript_icon.png",
         "_title": "TypeScript",
         "_hoverText": "TypeScript"
+      },
+      {
+        "_id": "node",
+        "_imagePath": "node_icon.png",
+        "_title": "Node",
+        "_hoverText": "Node"
       }
     ]
   },
@@ -76,7 +94,7 @@
         "_imagePath": "github_icon.png",
         "_url": "https://github.com/brombaut/benrombautca",
         "_title": "GitHub",
-        "_hoverText": "View on GitHub"
+        "_hoverText": "Source Code"
       }
     ],
     "_techUsed": [
@@ -91,6 +109,12 @@
         "_imagePath": "typescript_icon.png",
         "_title": "TypeScript",
         "_hoverText": "TypeScript"
+      },
+      {
+        "_id": "python",
+        "_imagePath": "python_icon.png",
+        "_title": "Python",
+        "_hoverText": "Python"
       }
     ]
   }

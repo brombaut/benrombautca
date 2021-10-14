@@ -4,15 +4,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-
-class TagColor {
-  backgroundColor: string;
-  color: string;
-  constructor(backgroundColor: string, color: string) {
-    this.backgroundColor = backgroundColor;
-    this.color = color;
-  }
-}
+import TagColor from "./TagColor";
 
 export default Vue.extend({
   name: "Tag",
