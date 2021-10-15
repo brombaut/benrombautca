@@ -47,8 +47,7 @@
     "_updatedAt": "2021-06-30T13:26:44.333Z",
     "_description": "Notes about different topics in statistics from the 'Practical Statistics for Data Scientists' book.",
     "_tags": [
-      "statistics",
-      "notes"
+      "statistics"
     ],
     "_show": true
   },
@@ -61,7 +60,6 @@
     "_tags": [
       "design-patterns",
       "software-architecture",
-      "notes",
       "example-repo"
     ],
     "_show": true
@@ -119,8 +117,34 @@
       "linear-regression",
       "residuals",
       "correlation",
-      "statistics",
-      "notes"
+      "statistics"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "shell_script_utilities",
+    "_title": "💻 Shell Script Utilities",
+    "_createdAt": "2021-10-14T21:27:40.056Z",
+    "_updatedAt": "2021-10-15T01:45:45.641Z",
+    "_description": "Quick reference for common programs and commands used on the command line.",
+    "_tags": [
+      "bash",
+      "command-line",
+      "linux"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "tensorflow_overview",
+    "_title": "📖 TensorFlow API Overview",
+    "_createdAt": "2021-10-15T00:10:35.201Z",
+    "_updatedAt": "2021-10-15T00:25:17.196Z",
+    "_description": "A high-level overview of the TensorFlow API.",
+    "_tags": [
+      "tensorflow",
+      "machine-learning",
+      "deep-learning",
+      "software-design"
     ],
     "_show": true
   }
