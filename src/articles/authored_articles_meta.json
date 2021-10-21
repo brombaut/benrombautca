@@ -147,5 +147,19 @@
       "software-design"
     ],
     "_show": true
+  },
+  {
+    "_id": "progress_bars_in_jupyter",
+    "_title": "🔄 Progress Bars in Jupyter",
+    "_createdAt": "2021-10-21T21:56:58.670Z",
+    "_updatedAt": "2021-10-21T22:10:30.293Z",
+    "_description": "",
+    "_tags": [
+      "pandas",
+      "jupyter",
+      "python",
+      "data-analysis"
+    ],
+    "_show": true
   }
 ]

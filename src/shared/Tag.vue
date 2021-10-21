@@ -47,6 +47,10 @@ export default Vue.extend({
       case ("machine-learning"): return new TagColor("rgb(206, 28, 57)", "rgb(247, 247, 247)");
       case ("deep-learning"): return new TagColor("rgb(71, 141, 193)", "rgb(210, 99, 165)");
       case ("software-design"): return new TagColor("rgb(51, 84, 108)", "rgb(247, 247, 247)");
+      case ("pandas"): return new TagColor("#130654", "rgb(247, 247, 247)");
+      case ("jupyter"): return new TagColor("#E46E2E", "rgb(51, 51, 51)");
+      case ("data-analysis"): return new TagColor("rgb(237, 21, 86)", "rgb(247, 247, 247)");
+      case ("python"): return new TagColor("#4b8bbe", "#ffd43b");
       default: return new TagColor("#1d5ca4", "#f1f5fa");
       }
     },
