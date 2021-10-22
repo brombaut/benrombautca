@@ -511,6 +511,24 @@
       }
     }
 
+    &.python {
+      .im {
+        color: #bd5193;
+      }
+      .co {
+        color: #7c7c7c;
+      }
+      .op {
+        color: #bd5193;
+      }
+      .kw {
+        color: #5c9cd4;
+      }
+      .dv {
+        color: #d39a62;
+      }
+    }
+
     &.yaml {
       .fu {
         color: #bd5193;
