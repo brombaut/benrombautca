@@ -42,7 +42,7 @@ export default Vue.extend({
       case ("linear-regression"): return new TagColor("rgb(34, 34, 34)", "rgb(97, 218, 246)");
       case ("bash"): return new TagColor("rgb(163, 45, 42)", "rgb(255, 255, 255)");
       case ("command-line"): return new TagColor("#282828", "#33ff33");
-      case ("linux"): return new TagColor("rgb(23, 88, 135)", "rgb(33, 34, 36)");
+      case ("linux"): return new TagColor("rgb(23, 88, 135)", "rgb(247, 247, 247)");
       case ("tensorflow"): return new TagColor("rgb(247, 247, 247)", "rgb(230, 139, 35)");
       case ("machine-learning"): return new TagColor("rgb(206, 28, 57)", "rgb(247, 247, 247)");
       case ("deep-learning"): return new TagColor("rgb(71, 141, 193)", "rgb(210, 99, 165)");

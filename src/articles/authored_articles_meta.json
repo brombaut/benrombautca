@@ -161,5 +161,16 @@
       "data-analysis"
     ],
     "_show": true
+  },
+  {
+    "_id": "linux_directory_hierarchy_essentials",
+    "_title": "📂 Linux Directory Hierarchy Essentials",
+    "_createdAt": "2021-10-23T23:33:24.305Z",
+    "_updatedAt": "2021-10-23T23:33:24.305Z",
+    "_description": "",
+    "_tags": [
+      "linux"
+    ],
+    "_show": true
   }
 ]
