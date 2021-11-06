@@ -51,6 +51,7 @@ export default Vue.extend({
       case ("jupyter"): return new TagColor("#E46E2E", "rgb(51, 51, 51)");
       case ("data-analysis"): return new TagColor("rgb(237, 21, 86)", "rgb(247, 247, 247)");
       case ("python"): return new TagColor("#4b8bbe", "#ffd43b");
+      case ("scikit-learn"): return new TagColor("rgb(240, 149, 56)", "rgb(50, 148, 199)");
       default: return new TagColor("#1d5ca4", "#f1f5fa");
       }
     },

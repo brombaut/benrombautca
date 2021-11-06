@@ -172,5 +172,18 @@
       "linux"
     ],
     "_show": true
+  },
+  {
+    "_id": "principal_component_analysis",
+    "_title": "🔍 Principal Component Analysis",
+    "_createdAt": "2021-11-06T14:38:54.300Z",
+    "_updatedAt": "2021-11-06T14:42:32.053Z",
+    "_description": "",
+    "_tags": [
+      "scikit-learn",
+      "machine-learning",
+      "statistics"
+    ],
+    "_show": true
   }
 ]
