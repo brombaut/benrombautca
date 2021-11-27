@@ -2,6 +2,9 @@
   <header class="new-nav-bar header-dark">
     <div class="wrapper">
       <FullNavBar />
+      <div class='condensed-navbar-back-button'>
+        <BackButton />
+      </div>
       <div class="condensed-navbar-icon">
         <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" @click="toggleMobileNavBar" />
       </div>
@@ -14,6 +17,7 @@
 import Vue from "vue";
 import FullNavBar from "./FullNavBar.vue";
 import CondensedNavBar from "./CondensedNavBar.vue";
+import BackButton from "./BackButton.vue";
 
 interface SiteHeader {
   addBottomMargin(): void;
@@ -25,6 +29,7 @@ export default Vue.extend({
   components: {
     FullNavBar,
     CondensedNavBar,
+    BackButton,
   },
   data() {
     return {
@@ -77,6 +82,10 @@ export default Vue.extend({
     justify-content: center;
     position: relative;
 
+    .condensed-navbar-back-button {
+      display: none;
+    }
+
     .condensed-navbar-icon {
       display: none;
       align-items: center;
@@ -96,6 +105,10 @@ export default Vue.extend({
 
       .full-navbar {
         display: none;
+      }
+
+      .condensed-navbar-back-button {
+        display: inline;
       }
 
       .condensed-navbar-icon {
