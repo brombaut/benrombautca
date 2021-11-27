@@ -43,17 +43,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Cookies from "js-cookie";
 import SectionHeader from "../shared/SectionHeader.vue";
 
 export default Vue.extend({
   name: "MarathonSection",
   components: {
     SectionHeader,
-  },
-  beforeCreate() {
-    Cookies.set("sp", "4f0c95a0-a60a-44e7-be05-e63f13156116", { secure: true, sameSite: "None" });
-    Cookies.set("_strava4_session", "4f0c95a0-a60a-44e7-be05-e63f13156116", { secure: true, sameSite: "None" });
   },
 });
 </script>
