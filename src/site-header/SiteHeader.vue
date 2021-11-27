@@ -53,7 +53,7 @@ export default Vue.extend({
 <style lang="scss">
 
 .bottom-margin {
-  margin-bottom: 56px;
+  margin-bottom: 42px; // Hight of the navbar - TODO: Change this to query the nav height and set the bottom maring style
 }
 #site-header {
   width: 100%;
