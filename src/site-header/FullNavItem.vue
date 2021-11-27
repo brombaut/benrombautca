@@ -35,14 +35,14 @@ export default Vue.extend({
 
 <style lang="scss">
 .full-nav-item {
-  padding-top: 20px;
-  padding-bottom: 12px;
-  padding-left: 28px;
-  padding-right: 28px;
+  padding: 12px 16px 8px 16px;
+  font-size: 0.9em;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-weight: bold;
+  white-space: nowrap;
+  font-size: 0.9em;
 
   .underline {
     background: white;
@@ -66,13 +66,6 @@ export default Vue.extend({
     .underline {
       width: 100%;
     }
-  }
-}
-
-@media only screen and (max-width: $TINY_DISPLAY_SIZE) {
-  .full-nav-item {
-    padding: 8px 16px;
-    font-size: 0.9em;
   }
 }
 

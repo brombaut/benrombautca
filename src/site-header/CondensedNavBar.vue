@@ -1,20 +1,39 @@
 <template>
   <nav class="condensed-navbar" ref="mobileNavbar" :class="{ showNavBar: mobileNavbarVisible }">
     <a @click="navigateMobile('/about-me')">
+      <font-awesome-icon
+        class='active-icon'
+        :class="{active: routeIsActive('aboutMe')}"
+        :icon="['fas', 'chevron-right']"/>
       <span>About Me</span>
-      <span class="underline"></span>
     </a>
     <a @click="navigateMobile('/bookshelf')">
+      <font-awesome-icon
+        class='active-icon'
+        :class="{active: routeIsActive('bookshelf')}"
+        :icon="['fas', 'chevron-right']"/>
       <span>Bookshelf</span>
-      <span class="underline"></span>
     </a>
     <a @click="navigateMobile('/articles')">
+      <font-awesome-icon
+        class='active-icon'
+        :class="{active: routeIsActive('articles')}"
+        :icon="['fas', 'chevron-right']"/>
       <span>Articles</span>
-      <span class="underline"></span>
     </a>
     <a @click="navigateMobile('/software')">
+      <font-awesome-icon
+        class='active-icon'
+        :class="{active: routeIsActive('software')}"
+        :icon="['fas', 'chevron-right']"/>
       <span>Software</span>
-      <span class="underline"></span>
+    </a>
+    <a @click="navigateMobile('/marathon-22')">
+      <font-awesome-icon
+        class='active-icon'
+        :class="{active: routeIsActive('marathon-22')}"
+        :icon="['fas', 'chevron-right']"/>
+      <span>Marathon '22</span>
     </a>
   </nav>
 </template>
@@ -39,6 +58,13 @@ export default Vue.extend({
         this.$router.push(routeName);
       }
     },
+    routeIsActive(routeName: string): boolean {
+      switch (routeName) {
+      case ("articles"): return this.$route.name === routeName || this.$route.name === "selectedArticle";
+      case ("software"): return this.$route.name === routeName || this.$route.name === "selectedSoftware";
+      default: return this.$route.name === routeName;
+      }
+    },
   },
 });
 </script>
@@ -48,12 +74,12 @@ export default Vue.extend({
   display: none;
   position: absolute;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  padding: 0px 16px;
   z-index: 99;
   width: 100%;
   top: 100%;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
+  justify-content: flex-end;
   background: $primaryDark;
 
   &.showNavBar {
@@ -61,11 +87,23 @@ export default Vue.extend({
   }
 
   a {
-    padding: 12px 8px;
+    padding: 12px 24px;
     font-weight: bold;
-    width: 100%;
-    border-bottom: 1px solid $primaryDarkest;
-    border-top: 1px solid $primaryDarkest;
+
+    .active-icon {
+      margin-right: 4px;
+      display: none;
+
+      &.active {
+        display: inline;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: $SMALL_DISPLAY_SIZE) {
+  .condensed-navbar.showNavBar {
+    display: none;
   }
 }
 

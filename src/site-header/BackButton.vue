@@ -36,10 +36,8 @@ export default Vue.extend({
   align-items: center;
   font-weight: bold;
   box-sizing: border-box;
-  padding-top: 20px;
-  padding-bottom: 12px;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 12px 12px 12px 12px;
+  font-size: 0.9em;
   left: 0;
 
   .back-button {
@@ -78,9 +76,10 @@ export default Vue.extend({
   }
 }
 
-@media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
+@media only screen and (max-width: $MEDIUM_DISPLAY_SIZE) {
   .back-button-wrapper {
-    display: none;
+    font-size: 0.9em;
+    padding-top: 12px;
   }
 }
 

@@ -91,7 +91,7 @@ export default Vue.extend({
       }
     }
 
-    @media only screen and (max-width: $PHONE_DISPLAY_SIZE) {
+    @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
       justify-content: flex-end;
 
       .full-navbar {

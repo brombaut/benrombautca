@@ -1,3 +1,3 @@
 export default {
-  flagNewDesign: process.env.VUE_APP_FLAG_NEW_DESIGN === "true",
+  flagMarathon: process.env.VUE_APP_FLAG_MARATHON === "true",
 };

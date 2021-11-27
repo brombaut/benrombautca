@@ -10,6 +10,7 @@ import {
   faBriefcase,
   faCaretDown,
   faChevronLeft,
+  faChevronRight,
   faMapMarkerAlt,
   faCalendar,
   faBuilding,
@@ -26,6 +27,7 @@ import {
   faVial,
   faPortrait,
   faAddressCard,
+  faRunning,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin, faDev, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
@@ -45,6 +47,7 @@ library.add(faGraduationCap);
 library.add(faBriefcase);
 library.add(faCaretDown);
 library.add(faChevronLeft);
+library.add(faChevronRight);
 library.add(faMapMarkerAlt);
 library.add(faCalendar);
 library.add(faBuilding);
@@ -63,6 +66,7 @@ library.add(faPenSquare);
 library.add(faVial);
 library.add(faPortrait);
 library.add(faAddressCard);
+library.add(faRunning);
 
 // eslint-disable-next-line import/prefer-default-export
 export const bus = new Vue();

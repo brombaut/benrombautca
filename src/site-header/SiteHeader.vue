@@ -67,7 +67,7 @@ export default Vue.extend({
 
   h1 {
     margin: 8px 0;
-    font-size: 2.5em;
+    font-size: 2em;
   }
 
   h4 {
@@ -83,9 +83,6 @@ export default Vue.extend({
   @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
     .banner {
       padding: 16px 0;
-    }
-    h1 {
-      font-size: 2.5rem;
     }
 
     h4 {
