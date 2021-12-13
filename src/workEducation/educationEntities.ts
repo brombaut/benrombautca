@@ -3,7 +3,7 @@ import { Education } from "./education";
 const educationEntities: Education[] = [
   {
     imageFile: "queensLogo.png",
-    title: "Master of Science in Computing Candidate",
+    title: "Master of Science Candidate, Computing",
     lab: "Software Analysis & Intelligence Lab (SAIL)",
     faculty: "School of Computing",
     institution: "Queen's University",
@@ -12,7 +12,7 @@ const educationEntities: Education[] = [
   },
   {
     imageFile: "unbLogo.png",
-    title: "Bachelor of Science in Software Engineering",
+    title: "Bachelor of Science, Software Engineering",
     lab: "",
     faculty: "Faculty of Computer Science / Department of Electrical and Computer Engineering",
     institution: "University of New Brunswick",

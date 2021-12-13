@@ -4,17 +4,21 @@
       <img :src="imageSource" :alt="work.imageFile" />
     </div>
     <div class="title">{{ work.title }}</div>
+    <div class="team" v-if="work.team">
+      <font-awesome-icon class="icon" :icon="['fas', 'users']" />
+      {{ work.team }}
+    </div>
     <div class="company">
       <font-awesome-icon class="icon" :icon="['fas', 'building']" />
       <a :href="work.link" target="_blank">{{ work.company }}</a>
     </div>
-    <div class="time">
-      <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
-      {{ work.time }}
-    </div>
     <div class="location">
       <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
       {{ work.location }}
+    </div>
+    <div class="time">
+      <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
+      {{ work.time }}
     </div>
   </li>
 </template>
@@ -65,8 +69,15 @@ export default Vue.extend({
     }
   }
 
-  .company {
+  .team {
+    color: $primary !important;
     font-weight: bold;
+  }
+
+  .company {
+    a {
+      margin-left: 4px;
+    }
   }
 }
 </style>

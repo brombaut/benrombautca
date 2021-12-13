@@ -2,9 +2,20 @@ import { Work } from "./work";
 
 const workEntities: Work[] = [
   {
+    title: "Software Engineering Researcher",
+    team: "Centre for Software Excellence",
+    company: "Huawei Canada",
+    time: "Dec '21 - Present",
+    location: "Kingston, Ontario",
+    workedWith: [],
+    imageFile: "huawei_logo.jpg",
+    link: "https://www.huawei.com/ca/",
+  },
+  {
     title: "Head Teaching Assistant",
+    team: "CISC221 - Computer Architecture",
     company: "Queen's University",
-    time: "Sep '20 - Present",
+    time: "Sep '20 - Dec '21",
     location: "Kingston, Ontario",
     workedWith: [],
     imageFile: "queensName.png",

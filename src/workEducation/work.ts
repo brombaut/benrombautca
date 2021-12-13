@@ -6,4 +6,5 @@ export interface Work {
   workedWith: string[];
   imageFile: string;
   link: string;
+  team?: string;
 }

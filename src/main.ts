@@ -28,6 +28,7 @@ import {
   faPortrait,
   faAddressCard,
   faRunning,
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin, faDev, faStackOverflow } from "@fortawesome/free-brands-svg-icons";
@@ -36,6 +37,7 @@ import router from "./site-header/router";
 import App from "./App.vue";
 
 library.add(faUser);
+library.add(faUsers);
 library.add(faFolderOpen);
 library.add(faEnvelope);
 library.add(faMap);
