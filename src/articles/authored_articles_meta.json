@@ -177,12 +177,25 @@
     "_id": "principal_component_analysis",
     "_title": "🔍 Principal Component Analysis",
     "_createdAt": "2021-11-06T14:38:54.300Z",
-    "_updatedAt": "2021-11-06T14:42:32.053Z",
+    "_updatedAt": "2021-12-24T20:01:28.428Z",
     "_description": "",
     "_tags": [
       "scikit-learn",
       "machine-learning",
       "statistics"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "package_lock",
+    "_title": "🔒 Looking Into Lock Files",
+    "_createdAt": "2021-12-06T17:14:37.900Z",
+    "_updatedAt": "2021-12-24T20:01:28.428Z",
+    "_description": "",
+    "_tags": [
+      "dependency-management",
+      "npm",
+      "node"
     ],
     "_show": true
   }
