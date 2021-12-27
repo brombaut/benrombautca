@@ -198,5 +198,18 @@
       "node"
     ],
     "_show": true
+  },
+  {
+    "_id": "latex_style_guide",
+    "_title": "✍️ Latex Style Guide",
+    "_createdAt": "2021-12-27T01:03:56.971Z",
+    "_updatedAt": "2021-12-27T01:14:42.686Z",
+    "_description": "How I like to set up my latex projects for writing papers.",
+    "_tags": [
+      "latex",
+      "how-to",
+      "writing"
+    ],
+    "_show": true
   }
 ]

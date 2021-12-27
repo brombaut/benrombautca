@@ -54,6 +54,8 @@ export default Vue.extend({
       case ("scikit-learn"): return new TagColor("rgb(240, 149, 56)", "rgb(50, 148, 199)");
       case ("node"): return new TagColor("#68a063", "303030");
       case ("dependency-management"): return new TagColor("rgb(206, 28, 57)", "rgb(247, 247, 247)");
+      case ("latex"): return new TagColor("#01678f", "#ffffff");
+      case ("writing"): return new TagColor("#5d5d5a", "#ecf4f3");
       default: return new TagColor("#1d5ca4", "#f1f5fa");
       }
     },
