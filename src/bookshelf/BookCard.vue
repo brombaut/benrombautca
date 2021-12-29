@@ -1,5 +1,5 @@
 <template>
-  <div class="book-card slide-in">
+  <div class="book-card slide-in" :class="{'to-read': toRead}">
     <div class="image-container">
       <img :src="imageSource" :alt="book.title" />
     </div>
@@ -9,16 +9,19 @@
       On Goodreads
       <font-awesome-icon :icon="['fas', 'external-link-alt']" />
     </a>
-    <div v-if="!currentlyReading" class="rating">
-      <span v-for="i in bookRating" :key="i" class="star">
-        <font-awesome-icon :icon="['fas', 'star']" />
-      </span>
+    <div v-if="toRead" class="up-next-label">
+      <span>Up Next</span>
     </div>
     <div v-if="currentlyReading" class="on-page">
       <div class='progress-bar' ref='progressBar'></div>
       <div class='text'>
         On page <span>{{ book.onPage }}</span>/<span>{{ book.numPages }}</span> ({{ percentDone }}%)
       </div>
+    </div>
+    <div v-if="read" class="rating">
+      <span v-for="i in bookRating" :key="i" class="star">
+        <font-awesome-icon :icon="['fas', 'star']" />
+      </span>
     </div>
   </div>
 </template>
@@ -37,8 +40,14 @@ export default Vue.extend({
     },
   },
   computed: {
+    toRead(): boolean {
+      return this.book.shelf === Shelf.TOREAD;
+    },
     currentlyReading(): boolean {
       return this.book.shelf === Shelf.CURRENTLYREADING;
+    },
+    read(): boolean {
+      return this.book.shelf === Shelf.READ;
     },
     bookRating(): number {
       return Number(this.book.rating);
@@ -112,6 +121,10 @@ export default Vue.extend({
   text-align: left;
   margin: 0 2px;
 
+  &.to-read {
+    filter: brightness(60%);
+  }
+
   .image-container {
     height: var(--image-height);
     width: var(--image-width);
@@ -133,10 +146,6 @@ export default Vue.extend({
   .author {
     margin: 2px 0;
     font-size: 0.8em;
-  }
-
-  .spacer {
-    flex: 1;
   }
 
   .on-page {
@@ -190,6 +199,10 @@ export default Vue.extend({
         color: $primaryDark;
       }
     }
+  }
+
+  .up-next-label {
+    font-size: 0.8em;
   }
 
   @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {

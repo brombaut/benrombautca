@@ -11,9 +11,9 @@
     </div>
     <div v-else class="section-body">
       <div class="book-group">
-        <h2 class='book-group-header'>Currently Reading</h2>
+        <h2 class='book-group-header'>Currently Reading & Up Next</h2>
         <div class="books">
-          <BookCard v-for="book in currentlyReadingBooks" :key="book.title" :book="book" />
+          <BookCard v-for="book in currentlyReadingAndToReadBooks" :key="book.title" :book="book" />
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
@@ -44,6 +44,7 @@ export default Vue.extend({
   data() {
     return {
       booksLoading: true,
+      numberOfBookCardsToRow: 6,
     };
   },
   computed: {
@@ -60,11 +61,12 @@ export default Vue.extend({
         return b.year - a.year;
       });
     },
-    currentlyReadingBooks(): Book[] {
+    currentlyReadingAndToReadBooks(): Book[] {
       if (this.booksLoading) {
         return [];
       }
-      return CachedF3Bookshelf.readingBooks();
+      const result: Book[] = [...CachedF3Bookshelf.readingBooks(), ...CachedF3Bookshelf.toReadBooks()];
+      return result.slice(0, this.numberOfBookCardsToRow);
     },
   },
   methods: {
@@ -72,9 +74,25 @@ export default Vue.extend({
       await CachedF3Bookshelf.init();
       this.booksLoading = false;
     },
+    setNumberOfBookCardsToRow() {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      let result = 6;
+      // These were determined manually just by resizing the window until the row broke lol
+      if (vw === 0) result = 6;
+      if (vw < 1127) result = 5;
+      if (vw < 946) result = 4;
+      if (vw < 766) result = 3;
+      if (vw < 522) result = 2;
+      this.numberOfBookCardsToRow = result;
+    },
   },
   created() {
     this.initBookshelf();
+    this.setNumberOfBookCardsToRow();
+    window.addEventListener("resize", this.setNumberOfBookCardsToRow);
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.setNumberOfBookCardsToRow);
   },
 });
 </script>
@@ -115,11 +133,10 @@ export default Vue.extend({
       flex-direction: column;
       align-items: flex-start;
       width: 100%;
-      margin-bottom: 16px;
 
       .book-group-header {
-        // margin: 12px 0;
         text-decoration: underline;
+        margin-bottom: 4px;
       }
 
       .books {

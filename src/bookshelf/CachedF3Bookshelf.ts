@@ -28,6 +28,17 @@ export default class CachedF3Bookshelf {
       .sort(this.sortRecentlyStartedBooksFirst);
   }
 
+  public static toReadBooks(): Book[] {
+    const toReadFilter = (book: Book) => book.shelf === Shelf.TOREAD;
+    return this._books
+      .filter(toReadFilter)
+      .sort((a: Book, b: Book) => {
+        if (!a.toReadOrder) return -1;
+        if (!b.toReadOrder) return 1;
+        return a.toReadOrder - b.toReadOrder;
+      });
+  }
+
   public static readBooksGroupedByYear(): { [key: number]: Book[] } {
     const yearlyBooks: { [key: number]: Book[] } = {};
     this.readBookYears().forEach((year: number) => {
