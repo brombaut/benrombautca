@@ -14,7 +14,6 @@
         <font-awesome-icon :icon="['fas', 'star']" />
       </span>
     </div>
-    <!-- <div class='spacer'></div> -->
     <div v-if="currentlyReading" class="on-page">
       <div class='progress-bar' ref='progressBar'></div>
       <div class='text'>
