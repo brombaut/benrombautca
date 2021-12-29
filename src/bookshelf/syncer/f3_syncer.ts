@@ -33,7 +33,8 @@ interface GRBook {
   rating: string,
   shelf: Shelf,
   goodreads_review_id: string,
-  on_page: number | null
+  on_page: number | null,
+  to_read_order: number | null
 }
 
 async function main() {
@@ -75,10 +76,20 @@ function syncExistingF3Books(f3Books: Book[], grBooks: GRBook[]): Book[] {
     if (!grBook) return;
     let needsSyncing = false;
 
+    if (grBook.shelf == Shelf.TOREAD && b.shelf == Shelf.TOREAD) {
+      const toReadOrderIsNotMagicNumber = grBook.to_read_order !== 99;
+      const toReadOrderNumbersDoNotMatch = grBook.to_read_order !== b.toReadOrder
+      if (toReadOrderIsNotMagicNumber && toReadOrderNumbersDoNotMatch) {
+        b.toReadOrder = grBook.to_read_order;
+        needsSyncing = true;
+      }
+    }
+
     if (grBook.shelf == Shelf.CURRENTLYREADING && b.shelf == Shelf.TOREAD) {
       b.startReading();
       needsSyncing = true;
     }
+
     if (grBook.shelf == Shelf.READ && b.shelf == Shelf.CURRENTLYREADING) {
       b.finishedReading();
       needsSyncing = true;
@@ -91,6 +102,7 @@ function syncExistingF3Books(f3Books: Book[], grBooks: GRBook[]): Book[] {
         needsSyncing = true;
       }
     }
+
     if (b.rating !== parseInt(grBook.rating, PARSE_INT_RADIX)) {
       b.rating = parseInt(grBook.rating, PARSE_INT_RADIX);
       needsSyncing = true;
@@ -145,6 +157,7 @@ function createNewF3Books(f3Books: Book[], grBooks: GRBook[]): FirestoreBook[] {
       dateStarted: sDate,
       dateFinished: fDate,
       rating: parseInt(grb.rating, PARSE_INT_RADIX),
+      toReadOrder: grb.to_read_order,
     };
   });
   return newFirestoreBooks;
