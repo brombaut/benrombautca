@@ -14,7 +14,7 @@
         <font-awesome-icon :icon="['fas', 'star']" />
       </span>
     </div>
-    <div class='spacer'></div>
+    <!-- <div class='spacer'></div> -->
     <div v-if="currentlyReading" class="on-page">
       <div class='progress-bar' ref='progressBar'></div>
       <div class='text'>
@@ -88,10 +88,10 @@ export default Vue.extend({
 <style lang="scss">
 
 :root{
-  --width-to-height-ratio: 0.53;
+  --width-to-height-ratio: 0.52;
   --image-width-to-height-ratio: 0.725;
   --card-height-to-image-height-ratio: 0.57;
-  --card-height: 368px;
+  --card-height: 340px;
   --card-width: calc(var(--card-height) * var(--width-to-height-ratio));
   --image-height: calc(var(--card-height) * var(--card-height-to-image-height-ratio));
   --image-width: calc(var(--image-height) * var(--image-width-to-height-ratio));
@@ -111,12 +111,12 @@ export default Vue.extend({
   display: flex;
   flex-direction: column;
   text-align: left;
-  margin: 8px 12px;
+  margin: 0 2px;
 
   .image-container {
     height: var(--image-height);
     width: var(--image-width);
-    margin: 4px 0;
+    margin: 2px 0;
 
     img {
       height: 100%;
@@ -125,14 +125,14 @@ export default Vue.extend({
   }
 
   .title {
-    margin-top: 8px;
-    margin-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 2px;
     color: $primary;
     font-size: 0.9em;
   }
 
   .author {
-    margin: 4px 0;
+    margin: 2px 0;
     font-size: 0.8em;
   }
 
