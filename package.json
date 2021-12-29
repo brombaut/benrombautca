@@ -13,7 +13,7 @@
   "dependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
-    "@brombaut/types": "^0.2.2",
+    "@brombaut/types": "1.0.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
@@ -22,7 +22,7 @@
     "copy-webpack-plugin": "^5.1.2",
     "core-js": "^3.18.2",
     "dotenv": "^10.0.0",
-    "firebase-firestore-facade": "^1.0.1",
+    "firebase-firestore-facade": "1.1.0",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
     "xml2js": "^0.4.23"
@@ -33,7 +33,7 @@
     "@typescript-eslint/parser": "^2.34.0",
     "@vue/cli-plugin-babel": "4.5.13",
     "@vue/cli-plugin-eslint": "4.5.13",
-    "@vue/cli-plugin-typescript": "4.5.12",
+    "@vue/cli-plugin-typescript": "4.5.15",
     "@vue/cli-service": "4.x.x",
     "@vue/eslint-config-airbnb": "^5.1.0",
     "@vue/eslint-config-typescript": "^7.0.0",
