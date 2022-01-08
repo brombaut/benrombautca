@@ -17,7 +17,16 @@
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
-        <h2 class='book-group-header'>{{ yearBookGroup.year }}</h2>
+        <hr>
+        <div class="book-group-header">
+          <h2 class='year-header'>{{ yearBookGroup.year }}</h2>
+          <ProgressBar
+            v-if="yearBookGroup.yearGoal"
+            text="Yearly Goal:"
+            :numer="yearBookGroup.books.length"
+            :denom="yearBookGroup.yearGoal"
+            :hidePercent="true" />
+        </div>
         <div class="books">
           <BookCard v-for="book in yearBookGroup.books" :key="book.title" :book="book" />
         </div>
@@ -32,19 +41,30 @@ import { Book } from "@brombaut/types";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
 import CachedF3Bookshelf from "./CachedF3Bookshelf";
+import ProgressBar from "./ProgressBar.vue";
 
-type YearBooksPair = { year: number; books: Book[] };
+type YearBooksPair = {
+  year: number;
+  books: Book[];
+  yearGoal: number;
+};
 
 export default Vue.extend({
   name: "BookshelfSection",
   components: {
     BookCard,
     SectionHeader,
+    ProgressBar,
   },
   data() {
+    const yearGoals: {[key: number]: number} = {
+      2021: 52,
+      2022: 52,
+    };
     return {
       booksLoading: true,
       numberOfBookCardsToRow: 6,
+      yearGoals,
     };
   },
   computed: {
@@ -55,11 +75,17 @@ export default Vue.extend({
       const bookGroups: YearBooksPair[] = [];
       const keyVals = CachedF3Bookshelf.readBooksGroupedByYear();
       Object.entries(keyVals).forEach(keyVal => {
-        bookGroups.push({ year: Number(keyVal[0]), books: keyVal[1] });
+        const year = Number(keyVal[0]);
+        bookGroups.push({
+          year,
+          books: keyVal[1],
+          yearGoal: this.yearGoals[year],
+        });
       });
-      return bookGroups.sort((a: YearBooksPair, b: YearBooksPair) => {
+      const sortedByYear: YearBooksPair[] = bookGroups.sort((a: YearBooksPair, b: YearBooksPair) => {
         return b.year - a.year;
       });
+      return sortedByYear;
     },
     currentlyReadingAndToReadBooks(): Book[] {
       if (this.booksLoading) {
@@ -134,9 +160,20 @@ export default Vue.extend({
       align-items: flex-start;
       width: 100%;
 
+      hr {
+        height: 2px;
+        width: 100%;
+        background-color: $primaryDark;
+      }
+
       .book-group-header {
-        text-decoration: underline;
-        margin-bottom: 4px;
+        margin-bottom: 12px;
+        display: flex;
+
+        .year-header {
+          text-decoration: underline;
+          margin-right: 8px;
+        }
       }
 
       .books {

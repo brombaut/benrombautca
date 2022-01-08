@@ -2,7 +2,7 @@
   <div class="progress-bar">
     <div class='progress-bar-fill' ref='progressBarFill'></div>
     <div class='text'>
-      {{ text }} <span>{{ numer }}</span>/<span>{{ denom }}</span> ({{ percentDone }}%)
+      {{ text }} <span>{{ numer }}</span>/<span>{{ denom }}</span> <span v-if="!hidePercent">({{ percentDone }}%)</span>
     </div>
   </div>
 </template>
@@ -24,6 +24,10 @@ export default Vue.extend({
     denom: {
       type: Number,
       required: true,
+    },
+    hidePercent: {
+      type: Boolean,
+      required: false,
     },
   },
   computed: {
@@ -55,7 +59,7 @@ export default Vue.extend({
   position: relative;
   z-index: 0;
   width: calc(100% - 40px);
-  max-width: 164px;
+  // max-width: 164px;
 
   .text {
     font-size: 0.8em;
