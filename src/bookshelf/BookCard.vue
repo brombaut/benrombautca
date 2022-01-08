@@ -12,12 +12,11 @@
     <div v-if="toRead" class="up-next-label">
       <span>Up Next</span>
     </div>
-    <div v-if="currentlyReading" class="on-page">
-      <div class='progress-bar' ref='progressBar'></div>
-      <div class='text'>
-        On page <span>{{ book.onPage }}</span>/<span>{{ book.numPages }}</span> ({{ percentDone }}%)
-      </div>
-    </div>
+    <ProgressBar
+      v-if="currentlyReading"
+      text="On page"
+      :numer="Number(book.onPage)"
+      :denom="Number(book.numPages)"/>
     <div v-if="read" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
         <font-awesome-icon :icon="['fas', 'star']" />
@@ -30,6 +29,7 @@
 import Vue, { PropType } from "vue";
 import { Book, Shelf } from "@brombaut/types";
 import uiUtils from "@/utils/ui-utils";
+import ProgressBar from "./ProgressBar.vue";
 
 export default Vue.extend({
   name: "BookCard",
@@ -38,6 +38,9 @@ export default Vue.extend({
       type: Object as PropType<Book>,
       required: true,
     },
+  },
+  components: {
+    ProgressBar,
   },
   computed: {
     toRead(): boolean {
@@ -66,29 +69,15 @@ export default Vue.extend({
     imageSource(): string {
       return `book-thumbails/${this.book.isbn13}.jpg`;
     },
-    percentDone(): number {
-      if (!this.book.onPage) return 0;
-      if (!this.book.numPages) return 0;
-      return Math.floor((this.book.onPage / this.book.numPages) * 100);
-    },
   },
   methods: {
     localCheckHorizontalFadeIn() {
       uiUtils.checkHorizontalFadeIn(this.$el as HTMLDivElement, this.localCheckHorizontalFadeIn);
     },
-    setCurrentlyReadingProgressBarIfNecessary() {
-      if (!this.currentlyReading) {
-        return;
-      }
-      const progressBarEl = this.$refs.progressBar as HTMLDivElement;
-      const percentDone = ((this.book.onPage || 0) / this.book.numPages) * 100;
-      progressBarEl.style.width = `${percentDone}%`;
-    },
   },
   mounted() {
     window.addEventListener("scroll", this.localCheckHorizontalFadeIn);
     this.localCheckHorizontalFadeIn();
-    this.setCurrentlyReadingProgressBarIfNecessary();
   },
 });
 </script>
@@ -148,33 +137,6 @@ export default Vue.extend({
     font-size: 0.8em;
   }
 
-  .on-page {
-    background-color: $primaryDark;
-    border-radius: 4px;
-    padding: 6px 4px;
-    position: relative;
-    z-index: 0;
-    width: var(--image-width);
-
-    .text {
-      font-size: 0.8em;
-      color: white;
-      z-index: 2;
-      position: relative;
-    }
-
-    .progress-bar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: $primary;
-      height: 100%;
-      width: 50%;
-      border-radius: 4px;
-      z-index: 1;
-    }
-  }
-
   .rating {
     .star {
       color: $primaryDark;
@@ -231,11 +193,6 @@ export default Vue.extend({
       margin: 2px 0;
     }
 
-    .on-page {
-      font-size: 0.8em;
-      width: var(--small-image-width);
-    }
-
     .rating {
       .star {
         font-size: 0.7em;
@@ -267,11 +224,6 @@ export default Vue.extend({
       display: none;
       font-size: 0.3em;
       margin: 0px 0;
-    }
-
-    .on-page {
-      font-size: 0.4em;
-      width: var(--smallest-image-width);
     }
 
     .rating {
