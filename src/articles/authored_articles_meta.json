@@ -211,5 +211,29 @@
       "writing"
     ],
     "_show": true
+  },
+  {
+    "_id": "promise_all",
+    "_title": "🏃 Speed Up Async Loops with Promise.all()",
+    "_createdAt": "2022-01-16T14:45:49.578Z",
+    "_updatedAt": "2022-01-16T14:45:49.578Z",
+    "_description": "",
+    "_tags": [
+      "typescript",
+      "node"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "closure_proxy",
+    "_title": "📙 Using Closures to Cache Data",
+    "_createdAt": "2022-01-16T15:21:36.279Z",
+    "_updatedAt": "2022-01-16T15:21:36.279Z",
+    "_description": "",
+    "_tags": [
+      "typescript",
+      "node"
+    ],
+    "_show": true
   }
 ]
