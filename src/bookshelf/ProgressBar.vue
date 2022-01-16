@@ -1,7 +1,7 @@
 <template>
   <div class="progress-bar">
     <div class='progress-bar-fill' ref='progressBarFill'></div>
-    <div class='text'>
+    <div class='text' :class="{'add-padding': hidePercent}">
       {{ text }} <span>{{ numer }}</span>/<span>{{ denom }}</span> <span v-if="!hidePercent">({{ percentDone }}%)</span>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default Vue.extend({
   methods: {
     setProgressBarFill() {
       const progressBarEl = this.$refs.progressBarFill as HTMLDivElement;
-      const percentDone = ((this.numer || 0) / this.denom) * 100;
+      const percentDone = Math.min(((this.numer || 0) / this.denom) * 100, 100);
       progressBarEl.style.width = `${percentDone}%`;
     },
   },
@@ -66,6 +66,11 @@ export default Vue.extend({
     color: white;
     z-index: 2;
     position: relative;
+
+    &.add-padding {
+      padding-left: 4px;
+      padding-right: 8px;
+    }
   }
 
   .progress-bar-fill {
