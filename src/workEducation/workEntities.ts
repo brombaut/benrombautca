@@ -18,7 +18,7 @@ const workEntities: Work[] = [
     time: "Sep '20 - Dec '21",
     location: "Kingston, Ontario",
     workedWith: [],
-    imageFile: "queensName.png",
+    imageFile: "queens_logo_name.png",
     link: "https://www.queensu.ca/",
   },
   {

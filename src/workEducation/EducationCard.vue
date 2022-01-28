@@ -61,7 +61,7 @@ export default Vue.extend({
 .education-card {
 
   .image-container {
-    height: 56px;
+    height: 52px;
     // width: 40px;
     margin-bottom: 16px;
     margin-top: 40px;

@@ -57,14 +57,14 @@ export default Vue.extend({
 .work-card {
 
   .image-container {
-    height: 45px;
-    max-width: 144px;
+    height: 48px;
+    // max-width: 144px;
     margin-bottom: 0px;
     margin-top: 32px;
 
     img {
       height: 100%;
-      width: 100%;
+      // width: 100%;
       border-radius: 4px;
     }
   }
