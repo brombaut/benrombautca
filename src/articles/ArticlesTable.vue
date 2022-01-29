@@ -63,7 +63,7 @@ export default Vue.extend({
     color: $hFontColor;
     tr {
       th {
-        padding: 20px 20px 12px 20px;
+        padding: 12px 12px 6px 20px;
       }
     }
   }
@@ -78,17 +78,17 @@ export default Vue.extend({
       }
 
       td {
-        padding: 16px 20px;
+        padding: 8px 20px;
       }
 
       .info-column {
         .main {
           font-size: 1.2em;
-          margin-bottom: 8px;
+          margin-bottom: 6px;
         }
         .secondary {
           font-size: 0.8em;
-          margin-top: 8px;
+          margin-top: 6px;
         }
       }
 
@@ -111,7 +111,7 @@ export default Vue.extend({
     tbody {
       tr {
         td {
-          padding: 8px 16px;
+          padding: 6px 16px;
         }
         .info-column {
           .main {
