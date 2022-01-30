@@ -3,7 +3,7 @@ import { AboutMe } from "./about-me";
 const aboutMe: AboutMe = {
   description: `
   <p>
-  I am a Master of Science Candidate at the <a href="https://sail.cs.queensu.ca/" target="_blank">Software Analysis & Intelligence Lab (SAIL)</a> at <a href="https://www.queensu.ca/" target="_blank">Queen's University</a> in Kingston, Ontario, under the supervision of <a href="https://research.cs.queensu.ca/home/ahmed/home/" target="_blank">Dr. Ahmed E. Hassan</a>. I'm also a Software Engineering Researcher at the Centre for Software Excellence with <a href="https://www.huawei.com/ca/" target="_blank">Huawei Canada</a>.
+  I am a Master of Science Candidate with the <a href="https://sail.cs.queensu.ca/" target="_blank">Software Analysis & Intelligence Lab (SAIL)</a> at <a href="https://www.queensu.ca/" target="_blank">Queen's University</a> in Kingston, Ontario, under the supervision of <a href="https://research.cs.queensu.ca/home/ahmed/home/" target="_blank">Dr. Ahmed E. Hassan</a>. I'm also a Software Engineering Researcher with the Centre for Software Excellence at <a href="https://www.huawei.com/ca/" target="_blank">Huawei Canada</a>.
   </p>
   <p>
   I earned a <a href="https://www.unb.ca/fredericton/engineering/undergrad/swe/" target="_blank">Bachelor of Science in Software Engineering</a> from the <a href="https://www.unb.ca/" target="_blank">University of New Brunswick</a> in 2019.
