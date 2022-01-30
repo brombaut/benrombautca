@@ -10,7 +10,7 @@ const aboutMe: AboutMe = {
   I also graduated from the <a href="https://www.unb.ca/fredericton/cs/" target="_blank">Faculty of Computer Science</a> <a href="https://www.unb.ca/fredericton/cs/coop/index.html" target="_blank">Co-operative Education Program</a> alongside my degree, completing multiple work terms in both academia and industry.
   </p>
   <p>
-  I enjoy learning about a broad range of topics related to computer science and software engineering. I am primarily interested in software supply chain management, software bots, data analytics & machine learning, and software reliability & security. I also have budding interests in software engineering for healthcare and medical informatics.
+  I enjoy learning about a broad range of topics related to computer science and software engineering. I am primarily interested in software supply chain management, software bots, data analytics & machine learning, and software reliability & security. I also have budding interests in software engineering in healthcare and medical informatics.
   </p>
   `,
   imageFileName: "benrombaut.jpg",
