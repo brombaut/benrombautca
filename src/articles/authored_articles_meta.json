@@ -246,5 +246,17 @@
       "algorithms"
     ],
     "_show": true
+  },
+  {
+    "_id": "deep_learning_architectures",
+    "_title": "🤖 Deep Learning Architectures",
+    "_createdAt": "2022-02-20T15:47:37.201Z",
+    "_updatedAt": "2022-02-20T15:47:37.201Z",
+    "_description": "",
+    "_tags": [
+      "deep-learning",
+      "machine-learning"
+    ],
+    "_show": true
   }
 ]
