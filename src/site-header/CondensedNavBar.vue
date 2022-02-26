@@ -28,13 +28,6 @@
         :icon="['fas', 'chevron-right']"/>
       <span>Software</span>
     </a>
-    <a @click="navigateMobile('/marathon-22')">
-      <font-awesome-icon
-        class='active-icon'
-        :class="{active: routeIsActive('marathon-22')}"
-        :icon="['fas', 'chevron-right']"/>
-      <span>Marathon '22</span>
-    </a>
   </nav>
 </template>
 
