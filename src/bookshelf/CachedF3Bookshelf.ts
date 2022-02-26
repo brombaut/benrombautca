@@ -4,12 +4,22 @@ import firebaseConfig from "./firebase.config";
 export default class CachedF3Bookshelf {
   private static _instance: F3Bookshelf;
   private static _books: Book[] = [];
+  private static _loading = false;
 
   public static async init(): Promise<void> {
     if (!CachedF3Bookshelf._instance) {
-      CachedF3Bookshelf._instance = new F3Bookshelf(firebaseConfig);
-      await CachedF3Bookshelf._instance.init();
-      this._books = await CachedF3Bookshelf._instance.get();
+      try {
+        CachedF3Bookshelf._loading = true;
+        CachedF3Bookshelf._instance = new F3Bookshelf(firebaseConfig);
+        await CachedF3Bookshelf._instance.init();
+        this._books = await CachedF3Bookshelf._instance.get();
+      } finally {
+        CachedF3Bookshelf._loading = false;
+      }
+    }
+
+    while (CachedF3Bookshelf._loading) {
+      await new Promise(r => setTimeout(r, 500));
     }
     return Promise.resolve();
   }
