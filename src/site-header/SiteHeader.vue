@@ -30,6 +30,7 @@ export default Vue.extend({
     const externalProfiles: ExternalProfile[] = [
       new ExternalProfile("GitHub", ["fab", "github"], "https://github.com/brombaut"),
       new ExternalProfile("LinkedIn", ["fab", "linkedin"], "https://www.linkedin.com/in/benjamin-rombaut/"),
+      new ExternalProfile("ResearchGate", ["fab", "researchgate"], "https://www.researchgate.net/profile/Benjamin_Rombaut2"),
       new ExternalProfile("Dev.to", ["fab", "dev"], "https://dev.to/brombaut"),
       new ExternalProfile("Stack Overflow", ["fab", "stack-overflow"], "https://stackoverflow.com/users/5816686/ben"),
       new ExternalProfile("Resume", ["fas", "portrait"], "resumes/BenRombaut_Resume.pdf"),

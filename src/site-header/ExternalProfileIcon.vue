@@ -40,7 +40,7 @@ export default Vue.extend({
 
 <style lang="scss">
 .external-profile-link {
-  margin: 0 16px;
+  margin: 0 4px;
   position: relative;
   display: flex;
   flex-direction: column;
