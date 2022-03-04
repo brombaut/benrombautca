@@ -8,7 +8,7 @@
       <div
         v-for="vPub in viewPublications"
         :key="vPub.type">
-        <h3>{{ vPub.header }}</h3>
+        <h3 class="publication-type-header">{{ vPub.header }}</h3>
         <ul v-if="vPub.type === journal">
           <JournalPublication
             v-for="(publication, idx) in vPub.items"
@@ -59,7 +59,9 @@ export default Vue.extend({
         return {
           type: t,
           header: this.publicationTypeHeader(t),
-          items: this.publications.filter((p: Publication) => p.type === t), // TODO: Sort by date
+          items: this.publications
+            .filter((p: Publication) => p.type === t)
+            .sort((a: Publication, b: Publication) => b.dateAccepted.getTime() - a.dateAccepted.getTime()),
         };
       });
       return result;
@@ -96,21 +98,33 @@ export default Vue.extend({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
 
-  ul {
-    padding-inline-start: 8px;
-    margin-block-start: 8px;
-    margin-block-end: 20px;
+    .publication-type-header {
+      color: $primaryDark;
+    }
 
-      .underline {
-        text-decoration: underline;
-      }
+    ul {
+      padding-inline-start: 8px;
+      margin-block-start: 8px;
+      margin-block-end: 20px;
 
-      .publication-index,
-      .publication-info{
-        margin: 4px 4px;
-      }
+        .underline {
+          text-decoration: underline;
+        }
+
+        .publication-index{
+          margin: 6px 16px;
+          color: $primaryDark;
+        }
+
+        .publication-info-entity {
+          margin: 6px 0;
+        }
+
+        .title {
+          color: $primary;
+        }
+    }
   }
 
 }

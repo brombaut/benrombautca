@@ -2,10 +2,10 @@
 <li class="journal-publication">
   <div class="publication-index">[{{journal.type}}{{publicationNumber}}]</div>
   <div class="publication-info">
-    <div class="title">
+    <div class="publication-info-entity title">
       <span><b>{{ journal.title }}</b></span>
     </div>
-    <div class="authors">
+    <div class="publication-info-entity authors">
       <span
         v-for="(a, idx) in journal.authors"
         :key=a>
@@ -14,7 +14,7 @@
         <span v-else>.</span>
       </span>
     </div>
-    <div class="venue">
+    <div class="publication-info-entity venue">
       <i>{{ journal.venue }}</i>, {{ journal.year }}
     </div>
   </div>

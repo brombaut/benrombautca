@@ -18,11 +18,22 @@ const publications: Publication[] = [
       },
     ],
   ),
+  new JournalPublication(
+    "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",
+    [
+      "Benjamin Rombaut",
+      "Filipe R. Cogo",
+      "Ahmed E. Hassan",
+    ],
+    PublicationVenue.TSE,
+    new Date(),
+    [],
+  ),
   new ThesisPublication(
     "Studying the use of bots for supporting dependency management",
     "Benjamin Rombaut",
     PublicationVenue.Queens,
-    new Date(2022, 3, 1),
+    new Date(),
     [],
     "Master's thesis",
   ),

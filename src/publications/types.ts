@@ -16,6 +16,8 @@ export enum PublicationType {
 
 export enum PublicationVenue {
   TOSEM = "ACM Transactions on Software Engineering and Methodology (TOSEM)",
+  TSE = "IEEE Transactions on Software Engineering (TSE)",
+  EMSE = "Springer Empirical Software Engineering (EMSE)",
   Queens = "Queen's University"
 }
 

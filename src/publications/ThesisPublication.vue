@@ -2,13 +2,13 @@
 <li class="thesis-publication">
   <div class="publication-index">[{{thesis.type}}{{publicationNumber}}]</div>
   <div class="publication-info">
-    <div class="title">
+    <div class="publication-info-entity title">
       <span><b>{{ thesis.title }}</b></span>
     </div>
-    <div class="authors">
+    <div class="publication-info-entity authors">
       <span class="underline">{{ thesis.authors }}</span> - <span>{{ thesis.thesisType }}</span>
     </div>
-    <div class="venue">
+    <div class="publication-info-entity venue">
       <i>{{ thesis.venue }}</i>, {{ thesis.year }}
     </div>
   </div>
