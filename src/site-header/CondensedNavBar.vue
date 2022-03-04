@@ -7,6 +7,13 @@
         :icon="['fas', 'chevron-right']"/>
       <span>About Me</span>
     </a>
+    <a @click="navigateMobile('/publications')">
+      <font-awesome-icon
+        class='active-icon'
+        :class="{active: routeIsActive('publications')}"
+        :icon="['fas', 'chevron-right']"/>
+      <span>Publications</span>
+    </a>
     <a @click="navigateMobile('/bookshelf')">
       <font-awesome-icon
         class='active-icon'
