@@ -17,6 +17,15 @@
     <div class="publication-info-entity venue">
       <i>{{ journal.venue }}</i>, {{ journal.year }}
     </div>
+    <div class="links">
+      <a
+        v-for="link in journal.links"
+        :key="link.url"
+        :href="link.url"
+        target="_blank">
+        <span>[{{ link.type }}]</span>
+      </a>
+    </div>
   </div>
 </li>
 </template>

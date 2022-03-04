@@ -11,6 +11,13 @@
     <div class="publication-info-entity venue">
       <i>{{ thesis.venue }}</i>, {{ thesis.year }}
     </div>
+    <div class="publication-info-entity links">
+      <a
+        v-for="link in thesis.links"
+        :key="link.url">
+        <span>[{{ link.type }}]</span>
+      </a>
+    </div>
   </div>
 </li>
 </template>

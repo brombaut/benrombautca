@@ -30,6 +30,10 @@ module.exports = {
           from: "./src/assets/resumes",
           to: "./resumes/",
         },
+        {
+          from: "./src/assets/publications",
+          to: "./publications/",
+        },
       ]),
     ],
   },

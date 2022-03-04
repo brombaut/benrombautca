@@ -1,9 +1,10 @@
 <template>
   <section id="articles">
+    <!-- subtext="This page contains links to all of my publications." -->
     <SectionHeader
       title="Publications"
       icon="paragraph"
-      subtext="This page contains links to all of my publications."/>
+      subtext="This page contains links to my publications." />
     <div class="section-body">
       <div
         v-for="vPub in viewPublications"
@@ -46,7 +47,7 @@ export default Vue.extend({
   data() {
     const publicationTypesToShow: PublicationType[] = [
       PublicationType.Journal,
-      PublicationType.Thesis,
+      // PublicationType.Thesis,
     ];
     return {
       publicationTypesToShow,
@@ -108,22 +109,38 @@ export default Vue.extend({
       margin-block-start: 8px;
       margin-block-end: 20px;
 
-        .underline {
-          text-decoration: underline;
-        }
+      li {
+        margin: 8px 0;
 
-        .publication-index{
-          margin: 6px 16px;
-          color: $primaryDark;
-        }
+          .underline {
+            text-decoration: underline;
+          }
 
-        .publication-info-entity {
-          margin: 6px 0;
-        }
+          .publication-index{
+            margin: 6px 16px;
+            color: $primaryDark;
+          }
 
-        .title {
-          color: $primary;
-        }
+          .publication-info-entity {
+            margin: 6px 0;
+          }
+
+          .title {
+            color: $primary;
+          }
+
+          .links {
+            a {
+              font-weight: 500;
+              margin-right: 8px;
+              color: $primaryDark;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+      }
     }
   }
 

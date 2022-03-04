@@ -1,6 +1,8 @@
 export enum PublicationLinkType {
-  ResearchGate = 1,
-  Queens,
+  ResearchGate = "ResearchGate",
+  Queens = "Queen's",
+  PDF = "PDF",
+  Forthcoming = "Forthcoming",
 }
 
 export interface PublicationLink {
@@ -15,6 +17,7 @@ export enum PublicationType {
 }
 
 export enum PublicationVenue {
+  Forthcoming = "Forthcoming",
   TOSEM = "ACM Transactions on Software Engineering and Methodology (TOSEM)",
   TSE = "IEEE Transactions on Software Engineering (TSE)",
   EMSE = "Springer Empirical Software Engineering (EMSE)",
