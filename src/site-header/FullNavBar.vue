@@ -4,7 +4,7 @@
     <div class="nav-items">
       <span class='active-route-highlight' ref="activeRouteHighlight"></span>
       <FullNavItem ref="aboutMeNav" route="/about-me" text="About Me" @clicked="updateHighlight" />
-      <FullNavItem v-if="showPublications" ref="publicationsNav" route="/publications" text="Publications" @clicked="updateHighlight" />
+      <FullNavItem ref="publicationsNav" route="/publications" text="Publications" @clicked="updateHighlight" />
       <FullNavItem ref="bookshelfNav" route="/bookshelf" text="Bookshelf" @clicked="updateHighlight" />
       <FullNavItem ref="articlesNav" route="/articles" text="Articles" @clicked="updateHighlight" />
       <FullNavItem ref="softwareNav" route="/software" text="Software" @clicked="updateHighlight" />
@@ -23,11 +23,6 @@ export default Vue.extend({
   components: {
     FullNavItem,
     BackButton,
-  },
-  data() {
-    return {
-      showPublications: appConfig.flagPublications,
-    };
   },
   methods: {
     updateHighlight(navItemEl: HTMLAnchorElement): void {
