@@ -1,28 +1,41 @@
 <template>
   <li class="education-card align-right slide-in">
-    <div class="image-container">
-      <img :src="imageSource" :alt="education.imageFile" />
-    </div>
-    <div class="title">{{ education.title }}</div>
-    <div class="lab" v-if="education.lab">
-      <font-awesome-icon class="icon" :icon="['fas', 'vial']" />
-      {{ education.lab }}
-    </div>
-    <div class="faculty">
-      <font-awesome-icon class="icon" :icon="['fas', 'school']" />
-      {{ education.faculty }}
-    </div>
-    <div class="institution">
-      <font-awesome-icon class="icon" :icon="['fas', 'university']" />
-      {{ education.institution }}
-    </div>
-    <div class="location">
-      <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
-      {{ education.location }}
-    </div>
-    <div class="time">
-      <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
-      {{ education.time }}
+    <div class="list-item-bullet"></div>
+    <div class="list-item-content">
+      <div class="list-item-item image-container">
+        <img :src="imageSource" :alt="education.imageFile" />
+      </div>
+      <div class="list-item-item title">{{ education.title }}</div>
+      <div class="list-item-item lab" v-if="education.lab">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'vial']" />
+        </div>
+        <div>{{ education.lab }}</div>
+      </div>
+      <div class="list-item-item faculty">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'school']" />
+        </div>
+        <div>{{ education.faculty }}</div>
+      </div>
+      <div class="list-item-item institution">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'university']" />
+        </div>
+        <div>{{ education.institution }}</div>
+      </div>
+      <div class="list-item-item location">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
+        </div>
+        <div>{{ education.location }}</div>
+      </div>
+      <div class="list-item-item time">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
+        </div>
+        <div>{{ education.time }}</div>
+      </div>
     </div>
   </li>
 </template>
@@ -62,13 +75,11 @@ export default Vue.extend({
 
   .image-container {
     height: 52px;
-    // width: 40px;
     margin-bottom: 16px;
     margin-top: 40px;
 
     img {
       height: 100%;
-      // width: 100%;
     }
   }
 }

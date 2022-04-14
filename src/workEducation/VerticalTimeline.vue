@@ -113,7 +113,6 @@ export default Vue.extend({
   .section-body {
     display: flex;
     align-items: center;
-    overflow-x: hidden;
 
     .wrapper {
       display: flex;
@@ -127,42 +126,65 @@ export default Vue.extend({
       width: 4px;
       margin-top: 32px;
       background: $primaryDark;
-      transform: translateX(17px);
     }
 
     ul {
       margin: 0;
+      padding: 0;
       flex: 1;
       z-index: 1;
+      list-style-type: none; /* Remove bullets */
 
       // Common card styles
       li {
-        font-size: 2.5rem;
-        text-align: left;
-        padding: 4px 20px;
-        color: $primary;
+        display: flex;
+        flex-direction: row;
 
-        div {
-          margin: 4px;
-          font-size: 1rem;
-          transform: translateY(8px);
-          color: $fontColor;
-
-          @media screen and (max-width: $SMALL_DISPLAY_SIZE) {
-            font-size: 0.8rem;
-          }
+        .list-item-bullet {
+          position: absolute;
+          width: 12px !important;
+          height: 12px !important;
+          border-radius: 50%;
+          background-color: $primary;
+          top: 24px;
+          left: -8px;
         }
 
-        .title {
-          font-size: 1.2rem;
-          font-weight: 800;
+        .list-item-content {
+          display: flex;
+          flex-direction: column;
+          font-size: 2.5rem;
+          text-align: left;
+          padding: 4px 20px;
           color: $primary;
-        }
 
-        .icon {
-          margin-right: 4px;
-          color: $primaryDark;
-          width: 20px;
+          .list-item-item {
+            display: flex;
+            flex-direction: row;
+            margin: 2px 4px;
+            font-size: 1rem;
+            color: $fontColor;
+
+            @media screen and (max-width: $SMALL_DISPLAY_SIZE) {
+              font-size: 0.8rem;
+            }
+
+            &.title {
+              font-size: 1.2rem;
+              font-weight: 800;
+              color: $primary;
+            }
+
+            .icon {
+              margin-right: 4px;
+              color: $primaryDark;
+              width: 20px;
+            }
+
+            .text {
+              max-width: 80%;
+            }
+          }
         }
       }
     }

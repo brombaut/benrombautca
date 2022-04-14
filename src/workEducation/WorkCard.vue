@@ -1,24 +1,35 @@
 <template>
   <li class="work-card align-left slide-in">
-    <div class="image-container">
-      <img :src="imageSource" :alt="work.imageFile" />
-    </div>
-    <div class="title">{{ work.title }}</div>
-    <div class="team" v-if="work.team">
-      <font-awesome-icon class="icon" :icon="['fas', 'users']" />
-      {{ work.team }}
-    </div>
-    <div class="company">
-      <font-awesome-icon class="icon" :icon="['fas', 'building']" />
-      <a :href="work.link" target="_blank">{{ work.company }}</a>
-    </div>
-    <div class="location">
-      <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
-      {{ work.location }}
-    </div>
-    <div class="time">
-      <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
-      {{ work.time }}
+    <div class="list-item-bullet"></div>
+    <div class="list-item-content">
+      <div class="list-item-item image-container">
+        <img :src="imageSource" :alt="work.imageFile" />
+      </div>
+      <div class="list-item-item title">{{ work.title }}</div>
+      <div class="list-item-item team" v-if="work.team">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'users']" />
+        </div>
+        <div>{{ work.team }}</div>
+      </div>
+      <div class="list-item-item company">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'building']" />
+        </div>
+        <a :href="work.link" target="_blank">{{ work.company }}</a>
+      </div>
+      <div class="list-item-item location">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'map-marker-alt']" />
+        </div>
+        <div>{{ work.location }}</div>
+      </div>
+      <div class="list-item-item time">
+        <div class="icon-container">
+          <font-awesome-icon class="icon" :icon="['fas', 'calendar']" />
+        </div>
+        <div>{{ work.time }}</div>
+      </div>
     </div>
   </li>
 </template>
@@ -57,14 +68,12 @@ export default Vue.extend({
 .work-card {
 
   .image-container {
-    height: 48px;
-    // max-width: 144px;
+    height: 52px;
     margin-bottom: 0px;
     margin-top: 32px;
 
     img {
       height: 100%;
-      // width: 100%;
       border-radius: 4px;
     }
   }
@@ -72,12 +81,6 @@ export default Vue.extend({
   .team {
     color: $primary !important;
     font-weight: bold;
-  }
-
-  .company {
-    a {
-      margin-left: 4px;
-    }
   }
 }
 </style>
