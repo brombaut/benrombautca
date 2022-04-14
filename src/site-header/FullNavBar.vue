@@ -8,6 +8,7 @@
       <FullNavItem ref="bookshelfNav" route="/bookshelf" text="Bookshelf" @clicked="updateHighlight" />
       <FullNavItem ref="articlesNav" route="/articles" text="Articles" @clicked="updateHighlight" />
       <FullNavItem ref="softwareNav" route="/software" text="Software" @clicked="updateHighlight" />
+      <FullNavItem v-if="showMarathons" ref="marathonsNav" route="/marathons" text="Marathons" @clicked="updateHighlight" />
     </div>
   </nav>
 </template>
@@ -23,6 +24,12 @@ export default Vue.extend({
   components: {
     FullNavItem,
     BackButton,
+  },
+  data() {
+    const showMarathons = appConfig.flagMarathons;
+    return {
+      showMarathons,
+    };
   },
   methods: {
     updateHighlight(navItemEl: HTMLAnchorElement): void {

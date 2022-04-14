@@ -7,6 +7,7 @@ import SelectedArticleSection from "@/articles/SelectedArticleSection.vue";
 import SoftwareSection from "@/software/SoftwareSection.vue";
 import SelectedSoftwareSection from "@/software/SelectedSoftwareSection.vue";
 import PublicationsSection from "@/publications/PublicationsSection.vue";
+import MarathonsSection from "@/marathons/MarathonsSection.vue";
 
 Vue.use(VueRouter);
 
@@ -60,6 +61,11 @@ const routes = [
     path: "/publications",
     name: "publications",
     component: PublicationsSection,
+  },
+  {
+    path: "/marathons",
+    name: "marathons",
+    component: MarathonsSection,
   },
 ];
 
