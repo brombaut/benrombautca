@@ -1,5 +1,5 @@
 <template>
-  <section id="articles">
+  <section id="publications">
     <!-- subtext="This page contains links to all of my publications." -->
     <SectionHeader
       title="Publications"
@@ -84,14 +84,11 @@ export default Vue.extend({
       }
     },
   },
-  mounted() {
-    console.log(this.publications);
-  },
 });
 </script>
 
 <style lang="scss">
-#articles {
+#publications {
   display: flex;
   flex-direction: column;
 
