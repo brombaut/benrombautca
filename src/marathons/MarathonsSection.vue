@@ -1,11 +1,14 @@
 <template>
   <section id="marathons">
-    <!-- subtext="This page contains links to all of my publications." -->
     <SectionHeader
       title="Marathons"
-      icon="paragraph"
-      subtext="This page contains links to my publications." />
+      icon="running"
+      subtext="I got into running while the pandemic had all the gyms closed. Now I'd like to make a habit of running a (hopefully different) marathon every 1 or 2 years. " />
     <div class="section-body">
+      <MarathonCard
+        v-for="marathon in marathons"
+        :key="marathon.name"
+        :marathon="marathon" />
     </div>
   </section>
 </template>
@@ -13,11 +16,19 @@
 <script lang="ts">
 import Vue from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
+import MarathonCard from "./MarathonCard.vue";
+import marathons from "./marathons";
 
 export default Vue.extend({
   name: "MarathonsSection",
   components: {
     SectionHeader,
+    MarathonCard,
+  },
+  data() {
+    return {
+      marathons,
+    };
   },
 });
 </script>

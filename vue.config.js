@@ -34,6 +34,10 @@ module.exports = {
           from: "./src/assets/publications",
           to: "./publications/",
         },
+        {
+          from: "./src/marathons/marathon-images",
+          to: "./marathon-images/",
+        },
       ]),
     ],
   },
