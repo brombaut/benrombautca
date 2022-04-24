@@ -35,7 +35,7 @@
         :icon="['fas', 'chevron-right']"/>
       <span>Software</span>
     </a>
-    <a @click="navigateMobile('/marathons')">
+    <a v-if="showMarathons" @click="navigateMobile('/marathons')">
       <font-awesome-icon
         class='active-icon'
         :class="{active: routeIsActive('marathons')}"
@@ -47,6 +47,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import appConfig from "@/app_config";
 
 export default Vue.extend({
   props: {
@@ -54,6 +55,12 @@ export default Vue.extend({
       type: Boolean,
       required: true,
     },
+  },
+  data() {
+    const showMarathons = appConfig.flagMarathons;
+    return {
+      showMarathons,
+    };
   },
   methods: {
     navigateMobile(routeName: string): void {
