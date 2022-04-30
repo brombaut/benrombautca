@@ -3,7 +3,7 @@
     "_id": "deploy_ghpages_actions",
     "_title": "🚀 Set up Continuous Deployment to GitHub Pages with GitHub Actions",
     "_createdAt": "2021-06-24T14:13:24.709Z",
-    "_updatedAt": "2021-06-30T22:14:25.588Z",
+    "_updatedAt": "2022-04-30T18:00:20.197Z",
     "_description": "How to create a GitHub actions YAML file that deploys the project to GitHub pages. Also touches on using environment variables in the pipeline.",
     "_tags": [
       "github-pages",
@@ -240,7 +240,7 @@
     "_id": "search_and_sort_algorithms",
     "_title": "🔍 Search & Sort Algorithms",
     "_createdAt": "2022-01-29T16:20:19.106Z",
-    "_updatedAt": "2022-02-21T03:32:44.614Z",
+    "_updatedAt": "2022-04-30T19:03:02.392Z",
     "_description": "",
     "_tags": [
       "algorithms"
