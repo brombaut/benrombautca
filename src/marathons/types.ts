@@ -3,6 +3,12 @@ export interface Marathon {
   link: String;
   date: Date;
   runningTime: String;
+  placement: String;
   description: String;
-  images: String[];
+  images: MarathonImage[];
+}
+
+export interface MarathonImage {
+  src: String;
+  caption: String;
 }

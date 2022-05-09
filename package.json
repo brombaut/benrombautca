@@ -99,7 +99,7 @@
       ],
       "max-len": [
         "warn",
-        400
+        600
       ],
       "indent": [
         "error",
