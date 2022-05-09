@@ -35,7 +35,7 @@
         :icon="['fas', 'chevron-right']"/>
       <span>Software</span>
     </a>
-    <a v-if="showMarathons" @click="navigateMobile('/marathons')">
+    <a @click="navigateMobile('/marathons')">
       <font-awesome-icon
         class='active-icon'
         :class="{active: routeIsActive('marathons')}"
