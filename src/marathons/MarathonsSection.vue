@@ -3,7 +3,7 @@
     <SectionHeader
       title="Marathons"
       icon="running"
-      subtext="I got into running while the pandemic had all the gyms closed. Now I'd like to make a habit of running a (hopefully different) marathon every few years. The official marathons that I've ran are listed below." />
+      subtext="I got into running while the pandemic had the gyms closed. Now I'd like to make a habit of running a different marathon every few years. I ran my first official marathon in the Spring of 2022, which is listed below. Hopefully I'll add more to this list in the coming years." />
     <div class="section-body">
       <MarathonCard
         v-for="marathon in marathons"
