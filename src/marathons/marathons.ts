@@ -15,7 +15,7 @@ const marathons: Marathon[] = [
     images: [
       {
         src: "marathon-images/22fredericton_01.jpeg",
-        caption: "Me and my sister post-marathon",
+        caption: "My sister and I, post-marathon",
       },
       {
         src: "marathon-images/22fredericton_02.jpeg",

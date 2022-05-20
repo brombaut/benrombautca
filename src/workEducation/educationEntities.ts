@@ -3,12 +3,12 @@ import { Education } from "./education";
 const educationEntities: Education[] = [
   {
     imageFile: "queens_logo_name.png",
-    title: "Master of Science Candidate, Computing",
+    title: "Master of Science, Computing",
     lab: "Software Analysis & Intelligence Lab (SAIL)",
     faculty: "School of Computing",
     institution: "Queen's University",
     location: "Kingston, Ontario",
-    time: "Sep '20 - Present",
+    time: "Sep '20 - May '22",
   },
   {
     imageFile: "unbLogoLongText.png",
