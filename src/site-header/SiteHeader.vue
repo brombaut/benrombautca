@@ -2,7 +2,7 @@
   <header id="site-header" class="header-bright">
     <div class="banner">
       <h1><b>Ben Rombaut</b></h1>
-      <h4><i>M.Sc. Candidate at the Software Analysis & Intelligence Lab, Queen's University</i></h4>
+      <h4><i>Software Engineering Researcher</i></h4>
       <div id="external-profiles-container">
         <ExternalProfileIcon
           v-for="ep in externalProfiles"
