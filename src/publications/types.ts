@@ -4,6 +4,7 @@ export enum PublicationLinkType {
   Queens = "Queen's",
   PDF = "PDF",
   Forthcoming = "Forthcoming",
+  CSER22 = "CSER '22",
 }
 
 export interface PublicationLink {
@@ -15,6 +16,7 @@ export enum PublicationType {
   Journal = "J",
   Conference = "C",
   Thesis = "T",
+  Presentation = "P",
 }
 
 export enum PublicationVenue {
@@ -22,7 +24,8 @@ export enum PublicationVenue {
   TOSEM = "ACM Transactions on Software Engineering and Methodology (TOSEM)",
   TSE = "IEEE Transactions on Software Engineering (TSE)",
   EMSE = "Springer Empirical Software Engineering (EMSE)",
-  Queens = "Queen's University"
+  Queens = "Queen's University",
+  CSER = "Consortium for Software Engineering Research (CSER)"
 }
 
 export interface Publication {
@@ -70,6 +73,35 @@ export class ThesisPublication implements Publication {
 
   get year() {
     return this.dateAccepted.getFullYear();
+  }
+
+}
+
+export class PresentationPublication implements Publication {
+  type: PublicationType = PublicationType.Presentation;
+
+  constructor(
+    public title: string,
+    public authors: string[],
+    public venue: PublicationVenue,
+    public dateAccepted: Date,
+    public links: PublicationLink[],
+    public location: string,
+  ) { }
+
+  get year() {
+    return this.dateAccepted.getFullYear();
+  }
+
+  get month() {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ];
+    return monthNames[this.dateAccepted.getMonth()];
+  }
+
+  get dayOfMonth() {
+    return this.dateAccepted.getDate();
   }
 
 }

@@ -1,4 +1,4 @@
-import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication } from "./types";
+import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication, PresentationPublication } from "./types";
 
 const publications: Publication[] = [
   new JournalPublication(
@@ -30,7 +30,7 @@ const publications: Publication[] = [
     "Studying the overhead and crowd-sourced risk assessment strategy of dependency management bots",
     "Benjamin Rombaut",
     PublicationVenue.Queens,
-    new Date(2022, 4, 27),
+    new Date(2022, 4, 19),
     [
       {
         type: PublicationLinkType.Queens,
@@ -42,6 +42,19 @@ const publications: Publication[] = [
       },
     ],
     "Master's Thesis",
+  ),
+  new PresentationPublication(
+    "Lessons learned from exploring the overhead introduced by the Greenkeeper dependency bot",
+    ["Benjamin Rombaut"],
+    PublicationVenue.CSER,
+    new Date(2022, 4, 30),
+    [
+      {
+        type: PublicationLinkType.CSER22,
+        url: "https://www.cser.ca/2022s",
+      },
+    ],
+    "Montreal, QC, Canada",
   ),
   // new JournalPublication(
   //   "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",

@@ -24,6 +24,13 @@
             :thesis="publication"
             :publicationNumber="vPub.items.length - idx"/>
         </ul>
+        <ul v-else-if="vPub.type === presentation">
+          <PresentationPublication
+            v-for="(publication, idx) in vPub.items"
+            :key="publication.title"
+            :presentation="publication"
+            :publicationNumber="vPub.items.length - idx"/>
+        </ul>
       </div>
     </div>
   </section>
@@ -34,6 +41,7 @@ import Vue from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import JournalPublication from "./JournalPublication.vue";
 import ThesisPublication from "./ThesisPublication.vue";
+import PresentationPublication from "./PresentationPublication.vue";
 import publications from "./publications";
 import { Publication, PublicationType, ViewPublication } from "./types";
 
@@ -43,10 +51,12 @@ export default Vue.extend({
     SectionHeader,
     JournalPublication,
     ThesisPublication,
+    PresentationPublication,
   },
   data() {
     const publicationTypesToShow: PublicationType[] = [
       PublicationType.Journal,
+      PublicationType.Presentation,
       PublicationType.Thesis,
     ];
     return {
@@ -73,6 +83,9 @@ export default Vue.extend({
     thesis() {
       return PublicationType.Thesis;
     },
+    presentation() {
+      return PublicationType.Presentation;
+    },
   },
   methods: {
     publicationTypeHeader(type: PublicationType): string {
@@ -80,6 +93,7 @@ export default Vue.extend({
       case (PublicationType.Journal): return "Peer-reviewed Journal Papers";
       case (PublicationType.Conference): return "Peer-reviewed Conference Papers";
       case (PublicationType.Thesis): return "Theses";
+      case (PublicationType.Presentation): return "Presentations & Talks";
       default: return "";
       }
     },
