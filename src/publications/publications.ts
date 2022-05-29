@@ -13,14 +13,35 @@ const publications: Publication[] = [
     new Date(2022, 1, 24),
     [
       {
-        type: PublicationLinkType.PDF,
-        url: "publications/GKIR.pdf",
+        type: PublicationLinkType.ACM,
+        url: "https://dl.acm.org/doi/10.1145/3522587",
       },
       {
         type: PublicationLinkType.ResearchGate,
         url: "https://www.researchgate.net/publication/358911750_There's_no_such_thing_as_a_free_lunch_Lessons_learned_from_exploring_the_overhead_introduced_by_the_Greenkeeper_dependency_bot_in_npm",
       },
+      {
+        type: PublicationLinkType.PDF,
+        url: "publications/Rombaut_Benjamin_J_202202_GreenkeeperOverhead.pdf",
+      },
     ],
+  ),
+  new ThesisPublication(
+    "Studying the overhead and crowd-sourced risk assessment strategy of dependency management bots",
+    "Benjamin Rombaut",
+    PublicationVenue.Queens,
+    new Date(2022, 4, 27),
+    [
+      {
+        type: PublicationLinkType.Queens,
+        url: "https://qspace.library.queensu.ca/handle/1974/30136",
+      },
+      {
+        type: PublicationLinkType.PDF,
+        url: "publications/Rombaut_Benjamin_J_202205_MSc.pdf",
+      },
+    ],
+    "Master's Thesis",
   ),
   // new JournalPublication(
   //   "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",
@@ -32,14 +53,6 @@ const publications: Publication[] = [
   //   PublicationVenue.TSE,
   //   new Date(),
   //   [],
-  // ),
-  // new ThesisPublication(
-  //   "Studying the use of bots for supporting dependency management",
-  //   "Benjamin Rombaut",
-  //   PublicationVenue.Queens,
-  //   new Date(),
-  //   [],
-  //   "Master's thesis",
   // ),
 ];
 

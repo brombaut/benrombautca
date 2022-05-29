@@ -47,7 +47,7 @@ export default Vue.extend({
   data() {
     const publicationTypesToShow: PublicationType[] = [
       PublicationType.Journal,
-      // PublicationType.Thesis,
+      PublicationType.Thesis,
     ];
     return {
       publicationTypesToShow,

@@ -1,5 +1,6 @@
 export enum PublicationLinkType {
   ResearchGate = "ResearchGate",
+  ACM = "ACM",
   Queens = "Queen's",
   PDF = "PDF",
   Forthcoming = "Forthcoming",

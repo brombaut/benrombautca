@@ -14,7 +14,9 @@
     <div class="publication-info-entity links">
       <a
         v-for="link in thesis.links"
-        :key="link.url">
+        :key="link.url"
+        :href="link.url"
+        target="_blank">
         <span>[{{ link.type }}]</span>
       </a>
     </div>
