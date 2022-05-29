@@ -4,7 +4,7 @@
     <SectionHeader
       title="Publications"
       icon="paragraph"
-      subtext="This page contains links to my publications." />
+      subtext="This page contains links to publications and presentations to which I've contributed." />
     <div class="section-body">
       <div
         v-for="vPub in viewPublications"
