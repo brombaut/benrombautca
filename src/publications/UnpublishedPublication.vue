@@ -1,25 +1,22 @@
 <template>
-<li class="journal-publication">
-  <div class="publication-index">[{{journal.type}}{{publicationNumber}}]</div>
+<li class="unpublished-publication">
+  <div class="publication-index">[{{unpublishedPublication.type}}{{publicationNumber}}]</div>
   <div class="publication-info">
     <div class="publication-info-entity title">
-      <span><b>{{ journal.title }}</b></span>
+      <span><b>{{ unpublishedPublication.title }}</b></span>
     </div>
     <div class="publication-info-entity authors">
       <span
-        v-for="(a, idx) in journal.authors"
+        v-for="(a, idx) in unpublishedPublication.authors"
         :key=a>
         <span :class="{underline: authorIsBen(a)}">{{ a }}</span>
-        <span v-if="idx < journal.authors.length - 1">, </span>
+        <span v-if="idx < unpublishedPublication.authors.length - 1">, </span>
         <span v-else>.</span>
       </span>
     </div>
-    <div class="publication-info-entity venue">
-      <i>{{ journal.venue }}</i>, {{ journal.month }} {{ journal.year }}
-    </div>
     <div class="links">
       <a
-        v-for="link in journal.links"
+        v-for="link in unpublishedPublication.links"
         :key="link.url"
         :href="link.url"
         target="_blank">
@@ -32,13 +29,13 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { JournalPublication } from "./types";
+import { UnpublishedPublication } from "./types";
 
 export default Vue.extend({
-  name: "JournalPublication",
+  name: "UnpublishedPublication",
   props: {
-    journal: {
-      type: Object as PropType<JournalPublication>,
+    unpublishedPublication: {
+      type: Object as PropType<UnpublishedPublication>,
       required: true,
     },
     publicationNumber: {
@@ -55,7 +52,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.journal-publication {
+.unpublished-publication {
   display: flex;
   flex-direction: row;
 }

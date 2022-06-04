@@ -15,7 +15,7 @@
       </span>
     </div>
     <div class="publication-info-entity venue">
-      <i>{{ presentation.venue }}</i>, {{ presentation.month }} {{ presentation.dayOfMonth}}, {{ presentation.year }}
+      <i>{{ presentation.venue }}</i>, {{ presentation.month }} {{ presentation.year }}
     </div>
     <div class="publication-info-entity venue">
       <span>{{ presentation.location }}</span>

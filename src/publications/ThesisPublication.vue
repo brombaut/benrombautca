@@ -9,7 +9,7 @@
       <span class="underline">{{ thesis.authors }}</span> - <span>{{ thesis.thesisType }}</span>
     </div>
     <div class="publication-info-entity venue">
-      <i>{{ thesis.venue }}</i>, {{ thesis.year }}
+      <i>{{ thesis.venue }}</i>, {{ thesis.month }} {{ thesis.year }}
     </div>
     <div class="publication-info-entity links">
       <a

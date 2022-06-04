@@ -17,6 +17,7 @@ export enum PublicationType {
   Conference = "C",
   Thesis = "T",
   Presentation = "P",
+  Unpublished = "U",
 }
 
 export enum PublicationVenue {
@@ -25,7 +26,8 @@ export enum PublicationVenue {
   TSE = "IEEE Transactions on Software Engineering (TSE)",
   EMSE = "Springer Empirical Software Engineering (EMSE)",
   Queens = "Queen's University",
-  CSER = "Consortium for Software Engineering Research (CSER)"
+  CSER = "Consortium for Software Engineering Research (CSER)",
+  Unpublished = "Unpublished",
 }
 
 export interface Publication {
@@ -35,6 +37,9 @@ export interface Publication {
   venue: PublicationVenue;
   dateAccepted: Date;
   links: PublicationLink[];
+
+  get year(): number;
+  get month(): string;
 }
 
 export interface ViewPublication {
@@ -57,6 +62,13 @@ export class JournalPublication implements Publication {
   get year() {
     return this.dateAccepted.getFullYear();
   }
+
+  get month() {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ];
+    return monthNames[this.dateAccepted.getMonth()];
+  }
 }
 
 export class ThesisPublication implements Publication {
@@ -73,6 +85,13 @@ export class ThesisPublication implements Publication {
 
   get year() {
     return this.dateAccepted.getFullYear();
+  }
+
+  get month() {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ];
+    return monthNames[this.dateAccepted.getMonth()];
   }
 
 }
@@ -104,4 +123,27 @@ export class PresentationPublication implements Publication {
     return this.dateAccepted.getDate();
   }
 
+}
+
+export class UnpublishedPublication implements Publication {
+  type: PublicationType = PublicationType.Unpublished;
+  venue: PublicationVenue = PublicationVenue.Unpublished;
+
+  constructor(
+    public title: string,
+    public authors: string[],
+    public dateAccepted: Date,
+    public links: PublicationLink[],
+  ) { }
+
+  get year() {
+    return this.dateAccepted.getFullYear();
+  }
+
+  get month() {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ];
+    return monthNames[this.dateAccepted.getMonth()];
+  }
 }

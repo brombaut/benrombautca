@@ -1,4 +1,4 @@
-import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication, PresentationPublication } from "./types";
+import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication, PresentationPublication, UnpublishedPublication } from "./types";
 
 const publications: Publication[] = [
   new JournalPublication(
@@ -56,17 +56,21 @@ const publications: Publication[] = [
     ],
     "Montreal, QC, Canada",
   ),
-  // new JournalPublication(
-  //   "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",
-  //   [
-  //     "Benjamin Rombaut",
-  //     "Filipe R. Cogo",
-  //     "Ahmed E. Hassan",
-  //   ],
-  //   PublicationVenue.TSE,
-  //   new Date(),
-  //   [],
-  // ),
+  new UnpublishedPublication(
+    "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",
+    [
+      "Benjamin Rombaut",
+      "Filipe R. Cogo",
+      "Ahmed E. Hassan",
+    ],
+    new Date(2022, 2, 1),
+    [
+      {
+        type: PublicationLinkType.PDF,
+        url: "publications/Rombaut_Benjamin_J_202203_DependabotCompatibilityScore.pdf",
+      },
+    ],
+  ),
 ];
 
 export default publications;
