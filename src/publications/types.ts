@@ -3,6 +3,7 @@ export enum PublicationLinkType {
   ACM = "ACM",
   Queens = "Queen's",
   PDF = "PDF",
+  Slides = "Slides",
   Forthcoming = "Forthcoming",
   CSER22 = "CSER '22",
 }

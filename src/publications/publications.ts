@@ -53,6 +53,10 @@ const publications: Publication[] = [
         type: PublicationLinkType.CSER22,
         url: "https://www.cser.ca/2022s",
       },
+      {
+        type: PublicationLinkType.Slides,
+        url: "publications/Rombaut_Benjamin_J_202205_GreenkeeperOverhead_Presentation_CSER2022.pdf",
+      },
     ],
     "Montreal, QC, Canada",
   ),
