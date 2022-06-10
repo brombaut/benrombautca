@@ -34,7 +34,6 @@ export default Vue.extend({
       new ExternalProfile("Dev.to", ["fab", "dev"], "https://dev.to/brombaut"),
       new ExternalProfile("Stack Overflow", ["fab", "stack-overflow"], "https://stackoverflow.com/users/5816686/ben"),
       new ExternalProfile("Resume", ["fas", "portrait"], "resumes/BenRombaut_Resume.pdf"),
-      new ExternalProfile("CV", ["fas", "address-card"], "resumes/BenRombaut_CV.pdf"),
     ];
     return {
       externalProfiles,
