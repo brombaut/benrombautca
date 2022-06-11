@@ -106,6 +106,7 @@ def update_existing_with_fresh(existing_sas, fresh_sas):
                 "_updatedAt": datetime.datetime.now(),
                 "_description": "",
                 "_show": False,
+                "_order": 99,
                 "_externalRepos": list(),
                 "_techUsed": list(),
                 "_body": fsa['_body'],
@@ -134,6 +135,7 @@ def write_updated_to_files(updated, meta_file_path, content_file_path):
             "_updatedAt": u['_updatedAt'],
             "_description": u['_description'],
             "_show": u['_show'],
+            "_order": u['_order'],
             "_externalRepos": u['_externalRepos'],
             "_techUsed": u['_techUsed'],
         })
