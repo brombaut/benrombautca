@@ -31,16 +31,16 @@ args = parser.parse_args()
 
 SOFTWARES = [
     {
+        "id": "benrombautca",
+        "url": "https://raw.githubusercontent.com/brombaut/benrombautca/main/README.md"
+    },
+    {
         "id": "firebase_firestore_facade",
         "url": "https://raw.githubusercontent.com/brombaut/firebase-firestore-facade/main/README.md",
     },
     {
         "id": "article_scraper",
         "url": "https://raw.githubusercontent.com/brombaut/article-scraper/main/README.md",
-    },
-    {
-        "id": "benrombautca",
-        "url": "https://raw.githubusercontent.com/brombaut/benrombautca/main/README.md"
     }
 ]
 
