@@ -6,7 +6,6 @@
     "_updatedAt": "2022-06-10 21:10:08.835082",
     "_description": "A project I built that serves as a facade between the official Firebase npm package and the client project. It provides a simplified CRUD interface for the Firestore submodule that requires minimal setup for clients to start using.",
     "_show": true,
-    "_order": 3,
     "_externalRepos": [
       {
         "_id": "github",
@@ -51,7 +50,6 @@
     "_updatedAt": "2022-06-10 21:10:08.835168",
     "_description": "A project I built that scrapes articles on popular blogging sites for their meta-data (e.g., title, time-to-read, tags).",
     "_show": true,
-    "_order": 99,
     "_externalRepos": [
       {
         "_id": "github",
@@ -90,7 +88,6 @@
     "_updatedAt": "2022-06-10 21:10:08.834950",
     "_description": "Source repository for my personal website.",
     "_show": true,
-    "_order": 0,
     "_externalRepos": [
       {
         "_id": "github",
@@ -125,10 +122,9 @@
     "_id": "game_of_life",
     "_title": "Conway's Game of Life",
     "_createdAt": "2022-06-11 01:13:52.226765",
-    "_updatedAt": "2022-06-11 01:13:52.226767",
+    "_updatedAt": "2022-06-11 01:35:06.095230",
     "_description": "A weekend project based on Conway's Game of Life, which I originally learned about from the Computerphile Video, and always thought it would be a cool project to build.",
     "_show": true,
-    "_order": 1,
     "_externalRepos": [
       {
         "_id": "github",
