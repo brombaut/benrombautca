@@ -39,6 +39,10 @@ SOFTWARES = [
         "url": "https://raw.githubusercontent.com/brombaut/firebase-firestore-facade/main/README.md",
     },
     {
+        "id": "game_of_life",
+        "url": "https://raw.githubusercontent.com/brombaut/game-of-life/main/README.md"
+    },
+    {
         "id": "article_scraper",
         "url": "https://raw.githubusercontent.com/brombaut/article-scraper/main/README.md",
     }
