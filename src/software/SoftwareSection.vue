@@ -39,7 +39,7 @@ export default Vue.extend({
       return this.softwareArticles
         .filter((aa: SoftwareArticle) => aa.show)
         .sort((a: SoftwareArticle, b: SoftwareArticle) => {
-          return b.createdAt.getTime() - a.createdAt.getTime();
+          return a.order - b.order;
         });
     },
   },

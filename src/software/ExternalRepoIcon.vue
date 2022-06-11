@@ -54,6 +54,7 @@ export default Vue.extend({
       switch (this.$props.externalRepo._title) {
       case ("GitHub"): return new TagColor("#403d3d", "#ffffff");
       case ("NPM"): return new TagColor("#cc3534", "#ffffff");
+      case ("Live Site"): return new TagColor("#e6e6e6", "#000000");
       default: return new TagColor("#1d5ca4", "#f1f5fa");
       }
     },

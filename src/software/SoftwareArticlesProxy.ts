@@ -13,6 +13,7 @@ interface SoftwareArticleMeta {
   _updatedAt: Date,
   _description: string,
   _show: boolean,
+  _order: number,
   _externalRepos: ExternalRepo[];
   _techUsed: Tech[];
 }
@@ -40,6 +41,7 @@ export interface SoftwareArticle {
   readonly description: string;
   readonly body: string;
   readonly show: boolean;
+  readonly order: number;
   readonly externalRepos: ExternalRepo[];
   readonly techUsed: Tech[];
 }
@@ -78,6 +80,7 @@ export class SoftwareArticlesProxy {
         description: dto._description,
         body: dto._body,
         show: dto._show,
+        order: dto._order,
         externalRepos: dto._externalRepos,
         techUsed: dto._techUsed,
       };
