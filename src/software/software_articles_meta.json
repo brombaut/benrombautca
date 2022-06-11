@@ -3,7 +3,7 @@
     "_id": "firebase_firestore_facade",
     "_title": "F3 - Firebase Firestore Facade",
     "_createdAt": "2021-07-03T18:21:47.105Z",
-    "_updatedAt": "2021-10-03T13:49:21.817Z",
+    "_updatedAt": "2022-06-10 21:10:08.835082",
     "_description": "A project I built that serves as a facade between the official Firebase npm package and the client project. It provides a simplified CRUD interface for the Firestore submodule that requires minimal setup for clients to start using.",
     "_show": true,
     "_externalRepos": [
@@ -47,7 +47,7 @@
     "_id": "article_scraper",
     "_title": "Article Scraper",
     "_createdAt": "2021-09-28T00:27:35.140Z",
-    "_updatedAt": "2021-09-29T14:32:20.590Z",
+    "_updatedAt": "2022-06-10 21:10:08.835168",
     "_description": "A project I built that scrapes articles on popular blogging sites for their meta-data (e.g., title, time-to-read, tags).",
     "_show": true,
     "_externalRepos": [
@@ -85,7 +85,7 @@
     "_id": "benrombautca",
     "_title": "Ben Rombaut - Personal Website",
     "_createdAt": "2021-01-01T21:52:54.657Z",
-    "_updatedAt": "2021-10-11 20:21:00.319555",
+    "_updatedAt": "2022-06-10 21:10:08.834950",
     "_description": "Source repository for my personal website.",
     "_show": true,
     "_externalRepos": [
