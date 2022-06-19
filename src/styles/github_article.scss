@@ -448,6 +448,14 @@
     width: 0;
   }
 
+  & > pre {
+    overflow: auto;
+    display: block;
+    background-color: #f1f5fa;
+    border: 0px;
+    width: 0;
+  }
+
   code.sourceCode {
 
     &.typescript,

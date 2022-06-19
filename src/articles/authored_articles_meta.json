@@ -258,5 +258,18 @@
       "machine-learning"
     ],
     "_show": true
+  },
+  {
+    "_id": "classify_mnist_hello_ml",
+    "_title": "🤖 Classifying the MNIST dataset",
+    "_createdAt": "2022-06-19T14:41:23.672Z",
+    "_updatedAt": "2022-06-19T14:41:23.672Z",
+    "_description": "",
+    "_tags": [
+      "machine-learning",
+      "scikit-learn",
+      "how-to"
+    ],
+    "_show": true
   }
 ]

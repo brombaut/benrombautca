@@ -27,6 +27,12 @@ export default Vue.extend({
       preCodeEls.forEach((preCodeEl: HTMLPreElement) => {
         this.resizeSourceCodeEl(preCodeEl);
       });
+
+      const immChildPreCodeEls: NodeListOf<HTMLPreElement> = this.$el.querySelectorAll(":scope > pre");
+      immChildPreCodeEls.forEach((preCodeEl: HTMLPreElement) => {
+        this.resizeSourceCodeEl(preCodeEl);
+      });
+      // console.log(immChildPreCodeEls);
     },
   },
   mounted() {
