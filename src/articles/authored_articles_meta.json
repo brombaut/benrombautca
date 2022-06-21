@@ -261,14 +261,15 @@
   },
   {
     "_id": "classify_mnist_hello_ml",
-    "_title": "🤖 Classifying the MNIST dataset",
+    "_title": "🤖 Classifying the MNIST dataset - The Hello, World of ML",
     "_createdAt": "2022-06-19T14:41:23.672Z",
-    "_updatedAt": "2022-06-19T17:30:07.952Z",
+    "_updatedAt": "2022-06-21T21:35:25.586Z",
     "_description": "",
     "_tags": [
       "machine-learning",
       "scikit-learn",
-      "how-to"
+      "how-to",
+      "python"
     ],
     "_show": true
   },
@@ -280,6 +281,20 @@
     "_description": "",
     "_tags": [
       "data-structures"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "classify_mnist_additional_exercises",
+    "_title": "🤖 Classifying the MNIST dataset - Additional Exercises",
+    "_createdAt": "2022-06-21T21:31:57.166Z",
+    "_updatedAt": "2022-06-21T21:35:25.586Z",
+    "_description": "",
+    "_tags": [
+      "machine-learning",
+      "scikit-learn",
+      "how-to",
+      "python"
     ],
     "_show": true
   }
