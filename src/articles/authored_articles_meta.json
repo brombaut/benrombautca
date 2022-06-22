@@ -297,5 +297,16 @@
       "python"
     ],
     "_show": true
+  },
+  {
+    "_id": "prime_numbers",
+    "_title": "#️⃣ Checking for Prime Numbers",
+    "_createdAt": "2022-06-22T01:50:29.484Z",
+    "_updatedAt": "2022-06-22T10:03:49.033Z",
+    "_description": "",
+    "_tags": [
+      "algorithms"
+    ],
+    "_show": true
   }
 ]
