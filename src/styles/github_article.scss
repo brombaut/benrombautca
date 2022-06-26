@@ -441,6 +441,10 @@
   div.sourceCode {
   }
 
+  div:not([class]) { /* every section without class - but won't select Section C */
+    overflow-x: auto;
+  }
+
   pre.sourceCode {
     overflow: auto;
     display: block;
