@@ -277,7 +277,7 @@
     "_id": "data_structures_from_scratch",
     "_title": "🧰 Data Structures From Scratch",
     "_createdAt": "2022-06-19T18:35:03.379Z",
-    "_updatedAt": "2022-06-23T23:24:39.587Z",
+    "_updatedAt": "2022-06-27T00:50:10.304Z",
     "_description": "",
     "_tags": [
       "data-structures"
@@ -314,6 +314,19 @@
     "_title": "🤖 Titanic Dataset - Will a Passeger Survive?",
     "_createdAt": "2022-06-26T17:48:25.798Z",
     "_updatedAt": "2022-06-26T17:48:25.798Z",
+    "_description": "",
+    "_tags": [
+      "machine-learning",
+      "scikit-learn",
+      "python"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "spam_classifier",
+    "_title": "🤖 Building a SPAM Classifier",
+    "_createdAt": "2022-06-27T00:00:00.093Z",
+    "_updatedAt": "2022-06-27T00:04:59.613Z",
     "_description": "",
     "_tags": [
       "machine-learning",
