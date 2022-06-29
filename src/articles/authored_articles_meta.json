@@ -277,7 +277,7 @@
     "_id": "data_structures_from_scratch",
     "_title": "🧰 Data Structures From Scratch",
     "_createdAt": "2022-06-19T18:35:03.379Z",
-    "_updatedAt": "2022-06-27T00:50:10.304Z",
+    "_updatedAt": "2022-06-29T22:01:58.614Z",
     "_description": "",
     "_tags": [
       "data-structures"
@@ -332,6 +332,17 @@
       "machine-learning",
       "scikit-learn",
       "python"
+    ],
+    "_show": true
+  },
+  {
+    "_id": "trees_and_graphs",
+    "_title": "🌲 Trees and Graphs",
+    "_createdAt": "2022-06-29T22:01:58.602Z",
+    "_updatedAt": "2022-06-29T22:32:22.282Z",
+    "_description": "",
+    "_tags": [
+      "data-structures"
     ],
     "_show": true
   }
