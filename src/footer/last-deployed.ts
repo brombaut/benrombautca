@@ -1,1 +1,1 @@
-export default "29/06/2022";
+export default "02/07/2022";
