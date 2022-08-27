@@ -23,7 +23,7 @@
     "core-js": "^3.18.2",
     "dotenv": "^10.0.0",
     "firebase-firestore-facade": "1.2.0",
-    "vue": "^2.6.12",
+    "vue": "^3.2.37",
     "vue-router": "^3.5.1",
     "xml2js": "^0.4.23"
   },
