@@ -74,7 +74,7 @@ $verticalPadding: 8px;
   transition: 0.1s;
 
   header {
-    width: calc(100% - 2*$horizontalPadding);
+    width: calc(100% - 24px - 24px);
     padding: 2*$verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
     background-color: $secondaryDark;
     border-top-left-radius: $borderRadius;
@@ -91,7 +91,7 @@ $verticalPadding: 8px;
     }
   }
   .body {
-    width: calc(100% - 2*$horizontalPadding);
+    width: calc(100% - 24px - 24px);
     padding: $verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
     background-color: $secondaryLight;
 
@@ -100,7 +100,7 @@ $verticalPadding: 8px;
     }
   }
   footer {
-    width: calc(100% - 2*$horizontalPadding);
+    width: calc(100% - 24px - 24px);
     padding: $verticalPadding $horizontalPadding 2*$verticalPadding $horizontalPadding;
     background-color: $secondaryLight;
     border-bottom-left-radius: $borderRadius;
