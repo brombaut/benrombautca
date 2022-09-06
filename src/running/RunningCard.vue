@@ -1,25 +1,25 @@
 <template>
-  <div class="marathon-card">
-    <div class="marathon-info">
-      <h3 class="header"><a :href="marathon.link" target="_blank">{{ marathon.name }}</a></h3>
+  <div class="race-card">
+    <div class="race-info">
+      <h3 class="header"><a :href="race.link" target="_blank">{{ race.name }}</a></h3>
       <div class="body">
         <div class="wrapper">
            <div class="label">Race Date:</div>
-           <div class="value">{{ marathonDate }}</div>
+           <div class="value">{{ raceDate }}</div>
         </div>
         <div class="wrapper">
           <div class="label">Official Time:</div>
-          <div class="value" v-html="marathon.runningTime"></div>
+          <div class="value" v-html="race.runningTime"></div>
         </div>
         <div class="wrapper">
           <div class="label">Placement:</div>
-          <div class="value" v-html="marathon.placement"></div>
+          <div class="value" v-html="race.placement"></div>
         </div>
-        <div v-html="marathon.description"></div>
+        <div v-html="race.description"></div>
       </div>
     </div>
-    <div class="marathon-images">
-      <ImageCarousel :images="marathon.images" />
+    <div class="race-images">
+      <ImageCarousel :images="race.images" />
     </div>
   </div>
 </template>
@@ -27,22 +27,22 @@
 <script lang="ts">
 import Vue, { PropType } from "vue";
 import ImageCarousel from "./ImageCarousel.vue";
-import { Marathon } from "./types";
+import { Race } from "./types";
 
 export default Vue.extend({
-  name: "MarathonCard",
+  name: "RaceCard",
   components: {
     ImageCarousel,
   },
   props: {
-    marathon: {
-      type: Object as PropType<Marathon>,
+    race: {
+      type: Object as PropType<Race>,
       required: true,
     },
   },
   computed: {
-    marathonDate() {
-      const d: Date = this.marathon.date;
+    raceDate() {
+      const d: Date = this.race.date;
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
     },
@@ -51,7 +51,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.marathon-card {
+.race-card {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -60,7 +60,7 @@ export default Vue.extend({
     flex-direction: column;
   }
 
-  .marathon-info {
+  .race-info {
     flex: 1;
     // margin: 0 8px 8px 8px;
     padding: 0 4px;
@@ -102,7 +102,7 @@ export default Vue.extend({
     }
   }
 
-  .marathon-images {
+  .race-images {
     flex: 1;
   }
 }

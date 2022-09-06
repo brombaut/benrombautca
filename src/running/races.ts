@@ -1,6 +1,6 @@
-import { Marathon } from "./types";
+import { Race } from "./types";
 
-const marathons: Marathon[] = [
+const races: Race[] = [
   {
     name: "44th annual Stewart McKelvey Fredericton Marathon Race",
     link: "https://frederictonmarathon.com/",
@@ -14,27 +14,27 @@ const marathons: Marathon[] = [
     `,
     images: [
       {
-        src: "marathon-images/22fredericton_01.jpeg",
+        src: "running-images/22fredericton_01.jpeg",
         caption: "My sister and I, post-marathon",
       },
       {
-        src: "marathon-images/22fredericton_02.jpeg",
+        src: "running-images/22fredericton_02.jpeg",
         caption: "About to cross the finish line",
       },
       {
-        src: "marathon-images/22fredericton_03.jpeg",
+        src: "running-images/22fredericton_03.jpeg",
         caption: "Finished!",
       },
       {
-        src: "marathon-images/22fredericton_04.jpeg",
+        src: "running-images/22fredericton_04.jpeg",
         caption: "2nd overall, 1st in the 20-29 age group",
       },
       {
-        src: "marathon-images/22fredericton_05.jpg",
+        src: "running-images/22fredericton_05.jpg",
         caption: "The race map",
       },
     ],
   },
 ];
 
-export default marathons;
+export default races;

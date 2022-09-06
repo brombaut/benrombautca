@@ -30,13 +30,13 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { MarathonImage } from "./types";
+import { RunningImage } from "./types";
 
 export default Vue.extend({
   name: "ImageCarousel",
   props: {
     images: {
-      type: Array as PropType<MarathonImage[]>,
+      type: Array as PropType<RunningImage[]>,
       required: true,
     },
   },

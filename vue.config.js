@@ -35,8 +35,8 @@ module.exports = {
           to: "./publications/",
         },
         {
-          from: "./src/marathons/marathon-images",
-          to: "./marathon-images/",
+          from: "./src/running/running-images",
+          to: "./running-images/",
         },
       ]),
     ],
