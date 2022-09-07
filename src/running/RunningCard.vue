@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="race-images">
-      <ImageCarousel :images="race.images" />
+      <ImageCarousel :images="race.images"/>
     </div>
   </div>
 </template>
@@ -41,10 +41,14 @@ export default Vue.extend({
     },
   },
   computed: {
-    raceDate() {
-      const d: Date = this.race.date;
-      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+    raceDate(): String {
+      if (this.race.date instanceof Date) {
+        const d: Date = this.race.date;
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+      } else {
+        return this.race.date;
+      }
     },
   },
 });
@@ -55,6 +59,8 @@ export default Vue.extend({
   display: flex;
   flex-direction: row;
   width: 100%;
+  border-top: 2px solid $primaryDark;
+  padding-top: 16px;
 
   @media only screen and (max-width: $MAX_SECTION_SIZE) {
     flex-direction: column;

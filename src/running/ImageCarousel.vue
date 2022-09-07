@@ -61,8 +61,8 @@ export default Vue.extend({
     },
     showSlides(n: number) {
       let i;
-      const slides: HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName("image-slide") as HTMLCollectionOf<HTMLDivElement>;
-      const dots = document.getElementsByClassName("dot");
+      const slides: HTMLCollectionOf<HTMLDivElement> = this.$el.getElementsByClassName("image-slide") as HTMLCollectionOf<HTMLDivElement>;
+      const dots = this.$el.getElementsByClassName("dot");
       if (n > slides.length) {
         this.slideIndex = 1;
       }

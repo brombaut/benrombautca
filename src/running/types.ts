@@ -1,7 +1,8 @@
 export interface Race {
   name: String;
   link: String;
-  date: Date;
+  orderDate: Date;
+  date: Date | String;
   runningTime: String;
   placement: String;
   description: String;
