@@ -48,7 +48,7 @@ const races: Race[] = [
     link: "https://www.parkrun.ca/breakwater/",
     orderDate: new Date(2022, 8, 1),
     date: "Saturday Mornings",
-    runningTime: "18:06 -- Ran in <a href='https://www.parkrun.ca/breakwater/results/68/' target='_blank'>Breakwate Parkrun #68</a>",
+    runningTime: "18:06 -- Ran in <a href='https://www.parkrun.ca/breakwater/results/68/' target='_blank'>Breakwater Parkrun #68</a>",
     placement: "<a href='https://www.parkrun.ca/breakwater/results/fastest500/' target='_blank'>Currently 4th all-time</a> - Hoping to beat the course record of 17:55. A history of all my parkruns can be found <a href='https://www.parkrun.ca/parkrunner/7645813/' target='_blank'>here</a>.",
     description: `<p>After running my first marathon in the Spring of 2022, I decided to take a break from long-distance running and try to improve my 5k time. This was definitely influenced by the fact that there was timed 5k run every Saturday morning down at Breakwater Park in Kingston, Ontario. These weekly 5k runs are called "Parkruns" (see the <a href="https://www.parkrun.ca/" target="_blank">Canadian Parkrun website</a> for more info), and they are apparently very popular over in England, but also take place all over the world. Their website was very welcoming of newcomers, so I headed down for my first Parkrun in June 2022.</p>
     <p>After my first Breakwater Parkrun, I decided to set a goal of beating the all-time record for the course, which was set back in 2019. I've slowly been closing in on that goal, and am hoping to beat the record once the Fall of 2022 rolls around and the Ontario Summer heat cools off a bit.</p>
