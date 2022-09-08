@@ -35,12 +35,12 @@
         :icon="['fas', 'chevron-right']"/>
       <span>Software</span>
     </a>
-    <a @click="navigateMobile('/marathons')">
+    <a @click="navigateMobile('/running')">
       <font-awesome-icon
         class='active-icon'
-        :class="{active: routeIsActive('marathons')}"
+        :class="{active: routeIsActive('running')}"
         :icon="['fas', 'chevron-right']"/>
-      <span>Marathons</span>
+      <span>Running</span>
     </a>
   </nav>
 </template>
