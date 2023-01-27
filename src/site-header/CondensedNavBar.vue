@@ -28,13 +28,13 @@
         :icon="['fas', 'chevron-right']"/>
       <span>Articles</span>
     </a>
-    <a @click="navigateMobile('/software')">
+    <!-- <a @click="navigateMobile('/software')">
       <font-awesome-icon
         class='active-icon'
         :class="{active: routeIsActive('software')}"
         :icon="['fas', 'chevron-right']"/>
       <span>Software</span>
-    </a>
+    </a> -->
     <a @click="navigateMobile('/running')">
       <font-awesome-icon
         class='active-icon'

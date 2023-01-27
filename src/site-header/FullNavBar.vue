@@ -7,7 +7,7 @@
       <FullNavItem ref="publicationsNav" route="/publications" text="Publications" @clicked="updateHighlight" />
       <FullNavItem ref="bookshelfNav" route="/bookshelf" text="Bookshelf" @clicked="updateHighlight" />
       <FullNavItem ref="articlesNav" route="/articles" text="Articles" @clicked="updateHighlight" />
-      <FullNavItem ref="softwareNav" route="/software" text="Software" @clicked="updateHighlight" />
+      <!-- <FullNavItem ref="softwareNav" route="/software" text="Software" @clicked="updateHighlight" /> -->
       <FullNavItem ref="runningNav" route="/running" text="Running" @clicked="updateHighlight" />
     </div>
   </nav>
