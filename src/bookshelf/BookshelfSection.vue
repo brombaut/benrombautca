@@ -59,7 +59,8 @@ export default Vue.extend({
   data() {
     const yearGoals: {[key: number]: number} = {
       2021: 52,
-      2022: 52,
+      2022: 26,
+      2023: 20,
     };
     return {
       booksLoading: true,
