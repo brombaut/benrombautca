@@ -145,6 +145,14 @@ function syncExistingF3Books(f3Books: Book[], grBooks: GRBook[]): Book[] {
       console.warn(`WARNING - ReviewID=${b.goodreads_review_id} title=${b.title} :: ISBN13 do not match :: f3.isbn13=${b.isbn13} gr.isbn13=${grBook.isbn13}`);
     }
     if (needsSyncing) {
+      // FIXME: This toReadOrder field was added later,
+      // and now causes problems when GoodReads updates
+      // their books that I had read before I added the field.
+      // For those books, just make it 99 magic number.
+      // Realistically, this will probably never be fixed.
+      if (!b.toReadOrder) {
+        b.toReadOrder = 99;
+      }
       result.push(b);
     }
   });
@@ -203,7 +211,7 @@ function createNewF3Books(f3Books: Book[], grBooks: GRBook[]): FirestoreBook[] {
       dateStarted: sDate,
       dateFinished: fDate,
       rating: isReRead ? 0 : parseInt(grb.rating, PARSE_INT_RADIX),
-      toReadOrder: grb.to_read_order,
+      toReadOrder: grb.to_read_order ? grb.to_read_order : 99,
     };
   });
   return newFirestoreBooks;
