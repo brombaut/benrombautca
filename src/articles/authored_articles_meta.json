@@ -356,5 +356,17 @@
       "algorithms"
     ],
     "_show": true
+  },
+  {
+    "_id": "nn_from_scratch",
+    "_title": "🤖 Simple Neural Network from Scratch",
+    "_createdAt": "2023-02-28T01:34:43.901Z",
+    "_updatedAt": "2023-03-05T22:59:53.288Z",
+    "_description": "",
+    "_tags": [
+      "deep-learning",
+      "machine-learning"
+    ],
+    "_show": true
   }
 ]
