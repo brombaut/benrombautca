@@ -20,12 +20,12 @@
         <hr>
         <div class="book-group-header">
           <h2 class='year-header'>{{ yearBookGroup.year }}</h2>
-          <ProgressBar
+          <!--<ProgressBar
             v-if="yearBookGroup.yearGoal"
             text="Yearly Goal:"
             :numer="yearBookGroup.books.length"
             :denom="yearBookGroup.yearGoal"
-            :hidePercent="true" />
+            :hidePercent="true" />-->
         </div>
         <div class="books">
           <BookCard v-for="book in yearBookGroup.books" :key="book.title" :book="book" />
@@ -41,7 +41,7 @@ import { Book } from "@brombaut/types";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
 import CachedF3Bookshelf from "./CachedF3Bookshelf";
-import ProgressBar from "./ProgressBar.vue";
+// import ProgressBar from "./ProgressBar.vue";
 
 type YearBooksPair = {
   year: number;
@@ -54,7 +54,6 @@ export default Vue.extend({
   components: {
     BookCard,
     SectionHeader,
-    ProgressBar,
   },
   data() {
     const yearGoals: {[key: number]: number} = {
