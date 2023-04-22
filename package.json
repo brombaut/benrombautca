@@ -19,7 +19,7 @@
     "@fortawesome/vue-fontawesome": "^2.0.10",
     "copy-webpack-plugin": "^5.1.2",
     "core-js": "^3.30.1",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.0.3",
     "firebase-firestore-facade": "1.2.0",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1"
