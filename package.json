@@ -11,8 +11,6 @@
     "sync-software": "bash ./scripts/sync_software.sh"
   },
   "dependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
     "@brombaut/types": "1.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
@@ -24,25 +22,26 @@
     "dotenv": "^10.0.0",
     "firebase-firestore-facade": "1.2.0",
     "vue": "^2.6.12",
-    "vue-router": "^3.5.1",
-    "xml2js": "^0.4.23"
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
-    "@types/node": "16.10.3",
+    "@babel/core": "^7.21.4",
+    "@babel/preset-env": "^7.21.4",
+    "@types/node": "^18.15.13",
     "@typescript-eslint/eslint-plugin": "5.x.x",
     "@typescript-eslint/parser": "5.x.x",
     "@vue/cli-plugin-babel": "5.x.x",
     "@vue/cli-plugin-typescript": "5.x.x",
     "@vue/cli-service": "5.x.x",
-    "babel-eslint": "10.0.3",
-    "eslint": "8.x.x",
-    "eslint-plugin-import": "2.26.0",
-    "eslint-plugin-vue": "9.3.0",
-    "husky": "7.0.2",
-    "sass": "1.35.1",
-    "sass-loader": "8.0.2",
-    "typescript": "4.4.3",
-    "vue-template-compiler": "2.6.12"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.39.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "husky": "^7.0.4",
+    "sass": "^1.35.1",
+    "sass-loader": "^8.0.2",
+    "typescript": "^4.9.5",
+    "vue-template-compiler": "^2.7.14"
   },
   "eslintConfig": {
     "root": true,
