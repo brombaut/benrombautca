@@ -17,28 +17,30 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      new CopyPlugin([
-        {
-          from: "./CNAME",
-          to: "./",
-        },
-        {
-          from: "./src/bookshelf/book-thumbnails",
-          to: "./book-thumbails/",
-        },
-        {
-          from: "./src/assets/resumes",
-          to: "./resumes/",
-        },
-        {
-          from: "./src/assets/publications",
-          to: "./publications/",
-        },
-        {
-          from: "./src/running/running-images",
-          to: "./running-images/",
-        },
-      ]),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: "./CNAME",
+            to: "./",
+          },
+          {
+            from: "./src/bookshelf/book-thumbnails",
+            to: "./book-thumbails/",
+          },
+          {
+            from: "./src/assets/resumes",
+            to: "./resumes/",
+          },
+          {
+            from: "./src/assets/publications",
+            to: "./publications/",
+          },
+          {
+            from: "./src/running/running-images",
+            to: "./running-images/",
+          },
+        ]
+      }),
     ],
   },
 };
