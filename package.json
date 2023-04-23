@@ -22,7 +22,7 @@
     "dotenv": "^16.0.3",
     "firebase-firestore-facade": "1.2.0",
     "vue": "^2.6.12",
-    "vue-router": "^3.5.1"
+    "vue-router": "^3.6.5"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
