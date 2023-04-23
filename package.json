@@ -21,7 +21,7 @@
     "core-js": "^3.30.1",
     "dotenv": "^16.0.3",
     "firebase-firestore-facade": "1.2.0",
-    "vue": "^2.6.12",
+    "vue": "^2.7.14",
     "vue-router": "^3.6.5"
   },
   "devDependencies": {
