@@ -36,7 +36,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import { Book } from "@brombaut/types";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
@@ -49,7 +49,7 @@ type YearBooksPair = {
   yearGoal: number;
 };
 
-export default Vue.extend({
+export default defineComponent({
   name: "BookshelfSection",
   components: {
     BookCard,

@@ -14,12 +14,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import FullNavItem from "./FullNavItem.vue";
 import BackButton from "./BackButton.vue";
 import appConfig from "@/app_config";
 
-export default Vue.extend({
+export default defineComponent({
   name: "FullNavBar",
   components: {
     FullNavItem,
@@ -50,7 +50,7 @@ export default Vue.extend({
       highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
     },
     getActiveRouteNavElRef(): string {
-      let currRouteName: string = this.$route.name || "";
+      let currRouteName: string = this.$route.name as string || "";
       if (!currRouteName) return "";
       if (currRouteName === "land") currRouteName = "aboutMe";
       if (currRouteName === "selectedArticle") currRouteName = "articles";
@@ -59,7 +59,8 @@ export default Vue.extend({
       return navEl;
     },
     getNavElFromRef(ref: string): HTMLAnchorElement {
-      const fromRefs = this.$refs[ref] as Vue;
+      // const fromRefs = this.$refs[ref] as Vue;
+      const fromRefs: any = this.$refs[ref];
       const activeNavEl: HTMLAnchorElement = fromRefs.$el as HTMLAnchorElement;
       return activeNavEl;
     },

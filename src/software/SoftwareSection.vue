@@ -17,12 +17,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import SoftwareCard from "./SoftwareCard.vue";
 import { SoftwareArticle, SoftwareArticlesProxy } from "./SoftwareArticlesProxy";
 
-export default Vue.extend({
+export default defineComponent({
   name: "SoftwareSection",
   components: {
     SectionHeader,
@@ -45,6 +45,7 @@ export default Vue.extend({
   },
   methods: {
     softwareClicked(software: SoftwareArticle): void {
+      
       this.$router.push({ name: "selectedSoftware", params: { softwareId: software.id } });
       this.selectedSoftware = software;
     },

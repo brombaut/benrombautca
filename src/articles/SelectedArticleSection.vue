@@ -16,13 +16,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import Tag from "../shared/Tag.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
 import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
 
-export default Vue.extend({
+export default defineComponent({
   name: "SelectedArticleSection",
   components: {
     SectionHeader,
@@ -32,7 +32,7 @@ export default Vue.extend({
   data() {
     return {
       selectedArticleId: "",
-      selectedArticle: null as (AuthoredArticle | null),
+      selectedArticle: {} as AuthoredArticle,
     };
   },
   methods: {
@@ -51,8 +51,13 @@ export default Vue.extend({
   },
   created() {
     window.scrollTo(0, 0);
-    this.selectedArticleId = this.$router.currentRoute.params.articleId;
-    this.selectedArticle = this.loadSelectedArticle(this.selectedArticleId);
+    // From Vue2
+    // this.selectedArticleId = this.$router.currentRoute.params.articleId;
+    this.selectedArticleId = this.$router.currentRoute.value.params.articleId as string;
+    const loadedSelectedArticle: AuthoredArticle | null = this.loadSelectedArticle(this.selectedArticleId);
+    if (loadedSelectedArticle) {
+      this.selectedArticle = loadedSelectedArticle;
+    }
   },
 });
 </script>

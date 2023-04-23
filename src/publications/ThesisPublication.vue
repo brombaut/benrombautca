@@ -25,10 +25,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import { ThesisPublication } from "./types";
 
-export default Vue.extend({
+export default defineComponent({
   name: "ThesisPublication",
   props: {
     thesis: {

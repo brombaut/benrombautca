@@ -6,12 +6,12 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import uiUtils from "@/utils/ui-utils";
 import { Tech } from "./SoftwareArticlesProxy";
 import TagColor from "@/shared/TagColor";
 
-export default Vue.extend({
+export default defineComponent({
   name: "TechUsedIcon",
   props: {
     tech: {

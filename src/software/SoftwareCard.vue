@@ -29,12 +29,12 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import ExternalRepoIcon from "./ExternalRepoIcon.vue";
 import TechUsedIcon from "./TechUsedIcon.vue";
 import { SoftwareArticle } from "./SoftwareArticlesProxy";
 
-export default Vue.extend({
+export default defineComponent({
   name: "SoftwareCard",
   components: {
     ExternalRepoIcon,

@@ -46,10 +46,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import appConfig from "@/app_config";
 
-export default Vue.extend({
+export default defineComponent({
   props: {
     mobileNavbarVisible: {
       type: Boolean,

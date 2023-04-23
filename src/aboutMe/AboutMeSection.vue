@@ -15,13 +15,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import aboutMe from "./aboutMe";
 import { AboutMe } from "./about-me";
 import SectionHeader from "../shared/SectionHeader.vue";
 import SkeletonLoader from "../shared/SkeletonLoader.vue";
 
-export default Vue.extend({
+export default defineComponent({
   name: "AboutMeSection",
   components: {
     SectionHeader,

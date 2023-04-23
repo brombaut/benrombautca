@@ -1,4 +1,4 @@
-import Vue from "vue";
+import { createApp } from "vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import {
@@ -73,14 +73,9 @@ library.add(faRunning);
 library.add(faResearchgate);
 library.add(faParagraph);
 
-// eslint-disable-next-line import/prefer-default-export
-export const bus = new Vue();
-
-Vue.component("font-awesome-icon", FontAwesomeIcon);
-
-Vue.config.productionTip = false;
-
-new Vue({
-  router,
-  render: (h) => h(App),
-}).$mount("#app");
+const app = createApp({
+  render: (h: any) => h(App),
+});
+app.use(router);
+app.component("font-awesome-icon", FontAwesomeIcon);
+app.mount("#app");

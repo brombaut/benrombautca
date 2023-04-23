@@ -15,12 +15,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import NewNavBar from "@/site-header/NewNavBar.vue";
 import ExternalProfileIcon from "@/site-header/ExternalProfileIcon.vue";
 import ExternalProfile from "./external-profile";
 
-export default Vue.extend({
+export default defineComponent({
   name: "SiteHeader",
   components: {
     NewNavBar,

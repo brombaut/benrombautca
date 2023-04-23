@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
 import TechUsedIcon from "./TechUsedIcon.vue";
@@ -34,7 +34,7 @@ import ExternalRepoIcon from "./ExternalRepoIcon.vue";
 
 import { SoftwareArticle, SoftwareArticlesProxy } from "./SoftwareArticlesProxy";
 
-export default Vue.extend({
+export default defineComponent({
   name: "SelectedSoftwareSection",
   components: {
     SectionHeader,
@@ -45,7 +45,7 @@ export default Vue.extend({
   data() {
     return {
       selectedSoftwareId: "",
-      selectedSoftware: null as (SoftwareArticle | null),
+      selectedSoftware: {} as (SoftwareArticle),
     };
   },
   methods: {
@@ -64,8 +64,13 @@ export default Vue.extend({
   },
   created() {
     window.scrollTo(0, 0);
-    this.selectedSoftwareId = this.$router.currentRoute.params.softwareId;
-    this.selectedSoftware = this.loadSelectedArticle(this.selectedSoftwareId);
+    // From Vue2
+    // this.selectedSoftwareId = this.$router.currentRoute.params.softwareId;
+    this.selectedSoftwareId = this.$router.currentRoute.value.params.softwareId as string;
+    const loadedSoftware: SoftwareArticle | null = this.loadSelectedArticle(this.selectedSoftwareId);
+    if (loadedSoftware) {
+      this.selectedSoftware = loadedSoftware;
+    }
   },
 });
 </script>

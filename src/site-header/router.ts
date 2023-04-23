@@ -1,5 +1,4 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import { createWebHashHistory, createRouter } from "vue-router";
 import AboutMeExtended from "@/aboutMe/AboutMeExtended.vue";
 import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
 import ArticlesSection from "@/articles/ArticlesSection.vue";
@@ -8,8 +7,6 @@ import SoftwareSection from "@/software/SoftwareSection.vue";
 import SelectedSoftwareSection from "@/software/SelectedSoftwareSection.vue";
 import PublicationsSection from "@/publications/PublicationsSection.vue";
 import RunningSection from "@/running/RunningSection.vue";
-
-Vue.use(VueRouter);
 
 const routes = [
   {
@@ -69,9 +66,9 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({
-  mode: "hash",
-  base: process.env.BASE_URL,
+// TODO: Maybe change this to html5 - https://router.vuejs.org/guide/essentials/history-mode.html
+const router = createRouter({
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 

@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import FullNavBar from "./FullNavBar.vue";
 import CondensedNavBar from "./CondensedNavBar.vue";
 import BackButton from "./BackButton.vue";
@@ -24,7 +24,7 @@ interface SiteHeader {
   removeBottomMargin(): void;
 }
 
-export default Vue.extend({
+export default defineComponent({
   name: "NewNavBar",
   components: {
     FullNavBar,

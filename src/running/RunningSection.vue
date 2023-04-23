@@ -14,13 +14,13 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import RunningCard from "./RunningCard.vue";
 import races from "./races";
 import { Race } from "./types";
 
-export default Vue.extend({
+export default defineComponent({
   name: "RunningSection",
   components: {
     SectionHeader,

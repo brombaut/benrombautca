@@ -26,13 +26,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import EducationCard from "./EducationCard.vue";
 import WorkCard from "./WorkCard.vue";
 import { TimelineEntities } from "./timeline-entities";
 import SectionHeader from "../shared/SectionHeader.vue";
 
-export default Vue.extend({
+export default defineComponent({
   name: "VerticalTimeline",
   components: {
     EducationCard,

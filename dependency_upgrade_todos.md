@@ -1,0 +1,5 @@
+- [~] Upgrade to Vue3 Compat Mode
+- [x] Fix build errors
+- [ ] Fix console warnings
+- [x] Upgrade to latest version of router
+- [ ] Upgrade to latest Vue3

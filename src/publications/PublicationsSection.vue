@@ -45,7 +45,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import JournalPublication from "./JournalPublication.vue";
 import ThesisPublication from "./ThesisPublication.vue";
@@ -54,7 +54,7 @@ import UnpublishedPublication from "./UnpublishedPublication.vue";
 import publications from "./publications";
 import { Publication, PublicationType, ViewPublication } from "./types";
 
-export default Vue.extend({
+export default defineComponent({
   name: "PublicationsSection",
   components: {
     SectionHeader,

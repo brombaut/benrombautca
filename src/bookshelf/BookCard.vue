@@ -26,12 +26,12 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import { Book, Shelf } from "@brombaut/types";
 import uiUtils from "@/utils/ui-utils";
 import ProgressBar from "./ProgressBar.vue";
 
-export default Vue.extend({
+export default defineComponent({
   name: "BookCard",
   props: {
     book: {

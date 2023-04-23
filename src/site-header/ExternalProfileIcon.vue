@@ -14,10 +14,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import ExternalProfile from "./external-profile";
 
-export default Vue.extend({
+export default defineComponent({
   name: "ExternalProfileIcon",
   props: {
     profile: {

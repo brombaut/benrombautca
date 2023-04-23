@@ -9,12 +9,12 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 
-export default Vue.extend({
+export default defineComponent({
   computed: {
     isVisible(): boolean {
-      const currRouteName: string = this.$route.name || "";
+      const currRouteName: string = this.$route.name as string || "";
       if (currRouteName === "selectedArticle") return true;
       if (currRouteName === "selectedSoftware") return true;
       return false;

@@ -26,12 +26,12 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import uiUtils from "@/utils/ui-utils";
 import { ExternalRepo } from "./SoftwareArticlesProxy";
 import TagColor from "@/shared/TagColor";
 
-export default Vue.extend({
+export default defineComponent({
   name: "ExternalRepoIcon",
   props: {
     externalRepo: {

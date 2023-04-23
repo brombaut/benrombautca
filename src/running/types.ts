@@ -1,5 +1,5 @@
 export interface Race {
-  name: String;
+  name: string;
   link: String;
   orderDate: Date;
   date: Date | String;
@@ -10,6 +10,6 @@ export interface Race {
 }
 
 export interface RunningImage {
-  src: String;
+  src: string;
   caption: String;
 }

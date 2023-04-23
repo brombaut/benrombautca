@@ -6,11 +6,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import {defineComponent} from "vue";
 import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
 import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
 
-export default Vue.extend({
+export default defineComponent({
   name: "AboutMeExtended",
   components: {
     AboutMeSection,

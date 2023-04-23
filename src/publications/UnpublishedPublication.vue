@@ -28,10 +28,10 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
+import { PropType, defineComponent } from "vue";
 import { UnpublishedPublication } from "./types";
 
-export default Vue.extend({
+export default defineComponent({
   name: "UnpublishedPublication",
   props: {
     unpublishedPublication: {
