@@ -1,5 +1,7 @@
-- [~] Upgrade to Vue3 Compat Mode
+- [x] Upgrade to Vue3 Compat Mode
 - [x] Fix build errors
 - [ ] Fix console warnings
 - [x] Upgrade to latest version of router
-- [ ] Upgrade to latest Vue3
+- [ ] Upgrade to latest Vue3 (do i need vue/compat anymore?)
+- [ ] Maybe change to HTML5 router history version?
+- [ ] Upgradte F3
