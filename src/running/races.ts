@@ -93,7 +93,55 @@ const races: Race[] = [
         caption: "Crossing the finish line",
       },
     ],
-  }
+  }, {
+    name: "2023 Limestone Race Weekend Historic Half Marathon",
+    link: "https://www.krra.org/events/krra-limestone-race-weekend/",
+    orderDate: new Date(2023, 3, 30),
+    date: new Date(2023, 3, 30),
+    runningTime: "1:20:59<br><a href='https://runninggoattiming.com/wp-content/uploads/2023/04/2023-LRW-Half-Overall-7.html' target='_blank'>[Official Times]</a>",
+    placement: "2nd of 232 overall",
+    description: `<p>This was my first offical half-marathon race. I didn't want to commit to running a full marathon this spring, so I figured I'd sign up for the Limestone Race Weekend since the race date worked well with my plans for the summer. The weather forecast was initially calling for heavy rain all morning, but luckily it held off until most of the runners had finished. The midges were also not a problem (they make running in Kingston a real pain, see <a href="https://globalnews.ca/news/7814734/midges-swarming-kingston-neighbouring-communities/" target="_blank">this article</a>), so the overall conditions were probably a best-case scenario. The white Adidas shirt and Dartmouth hat combo has become my lucky race outfit, which is why that's what I'm wearing in all my pictures on here.</p>
+    <p>I started off the race at the back of the first pack, staying in 5th place for nearly the entire race. Me and the runner who was in 4th stayed very close to each other, and caught up to the runners who were in 2nd and 3rd place with about 1.5kms left. Then with about 750m left, the guy I had been running with the entire race and I picked up the pace and raced each other to the finish, with me finishing 3 seconds ahead of him.</p>
+    `,
+    images: [
+      {
+        src: "running-images/23limestone_01.jpg",
+        caption: "Coming down the final stretch of the race",
+      },
+      {
+        src: "running-images/23limestone_02.jpg",
+        caption: "Nervously waiting for the start gun...",
+      },
+      {
+        src: "running-images/23limestone_03.jpg",
+        caption: "...and we're off!",
+      },
+      {
+        src: "running-images/23limestone_04.jpg",
+        caption: "2nd and 3rd place laughing after a 750m sprint to the finish",
+      },
+      {
+        src: "running-images/23limestone_05.jpg",
+        caption: "The podium finishers",
+      },
+      {
+        src: "running-images/23limestone_07.jpg",
+        caption: "Congrats to Kobi for running a personal-best half-marathon (and for good taste in running shoes)!",
+      },
+      {
+        src: "running-images/23limestone_08.jpg",
+        caption: "Congrats to Robin for finishing her first half-marathon!",
+      },
+      {
+        src: "running-images/23limestone_06.jpg",
+        caption: "Getting some prizes",
+      },
+      {
+        src: "running-images/23limestone_09.jpeg",
+        caption: "The race map",
+      },
+    ],
+  } 
 ];
 
 export default races;
