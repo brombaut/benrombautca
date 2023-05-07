@@ -5,8 +5,8 @@
       <div class='condensed-navbar-back-button'>
         <BackButton />
       </div>
-      <div class="condensed-navbar-icon">
-        <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" @click="toggleMobileNavBar" />
+      <div class="condensed-navbar-icon" @click="toggleMobileNavBar">
+        <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" />
       </div>
     </div>
     <CondensedNavBar :mobileNavbarVisible="mobileNavbarVisible" @closeMobileNavBar="closeMobileNavBar"/>
