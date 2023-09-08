@@ -1,15 +1,15 @@
 export interface Race {
   name: string;
-  link: String;
+  link: string;
   orderDate: Date;
-  date: Date | String;
-  runningTime: String;
-  placement: String;
-  description: String;
+  date: Date | string;
+  runningTime: string;
+  placement: string;
+  description: string;
   images: RunningImage[];
 }
 
 export interface RunningImage {
   src: string;
-  caption: String;
+  caption: string;
 }

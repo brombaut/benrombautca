@@ -7,11 +7,11 @@
            <div class="label">Race Date:</div>
            <div class="value">{{ raceDate }}</div>
         </div>
-        <div class="wrapper">
+        <div v-if="race.runningTime" class="wrapper">
           <div class="label">Official Time:</div>
           <div class="value" v-html="race.runningTime"></div>
         </div>
-        <div class="wrapper">
+        <div v-if="race.placement" class="wrapper">
           <div class="label">Placement:</div>
           <div class="value" v-html="race.placement"></div>
         </div>
@@ -41,7 +41,7 @@ export default defineComponent({
     },
   },
   computed: {
-    raceDate(): String {
+    raceDate(): string {
       if (this.race.date instanceof Date) {
         const d: Date = this.race.date;
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
