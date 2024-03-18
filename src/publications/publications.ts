@@ -74,6 +74,10 @@ const publications: Publication[] = [
         url: "https://arxiv.org/abs/2403.09012",
       },
       {
+        type: PublicationLinkType.ResearchGate,
+        url: "http://dx.doi.org/10.13140/RG.2.2.16897.67688"
+      },
+      {
         type: PublicationLinkType.PDF,
         url: "publications/Rombaut_Benjamin_J_202203_DependabotCompatibilityScore.pdf",
       },
