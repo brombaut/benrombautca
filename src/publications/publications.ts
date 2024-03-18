@@ -70,8 +70,29 @@ const publications: Publication[] = [
     new Date(2022, 2, 1),
     [
       {
+        type: PublicationLinkType.Arxiv,
+        url: "https://arxiv.org/abs/2403.09012",
+      },
+      {
         type: PublicationLinkType.PDF,
         url: "publications/Rombaut_Benjamin_J_202203_DependabotCompatibilityScore.pdf",
+      },
+    ],
+  ),
+  new UnpublishedPublication(
+    "https://arxiv.org/abs/2211.15733",
+    [
+      "Mohamed Raed El aoun",
+      "Lionel Nganyewou Tidjon",
+      "Benjamin Rombaut",
+      "Foutse Khomh",
+      "Ahmed E. Hassan"
+    ],
+    new Date(2022, 10, 28),
+    [
+      {
+        type: PublicationLinkType.Arxiv,
+        url: "https://arxiv.org/abs/2211.15733",
       },
     ],
   ),

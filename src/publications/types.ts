@@ -6,6 +6,7 @@ export enum PublicationLinkType {
   Slides = "Slides",
   Forthcoming = "Forthcoming",
   CSER22 = "CSER '22",
+  Arxiv = "Arxiv"
 }
 
 export interface PublicationLink {
