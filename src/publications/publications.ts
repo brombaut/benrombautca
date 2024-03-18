@@ -80,7 +80,7 @@ const publications: Publication[] = [
     ],
   ),
   new UnpublishedPublication(
-    "https://arxiv.org/abs/2211.15733",
+    "An Empirical Study of Library Usage and Dependency in Deep Learning Frameworks",
     [
       "Mohamed Raed El aoun",
       "Lionel Nganyewou Tidjon",
