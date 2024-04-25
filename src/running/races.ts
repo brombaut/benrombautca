@@ -183,6 +183,19 @@ const races: Race[] = [
         caption: "The race map",
       },
     ],
+  },
+  {
+    name: "2024 21k de Montréal",
+    link: "https://canadarunningseries.com/21k-de-montreal/",
+    orderDate: new Date(2024, 3, 20),
+    date: new Date(2024, 3, 20),
+    runningTime: "1:19:18<br><a href='https://sportstats.one/event/21k-de-montreal?view=tracker&pid=2067&eventid=41823' target='_blank'>[Official Times]</a>",
+    placement: "65th of 2281 overall, 12th of 298 in the M25-29 category",
+    description: `<p></p>
+    <p></p>
+    `,
+    images: [
+    ],
   }
 ];
 
