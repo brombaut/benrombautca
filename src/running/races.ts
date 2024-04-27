@@ -19,6 +19,10 @@ const races: Race[] = [
         caption: "Early morning before the race - cold with lots of nervous energy",
       },
       {
+        src: "running-images/22fredericton_08.jpg",
+        caption: "Start of the race",
+      },
+      {
         src: "running-images/22fredericton_02.jpeg",
         caption: "About to cross the finish line",
       },
@@ -189,12 +193,37 @@ const races: Race[] = [
     link: "https://canadarunningseries.com/21k-de-montreal/",
     orderDate: new Date(2024, 3, 20),
     date: new Date(2024, 3, 20),
-    runningTime: "1:19:18<br><a href='https://sportstats.one/event/21k-de-montreal?view=tracker&pid=2067&eventid=41823' target='_blank'>[Official Times]</a>",
+    runningTime: "1:19:18 (PB Half-Marathon)<br><a href='https://sportstats.one/event/21k-de-montreal?view=tracker&pid=2067&eventid=41823' target='_blank'>[Official Times]</a>",
     placement: "65th of 2281 overall, 12th of 298 in the M25-29 category",
-    description: `<p></p>
-    <p></p>
+    description: `<p>My 2nd official half-marathon. I again didn't want to commit to winter training for a full marathon, so decided to do a half-marathon in the spring (I'm thinking a full marathon in the fall going to happen), and having just moved to Montréal earlier that year, I signed up for the 21k de Montréal.</p>
+    <p>I started off the race in the first coral with all the other very serious looking runners. This was my first "big" race, and Kobi had warned me about how people might be jostling for position at the start because of how crowded it would be, and energy was pretty high during the countdown to the starting gun. Once we got started, I picked 2 guys to follow who looked like they were monitoring their speed with a smartwatch, and they set a pretty good pace. I ran with the same crowd for most of the race, and then we all began to separate as we got closer to the finish line. Parts of the race were on the F1 track, which was pretty cool, but the straight sections were pretty windy and rough to run in. The crowds were great, always good for an energy boost when I was beginning to question whether I was going to be able to keep up the pace.</p>
+    <p>I ended up finishing with a PB half-marathon time, beating my previous best by 1 minute and 41 second.</p>
     `,
     images: [
+      {
+        src: "running-images/24montreal21_01.JPG",
+        caption: "Struggling to give the thumbs up",
+      },
+      {
+        src: "running-images/24montreal21_02.JPG",
+        caption: "Locked in",
+      },
+      {
+        src: "running-images/24montreal21_03.JPG",
+        caption: "Finished!",
+      },
+      {
+        src: "running-images/24montreal21_04.JPG",
+        caption: "Kobi with a PB too!",
+      },
+      {
+        src: "running-images/24montreal21_05.JPG",
+        caption: "The New Brunswick cheering section",
+      },
+      {
+        src: "running-images/24montreal21_06.png",
+        caption: "The race map",
+      },
     ],
   }
 ];
