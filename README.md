@@ -47,3 +47,5 @@ Showcases the README files of different software projects I've built. This proce
   I'm currently using Vue 2, but it's on my radar to update all my dependencies, including moving to using Vue 3.
 - **✅ Add Resume & CV PDFs**  
   Have the PDFs available in the external profiles section
+
+
