@@ -7,7 +7,7 @@ const aboutMe: AboutMe = {
   </p>
   <p>
   I enjoy learning about a broad range of topics related to computer science and software engineering. Aside from my work, I am primarily interested in software supply chain management, software bots, data analytics & machine learning, and software reliability & security. I also have budding interests in software engineering in healthcare and medical informatics.
-  </p>
+  </p> 
   `,
   imageFileName: "benrombaut.jpg",
 };
