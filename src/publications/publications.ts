@@ -100,6 +100,27 @@ const publications: Publication[] = [
       },
     ],
   ),
+  new UnpublishedPublication(
+    "Watson: A Cognitive Observability Framework for the Reasoning of Foundation Model-Powered Agents",
+    [
+      "Benjamin Rombaut",
+      "Sogol Masoumzadeh",
+      "Kirill Vasilevski",
+      "Dayi Lin",
+      "Ahmed E. Hassan"
+    ],
+    new Date(2024, 11, 5),
+    [
+      {
+        type: PublicationLinkType.Arxiv,
+        url: "https://www.arxiv.org/abs/2411.03455",
+      },
+      {
+        type: PublicationLinkType.PDF,
+        url: "publications/202411_agent_observability_seip.pdf",
+      },
+    ],
+  ),
 ];
 
 export default publications;
