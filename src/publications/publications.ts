@@ -58,7 +58,7 @@ const publications: Publication[] = [
         url: "publications/Rombaut_Benjamin_J_202205_GreenkeeperOverhead_Presentation_CSER2022.pdf",
       },
     ],
-    "Montreal, QC, Canada",
+    "Montreal, Canada",
   ),
   new UnpublishedPublication(
     "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",
@@ -109,7 +109,7 @@ const publications: Publication[] = [
       "Dayi Lin",
       "Ahmed E. Hassan"
     ],
-    new Date(2024, 11, 5),
+    new Date(2024, 10, 5),
     [
       {
         type: PublicationLinkType.Arxiv,
@@ -120,6 +120,23 @@ const publications: Publication[] = [
         url: "publications/202411_agent_observability_seip.pdf",
       },
     ],
+  ),
+  new PresentationPublication(
+    "AIware Observability",
+    ["Benjamin Rombaut"],
+    "AIware Leadership Bootcamp 2024",
+    new Date(2024, 10, 8),
+    [
+      {
+        type: "AIWare Leadership Bootcamp 2024",
+        url: "https://www.aiwarebootcamp.io/",
+      },
+      {
+        type: PublicationLinkType.Slides,
+        url: "publications/202411_aiware_bootcamp_observability_for_pdf.pdf",
+      },
+    ],
+    "Toronto, Canada",
   ),
 ];
 

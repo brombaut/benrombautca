@@ -10,7 +10,7 @@ export enum PublicationLinkType {
 }
 
 export interface PublicationLink {
-  type: PublicationLinkType;
+  type: PublicationLinkType | string;
   url: string;
 }
 
@@ -36,7 +36,7 @@ export interface Publication {
   type: PublicationType;
   title: string;
   authors: string | string[];
-  venue: PublicationVenue;
+  venue: PublicationVenue | string;
   dateAccepted: Date;
   links: PublicationLink[];
 
@@ -56,7 +56,7 @@ export class JournalPublication implements Publication {
   constructor(
     public title: string,
     public authors: string[],
-    public venue: PublicationVenue,
+    public venue: PublicationVenue | string,
     public dateAccepted: Date,
     public links: PublicationLink[],
   ) { }
@@ -79,7 +79,7 @@ export class ThesisPublication implements Publication {
   constructor(
     public title: string,
     public authors: string,
-    public venue: PublicationVenue,
+    public venue: PublicationVenue | string,
     public dateAccepted: Date,
     public links: PublicationLink[],
     public thesisType: string,
@@ -104,7 +104,7 @@ export class PresentationPublication implements Publication {
   constructor(
     public title: string,
     public authors: string[],
-    public venue: PublicationVenue,
+    public venue: PublicationVenue | string,
     public dateAccepted: Date,
     public links: PublicationLink[],
     public location: string,
