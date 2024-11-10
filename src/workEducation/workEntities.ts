@@ -6,7 +6,7 @@ const workEntities: Work[] = [
     team: "Centre for Software Excellence",
     company: "Huawei Canada",
     time: "Dec '21 - Present",
-    location: "Kingston, Ontario",
+    location: "Montreal, Quebec & Kingston, Ontario",
     workedWith: [],
     imageFile: "huawei_logo.jpg",
     link: "https://www.huawei.com/ca/",
