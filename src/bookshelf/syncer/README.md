@@ -47,3 +47,12 @@ When re-reading
 - rating will be what you rated the book the first time
 - As far as I can tell, the goodreads_review_id will also be the same
 
+
+
+
+tsc==5.6.3
+npm==9.5.1
+node==v18.16.0
+nvm==0.39.3
+
+You have the JSON of books from f3, can you get the local version of the site to pull from that json file?
