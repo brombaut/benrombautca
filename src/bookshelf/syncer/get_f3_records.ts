@@ -19,21 +19,6 @@ const firebaseConfig: FirebaseConfigurer = {
     },
 };
 
-// const firebaseConfig: FirebaseConfigurer = {
-//     apiKey: "AIzaSyCBA_Pg1g0BqAXq5LVZnPeQIqfTmsEfZBI",
-//     authDomain: "benrombautca.firebaseapp.com",
-//     projectId: "benrombautca",
-//     storageBucket: "benrombautca.appspot.com",
-//     messagingSenderId: "139659605759",
-//     appId: "1:139659605759:web:311f00f9a364916ca83eca",
-//     measurementId: "G-XFPZWMXJXK",
-//     auth: {
-//         email: "test@benrombaut.ca",
-//         password: "vanilla"
-//     },
-// };
-
-
 async function main() {
     console.log("Starting Sync");
     console.log("Init F3Bookshelf");

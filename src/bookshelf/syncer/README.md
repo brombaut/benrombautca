@@ -55,4 +55,8 @@ npm==9.5.1
 node==v18.16.0
 nvm==0.39.3
 
+tsc get_f3_records.ts
+node get_f3_records.ts
+
+
 You have the JSON of books from f3, can you get the local version of the site to pull from that json file?
