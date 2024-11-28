@@ -11,16 +11,12 @@
 <script lang="ts">
 import SiteFooter from "@/footer/SiteFooter.vue";
 import SiteHeader from "@/site-header/SiteHeader.vue";
-import CachedF3Bookshelf from "./bookshelf/CachedF3Bookshelf";
 
 export default {
   name: "App",
   components: {
     SiteFooter,
     SiteHeader,
-  },
-  mounted() {
-    CachedF3Bookshelf.init();
   },
 };
 </script>

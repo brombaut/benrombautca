@@ -3,6 +3,11 @@ from time import sleep
 import requests
 from bs4 import BeautifulSoup
 
+class Bookshelf:
+    TO_READ = "toread_books"
+    READ = "read_books"
+    CURRENTLY_READING = "currentlyreading_books"
+
 def dict_to_json_file(data, file_path):
     import json
     with open(file_path, 'w') as f:
@@ -180,9 +185,9 @@ def main():
     # currentlyreading_books = get_books_for_shelf("currently-reading", parse_currentlyreading_books_from_html)
     currentlyreading_books = get_currently_reading_books()
     all_books = {
-        "toread_books": toread_books,
-        "currentlyreading_books": currentlyreading_books,
-        "read_books": read_books,
+        Bookshelf.TO_READ: toread_books,
+        Bookshelf.CURRENTLY_READING: currentlyreading_books,
+        Bookshelf.READ: read_books,
     }
     dict_to_json_file(all_books, 'all_books.json')
     # print(read_books)

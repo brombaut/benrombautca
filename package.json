@@ -11,7 +11,6 @@
     "sync-software": "bash ./scripts/sync_software.sh"
   },
   "dependencies": {
-    "@brombaut/types": "1.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
@@ -21,7 +20,6 @@
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.30.1",
     "dotenv": "^16.0.3",
-    "firebase-firestore-facade": "1.2.0",
     "vue": "^3.2.47",
     "vue-router": "^4.1.6"
   },

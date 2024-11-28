@@ -1,6 +1,13 @@
 import subprocess
 import requests
+import json
 from bs4 import BeautifulSoup
+
+
+class Bookshelf:
+    TO_READ = "toread_books"
+    READ = "read_books"
+    CURRENTLY_READING = "currentlyreading_books"
 
 
 def load_json(file_path):
@@ -92,6 +99,8 @@ def get_books_for_shelf(shelf, parsing_fn, debug=False):
 
 ##### END GET READ BOOKS #####
 
+##### START GET CURRENTLY_READING BOOKS #####
+
 def get_currently_reading_books():
     def format_date_string(date_string):
         # Format is "Oct 23, 2024 05:56PM", "want Oct 23, 2024"
@@ -121,13 +130,96 @@ def get_currently_reading_books():
         currently_reading_books.append(book)
     return currently_reading_books
 
+##### END GET CURRENTLY_READING BOOKS #####
+
 def get_toread_and_currentlyreading_books_from_goodreads():
     toread_books = get_books_for_shelf("to-read", parse_toread_books_from_html, debug=False)
     currentlyreading_books = get_currently_reading_books()
     return {
-        "to_read": toread_books,
-        "currently_reading": currentlyreading_books
+        "toread_books": toread_books,
+        "currentlyreading_books": currentlyreading_books
     }
+
+def sync_books(all_books_old, new_toread_and_currentlyreading_books):
+    def book_review_is_in_list(book, book_list):
+        for bb in book_list:
+            if bb['review_id'] == book['review_id']:
+                return True
+        return False
+    def get_book_by_review_id(book_review_id, book_list):
+        for bb in book_list:
+            if bb['review_id'] == book_review_id:
+                return bb
+        return None
+    def replace_book_in_list(book, book_list):
+        for i, bb in enumerate(book_list):
+            if bb['review_id'] == book['review_id']:
+                book_list[i] = book
+                return
+    def remove_book_from_list(book, book_list):
+        for i, bb in enumerate(book_list):
+            if bb['review_id'] == book['review_id']:
+                del book_list[i]
+                return
+    def add_book_to_list(book, book_list):
+        book_list.append(book)
+    
+    for new_to_read_book in new_toread_and_currentlyreading_books[Bookshelf.TO_READ]:
+        new_toread_book_in_old_toread = book_review_is_in_list(new_to_read_book, all_books_old[Bookshelf.TO_READ])
+        new_toread_book_in_old_currentlyreading = book_review_is_in_list(new_to_read_book, all_books_old[Bookshelf.CURRENTLY_READING])
+        new_toread_book_in_old_read = book_review_is_in_list(new_to_read_book, all_books_old[Bookshelf.READ])
+        if (
+            not new_toread_book_in_old_toread and 
+            not new_toread_book_in_old_currentlyreading and 
+            not new_toread_book_in_old_read
+        ):
+            # Case 0: Book is not in any list, add it to to_read
+            add_book_to_list(new_to_read_book, all_books_old[Bookshelf.TO_READ])
+        elif new_toread_book_in_old_toread:
+            # Case 1: Book is already in to_read, replace it with the updated one
+            replace_book_in_list(new_to_read_book, all_books_old[Bookshelf.TO_READ])
+        elif new_toread_book_in_old_currentlyreading:
+            # Case 2: We've stopped reading this book, remove it from currentlyreading and add it to to_read
+            remove_book_from_list(new_to_read_book, all_books_old[Bookshelf.CURRENTLY_READING])
+            add_book_to_list(new_to_read_book, all_books_old[Bookshelf.TO_READ])
+        elif new_toread_book_in_old_read:
+            # Case 4: We've read this book, but somehow it's back in to_read
+            raise Exception("Book is in old read list but also in new to_read list")
+    
+    for new_currentlyreading_book in new_toread_and_currentlyreading_books[Bookshelf.CURRENTLY_READING]:
+        new_currentlyreading_book_in_old_toread = book_review_is_in_list(
+            new_currentlyreading_book, all_books_old[Bookshelf.TO_READ])
+        new_currentlyreading_book_in_old_currentlyreading = book_review_is_in_list(
+            new_currentlyreading_book, all_books_old[Bookshelf.CURRENTLY_READING])
+        new_currentlyreading_book_in_old_read = book_review_is_in_list(
+            new_currentlyreading_book, all_books_old[Bookshelf.READ])
+        if (
+            not new_currentlyreading_book_in_old_toread and 
+            not new_currentlyreading_book_in_old_currentlyreading and 
+            not new_currentlyreading_book_in_old_read
+        ):
+            # Case 0: Book is not in any list, add it to currentlyreading
+            add_book_to_list(new_currentlyreading_book, all_books_old[Bookshelf.CURRENTLY_READING])
+        elif new_currentlyreading_book_in_old_toread:
+            # Case 1: Book is already in to_read, remove it from to_read and add it to currentlyreading
+            remove_book_from_list(new_currentlyreading_book, all_books_old[Bookshelf.TO_READ])
+            add_book_to_list(new_currentlyreading_book, all_books_old[Bookshelf.CURRENTLY_READING])
+        elif new_currentlyreading_book_in_old_currentlyreading:
+            # Case 2: Book is already in currentlyreading, replace it with the updated one
+            replace_book_in_list(new_currentlyreading_book, all_books_old[Bookshelf.CURRENTLY_READING])
+        elif new_currentlyreading_book_in_old_read:
+            # Case 3: We've read this book, but somehow it's back in currentlyreading
+            raise Exception("Book is in old read list but also in new currentlyreading list")
+
+    # Now are there any books in the old currently_reading that are not in the new currently_reading?
+    for old_currently_reading_book in all_books_old[Bookshelf.CURRENTLY_READING]:
+        old_currently_reading_book_in_new_currently_reading = book_review_is_in_list(
+            old_currently_reading_book,
+            new_toread_and_currentlyreading_books[Bookshelf.CURRENTLY_READING]
+        )
+        if not old_currently_reading_book_in_new_currently_reading:
+            # Case 5: We've stopped reading this book, remove it from currentlyreading
+            remove_book_from_list(old_currently_reading_book, all_books_old[Bookshelf.CURRENTLY_READING])
 
 
 def run_script(script_name):
@@ -141,16 +233,19 @@ def run_script(script_name):
 
 def main():
     # all_books.json contains the previous data, so load it
-    all_books_old = load_json("all_books.json")
+    old_all_books = load_json("all_books.json")
     
     # Create a backup of all_books.json as all_books.json.bak
-    dict_to_json_file(all_books_old, 'all_books.json.bak')
+    dict_to_json_file(old_all_books, 'all_books.json.bak')
 
     # Get toread_books and currentlyreading_books from Goodreads
     toread_and_currentlyreading_books = get_toread_and_currentlyreading_books_from_goodreads()
 
+    # Check if the data has changed
+    new_all_books = sync_books(old_all_books, toread_and_currentlyreading_books)
+
     # Write new_all_books.json to all_books.json
-    dict_to_json_file(toread_and_currentlyreading_books, 'all_books.json')
+    dict_to_json_file(new_all_books, 'all_books.json')
 
     # Run 02_all_books_flattener.py to flatten all_books.json into all_books_flat.json
     if run_script('02_all_books_flattener.py'):
