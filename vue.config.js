@@ -41,8 +41,8 @@ module.exports = {
             to: "./",
           },
           {
-            from: "./src/bookshelf/book-thumbnails",
-            to: "./book-thumbails/",
+            from: "./src/bookshelf/syncer_v2/book_thumbnails_v2",
+            to: "./book_thumbnails_v2/",
           },
           {
             from: "./src/assets/resumes",

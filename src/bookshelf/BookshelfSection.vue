@@ -13,22 +13,16 @@
       <div class="book-group">
         <h2 class='book-group-header'>Currently Reading & Up Next</h2>
         <div class="books">
-          <BookCard v-for="book in currentlyReadingAndToReadBooks" :key="book.title" :book="book" />
+          <BookCard v-for="book in currentlyReadingAndToReadBooks" :key="book.review_id" :book="book" />
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
         <hr>
         <div class="book-group-header">
           <h2 class='year-header'>{{ yearBookGroup.year }}</h2>
-          <!--<ProgressBar
-            v-if="yearBookGroup.yearGoal"
-            text="Yearly Goal:"
-            :numer="yearBookGroup.books.length"
-            :denom="yearBookGroup.yearGoal"
-            :hidePercent="true" />-->
         </div>
         <div class="books">
-          <BookCard v-for="book in yearBookGroup.books" :key="book.title" :book="book" />
+          <BookCard v-for="book in yearBookGroup.books" :key="book.review_id" :book="book" />
         </div>
       </div>
     </div>
@@ -37,16 +31,37 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import { Book } from "@brombaut/types";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
-import CachedF3Bookshelf from "./CachedF3Bookshelf";
-// import ProgressBar from "./ProgressBar.vue";
+import booksData from "./syncer_v2/all_books_flattened.json";
+
+interface Book {
+    title: string;
+    author: string;
+    book_id: string;
+    review_id: number;
+    shelf: string;
+}
+
+interface ToReadBook extends Book {
+    date_added: string;
+    position: number;
+}
+
+interface CurrentlyReadingBook extends Book {
+    date_added: string;
+    onPage: number;
+    numPages: number;
+}
+
+interface ReadBook extends Book {
+    date_finished: string;
+    rating: number;
+}
 
 type YearBooksPair = {
   year: number;
   books: Book[];
-  yearGoal: number;
 };
 
 export default defineComponent({
@@ -56,31 +71,30 @@ export default defineComponent({
     SectionHeader,
   },
   data() {
-    const yearGoals: {[key: number]: number} = {
-      2021: 52,
-      2022: 26,
-      2023: 20,
-    };
     return {
-      booksLoading: true,
+      booksLoading: false, // TODO: Take this out
       numberOfBookCardsToRow: 6,
-      yearGoals,
     };
   },
   computed: {
     readBooksByYear(): YearBooksPair[] {
-      if (this.booksLoading) {
-        return [];
-      }
+      const typedBooksData = booksData as Book[];
+      const readBooksSorted: ReadBook[] = typedBooksData.filter((book) => book.shelf === "read") as ReadBook[]
+      readBooksSorted.sort((a, b) => {
+        return new Date(b.date_finished ?? 0).getTime() - new Date(a.date_finished ?? 0).getTime()
+      });
       const bookGroups: YearBooksPair[] = [];
-      const keyVals = CachedF3Bookshelf.readBooksGroupedByYear();
-      Object.entries(keyVals).forEach(keyVal => {
-        const year = Number(keyVal[0]);
-        bookGroups.push({
-          year,
-          books: keyVal[1],
-          yearGoal: this.yearGoals[year],
-        });
+      readBooksSorted.forEach((book: ReadBook) => {
+        const year = new Date(book.date_finished ?? 0).getFullYear();
+        const yearGroup = bookGroups.find((group) => group.year === year);
+        if (yearGroup) {
+          yearGroup.books.push(book);
+        } else {
+          bookGroups.push({
+            year,
+            books: [book],
+          });
+        }
       });
       const sortedByYear: YearBooksPair[] = bookGroups.sort((a: YearBooksPair, b: YearBooksPair) => {
         return b.year - a.year;
@@ -88,18 +102,27 @@ export default defineComponent({
       return sortedByYear;
     },
     currentlyReadingAndToReadBooks(): Book[] {
-      if (this.booksLoading) {
-        return [];
-      }
-      const result: Book[] = [...CachedF3Bookshelf.readingBooks(), ...CachedF3Bookshelf.toReadBooks()];
-      return result.slice(0, this.numberOfBookCardsToRow);
+      const typedBooksData = booksData as Book[];
+      const currentlyReadingBooks: CurrentlyReadingBook[] = 
+        typedBooksData.filter((book) => book.shelf === "currently-reading") as CurrentlyReadingBook[];
+      currentlyReadingBooks.sort((a, b) => {
+        if (!a.date_added) return -1;
+        if (!b.date_added) return 1;
+        return new Date(a.date_added).getTime() - new Date(b.date_added).getTime()
+      });
+      const toReadBooks: ToReadBook[] = typedBooksData
+        .filter((book) => book.shelf === "to-read") as ToReadBook[];
+      toReadBooks.sort((a, b) => {
+        if (!a.position) return -1;
+        if (!b.position) return 1;
+        return a.position - b.position;
+      });
+
+      const combined = [...currentlyReadingBooks, ...toReadBooks];
+      return combined.slice(0, this.numberOfBookCardsToRow);
     },
   },
   methods: {
-    async initBookshelf() {
-      await CachedF3Bookshelf.init();
-      this.booksLoading = false;
-    },
     setNumberOfBookCardsToRow() {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
       let result = 6;
@@ -113,7 +136,6 @@ export default defineComponent({
     },
   },
   created() {
-    this.initBookshelf();
     this.setNumberOfBookCardsToRow();
     window.addEventListener("resize", this.setNumberOfBookCardsToRow);
   },

@@ -1,14 +1,10 @@
 <template>
   <div class="book-card slide-in" :class="{'to-read': toRead}">
     <div class="image-container">
-      <img :src="imageSource" :alt="book.title" />
+      <img :src="imageSource" :alt="book.book_id" />
     </div>
     <h5 class="title">{{ formattedTitle }}</h5>
-    <h6 class="author">{{ book.authors.join(' & ') }}</h6>
-    <a class="link" :href="book.link" target="_blank">
-      On Goodreads
-      <font-awesome-icon :icon="['fas', 'external-link-alt']" />
-    </a>
+    <h6 class="author">{{ book.author }}</h6>
     <div v-if="toRead" class="up-next-label">
       <span>Up Next</span>
     </div>
@@ -27,7 +23,7 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue";
-import { Book, Shelf } from "@brombaut/types";
+// import { Book, Shelf } from "@brombaut/types";
 import uiUtils from "@/utils/ui-utils";
 import ProgressBar from "./ProgressBar.vue";
 
@@ -35,7 +31,7 @@ export default defineComponent({
   name: "BookCard",
   props: {
     book: {
-      type: Object as PropType<Book>,
+      type: Object as PropType<any>,
       required: true,
     },
   },
@@ -44,13 +40,13 @@ export default defineComponent({
   },
   computed: {
     toRead(): boolean {
-      return this.book.shelf === Shelf.TOREAD;
+      return this.book.shelf === "to-read";
     },
     currentlyReading(): boolean {
-      return this.book.shelf === Shelf.CURRENTLYREADING;
+      return this.book.shelf === "currently-reading";
     },
     read(): boolean {
-      return this.book.shelf === Shelf.READ;
+      return this.book.shelf === "read";
     },
     bookRating(): number {
       return Number(this.book.rating);
@@ -67,7 +63,7 @@ export default defineComponent({
       return title;
     },
     imageSource(): string {
-      return `book-thumbails/${this.book.isbn13}.jpg`;
+      return `book_thumbnails_v2/${this.book.book_id}.jpg`
     },
   },
   methods: {
