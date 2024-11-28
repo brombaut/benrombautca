@@ -54,10 +54,14 @@ def get_book_rating_from_html_row(tr_html):
     }
     return lookup_table[rating_text]
 
-def get_book_date_read_from_html_row(tr_html):
+def get_book_dates_read_from_html_row(tr_html):
     date_read_td = tr_html.find('td', {'class': 'field date_read'})
-    date_read = date_read_td.find('div').text.strip()
-    return date_read
+    # find all divs with class date_row, get the text and add it to the list
+    date_row_divs = date_read_td.find_all('div', {'class': 'date_row'})
+    dates_read = list()
+    for date_row_div in date_row_divs:
+        dates_read.append(date_row_div.text.strip())
+    return dates_read
 
 def get_book_date_added_from_html_row(tr_html):
     date_read_td = tr_html.find('td', {'class': 'field date_added'})
@@ -92,15 +96,23 @@ def parse_read_books_from_html(html):
     soup = BeautifulSoup(html, 'html.parser')
     books = []
     for tr in soup.find_all('tr', {'class': 'bookalike review'}):
-        book = {
-            'title': get_book_title_from_html_row(tr),
-            'author': get_book_author_from_html_row(tr),
-            "book_id": get_book_id_from_html_row(tr),
-            "review_id": get_book_review_id_from_html_row(tr),
-            'date_finished': get_book_date_read_from_html_row(tr),
-            'rating': get_book_rating_from_html_row(tr),
-        }
-        books.append(book)
+        dates_read = get_book_dates_read_from_html_row(tr)
+        if len(dates_read) > 1:
+            print(get_book_title_from_html_row(tr))
+        duplicate_review_id = None
+        for date_read in dates_read:
+            final_review_id = str(get_book_review_id_from_html_row(tr))
+            review_id = final_review_id if not duplicate_review_id else f"{final_review_id}.{duplicate_review_id}"
+            book = {
+                'title': get_book_title_from_html_row(tr),
+                'author': get_book_author_from_html_row(tr),
+                "book_id": get_book_id_from_html_row(tr),
+                "review_id": review_id,
+                'date_finished': date_read,
+                'rating': get_book_rating_from_html_row(tr),
+            }
+            books.append(book)
+            duplicate_review_id = duplicate_review_id + 1 if duplicate_review_id else 1
     return books
 
 def parse_toread_books_from_html(html):
