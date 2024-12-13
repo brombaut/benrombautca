@@ -200,20 +200,19 @@
             "book_id": "201465867-you-are-here",
             "review_id": 6867958478,
             "date_added": "Oct 23, 2024",
-            "onPage": 150,
+            "onPage": 173,
             "numPages": 368
-        },
+        }
+    ],
+    "read_books": [
         {
             "title": "The Rule of 30: A Better Way to Save for Retirement",
             "author": "Frederick Vettese",
             "book_id": "56996770-the-rule-of-30",
-            "review_id": 6530097345,
-            "date_added": "May 24, 2024",
-            "onPage": 169,
-            "numPages": 224
-        }
-    ],
-    "read_books": [
+            "review_id": "6530097345",
+            "date_finished": "Dec 10, 2024",
+            "rating": 3
+        },
         {
             "title": "Treasure Under the Tundra: Canada's Arctic Diamonds",
             "author": "L.D. Cross",
