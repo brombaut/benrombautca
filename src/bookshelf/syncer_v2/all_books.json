@@ -239,8 +239,8 @@
             "author": "Alan  Doyle",
             "book_id": "20685491-where-i-belong",
             "review_id": 7151144496,
-            "date_added": "2 hours, 19",
-            "onPage": 10,
+            "date_added": "2 hours, 58",
+            "onPage": 11,
             "numPages": 315
         },
         {
@@ -251,15 +251,6 @@
             "date_added": "Dec 29, 2024",
             "onPage": 18,
             "numPages": 308
-        },
-        {
-            "title": "You Are Here",
-            "author": "David Nicholls",
-            "book_id": "201465867-you-are-here",
-            "review_id": 6867958478,
-            "date_added": "Oct 23, 2024",
-            "onPage": 259,
-            "numPages": 368
         }
     ],
     "read_books": [
@@ -269,6 +260,14 @@
             "book_id": "124950497-ikigai",
             "review_id": "7143024747",
             "date_finished": "Dec 31, 2024",
+            "rating": 3
+        },
+        {
+            "title": "You Are Here",
+            "author": "David Nicholls",
+            "book_id": "201205983-you-are-here",
+            "review_id": "6867958478",
+            "date_finished": "Jan 1, 2025",
             "rating": 3
         },
         {
