@@ -39,8 +39,11 @@ export default defineComponent({
   },
   methods: {
     setProgressBarFill() {
+      const numerator = this.numer || 0;
+      const denominator = this.denom || 1; // Prevent division by zero
+      const fractionDone = numerator / denominator;
+      const percentDone = Math.min(fractionDone * 100, 100); // Cap at 100%
       const progressBarEl = this.$refs.progressBarFill as HTMLDivElement;
-      const percentDone = Math.min(((this.numer || 0) / this.denom) * 100, 100);
       progressBarEl.style.width = `${percentDone}%`;
     },
   },
