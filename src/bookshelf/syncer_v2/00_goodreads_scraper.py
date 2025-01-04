@@ -1,19 +1,31 @@
-import re
 from time import sleep
 import requests
 from bs4 import BeautifulSoup
 import json
 import logging
+import os
 
 # Add logging and create a file handler to send to logs to "00_goodreads_scraper.log"
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-file_handler = logging.FileHandler("00_goodreads_scraper.log", mode='w')
+
+# Get the directory of the current script
+script_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the path for the log file
+log_file_path = os.path.join(script_dir, "00_goodreads_scraper.log")
+
+file_handler = logging.FileHandler(log_file_path, mode='w')
 file_handler.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
+
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+console_handler.setFormatter(formatter)
+logger.addHandler(console_handler)
 
 
 class Bookshelf:
@@ -258,7 +270,8 @@ def main():
         Bookshelf.CURRENTLY_READING: currentlyreading_books,
         Bookshelf.READ: read_books,
     }
-    dict_to_json_file(all_books, 'all_books.json')
+    all_books_json_file_path = os.path.join(script_dir, "all_books.json")
+    dict_to_json_file(all_books, all_books_json_file_path)
     logger.debug("[main] Main function completed")
 
 if __name__ == "__main__":

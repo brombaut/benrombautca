@@ -13,16 +13,17 @@ echo "Activate venv-bookshelf-syncer"
 source ./venvs/venv-bookshelf-syncer/bin/activate;
 
 echo "Install from ./src/bookshelf/syncer/requirements.txt"
-pip3 install -r ./src/bookshelf/syncer/requirements.txt;
+pip3 install -r src/bookshelf/syncer_v2/requirements.txt;
 
-echo "Running goodreads_translator.py"
-python3 ./src/bookshelf/syncer/goodreads_translator.py --working-directory ./src/bookshelf/syncer;
+echo "Running 00_goodreads_scraper.py"
+python3 src/bookshelf/syncer_v2/00_goodreads_scraper.py --working-directory ./src/bookshelf/syncer_v2;
 
-echo "Building f3_syncer.ts"
-tsc ./src/bookshelf/syncer/f3_syncer.ts;
+echo "Running 02_all_books_flattener.py"
+python3 src/bookshelf/syncer_v2/02_all_books_flattener.py --working-directory ./src/bookshelf/syncer_v2;
 
-echo "Running f3_syncer.js"
-node ./src/bookshelf/syncer/f3_syncer.js;
+echo "Running 03_show_missing_thumbnails.py"
+python3 src/bookshelf/syncer_v2/03_show_missing_thumbnails.py --working-directory ./src/bookshelf/syncer_v2;
+
 
 echo "Deactivate venv"
 deactivate;
