@@ -5,22 +5,19 @@ import json
 import logging
 import os
 
-# Add logging and create a file handler to send to logs to "00_goodreads_scraper.log"
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 # Get the directory of the current script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Construct the path for the log file
-log_file_path = os.path.join(script_dir, "00_goodreads_scraper.log")
-
-file_handler = logging.FileHandler(log_file_path, mode='w')
-file_handler.setLevel(logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
+
+# Construct the path for the log file
+# log_file_path = os.path.join(script_dir, "00_goodreads_scraper.log")
+# file_handler = logging.FileHandler(log_file_path, mode='w')
+# file_handler.setLevel(logging.DEBUG)
+# file_handler.setFormatter(formatter)
+# logger.addHandler(file_handler)
 
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
