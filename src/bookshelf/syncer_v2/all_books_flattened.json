@@ -265,17 +265,7 @@
         "author": "Erik Larson",
         "book_id": "397483.The_Devil_in_the_White_City",
         "review_id": 4991449944,
-        "date_added": "3 hours, 15",
-        "onPage": 0,
-        "numPages": 0,
-        "shelf": "currently-reading"
-    },
-    {
-        "title": "Small Things Like These",
-        "author": "Claire Keegan",
-        "book_id": "58662236-small-things-like-these",
-        "review_id": 6868150816,
-        "date_added": "5 hours, 35",
+        "date_added": "16 hours, 35",
         "onPage": 0,
         "numPages": 0,
         "shelf": "currently-reading"
@@ -306,6 +296,15 @@
         "review_id": "7143024747",
         "date_finished": "Dec 31, 2024",
         "rating": 3,
+        "shelf": "read"
+    },
+    {
+        "title": "Small Things Like These",
+        "author": "Claire Keegan",
+        "book_id": "58662236-small-things-like-these",
+        "review_id": "6868150816",
+        "date_finished": "Jan 05, 2025",
+        "rating": 2,
         "shelf": "read"
     },
     {
