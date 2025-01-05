@@ -4,7 +4,7 @@ on:
     branches:
       - main
   workflow_run:
-    workflows: ["software-syncer"]
+    workflows: ["bookshelf-syncer"]
     types:
       - completed
 jobs:
