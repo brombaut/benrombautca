@@ -28,4 +28,4 @@ jobs:
           git add .
           git commit -m "Sync Bookshelf - Automated update from GitHub Action" || exit 0  # Avoid error if no changes
           
-          git push "https://${{ secrets.BOOKSHELF_PAT }}@github.com/${{ github.repository }}.git" HEAD:main
+          git push "https://${{ secrets.GITHUB_TOKEN  }}@github.com/${{ github.repository }}.git" HEAD:main
