@@ -1,6 +1,14 @@
 {
     "toread_books": [
         {
+            "title": "Open Throat",
+            "author": "Henry Hoke",
+            "book_id": "62039259-open-throat",
+            "review_id": 7176912940,
+            "date_added": "Jan 05, 2025",
+            "position": 30
+        },
+        {
             "title": "Straight Jacket",
             "author": "Matthew Todd",
             "book_id": "17614857-straight-jacket",
@@ -239,9 +247,9 @@
             "author": "Erik Larson",
             "book_id": "397483.The_Devil_in_the_White_City",
             "review_id": 4991449944,
-            "date_added": "16 hours, 44",
-            "onPage": 0,
-            "numPages": 0
+            "date_added": "Jan 04, 2025",
+            "onPage": 60,
+            "numPages": 464
         },
         {
             "title": "On Looking: Eleven Walks with Expert Eyes",
