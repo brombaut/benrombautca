@@ -18,8 +18,24 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "18"
-      - name: Run Bookshelf Syncer
-        run: npm run sync-bookshelf
+      # - name: Run Bookshelf Syncer
+      #   run: npm run sync-bookshelf
+      - name: Install virtualenv
+        run: pip3 install virtualenv
+      - name: Create venv-bookshelf-syncer
+        run: python3 -m venv ${{ github.workspace }}/venvs/venv-bookshelf-syncer
+      - name: Activate venv-bookshelf-syncer
+        run: source ${{ github.workspace }}/venvs/venv-bookshelf-syncer/bin/activate
+      - name: Install requirements
+        run: pip3 install -r ${{ github.workspace }}/src/bookshelf/syncer_v2/requirements.txt
+      - name: Run 00_goodreads_scraper.py
+        run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/00_goodreads_scraper.py --working-directory ${{ github.workspace }}/src/bookshelf/syncer_v2
+      - name: Run 02_all_books_flattener.py
+        run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/02_all_books_flattener.py --working-directory ${{ github.workspace }}/src/bookshelf/syncer_v2
+      - name: Run 03_show_missing_thumbnails.py
+        run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/03_show_missing_thumbnails.py --working-directory ${{ github.workspace }}/src/bookshelf/syncer_v2
+      - name: Deactivate venv
+        run: deactivate
       - name: Commit and push changes
         run: |
           git config --global user.name "Ben Rombaut"
