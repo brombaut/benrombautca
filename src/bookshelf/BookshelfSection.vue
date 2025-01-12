@@ -13,7 +13,11 @@
       <div class="book-group">
         <h2 class='book-group-header'>Currently Reading & Up Next</h2>
         <div class="books">
-          <BookCard v-for="book in currentlyReadingAndToReadBooks" :key="book.review_id" :book="book" />
+          <BookCard
+            v-for="book in currentlyReadingAndToReadBooks"
+            :key="book.review_id"
+            :book="book"
+            :shouldHidePercentText="shouldHidePercentText"/>
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
@@ -74,6 +78,7 @@ export default defineComponent({
     return {
       booksLoading: false, // TODO: Take this out
       numberOfBookCardsToRow: 6,
+      shouldHidePercentText: false,
     };
   },
   computed: {
@@ -130,17 +135,28 @@ export default defineComponent({
       if (vw === 0) result = 6;
       if (vw < 1127) result = 5;
       if (vw < 946) result = 4;
-      if (vw < 766) result = 3;
-      if (vw < 522) result = 2;
+      if (vw < 766 && vw >= 640) result = 3;
+      if (vw < 640 && vw >= 600) result = 4;
+      if (vw < 600 && vw >= 550) result = 3;
+      if (vw < 550 && vw >= 480) result = 4;
+      if (vw < 480) result = 3;
+      if (vw < 370) result = 2;
       this.numberOfBookCardsToRow = result;
+    },
+    setShouldHidePercentText() {
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      this.shouldHidePercentText = vw < 640;
     },
   },
   created() {
     this.setNumberOfBookCardsToRow();
+    this.setShouldHidePercentText();
     window.addEventListener("resize", this.setNumberOfBookCardsToRow);
+    window.addEventListener("resize", this.setShouldHidePercentText);
   },
   beforeDestroy() {
     window.removeEventListener("resize", this.setNumberOfBookCardsToRow);
+    window.removeEventListener("resize", this.setShouldHidePercentText);
   },
 });
 </script>

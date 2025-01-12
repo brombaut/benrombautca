@@ -12,7 +12,8 @@
       v-if="currentlyReading"
       text="On page"
       :numer="Number(book.onPage)"
-      :denom="Number(book.numPages)"/>
+      :denom="Number(book.numPages)"
+      :hidePercent="shouldHidePercentText"/>
     <div v-if="read" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
         <font-awesome-icon :icon="['fas', 'star']" />
@@ -33,6 +34,10 @@ export default defineComponent({
     book: {
       type: Object as PropType<any>,
       required: true,
+    },
+    shouldHidePercentText: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {
@@ -88,11 +93,11 @@ export default defineComponent({
   --card-width: calc(var(--card-height) * var(--width-to-height-ratio));
   --image-height: calc(var(--card-height) * var(--card-height-to-image-height-ratio));
   --image-width: calc(var(--image-height) * var(--image-width-to-height-ratio));
-  --small-card-height: 300px;
+  --small-card-height: 260px;
   --small-card-width: calc(var(--small-card-height) * var(--width-to-height-ratio));
   --small-image-height: calc(var(--small-card-height) * var(--card-height-to-image-height-ratio));
   --small-image-width: calc(var(--small-image-height) * var(--image-width-to-height-ratio));
-  --smallest-card-height: 220px;
+  --smallest-card-height: 200px;
   --smallest-card-width: calc(var(--smallest-card-height) * var(--width-to-height-ratio));
   --smallest-image-height: calc(var(--smallest-card-height) * var(--card-height-to-image-height-ratio));
   --smallest-image-width: calc(var(--smallest-image-height) * var(--image-width-to-height-ratio));
