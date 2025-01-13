@@ -1,6 +1,30 @@
 {
     "toread_books": [
         {
+            "title": "Martyr!",
+            "author": "Kaveh Akbar",
+            "book_id": "139400713-martyr",
+            "review_id": 7207462626,
+            "date_added": "Jan 12, 2025",
+            "position": 32
+        },
+        {
+            "title": "Spillover: Animal Infections and the Next Human Pandemic",
+            "author": "David Quammen",
+            "book_id": "17573681-spillover",
+            "review_id": 7207457558,
+            "date_added": "Jan 12, 2025",
+            "position": 31
+        },
+        {
+            "title": "The Alchemist",
+            "author": "Paulo Coelho",
+            "book_id": "18144590-the-alchemist",
+            "review_id": 7207450941,
+            "date_added": "Jan 12, 2025",
+            "position": 30
+        },
+        {
             "title": "Open Throat",
             "author": "Henry Hoke",
             "book_id": "62039259-open-throat",
@@ -235,6 +259,15 @@
     ],
     "currentlyreading_books": [
         {
+            "title": "A History of Canada in Ten Maps: Epic Stories of Charting a Mysterious Land",
+            "author": "Adam Shoalts",
+            "book_id": "33916288-a-history-of-canada-in-ten-maps",
+            "review_id": 7151099684,
+            "date_added": "Jan 09, 2025",
+            "onPage": 49,
+            "numPages": 352
+        },
+        {
             "title": "The Devil in the White City: Murder, Magic, and Madness at the Fair That Changed America",
             "author": "Erik Larson",
             "book_id": "397483.The_Devil_in_the_White_City",
@@ -242,15 +275,6 @@
             "date_added": "Jan 04, 2025",
             "onPage": 232,
             "numPages": 464
-        },
-        {
-            "title": "A History of Canada in Ten Maps: Epic Stories of Charting a Mysterious Land",
-            "author": "Adam Shoalts",
-            "book_id": "33916288-a-history-of-canada-in-ten-maps",
-            "review_id": 7151099684,
-            "date_added": "10 minutes ago",
-            "onPage": 10,
-            "numPages": 352
         },
         {
             "title": "On Looking: Eleven Walks with Expert Eyes",
