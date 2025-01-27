@@ -1,11 +1,20 @@
 [
     {
+        "title": "This Is How You Lose the Time War",
+        "author": "Amal El-Mohtar",
+        "book_id": "43352954-this-is-how-you-lose-the-time-war",
+        "review_id": 7260518091,
+        "date_added": "Jan 26, 2025",
+        "position": 33,
+        "shelf": "to-read"
+    },
+    {
         "title": "The Kite Runner",
         "author": "Khaled Hosseini",
         "book_id": "17165596-the-kite-runner",
         "review_id": 7208632650,
         "date_added": "Jan 12, 2025",
-        "position": 33,
+        "position": 32,
         "shelf": "to-read"
     },
     {
@@ -14,7 +23,7 @@
         "book_id": "139400713-martyr",
         "review_id": 7207462626,
         "date_added": "Jan 12, 2025",
-        "position": 32,
+        "position": 31,
         "shelf": "to-read"
     },
     {
@@ -23,7 +32,7 @@
         "book_id": "17573681-spillover",
         "review_id": 7207457558,
         "date_added": "Jan 12, 2025",
-        "position": 31,
+        "position": 30,
         "shelf": "to-read"
     },
     {
@@ -32,7 +41,7 @@
         "book_id": "18144590-the-alchemist",
         "review_id": 7207450941,
         "date_added": "Jan 12, 2025",
-        "position": 30,
+        "position": 29,
         "shelf": "to-read"
     },
     {
@@ -185,7 +194,7 @@
         "book_id": "477035.In_the_Absence_of_Men",
         "review_id": 5985526808,
         "date_added": "Nov 18, 2023",
-        "position": 29,
+        "position": 28,
         "shelf": "to-read"
     },
     {
@@ -212,7 +221,7 @@
         "book_id": "109395.Faggots",
         "review_id": 5867617797,
         "date_added": "Sep 25, 2023",
-        "position": 28,
+        "position": 27,
         "shelf": "to-read"
     },
     {
@@ -239,7 +248,7 @@
         "book_id": "406235.Giovanni_s_Room",
         "review_id": 5823040395,
         "date_added": "Sep 05, 2023",
-        "position": 27,
+        "position": 26,
         "shelf": "to-read"
     },
     {
@@ -275,7 +284,7 @@
         "book_id": "60916172-the-kind-worth-saving",
         "review_id": 5758914626,
         "date_added": "Aug 10, 2023",
-        "position": 26,
+        "position": 25,
         "shelf": "to-read"
     },
     {
@@ -288,21 +297,12 @@
         "shelf": "to-read"
     },
     {
-        "title": "Introduction to Health Informatics: A Canadian Perspective",
-        "author": "Christo El Morr",
-        "book_id": "42624788-introduction-to-health-informatics",
-        "review_id": 4666817878,
-        "date_added": "Apr 13, 2022",
-        "position": 25,
-        "shelf": "to-read"
-    },
-    {
         "title": "A History of Canada in Ten Maps: Epic Stories of Charting a Mysterious Land",
         "author": "Adam Shoalts",
         "book_id": "33916288-a-history-of-canada-in-ten-maps",
         "review_id": 7151099684,
         "date_added": "Jan 09, 2025",
-        "onPage": 153,
+        "onPage": 210,
         "numPages": 352,
         "shelf": "currently-reading"
     },
