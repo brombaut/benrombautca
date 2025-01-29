@@ -1,6 +1,22 @@
 {
     "toread_books": [
         {
+            "title": "Night Sky with Exit Wounds",
+            "author": "Ocean Vuong",
+            "book_id": "23841432-night-sky-with-exit-wounds",
+            "review_id": 7266303759,
+            "date_added": "Jan 28, 2025",
+            "position": 35
+        },
+        {
+            "title": "Time Is a Mother",
+            "author": "Ocean Vuong",
+            "book_id": "58582927-time-is-a-mother",
+            "review_id": 7266301043,
+            "date_added": "Jan 28, 2025",
+            "position": 34
+        },
+        {
             "title": "This Is How You Lose the Time War",
             "author": "Amal El-Mohtar",
             "book_id": "43352954-this-is-how-you-lose-the-time-war",
@@ -272,7 +288,7 @@
             "book_id": "33916288-a-history-of-canada-in-ten-maps",
             "review_id": 7151099684,
             "date_added": "Jan 09, 2025",
-            "onPage": 246,
+            "onPage": 280,
             "numPages": 352
         },
         {
