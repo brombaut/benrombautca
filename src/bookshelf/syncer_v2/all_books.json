@@ -283,15 +283,6 @@
     ],
     "currentlyreading_books": [
         {
-            "title": "A History of Canada in Ten Maps: Epic Stories of Charting a Mysterious Land",
-            "author": "Adam Shoalts",
-            "book_id": "33916288-a-history-of-canada-in-ten-maps",
-            "review_id": 7151099684,
-            "date_added": "Jan 09, 2025",
-            "onPage": 280,
-            "numPages": 352
-        },
-        {
             "title": "The Devil in the White City: Murder, Magic, and Madness at the Fair That Changed America",
             "author": "Erik Larson",
             "book_id": "397483.The_Devil_in_the_White_City",
@@ -318,6 +309,14 @@
             "review_id": "7151144496",
             "date_finished": "Jan 02, 2025",
             "rating": 2
+        },
+        {
+            "title": "A History of Canada in Ten Maps: Epic Stories of Charting a Mysterious Land",
+            "author": "Adam Shoalts",
+            "book_id": "33916288-a-history-of-canada-in-ten-maps",
+            "review_id": "7151099684",
+            "date_finished": "Jan 30, 2025",
+            "rating": 5
         },
         {
             "title": "Ikigai: The Japanese Secret to a Long and Happy Life",
