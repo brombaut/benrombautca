@@ -288,17 +288,8 @@
             "book_id": "53642699-the-mountain-is-you",
             "review_id": 6868146185,
             "date_added": "Feb 01, 2025",
-            "onPage": 29,
+            "onPage": 53,
             "numPages": 250
-        },
-        {
-            "title": "The Devil in the White City: Murder, Magic, and Madness at the Fair That Changed America",
-            "author": "Erik Larson",
-            "book_id": "397483.The_Devil_in_the_White_City",
-            "review_id": 4991449944,
-            "date_added": "Jan 04, 2025",
-            "onPage": 232,
-            "numPages": 464
         },
         {
             "title": "On Looking: Eleven Walks with Expert Eyes",
@@ -306,7 +297,7 @@
             "book_id": "15803166-on-looking",
             "review_id": 6659398420,
             "date_added": "Dec 29, 2024",
-            "onPage": 34,
+            "onPage": 100,
             "numPages": 308
         }
     ],
@@ -566,6 +557,14 @@
             "review_id": "5024888455",
             "date_finished": "Nov 20, 2022",
             "rating": 2
+        },
+        {
+            "title": "The Devil in the White City: Murder, Magic, and Madness at the Fair That Changed America",
+            "author": "Erik Larson",
+            "book_id": "397483.The_Devil_in_the_White_City",
+            "review_id": "4991449944",
+            "date_finished": "Feb 05, 2025",
+            "rating": 3
         },
         {
             "title": "Cracking the Coding Interview: 189 Programming Questions and Solutions",
