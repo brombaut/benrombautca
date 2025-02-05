@@ -1,6 +1,14 @@
 {
     "toread_books": [
         {
+            "title": "Life of Pi",
+            "author": "Yann Martel",
+            "book_id": "4214.Life_of_Pi",
+            "review_id": 7293475919,
+            "date_added": "Feb 05, 2025",
+            "position": 4
+        },
+        {
             "title": "True Grit",
             "author": "Charles Portis",
             "book_id": "257845.True_Grit",
@@ -70,7 +78,7 @@
             "book_id": "62039259-open-throat",
             "review_id": 7176912940,
             "date_added": "Jan 05, 2025",
-            "position": 8
+            "position": 9
         },
         {
             "title": "Straight Jacket",
@@ -78,7 +86,7 @@
             "book_id": "17614857-straight-jacket",
             "review_id": 7171089645,
             "date_added": "Jan 04, 2025",
-            "position": 9
+            "position": 3
         },
         {
             "title": "Yr Dead",
@@ -102,7 +110,7 @@
             "book_id": "60143672-10-days-that-shaped-modern-canada",
             "review_id": 7151122689,
             "date_added": "Jan 01, 2025",
-            "position": 4
+            "position": 5
         },
         {
             "title": "Dominion: The Railway and the Rise of Canada",
@@ -110,7 +118,7 @@
             "book_id": "124028447-dominion",
             "review_id": 7151097869,
             "date_added": "Jan 01, 2025",
-            "position": 6
+            "position": 7
         },
         {
             "title": "The Company: The Rise and Fall of the Hudson's Bay Empire",
@@ -118,7 +126,7 @@
             "book_id": "51114662-the-company",
             "review_id": 7151093247,
             "date_added": "Jan 01, 2025",
-            "position": 5
+            "position": 6
         },
         {
             "title": "Bellies",
@@ -126,14 +134,6 @@
             "book_id": "63028672-bellies",
             "review_id": 7134194375,
             "date_added": "Dec 29, 2024",
-            "position": 3
-        },
-        {
-            "title": "The Brightness Between Us",
-            "author": "Eliot Schrefer",
-            "book_id": "199532064-the-brightness-between-us",
-            "review_id": 6868145824,
-            "date_added": "Sep 22, 2024",
             "position": 2
         },
         {
@@ -142,7 +142,7 @@
             "book_id": "36341204-what-if-it-s-us",
             "review_id": 6321458091,
             "date_added": "Mar 06, 2024",
-            "position": 7
+            "position": 8
         },
         {
             "title": "A Boy at the Edge of the World",
@@ -282,6 +282,15 @@
         }
     ],
     "currentlyreading_books": [
+        {
+            "title": "The Brightness Between Us (The Darkness Outside Us, #2)",
+            "author": "Eliot Schrefer",
+            "book_id": "199532064-the-brightness-between-us",
+            "review_id": 6868145824,
+            "date_added": "1 hour, 3",
+            "onPage": 0,
+            "numPages": 0
+        },
         {
             "title": "The Mountain Is You: Transforming Self-Sabotage Into Self-Mastery",
             "author": "Brianna Wiest",
