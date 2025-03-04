@@ -1,6 +1,46 @@
 {
     "toread_books": [
         {
+            "title": "Wabi Sabi: Japanese Wisdom for a Perfectly Imperfect Life",
+            "author": "Beth Kempton",
+            "book_id": "39692401-wabi-sabi",
+            "review_id": 7374446893,
+            "date_added": "Mar 04, 2025",
+            "position": 42
+        },
+        {
+            "title": "The Power of Nunchi: The Korean Secret to Happiness and Success",
+            "author": "Euny Hong",
+            "book_id": "43159429-the-power-of-nunchi",
+            "review_id": 7374445536,
+            "date_added": "Mar 04, 2025",
+            "position": 41
+        },
+        {
+            "title": "The Things You Can See Only When You Slow Down: How to Be Calm in a Busy World",
+            "author": "Haemin Sunim",
+            "book_id": "30780006-the-things-you-can-see-only-when-you-slow-down",
+            "review_id": 7374444604,
+            "date_added": "Mar 04, 2025",
+            "position": 40
+        },
+        {
+            "title": "Niksen: The Dutch Art of Doing Nothing",
+            "author": "Annette Lavrijsen",
+            "book_id": "52039292-niksen",
+            "review_id": 7374443850,
+            "date_added": "Mar 04, 2025",
+            "position": 39
+        },
+        {
+            "title": "The Velvet Rage: Overcoming the Pain of Growing Up Gay in a Straight Man's World",
+            "author": "Alan Downs",
+            "book_id": "49418.The_Velvet_Rage",
+            "review_id": 7372314595,
+            "date_added": "Mar 03, 2025",
+            "position": 38
+        },
+        {
             "title": "Invisible Boys",
             "author": "Holden Sheppard",
             "book_id": "43197935-invisible-boys",
@@ -304,17 +344,8 @@
             "book_id": "58784475-tomorrow-and-tomorrow-and-tomorrow",
             "review_id": 5758914669,
             "date_added": "Feb 22, 2025",
-            "onPage": 0,
-            "numPages": 0
-        },
-        {
-            "title": "On Looking: Eleven Walks with Expert Eyes",
-            "author": "Alexandra Horowitz",
-            "book_id": "15803166-on-looking",
-            "review_id": 6659398420,
-            "date_added": "Dec 29, 2024",
-            "onPage": 100,
-            "numPages": 308
+            "onPage": 87,
+            "numPages": 401
         }
     ],
     "read_books": [
@@ -373,6 +404,14 @@
             "review_id": "6867958478",
             "date_finished": "Jan 2025",
             "rating": 3
+        },
+        {
+            "title": "On Looking: Eleven Walks with Expert Eyes",
+            "author": "Alexandra Horowitz",
+            "book_id": "15803166-on-looking",
+            "review_id": "6659398420",
+            "date_finished": "Mar 04, 2025",
+            "rating": 2
         },
         {
             "title": "The Rule of 30: A Better Way to Save for Retirement",
