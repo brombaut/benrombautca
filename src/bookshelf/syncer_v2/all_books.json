@@ -1,6 +1,14 @@
 {
     "toread_books": [
         {
+            "title": "Pachinko",
+            "author": "Min Jin Lee",
+            "book_id": "34051011-pachinko",
+            "review_id": 7408917310,
+            "date_added": "Mar 16, 2025",
+            "position": 48
+        },
+        {
             "title": "Intermezzo",
             "author": "Sally Rooney",
             "book_id": "208931300-intermezzo",
@@ -384,7 +392,7 @@
             "book_id": "58784475-tomorrow-and-tomorrow-and-tomorrow",
             "review_id": 5758914669,
             "date_added": "Feb 22, 2025",
-            "onPage": 306,
+            "onPage": 334,
             "numPages": 401
         }
     ],
