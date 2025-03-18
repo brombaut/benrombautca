@@ -11,11 +11,11 @@
     "sync-software": "bash ./scripts/sync_software.sh"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-brands-svg-icons": "^6.4.0",
-    "@fortawesome/free-regular-svg-icons": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
-    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@fortawesome/fontawesome-svg-core": "~6.5.0",
+    "@fortawesome/free-brands-svg-icons": "~6.5.0",
+    "@fortawesome/free-regular-svg-icons": "~6.5.0",
+    "@fortawesome/free-solid-svg-icons": "~6.5.0",
+    "@fortawesome/vue-fontawesome": "~3.0.8",
     "@vue/compat": "^3.2.47",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.30.1",

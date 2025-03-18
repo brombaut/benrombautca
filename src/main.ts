@@ -32,7 +32,7 @@ import {
   faParagraph,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
-import { faGithub, faLinkedin, faDev, faStackOverflow, faResearchgate } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin, faDev, faStackOverflow, faResearchgate, faGoogleScholar } from "@fortawesome/free-brands-svg-icons";
 import router from "./site-header/router";
 
 import App from "./App.vue";
@@ -72,6 +72,7 @@ library.add(faAddressCard);
 library.add(faRunning);
 library.add(faResearchgate);
 library.add(faParagraph);
+library.add(faGoogleScholar);
 
 const app = createApp({
   render: (h: any) => h(App),
