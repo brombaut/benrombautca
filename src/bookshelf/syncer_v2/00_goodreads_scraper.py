@@ -243,6 +243,9 @@ def get_currently_reading_books():
     soup = BeautifulSoup(profile_html, 'html.parser')
     currently_reading_books = []
     currently_reading_reviews_html = soup.find('div', {'id': 'currentlyReadingReviews'})
+    if currently_reading_reviews_html is None:
+        logger.error("[get_currently_reading_books] No currently reading reviews found")
+        return []
     for review_div in currently_reading_reviews_html.find_all('div', {'class': 'Updates'}):
         book = {
             'title': parse_title_from_review_div(review_div),
