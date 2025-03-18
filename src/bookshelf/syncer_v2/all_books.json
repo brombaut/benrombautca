@@ -385,17 +385,7 @@
             "position": 26
         }
     ],
-    "currentlyreading_books": [
-        {
-            "title": "Tomorrow, and Tomorrow, and Tomorrow",
-            "author": "Gabrielle Zevin",
-            "book_id": "58784475-tomorrow-and-tomorrow-and-tomorrow",
-            "review_id": 5758914669,
-            "date_added": "Feb 22, 2025",
-            "onPage": 334,
-            "numPages": 401
-        }
-    ],
+    "currentlyreading_books": [],
     "read_books": [
         {
             "title": "Where I Belong",
@@ -620,6 +610,14 @@
             "review_id": "5822809689",
             "date_finished": "Jun 20, 2023",
             "rating": 5
+        },
+        {
+            "title": "Tomorrow, and Tomorrow, and Tomorrow",
+            "author": "Gabrielle Zevin",
+            "book_id": "60487594-tomorrow-and-tomorrow-and-tomorrow",
+            "review_id": "5758914669",
+            "date_finished": "Mar 17, 2025",
+            "rating": 4
         },
         {
             "title": "The Kind Worth Killing",
