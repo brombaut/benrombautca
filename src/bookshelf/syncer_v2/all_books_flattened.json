@@ -423,24 +423,23 @@
         "shelf": "to-read"
     },
     {
-        "title": "The Little Book of Hygge: The Danish Way to Live Well",
-        "author": "Meik Wiking",
-        "book_id": "30045683-the-little-book-of-hygge",
-        "review_id": 7358013992,
-        "date_added": "Mar 20, 2025",
-        "onPage": 50,
-        "numPages": 289,
-        "shelf": "currently-reading"
-    },
-    {
         "title": "Invisible Boys",
         "author": "Holden Sheppard",
         "book_id": "43197935-invisible-boys",
         "review_id": 7358032190,
         "date_added": "Mar 17, 2025",
-        "onPage": 112,
+        "onPage": 138,
         "numPages": 344,
         "shelf": "currently-reading"
+    },
+    {
+        "title": "The Little Book of Hygge: The Danish Way to Live Well",
+        "author": "Meik Wiking",
+        "book_id": "30045683-the-little-book-of-hygge",
+        "review_id": "7358013992",
+        "date_finished": "Mar 25, 2025",
+        "rating": 3,
+        "shelf": "read"
     },
     {
         "title": "Where I Belong",
