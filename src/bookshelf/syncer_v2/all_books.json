@@ -377,18 +377,16 @@
             "position": 24
         }
     ],
-    "currentlyreading_books": [
+    "currentlyreading_books": [],
+    "read_books": [
         {
             "title": "Invisible Boys",
             "author": "Holden Sheppard",
-            "book_id": "43197935-invisible-boys",
-            "review_id": 7358032190,
-            "date_added": "Mar 17, 2025",
-            "onPage": 265,
-            "numPages": 344
-        }
-    ],
-    "read_books": [
+            "book_id": "52469497-invisible-boys",
+            "review_id": "7358032190",
+            "date_finished": "Mar 29, 2025",
+            "rating": 0
+        },
         {
             "title": "The Little Book of Hygge: The Danish Way to Live Well",
             "author": "Meik Wiking",
