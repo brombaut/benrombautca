@@ -369,17 +369,7 @@
             "position": 23
         }
     ],
-    "currentlyreading_books": [
-        {
-            "title": "The Alchemist",
-            "author": "Paulo Coelho",
-            "book_id": "18144590-the-alchemist",
-            "review_id": 7207450941,
-            "date_added": "21 hours, 15",
-            "onPage": 35,
-            "numPages": 182
-        }
-    ],
+    "currentlyreading_books": [],
     "read_books": [
         {
             "title": "Invisible Boys",
@@ -387,7 +377,7 @@
             "book_id": "52469497-invisible-boys",
             "review_id": "7358032190",
             "date_finished": "Mar 29, 2025",
-            "rating": 0
+            "rating": 4
         },
         {
             "title": "The Little Book of Hygge: The Danish Way to Live Well",
@@ -396,6 +386,14 @@
             "review_id": "7358013992",
             "date_finished": "Mar 25, 2025",
             "rating": 3
+        },
+        {
+            "title": "The Alchemist",
+            "author": "Paulo Coelho",
+            "book_id": "18144590-the-alchemist",
+            "review_id": "7207450941",
+            "date_finished": "Apr 06, 2025",
+            "rating": 4
         },
         {
             "title": "Where I Belong",
