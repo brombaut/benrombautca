@@ -3,6 +3,7 @@ node_modules
 dist/
 commit_message.txt
 venvs/*
+articles_converter_venv
 
 # local env files
 .env
@@ -26,3 +27,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+*.pkg
