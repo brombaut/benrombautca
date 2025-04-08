@@ -8,7 +8,7 @@
     "lint": "echo  Linting Disabled!!!!!!!  # vue-cli-service lint",
     "prepare": "husky install",
     "sync-bookshelf": "bash ./scripts/sync_bookshelf.sh",
-    "sync-software": "bash ./scripts/sync_software.sh"
+    "sync-articles": "bash ./scripts/sync_articles.sh"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "~6.5.0",

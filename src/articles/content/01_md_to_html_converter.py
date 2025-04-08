@@ -31,15 +31,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Convert Markdown files in a directory to HTML."
     )
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    
     parser.add_argument(
         "--source-dir",
         help="The source directory containing Markdown files.",
-        default="./sources_md",
+        default=os.path.join(script_dir, "sources_md"),
     )
     parser.add_argument(
         "--dest-dir",
         help="The destination directory for the converted HTML files.",
-        default="./converted_html",
+        default=os.path.join(script_dir, "converted_html"),
     )
     
     args = parser.parse_args()

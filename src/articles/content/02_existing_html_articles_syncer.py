@@ -104,23 +104,24 @@ def main(source_html_directory, aa_meta_json_path, aa_content_json_path):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Read HTML files from a directory into a dictionary.")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
     parser.add_argument(
         "--html-dir",
         type=str,
-        default="./converted_html",
-        help="The path to the directory containing HTML files. Defaults to './converted_html'."
+        default=os.path.join(script_dir, "converted_html"),
+        help="The path to the directory containing HTML files. Defaults to 'converted_html' in the script directory."
     )
     parser.add_argument(
         "--meta-json",
         type=str,
-        default="../authored_articles_meta.json",
-        help="The path to the authored_articles_meta.json file. Defaults to '../authored_articles_meta.json'."
+        default=os.path.join(script_dir, "../authored_articles_meta.json"),
+        help="The path to the authored_articles_meta.json file. Defaults to '../authored_articles_meta.json' relative to the script directory."
     )
     parser.add_argument(
         "--content-json",
         type=str,
-        default="../authored_articles_content.json",
-        help="The path to the authored_articles_content.json file. Defaults to '../authored_articles_content.json'."
+        default=os.path.join(script_dir, "../authored_articles_content.json"),
+        help="The path to the authored_articles_content.json file. Defaults to '../authored_articles_content.json' relative to the script directory."
     )
     args = parser.parse_args()
     main(args.html_dir, args.meta_json, args.content_json)
