@@ -81,7 +81,7 @@ people do), these are not correct. Study the code path that the code
 takes. Drawing the code paths as a tree (that is, the recursion tree) is
 useful on this and many recusrive problems.</p>
 <p><img
-src="https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/recursion_and_dynamic_programming/00_tree_fib_recursive.png" /></p>
+src="https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/recursion_and_dynamic_programming/00_tree_fib_recursive.png" /></p>
 <p>Observe that the leaves on the tree are all <code>fib(1)</code> and
 <code>fib(0)</code>. Those signify the base cases.</p>
 <p>The total number of nodes in the tree will represent the runtime,
@@ -153,7 +153,7 @@ would have overflowed very early on.)</p>
 <p>Now if we draw the recursion tree, it looks something like this (the
 black boxes represent cached calls that returned immediately):</p>
 <p><img
-src="https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/recursion_and_dynamic_programming/01_tree_fib_top_down_imbalanced.png" /></p>
+src="https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/recursion_and_dynamic_programming/01_tree_fib_top_down_imbalanced.png" /></p>
 <p>How many nodes are in this tree now? We might notice that the tree
 now just shoots straight down, to a depth of roughly <span
 class="math inline"><em>n</em></span>. Each node of those nodes has one
@@ -164,7 +164,7 @@ class="math inline"><em>O</em>(<em>n</em>)</span>.</p>
 <p>Often it can be useful to picture the recursion tree as something
 like this:</p>
 <p><img
-src="https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/recursion_and_dynamic_programming/02_tree_fib_top_down_balanced.png" /></p>
+src="https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/recursion_and_dynamic_programming/02_tree_fib_top_down_balanced.png" /></p>
 <p>This is not actually how the recusrion occurred. However, by
 expanding the further up nodes rather than the lower nodes, you have a
 tree that grows wide before it grows deep. (It’s like doing this

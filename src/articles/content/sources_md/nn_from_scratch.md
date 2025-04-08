@@ -256,7 +256,7 @@ test_prediction(3, W1, b1, W2, b2)
 
 
     
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/nn_from_scratch/nn_from_scratch_13_1.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/nn_from_scratch/nn_from_scratch_13_1.png)
     
 
 
@@ -266,7 +266,7 @@ test_prediction(3, W1, b1, W2, b2)
 
 
     
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/nn_from_scratch/nn_from_scratch_13_3.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/nn_from_scratch/nn_from_scratch_13_3.png)
     
 
 
@@ -276,7 +276,7 @@ test_prediction(3, W1, b1, W2, b2)
 
 
     
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/nn_from_scratch/nn_from_scratch_13_5.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/nn_from_scratch/nn_from_scratch_13_5.png)
     
 
 
@@ -286,7 +286,7 @@ test_prediction(3, W1, b1, W2, b2)
 
 
     
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/nn_from_scratch/nn_from_scratch_13_7.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/nn_from_scratch/nn_from_scratch_13_7.png)
     
 
 

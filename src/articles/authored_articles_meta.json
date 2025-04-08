@@ -313,7 +313,7 @@
         "_id": "titanic_dataset",
         "_title": "🤖 Titanic Dataset - Will a Passeger Survive?",
         "_createdAt": "2022-06-26T17:48:25.798Z",
-        "_updatedAt": "2025-04-07T19:34:56.382137Z",
+        "_updatedAt": "2025-04-07T20:18:22.011701Z",
         "_description": "",
         "_tags": [
             "machine-learning",
@@ -350,7 +350,7 @@
         "_id": "recursion_and_dynamic_programming",
         "_title": "🔁 Recursion and Dynamic Programming",
         "_createdAt": "2022-07-04T00:19:27.219Z",
-        "_updatedAt": "2025-04-07T19:34:56.382168Z",
+        "_updatedAt": "2025-04-07T20:18:22.011731Z",
         "_description": "",
         "_tags": [
             "algorithms"
@@ -361,7 +361,7 @@
         "_id": "nn_from_scratch",
         "_title": "🤖 Simple Neural Network from Scratch",
         "_createdAt": "2023-02-28T01:34:43.901Z",
-        "_updatedAt": "2025-04-07T19:34:56.382131Z",
+        "_updatedAt": "2025-04-07T20:18:22.011694Z",
         "_description": "",
         "_tags": [
             "deep-learning",

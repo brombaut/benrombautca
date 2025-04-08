@@ -1,6 +1,6 @@
 import pypandoc
-import sys
 import os
+import argparse
 
 def convert_md_to_html(md_file_path, html_file_path):
     # Ensure pandoc is installed
@@ -28,9 +28,20 @@ def convert_directory(source_dir, dest_dir):
             convert_md_to_html(md_file_path, html_file_path)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        print("Usage: python to_html_converter.py <source_dir> <dest_dir>")
-    else:
-        source_dir = sys.argv[1]
-        dest_dir = sys.argv[2]
-        convert_directory(source_dir, dest_dir)
+    parser = argparse.ArgumentParser(
+        description="Convert Markdown files in a directory to HTML."
+    )
+    parser.add_argument(
+        "--source-dir",
+        help="The source directory containing Markdown files.",
+        default="./sources_md",
+    )
+    parser.add_argument(
+        "--dest-dir",
+        help="The destination directory for the converted HTML files.",
+        default="./converted_html",
+    )
+    
+    args = parser.parse_args()
+    
+    convert_directory(args.source_dir, args.dest_dir)

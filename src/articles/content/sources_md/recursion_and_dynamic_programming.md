@@ -60,7 +60,7 @@ int fib(int i) {
 ```
 What is the runtime of this function? If you said $O(n)$ or $O(n^2)$ (as many people do), these are not correct. Study the code path that the code takes. Drawing the code paths as a tree (that is, the recursion tree) is useful on this and many recusrive problems.
 
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/recursion_and_dynamic_programming/00_tree_fib_recursive.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/recursion_and_dynamic_programming/00_tree_fib_recursive.png)
 
 Observe that the leaves on the tree are all `fib(1)` and `fib(0)`. Those signify the base cases.
 
@@ -107,13 +107,13 @@ While the first recursive function may take over a minute to generate the 50th F
 
 Now if we draw the recursion tree, it looks something like this (the black boxes represent cached calls that returned immediately):
 
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/recursion_and_dynamic_programming/01_tree_fib_top_down_imbalanced.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/recursion_and_dynamic_programming/01_tree_fib_top_down_imbalanced.png)
 
 How many nodes are in this tree now? We might notice that the tree now just shoots straight down, to a depth of roughly $n$. Each node of those nodes has one other child, resulting in roughly $2n$ children in the tree. This gives us a runtime of $O(n)$.
 
 Often it can be useful to picture the recursion tree as something like this:
 
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/recursion_and_dynamic_programming/02_tree_fib_top_down_balanced.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/recursion_and_dynamic_programming/02_tree_fib_top_down_balanced.png)
 
 This is not actually how the recusrion occurred. However, by expanding the further up nodes rather than the lower nodes, you have a tree that grows wide before it grows deep. (It's like doing this breadth-first rather than depth-first.) Sometimes this makes it easier to compute the number of nodes in the tree. All you're really doing is changing which nodes you expand and which ones return cached values. Try this if you're stuck on computing the runtime of a dynamic programming problem.
 

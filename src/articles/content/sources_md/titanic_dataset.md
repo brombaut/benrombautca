@@ -537,7 +537,7 @@ plt.show()
 
 
     
-![](https://raw.githubusercontent.com/brombaut/articles-authored/main/assets/images/titanic_dataset/titanic_dataset_31_0.png)
+![](https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images/titanic_dataset/titanic_dataset_31_0.png)
     
 
 
