@@ -10,6 +10,12 @@
   <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 
+<style>
+  #clustrmaps-widget-v2 {
+    display: none !important;
+  }
+</style>
+
 <body>
   <noscript>
     <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
@@ -17,6 +23,11 @@
   </noscript>
   <div id="app"></div>
   <!-- built files will be auto injected -->
+  <script 
+    type="text/javascript"
+    id="clustrmaps"
+    src="//clustrmaps.com/map_v2.js?d=Q99mXo-xiPCKbsApT4FWdYQCY7RuCZM9nyNspx6iAmI&cl=ffffff&w=a">
+  </script>
 </body>
 
 </html>
