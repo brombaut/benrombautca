@@ -1,6 +1,14 @@
 {
     "toread_books": [
         {
+            "title": "Wilderness, The Gateway To The Soul: Spiritual Enlightenment Through Wilderness",
+            "author": "Scott Stillman",
+            "book_id": "41729631-wilderness-the-gateway-to-the-soul",
+            "review_id": 7509782513,
+            "date_added": "Apr 22, 2025",
+            "position": 46
+        },
+        {
             "title": "This is Where I Leave You",
             "author": "Jonathan Tropper",
             "book_id": "6224935-this-is-where-i-leave-you",
@@ -367,8 +375,8 @@
             "author": "Yann Martel",
             "book_id": "4214.Life_of_Pi",
             "review_id": 7293475919,
-            "date_added": "2 hours, 5",
-            "onPage": 8,
+            "date_added": "Apr 07, 2025",
+            "onPage": 70,
             "numPages": 460
         }
     ],
@@ -1502,7 +1510,7 @@
             "rating": 2
         },
         {
-            "title": "The Phoenix Project: A Novel about IT, DevOps, and Helping Your Business Win",
+            "title": "The Phoenix Project: A Novel About IT, DevOps, and Helping Your Business Win",
             "author": "Gene Kim",
             "book_id": "35469581-the-phoenix-project",
             "review_id": "3334146960",
