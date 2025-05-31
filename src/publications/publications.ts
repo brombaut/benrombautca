@@ -1,6 +1,7 @@
 import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication, PresentationPublication, UnpublishedPublication } from "./types";
 
-const publications: Publication[] = [
+// Journal Publications
+const journalPublications: JournalPublication[] = [
   new JournalPublication(
     "There's no such thing as a free lunch: Lessons learned from exploring the overhead introduced by the Greenkeeper dependency bot in npm",
     [
@@ -26,6 +27,10 @@ const publications: Publication[] = [
       },
     ],
   ),
+];
+
+// Thesis Publications
+const thesisPublications: ThesisPublication[] = [
   new ThesisPublication(
     "Studying the overhead and crowd-sourced risk assessment strategy of dependency management bots",
     "Benjamin Rombaut",
@@ -43,6 +48,10 @@ const publications: Publication[] = [
     ],
     "Master's Thesis",
   ),
+];
+
+// Presentation Publications
+const presentationPublications: PresentationPublication[] = [
   new PresentationPublication(
     "Lessons learned from exploring the overhead introduced by the Greenkeeper dependency bot",
     ["Benjamin Rombaut"],
@@ -60,6 +69,52 @@ const publications: Publication[] = [
     ],
     "Montreal, Canada",
   ),
+  new PresentationPublication(
+    "AIware Observability",
+    ["Benjamin Rombaut"],
+    "AIware Leadership Bootcamp (2024) & AIware Mini Bootcamp (co-located with ICSE 2025)",
+    new Date(2024, 10, 8),
+    [
+      {
+        type: "AIWare Leadership Bootcamp 2024",
+        url: "https://www.aiwarebootcamp.io/",
+      },
+      {
+        type: "AIWare Mini Bootcamp 2025",
+        url: "https://www.aiwarebootcamp.io/mini.html",
+      },
+      {
+        type: PublicationLinkType.Slides,
+        url: "publications/202411_aiware_bootcamp_observability_for_pdf.pdf",
+      },
+      {
+        type: "Video",
+        url: "https://www.youtube.com/watch?v=gXsZgtyJ3s8",
+      },
+    ],
+    "Toronto, Canada & Ottawa, Canada",
+  ),
+  new PresentationPublication(
+    "Prompting with DSPy - Hands On Tutorial",
+    ["Benjamin Rombaut"],
+    "AIware Leadership Bootcamp (2024)",
+    new Date(2024, 10, 6),
+    [
+      {
+        type: "AIWare Leadership Bootcamp 2024",
+        url: "https://www.aiwarebootcamp.io/",
+      },
+      {
+        type: "Video",
+        url: "https://www.youtube.com/watch?v=ZoEEMVlMavY",
+      },
+    ],
+    "Toronto, Canada",
+  ),
+];
+
+// Unpublished Publications
+const unpublishedPublications: UnpublishedPublication[] = [
   new UnpublishedPublication(
     "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",
     [
@@ -72,10 +127,6 @@ const publications: Publication[] = [
       {
         type: PublicationLinkType.Arxiv,
         url: "https://arxiv.org/abs/2403.09012",
-      },
-      {
-        type: PublicationLinkType.ResearchGate,
-        url: "http://dx.doi.org/10.13140/RG.2.2.16897.67688"
       },
       {
         type: PublicationLinkType.PDF,
@@ -117,27 +168,48 @@ const publications: Publication[] = [
       },
       {
         type: PublicationLinkType.PDF,
-        url: "publications/202411_agent_observability_seip.pdf",
+        url: "publications/202505_agent_observability_ase2025.pdf",
       },
     ],
   ),
-  new PresentationPublication(
-    "AIware Observability",
-    ["Benjamin Rombaut"],
-    "AIware Leadership Bootcamp 2024",
-    new Date(2024, 10, 8),
+  new UnpublishedPublication(
+    "The Hitchhikers Guide to Production-ready Trustworthy Foundation Model powered Software (FMware)",
+    [
+      "Kirill Vasilevski",
+      "Benjamin Rombaut",
+      "Gopi Krishnan Rajbahadur", 
+      "Gustavo A Oliva", 
+      "Keheliya Gallaba", 
+      "Filipe R Cogo",
+      "Jiahuei (Justina) Lin",
+      "Dayi Lin", 
+      "Haoxiang Zhang", 
+      "Bouyan Chen",
+      "Kishanthan Thangarajah",
+      "Ahmed E Hassan",
+      "Zhen Ming (Jack) Jiang"
+    ],
+    new Date(2025, 5, 15),
     [
       {
-        type: "AIWare Leadership Bootcamp 2024",
-        url: "https://www.aiwarebootcamp.io/",
+        type: PublicationLinkType.Arxiv,
+        url: "https://arxiv.org/abs/2505.10640",
       },
       {
-        type: PublicationLinkType.Slides,
-        url: "publications/202411_aiware_bootcamp_observability_for_pdf.pdf",
+        type: PublicationLinkType.PDF,
+        url: "publications/202505_hitchhikers_guide_fmware.pdf",
       },
     ],
-    "Toronto, Canada",
   ),
 ];
+
+// Combine all publications
+const publications: Publication[] = [
+  ...journalPublications,
+  ...thesisPublications,
+  ...presentationPublications,
+  ...unpublishedPublications,
+];
+
 
 export default publications;
