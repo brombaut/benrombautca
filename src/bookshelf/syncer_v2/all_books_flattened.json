@@ -1,5 +1,23 @@
 [
     {
+        "title": "Shadow of Doubt: The Trials of Dennis Oland, Expanded and Revised Edition",
+        "author": "Bobbi-Jean MacKinnon",
+        "book_id": "51320613-shadow-of-doubt",
+        "review_id": 7603812720,
+        "date_added": "May 27, 2025",
+        "position": 48,
+        "shelf": "to-read"
+    },
+    {
+        "title": "Dance on My Grave",
+        "author": "Aidan Chambers",
+        "book_id": "479471.Dance_on_My_Grave",
+        "review_id": 7601695960,
+        "date_added": "May 26, 2025",
+        "position": 47,
+        "shelf": "to-read"
+    },
+    {
         "title": "Wilderness, The Gateway To The Soul: Spiritual Enlightenment Through Wilderness",
         "author": "Scott Stillman",
         "book_id": "41729631-wilderness-the-gateway-to-the-soul",
@@ -414,16 +432,6 @@
         "shelf": "to-read"
     },
     {
-        "title": "Life of Pi",
-        "author": "Yann Martel",
-        "book_id": "4214.Life_of_Pi",
-        "review_id": 7293475919,
-        "date_added": "Apr 07, 2025",
-        "onPage": 70,
-        "numPages": 460,
-        "shelf": "currently-reading"
-    },
-    {
         "title": "Invisible Boys",
         "author": "Holden Sheppard",
         "book_id": "52469497-invisible-boys",
@@ -438,6 +446,15 @@
         "book_id": "30045683-the-little-book-of-hygge",
         "review_id": "7358013992",
         "date_finished": "Mar 25, 2025",
+        "rating": 3,
+        "shelf": "read"
+    },
+    {
+        "title": "Life of Pi",
+        "author": "Yann Martel",
+        "book_id": "4214.Life_of_Pi",
+        "review_id": "7293475919",
+        "date_finished": "Jun 08, 2025",
         "rating": 3,
         "shelf": "read"
     },
