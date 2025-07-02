@@ -384,7 +384,7 @@
             "book_id": "22822858-a-little-life",
             "review_id": 5867610972,
             "date_added": "Jun 15, 2025",
-            "onPage": 48,
+            "onPage": 94,
             "numPages": 720
         }
     ],
@@ -878,7 +878,7 @@
             "rating": 5
         },
         {
-            "title": "Wealthing Like Rabbits: An Original and Occasionally Hilarious Introduction to the World of Personal Finance",
+            "title": "Wealthing Like Rabbits: An Original Introduction to Personal Finance",
             "author": "Robert R. Brown",
             "book_id": "23885906-wealthing-like-rabbits",
             "review_id": "4419939009",
@@ -1222,9 +1222,9 @@
             "rating": 4
         },
         {
-            "title": "Logical Chess - Move By Move",
+            "title": "Logical Chess: Move By Move: Every Move Explained New Algebraic Edition",
             "author": "Irving Chernev",
-            "book_id": "85086.Logical_Chess_Move_By_Move",
+            "book_id": "85086.Logical_Chess",
             "review_id": "3868463907",
             "date_finished": "Apr 26, 2021",
             "rating": 4
