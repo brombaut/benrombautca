@@ -5,7 +5,7 @@
         "book_id": "51320613-shadow-of-doubt",
         "review_id": 7603812720,
         "date_added": "May 27, 2025",
-        "position": 46,
+        "position": 44,
         "shelf": "to-read"
     },
     {
@@ -14,7 +14,7 @@
         "book_id": "479471.Dance_on_My_Grave",
         "review_id": 7601695960,
         "date_added": "May 26, 2025",
-        "position": 45,
+        "position": 43,
         "shelf": "to-read"
     },
     {
@@ -23,7 +23,7 @@
         "book_id": "41729631-wilderness-the-gateway-to-the-soul",
         "review_id": 7509782513,
         "date_added": "Apr 22, 2025",
-        "position": 44,
+        "position": 42,
         "shelf": "to-read"
     },
     {
@@ -32,7 +32,7 @@
         "book_id": "6224935-this-is-where-i-leave-you",
         "review_id": 7412313673,
         "date_added": "Mar 17, 2025",
-        "position": 43,
+        "position": 41,
         "shelf": "to-read"
     },
     {
@@ -41,7 +41,7 @@
         "book_id": "34051011-pachinko",
         "review_id": 7408917310,
         "date_added": "Mar 16, 2025",
-        "position": 42,
+        "position": 40,
         "shelf": "to-read"
     },
     {
@@ -50,7 +50,7 @@
         "book_id": "208931300-intermezzo",
         "review_id": 7406284704,
         "date_added": "Mar 15, 2025",
-        "position": 41,
+        "position": 39,
         "shelf": "to-read"
     },
     {
@@ -59,7 +59,7 @@
         "book_id": "43317482-in-the-dream-house",
         "review_id": 7406283550,
         "date_added": "Mar 15, 2025",
-        "position": 40,
+        "position": 38,
         "shelf": "to-read"
     },
     {
@@ -68,7 +68,7 @@
         "book_id": "65215321-blackouts",
         "review_id": 7406282933,
         "date_added": "Mar 15, 2025",
-        "position": 39,
+        "position": 37,
         "shelf": "to-read"
     },
     {
@@ -77,7 +77,7 @@
         "book_id": "199635125-rejection",
         "review_id": 7406282292,
         "date_added": "Mar 15, 2025",
-        "position": 38,
+        "position": 36,
         "shelf": "to-read"
     },
     {
@@ -86,7 +86,7 @@
         "book_id": "62888191-monstrilio",
         "review_id": 7406281237,
         "date_added": "Mar 15, 2025",
-        "position": 37,
+        "position": 35,
         "shelf": "to-read"
     },
     {
@@ -95,7 +95,7 @@
         "book_id": "39692401-wabi-sabi",
         "review_id": 7374446893,
         "date_added": "Mar 04, 2025",
-        "position": 36,
+        "position": 34,
         "shelf": "to-read"
     },
     {
@@ -104,7 +104,7 @@
         "book_id": "43159429-the-power-of-nunchi",
         "review_id": 7374445536,
         "date_added": "Mar 04, 2025",
-        "position": 35,
+        "position": 33,
         "shelf": "to-read"
     },
     {
@@ -113,16 +113,7 @@
         "book_id": "30780006-the-things-you-can-see-only-when-you-slow-down",
         "review_id": 7374444604,
         "date_added": "Mar 04, 2025",
-        "position": 34,
-        "shelf": "to-read"
-    },
-    {
-        "title": "Niksen: The Dutch Art of Doing Nothing",
-        "author": "Annette Lavrijsen",
-        "book_id": "52039292-niksen",
-        "review_id": 7374443850,
-        "date_added": "Mar 04, 2025",
-        "position": 33,
+        "position": 32,
         "shelf": "to-read"
     },
     {
@@ -131,7 +122,7 @@
         "book_id": "49418.The_Velvet_Rage",
         "review_id": 7372314595,
         "date_added": "Mar 03, 2025",
-        "position": 32,
+        "position": 31,
         "shelf": "to-read"
     },
     {
@@ -149,7 +140,7 @@
         "book_id": "257845.True_Grit",
         "review_id": 7280940820,
         "date_added": "Feb 01, 2025",
-        "position": 30,
+        "position": 29,
         "shelf": "to-read"
     },
     {
@@ -158,7 +149,7 @@
         "book_id": "23841432-night-sky-with-exit-wounds",
         "review_id": 7266303759,
         "date_added": "Jan 28, 2025",
-        "position": 29,
+        "position": 28,
         "shelf": "to-read"
     },
     {
@@ -167,7 +158,7 @@
         "book_id": "58582927-time-is-a-mother",
         "review_id": 7266301043,
         "date_added": "Jan 28, 2025",
-        "position": 31,
+        "position": 30,
         "shelf": "to-read"
     },
     {
@@ -176,7 +167,7 @@
         "book_id": "43352954-this-is-how-you-lose-the-time-war",
         "review_id": 7260518091,
         "date_added": "Jan 26, 2025",
-        "position": 28,
+        "position": 27,
         "shelf": "to-read"
     },
     {
@@ -185,7 +176,7 @@
         "book_id": "17165596-the-kite-runner",
         "review_id": 7208632650,
         "date_added": "Jan 12, 2025",
-        "position": 27,
+        "position": 26,
         "shelf": "to-read"
     },
     {
@@ -194,7 +185,7 @@
         "book_id": "139400713-martyr",
         "review_id": 7207462626,
         "date_added": "Jan 12, 2025",
-        "position": 26,
+        "position": 25,
         "shelf": "to-read"
     },
     {
@@ -203,7 +194,7 @@
         "book_id": "17573681-spillover",
         "review_id": 7207457558,
         "date_added": "Jan 12, 2025",
-        "position": 25,
+        "position": 24,
         "shelf": "to-read"
     },
     {
@@ -212,7 +203,7 @@
         "book_id": "62039259-open-throat",
         "review_id": 7176912940,
         "date_added": "Jan 05, 2025",
-        "position": 9,
+        "position": 8,
         "shelf": "to-read"
     },
     {
@@ -221,7 +212,7 @@
         "book_id": "17614857-straight-jacket",
         "review_id": 7171089645,
         "date_added": "Jan 04, 2025",
-        "position": 4,
+        "position": 3,
         "shelf": "to-read"
     },
     {
@@ -230,7 +221,7 @@
         "book_id": "195450005-yr-dead",
         "review_id": 7154593369,
         "date_added": "Jan 01, 2025",
-        "position": 10,
+        "position": 9,
         "shelf": "to-read"
     },
     {
@@ -239,7 +230,7 @@
         "book_id": "60143672-10-days-that-shaped-modern-canada",
         "review_id": 7151122689,
         "date_added": "Jan 01, 2025",
-        "position": 5,
+        "position": 4,
         "shelf": "to-read"
     },
     {
@@ -248,7 +239,7 @@
         "book_id": "124028447-dominion",
         "review_id": 7151097869,
         "date_added": "Jan 01, 2025",
-        "position": 7,
+        "position": 6,
         "shelf": "to-read"
     },
     {
@@ -257,7 +248,7 @@
         "book_id": "51114662-the-company",
         "review_id": 7151093247,
         "date_added": "Jan 01, 2025",
-        "position": 6,
+        "position": 5,
         "shelf": "to-read"
     },
     {
@@ -266,7 +257,7 @@
         "book_id": "63028672-bellies",
         "review_id": 7134194375,
         "date_added": "Dec 29, 2024",
-        "position": 3,
+        "position": 2,
         "shelf": "to-read"
     },
     {
@@ -275,7 +266,7 @@
         "book_id": "36341204-what-if-it-s-us",
         "review_id": 6321458091,
         "date_added": "Mar 06, 2024",
-        "position": 8,
+        "position": 7,
         "shelf": "to-read"
     },
     {
@@ -284,7 +275,7 @@
         "book_id": "36600709-a-boy-at-the-edge-of-the-world",
         "review_id": 6183965016,
         "date_added": "Jan 19, 2024",
-        "position": 15,
+        "position": 14,
         "shelf": "to-read"
     },
     {
@@ -293,7 +284,7 @@
         "book_id": "197191745-snow-boys",
         "review_id": 6078344172,
         "date_added": "Dec 25, 2023",
-        "position": 11,
+        "position": 10,
         "shelf": "to-read"
     },
     {
@@ -302,7 +293,7 @@
         "book_id": "59366182-everyone-in-this-room-will-someday-be-dead",
         "review_id": 6053738700,
         "date_added": "Dec 16, 2023",
-        "position": 14,
+        "position": 13,
         "shelf": "to-read"
     },
     {
@@ -311,7 +302,7 @@
         "book_id": "59948520-in-memoriam",
         "review_id": 6047215067,
         "date_added": "Dec 13, 2023",
-        "position": 13,
+        "position": 12,
         "shelf": "to-read"
     },
     {
@@ -320,7 +311,7 @@
         "book_id": "45257376-d-ner-montr-al",
         "review_id": 5985527379,
         "date_added": "Nov 18, 2023",
-        "position": 12,
+        "position": 11,
         "shelf": "to-read"
     },
     {
@@ -329,7 +320,7 @@
         "book_id": "477035.In_the_Absence_of_Men",
         "review_id": 5985526808,
         "date_added": "Nov 18, 2023",
-        "position": 24,
+        "position": 23,
         "shelf": "to-read"
     },
     {
@@ -338,7 +329,7 @@
         "book_id": "20527133-superintelligence",
         "review_id": 5984533676,
         "date_added": "Nov 17, 2023",
-        "position": 16,
+        "position": 15,
         "shelf": "to-read"
     },
     {
@@ -347,7 +338,7 @@
         "book_id": "18143977-all-the-light-we-cannot-see",
         "review_id": 5897090718,
         "date_added": "Oct 09, 2023",
-        "position": 18,
+        "position": 17,
         "shelf": "to-read"
     },
     {
@@ -356,16 +347,7 @@
         "book_id": "109395.Faggots",
         "review_id": 5867617797,
         "date_added": "Sep 25, 2023",
-        "position": 23,
-        "shelf": "to-read"
-    },
-    {
-        "title": "Call Me By Your Name",
-        "author": "Andr\u00e9 Aciman",
-        "book_id": "36336078-call-me-by-your-name",
-        "review_id": 5823041919,
-        "date_added": "Sep 05, 2023",
-        "position": 2,
+        "position": 22,
         "shelf": "to-read"
     },
     {
@@ -374,7 +356,7 @@
         "book_id": "406235.Giovanni_s_Room",
         "review_id": 5823040395,
         "date_added": "Sep 05, 2023",
-        "position": 22,
+        "position": 21,
         "shelf": "to-read"
     },
     {
@@ -383,7 +365,7 @@
         "book_id": "6259.Birdsong",
         "review_id": 5823034412,
         "date_added": "Sep 05, 2023",
-        "position": 19,
+        "position": 18,
         "shelf": "to-read"
     },
     {
@@ -392,7 +374,7 @@
         "book_id": "58733693-remarkably-bright-creatures",
         "review_id": 5758914756,
         "date_added": "Aug 10, 2023",
-        "position": 17,
+        "position": 16,
         "shelf": "to-read"
     },
     {
@@ -401,7 +383,7 @@
         "book_id": "60916172-the-kind-worth-saving",
         "review_id": 5758914626,
         "date_added": "Aug 10, 2023",
-        "position": 21,
+        "position": 20,
         "shelf": "to-read"
     },
     {
@@ -410,8 +392,28 @@
         "book_id": "38820046-21-lessons-for-the-21st-century",
         "review_id": 4666858781,
         "date_added": "Apr 13, 2022",
-        "position": 20,
+        "position": 19,
         "shelf": "to-read"
+    },
+    {
+        "title": "Call Me By Your Name (Call Me By Your Name, #1)",
+        "author": "Andr\u00e9 Aciman",
+        "book_id": "36336078-call-me-by-your-name",
+        "review_id": 5823041919,
+        "date_added": "2 minutes ago",
+        "onPage": 0,
+        "numPages": 0,
+        "shelf": "currently-reading"
+    },
+    {
+        "title": "Niksen: The Dutch Art of Doing Nothing",
+        "author": "Annette Lavrijsen",
+        "book_id": "52039292-niksen",
+        "review_id": 7374443850,
+        "date_added": "2 minutes ago",
+        "onPage": 0,
+        "numPages": 0,
+        "shelf": "currently-reading"
     },
     {
         "title": "A Little Life",
@@ -419,7 +421,7 @@
         "book_id": "22822858-a-little-life",
         "review_id": 5867610972,
         "date_added": "Jun 15, 2025",
-        "onPage": 202,
+        "onPage": 276,
         "numPages": 720,
         "shelf": "currently-reading"
     },
