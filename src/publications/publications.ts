@@ -152,7 +152,7 @@ const unpublishedPublications: UnpublishedPublication[] = [
     ],
   ),
   new UnpublishedPublication(
-    "Watson: A Cognitive Observability Framework for the Reasoning of Foundation Model-Powered Agents",
+    "Watson: A Cognitive Observability Framework for the Reasoning of LLM-Powered Agents",
     [
       "Benjamin Rombaut",
       "Sogol Masoumzadeh",
