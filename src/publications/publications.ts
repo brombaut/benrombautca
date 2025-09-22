@@ -1,4 +1,4 @@
-import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication, PresentationPublication, UnpublishedPublication } from "./types";
+import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication, PresentationPublication, UnpublishedPublication, ConferencePublication } from "./types";
 
 // Journal Publications
 const journalPublications: JournalPublication[] = [
@@ -172,25 +172,57 @@ const unpublishedPublications: UnpublishedPublication[] = [
       },
     ],
   ),
-  new UnpublishedPublication(
+];
+
+// Placeholder Conference Publication
+const conferencePublications: ConferencePublication[] = [
+  new ConferencePublication(
+    "A Tutorial on Software Engineering for FMware",
+    [
+      "Filipe R. Cogo",
+      "Gopi Krishnan Rajbahadur",
+      "Dayi Lin",
+      "Keheliya Gallaba",
+      "Benjamin Rombaut",
+      "Gustavo Oliva",
+      "Jiahuei (Justina) Lin",
+      "Kirill Vasilevski",
+      "Ahmed E. Hassan",
+    ],
+    PublicationVenue.FSE,
+    new Date(2025, 6, 28),
+    [
+      {
+        type: PublicationLinkType.ACM,
+        url: "https://dl.acm.org/doi/abs/10.1145/3696630.3728621",
+      },
+    ],
+    "FSE Companion '25: Proceedings of the 33rd ACM International Conference on the Foundations of Software Engineerin",
+  ),
+  new ConferencePublication(
     "The Hitchhikers Guide to Production-ready Trustworthy Foundation Model powered Software (FMware)",
     [
       "Kirill Vasilevski",
+      "Gopi Krishnan Rajbahadur",
+      "Gustavo A. Oliva",
       "Benjamin Rombaut",
-      "Gopi Krishnan Rajbahadur", 
-      "Gustavo A Oliva", 
-      "Keheliya Gallaba", 
-      "Filipe R Cogo",
+      "Keheliya Gallaba",
+      "Filipe R. Cogo",
       "Jiahuei (Justina) Lin",
-      "Dayi Lin", 
-      "Haoxiang Zhang", 
+      "Dayi Lin",
+      "Haoxiang Zhang",
       "Bouyan Chen",
       "Kishanthan Thangarajah",
-      "Ahmed E Hassan",
-      "Zhen Ming (Jack) Jiang"
+      "Ahmed E. Hassan",
+      "Zhen Ming (Jack) Jiang",
     ],
-    new Date(2025, 5, 15),
+    "Placeholder Venue",
+    new Date(2025, 7, 3),
     [
+      {
+        type: PublicationLinkType.ACM,
+        url: "https://dl.acm.org/doi/10.1145/3711896.3736572",
+      },
       {
         type: PublicationLinkType.Arxiv,
         url: "https://arxiv.org/abs/2505.10640",
@@ -200,6 +232,7 @@ const unpublishedPublications: UnpublishedPublication[] = [
         url: "publications/202505_hitchhikers_guide_fmware.pdf",
       },
     ],
+    "KDD '25: Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2",
   ),
 ];
 
@@ -209,6 +242,7 @@ const publications: Publication[] = [
   ...thesisPublications,
   ...presentationPublications,
   ...unpublishedPublications,
+  ...conferencePublications,
 ];
 
 

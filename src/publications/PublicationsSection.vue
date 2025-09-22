@@ -32,6 +32,13 @@
             :presentation="publication"
             :publicationNumber="vPub.items.length - idx"/>
         </ul>
+        <ul v-else-if="vPub.type === conference">
+          <ConferencePublication
+            v-for="(publication, idx) in vPub.items"
+            :key="publication.title"
+            :conference="publication"
+            :publicationNumber="vPub.items.length - idx"/>
+        </ul>
         <ul v-if="vPub.type === unpublished">
           <UnpublishedPublication
             v-for="(publication, idx) in vPub.items"
@@ -51,6 +58,7 @@ import JournalPublication from "./JournalPublication.vue";
 import ThesisPublication from "./ThesisPublication.vue";
 import PresentationPublication from "./PresentationPublication.vue";
 import UnpublishedPublication from "./UnpublishedPublication.vue";
+import ConferencePublication from "./ConferencePublication.vue";
 import publications from "./publications";
 import { Publication, PublicationType, ViewPublication } from "./types";
 
@@ -62,9 +70,11 @@ export default defineComponent({
     ThesisPublication,
     PresentationPublication,
     UnpublishedPublication,
+    ConferencePublication,
   },
   data() {
     const publicationTypesToShow: PublicationType[] = [
+      PublicationType.Conference,
       PublicationType.Journal,
       PublicationType.Presentation,
       PublicationType.Thesis,
@@ -92,6 +102,9 @@ export default defineComponent({
     journal() {
       return PublicationType.Journal;
     },
+    conference() {
+      return PublicationType.Conference;
+    },
     thesis() {
       return PublicationType.Thesis;
     },
@@ -105,8 +118,8 @@ export default defineComponent({
   methods: {
     publicationTypeHeader(type: PublicationType): string {
       switch (type) {
-      case (PublicationType.Journal): return "Peer-reviewed Journal Articles";
-      case (PublicationType.Conference): return "Peer-reviewed Conference Articles";
+      case (PublicationType.Journal): return "Journal";
+      case (PublicationType.Conference): return "Conference";
       case (PublicationType.Thesis): return "Theses";
       case (PublicationType.Presentation): return "Presentations & Talks";
       case (PublicationType.Unpublished): return "Unpublished Works";

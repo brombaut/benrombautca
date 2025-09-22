@@ -29,6 +29,8 @@ export enum PublicationVenue {
   EMSE = "Springer Empirical Software Engineering (EMSE)",
   Queens = "Queen's University",
   CSER = "Consortium for Software Engineering Research (CSER)",
+  FSE = "Foundations of Software Engineering (FSE)",
+  KDD = "Knowledge Discovery and Data Mining (KDD)",
   Unpublished = "Unpublished",
 }
 
@@ -136,6 +138,30 @@ export class UnpublishedPublication implements Publication {
     public authors: string[],
     public dateAccepted: Date,
     public links: PublicationLink[],
+  ) { }
+
+  get year() {
+    return this.dateAccepted.getFullYear();
+  }
+
+  get month() {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December",
+    ];
+    return monthNames[this.dateAccepted.getMonth()];
+  }
+}
+
+export class ConferencePublication implements Publication {
+  type: PublicationType = PublicationType.Conference;
+
+  constructor(
+    public title: string,
+    public authors: string[],
+    public venue: PublicationVenue | string,
+    public dateAccepted: Date,
+    public links: PublicationLink[],
+    public conferenceName: string,
   ) { }
 
   get year() {
