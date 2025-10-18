@@ -9,6 +9,7 @@
       <FullNavItem ref="articlesNav" route="/articles" text="Articles" @clicked="updateHighlight" />
       <!-- <FullNavItem ref="softwareNav" route="/software" text="Software" @clicked="updateHighlight" /> -->
       <FullNavItem ref="runningNav" route="/running" text="Running" @clicked="updateHighlight" />
+      <FullNavItem ref="hikingNav" route="/hiking" text="Hiking" v-if="showMarathons" @clicked="updateHighlight" />
     </div>
   </nav>
 </template>
