@@ -15,35 +15,35 @@ const races: Race[] = [
     `,
     images: [
       {
-        src: "running-images/22fredericton_06.jpg",
+        src: "running-images/22fredericton_06.webp",
         caption: "Early morning before the race - cold with lots of nervous energy",
       },
       {
-        src: "running-images/22fredericton_08.jpg",
+        src: "running-images/22fredericton_08.webp",
         caption: "Start of the race",
       },
       {
-        src: "running-images/22fredericton_02.jpeg",
+        src: "running-images/22fredericton_02.webp",
         caption: "About to cross the finish line",
       },
       {
-        src: "running-images/22fredericton_03.jpeg",
+        src: "running-images/22fredericton_03.webp",
         caption: "Finished!",
       },
       {
-        src: "running-images/22fredericton_07.jpeg",
+        src: "running-images/22fredericton_07.webp",
         caption: "Happy that its over",
       },
       {
-        src: "running-images/22fredericton_01.jpeg",
+        src: "running-images/22fredericton_01.webp",
         caption: "My sister and I, post-marathon",
       },
       {
-        src: "running-images/22fredericton_04.jpeg",
+        src: "running-images/22fredericton_04.webp",
         caption: "2nd overall, 1st in the 20-29 age group",
       },
       {
-        src: "running-images/22fredericton_05.jpg",
+        src: "running-images/22fredericton_05.webp",
         caption: "The race map",
       },
     ],
@@ -62,39 +62,39 @@ const races: Race[] = [
     `,
     images: [
       {
-        src: "running-images/22breakwater_08.jpeg",
+        src: "running-images/22breakwater_08.webp",
         caption: "Kingston Breakwater Parkrun",
       },
       {
-        src: "running-images/22breakwater_07.jpeg",
+        src: "running-images/22breakwater_07.webp",
         caption: "My Dad briefly joining the race",
       },
       {
-        src: "running-images/22breakwater_06.jpeg",
+        src: "running-images/22breakwater_06.webp",
         caption: "Me and my parents after I broke the course record",
       },
       {
-        src: "running-images/22breakwater_00.jpg",
+        src: "running-images/22breakwater_00.webp",
         caption: "Smiling to ward off heatstroke",
       },
       {
-        src: "running-images/22breakwater_01.jpg",
+        src: "running-images/22breakwater_01.webp",
         caption: "Pre-run briefing",
       },
       {
-        src: "running-images/22breakwater_02.jpg",
+        src: "running-images/22breakwater_02.webp",
         caption: "Coming down the straight section of the course",
       },
       {
-        src: "running-images/22breakwater_03.jpg",
+        src: "running-images/22breakwater_03.webp",
         caption: "The course includes a couple loops around Gord Downie Pier",
       },
       {
-        src: "running-images/22breakwater_04.jpg",
+        src: "running-images/22breakwater_04.webp",
         caption: "Breakwater Park is right on Lake Ontario",
       },
       {
-        src: "running-images/22breakwater_05.jpg",
+        src: "running-images/22breakwater_05.webp",
         caption: "Crossing the finish line",
       },
     ],
@@ -111,31 +111,31 @@ const races: Race[] = [
     `,
     images: [
       {
-        src: "running-images/22toughmudder_01.jpg",
+        src: "running-images/22toughmudder_01.webp",
         caption: "Muddy",
       },
       {
-        src: "running-images/22toughmudder_02.jpg",
+        src: "running-images/22toughmudder_02.webp",
         caption: "The team before the run",
       },
       {
-        src: "running-images/22toughmudder_03.jpg",
+        src: "running-images/22toughmudder_03.webp",
         caption: "Never too old for some monkey bars",
       },
       {
-        src: "running-images/22toughmudder_04.jpg",
+        src: "running-images/22toughmudder_04.webp",
         caption: "Lots of fun obstacles",
       },
       {
-        src: "running-images/22toughmudder_05.jpg",
+        src: "running-images/22toughmudder_05.webp",
         caption: "Done!",
       },
       {
-        src: "running-images/22toughmudder_06.jpg",
+        src: "running-images/22toughmudder_06.webp",
         caption: "Post-run push-up competition",
       },
       {
-        src: "running-images/22toughmudder_07.jpg",
+        src: "running-images/22toughmudder_07.webp",
         caption: "Everybody feeling good with post-run meal",
       },
     ],
@@ -151,39 +151,39 @@ const races: Race[] = [
     `,
     images: [
       {
-        src: "running-images/23limestone_01.jpg",
+        src: "running-images/23limestone_01.webp",
         caption: "Coming down the final stretch of the race",
       },
       {
-        src: "running-images/23limestone_02.jpg",
+        src: "running-images/23limestone_02.webp",
         caption: "Nervously waiting for the start gun...",
       },
       {
-        src: "running-images/23limestone_03.jpg",
+        src: "running-images/23limestone_03.webp",
         caption: "...and we're off!",
       },
       {
-        src: "running-images/23limestone_04.jpg",
+        src: "running-images/23limestone_04.webp",
         caption: "2nd and 3rd place laughing after a 750m sprint to the finish",
       },
       {
-        src: "running-images/23limestone_05.jpg",
+        src: "running-images/23limestone_05.webp",
         caption: "The podium finishers",
       },
       {
-        src: "running-images/23limestone_07.jpg",
+        src: "running-images/23limestone_07.webp",
         caption: "Congrats to Kobi for running a personal-best half-marathon (and for good taste in running shoes)!",
       },
       {
-        src: "running-images/23limestone_08.jpg",
+        src: "running-images/23limestone_08.webp",
         caption: "Congrats to Robin for finishing her first half-marathon!",
       },
       {
-        src: "running-images/23limestone_06.jpg",
+        src: "running-images/23limestone_06.webp",
         caption: "Getting some prizes",
       },
       {
-        src: "running-images/23limestone_09.jpeg",
+        src: "running-images/23limestone_09.webp",
         caption: "The race map",
       },
     ],
@@ -201,27 +201,27 @@ const races: Race[] = [
     `,
     images: [
       {
-        src: "running-images/24montreal21_01.JPG",
+        src: "running-images/24montreal21_01.webp",
         caption: "Struggling to give the thumbs up",
       },
       {
-        src: "running-images/24montreal21_02.JPG",
+        src: "running-images/24montreal21_02.webp",
         caption: "Locked in",
       },
       {
-        src: "running-images/24montreal21_03.JPG",
+        src: "running-images/24montreal21_03.webp",
         caption: "Finished!",
       },
       {
-        src: "running-images/24montreal21_04.JPG",
+        src: "running-images/24montreal21_04.webp",
         caption: "Kobi with a PB too!",
       },
       {
-        src: "running-images/24montreal21_05.JPG",
+        src: "running-images/24montreal21_05.webp",
         caption: "The New Brunswick cheering section",
       },
       {
-        src: "running-images/24montreal21_06.png",
+        src: "running-images/24montreal21_06.webp",
         caption: "The race map",
       },
     ],
