@@ -13,7 +13,7 @@ const aboutMe: AboutMe = {
   I also have budding interests in software engineering in healthcare and medical informatics.
   </p> 
   `,
-  imageFileName: "benrombaut.jpg",
+  imageFileName: "benrombaut.webp",
 };
 
 export default aboutMe;
