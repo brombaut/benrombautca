@@ -7,7 +7,7 @@ SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 TARGET_DIR_CONFIGS = {
     'hiking': {'max_width': 800, 'max_height': 800},
-    'running': {'max_width': 1200, 'max_height': 1200},
+    'running': {'max_width': 800, 'max_height': 800},
     'bookshelf': {'max_width': 150, 'max_height': 195},
 }
 
