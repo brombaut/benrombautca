@@ -68,7 +68,7 @@ export default defineComponent({
       return title;
     },
     imageSource(): string {
-      return `book_thumbnails_v2/${this.book.book_id}.jpg`
+      return `book_thumbnails_v2/${this.book.book_id}.webp`
     },
   },
   methods: {
