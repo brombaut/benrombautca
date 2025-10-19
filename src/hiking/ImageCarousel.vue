@@ -7,7 +7,7 @@
         v-for="img in images"
         :key="img.src">
         <!-- <div class="numbertext">{{ i+1 }} / {{ images.length }}</div> -->
-        <img :src="img.src" />
+        <img :src="img.src" loading="lazy" />
       </div>
 
       <a class="prev" @click="plusSlides(-1)">&#10094;</a>
