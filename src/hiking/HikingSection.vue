@@ -3,7 +3,7 @@
     <SectionHeader
       title="Hiking"
       icon="hiking"
-      subtext="I got into hiking as a way to explore nature and stay active. Now I'd like to make a habit of hiking different trails every few years, with some other hikes every now and then. I completed my first official hike in the Spring of 2022, which is listed below. Hopefully I'll add more to this list in the coming years." />
+      subtext="Some of the hikes I've done over the years." />
     <div class="section-body">
       <HikingCard
         v-for="hike in orderedHikes"
