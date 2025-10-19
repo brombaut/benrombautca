@@ -7,7 +7,8 @@ SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
 TARGET_DIRS = [
     os.path.abspath(os.path.join(SRC_DIR, 'hiking')),
     os.path.abspath(os.path.join(SRC_DIR, 'running')),
-    os.path.abspath(os.path.join(SRC_DIR, 'bookshelf'))
+    os.path.abspath(os.path.join(SRC_DIR, 'bookshelf')),
+    os.path.abspath(os.path.join(SRC_DIR, 'assets', 'images')),
 ]
 
 IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg'}  # Exclude .webp
