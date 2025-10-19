@@ -8,7 +8,7 @@ const workEntities: Work[] = [
     time: "Dec '21 - Present",
     location: "Montreal, Quebec & Kingston, Ontario",
     workedWith: [],
-    imageFile: "huawei_logo.jpg",
+    imageFile: "huawei_logo.webp",
     link: "https://www.huawei.com/ca/",
   },
   {
@@ -18,7 +18,7 @@ const workEntities: Work[] = [
     time: "Sep '20 - Dec '21",
     location: "Kingston, Ontario",
     workedWith: [],
-    imageFile: "queens_logo_name.png",
+    imageFile: "queens_logo_name.webp",
     link: "https://www.queensu.ca/",
   },
   {
@@ -27,7 +27,7 @@ const workEntities: Work[] = [
     time: "May '19 - Apr '20",
     location: "Fredericton, New Brunswick",
     workedWith: ["C/C++", "Django", "Vue", "PSQL", "Electron"],
-    imageFile: "eigenLogo_Large_dark_font.png",
+    imageFile: "eigenLogo_Large_dark_font.webp",
     link: "https://eigen.io/",
   },
   {
@@ -36,7 +36,7 @@ const workEntities: Work[] = [
     time: "Apr '18 - Aug '18",
     location: "Fredericton, New Brunswick",
     workedWith: ["Vue", "Web Development", "Product Design"],
-    imageFile: "eigenLogo_Large_dark_font.png",
+    imageFile: "eigenLogo_Large_dark_font.webp",
     link: "https://eigen.io/",
   },
   {
@@ -45,7 +45,7 @@ const workEntities: Work[] = [
     time: "May '17 - Aug '17",
     location: "Fredericton, New Brunswick",
     workedWith: ["Java", "Android Development", "Bluetooth LE"],
-    imageFile: "hcilabLogo_Large_red_font.png",
+    imageFile: "hcilabLogo_Large_red_font.webp",
     link: "https://hcilab.github.io/",
   },
   {
@@ -54,7 +54,7 @@ const workEntities: Work[] = [
     time: "Sep '16 - Dec '16",
     location: "Fredericton, New Brunswick",
     workedWith: ["Java", "JavaScript", "QA Practices"],
-    imageFile: "siemensLogo_Large.png",
+    imageFile: "siemensLogo_Large.webp",
     link: "https://new.siemens.com/ca/en.html",
   },
   {
@@ -63,7 +63,7 @@ const workEntities: Work[] = [
     time: "Jan '16 - Apr '16",
     location: "Fredericton, New Brunswick",
     workedWith: ["Web Development", "jQuery", "C#"],
-    imageFile: "brunswickNewsLogo_Large.png",
+    imageFile: "brunswickNewsLogo_Large.webp",
     link: "https://www.linkedin.com/company/brunswick-news-inc-/?originalSubdomain=ca",
   },
   {
@@ -72,7 +72,7 @@ const workEntities: Work[] = [
     time: "May '15 - Aug '15",
     location: "Saint John, New Brunswick",
     workedWith: ["Customer/IT Support"],
-    imageFile: "brunswickNewsLogo_Large.png",
+    imageFile: "brunswickNewsLogo_Large.webp",
     link: "https://www.linkedin.com/company/brunswick-news-inc-/?originalSubdomain=ca",
   },
 ];

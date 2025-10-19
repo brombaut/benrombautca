@@ -2,7 +2,7 @@ import { Education } from "./education";
 
 const educationEntities: Education[] = [
   {
-    imageFile: "queens_logo_name.png",
+    imageFile: "queens_logo_name.webp",
     title: "Master of Science, Computing",
     lab: "Software Analysis & Intelligence Lab (SAIL)",
     faculty: "School of Computing",
@@ -11,7 +11,7 @@ const educationEntities: Education[] = [
     time: "Sep '20 - May '22",
   },
   {
-    imageFile: "unbLogoLongText.png",
+    imageFile: "unbLogoLongText.webp",
     title: "Bachelor of Science, Software Engineering",
     lab: "",
     faculty: "Faculty of Computer Science / Department of Electrical and Computer Engineering",
@@ -20,7 +20,7 @@ const educationEntities: Education[] = [
     time: "Sep '14 - May '19",
   },
   {
-    imageFile: "unbLogoLongText.png",
+    imageFile: "unbLogoLongText.webp",
     title: "Co-operative Education Program",
     lab: "",
     faculty: "Faculty of Computer Science",

@@ -56,6 +56,10 @@ module.exports = {
             from: "./src/running/running-images",
             to: "./running-images/",
           },
+          {
+            from: "./src/hiking/hiking-images",
+            to: "./hiking-images/",
+          },
         ]
       }),
     ],

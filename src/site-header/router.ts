@@ -7,6 +7,7 @@ import SoftwareSection from "@/software/SoftwareSection.vue";
 import SelectedSoftwareSection from "@/software/SelectedSoftwareSection.vue";
 import PublicationsSection from "@/publications/PublicationsSection.vue";
 import RunningSection from "@/running/RunningSection.vue";
+import HikingSection from "@/hiking/HikingSection.vue";
 
 const routes = [
   {
@@ -63,6 +64,11 @@ const routes = [
     path: "/running",
     name: "running",
     component: RunningSection,
+  },
+  {
+    path: "/hiking",
+    name: "hiking",
+    component: HikingSection,
   },
 ];
 
