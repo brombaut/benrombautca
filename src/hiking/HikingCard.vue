@@ -7,6 +7,10 @@
            <div class="label">Hike Date:</div>
            <div class="value">{{ hikeDate }}</div>
         </div>
+        <div class="wrapper">
+           <div class="label">Location:</div>
+           <div class="value">{{ hike.location }}</div>
+        </div>
         <div v-html="hike.description"></div>
       </div>
     </div>
