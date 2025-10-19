@@ -1,7 +1,7 @@
 <template>
   <div class="book-card slide-in" :class="{'to-read': toRead}">
     <div class="image-container">
-      <img :src="imageSource" :alt="book.book_id" />
+      <img :src="imageSource" :alt="book.book_id" loading="lazy" />
     </div>
     <h5 class="title">{{ formattedTitle }}</h5>
     <h6 class="author">{{ book.author }}</h6>
