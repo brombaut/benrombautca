@@ -1,5 +1,23 @@
 [
     {
+        "title": "Juris Ex Machina",
+        "author": "John W. Maly",
+        "book_id": "209529202-juris-ex-machina",
+        "review_id": 7866081798,
+        "date_added": "Aug 27, 2025",
+        "position": 46,
+        "shelf": "to-read"
+    },
+    {
+        "title": "The Lions of Winter, Survival and Sacrifice on Mount Washington",
+        "author": "Ty Gagne",
+        "book_id": "221280092-the-lions-of-winter-survival-and-sacrifice-on-mount-washington",
+        "review_id": 7866027633,
+        "date_added": "Aug 27, 2025",
+        "position": 45,
+        "shelf": "to-read"
+    },
+    {
         "title": "Shadow of Doubt: The Trials of Dennis Oland, Expanded and Revised Edition",
         "author": "Bobbi-Jean MacKinnon",
         "book_id": "51320613-shadow-of-doubt",
@@ -401,7 +419,7 @@
         "book_id": "36336078-call-me-by-your-name",
         "review_id": 5823041919,
         "date_added": "Aug 24, 2025",
-        "onPage": 15,
+        "onPage": 50,
         "numPages": 248,
         "shelf": "currently-reading"
     },
