@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-# === Configuration ===
+
 SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 
