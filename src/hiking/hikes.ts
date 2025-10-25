@@ -18,7 +18,7 @@ const hikes: Hike[] = [
     ],
   },
   {
-    name: "Secret Ontario Lake Spot",
+    name: "Secret Ontario Interior Spot",
     orderDate: new Date(2022, 9, 22),
     date: new Date(2022, 9, 22),
     location: "Somewhere in Ontario, Canada",
@@ -34,7 +34,7 @@ const hikes: Hike[] = [
     ],
   },
   {
-    name: "Gaspe Trip?",
+    name: "La Gaspésie Road Trip",
     orderDate: new Date(2023, 4, 22),
     date: new Date(2023, 4, 22),
     location: "Gaspé Peninsula, Quebec, Canada",
@@ -64,7 +64,7 @@ const hikes: Hike[] = [
     name: "Cinque Terre",
     orderDate: new Date(2023, 6, 8),
     date: new Date(2023, 6, 8),
-    location: "Liguria, Italy",
+    location: "Cinque Terre, Italy",
     description: `<p>The Cinque Terre is a stunning coastal region in Liguria, Italy, known for its five colorful villages perched on rugged cliffs above the Mediterranean Sea. The classic hike connects Monterosso, Vernazza, Corniglia, Manarola, and Riomaggiore, following scenic trails along terraced vineyards and dramatic seaside views.</p><p>The highest point along the trail is around 1,200 feet (366 meters), and while not a mountain hike, it is one of the most iconic and picturesque coastal walks in Italy.</p>`,
     images: [
       { src: "hiking-images/23_01_cinqueterre/23_1_cinqueterre_1.webp", caption: "" },
