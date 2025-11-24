@@ -5,7 +5,8 @@
       <div
         class="image-slide fade"
         v-for="img in images"
-        :key="img.src">
+        :key="img.src"
+        ref="slides">
         <!-- <div class="numbertext">{{ i+1 }} / {{ images.length }}</div> -->
         <img :src="img.src" loading="lazy" />
       </div>
@@ -21,6 +22,7 @@
         v-for="(image, i) in images"
         :key="image.src"
         class="dot"
+        ref="dots"
         @click="currentSlide(i)">
       </span>
     </div>
@@ -30,13 +32,17 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue";
-import { HikingImage } from "./types";
+
+export interface CarouselImage {
+  src: string;
+  caption: string;
+}
 
 export default defineComponent({
   name: "ImageCarousel",
   props: {
     images: {
-      type: Array as PropType<HikingImage[]>,
+      type: Array as PropType<CarouselImage[]>,
       required: true,
     },
   },
@@ -61,8 +67,8 @@ export default defineComponent({
     },
     showSlides(n: number) {
       let i;
-      const slides: HTMLCollectionOf<HTMLDivElement> = this.$el.getElementsByClassName("image-slide") as HTMLCollectionOf<HTMLDivElement>;
-      const dots = this.$el.getElementsByClassName("dot");
+      const slides = this.$refs.slides as HTMLDivElement[];
+      const dots = this.$refs.dots as HTMLSpanElement[];
       if (n > slides.length) {
         this.slideIndex = 1;
       }

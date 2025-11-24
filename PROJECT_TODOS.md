@@ -39,11 +39,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ### Code Quality
 
-#### 5. Remove duplicate ImageCarousel
+#### 5. Remove duplicate ImageCarousel ✅ **COMPLETED**
 - **Files:** `src/running/ImageCarousel.vue`, `src/hiking/ImageCarousel.vue`
 - **Issue:** Identical carousel component duplicated (only difference is type import)
 - **Impact:** Code duplication, harder to maintain
 - **Fix:** Extract to `src/shared/ImageCarousel.vue` with generic typing
+- **Status:** ✅ Completed - Created shared ImageCarousel component with generic CarouselImage interface, updated both RunningCard and HikingCard to use shared component, removed duplicates
 
 #### 6. Standardize component definitions ✅ **COMPLETED**
 - **Files:** `src/App.vue`, `src/workEducation/WorkEducationSection.vue`
@@ -165,13 +166,14 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ### Documentation
 
-#### 24. Update README.md
+#### 24. Update README.md ✅ **COMPLETED**
 - **Files:** `README.md`, `CLAUDE.md`
 - **Issue:** README still mentions "Migrate to Vue 3" as future work, but CLAUDE.md says it's done
 - **Impact:** Confusing documentation, outdated information
 - **Fix:** Update README.md to reflect current state
+- **Status:** ✅ Completed - README.md updated to reflect Vue 3 migration completion
 
-#### 25. Restructure README.md for practical developer onboarding
+#### 25. Restructure README.md for practical developer onboarding ✅ **COMPLETED**
 - **File:** `README.md`
 - **Issue:** README focuses heavily on project source code structure but lacks practical information for getting started: dev environment setup steps, production build instructions, and comprehensive list of available scripts (both npm scripts and shell scripts like `sync_bookshelf.sh`, `set_last_deployed.sh`, etc.)
 - **Impact:** New developers (or returning after time away) have to hunt through multiple files to understand how to run the project
@@ -182,6 +184,7 @@ This document tracks technical debt, code quality issues, and improvement opport
   - Available npm scripts with descriptions
   - Available shell scripts in `/scripts` directory with usage
   - Move detailed source code structure to CLAUDE.md or separate ARCHITECTURE.md
+- **Status:** ✅ Completed - README.md completely restructured with Quick Start section, comprehensive script documentation, environment setup, and deployment information
 
 #### 26. Add CONTRIBUTING.md
 - **Issue:** No CONTRIBUTING.md file
@@ -394,16 +397,19 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 6/24 (25%)
+- [x] Simple items completed: 9/24 (37.5%)
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
+  - ✅ #5: Remove duplicate ImageCarousel
   - ✅ #6: Standardize component definitions
   - ✅ #8: Remove commented code
   - ✅ #10: Remove unused properties
   - ✅ #11: Replace DOM queries with refs
+  - ✅ #24: Update README.md
+  - ✅ #25: Restructure README.md for practical developer onboarding
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 6/55 (10.9%)**
+- **Overall progress: 9/55 (16.4%)**
 
 ---
 
