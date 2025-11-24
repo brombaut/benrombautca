@@ -1,0 +1,386 @@
+# Project TODOs - benrombautca
+
+**Generated:** 2025-11-24
+**Total Items:** 54
+
+This document tracks technical debt, code quality issues, and improvement opportunities identified through a comprehensive codebase audit.
+
+---
+
+## 🟢 SIMPLE (23 items - 1-2 hours each)
+
+### Critical Quick Wins
+
+#### 1. Re-enable ESLint
+- **File:** `package.json:8`
+- **Issue:** Lint script is disabled with `echo Linting Disabled!!!!!!!` instead of running actual linting
+- **Impact:** No code quality enforcement, allowing bugs and inconsistencies to slip through
+- **Fix:** Re-enable ESLint and address existing violations
+
+#### 2. Update GitHub Actions versions
+- **Files:** `gh_pages_deploy.yml`, `sync_bookshelf.yml`
+- **Issue:** Using deprecated GitHub Actions v2 (security risk)
+- **Impact:** Security vulnerabilities and potential workflow failures
+- **Fix:** Update to latest versions (actions/checkout@v4, actions/setup-python@v5, etc.)
+
+#### 3. Fix Vue 2→3 lifecycle hooks
+- **Files:** `src/bookshelf/BookshelfSection.vue:157`, `src/shared/GitHubMarkdown.vue:42`
+- **Issue:** Using deprecated `beforeDestroy` instead of Vue 3's `beforeUnmount`
+- **Impact:** Will break when Vue 2 compatibility is removed
+- **Fix:** Replace all `beforeDestroy` with `beforeUnmount`
+
+#### 4. Update TypeScript shims
+- **Files:** `src/shims-vue.d.ts:2`, `src/shims-tsx.d.ts:1`
+- **Issue:** Type declarations import from Vue 2 (`import Vue from "vue"`)
+- **Impact:** Incorrect type information in IDE
+- **Fix:** Update to use Vue 3 types
+
+### Code Quality
+
+#### 5. Remove duplicate ImageCarousel
+- **Files:** `src/running/ImageCarousel.vue`, `src/hiking/ImageCarousel.vue`
+- **Issue:** Identical carousel component duplicated (only difference is type import)
+- **Impact:** Code duplication, harder to maintain
+- **Fix:** Extract to `src/shared/ImageCarousel.vue` with generic typing
+
+#### 6. Standardize component definitions
+- **Files:** `src/App.vue`, `src/workEducation/WorkEducationSection.vue`
+- **Issue:** 2 components use plain `export default {}`, 40 use `defineComponent`
+- **Impact:** Inconsistent codebase
+- **Fix:** Convert all to `defineComponent` for consistency
+
+#### 7. Add pre-commit hooks
+- **File:** `.husky/pre-commit:4`
+- **Issue:** Only runs `setLastDeployed.sh`, no linting or type checking
+- **Impact:** Poor code quality can be committed
+- **Fix:** Add lint-staged to run ESLint and TypeScript checks
+
+#### 8. Remove commented code
+- **Files:** `src/site-header/SiteHeader.vue:34-37`, `src/site-header/FullNavBar.vue:10`, `src/shared/GitHubMarkdown.vue:35`
+- **Issue:** Commented code left in production codebase
+- **Impact:** Code clutter, confusion about what's active
+- **Fix:** Remove commented code, use feature flags if needed
+
+#### 9. Track TODO comments
+- **Files:** `src/articles/ArticlesSection.vue:54`, `src/site-header/router.ts:75`, `src/site-header/SiteHeader.vue:57`, `src/workEducation/VerticalTimeline.vue:108`, `src/site-header/NewNavBar.vue:48`, `src/bookshelf/BookshelfSection.vue:79`
+- **Issue:** 6 TODO comments without associated issues or tracking
+- **Impact:** Technical debt not visible or prioritized
+- **Fix:** Convert TODOs to GitHub issues
+
+#### 10. Remove unused properties
+- **Files:** `src/bookshelf/BookshelfSection.vue:79`, `src/articles/ArticlesSection.vue:42`
+- **Issue:** `booksLoading` always false, `selectedArticle` never used
+- **Impact:** Dead code, larger bundle
+- **Fix:** Remove unused properties or implement features
+
+#### 11. Replace DOM queries with refs
+- **Files:** `src/workEducation/VerticalTimeline.vue:83-88`, `src/running/ImageCarousel.vue:64-79`
+- **Issue:** Using `querySelector` instead of Vue template refs
+- **Impact:** Less Vue-idiomatic, harder to track reactivity
+- **Fix:** Use template refs ($refs) instead of querySelector
+
+#### 12. Fix Husky path
+- **File:** `.husky/pre-commit:4`
+- **Issue:** References `./setLastDeployed.sh` with relative path
+- **Impact:** May fail if run from subdirectories
+- **Fix:** Use absolute path or proper directory resolution
+
+### Performance
+
+#### 13. Add route-level code splitting
+- **File:** `src/site-header/router.ts`
+- **Issue:** All routes import components synchronously, no lazy loading
+- **Impact:** Larger initial bundle size, slower first load
+- **Fix:** Convert route components to lazy imports: `component: () => import(...)`
+
+#### 14. Add bundle analyzer
+- **Issue:** No webpack-bundle-analyzer configured
+- **Impact:** No visibility into bundle size and optimization opportunities
+- **Fix:** Add `webpack-bundle-analyzer` to dev dependencies
+
+#### 15. Throttle scroll/resize handlers
+- **Files:** Multiple components (WorkCard.vue, EducationCard.vue, FullNavBar.vue, BookCard.vue)
+- **Issue:** No throttling/debouncing on expensive event handlers
+- **Impact:** Performance issues on scroll/resize, especially on mobile
+- **Fix:** Add lodash.throttle or lodash.debounce to handlers
+
+### Accessibility
+
+#### 16. Add skip navigation link
+- **File:** `src/App.vue`
+- **Issue:** No skip-to-main-content link for screen readers
+- **Impact:** Screen reader users must tab through navigation every page
+- **Fix:** Add skip link at top of App.vue
+
+#### 17. Add keyboard navigation
+- **Files:** `src/workEducation/VerticalTimeline.vue:20`, navigation hamburger menu
+- **Issue:** Click handlers without keyboard event handlers
+- **Impact:** Not accessible via keyboard navigation
+- **Fix:** Add @keydown handlers, ensure tabindex is set correctly
+
+#### 18. Audit color contrast
+- **File:** `src/styles/variables.scss`
+- **Issue:** No accessibility audit documented for color combinations
+- **Impact:** May not meet WCAG AA/AAA contrast requirements
+- **Fix:** Run axe-core or Lighthouse accessibility audit, fix contrast issues
+
+### SEO & Meta
+
+#### 19. Add meta tags
+- **File:** `public/index.html:1-10`
+- **Issue:** Missing OpenGraph tags, Twitter Card tags, canonical URLs, structured data (JSON-LD)
+- **Impact:** Poor social media sharing, reduced SEO effectiveness
+- **Fix:** Add vue-meta or @vueuse/head for dynamic meta tags
+
+#### 20. Generate sitemap.xml
+- **Issue:** Missing sitemap for search engine crawlers
+- **Impact:** Reduced discoverability by search engines
+- **Fix:** Generate sitemap.xml and robots.txt, add to public folder
+
+#### 21. Add favicon variants
+- **File:** `public/` only has `favicon.ico`
+- **Issue:** Missing modern favicon formats (PNG, SVG) and sizes for different devices
+- **Impact:** Poor appearance on mobile devices and bookmarks
+- **Fix:** Add favicon-16x16, favicon-32x32, apple-touch-icon, etc.
+
+### Security
+
+#### 22. Add SRI to third-party scripts
+- **File:** `public/index.html:26-30`
+- **Issue:** clustrmaps.com script loaded without SRI (Subresource Integrity)
+- **Impact:** Potential XSS if CDN is compromised
+- **Fix:** Add integrity attribute or remove if not critical
+
+#### 23. Validate environment variables
+- **File:** `src/app_config.ts:1-3`
+- **Issue:** Environment variables used without validation or fallbacks
+- **Impact:** Silent failures if env vars missing
+- **Fix:** Add runtime validation for required env vars
+
+### Documentation
+
+#### 24. Update README.md
+- **Files:** `README.md`, `CLAUDE.md`
+- **Issue:** README still mentions "Migrate to Vue 3" as future work, but CLAUDE.md says it's done
+- **Impact:** Confusing documentation, outdated information
+- **Fix:** Update README.md to reflect current state
+
+#### 25. Add CONTRIBUTING.md
+- **Issue:** No CONTRIBUTING.md file
+- **Impact:** Contributors don't know how to help
+- **Fix:** Add CONTRIBUTING.md with development setup and guidelines
+
+#### 26. Document rollback procedure
+- **Issue:** No documented rollback procedure
+- **Impact:** Difficult to recover from bad deployments
+- **Fix:** Document rollback procedure (revert commit, redeploy)
+
+### Miscellaneous
+
+#### 27. Uncomment cron schedule
+- **File:** `.github/workflows/sync_bookshelf.yml:3-6`
+- **Issue:** Automated bookshelf sync cron job is commented out
+- **Impact:** Manual intervention required, doesn't auto-sync
+- **Fix:** Uncomment cron schedule if automation is desired
+
+#### 28. Move CSS variables to global
+- **File:** `src/bookshelf/BookCard.vue:88-104`
+- **Issue:** CSS custom properties defined in Vue component instead of global CSS
+- **Impact:** Not reusable across components
+- **Fix:** Move to global CSS variables or SCSS variables
+
+---
+
+## 🟡 MEDIUM (24 items - 1-2 days each)
+
+### Vue 3 Migration
+
+#### 29. Remove Vue 2 compatibility mode
+- **File:** `vue.config.js:8-22`
+- **Issue:** Vue 2 compatibility mode (MODE: 2) is still active despite migration to Vue 3
+- **Impact:** Missing out on Vue 3 performance improvements and tree-shaking benefits
+- **Fix:** Test with compatConfig MODE: 3, then remove compatibility entirely
+
+#### 30. Update ESLint configuration
+- **File:** `package.json:62-103`
+- **Issue:** Many important ESLint rules are disabled, including `no-unused-vars: 0`, `no-console: 0`, `no-shadow: 0`, `no-param-reassign: 0`
+- **Impact:** Allows poor code practices and potential bugs
+- **Fix:** Re-enable critical rules gradually, fix violations
+
+### Type Safety
+
+#### 31. Replace `any` types
+- **Files:** `src/main.ts:80`, `src/bookshelf/BookCard.vue:35`, `src/software/SoftwareArticlesProxy.ts:74`, `src/articles/AuthoredArticlesProxy.ts:55` (10+ files total)
+- **Issue:** Heavy use of `any` type defeats TypeScript's type safety
+- **Impact:** Lost type safety benefits, harder to catch bugs at compile time
+- **Fix:** Replace `any` with proper types, especially in component props and return types
+
+#### 32. Enable strict TypeScript flags
+- **File:** `tsconfig.json:5`
+- **Issue:** Only `strict: true` is set, missing `strictNullChecks`, `strictFunctionTypes`, `noUnusedLocals`, `noUnusedParameters`
+- **Impact:** Not maximizing TypeScript's type safety capabilities
+- **Fix:** Enable additional strict flags incrementally
+
+#### 33. Document data schemas
+- **Issue:** No documentation for data structures and JSON formats
+- **Impact:** Hard to understand data flow and structure
+- **Fix:** Document JSON schemas for articles, books, software metadata
+
+### Error Handling & Security
+
+#### 34. Add error boundaries
+- **Issue:** Only 2 files use try/catch (`src/hiking/hikes.ts`, `src/running/races.ts`)
+- **Impact:** Poor user experience when errors occur, difficult debugging
+- **Fix:** Add error boundaries at route level, implement error handling in async operations
+
+#### 35. Sanitize v-html content
+- **Files:** `src/shared/GitHubMarkdown.vue:4`, `src/aboutMe/AboutMeSection.vue:11`, `src/hiking/HikingCard.vue:14`, `src/running/RunningCard.vue:12,16,18`
+- **Issue:** Using `v-html` without sanitization on user/external content
+- **Impact:** Potential XSS attacks if content sources are compromised
+- **Fix:** Add DOMPurify library to sanitize HTML before rendering
+
+#### 36. Implement CSP headers
+- **Issue:** No Content Security Policy headers configured
+- **Impact:** Vulnerable to XSS and injection attacks
+- **Fix:** Add CSP headers via meta tag or server configuration
+
+#### 37. Configure security headers
+- **Issue:** No evidence of security headers (X-Frame-Options, X-Content-Type-Options, etc.)
+- **Impact:** Vulnerable to clickjacking, MIME-sniffing attacks
+- **Fix:** Configure security headers in GitHub Pages or add _headers file
+
+### Performance & Dependencies
+
+#### 38. Update major dependencies
+- **Issue:** FontAwesome packages 6.5.x → 7.1.0, copy-webpack-plugin 11.0.0 → 13.0.1, dotenv 16.6.1 → 17.2.3
+- **Impact:** Missing features, security patches, and performance improvements
+- **Fix:** Update dependencies incrementally and test
+
+#### 39. Optimize image pipeline
+- **File:** `vue.config.js:37-63`
+- **Issue:** 2.6MB of book thumbnails copied as-is, no image optimization pipeline
+- **Impact:** Slower page loads, higher bandwidth usage
+- **Fix:** Add image optimization to build process (imagemin-webpack-plugin)
+
+#### 40. Optimize FontAwesome imports
+- **File:** `src/main.ts:1-77`
+- **Issue:** Individual icon imports instead of tree-shaking, manually adding each icon
+- **Impact:** Larger bundle size than necessary
+- **Fix:** Consider using FontAwesome's tree-shakeable packages or SVG sprite approach
+
+### Accessibility
+
+#### 41. Add ARIA attributes
+- **Issue:** Only 4 components have any accessibility attributes
+- **Impact:** Poor screen reader support, fails WCAG compliance
+- **Fix:** Add proper ARIA labels, roles, and semantic HTML throughout
+
+#### 42. Add component documentation
+- **Issue:** No JSDoc comments or prop documentation in most components
+- **Impact:** Harder for developers to understand component usage
+- **Fix:** Add JSDoc comments to all public components and methods
+
+### Architecture & Organization
+
+#### 43. Extract hardcoded URLs
+- **Files:** `src/workEducation/workEntities.ts`, `src/publications/publications.ts`, `src/site-header/SiteHeader.vue` (25+ URLs total)
+- **Issue:** URLs hardcoded instead of being in configuration
+- **Impact:** Harder to update, no single source of truth
+- **Fix:** Extract to configuration file or constants
+
+#### 44. Replace magic numbers
+- **File:** `src/bookshelf/BookshelfSection.vue:131-144`
+- **Issue:** Hardcoded viewport width thresholds with comment "determined manually by resizing window lol"
+- **Impact:** Brittle responsive design, hard to maintain
+- **Fix:** Use CSS media queries or standardized breakpoints
+
+#### 45. Use CSS classes over inline styles
+- **Files:** `src/shared/GitHubMarkdown.vue:17-22`, `src/site-header/FullNavBar.vue:48-51`, `src/running/ImageCarousel.vue:73-79`
+- **Issue:** Setting styles via JavaScript instead of CSS classes
+- **Impact:** Harder to maintain, poor separation of concerns
+- **Fix:** Use CSS classes with reactive class bindings
+
+#### 46. Add consistent date handling
+- **Issue:** Multiple files parse dates differently, no consistent date parsing/formatting library
+- **Impact:** Potential timezone and format bugs
+- **Fix:** Add date-fns or dayjs for consistent date handling
+
+### SEO & Routing
+
+#### 47. Switch to HTML5 history mode
+- **File:** `src/site-header/router.ts:75-77`
+- **Issue:** Using hash routing (#/) instead of HTML5 history mode (TODO comment present)
+- **Impact:** Search engines may not properly index routes
+- **Fix:** Switch to HTML5 history mode, configure server-side routing
+
+#### 48. Document browser support
+- **Issue:** No documented browser support policy or testing
+- **Impact:** Unknown compatibility with older browsers
+- **Fix:** Add Browserstack or document supported browsers
+
+### CI/CD & Deployment
+
+#### 49. Add staging environment
+- **Issue:** Deploys directly to production from main branch
+- **Impact:** No testing ground for changes before production
+- **Fix:** Add staging deployment from develop branch
+
+#### 50. Track bundle size over time
+- **Issue:** No tracking of bundle size over time
+- **Impact:** Bundle size can grow unnoticed
+- **Fix:** Add bundlesize or similar to CI to track size regression
+
+#### 51. Add test coverage reporting
+- **Issue:** No test coverage measurement or reporting configured
+- **Impact:** No visibility into test coverage (after tests exist)
+- **Fix:** Add coverage reporting with Vitest/Istanbul
+
+#### 52. Add cross-browser testing
+- **Issue:** No browser compatibility testing
+- **Impact:** Unknown compatibility issues
+- **Fix:** Add Browserstack or similar automated testing
+
+---
+
+## 🔴 HIGH (3 items - 1+ weeks each)
+
+### Testing Infrastructure
+
+#### 53. Add automated testing
+- **Issue:** Complete absence of unit, integration, or e2e tests (zero test files found)
+- **Impact:** No safety net for refactoring, regression bugs likely
+- **Fix:** Add Vitest for unit tests, start with critical business logic
+
+### Memory & Performance
+
+#### 54. Fix memory leaks systematically
+- **Files:** `src/workEducation/WorkCard.vue:61`, `src/workEducation/EducationCard.vue:67`, `src/site-header/FullNavBar.vue:90`, `src/bookshelf/BookCard.vue:80`
+- **Issue:** Components add window event listeners but never remove them, causing memory leaks
+- **Impact:** Performance degradation over time as users navigate between routes
+- **Fix:** Add `beforeUnmount()` lifecycle hooks to clean up listeners in all affected components
+
+---
+
+## 🎯 Recommended Priority Order
+
+For maximum impact with minimal effort:
+
+1. **Re-enable linting** (#1) - Foundation for all code quality improvements
+2. **Add route-level code splitting** (#13) - Immediate performance win
+3. **Update GitHub Actions** (#2) - Security vulnerability fix
+4. **Fix memory leaks** (#54) - Critical for user experience
+5. **Remove Vue 2 compatibility mode** (#29) - Unlock Vue 3 performance benefits
+6. **Replace `any` types** (#31) - Improve type safety incrementally
+
+---
+
+## Progress Tracking
+
+- [ ] Simple items completed: 0/23
+- [ ] Medium items completed: 0/24
+- [ ] High items completed: 0/3
+- **Overall progress: 0/54 (0%)**
+
+---
+
+**Note:** This list represents a comprehensive audit. Not all items need to be completed immediately. Prioritize based on project goals and user impact.
