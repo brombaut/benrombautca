@@ -39,7 +39,6 @@ export default defineComponent({
     return {
       tableView: true,
       authoredArticles: new AuthoredArticlesProxy().authoredArticles as AuthoredArticle[],
-      selectedArticle: null as (AuthoredArticle | null),
     };
   },
   computed: {
@@ -76,7 +75,6 @@ export default defineComponent({
   methods: {
     articleClicked(article: AuthoredArticle) {
       this.$router.push({ name: "selectedArticle", params: { articleId: article.id } });
-      this.selectedArticle = article;
     },
   },
 });

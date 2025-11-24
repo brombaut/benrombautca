@@ -4,12 +4,7 @@
       title="Ben's Bookshelf"
       icon="book-open"
       subtext="Books I've read and am currently reading."/>
-    <div v-if="booksLoading" class="section-body">
-      <div class="loader-wrapper">
-        <div class="loader"></div>
-      </div>
-    </div>
-    <div v-else class="section-body">
+    <div class="section-body">
       <div class="book-group">
         <h2 class='book-group-header'>Currently Reading & Up Next</h2>
         <div class="books">
@@ -76,7 +71,6 @@ export default defineComponent({
   },
   data() {
     return {
-      booksLoading: false, // TODO: Take this out
       numberOfBookCardsToRow: 6,
       shouldHidePercentText: false,
     };
@@ -170,27 +164,6 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    .loader-wrapper {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-
-      .loader {
-        border: 16px solid $primaryDarkest;
-        border-top: 16px solid $primary;
-        border-bottom: 16px solid $primary;
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    }
 
     .book-group {
       display: flex;
