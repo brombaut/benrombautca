@@ -5,12 +5,15 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "GitHubMarkdown",
   props: {
-    content: String,
+    content: {
+      type: String,
+      required: true,
+    },
   },
   methods: {
     resizeSourceCodeEl(preCodeEl: HTMLPreElement): void {

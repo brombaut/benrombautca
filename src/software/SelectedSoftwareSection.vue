@@ -1,6 +1,6 @@
 <template>
   <section id="selected-software">
-    <SectionHeader :title="selectedSoftware.title" icon="" :subtext="selectedSoftware.description"/>
+    <SectionHeader :title="selectedSoftware.title" icon="" :subtext="selectedSoftware.description" />
     <div class="meta-container">
       <div class="tech-used">
         <TechUsedIcon
@@ -16,7 +16,8 @@
           :verbose="true" />
       </div>
       <div class="dates">
-        Created {{ formatDate(selectedSoftware.createdAt) }} • Updated {{ formatDate(selectedSoftware.updatedAt) }}
+        Created {{ formatDate(selectedSoftware.createdAt) }} •
+        Updated {{ formatDate(selectedSoftware.updatedAt) }}
       </div>
     </div>
     <div class="section-body">
@@ -26,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
 import TechUsedIcon from "./TechUsedIcon.vue";
@@ -51,7 +52,9 @@ export default defineComponent({
   methods: {
     loadSelectedArticle(aId: string): SoftwareArticle | null {
       const allSoftwareArticles: SoftwareArticle[] = new SoftwareArticlesProxy().softwareArticles;
-      const selectedSoftware: SoftwareArticle | undefined = allSoftwareArticles.find((sa: SoftwareArticle) => sa.id === aId);
+      const selectedSoftware: SoftwareArticle | undefined = allSoftwareArticles.find(
+        (sa: SoftwareArticle) => sa.id === aId,
+      );
       return selectedSoftware || null;
     },
     formatDate(d: Date): string {
@@ -67,7 +70,9 @@ export default defineComponent({
     // From Vue2
     // this.selectedSoftwareId = this.$router.currentRoute.params.softwareId;
     this.selectedSoftwareId = this.$router.currentRoute.value.params.softwareId as string;
-    const loadedSoftware: SoftwareArticle | null = this.loadSelectedArticle(this.selectedSoftwareId);
+    const loadedSoftware: SoftwareArticle | null = this.loadSelectedArticle(
+      this.selectedSoftwareId,
+    );
     if (loadedSoftware) {
       this.selectedSoftware = loadedSoftware;
     }

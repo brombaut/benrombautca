@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import RunningCard from "./RunningCard.vue";
 import races from "./races";
@@ -33,11 +33,11 @@ export default defineComponent({
   },
   computed: {
     orderedRaces(): Race[] {
-      return this.races.sort((a: Race, b: Race) => {
+      return [...this.races].sort((a: Race, b: Race) => {
         return b.orderDate.getTime() - a.orderDate.getTime();
       });
-    }
-  }
+    },
+  },
 });
 </script>
 

@@ -5,16 +5,23 @@
       <div class='condensed-navbar-back-button'>
         <BackButton />
       </div>
-      <div class="condensed-navbar-icon" @click="toggleMobileNavBar">
+      <div
+        class="condensed-navbar-icon"
+        role="button"
+        tabindex="0"
+        @click="toggleMobileNavBar"
+        @keydown.enter="toggleMobileNavBar">
         <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" />
       </div>
     </div>
-    <CondensedNavBar :mobileNavbarVisible="mobileNavbarVisible" @closeMobileNavBar="closeMobileNavBar"/>
+    <CondensedNavBar
+      :mobileNavbarVisible="mobileNavbarVisible"
+      @closeMobileNavBar="closeMobileNavBar" />
   </header>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import FullNavBar from "./FullNavBar.vue";
 import CondensedNavBar from "./CondensedNavBar.vue";
 import BackButton from "./BackButton.vue";

@@ -16,35 +16,35 @@
             v-for="(publication, idx) in vPub.items"
             :key="publication.title"
             :journal="publication"
-            :publicationNumber="vPub.items.length - idx"/>
+            :publicationNumber="vPub.items.length - idx" />
         </ul>
         <ul v-else-if="vPub.type === thesis">
           <ThesisPublication
             v-for="(publication, idx) in vPub.items"
             :key="publication.title"
             :thesis="publication"
-            :publicationNumber="vPub.items.length - idx"/>
+            :publicationNumber="vPub.items.length - idx" />
         </ul>
         <ul v-else-if="vPub.type === presentation">
           <PresentationPublication
             v-for="(publication, idx) in vPub.items"
             :key="publication.title"
             :presentation="publication"
-            :publicationNumber="vPub.items.length - idx"/>
+            :publicationNumber="vPub.items.length - idx" />
         </ul>
         <ul v-else-if="vPub.type === conference">
           <ConferencePublication
             v-for="(publication, idx) in vPub.items"
             :key="publication.title"
             :conference="publication"
-            :publicationNumber="vPub.items.length - idx"/>
+            :publicationNumber="vPub.items.length - idx" />
         </ul>
         <ul v-if="vPub.type === unpublished">
           <UnpublishedPublication
             v-for="(publication, idx) in vPub.items"
             :key="publication.title"
             :unpublishedPublication="publication"
-            :publicationNumber="vPub.items.length - idx"/>
+            :publicationNumber="vPub.items.length - idx" />
         </ul>
       </div>
     </div>
@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import JournalPublication from "./JournalPublication.vue";
 import ThesisPublication from "./ThesisPublication.vue";
@@ -94,7 +94,9 @@ export default defineComponent({
           subHeader: this.publicationTypeSubHeader(t),
           items: this.publications
             .filter((p: Publication) => p.type === t)
-            .sort((a: Publication, b: Publication) => b.dateAccepted.getTime() - a.dateAccepted.getTime()),
+            .sort((a: Publication, b: Publication) => (
+              b.dateAccepted.getTime() - a.dateAccepted.getTime()
+            )),
         };
       });
       return result;

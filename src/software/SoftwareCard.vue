@@ -1,10 +1,13 @@
 <template>
   <div
     class="software-card"
-    @click="cardClicked">
+    role="button"
+    tabindex="0"
+    @click="cardClicked"
+    @keydown.enter="cardClicked">
     <header>
       <h2 class="title">{{ software.title }}</h2>
-      <div class="spacer"></div>
+      <div class="spacer" />
       <div class="external-profiles">
         <ExternalRepoIcon
           v-for="repo in software.externalRepos"

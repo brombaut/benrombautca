@@ -8,14 +8,13 @@
           imageAlt="Ben Rombaut"
           :isCircle="true" />
       </div>
-      <div class="text-container" v-html="aboutMe.description">
-      </div>
+      <div class="text-container" v-html="aboutMe.description" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import aboutMe from "./aboutMe";
 import { AboutMe } from "./about-me";
 import SectionHeader from "../shared/SectionHeader.vue";

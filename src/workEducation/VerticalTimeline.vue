@@ -3,7 +3,7 @@
     <SectionHeader :title="title" :icon="icon" />
     <div class="section-body">
       <div class="wrapper" ref="wrapper">
-        <div class="vertical-line" ref="verticalLine"></div>
+        <div class="vertical-line" ref="verticalLine" />
         <ul v-if="type === 'education'">
           <EducationCard
             v-for="education in entitiesToShow"
@@ -17,7 +17,12 @@
       </div>
     </div>
     <div v-if="showLimit && !showMore" class="show-more-wrapper">
-      <div class="show-more" @click="showMoreClicked()">
+      <div
+        class="show-more"
+        role="button"
+        tabindex="0"
+        @click="showMoreClicked()"
+        @keydown.enter="showMoreClicked()">
         <font-awesome-icon :icon="['fas', 'caret-down']" />
         <span>SHOW MORE</span>
       </div>

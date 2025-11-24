@@ -13,6 +13,7 @@
       <!-- Show More button -->
       <button
         v-if="currentMax < hikes.length"
+        type="button"
         class="show-more"
         @click="showMore">
         Show more
@@ -22,7 +23,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import HikingCard from "./HikingCard.vue";
 import hikes from "./hikes";
@@ -51,20 +52,20 @@ export default defineComponent({
     // if parent updates the prop, reset the currentMax
     maxHikes(newVal: number) {
       (this as any).currentMax = newVal;
-    }
+    },
   },
   methods: {
     showMore() {
       (this as any).currentMax = Math.min((this as any).currentMax + 10, this.hikes.length);
-    }
+    },
   },
   computed: {
     orderedHikes(): Hike[] {
       return [...this.hikes]
         .sort((a: Hike, b: Hike) => b.orderDate.getTime() - a.orderDate.getTime())
         .slice(0, (this as any).currentMax);
-    }
-  }
+    },
+  },
 });
 </script>
 

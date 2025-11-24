@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import AboutMeSection from "@/aboutMe/AboutMeSection.vue";
 import WorkEducationSection from "@/workEducation/WorkEducationSection.vue";
 

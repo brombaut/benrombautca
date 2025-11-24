@@ -98,7 +98,7 @@ const races: Race[] = [
         caption: "Crossing the finish line",
       },
     ],
-  }, 
+  },
   {
     name: "2022 Tough Mudder Toronto 15k",
     link: "",
@@ -225,7 +225,7 @@ const races: Race[] = [
         caption: "The race map",
       },
     ],
-  }
+  },
 ];
 
 export default races;

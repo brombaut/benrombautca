@@ -1,31 +1,31 @@
 <template>
   <nav class="condensed-navbar" ref="mobileNavbar" :class="{ showNavBar: mobileNavbarVisible }">
-    <a @click="navigateMobile('/about-me')">
+    <a tabindex="0" @click="navigateMobile('/about-me')" @keydown.enter="navigateMobile('/about-me')">
       <font-awesome-icon
         class='active-icon'
-        :class="{active: routeIsActive('aboutMe')}"
-        :icon="['fas', 'chevron-right']"/>
+        :class="{ active: routeIsActive('aboutMe') }"
+        :icon="['fas', 'chevron-right']" />
       <span>About Me</span>
     </a>
-    <a @click="navigateMobile('/publications')">
+    <a tabindex="0" @click="navigateMobile('/publications')" @keydown.enter="navigateMobile('/publications')">
       <font-awesome-icon
         class='active-icon'
-        :class="{active: routeIsActive('publications')}"
-        :icon="['fas', 'chevron-right']"/>
+        :class="{ active: routeIsActive('publications') }"
+        :icon="['fas', 'chevron-right']" />
       <span>Publications</span>
     </a>
-    <a @click="navigateMobile('/bookshelf')">
+    <a tabindex="0" @click="navigateMobile('/bookshelf')" @keydown.enter="navigateMobile('/bookshelf')">
       <font-awesome-icon
         class='active-icon'
-        :class="{active: routeIsActive('bookshelf')}"
-        :icon="['fas', 'chevron-right']"/>
+        :class="{ active: routeIsActive('bookshelf') }"
+        :icon="['fas', 'chevron-right']" />
       <span>Bookshelf</span>
     </a>
-    <a @click="navigateMobile('/articles')">
+    <a tabindex="0" @click="navigateMobile('/articles')" @keydown.enter="navigateMobile('/articles')">
       <font-awesome-icon
         class='active-icon'
-        :class="{active: routeIsActive('articles')}"
-        :icon="['fas', 'chevron-right']"/>
+        :class="{ active: routeIsActive('articles') }"
+        :icon="['fas', 'chevron-right']" />
       <span>Articles</span>
     </a>
     <!-- <a @click="navigateMobile('/software')">
@@ -35,25 +35,25 @@
         :icon="['fas', 'chevron-right']"/>
       <span>Software</span>
     </a> -->
-    <a @click="navigateMobile('/running')">
+    <a tabindex="0" @click="navigateMobile('/running')" @keydown.enter="navigateMobile('/running')">
       <font-awesome-icon
         class='active-icon'
-        :class="{active: routeIsActive('running')}"
-        :icon="['fas', 'chevron-right']"/>
+        :class="{ active: routeIsActive('running') }"
+        :icon="['fas', 'chevron-right']" />
       <span>Running</span>
     </a>
-    <a @click="navigateMobile('/hiking')">
+    <a tabindex="0" @click="navigateMobile('/hiking')" @keydown.enter="navigateMobile('/hiking')">
       <font-awesome-icon
         class='active-icon'
-        :class="{active: routeIsActive('hiking')}"
-        :icon="['fas', 'chevron-right']"/>
+        :class="{ active: routeIsActive('hiking') }"
+        :icon="['fas', 'chevron-right']" />
       <span>Hiking</span>
     </a>
   </nav>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import appConfig from "@/app_config";
 
 export default defineComponent({

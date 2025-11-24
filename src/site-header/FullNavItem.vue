@@ -1,14 +1,16 @@
 <template>
   <a
     class="full-nav-item"
-    @click="navigate">
+    tabindex="0"
+    @click="navigate"
+    @keydown.enter="navigate">
     <span>{{ text }}</span>
-    <span class="underline"></span>
+    <span class="underline" />
   </a>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "FullNavItem",

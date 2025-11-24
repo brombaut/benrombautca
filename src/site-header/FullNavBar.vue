@@ -2,7 +2,7 @@
   <nav class="full-navbar">
     <BackButton />
     <div class="nav-items">
-      <span class='active-route-highlight' ref="activeRouteHighlight"></span>
+      <span class='active-route-highlight' ref="activeRouteHighlight" />
       <FullNavItem ref="aboutMeNav" route="/about-me" text="About Me" @clicked="updateHighlight" />
       <FullNavItem ref="publicationsNav" route="/publications" text="Publications" @clicked="updateHighlight" />
       <FullNavItem ref="bookshelfNav" route="/bookshelf" text="Bookshelf" @clicked="updateHighlight" />
@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import FullNavItem from "./FullNavItem.vue";
 import BackButton from "./BackButton.vue";
 import appConfig from "@/app_config";

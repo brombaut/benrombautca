@@ -16,7 +16,7 @@ const checkHorizontalFadeIn = function (elem: HTMLElement, elemEventListener: ()
 
 const elementIsVisible = function (elem: HTMLElement) {
   const boundingRect: DOMRect = elem.getBoundingClientRect();
-  const { width, height } = boundingRect;
+  const { height } = boundingRect;
   const slideInAt = (window.scrollY + window.innerHeight - height / 4);
   const imageBottom = elem.offsetTop + height;
   const isShown = slideInAt > elem.offsetTop;

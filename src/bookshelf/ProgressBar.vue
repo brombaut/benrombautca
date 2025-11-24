@@ -1,14 +1,15 @@
 <template>
   <div class="progress-bar">
-    <div class='progress-bar-fill' ref='progressBarFill'></div>
-    <div class='text' :class="{'add-padding': hidePercent}">
-      {{ text }} <span>{{ numer }}</span>/<span>{{ denom }}</span> <span v-if="!hidePercent">({{ percentDone }}%)</span>
+    <div class='progress-bar-fill' ref='progressBarFill' />
+    <div class='text' :class="{ 'add-padding': hidePercent }">
+      {{ text }} <span>{{ numer }}</span>/<span>{{ denom }}</span>
+      <span v-if="!hidePercent">({{ percentDone }}%)</span>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ProgressBar",

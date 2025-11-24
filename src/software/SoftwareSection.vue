@@ -3,7 +3,7 @@
     <SectionHeader
       title="Software"
       icon="code"
-      subtext="Software projects I've been working on."/>
+      subtext="Software projects I've been working on." />
     <div class="section-body">
       <div class="software-list">
         <SoftwareCard
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import SoftwareCard from "./SoftwareCard.vue";
 import { SoftwareArticle, SoftwareArticlesProxy } from "./SoftwareArticlesProxy";
@@ -45,7 +45,7 @@ export default defineComponent({
   },
   methods: {
     softwareClicked(software: SoftwareArticle): void {
-      
+
       this.$router.push({ name: "selectedSoftware", params: { softwareId: software.id } });
       this.selectedSoftware = software;
     },

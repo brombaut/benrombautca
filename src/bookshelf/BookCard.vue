@@ -1,5 +1,5 @@
 <template>
-  <div class="book-card slide-in" :class="{'to-read': toRead}">
+  <div class="book-card slide-in" :class="{ 'to-read': toRead }">
     <div class="image-container">
       <img :src="imageSource" :alt="book.book_id" loading="lazy" />
     </div>
@@ -13,7 +13,7 @@
       text="On page"
       :numer="Number(book.onPage)"
       :denom="Number(book.numPages)"
-      :hidePercent="shouldHidePercentText"/>
+      :hidePercent="shouldHidePercentText" />
     <div v-if="read" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
         <font-awesome-icon :icon="['fas', 'star']" />
@@ -68,7 +68,7 @@ export default defineComponent({
       return title;
     },
     imageSource(): string {
-      return `book_thumbnails_v2/${this.book.book_id}.webp`
+      return `book_thumbnails_v2/${this.book.book_id}.webp`;
     },
   },
   methods: {

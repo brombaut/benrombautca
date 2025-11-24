@@ -25,7 +25,7 @@ function validateRequiredEnvVars(requiredVars: string[]): string[] {
  * Validates that optional environment variables have valid values if present
  */
 function validateOptionalEnvVars(
-  optionalVars: { name: string; validator?: (value: string) => boolean }[]
+  optionalVars: { name: string; validator?: (value: string) => boolean }[],
 ): string[] {
   const warnings: string[] = [];
   optionalVars.forEach(({ name, validator }) => {
@@ -60,7 +60,7 @@ function validateEnvironment(): EnvValidationResult {
   const missingRequired = validateRequiredEnvVars(requiredVars);
   if (missingRequired.length > 0) {
     errors.push(
-      `Missing required environment variables: ${missingRequired.join(", ")}`
+      `Missing required environment variables: ${missingRequired.join(", ")}`,
     );
   }
 
@@ -98,7 +98,7 @@ if (process.env.NODE_ENV !== "production" && validation.warnings.length > 0) {
 // Throw errors for missing required variables
 if (!validation.isValid) {
   throw new Error(
-    `Environment configuration error:\n${validation.errors.join("\n")}`
+    `Environment configuration error:\n${validation.errors.join("\n")}`,
   );
 }
 

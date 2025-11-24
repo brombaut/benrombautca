@@ -7,15 +7,15 @@
         <ExternalProfileIcon
           v-for="ep in externalProfiles"
           :key="ep.id()"
-          :profile="ep"/>
+          :profile="ep" />
       </div>
     </div>
-    <NewNavBar/>
+    <NewNavBar />
   </header>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import NewNavBar from "@/site-header/NewNavBar.vue";
 import ExternalProfileIcon from "@/site-header/ExternalProfileIcon.vue";
 import ExternalProfile from "./external-profile";

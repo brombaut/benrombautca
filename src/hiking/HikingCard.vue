@@ -4,18 +4,18 @@
       <h3 class="header">{{ hike.name }}</h3>
       <div class="body">
         <div class="wrapper">
-           <div class="label">Hike Date:</div>
-           <div class="value">{{ hikeDate }}</div>
+          <div class="label">Hike Date:</div>
+          <div class="value">{{ hikeDate }}</div>
         </div>
         <div class="wrapper">
-           <div class="label">Location:</div>
-           <div class="value">{{ hike.location }}</div>
+          <div class="label">Location:</div>
+          <div class="value">{{ hike.location }}</div>
         </div>
-        <div v-html="hike.description"></div>
+        <div v-html="hike.description" />
       </div>
     </div>
     <div class="hike-images">
-      <ImageCarousel :images="hike.images"/>
+      <ImageCarousel :images="hike.images" />
     </div>
   </div>
 </template>
@@ -42,9 +42,9 @@ export default defineComponent({
         const d: Date = this.hike.date;
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-      } else {
-        return this.hike.date;
       }
+      return this.hike.date;
+
     },
   },
 });
