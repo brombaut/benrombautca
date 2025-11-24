@@ -20,11 +20,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import VerticalTimeline from "./VerticalTimeline.vue";
 import educationEntities from "./educationEntities";
 import workEntities from "./workEntities";
 
-export default {
+export default defineComponent({
   name: "WorkEducationSection",
   components: {
     VerticalTimeline,
@@ -35,7 +36,7 @@ export default {
       workEntities,
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -9,16 +9,17 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import SiteFooter from "@/footer/SiteFooter.vue";
 import SiteHeader from "@/site-header/SiteHeader.vue";
 
-export default {
+export default defineComponent({
   name: "App",
   components: {
     SiteFooter,
     SiteHeader,
   },
-};
+});
 </script>
 
 <style lang="scss">
