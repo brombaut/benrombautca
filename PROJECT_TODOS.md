@@ -71,11 +71,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Technical debt not visible or prioritized
 - **Fix:** Convert TODOs to GitHub issues
 
-#### 10. Remove unused properties
+#### 10. Remove unused properties ✅ **COMPLETED**
 - **Files:** `src/bookshelf/BookshelfSection.vue:79`, `src/articles/ArticlesSection.vue:42`
 - **Issue:** `booksLoading` always false, `selectedArticle` never used
 - **Impact:** Dead code, larger bundle
 - **Fix:** Remove unused properties or implement features
+- **Status:** ✅ Completed - Removed `booksLoading` property and loader UI from BookshelfSection, removed `selectedArticle` from ArticlesSection
 
 #### 11. Replace DOM queries with refs
 - **Files:** `src/workEducation/VerticalTimeline.vue:83-88`, `src/running/ImageCarousel.vue:64-79`
@@ -380,14 +381,15 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 4/23 (17%)
+- [x] Simple items completed: 5/23 (22%)
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
   - ✅ #6: Standardize component definitions
   - ✅ #8: Remove commented code
+  - ✅ #10: Remove unused properties
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 4/54 (7.4%)**
+- **Overall progress: 5/54 (9.3%)**
 
 ---
 
