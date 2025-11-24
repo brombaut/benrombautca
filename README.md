@@ -4,48 +4,201 @@
 [![bookshelf-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml)
 [![software-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml)
 
-Source repository for my personal website. To check out the live version of the site, head over to [benrombaut.ca](https://www.benrombaut.ca).
+Personal portfolio website built with Vue 3 and TypeScript. Visit the live site at [benrombaut.ca](https://www.benrombaut.ca).
 
-## **Site Roadmap**
+## Quick Start
 
-### **About Me**
+### Prerequisites
 
-Includes some basic info about myself, as well as 2 _timeline_ sections for my work and education.
+- **Node.js**: 18+ (check with `node --version`)
+- **npm**: 8+ (comes with Node.js)
+- **Python**: 3.8+ (for syncing scripts)
+- **Pandoc**: For article conversion (optional, only needed for article syncing)
 
-### **Ben's Bookshelf**
+### Installation
 
-Showcases books I've read and am currently reading. This is built using the [Goodreads API](https://www.goodreads.com/api) and an npm package I made called [F3 - Firebase Firestore Facade](https://www.npmjs.com/package/firebase-firestore-facade). I use Goodreads to keep track of books I've read, books I'm currently reading (includingwhat page I'm on), and books I want to read. I then mirror the data from Goodreads in my own Firebase Firestore database, which I keep synced using an instance of F3. Currently, this whole process sits in it's own repo (which I call _Bookshelf-Syncer_), with a GitHub action that triggers the syncing process multiple times throughout the day.
+```bash
+# Clone the repository
+git clone https://github.com/brombaut/benrombautca.git
+cd benrombautca
 
-#### Future Work
+# Install dependencies
+npm install
+```
 
-- **✅ Merge Bookshelf-Syncer into this repo**  
-  Right now, the code for syncing my bookshelf on Goodreads and my own cloud database is in another project. The plan is to move the code under this directory, and set up a GitHub Action cron for this repo to sync the two.
+### Running the Development Server
 
-### **Articles**
+```bash
+npm run serve
+```
 
-A collection of how-to guides and notes I've written on different topics, mostly so that I can use them as references later. I originally write the articles using Markdown, and then translate the Markdown file to equivalent HTML files using [Pandoc](https://pandoc.org/). I then reference these source HTML files from my Articles section.
+The site will be available at [http://localhost:8080](http://localhost:8080).
 
-#### Future Work
+### Building for Production
 
-- **Filter articles by tag**  
-  As the number of articles grows, I'd like to be able to quickly find articles on specific topics. My initial plan for this feature is to filter by article tags.
-- **Consider moving Article-Syncer to the cloud**  
-  Right now, the code for syncing the Markdown files is in another repo (which I call _Article-Syncer_), and I have to manually run the script on my local machine to update the converted HTML files here. I'd like to actually have _Article-Syncer_ basically detect when I push a new Markdown article, run the Pandoc conversion, and store the resulting HTML source file in the cloud (e.g., an AWS S3 Bucket). Then I just have to keep track of a bit of Article meta-data on this repo. I still have to give this whole process a bit of thought though.
+```bash
+npm run build
+```
 
-### **Software**
+Output files will be in the `dist/` directory.
 
-Showcases the README files of different software projects I've built. This process for showing these READMEs is very similar to the process for Articles (explained just above).
+## Available Scripts
 
-#### Future Work
+### npm Scripts
 
-- **✅ Merge Software-Syncer into this repo**  
-  Right now, the code for syncing the READMEs from other software projects is in another repo (which I call _Software-Syncer_), and I have to manually run the script on my local machine to update the converted HTML README files here. The plan is to move the code under this directory, and set up a dispatchable GitHub Action that gets each projects README content from the GitHub repo, converts it to HTML, and syncs the version for this site.
+| Script | Command | Description |
+|--------|---------|-------------|
+| **serve** | `npm run serve` | Start development server on localhost:8080 |
+| **build** | `npm run build` | Build production-ready bundle to `dist/` directory |
+| **lint** | `npm run lint` | Run ESLint (currently disabled) |
+| **sync-bookshelf** | `npm run sync-bookshelf` | Sync bookshelf data from Goodreads |
+| **sync-articles** | `npm run sync-articles` | Convert Markdown articles to HTML and sync content |
 
-### **General Future Work**
+### Shell Scripts
 
-- **Migrate to Vue 3**  
-  I'm currently using Vue 2, but it's on my radar to update all my dependencies, including moving to using Vue 3.
-- **✅ Add Resume & CV PDFs**  
-  Have the PDFs available in the external profiles section
+Located in the `scripts/` directory:
 
+| Script | Purpose |
+|--------|---------|
+| **sync_bookshelf.sh** | Orchestrates Goodreads scraping and bookshelf data syncing |
+| **sync_articles.sh** | Converts Markdown articles to HTML using Pandoc |
+| **sync_software.sh** | Fetches and converts README files from software projects |
+| **deploy.sh** | Manual deployment script (mostly superseded by GitHub Actions) |
 
+### Python Utility Scripts
+
+Image processing utilities in `scripts/`:
+
+- **convert_images_to_webp.py** - Convert images to WebP format
+- **reduce_image_size.py** - Optimize image file sizes
+- **delete_non_webp_images.py** - Clean up non-WebP image files
+- **show_images_size.py** - Report total size of image assets
+
+## Technology Stack
+
+- **Framework**: Vue 3 with TypeScript
+- **Build Tool**: Vue CLI 5 (Webpack)
+- **Routing**: Vue Router 4 (hash mode)
+- **Styling**: SCSS with global variables
+- **Icons**: FontAwesome 6
+- **Deployment**: GitHub Pages via GitHub Actions
+
+## Site Features
+
+### About Me
+Personal introduction with work and education timeline.
+
+### Ben's Bookshelf
+Books I've read and am currently reading, synced from [Goodreads](https://www.goodreads.com). Data is scraped and stored using automated syncing pipelines that run via GitHub Actions.
+
+### Articles
+Technical how-to guides and notes written in Markdown, converted to HTML using [Pandoc](https://pandoc.org/). Articles cover various programming topics and serve as personal references.
+
+### Software Projects
+Showcases README files from my GitHub projects, automatically synced and converted to HTML for display.
+
+### Publications
+Academic publications and research papers.
+
+### Running & Hiking
+Photo galleries with image carousels showcasing outdoor activities.
+
+## Deployment
+
+The site automatically deploys to GitHub Pages via GitHub Actions:
+
+- **Trigger**: Push to `main` branch or completion of bookshelf sync workflow
+- **Workflow**: `.github/workflows/gh_pages_deploy.yml`
+- **Target**: `gh-pages` branch
+- **Domain**: Custom domain configured via `CNAME` file
+
+### Manual Deployment
+
+```bash
+# Build the project first
+npm run build
+
+# Deploy using the deploy script (if needed)
+bash scripts/deploy.sh
+```
+
+## Environment Variables
+
+Required for Firebase integration (bookshelf data). Set these in GitHub Secrets for deployment:
+
+```
+VUE_APP_API_KEY
+VUE_APP_AUTH_DOMAIN
+VUE_APP_PROJECT_ID
+VUE_APP_STORAGE_BUCKET
+VUE_APP_MESSAGING_SENDER_ID
+VUE_APP_APP_ID
+VUE_APP_MEASUREMENT_ID
+VUE_APP_TEST_USER_EMAIL
+VUE_APP_TEST_USER_PASSWORD
+VUE_APP_FLAG_MARATHON=false
+```
+
+For local development, create a `.env` file in the project root with these variables.
+
+## Project Structure
+
+```
+benrombautca/
+├── src/                    # Source code
+│   ├── aboutMe/           # About Me section
+│   ├── articles/          # Articles section and content
+│   ├── bookshelf/         # Bookshelf with Goodreads sync logic
+│   ├── software/          # Software projects section
+│   ├── shared/            # Reusable components
+│   └── styles/            # Global SCSS styles
+├── scripts/               # Utility scripts (sync, image processing)
+├── public/                # Static assets
+└── .github/workflows/     # CI/CD automation
+
+```
+
+For detailed architecture documentation, see [CLAUDE.md](./CLAUDE.md).
+
+## Development Notes
+
+### Coding Conventions
+- **Indentation**: 2 spaces
+- **Quotes**: Double quotes
+- **TypeScript**: Strict mode enabled
+- **Import Alias**: `@/` resolves to `src/`
+
+### Content Syncing
+
+**Articles**: Write in Markdown (`src/articles/content/sources_md/`), run `npm run sync-articles` to convert.
+
+**Bookshelf**: Trigger the GitHub Action or run `npm run sync-bookshelf` locally.
+
+**Software**: GitHub Actions automatically sync README files from specified repositories.
+
+## Future Work
+
+- Filter articles by tag
+- Consider moving Article-Syncer to cloud automation
+- Switch from hash routing to HTML5 history mode
+- Re-enable ESLint and address code quality issues
+- Add automated testing
+
+## Contributing
+
+This is a personal portfolio site, but suggestions and bug reports are welcome via GitHub Issues.
+
+## Documentation
+
+- **[CLAUDE.md](./CLAUDE.md)** - Comprehensive AI assistant guide with detailed architecture, patterns, and development workflows
+- **[PROJECT_TODOS.md](./PROJECT_TODOS.md)** - Technical debt tracking and improvement opportunities
+
+## License
+
+Copyright © 2025 Ben Rombaut. All rights reserved.
+
+## Contact
+
+- **Website**: [benrombaut.ca](https://www.benrombaut.ca)
+- **Email**: rombaut.benj@gmail.com
+- **GitHub**: [@brombaut](https://github.com/brombaut)
