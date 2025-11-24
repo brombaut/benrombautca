@@ -1,13 +1,13 @@
 # Project TODOs - benrombautca
 
 **Generated:** 2025-11-24
-**Total Items:** 54
+**Total Items:** 55
 
 This document tracks technical debt, code quality issues, and improvement opportunities identified through a comprehensive codebase audit.
 
 ---
 
-## 🟢 SIMPLE (23 items - 1-2 hours each)
+## 🟢 SIMPLE (24 items - 1-2 hours each)
 
 ### Critical Quick Wins
 
@@ -171,7 +171,19 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Confusing documentation, outdated information
 - **Fix:** Update README.md to reflect current state
 
-#### 25. Add CONTRIBUTING.md
+#### 25. Restructure README.md for practical developer onboarding
+- **File:** `README.md`
+- **Issue:** README focuses heavily on project source code structure but lacks practical information for getting started: dev environment setup steps, production build instructions, and comprehensive list of available scripts (both npm scripts and shell scripts like `sync_bookshelf.sh`, `set_last_deployed.sh`, etc.)
+- **Impact:** New developers (or returning after time away) have to hunt through multiple files to understand how to run the project
+- **Fix:** Restructure README to prioritize:
+  - Development environment setup (prerequisites, installation steps)
+  - Running the dev server
+  - Building for production
+  - Available npm scripts with descriptions
+  - Available shell scripts in `/scripts` directory with usage
+  - Move detailed source code structure to CLAUDE.md or separate ARCHITECTURE.md
+
+#### 26. Add CONTRIBUTING.md
 - **Issue:** No CONTRIBUTING.md file
 - **Impact:** Contributors don't know how to help
 - **Fix:** Add CONTRIBUTING.md with development setup and guidelines
@@ -382,7 +394,7 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 6/23 (26%)
+- [x] Simple items completed: 6/24 (25%)
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
   - ✅ #5: Remove duplicate ImageCarousel
@@ -391,7 +403,7 @@ For maximum impact with minimal effort:
   - ✅ #10: Remove unused properties
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 6/54 (11.1%)**
+- **Overall progress: 6/55 (10.9%)**
 
 ---
 
