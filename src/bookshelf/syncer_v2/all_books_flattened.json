@@ -414,6 +414,16 @@
         "shelf": "to-read"
     },
     {
+        "title": "Project Hail Mary",
+        "author": "Andy Weir",
+        "book_id": "54493401-project-hail-mary",
+        "review_id": 8095050463,
+        "date_added": "2 minutes ago",
+        "onPage": 214,
+        "numPages": 496,
+        "shelf": "currently-reading"
+    },
+    {
         "title": "Call Me By Your Name (Call Me By Your Name, #1)",
         "author": "Andr\u00e9 Aciman",
         "book_id": "36336078-call-me-by-your-name",
@@ -431,16 +441,6 @@
         "date_added": "Aug 24, 2025",
         "onPage": 0,
         "numPages": 0,
-        "shelf": "currently-reading"
-    },
-    {
-        "title": "A Little Life",
-        "author": "Hanya Yanagihara",
-        "book_id": "22822858-a-little-life",
-        "review_id": 5867610972,
-        "date_added": "Jun 15, 2025",
-        "onPage": 276,
-        "numPages": 720,
         "shelf": "currently-reading"
     },
     {
