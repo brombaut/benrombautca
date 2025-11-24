@@ -66,11 +66,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Fix:** Remove commented code, use feature flags if needed
 - **Status:** ✅ Completed - All commented code removed from production files
 
-#### 9. Track TODO comments
+#### 9. Track TODO comments ✅ **COMPLETED**
 - **Files:** `src/articles/ArticlesSection.vue:54`, `src/site-header/router.ts:75`, `src/site-header/SiteHeader.vue:57`, `src/workEducation/VerticalTimeline.vue:108`, `src/site-header/NewNavBar.vue:48`, `src/bookshelf/BookshelfSection.vue:79`
 - **Issue:** 6 TODO comments without associated issues or tracking
 - **Impact:** Technical debt not visible or prioritized
 - **Fix:** Convert TODOs to GitHub issues
+- **Status:** ✅ Completed - All TODO comments documented and prepared as GitHub issues in GITHUB_ISSUES_TO_CREATE.md (5 issues total - one TODO was already removed)
 
 #### 10. Remove unused properties ✅ **COMPLETED**
 - **Files:** `src/bookshelf/BookshelfSection.vue:79`, `src/articles/ArticlesSection.vue:42`
@@ -396,18 +397,19 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 8/24 (33%)
+- [x] Simple items completed: 9/24 (37.5%)
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
   - ✅ #5: Remove duplicate ImageCarousel
   - ✅ #6: Standardize component definitions
   - ✅ #8: Remove commented code
+  - ✅ #9: Track TODO comments
   - ✅ #10: Remove unused properties
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 8/55 (14.5%)**
+- **Overall progress: 9/55 (16.4%)**
 
 ---
 
