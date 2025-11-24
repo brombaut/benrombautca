@@ -30,13 +30,17 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue";
-import { HikingImage } from "./types";
+
+export interface CarouselImage {
+  src: string;
+  caption: string;
+}
 
 export default defineComponent({
   name: "ImageCarousel",
   props: {
     images: {
-      type: Array as PropType<HikingImage[]>,
+      type: Array as PropType<CarouselImage[]>,
       required: true,
     },
   },
