@@ -32,7 +32,6 @@ export default defineComponent({
       immChildPreCodeEls.forEach((preCodeEl: HTMLPreElement) => {
         this.resizeSourceCodeEl(preCodeEl);
       });
-      // console.log(immChildPreCodeEls);
     },
   },
   mounted() {

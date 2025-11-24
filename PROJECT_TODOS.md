@@ -58,11 +58,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Poor code quality can be committed
 - **Fix:** Add lint-staged to run ESLint and TypeScript checks
 
-#### 8. Remove commented code
+#### 8. Remove commented code ✅ **COMPLETED**
 - **Files:** `src/site-header/SiteHeader.vue:34-37`, `src/site-header/FullNavBar.vue:10`, `src/shared/GitHubMarkdown.vue:35`
 - **Issue:** Commented code left in production codebase
 - **Impact:** Code clutter, confusion about what's active
 - **Fix:** Remove commented code, use feature flags if needed
+- **Status:** ✅ Completed - All commented code removed from production files
 
 #### 9. Track TODO comments
 - **Files:** `src/articles/ArticlesSection.vue:54`, `src/site-header/router.ts:75`, `src/site-header/SiteHeader.vue:57`, `src/workEducation/VerticalTimeline.vue:108`, `src/site-header/NewNavBar.vue:48`, `src/bookshelf/BookshelfSection.vue:79`
@@ -379,13 +380,14 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 3/23 (13%)
+- [x] Simple items completed: 4/23 (17%)
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
   - ✅ #6: Standardize component definitions
+  - ✅ #8: Remove commented code
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 3/54 (5.6%)**
+- **Overall progress: 4/54 (7.4%)**
 
 ---
 
