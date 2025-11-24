@@ -2,8 +2,8 @@
   <div class="vertical-timeline">
     <SectionHeader :title="title" :icon="icon" />
     <div class="section-body">
-      <div class="wrapper">
-        <div class="vertical-line"></div>
+      <div class="wrapper" ref="wrapper">
+        <div class="vertical-line" ref="verticalLine"></div>
         <ul v-if="type === 'education'">
           <EducationCard
             v-for="education in entitiesToShow"
@@ -80,10 +80,8 @@ export default defineComponent({
       this.$nextTick().then(() => this.setVerticalLine());
     },
     setVerticalLine(): void {
-      const verticalLine = this.$el.querySelector(
-        ".vertical-line",
-      ) as HTMLDivElement;
-      const wrapperEl = this.$el.querySelector(".wrapper") as HTMLDivElement;
+      const verticalLine = this.$refs.verticalLine as HTMLDivElement;
+      const wrapperEl = this.$refs.wrapper as HTMLDivElement;
       const { height } = wrapperEl.getBoundingClientRect();
       verticalLine.style.height = `${height}px`;
     },
