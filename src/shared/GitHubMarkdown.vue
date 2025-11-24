@@ -39,7 +39,7 @@ export default defineComponent({
     this.resizeAllCodeEls();
     window.addEventListener("resize", this.resizeAllCodeEls);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener("resize", this.resizeAllCodeEls);
   },
 });

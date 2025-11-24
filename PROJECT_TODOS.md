@@ -23,17 +23,19 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Security vulnerabilities and potential workflow failures
 - **Fix:** Update to latest versions (actions/checkout@v4, actions/setup-python@v5, etc.)
 
-#### 3. Fix Vue 2→3 lifecycle hooks
+#### 3. Fix Vue 2→3 lifecycle hooks ✅ **COMPLETED**
 - **Files:** `src/bookshelf/BookshelfSection.vue:157`, `src/shared/GitHubMarkdown.vue:42`
 - **Issue:** Using deprecated `beforeDestroy` instead of Vue 3's `beforeUnmount`
 - **Impact:** Will break when Vue 2 compatibility is removed
 - **Fix:** Replace all `beforeDestroy` with `beforeUnmount`
+- **Status:** ✅ Completed - All `beforeDestroy` hooks replaced with `beforeUnmount`
 
-#### 4. Update TypeScript shims
+#### 4. Update TypeScript shims ✅ **COMPLETED**
 - **Files:** `src/shims-vue.d.ts:2`, `src/shims-tsx.d.ts:1`
 - **Issue:** Type declarations import from Vue 2 (`import Vue from "vue"`)
 - **Impact:** Incorrect type information in IDE
 - **Fix:** Update to use Vue 3 types
+- **Status:** ✅ Completed - Both shim files updated to use Vue 3 type definitions
 
 ### Code Quality
 
@@ -43,11 +45,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Code duplication, harder to maintain
 - **Fix:** Extract to `src/shared/ImageCarousel.vue` with generic typing
 
-#### 6. Standardize component definitions
+#### 6. Standardize component definitions ✅ **COMPLETED**
 - **Files:** `src/App.vue`, `src/workEducation/WorkEducationSection.vue`
 - **Issue:** 2 components use plain `export default {}`, 40 use `defineComponent`
 - **Impact:** Inconsistent codebase
 - **Fix:** Convert all to `defineComponent` for consistency
+- **Status:** ✅ Completed - Both components now use `defineComponent`
 
 #### 7. Add pre-commit hooks
 - **File:** `.husky/pre-commit:4`
@@ -376,10 +379,13 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [ ] Simple items completed: 0/23
+- [x] Simple items completed: 3/23 (13%)
+  - ✅ #3: Fix Vue 2→3 lifecycle hooks
+  - ✅ #4: Update TypeScript shims
+  - ✅ #6: Standardize component definitions
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 0/54 (0%)**
+- **Overall progress: 3/54 (5.6%)**
 
 ---
 

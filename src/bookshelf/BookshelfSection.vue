@@ -154,7 +154,7 @@ export default defineComponent({
     window.addEventListener("resize", this.setNumberOfBookCardsToRow);
     window.addEventListener("resize", this.setShouldHidePercentText);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener("resize", this.setNumberOfBookCardsToRow);
     window.removeEventListener("resize", this.setShouldHidePercentText);
   },
