@@ -39,11 +39,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ### Code Quality
 
-#### 5. Remove duplicate ImageCarousel
+#### 5. Remove duplicate ImageCarousel ✅ **COMPLETED**
 - **Files:** `src/running/ImageCarousel.vue`, `src/hiking/ImageCarousel.vue`
 - **Issue:** Identical carousel component duplicated (only difference is type import)
 - **Impact:** Code duplication, harder to maintain
 - **Fix:** Extract to `src/shared/ImageCarousel.vue` with generic typing
+- **Status:** ✅ Completed - Created shared ImageCarousel component with generic CarouselImage interface, updated both RunningCard and HikingCard to use shared component, removed duplicates
 
 #### 6. Standardize component definitions ✅ **COMPLETED**
 - **Files:** `src/App.vue`, `src/workEducation/WorkEducationSection.vue`
@@ -381,15 +382,16 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 5/23 (22%)
+- [x] Simple items completed: 6/23 (26%)
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
+  - ✅ #5: Remove duplicate ImageCarousel
   - ✅ #6: Standardize component definitions
   - ✅ #8: Remove commented code
   - ✅ #10: Remove unused properties
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 5/54 (9.3%)**
+- **Overall progress: 6/54 (11.1%)**
 
 ---
 

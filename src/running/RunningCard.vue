@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue";
-import ImageCarousel from "./ImageCarousel.vue";
+import ImageCarousel from "@/shared/ImageCarousel.vue";
 import { Race } from "./types";
 
 export default defineComponent({
