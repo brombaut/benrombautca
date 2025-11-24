@@ -79,11 +79,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Fix:** Remove unused properties or implement features
 - **Status:** ✅ Completed - Removed `booksLoading` property and loader UI from BookshelfSection, removed `selectedArticle` from ArticlesSection
 
-#### 11. Replace DOM queries with refs
+#### 11. Replace DOM queries with refs ✅ **COMPLETED**
 - **Files:** `src/workEducation/VerticalTimeline.vue:83-88`, `src/running/ImageCarousel.vue:64-79`
 - **Issue:** Using `querySelector` instead of Vue template refs
 - **Impact:** Less Vue-idiomatic, harder to track reactivity
 - **Fix:** Use template refs ($refs) instead of querySelector
+- **Status:** ✅ Completed - Replaced querySelector/getElementsByClassName with Vue template refs in both components
 
 #### 12. Fix Husky path
 - **File:** `.husky/pre-commit:4`
@@ -396,18 +397,19 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 8/24 (33%)
+- [x] Simple items completed: 9/24 (37.5%)
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
   - ✅ #5: Remove duplicate ImageCarousel
   - ✅ #6: Standardize component definitions
   - ✅ #8: Remove commented code
   - ✅ #10: Remove unused properties
+  - ✅ #11: Replace DOM queries with refs
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 8/55 (14.5%)**
+- **Overall progress: 9/55 (16.4%)**
 
 ---
 
