@@ -150,51 +150,32 @@ export default defineComponent({
   .section-body {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    width: 100%;
 
     .publication-type-header {
       color: $primaryDark;
+      font-size: 24px;
+      margin-top: 32px;
+      margin-bottom: 8px;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    .publication-type-sub-header {
+      color: #666;
+      font-weight: normal;
+      margin-bottom: 16px;
     }
 
     ul {
-      padding-inline-start: 8px;
-      margin-block-start: 8px;
-      margin-block-end: 20px;
-
-      li {
-        margin: 8px 0;
-
-          .underline {
-            text-decoration: underline;
-          }
-
-          .publication-index{
-            margin: 6px 16px;
-            color: $primaryDark;
-          }
-
-          .publication-info-entity {
-            margin: 6px 0;
-          }
-
-          .title {
-            color: $primary;
-          }
-
-          .links {
-            a {
-              font-weight: 500;
-              margin-right: 8px;
-              color: $primaryDark;
-
-              &:hover {
-                cursor: pointer;
-              }
-            }
-          }
-      }
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
   }
-
 }
 </style>
