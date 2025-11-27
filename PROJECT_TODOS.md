@@ -147,10 +147,11 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Poor social media sharing, reduced SEO effectiveness
 - **Fix:** Add vue-meta or @vueuse/head for dynamic meta tags
 
-#### 20. Generate sitemap.xml
+#### 20. Generate sitemap.xml ✅ **COMPLETED**
 - **Issue:** Missing sitemap for search engine crawlers
 - **Impact:** Reduced discoverability by search engines
 - **Fix:** Generate sitemap.xml and robots.txt, add to public folder
+- **Status:** ✅ Completed - Created sitemap.xml with all static and dynamic routes (10 main pages, 29 articles, 4 software projects) and robots.txt file in public/ directory. Files are automatically copied to dist/ during build and will be deployed to site root.
 
 #### 21. Add favicon variants
 - **File:** `public/` only has `favicon.ico`
@@ -411,7 +412,7 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 14/24 (58.3%)
+- [x] Simple items completed: 15/24 (62.5%)
   - ✅ #1: Re-enable ESLint
   - ✅ #2: Update GitHub Actions versions
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
@@ -423,12 +424,13 @@ For maximum impact with minimal effort:
   - ✅ #10: Remove unused properties
   - ✅ #11: Replace DOM queries with refs
   - ✅ #13: Add route-level code splitting
+  - ✅ #20: Generate sitemap.xml
   - ✅ #23: Validate environment variables
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 14/55 (25.5%)**
+- **Overall progress: 15/55 (27.3%)**
 
 ---
 
