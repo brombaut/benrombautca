@@ -1,31 +1,24 @@
 <template>
-  <li class="unpublished-publication">
-    <div class="publication-index">[{{unpublishedPublication.type}}{{publicationNumber}}]</div>
-    <div class="publication-info">
-      <div class="publication-info-entity title">
-        <span><b>{{ unpublishedPublication.title }}</b></span>
+  <div class="publication-card">
+    <div class="publication-year-badge">{{ unpublishedPublication.year }}</div>
+    <div class="publication-content">
+      <h4 class="publication-title">{{ unpublishedPublication.title }}</h4>
+      <div class="publication-meta">
+        <span class="publication-authors">{{ formattedAuthors }}</span>
       </div>
-      <div class="publication-info-entity authors">
-        <span
-          v-for="(a, idx) in unpublishedPublication.authors"
-          :key=a>
-          <span :class="{ underline: authorIsBen(a) }">{{ a }}</span>
-          <span v-if="idx < unpublishedPublication.authors.length - 1">, </span>
-          <span v-else>.</span>
-        </span>
-      </div>
-      <div class="links">
+      <div class="publication-links">
         <a
           v-for="link in unpublishedPublication.links"
           :key="link.url"
           :href="link.url"
           target="_blank"
-          rel="noopener noreferrer">
-          <span>[{{ link.type }}]</span>
+          rel="noopener noreferrer"
+          class="publication-link">
+          {{ link.type }}
         </a>
       </div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script lang="ts">
@@ -44,18 +37,20 @@ export default defineComponent({
       required: true,
     },
   },
-  methods: {
-    authorIsBen(a: string) {
-      return a === "Benjamin Rombaut";
+  computed: {
+    formattedAuthors(): string {
+      const { authors } = this.unpublishedPublication;
+      if (authors.length === 1) {
+        return authors[0];
+      }
+      if (authors.length === 2) {
+        return `${authors[0]} and ${authors[1]}`;
+      }
+      return `${authors[0]} et al.`;
     },
   },
 });
 </script>
 
 <style lang="scss">
-.unpublished-publication {
-  display: flex;
-  flex-direction: row;
-}
-
 </style>

@@ -8,44 +8,47 @@
     <div class="section-body">
       <div
         v-for="vPub in viewPublications"
-        :key="vPub.type">
+        :key="vPub.type"
+        class="publication-type-section">
         <h3 class="publication-type-header">{{ vPub.header }}</h3>
         <h5 class="publication-type-sub-header">{{ vPub.subHeader }}</h5>
-        <ul v-if="vPub.type === journal">
-          <JournalPublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :journal="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-else-if="vPub.type === thesis">
-          <ThesisPublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :thesis="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-else-if="vPub.type === presentation">
-          <PresentationPublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :presentation="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-else-if="vPub.type === conference">
-          <ConferencePublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :conference="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-if="vPub.type === unpublished">
-          <UnpublishedPublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :unpublishedPublication="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
+        <div class="publications-grid">
+          <template v-if="vPub.type === journal">
+            <JournalPublication
+              v-for="(publication, idx) in vPub.items"
+              :key="publication.title"
+              :journal="publication"
+              :publicationNumber="vPub.items.length - idx" />
+          </template>
+          <template v-else-if="vPub.type === thesis">
+            <ThesisPublication
+              v-for="(publication, idx) in vPub.items"
+              :key="publication.title"
+              :thesis="publication"
+              :publicationNumber="vPub.items.length - idx" />
+          </template>
+          <template v-else-if="vPub.type === presentation">
+            <PresentationPublication
+              v-for="(publication, idx) in vPub.items"
+              :key="publication.title"
+              :presentation="publication"
+              :publicationNumber="vPub.items.length - idx" />
+          </template>
+          <template v-else-if="vPub.type === conference">
+            <ConferencePublication
+              v-for="(publication, idx) in vPub.items"
+              :key="publication.title"
+              :conference="publication"
+              :publicationNumber="vPub.items.length - idx" />
+          </template>
+          <template v-else-if="vPub.type === unpublished">
+            <UnpublishedPublication
+              v-for="(publication, idx) in vPub.items"
+              :key="publication.title"
+              :unpublishedPublication="publication"
+              :publicationNumber="vPub.items.length - idx" />
+          </template>
+        </div>
       </div>
     </div>
   </section>
@@ -151,50 +154,140 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
+
+    .publication-type-section {
+      width: 100%;
+      margin-bottom: 40px;
+    }
 
     .publication-type-header {
       color: $primaryDark;
+      margin-bottom: 8px;
     }
 
-    ul {
-      padding-inline-start: 8px;
-      margin-block-start: 8px;
-      margin-block-end: 20px;
+    .publication-type-sub-header {
+      margin-bottom: 16px;
+      color: $fontColor;
+      font-weight: 400;
+    }
 
-      li {
-        margin: 8px 0;
+    .publications-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+  }
+}
 
-          .underline {
-            text-decoration: underline;
-          }
+// Unified card styles for all publication types
+.publication-card {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
 
-          .publication-index{
-            margin: 6px 16px;
-            color: $primaryDark;
-          }
+  &:hover {
+    border-color: $primary;
+    box-shadow: 0 2px 8px rgba(51, 129, 219, 0.1);
+  }
 
-          .publication-info-entity {
-            margin: 6px 0;
-          }
+  .publication-year-badge {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, $primary, $primaryDark);
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 8px;
+  }
 
-          .title {
-            color: $primary;
-          }
+  .publication-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
 
-          .links {
-            a {
-              font-weight: 500;
-              margin-right: 8px;
-              color: $primaryDark;
+  .publication-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: $fontColor;
+    line-height: 1.4;
+  }
 
-              &:hover {
-                cursor: pointer;
-              }
-            }
-          }
-      }
+  .publication-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  .publication-authors {
+    font-weight: 500;
+  }
+
+  .publication-separator {
+    color: #d1d5db;
+  }
+
+  .publication-type {
+    color: #6b7280;
+  }
+
+  .publication-venue {
+    font-size: 14px;
+    color: #6b7280;
+    font-style: italic;
+  }
+
+  .publication-location {
+    font-size: 13px;
+    color: #9ca3af;
+  }
+
+  .publication-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .publication-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: $primary;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $primaryDark;
+      text-decoration: underline;
     }
   }
 
+  @media (max-width: $SMALL_DISPLAY_SIZE) {
+    flex-direction: column;
+    gap: 16px;
+
+    .publication-year-badge {
+      width: 56px;
+      height: 56px;
+      font-size: 16px;
+    }
+  }
 }
 </style>

@@ -1,37 +1,26 @@
 <template>
-  <li class="presentation-publication">
-    <div class="publication-index">[{{presentation.type}}{{publicationNumber}}]</div>
-    <div class="publication-info">
-      <div class="publication-info-entity title">
-        <span><b>{{ presentation.title }}</b></span>
+  <div class="publication-card">
+    <div class="publication-year-badge">{{ presentation.year }}</div>
+    <div class="publication-content">
+      <h4 class="publication-title">{{ presentation.title }}</h4>
+      <div class="publication-meta">
+        <span class="publication-authors">{{ formattedAuthors }}</span>
       </div>
-      <div class="publication-info-entity authors">
-        <span
-          v-for="(a, idx) in presentation.authors"
-          :key=a>
-          <span :class="{ underline: authorIsBen(a) }">{{ a }}</span>
-          <span v-if="idx < presentation.authors.length - 1">, </span>
-          <span v-else>.</span>
-        </span>
-      </div>
-      <div class="publication-info-entity venue">
-        <i>{{ presentation.venue }}</i>, {{ presentation.month }} {{ presentation.year }}
-      </div>
-      <div class="publication-info-entity venue">
-        <span>{{ presentation.location }}</span>
-      </div>
-      <div class="links">
+      <div class="publication-venue">{{ presentation.venue }}</div>
+      <div class="publication-location">{{ presentation.location }}</div>
+      <div class="publication-links">
         <a
           v-for="link in presentation.links"
           :key="link.url"
           :href="link.url"
           target="_blank"
-          rel="noopener noreferrer">
-          <span>[{{ link.type }}]</span>
+          rel="noopener noreferrer"
+          class="publication-link">
+          {{ link.type }}
         </a>
       </div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script lang="ts">
@@ -50,18 +39,20 @@ export default defineComponent({
       required: true,
     },
   },
-  methods: {
-    authorIsBen(a: string) {
-      return a === "Benjamin Rombaut";
+  computed: {
+    formattedAuthors(): string {
+      const { authors } = this.presentation;
+      if (authors.length === 1) {
+        return authors[0];
+      }
+      if (authors.length === 2) {
+        return `${authors[0]} and ${authors[1]}`;
+      }
+      return `${authors[0]} et al.`;
     },
   },
 });
 </script>
 
 <style lang="scss">
-.presentation-publication {
-  display: flex;
-  flex-direction: row;
-}
-
 </style>

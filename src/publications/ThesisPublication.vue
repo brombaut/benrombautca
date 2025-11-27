@@ -1,28 +1,27 @@
 <template>
-  <li class="thesis-publication">
-    <div class="publication-index">[{{thesis.type}}{{publicationNumber}}]</div>
-    <div class="publication-info">
-      <div class="publication-info-entity title">
-        <span><b>{{ thesis.title }}</b></span>
+  <div class="publication-card">
+    <div class="publication-year-badge">{{ thesis.year }}</div>
+    <div class="publication-content">
+      <h4 class="publication-title">{{ thesis.title }}</h4>
+      <div class="publication-meta">
+        <span class="publication-authors">{{ thesis.authors }}</span>
+        <span class="publication-separator">•</span>
+        <span class="publication-type">{{ thesis.thesisType }}</span>
       </div>
-      <div class="publication-info-entity authors">
-        <span class="underline">{{ thesis.authors }}</span> - <span>{{ thesis.thesisType }}</span>
-      </div>
-      <div class="publication-info-entity venue">
-        <i>{{ thesis.venue }}</i>, {{ thesis.month }} {{ thesis.year }}
-      </div>
-      <div class="publication-info-entity links">
+      <div class="publication-venue">{{ thesis.venue }}</div>
+      <div class="publication-links">
         <a
           v-for="link in thesis.links"
           :key="link.url"
           :href="link.url"
           target="_blank"
-          rel="noopener noreferrer">
-          <span>[{{ link.type }}]</span>
+          rel="noopener noreferrer"
+          class="publication-link">
+          {{ link.type }}
         </a>
       </div>
     </div>
-  </li>
+  </div>
 </template>
 
 <script lang="ts">
@@ -41,18 +40,8 @@ export default defineComponent({
       required: true,
     },
   },
-  methods: {
-    authorIsBen(a: string) {
-      return a === "Benjamin Rombaut";
-    },
-  },
 });
 </script>
 
 <style lang="scss">
-.thesis-publication {
-  display: flex;
-  flex-direction: row;
-}
-
 </style>
