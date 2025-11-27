@@ -100,11 +100,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ### Performance
 
-#### 13. Add route-level code splitting
+#### 13. Add route-level code splitting ✅ **COMPLETED**
 - **File:** `src/site-header/router.ts`
 - **Issue:** All routes import components synchronously, no lazy loading
 - **Impact:** Larger initial bundle size, slower first load
 - **Fix:** Convert route components to lazy imports: `component: () => import(...)`
+- **Status:** ✅ Completed - Converted all route component imports to lazy-loaded dynamic imports. Also updated tsconfig.json module setting from "es2015" to "esnext" to support dynamic imports. Build successful with separate chunks for each route component.
 
 #### 14. Add bundle analyzer
 - **Issue:** No webpack-bundle-analyzer configured
@@ -409,7 +410,7 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 12/24 (50%)
+- [x] Simple items completed: 13/24 (54.2%)
   - ✅ #2: Update GitHub Actions versions
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
   - ✅ #4: Update TypeScript shims
@@ -419,12 +420,13 @@ For maximum impact with minimal effort:
   - ✅ #9: Track TODO comments
   - ✅ #10: Remove unused properties
   - ✅ #11: Replace DOM queries with refs
+  - ✅ #13: Add route-level code splitting
   - ✅ #23: Validate environment variables
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 12/55 (21.8%)**
+- **Overall progress: 13/55 (23.6%)**
 
 ---
 
