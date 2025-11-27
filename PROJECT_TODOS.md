@@ -93,11 +93,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Fix:** Use template refs ($refs) instead of querySelector
 - **Status:** ✅ Completed - Replaced querySelector/getElementsByClassName with Vue template refs in both components
 
-#### 12. Fix Husky path
+#### 12. Fix Husky path ✅ **COMPLETED**
 - **File:** `.husky/pre-commit:4`
 - **Issue:** References `./setLastDeployed.sh` with relative path
 - **Impact:** May fail if run from subdirectories
 - **Fix:** Use absolute path or proper directory resolution
+- **Status:** ✅ Completed - Updated pre-commit hook to use `$(git rev-parse --show-toplevel)` for reliable path resolution from any directory
 
 ### Performance
 
@@ -411,7 +412,7 @@ For maximum impact with minimal effort:
 
 ## Progress Tracking
 
-- [x] Simple items completed: 14/24 (58.3%)
+- [x] Simple items completed: 15/24 (62.5%)
   - ✅ #1: Re-enable ESLint
   - ✅ #2: Update GitHub Actions versions
   - ✅ #3: Fix Vue 2→3 lifecycle hooks
@@ -422,13 +423,14 @@ For maximum impact with minimal effort:
   - ✅ #9: Track TODO comments
   - ✅ #10: Remove unused properties
   - ✅ #11: Replace DOM queries with refs
+  - ✅ #12: Fix Husky path
   - ✅ #13: Add route-level code splitting
   - ✅ #23: Validate environment variables
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
 - [ ] Medium items completed: 0/24
 - [ ] High items completed: 0/3
-- **Overall progress: 14/55 (25.5%)**
+- **Overall progress: 15/55 (27.3%)**
 
 ---
 
