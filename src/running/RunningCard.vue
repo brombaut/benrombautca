@@ -1,25 +1,25 @@
 <template>
   <div class="race-card">
     <div class="race-info">
-      <h3 class="header"><a :href="race.link" target="_blank">{{ race.name }}</a></h3>
+      <h3 class="header"><a :href="race.link" target="_blank" rel="noopener noreferrer">{{ race.name }}</a></h3>
       <div class="body">
         <div class="wrapper">
-           <div class="label">Race Date:</div>
-           <div class="value">{{ raceDate }}</div>
+          <div class="label">Race Date:</div>
+          <div class="value">{{ raceDate }}</div>
         </div>
         <div v-if="race.runningTime" class="wrapper">
           <div class="label">Official Time:</div>
-          <div class="value" v-html="race.runningTime"></div>
+          <div class="value" v-html="race.runningTime" />
         </div>
         <div v-if="race.placement" class="wrapper">
           <div class="label">Placement:</div>
-          <div class="value" v-html="race.placement"></div>
+          <div class="value" v-html="race.placement" />
         </div>
-        <div v-html="race.description"></div>
+        <div v-html="race.description" />
       </div>
     </div>
     <div class="race-images">
-      <ImageCarousel :images="race.images"/>
+      <ImageCarousel :images="race.images" />
     </div>
   </div>
 </template>
@@ -46,9 +46,9 @@ export default defineComponent({
         const d: Date = this.race.date;
         const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
-      } else {
-        return this.race.date;
       }
+      return this.race.date;
+
     },
   },
 });

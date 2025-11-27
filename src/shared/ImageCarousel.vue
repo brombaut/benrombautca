@@ -8,11 +8,21 @@
         :key="img.src"
         ref="slides">
         <!-- <div class="numbertext">{{ i+1 }} / {{ images.length }}</div> -->
-        <img :src="img.src" loading="lazy" />
+        <img :src="img.src" :alt="img.caption || 'Carousel image'" loading="lazy" />
       </div>
 
-      <a class="prev" @click="plusSlides(-1)">&#10094;</a>
-      <a class="next" @click="plusSlides(1)">&#10095;</a>
+      <a
+        class="prev"
+        role="button"
+        tabindex="0"
+        @click="plusSlides(-1)"
+        @keydown.enter="plusSlides(-1)">&#10094;</a>
+      <a
+        class="next"
+        role="button"
+        tabindex="0"
+        @click="plusSlides(1)"
+        @keydown.enter="plusSlides(1)">&#10095;</a>
     </div>
     <div class="caption-text">
       {{ selectedImgCaptionText }}
@@ -22,9 +32,11 @@
         v-for="(image, i) in images"
         :key="image.src"
         class="dot"
+        role="button"
+        tabindex="0"
         ref="dots"
-        @click="currentSlide(i)">
-      </span>
+        @click="currentSlide(i)"
+        @keydown.enter="currentSlide(i)" />
     </div>
 
   </div>

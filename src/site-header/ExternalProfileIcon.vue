@@ -3,6 +3,7 @@
     <a
       class="link"
       :href="profile.url()"
+      :aria-label="profile.id()"
       @click.stop.prevent="handleExternalProfileClicked()">
       <font-awesome-icon
         class="icon"

@@ -3,18 +3,17 @@
     <div
       v-show="imageLoading"
       :class="classObject"
-      class="skeleton__loader">
-    </div>
+      class="skeleton__loader" />
     <img
       v-show="!imageLoading"
       :src="imageSource()"
       :alt="imageAlt"
-      :class="{'circle': isCircle}"/>
+      :class="{ circle: isCircle }" />
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import uiUtils from "@/utils/ui-utils";
 
 export default defineComponent({

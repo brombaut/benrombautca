@@ -1,9 +1,10 @@
 <template>
   <section id="selected-article">
-    <SectionHeader :title="selectedArticle.title" icon="" :subtext="selectedArticle.description"/>
+    <SectionHeader :title="selectedArticle.title" icon="" :subtext="selectedArticle.description" />
     <div class="meta-container">
       <div class="dates">
-        Created {{ formatDate(selectedArticle.createdAt) }} • Updated {{ formatDate(selectedArticle.updatedAt) }}
+        Created {{ formatDate(selectedArticle.createdAt) }} •
+        Updated {{ formatDate(selectedArticle.updatedAt) }}
       </div>
       <div class="tags">
         <Tag v-for="tag in selectedArticle.tags" :key="tag" :tag="tag" />
@@ -16,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import Tag from "../shared/Tag.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
@@ -38,7 +39,9 @@ export default defineComponent({
   methods: {
     loadSelectedArticle(aId: string): AuthoredArticle | null {
       const allArticles: AuthoredArticle[] = new AuthoredArticlesProxy().authoredArticles;
-      const selectedArticle: AuthoredArticle | undefined = allArticles.find((aa: AuthoredArticle) => aa.id === aId);
+      const selectedArticle: AuthoredArticle | undefined = allArticles.find(
+        (aa: AuthoredArticle) => aa.id === aId,
+      );
       return selectedArticle || null;
     },
     formatDate(d: Date) {
@@ -54,7 +57,9 @@ export default defineComponent({
     // From Vue2
     // this.selectedArticleId = this.$router.currentRoute.params.articleId;
     this.selectedArticleId = this.$router.currentRoute.value.params.articleId as string;
-    const loadedSelectedArticle: AuthoredArticle | null = this.loadSelectedArticle(this.selectedArticleId);
+    const loadedSelectedArticle: AuthoredArticle | null = this.loadSelectedArticle(
+      this.selectedArticleId,
+    );
     if (loadedSelectedArticle) {
       this.selectedArticle = loadedSelectedArticle;
     }

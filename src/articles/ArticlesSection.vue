@@ -3,7 +3,7 @@
     <SectionHeader
       title="Articles"
       icon="pen-square"
-      subtext="A collection of how-to guides and notes I've written on different topics, mostly so that I can use them as references later."/>
+      subtext="A collection of how-to guides and notes I've written on different topics, mostly so that I can use them as references later." />
     <div class="section-body">
       <div class="articles-table-container" v-if="tableView">
         <ArticlesTable
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import ArticleCard from "./ArticleCard.vue";
 import ArticlesTable from "./ArticlesTable.vue";
@@ -51,7 +51,9 @@ export default defineComponent({
     },
     listOfUniqueTags(): string[] {
       // TODO: Use it or remove it
-      const arrayOfTagsArrays: string[][] = this.authoredArticles.map((aa: AuthoredArticle) => aa.tags);
+      const arrayOfTagsArrays: string[][] = this.authoredArticles.map(
+        (aa: AuthoredArticle) => aa.tags,
+      );
       type TagCount = {
         tag: string,
         count: number

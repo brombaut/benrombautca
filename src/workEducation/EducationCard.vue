@@ -1,6 +1,6 @@
 <template>
   <li class="education-card align-right slide-in">
-    <div class="list-item-bullet"></div>
+    <div class="list-item-bullet" />
     <div class="list-item-content">
       <div class="list-item-item image-container">
         <img :src="imageSource" :alt="education.imageFile" />

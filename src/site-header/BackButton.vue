@@ -1,15 +1,21 @@
 <template>
-<div class="back-button-wrapper" v-if="isVisible" @click="goBack">
-  <a class='back-button'>
-    <font-awesome-icon class='icon' :icon="['fas', 'chevron-left']"/>
-    <span>Back</span>
-  </a>
-  <span class="underline"></span>
-</div>
+  <div
+    class="back-button-wrapper"
+    v-if="isVisible"
+    role="button"
+    tabindex="0"
+    @click="goBack"
+    @keydown.enter="goBack">
+    <a class='back-button'>
+      <font-awesome-icon class='icon' :icon="['fas', 'chevron-left']" />
+      <span>Back</span>
+    </a>
+    <span class="underline" />
+  </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   computed: {

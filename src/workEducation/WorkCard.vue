@@ -1,6 +1,6 @@
 <template>
   <li class="work-card align-left slide-in">
-    <div class="list-item-bullet"></div>
+    <div class="list-item-bullet" />
     <div class="list-item-content">
       <div class="list-item-item image-container">
         <img :src="imageSource" :alt="work.imageFile" />
@@ -16,7 +16,7 @@
         <div class="icon-container">
           <font-awesome-icon class="icon" :icon="['fas', 'building']" />
         </div>
-        <a :href="work.link" target="_blank">{{ work.company }}</a>
+        <a :href="work.link" target="_blank" rel="noopener noreferrer">{{ work.company }}</a>
       </div>
       <div class="list-item-item location">
         <div class="icon-container">

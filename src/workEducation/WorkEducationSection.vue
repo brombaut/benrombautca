@@ -10,7 +10,6 @@
     />
     <VerticalTimeline
       id="education"
-      v-if="true"
       type="education"
       title="Education"
       icon="graduation-cap"

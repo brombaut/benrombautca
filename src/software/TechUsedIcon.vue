@@ -1,6 +1,6 @@
 <template>
   <div class="tech-used-icon" :style="tagStyle">
-    <img :src="imageSource(tech._imagePath)" />
+    <img :src="imageSource(tech._imagePath)" :alt="tech._title" />
     <div class="label"><b>{{ tech._title }}</b></div>
   </div>
 </template>

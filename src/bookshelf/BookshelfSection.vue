@@ -3,7 +3,7 @@
     <SectionHeader
       title="Ben's Bookshelf"
       icon="book-open"
-      subtext="Books I've read and am currently reading."/>
+      subtext="Books I've read and am currently reading." />
     <div class="section-body">
       <div class="book-group">
         <h2 class='book-group-header'>Currently Reading & Up Next</h2>
@@ -12,7 +12,7 @@
             v-for="book in currentlyReadingAndToReadBooks"
             :key="book.review_id"
             :book="book"
-            :shouldHidePercentText="shouldHidePercentText"/>
+            :shouldHidePercentText="shouldHidePercentText" />
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import BookCard from "./BookCard.vue";
 import booksData from "./syncer_v2/all_books_flattened.json";
@@ -78,9 +78,9 @@ export default defineComponent({
   computed: {
     readBooksByYear(): YearBooksPair[] {
       const typedBooksData = booksData as Book[];
-      const readBooksSorted: ReadBook[] = typedBooksData.filter((book) => book.shelf === "read") as ReadBook[]
+      const readBooksSorted: ReadBook[] = typedBooksData.filter((book) => book.shelf === "read") as ReadBook[];
       readBooksSorted.sort((a, b) => {
-        return new Date(b.date_finished ?? 0).getTime() - new Date(a.date_finished ?? 0).getTime()
+        return new Date(b.date_finished ?? 0).getTime() - new Date(a.date_finished ?? 0).getTime();
       });
       const bookGroups: YearBooksPair[] = [];
       readBooksSorted.forEach((book: ReadBook) => {
@@ -95,19 +95,20 @@ export default defineComponent({
           });
         }
       });
-      const sortedByYear: YearBooksPair[] = bookGroups.sort((a: YearBooksPair, b: YearBooksPair) => {
-        return b.year - a.year;
-      });
+      const sortedByYear: YearBooksPair[] = bookGroups.sort(
+        (a: YearBooksPair, b: YearBooksPair) => {
+          return b.year - a.year;
+        },
+      );
       return sortedByYear;
     },
     currentlyReadingAndToReadBooks(): Book[] {
       const typedBooksData = booksData as Book[];
-      const currentlyReadingBooks: CurrentlyReadingBook[] = 
-        typedBooksData.filter((book) => book.shelf === "currently-reading") as CurrentlyReadingBook[];
+      const currentlyReadingBooks: CurrentlyReadingBook[] = typedBooksData.filter((book) => book.shelf === "currently-reading") as CurrentlyReadingBook[];
       currentlyReadingBooks.sort((a, b) => {
         if (!a.date_added) return -1;
         if (!b.date_added) return 1;
-        return new Date(a.date_added).getTime() - new Date(b.date_added).getTime()
+        return new Date(a.date_added).getTime() - new Date(b.date_added).getTime();
       });
       const toReadBooks: ToReadBook[] = typedBooksData
         .filter((book) => book.shelf === "to-read") as ToReadBook[];

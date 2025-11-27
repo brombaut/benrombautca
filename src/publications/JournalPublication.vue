@@ -1,33 +1,34 @@
 <template>
-<li class="journal-publication">
-  <div class="publication-index">[{{journal.type}}{{publicationNumber}}]</div>
-  <div class="publication-info">
-    <div class="publication-info-entity title">
-      <span><b>{{ journal.title }}</b></span>
+  <li class="journal-publication">
+    <div class="publication-index">[{{journal.type}}{{publicationNumber}}]</div>
+    <div class="publication-info">
+      <div class="publication-info-entity title">
+        <span><b>{{ journal.title }}</b></span>
+      </div>
+      <div class="publication-info-entity authors">
+        <span
+          v-for="(a, idx) in journal.authors"
+          :key=a>
+          <span :class="{ underline: authorIsBen(a) }">{{ a }}</span>
+          <span v-if="idx < journal.authors.length - 1">, </span>
+          <span v-else>.</span>
+        </span>
+      </div>
+      <div class="publication-info-entity venue">
+        <i>{{ journal.venue }}</i>, {{ journal.month }} {{ journal.year }}
+      </div>
+      <div class="links">
+        <a
+          v-for="link in journal.links"
+          :key="link.url"
+          :href="link.url"
+          target="_blank"
+          rel="noopener noreferrer">
+          <span>[{{ link.type }}]</span>
+        </a>
+      </div>
     </div>
-    <div class="publication-info-entity authors">
-      <span
-        v-for="(a, idx) in journal.authors"
-        :key=a>
-        <span :class="{underline: authorIsBen(a)}">{{ a }}</span>
-        <span v-if="idx < journal.authors.length - 1">, </span>
-        <span v-else>.</span>
-      </span>
-    </div>
-    <div class="publication-info-entity venue">
-      <i>{{ journal.venue }}</i>, {{ journal.month }} {{ journal.year }}
-    </div>
-    <div class="links">
-      <a
-        v-for="link in journal.links"
-        :key="link.url"
-        :href="link.url"
-        target="_blank">
-        <span>[{{ link.type }}]</span>
-      </a>
-    </div>
-  </div>
-</li>
+  </li>
 </template>
 
 <script lang="ts">

@@ -5,8 +5,9 @@
       class="link-verbose"
       :style="tagStyle"
       :href="externalRepo._url"
+      :aria-label="externalRepo._hoverText"
       @click.stop.prevent="handleExternalProfileClicked(externalRepo._url)">
-      <img :src="imageSource(externalRepo._imagePath)" />
+      <img :src="imageSource(externalRepo._imagePath)" :alt="externalRepo._title" />
       <div class="label">
         {{ externalRepo._hoverText }}
         <font-awesome-icon
@@ -18,9 +19,10 @@
       v-else
       class="link"
       :href="externalRepo._url"
+      :aria-label="externalRepo._title"
       @click.stop.prevent="handleExternalProfileClicked(externalRepo._url)">
-      <img :src="imageSource(externalRepo._imagePath)" />
-      <div class="hover"></div>
+      <img :src="imageSource(externalRepo._imagePath)" :alt="externalRepo._title" />
+      <div class="hover" />
     </a>
   </div>
 </template>

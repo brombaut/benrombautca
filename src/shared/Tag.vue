@@ -3,13 +3,16 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 import TagColor from "./TagColor";
 
 export default defineComponent({
-  name: "Tag",
+  name: "ArticleTag",
   props: {
-    tag: String,
+    tag: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     tagStyle(): Object {

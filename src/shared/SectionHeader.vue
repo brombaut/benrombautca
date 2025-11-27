@@ -2,24 +2,33 @@
   <header class="section-header">
     <div class="section-header_wrapper">
       <div class="section-header_content">
-        <font-awesome-icon class="icon" :icon="['fas', icon]" v-if="icon"/>
+        <font-awesome-icon class="icon" :icon="['fas', icon]" v-if="icon" />
         <h1 class="section-title"><b>{{ title }}</b></h1>
       </div>
-      <div class="section-header-underline"></div>
+      <div class="section-header-underline" />
     </div>
     <p v-if="subtext">{{ subtext }}</p>
   </header>
 </template>
 
 <script lang="ts">
-import {defineComponent} from "vue";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "SectionHeader",
   props: {
-    title: String,
-    icon: String,
-    subtext: String,
+    title: {
+      type: String,
+      required: true,
+    },
+    icon: {
+      type: String,
+      default: "",
+    },
+    subtext: {
+      type: String,
+      default: "",
+    },
   },
 });
 </script>

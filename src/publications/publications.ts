@@ -141,7 +141,7 @@ const unpublishedPublications: UnpublishedPublication[] = [
       "Lionel Nganyewou Tidjon",
       "Benjamin Rombaut",
       "Foutse Khomh",
-      "Ahmed E. Hassan"
+      "Ahmed E. Hassan",
     ],
     new Date(2022, 10, 28),
     [
@@ -158,7 +158,7 @@ const unpublishedPublications: UnpublishedPublication[] = [
       "Sogol Masoumzadeh",
       "Kirill Vasilevski",
       "Dayi Lin",
-      "Ahmed E. Hassan"
+      "Ahmed E. Hassan",
     ],
     new Date(2024, 10, 5),
     [
@@ -244,6 +244,5 @@ const publications: Publication[] = [
   ...unpublishedPublications,
   ...conferencePublications,
 ];
-
 
 export default publications;

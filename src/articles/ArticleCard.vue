@@ -1,22 +1,25 @@
 <template>
-<div
-  class="article-card"
-  @click="cardClicked">
-  <header>
-    <h2 class="title">{{ article.title }}</h2>
-  </header>
-  <div class='body'>
-    <div class="dates">
-      Created {{ formatDate(article.createdAt) }} • Updated {{ formatDate(article.updatedAt) }}
+  <div
+    class="article-card"
+    role="button"
+    tabindex="0"
+    @click="cardClicked"
+    @keydown.enter="cardClicked">
+    <header>
+      <h2 class="title">{{ article.title }}</h2>
+    </header>
+    <div class='body'>
+      <div class="dates">
+        Created {{ formatDate(article.createdAt) }} • Updated {{ formatDate(article.updatedAt) }}
+      </div>
+      <div class="description"><p>{{article.description}}</p></div>
     </div>
-    <div class="description"><p>{{article.description}}</p></div>
+    <footer>
+      <div class="tags">
+        <Tag v-for="tag in article.tags" :key="tag" :tag="tag" />
+      </div>
+    </footer>
   </div>
-  <footer>
-    <div class="tags">
-      <Tag v-for="tag in article.tags" :key="tag" :tag="tag" />
-    </div>
-  </footer>
-</div>
 </template>
 
 <script lang="ts">
