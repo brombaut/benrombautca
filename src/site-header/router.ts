@@ -1,74 +1,65 @@
 import { createWebHashHistory, createRouter } from "vue-router";
-import AboutMeExtended from "@/aboutMe/AboutMeExtended.vue";
-import BookshelfSection from "@/bookshelf/BookshelfSection.vue";
-import ArticlesSection from "@/articles/ArticlesSection.vue";
-import SelectedArticleSection from "@/articles/SelectedArticleSection.vue";
-import SoftwareSection from "@/software/SoftwareSection.vue";
-import SelectedSoftwareSection from "@/software/SelectedSoftwareSection.vue";
-import PublicationsSection from "@/publications/PublicationsSection.vue";
-import RunningSection from "@/running/RunningSection.vue";
-import HikingSection from "@/hiking/HikingSection.vue";
 
 const routes = [
   {
     path: "/",
     name: "land",
-    component: AboutMeExtended,
+    component: () => import("@/aboutMe/AboutMeExtended.vue"),
   },
   {
     path: "/about-me",
     name: "aboutMe",
-    component: AboutMeExtended,
+    component: () => import("@/aboutMe/AboutMeExtended.vue"),
   },
   {
     path: "/work",
     name: "work",
-    component: AboutMeExtended,
+    component: () => import("@/aboutMe/AboutMeExtended.vue"),
   },
   {
     path: "/education",
     name: "education",
-    component: AboutMeExtended,
+    component: () => import("@/aboutMe/AboutMeExtended.vue"),
   },
   {
     path: "/bookshelf",
     name: "bookshelf",
-    component: BookshelfSection,
+    component: () => import("@/bookshelf/BookshelfSection.vue"),
   },
   {
     path: "/articles",
     name: "articles",
-    component: ArticlesSection,
+    component: () => import("@/articles/ArticlesSection.vue"),
   },
   {
     path: "/articles/:articleId",
     name: "selectedArticle",
-    component: SelectedArticleSection,
+    component: () => import("@/articles/SelectedArticleSection.vue"),
   },
   {
     path: "/software",
     name: "software",
-    component: SoftwareSection,
+    component: () => import("@/software/SoftwareSection.vue"),
   },
   {
     path: "/software/:softwareId",
     name: "selectedSoftware",
-    component: SelectedSoftwareSection,
+    component: () => import("@/software/SelectedSoftwareSection.vue"),
   },
   {
     path: "/publications",
     name: "publications",
-    component: PublicationsSection,
+    component: () => import("@/publications/PublicationsSection.vue"),
   },
   {
     path: "/running",
     name: "running",
-    component: RunningSection,
+    component: () => import("@/running/RunningSection.vue"),
   },
   {
     path: "/hiking",
     name: "hiking",
-    component: HikingSection,
+    component: () => import("@/hiking/HikingSection.vue"),
   },
 ];
 
