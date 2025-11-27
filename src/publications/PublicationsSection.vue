@@ -151,50 +151,161 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
 
     .publication-type-header {
       color: $primaryDark;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      font-size: 1.5rem;
+      border-bottom: 2px solid $primary;
+      padding-bottom: 8px;
+      width: 100%;
+    }
+
+    .publication-type-sub-header {
+      margin-bottom: 16px;
+      color: $fontColor;
+      font-weight: 400;
     }
 
     ul {
-      padding-inline-start: 8px;
-      margin-block-start: 8px;
-      margin-block-end: 20px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 
       li {
-        margin: 8px 0;
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 
-          .underline {
-            text-decoration: underline;
+        &:hover {
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          border-color: $primary;
+        }
+
+        .publication-card {
+          display: flex;
+          gap: 20px;
+
+          .publication-year-badge {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background: $primary;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
           }
 
-          .publication-index{
-            margin: 6px 16px;
-            color: $primaryDark;
-          }
+          .publication-content {
+            flex: 1;
+            min-width: 0;
 
-          .publication-info-entity {
-            margin: 6px 0;
-          }
+            .publication-header {
+              display: flex;
+              align-items: flex-start;
+              justify-content: space-between;
+              gap: 12px;
+              margin-bottom: 12px;
 
-          .title {
-            color: $primary;
-          }
+              .publication-title {
+                flex: 1;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: $primaryDark;
+                line-height: 1.4;
+              }
 
-          .links {
-            a {
-              font-weight: 500;
-              margin-right: 8px;
-              color: $primaryDark;
+              .publication-type-badge {
+                flex-shrink: 0;
+                background: $secondary;
+                color: $primaryDark;
+                padding: 4px 10px;
+                border-radius: 4px;
+                font-size: 0.75rem;
+                font-weight: 600;
+              }
+            }
 
-              &:hover {
-                cursor: pointer;
+            .publication-authors {
+              color: $fontColor;
+              font-size: 0.95rem;
+              margin-bottom: 8px;
+              line-height: 1.5;
+
+              .author-name {
+                &.is-ben {
+                  font-weight: 600;
+                  color: $primary;
+                }
+              }
+            }
+
+            .publication-venue {
+              color: #666;
+              font-size: 0.9rem;
+              margin-bottom: 12px;
+              line-height: 1.4;
+
+              .venue-name {
+                font-style: italic;
+              }
+            }
+
+            .publication-links {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 8px;
+
+              a {
+                display: inline-flex;
+                align-items: center;
+                padding: 6px 12px;
+                background: $secondary;
+                color: $primaryDark;
+                border-radius: 4px;
+                text-decoration: none;
+                font-size: 0.85rem;
+                font-weight: 500;
+                transition: all 0.2s ease;
+
+                &:hover {
+                  background: $primary;
+                  color: white;
+                }
               }
             }
           }
+        }
       }
     }
   }
 
+  @media (max-width: $SMALL_DISPLAY_SIZE) {
+    .section-body ul li {
+      .publication-card {
+        flex-direction: column;
+        gap: 12px;
+
+        .publication-year-badge {
+          width: 50px;
+          height: 50px;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
 }
 </style>

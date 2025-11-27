@@ -1,31 +1,34 @@
 <template>
   <li class="journal-publication">
-    <div class="publication-index">[{{journal.type}}{{publicationNumber}}]</div>
-    <div class="publication-info">
-      <div class="publication-info-entity title">
-        <span><b>{{ journal.title }}</b></span>
+    <div class="publication-card">
+      <div class="publication-year-badge">
+        {{ journal.year }}
       </div>
-      <div class="publication-info-entity authors">
-        <span
-          v-for="(a, idx) in journal.authors"
-          :key=a>
-          <span :class="{ underline: authorIsBen(a) }">{{ a }}</span>
-          <span v-if="idx < journal.authors.length - 1">, </span>
-          <span v-else>.</span>
-        </span>
-      </div>
-      <div class="publication-info-entity venue">
-        <i>{{ journal.venue }}</i>, {{ journal.month }} {{ journal.year }}
-      </div>
-      <div class="links">
-        <a
-          v-for="link in journal.links"
-          :key="link.url"
-          :href="link.url"
-          target="_blank"
-          rel="noopener noreferrer">
-          <span>[{{ link.type }}]</span>
-        </a>
+      <div class="publication-content">
+        <div class="publication-header">
+          <div class="publication-title">{{ journal.title }}</div>
+          <div class="publication-type-badge">{{ journal.type }}{{ publicationNumber }}</div>
+        </div>
+        <div class="publication-authors">
+          <span
+            v-for="(a, idx) in journal.authors"
+            :key="a">
+            <span class="author-name" :class="{ 'is-ben': authorIsBen(a) }">{{ a }}</span><span v-if="idx < journal.authors.length - 1">, </span>
+          </span>
+        </div>
+        <div class="publication-venue">
+          <span class="venue-name">{{ journal.venue }}</span> • {{ journal.month }} {{ journal.year }}
+        </div>
+        <div class="publication-links">
+          <a
+            v-for="link in journal.links"
+            :key="link.url"
+            :href="link.url"
+            target="_blank"
+            rel="noopener noreferrer">
+            {{ link.type }}
+          </a>
+        </div>
       </div>
     </div>
   </li>
@@ -56,9 +59,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.journal-publication {
-  display: flex;
-  flex-direction: row;
-}
-
+// Styles are handled in PublicationsSection.vue
 </style>

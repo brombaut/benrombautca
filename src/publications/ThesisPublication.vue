@@ -1,25 +1,30 @@
 <template>
   <li class="thesis-publication">
-    <div class="publication-index">[{{thesis.type}}{{publicationNumber}}]</div>
-    <div class="publication-info">
-      <div class="publication-info-entity title">
-        <span><b>{{ thesis.title }}</b></span>
+    <div class="publication-card">
+      <div class="publication-year-badge">
+        {{ thesis.year }}
       </div>
-      <div class="publication-info-entity authors">
-        <span class="underline">{{ thesis.authors }}</span> - <span>{{ thesis.thesisType }}</span>
-      </div>
-      <div class="publication-info-entity venue">
-        <i>{{ thesis.venue }}</i>, {{ thesis.month }} {{ thesis.year }}
-      </div>
-      <div class="publication-info-entity links">
-        <a
-          v-for="link in thesis.links"
-          :key="link.url"
-          :href="link.url"
-          target="_blank"
-          rel="noopener noreferrer">
-          <span>[{{ link.type }}]</span>
-        </a>
+      <div class="publication-content">
+        <div class="publication-header">
+          <div class="publication-title">{{ thesis.title }}</div>
+          <div class="publication-type-badge">{{ thesis.type }}{{ publicationNumber }}</div>
+        </div>
+        <div class="publication-authors">
+          <span class="author-name is-ben">{{ thesis.authors }}</span> • {{ thesis.thesisType }}
+        </div>
+        <div class="publication-venue">
+          <span class="venue-name">{{ thesis.venue }}</span> • {{ thesis.month }} {{ thesis.year }}
+        </div>
+        <div class="publication-links">
+          <a
+            v-for="link in thesis.links"
+            :key="link.url"
+            :href="link.url"
+            target="_blank"
+            rel="noopener noreferrer">
+            {{ link.type }}
+          </a>
+        </div>
       </div>
     </div>
   </li>
@@ -50,9 +55,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.thesis-publication {
-  display: flex;
-  flex-direction: row;
-}
-
+// Styles are handled in PublicationsSection.vue
 </style>
