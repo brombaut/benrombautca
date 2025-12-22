@@ -85,8 +85,26 @@ export default defineComponent({
     },
   },
   mounted() {
-    this.redrawHighlight();
+    this.$nextTick(() => {
+      this.redrawHighlight();
+    });
+    // Fallback to ensure highlight appears on initial load
+    setTimeout(() => {
+      this.redrawHighlight();
+    }, 100);
     window.addEventListener("resize", this.redrawHighlight);
+  },
+  updated() {
+    this.$nextTick(() => {
+      this.redrawHighlight();
+    });
+  },
+  watch: {
+    $route() {
+      this.$nextTick(() => {
+        this.redrawHighlight();
+      });
+    },
   },
 });
 </script>
