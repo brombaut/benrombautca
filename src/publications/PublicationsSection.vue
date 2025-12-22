@@ -116,13 +116,13 @@ export default defineComponent({
           }
 
           .publication-info-entity {
-            margin: 4px 0;
+            margin: 2px 0;
           }
 
           .title {
             color: $primary;
             font-size: 1.3em;
-            margin-bottom: 8px;
+            margin-bottom: 2px;
           }
 
           .authors, .venue, .location, .links {
