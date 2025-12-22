@@ -1,4 +1,6 @@
-# CLAUDE.md - AI Assistant Guide for benrombautca
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 
@@ -97,6 +99,7 @@ export default defineComponent({
 - **Mode**: Hash-based routing (`createWebHashHistory`)
 - **Router Location**: `src/site-header/router.ts`
 - **Dynamic Routes**: Articles and Software sections have dynamic routes (`:articleId`, `:softwareId`)
+- **Code Splitting**: All routes use lazy loading (`component: () => import(...)`) for optimal bundle size
 
 ### State Management
 - **No Vuex/Pinia**: Simple prop passing and component-local state
@@ -106,6 +109,13 @@ export default defineComponent({
   - `src/software/software_articles_meta.json` - Software metadata
   - `src/software/software_articles_content.json` - Software README content
   - `src/bookshelf/syncer_v2/all_books_flattened.json` - Bookshelf data
+
+### Shared Components
+- **Location**: `src/shared/`
+- **Key Components**:
+  - `ImageCarousel.vue` - Generic image carousel used by Running and Hiking sections
+  - `GitHubMarkdown.vue` - Markdown renderer for articles and software READMEs
+  - Other reusable UI components
 
 ### Styling System
 
@@ -174,7 +184,7 @@ npm run serve
 # Build for production
 npm run build
 
-# Lint (currently disabled in package.json)
+# Lint and fix code issues
 npm run lint
 
 # Sync bookshelf locally
@@ -271,8 +281,8 @@ Steps:
 ## Testing
 
 **Status**: No automated tests currently configured
-- ESLint disabled in package.json (`echo Linting Disabled!!!!!!!`)
-- Test framework not set up
+- ESLint is enabled and configured with Vue Essential + Airbnb rules
+- Test framework not set up (unit/integration/e2e tests planned for future)
 
 ## Common Development Tasks
 
@@ -311,21 +321,38 @@ Steps:
 
 ## Known Issues & Future Work
 
-### From README.md
+### Recent Improvements (2025-11-22 to 2025-12-22)
+- ✅ Re-enabled ESLint and fixed violations
+- ✅ Updated GitHub Actions to latest versions (v4/v5)
+- ✅ Fixed Vue 2→3 lifecycle hooks (`beforeDestroy` → `beforeUnmount`)
+- ✅ Updated TypeScript shims to Vue 3
+- ✅ Removed duplicate ImageCarousel components
+- ✅ Standardized all components to use `defineComponent`
+- ✅ Added route-level code splitting (lazy loading)
+- ✅ Added environment variable validation
+- ✅ Replaced DOM queries with Vue template refs
+- ✅ Restructured README.md for better developer onboarding
+
+### Completed Features
 - **Migrate to Vue 3**: ✅ Done (using compatibility mode)
 - **Merge Bookshelf-Syncer**: ✅ Done
 - **Merge Software-Syncer**: ✅ Done
 - **Add Resume & CV PDFs**: ✅ Done
+
+### Planned Work
 - **Filter articles by tag**: Planned
 - **Consider moving Article-Syncer to cloud**: Under consideration
 - **Change router to HTML5 mode**: TODO (see `router.ts:75`)
+- **Remove Vue 2 compatibility mode**: Planned for better performance
+- **Add automated testing**: High priority
 
 ### Technical Debt
-- Linting is disabled (`package.json:8`)
-- No automated tests
-- Some ESLint rules are overly permissive
-- Vue 2 compatibility mode still enabled (could be removed)
-- `no-unused-vars` disabled globally
+- No automated tests (unit/integration/e2e)
+- Some ESLint rules are disabled for flexibility (see `package.json` eslintConfig)
+- Vue 2 compatibility mode still enabled (could be removed for better performance)
+- Memory leaks in some components (event listeners not cleaned up)
+- Heavy use of `any` type in TypeScript (defeats type safety)
+- See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
 
 ## AI Assistant Guidelines
 
@@ -397,7 +424,7 @@ npm run sync-articles      # Sync article content
 
 ---
 
-**Last Updated**: 2025-11-22
+**Last Updated**: 2025-12-22
 **Vue Version**: 3.2.47
 **Node Version**: 18+
 **TypeScript Version**: 5.6.3

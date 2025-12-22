@@ -95,10 +95,7 @@
         "error",
         "always-multiline"
       ],
-      "max-len": [
-        "warn",
-        600
-      ],
+      "max-len": 0,
       "indent": [
         "error",
         2

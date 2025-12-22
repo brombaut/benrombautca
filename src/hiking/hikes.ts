@@ -427,7 +427,6 @@ const hikes: Hike[] = [
 ];
 
 // Update all image src extensions to .webp
-type ImageObj = { src: string; caption: string };
 hikes.forEach((hike) => {
   hike.images = hike.images.map((img) => {
     const parts = img.src.split(".");
