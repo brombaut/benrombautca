@@ -8,43 +8,14 @@
     <div class="section-body">
       <div
         v-for="vPub in viewPublications"
-        :key="vPub.type">
+        :key="vPub.header">
         <h3 class="publication-type-header">{{ vPub.header }}</h3>
         <h5 class="publication-type-sub-header">{{ vPub.subHeader }}</h5>
-        <ul v-if="vPub.type === journal">
-          <JournalPublication
-            v-for="(publication, idx) in vPub.items"
+        <ul>
+          <PublicationItem
+            v-for="publication in vPub.items"
             :key="publication.title"
-            :journal="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-else-if="vPub.type === thesis">
-          <ThesisPublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :thesis="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-else-if="vPub.type === presentation">
-          <PresentationPublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :presentation="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-else-if="vPub.type === conference">
-          <ConferencePublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :conference="publication"
-            :publicationNumber="vPub.items.length - idx" />
-        </ul>
-        <ul v-if="vPub.type === unpublished">
-          <UnpublishedPublication
-            v-for="(publication, idx) in vPub.items"
-            :key="publication.title"
-            :unpublishedPublication="publication"
-            :publicationNumber="vPub.items.length - idx" />
+            :publication="publication" />
         </ul>
       </div>
     </div>
@@ -54,89 +25,60 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
-import JournalPublication from "./JournalPublication.vue";
-import ThesisPublication from "./ThesisPublication.vue";
-import PresentationPublication from "./PresentationPublication.vue";
-import UnpublishedPublication from "./UnpublishedPublication.vue";
-import ConferencePublication from "./ConferencePublication.vue";
+import PublicationItem from "./PublicationItem.vue";
 import publications from "./publications";
-import { Publication, PublicationType, ViewPublication } from "./types";
+import { Publication, ViewPublication } from "./types";
 
 export default defineComponent({
   name: "PublicationsSection",
   components: {
     SectionHeader,
-    JournalPublication,
-    ThesisPublication,
-    PresentationPublication,
-    UnpublishedPublication,
-    ConferencePublication,
+    PublicationItem,
   },
   data() {
-    const publicationTypesToShow: PublicationType[] = [
-      PublicationType.Conference,
-      PublicationType.Journal,
-      PublicationType.Presentation,
-      PublicationType.Thesis,
-      PublicationType.Unpublished,
-    ];
     return {
-      publicationTypesToShow,
       publications,
     };
   },
   computed: {
+    publishedWorks(): Publication[] {
+      return this.publications
+        .filter((p: Publication) => p.venue !== "Unpublished")
+        .sort((a: Publication, b: Publication) => (
+          b.dateAccepted.getTime() - a.dateAccepted.getTime()
+        ));
+    },
+    unpublishedWorks(): Publication[] {
+      return this.publications
+        .filter((p: Publication) => p.venue === "Unpublished")
+        .sort((a: Publication, b: Publication) => (
+          b.dateAccepted.getTime() - a.dateAccepted.getTime()
+        ));
+    },
     viewPublications(): ViewPublication[] {
-      const result = this.publicationTypesToShow.map((t: PublicationType) => {
-        return {
-          type: t,
-          header: this.publicationTypeHeader(t),
-          subHeader: this.publicationTypeSubHeader(t),
-          items: this.publications
-            .filter((p: Publication) => p.type === t)
-            .sort((a: Publication, b: Publication) => (
-              b.dateAccepted.getTime() - a.dateAccepted.getTime()
-            )),
-        };
-      });
+      const result: ViewPublication[] = [];
+
+      // Add published works as a single group
+      if (this.publishedWorks.length > 0) {
+        result.push({
+          type: null as any,
+          header: "Publications",
+          subHeader: "",
+          items: this.publishedWorks,
+        });
+      }
+
+      // Add unpublished works as a separate group
+      if (this.unpublishedWorks.length > 0) {
+        result.push({
+          type: null as any,
+          header: "Unpublished Works",
+          subHeader: "The following works have not appeared anywhere, but I list them here for completeness.",
+          items: this.unpublishedWorks,
+        });
+      }
+
       return result;
-    },
-    journal() {
-      return PublicationType.Journal;
-    },
-    conference() {
-      return PublicationType.Conference;
-    },
-    thesis() {
-      return PublicationType.Thesis;
-    },
-    presentation() {
-      return PublicationType.Presentation;
-    },
-    unpublished() {
-      return PublicationType.Unpublished;
-    },
-  },
-  methods: {
-    publicationTypeHeader(type: PublicationType): string {
-      switch (type) {
-      case (PublicationType.Journal): return "Journal";
-      case (PublicationType.Conference): return "Conference";
-      case (PublicationType.Thesis): return "Theses";
-      case (PublicationType.Presentation): return "Presentations & Talks";
-      case (PublicationType.Unpublished): return "Unpublished Works";
-      default: return "";
-      }
-    },
-    publicationTypeSubHeader(type: PublicationType): string {
-      switch (type) {
-      case (PublicationType.Journal): return "";
-      case (PublicationType.Conference): return "";
-      case (PublicationType.Thesis): return "";
-      case (PublicationType.Presentation): return "";
-      case (PublicationType.Unpublished): return "The following works have not appeared anywhere, but I list them here for completeness.";
-      default: return "";
-      }
     },
   },
 });
@@ -162,23 +104,29 @@ export default defineComponent({
       margin-block-end: 20px;
 
       li {
-        margin: 8px 0;
+        margin: 16px 0;
+
+          .publication-info {
+            display: flex;
+            flex-direction: column;
+          }
 
           .underline {
             text-decoration: underline;
           }
 
-          .publication-index{
-            margin: 6px 16px;
-            color: $primaryDark;
-          }
-
           .publication-info-entity {
-            margin: 6px 0;
+            margin: 4px 0;
           }
 
           .title {
             color: $primary;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+          }
+
+          .authors, .venue, .location, .links {
+            margin-left: 20px;
           }
 
           .links {

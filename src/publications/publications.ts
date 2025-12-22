@@ -1,8 +1,8 @@
-import { Publication, PublicationLinkType, JournalPublication, PublicationVenue, ThesisPublication, PresentationPublication, UnpublishedPublication, ConferencePublication } from "./types";
+import { Publication, PublicationLinkType } from "./types";
 
-// Journal Publications
-const journalPublications: JournalPublication[] = [
-  new JournalPublication(
+// All Publications
+const publications: Publication[] = [
+  new Publication(
     "There's no such thing as a free lunch: Lessons learned from exploring the overhead introduced by the Greenkeeper dependency bot in npm",
     [
       "Benjamin Rombaut",
@@ -10,7 +10,7 @@ const journalPublications: JournalPublication[] = [
       "Bram Adams",
       "Ahmed E. Hassan",
     ],
-    PublicationVenue.TOSEM,
+    "ACM Transactions on Software Engineering and Methodology (TOSEM)",
     new Date(2022, 1, 24),
     [
       {
@@ -27,14 +27,11 @@ const journalPublications: JournalPublication[] = [
       },
     ],
   ),
-];
 
-// Thesis Publications
-const thesisPublications: ThesisPublication[] = [
-  new ThesisPublication(
+  new Publication(
     "Studying the overhead and crowd-sourced risk assessment strategy of dependency management bots",
-    "Benjamin Rombaut",
-    PublicationVenue.Queens,
+    ["Benjamin Rombaut"],
+    "Queen's University, Master's Thesis",
     new Date(2022, 4, 19),
     [
       {
@@ -46,16 +43,12 @@ const thesisPublications: ThesisPublication[] = [
         url: "publications/Rombaut_Benjamin_J_202205_MSc.pdf",
       },
     ],
-    "Master's Thesis",
   ),
-];
 
-// Presentation Publications
-const presentationPublications: PresentationPublication[] = [
-  new PresentationPublication(
+  new Publication(
     "Lessons learned from exploring the overhead introduced by the Greenkeeper dependency bot",
     ["Benjamin Rombaut"],
-    PublicationVenue.CSER,
+    "Consortium for Software Engineering Research (CSER), Montreal, Canada",
     new Date(2022, 4, 30),
     [
       {
@@ -67,12 +60,11 @@ const presentationPublications: PresentationPublication[] = [
         url: "publications/Rombaut_Benjamin_J_202205_GreenkeeperOverhead_Presentation_CSER2022.pdf",
       },
     ],
-    "Montreal, Canada",
   ),
-  new PresentationPublication(
+  new Publication(
     "AIware Observability",
     ["Benjamin Rombaut"],
-    "AIware Leadership Bootcamp (2024) & AIware Mini Bootcamp (co-located with ICSE 2025)",
+    "AIware Leadership Bootcamp 2024 & Mini Bootcamp 2025",
     new Date(2024, 10, 8),
     [
       {
@@ -92,12 +84,11 @@ const presentationPublications: PresentationPublication[] = [
         url: "https://www.youtube.com/watch?v=gXsZgtyJ3s8",
       },
     ],
-    "Toronto, Canada & Ottawa, Canada",
   ),
-  new PresentationPublication(
+  new Publication(
     "Prompting with DSPy - Hands On Tutorial",
     ["Benjamin Rombaut"],
-    "AIware Leadership Bootcamp (2024)",
+    "AIware Leadership Bootcamp 2024",
     new Date(2024, 10, 6),
     [
       {
@@ -109,19 +100,16 @@ const presentationPublications: PresentationPublication[] = [
         url: "https://www.youtube.com/watch?v=ZoEEMVlMavY",
       },
     ],
-    "Toronto, Canada",
   ),
-];
 
-// Unpublished Publications
-const unpublishedPublications: UnpublishedPublication[] = [
-  new UnpublishedPublication(
+  new Publication(
     "Leveraging the crowd for dependency management: An empirical study on the Dependabot compatibility score",
     [
       "Benjamin Rombaut",
       "Filipe R. Cogo",
       "Ahmed E. Hassan",
     ],
+    "Unpublished",
     new Date(2022, 2, 1),
     [
       {
@@ -134,7 +122,7 @@ const unpublishedPublications: UnpublishedPublication[] = [
       },
     ],
   ),
-  new UnpublishedPublication(
+  new Publication(
     "An Empirical Study of Library Usage and Dependency in Deep Learning Frameworks",
     [
       "Mohamed Raed El aoun",
@@ -143,6 +131,7 @@ const unpublishedPublications: UnpublishedPublication[] = [
       "Foutse Khomh",
       "Ahmed E. Hassan",
     ],
+    "Unpublished",
     new Date(2022, 10, 28),
     [
       {
@@ -151,7 +140,8 @@ const unpublishedPublications: UnpublishedPublication[] = [
       },
     ],
   ),
-  new UnpublishedPublication(
+
+  new Publication(
     "Watson: A Cognitive Observability Framework for the Reasoning of LLM-Powered Agents",
     [
       "Benjamin Rombaut",
@@ -160,8 +150,13 @@ const unpublishedPublications: UnpublishedPublication[] = [
       "Dayi Lin",
       "Ahmed E. Hassan",
     ],
-    new Date(2024, 10, 5),
+    "Automated Software Engineering (ASE) '25",
+    new Date(2025, 10, 1),
     [
+      {
+        type: "ASE '25",
+        url: "https://conf.researchr.org/details/ase-2025/ase-2025-papers/148/Watson-A-Cognitive-Observability-Framework-for-the-Reasoning-of-LLM-Powered-Agents",
+      },
       {
         type: PublicationLinkType.Arxiv,
         url: "https://www.arxiv.org/abs/2411.03455",
@@ -172,11 +167,7 @@ const unpublishedPublications: UnpublishedPublication[] = [
       },
     ],
   ),
-];
-
-// Placeholder Conference Publication
-const conferencePublications: ConferencePublication[] = [
-  new ConferencePublication(
+  new Publication(
     "A Tutorial on Software Engineering for FMware",
     [
       "Filipe R. Cogo",
@@ -189,7 +180,7 @@ const conferencePublications: ConferencePublication[] = [
       "Kirill Vasilevski",
       "Ahmed E. Hassan",
     ],
-    PublicationVenue.FSE,
+    "Foundations of Software Engineering (FSE) Companion '25",
     new Date(2025, 6, 28),
     [
       {
@@ -197,9 +188,8 @@ const conferencePublications: ConferencePublication[] = [
         url: "https://dl.acm.org/doi/abs/10.1145/3696630.3728621",
       },
     ],
-    "FSE Companion '25: Proceedings of the 33rd ACM International Conference on the Foundations of Software Engineerin",
   ),
-  new ConferencePublication(
+  new Publication(
     "The Hitchhikers Guide to Production-ready Trustworthy Foundation Model powered Software (FMware)",
     [
       "Kirill Vasilevski",
@@ -216,7 +206,7 @@ const conferencePublications: ConferencePublication[] = [
       "Ahmed E. Hassan",
       "Zhen Ming (Jack) Jiang",
     ],
-    "Placeholder Venue",
+    "Knowledge Discovery and Data Mining (KDD) '25",
     new Date(2025, 7, 3),
     [
       {
@@ -232,17 +222,7 @@ const conferencePublications: ConferencePublication[] = [
         url: "publications/202505_hitchhikers_guide_fmware.pdf",
       },
     ],
-    "KDD '25: Proceedings of the 31st ACM SIGKDD Conference on Knowledge Discovery and Data Mining V.2",
   ),
-];
-
-// Combine all publications
-const publications: Publication[] = [
-  ...journalPublications,
-  ...thesisPublications,
-  ...presentationPublications,
-  ...unpublishedPublications,
-  ...conferencePublications,
 ];
 
 export default publications;

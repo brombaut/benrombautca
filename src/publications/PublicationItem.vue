@@ -1,25 +1,23 @@
 <template>
-  <li class="journal-publication">
-    <div class="publication-index">[{{journal.type}}{{publicationNumber}}]</div>
+  <li class="publication-item">
     <div class="publication-info">
       <div class="publication-info-entity title">
-        <span><b>{{ journal.title }}</b></span>
+        <span><b>{{ publication.title }}</b></span>
       </div>
       <div class="publication-info-entity authors">
         <span
-          v-for="(a, idx) in journal.authors"
+          v-for="(a, idx) in publication.authors"
           :key=a>
           <span :class="{ underline: authorIsBen(a) }">{{ a }}</span>
-          <span v-if="idx < journal.authors.length - 1">, </span>
-          <span v-else>.</span>
+          <span v-if="idx < publication.authors.length - 1">, </span>
         </span>
       </div>
       <div class="publication-info-entity venue">
-        <i>{{ journal.venue }}</i>, {{ journal.month }} {{ journal.year }}
+        <b>{{ publication.venue }}</b>, {{ publication.month }} {{ publication.year }}
       </div>
-      <div class="links">
+      <div class="publication-info-entity links">
         <a
-          v-for="link in journal.links"
+          v-for="link in publication.links"
           :key="link.url"
           :href="link.url"
           target="_blank"
@@ -33,17 +31,13 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue";
-import { JournalPublication } from "./types";
+import { Publication } from "./types";
 
 export default defineComponent({
-  name: "JournalPublication",
+  name: "PublicationItem",
   props: {
-    journal: {
-      type: Object as PropType<JournalPublication>,
-      required: true,
-    },
-    publicationNumber: {
-      type: Number,
+    publication: {
+      type: Object as PropType<Publication>,
       required: true,
     },
   },
@@ -56,9 +50,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.journal-publication {
+.publication-item {
   display: flex;
-  flex-direction: row;
 }
-
 </style>
