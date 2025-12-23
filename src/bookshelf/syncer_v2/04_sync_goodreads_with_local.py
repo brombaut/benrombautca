@@ -146,11 +146,6 @@ def sync_books(all_books_old, new_toread_and_currentlyreading_books):
             if bb['review_id'] == book['review_id']:
                 return True
         return False
-    def get_book_by_review_id(book_review_id, book_list):
-        for bb in book_list:
-            if bb['review_id'] == book_review_id:
-                return bb
-        return None
     def replace_book_in_list(book, book_list):
         for i, bb in enumerate(book_list):
             if bb['review_id'] == book['review_id']:
