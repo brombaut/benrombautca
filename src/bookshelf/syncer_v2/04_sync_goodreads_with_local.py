@@ -241,11 +241,11 @@ def main():
     # Get toread_books and currentlyreading_books from Goodreads
     toread_and_currentlyreading_books = get_toread_and_currentlyreading_books_from_goodreads()
 
-    # Check if the data has changed
-    new_all_books = sync_books(old_all_books, toread_and_currentlyreading_books)
+    # Sync the data (modifies old_all_books in-place)
+    sync_books(old_all_books, toread_and_currentlyreading_books)
 
-    # Write new_all_books.json to all_books.json
-    dict_to_json_file(new_all_books, 'all_books.json')
+    # Write updated data to all_books.json
+    dict_to_json_file(old_all_books, 'all_books.json')
 
     # Run 02_all_books_flattener.py to flatten all_books.json into all_books_flat.json
     if run_script('02_all_books_flattener.py'):

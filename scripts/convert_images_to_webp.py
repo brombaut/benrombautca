@@ -1,8 +1,14 @@
 import os
+import sys
 from PIL import Image, ExifTags
 
 IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff'}
-SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
+
+# Check if a directory argument was provided
+if len(sys.argv) > 1:
+    SRC_DIR = os.path.abspath(sys.argv[1])
+else:
+    SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
 
 def is_image(filename):
     ext = os.path.splitext(filename)[1].lower()

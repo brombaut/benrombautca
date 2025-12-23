@@ -1,5 +1,14 @@
 [
     {
+        "title": "James",
+        "author": "Percival Everett",
+        "book_id": "173754979-james",
+        "review_id": 8167491390,
+        "date_added": "Dec 22, 2025",
+        "position": 47,
+        "shelf": "to-read"
+    },
+    {
         "title": "Juris Ex Machina",
         "author": "John W. Maly",
         "book_id": "209529202-juris-ex-machina",
@@ -414,23 +423,13 @@
         "shelf": "to-read"
     },
     {
-        "title": "Project Hail Mary",
-        "author": "Andy Weir",
-        "book_id": "54493401-project-hail-mary",
-        "review_id": 8095050463,
-        "date_added": "Nov 23, 2025",
-        "onPage": 292,
-        "numPages": 496,
-        "shelf": "currently-reading"
-    },
-    {
-        "title": "Call Me By Your Name (Call Me By Your Name, #1)",
-        "author": "Andr\u00e9 Aciman",
-        "book_id": "36336078-call-me-by-your-name",
-        "review_id": 5823041919,
-        "date_added": "Aug 24, 2025",
-        "onPage": 50,
-        "numPages": 248,
+        "title": "Into Thin Air: A Personal Account of the Mt. Everest Disaster",
+        "author": "Jon Krakauer",
+        "book_id": "271285.Into_Thin_Air",
+        "review_id": 3747054078,
+        "date_added": "Sep 05, 2022",
+        "onPage": 350,
+        "numPages": 378,
         "shelf": "currently-reading"
     },
     {
@@ -442,6 +441,25 @@
         "onPage": 0,
         "numPages": 0,
         "shelf": "currently-reading"
+    },
+    {
+        "title": "A Little Life",
+        "author": "Hanya Yanagihara",
+        "book_id": "22822858-a-little-life",
+        "review_id": 5867610972,
+        "date_added": "Jun 15, 2025",
+        "onPage": 276,
+        "numPages": 720,
+        "shelf": "currently-reading"
+    },
+    {
+        "title": "Project Hail Mary",
+        "author": "Andy Weir",
+        "book_id": "54493401-project-hail-mary",
+        "review_id": "8095050463",
+        "date_finished": "Dec 22, 2025",
+        "rating": 3,
+        "shelf": "read"
     },
     {
         "title": "The Life-Changing Magic of Tidying Up: The Japanese Art of Decluttering and Organizing",
@@ -705,6 +723,15 @@
         "shelf": "read"
     },
     {
+        "title": "Call Me By Your Name",
+        "author": "Andr\u00e9 Aciman",
+        "book_id": "36336078-call-me-by-your-name",
+        "review_id": "5823041919",
+        "date_finished": "Dec 22, 2025",
+        "rating": 3,
+        "shelf": "read"
+    },
+    {
         "title": "Blind Man's Bluff: The Untold Story of American Submarine Espionage",
         "author": "Sherry Sontag",
         "book_id": "42343.Blind_Man_s_Bluff",
@@ -894,7 +921,7 @@
         "shelf": "read"
     },
     {
-        "title": "The Psychology of Money",
+        "title": "The Psychology of Money: Timeless Lessons on Wealth, Greed, and Happiness",
         "author": "Morgan Housel",
         "book_id": "41881472-the-psychology-of-money",
         "review_id": "4617623066",
@@ -1476,24 +1503,6 @@
         "review_id": "3747056442",
         "date_finished": "Feb 27, 2021",
         "rating": 3,
-        "shelf": "read"
-    },
-    {
-        "title": "Into Thin Air: A Personal Account of the Mt. Everest Disaster",
-        "author": "Jon Krakauer",
-        "book_id": "271285.Into_Thin_Air",
-        "review_id": "3747054078",
-        "date_finished": "Sep 05, 2022",
-        "rating": 5,
-        "shelf": "read"
-    },
-    {
-        "title": "Into Thin Air: A Personal Account of the Mt. Everest Disaster",
-        "author": "Jon Krakauer",
-        "book_id": "271285.Into_Thin_Air",
-        "review_id": "3747054078.1",
-        "date_finished": "Jan 31, 2021",
-        "rating": 5,
         "shelf": "read"
     },
     {

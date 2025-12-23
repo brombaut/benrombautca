@@ -16,7 +16,7 @@ def main():
     all_books = load_json(all_books_flattened_json_file_path)
     missing_thumbnails = []
     for book in all_books:
-        thumbnail_path = os.path.join(script_dir, f"./book_thumbnails_v2/{book['book_id']}.jpg")
+        thumbnail_path = os.path.join(script_dir, "book_thumbnails_v2", f"{book['book_id']}.webp")
         if not file_exists(thumbnail_path):
             missing_thumbnails.append(book)
     print(f"Missing thumbnails:")

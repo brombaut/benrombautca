@@ -1,15 +1,19 @@
 import os
+import sys
 
-# Set the directory you want to clean up
-SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
-
-
-TARGET_DIRS = [
-    os.path.abspath(os.path.join(SRC_DIR, 'hiking')),
-    os.path.abspath(os.path.join(SRC_DIR, 'running')),
-    os.path.abspath(os.path.join(SRC_DIR, 'bookshelf')),
-    os.path.abspath(os.path.join(SRC_DIR, 'assets', 'images')),
-]
+# Check if a directory argument was provided
+if len(sys.argv) > 1:
+    # Use the provided directory directly
+    TARGET_DIRS = [os.path.abspath(sys.argv[1])]
+else:
+    # Set the directory you want to clean up
+    SRC_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
+    TARGET_DIRS = [
+        os.path.abspath(os.path.join(SRC_DIR, 'hiking')),
+        os.path.abspath(os.path.join(SRC_DIR, 'running')),
+        os.path.abspath(os.path.join(SRC_DIR, 'bookshelf')),
+        os.path.abspath(os.path.join(SRC_DIR, 'assets', 'images')),
+    ]
 
 IMAGE_EXTENSIONS = {'.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tiff', '.svg'}  # Exclude .webp
 
