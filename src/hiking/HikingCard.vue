@@ -85,7 +85,7 @@ export default defineComponent({
         .label {
           margin-right: 4px;
           // color: $primaryDark;
-          font-weight: bold;
+          font-weight: 600;
         }
 
         .value {

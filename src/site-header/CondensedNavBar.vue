@@ -109,7 +109,7 @@ export default defineComponent({
 
   a {
     padding: 12px 24px;
-    font-weight: bold;
+    font-weight: 600;
 
     .active-icon {
       margin-right: 4px;
