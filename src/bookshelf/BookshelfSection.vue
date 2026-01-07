@@ -80,11 +80,15 @@ export default defineComponent({
       const typedBooksData = booksData as Book[];
       const readBooksSorted: ReadBook[] = typedBooksData.filter((book) => book.shelf === "read") as ReadBook[];
       readBooksSorted.sort((a, b) => {
-        return new Date(b.date_finished ?? 0).getTime() - new Date(a.date_finished ?? 0).getTime();
+        const dateA = new Date(a.date_finished ?? 0);
+        const dateB = new Date(b.date_finished ?? 0);
+        const timeA = Number.isNaN(dateA.getTime()) ? 0 : dateA.getTime();
+        const timeB = Number.isNaN(dateB.getTime()) ? 0 : dateB.getTime();
+        return timeB - timeA;
       });
       const bookGroups: YearBooksPair[] = [];
       readBooksSorted.forEach((book: ReadBook) => {
-        const year = new Date(book.date_finished ?? 0).getFullYear();
+        const year = this.extractYear(book.date_finished);
         const yearGroup = bookGroups.find((group) => group.year === year);
         if (yearGroup) {
           yearGroup.books.push(book);
@@ -123,6 +127,27 @@ export default defineComponent({
     },
   },
   methods: {
+    extractYear(dateString: string | undefined): number {
+      if (!dateString) {
+        return new Date().getFullYear();
+      }
+
+      // Try to parse the date normally
+      const date = new Date(dateString);
+      if (!Number.isNaN(date.getTime())) {
+        return date.getFullYear();
+      }
+
+      // If parsing failed, try to extract year with regex
+      // Matches 4-digit years (e.g., "2025" from "Dec 31, 2025")
+      const yearMatch = dateString.match(/\b(19|20)\d{2}\b/);
+      if (yearMatch) {
+        return parseInt(yearMatch[0], 10);
+      }
+
+      // Final fallback to current year
+      return new Date().getFullYear();
+    },
     setNumberOfBookCardsToRow() {
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
       let result = 6;
