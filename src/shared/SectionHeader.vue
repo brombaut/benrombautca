@@ -3,7 +3,7 @@
     <div class="section-header_wrapper">
       <div class="section-header_content">
         <font-awesome-icon class="icon" :icon="['fas', icon]" v-if="icon" />
-        <h1 class="section-title"><b>{{ title }}</b></h1>
+        <h1 class="section-title">{{ title }}</h1>
       </div>
       <div class="section-header-underline" />
     </div>
