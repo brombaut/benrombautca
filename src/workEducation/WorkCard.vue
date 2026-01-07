@@ -80,7 +80,7 @@ export default defineComponent({
 
   .team {
     color: $primary !important;
-    font-weight: bold;
+    font-weight: 600;
   }
 }
 </style>

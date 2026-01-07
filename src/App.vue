@@ -31,12 +31,24 @@ body {
 }
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
+  font-weight: 600;
+}
+h1 {
+  font-weight: 600;
+}
+h2 {
+  font-weight: 600;
+}
+h3 {
+  font-weight: 600;
 }
 
 #app {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
   text-align: center;
   color: $pFontColor;
   background: $aliceBlue;

@@ -42,7 +42,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: bold;
+  font-weight: 600;
   white-space: nowrap;
   font-size: 0.9em;
 

@@ -174,7 +174,7 @@ export default defineComponent({
 
             &.title {
               font-size: 1.2rem;
-              font-weight: 800;
+              font-weight: 600;
               color: $primary;
             }
 

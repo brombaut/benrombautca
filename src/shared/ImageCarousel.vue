@@ -190,7 +190,7 @@ export default defineComponent({
       margin-top: -22px;
       padding: 16px;
       color: $primary;
-      font-weight: bold;
+      font-weight: 600;
       font-size: 18px;
       transition: 0.6s ease;
       border-radius: 0 3px 3px 0;

@@ -40,7 +40,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: bold;
+  font-weight: 600;
   box-sizing: border-box;
   padding: 12px 12px 12px 12px;
   font-size: 0.9em;
@@ -52,7 +52,7 @@ export default defineComponent({
     flex-direction: row;
     align-items: flex-end;
     height: 100%;
-    font-weight: bold;
+    font-weight: 600;
 
     .icon {
       margin-right: 4px;
