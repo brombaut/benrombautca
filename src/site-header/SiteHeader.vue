@@ -1,7 +1,7 @@
 <template>
   <header id="site-header" class="header-bright">
     <div class="banner">
-      <h1><b>Ben Rombaut</b></h1>
+      <h1>Ben Rombaut</h1>
       <h4><i>Software Engineering Researcher</i></h4>
       <div id="external-profiles-container">
         <ExternalProfileIcon
