@@ -1,7 +1,11 @@
 <template>
   <div class="book-card slide-in" :class="{ 'to-read': toRead }">
     <div class="image-container">
-      <img :src="imageSource" :alt="book.book_id" loading="lazy" />
+      <img
+        :src="currentImageSource"
+        :alt="book.book_id"
+        loading="lazy"
+        @error="handleImageError" />
     </div>
     <h5 class="title">{{ formattedTitle }}</h5>
     <h6 class="author">{{ book.author }}</h6>
@@ -43,6 +47,12 @@ export default defineComponent({
   components: {
     ProgressBar,
   },
+  data() {
+    return {
+      imageLoadFailed: false,
+      placeholderImage: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 140'%3E%3Crect x='10' y='5' width='80' height='130' fill='%23f1f5fa' stroke='%233381db' stroke-width='2' rx='2'/%3E%3Cline x1='20' y1='20' x2='80' y2='20' stroke='%233381db' stroke-width='1.5'/%3E%3Cline x1='20' y1='30' x2='80' y2='30' stroke='%233381db' stroke-width='1.5'/%3E%3Cline x1='20' y1='40' x2='80' y2='40' stroke='%233381db' stroke-width='1.5'/%3E%3Cline x1='20' y1='50' x2='65' y2='50' stroke='%233381db' stroke-width='1.5'/%3E%3C/svg%3E",
+    };
+  },
   computed: {
     toRead(): boolean {
       return this.book.shelf === "to-read";
@@ -70,10 +80,16 @@ export default defineComponent({
     imageSource(): string {
       return `book_thumbnails_v2/${this.book.book_id}.webp`;
     },
+    currentImageSource(): string {
+      return this.imageLoadFailed ? this.placeholderImage : this.imageSource;
+    },
   },
   methods: {
     localCheckHorizontalFadeIn() {
       uiUtils.checkHorizontalFadeIn(this.$el as HTMLDivElement, this.localCheckHorizontalFadeIn);
+    },
+    handleImageError() {
+      this.imageLoadFailed = true;
     },
   },
   mounted() {

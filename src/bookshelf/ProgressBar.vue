@@ -3,7 +3,7 @@
     <div class='progress-bar-fill' ref='progressBarFill' />
     <div class='text' :class="{ 'add-padding': hidePercent }">
       {{ text }} <span>{{ numer }}</span>/<span>{{ denom }}</span>
-      <span v-if="!hidePercent">({{ percentDone }}%)</span>
+      <span v-if="!hidePercent"> ({{ percentDone }}%)</span>
     </div>
   </div>
 </template>
