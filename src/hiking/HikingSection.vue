@@ -92,12 +92,12 @@ export default defineComponent({
   flex-direction: column;
 
   .hiking-goal {
-    width: 100%;
     margin: 1.5rem 0;
     padding: 1.5rem;
     background: rgba(51, 129, 219, 0.05);
     border-radius: 8px;
     border-left: 4px solid $primary;
+    box-sizing: border-box;
 
     h3 {
       margin: 0 0 0.5rem 0;
@@ -114,7 +114,6 @@ export default defineComponent({
 
     .progress-bar-container {
       position: relative;
-      width: 100%;
       height: 30px;
       background: rgba(0, 0, 0, 0.1);
       border-radius: 15px;
