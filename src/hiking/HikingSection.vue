@@ -4,6 +4,17 @@
       title="Hiking"
       icon="hiking"
       subtext="Some of the hikes I've done over the years." />
+
+    <!-- Adirondack 46er Goal -->
+    <div class="hiking-goal">
+      <h3>Adirondack 46er Goal</h3>
+      <p>Working towards summiting all 46 of the 4,000+ foot peaks in the Adirondacks.</p>
+      <div class="progress-bar-container">
+        <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+        <span class="progress-text">{{ completedPeaks }} / {{ totalPeaks }} peaks</span>
+      </div>
+    </div>
+
     <div class="section-body">
       <HikingCard
         v-for="hike in orderedHikes"
@@ -46,6 +57,9 @@ export default defineComponent({
       hikes,
       // initialize a mutable currentMax from the prop so we can extend it
       currentMax: (this as any).maxHikes,
+      // Adirondack 46er tracking
+      completedPeaks: 3,
+      totalPeaks: 46,
     };
   },
   watch: {
@@ -65,6 +79,9 @@ export default defineComponent({
         .sort((a: Hike, b: Hike) => b.orderDate.getTime() - a.orderDate.getTime())
         .slice(0, (this as any).currentMax);
     },
+    progressPercentage(): number {
+      return Math.round((this.completedPeaks / this.totalPeaks) * 100);
+    },
   },
 });
 </script>
@@ -73,6 +90,55 @@ export default defineComponent({
 #hikes {
   display: flex;
   flex-direction: column;
+
+  .hiking-goal {
+    width: 100%;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+    background: rgba(51, 129, 219, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid $primary;
+
+    h3 {
+      margin: 0 0 0.5rem 0;
+      color: $primary;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    p {
+      margin: 0 0 1rem 0;
+      color: $fontColor;
+      line-height: 1.5;
+    }
+
+    .progress-bar-container {
+      position: relative;
+      width: 100%;
+      height: 30px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 15px;
+      overflow: hidden;
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, $primary 0%, $primaryDark 100%);
+        transition: width 0.3s ease;
+        border-radius: 15px;
+      }
+
+      .progress-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: $fontColor;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
 
   .section-body {
     display: flex;
