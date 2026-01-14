@@ -10,7 +10,7 @@
       <h3>Adirondack 46er Goal</h3>
       <p>Working towards summiting all 46 of the 4,000+ foot peaks in the Adirondacks.</p>
       <div class="progress-bar-container">
-        <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+        <div class="progress-bar" :style="{ width: `${progressPercentage}%` }" />
         <span class="progress-text">{{ completedPeaks }} / {{ totalPeaks }} peaks</span>
       </div>
     </div>
@@ -58,7 +58,7 @@ export default defineComponent({
       // initialize a mutable currentMax from the prop so we can extend it
       currentMax: (this as any).maxHikes,
       // Adirondack 46er tracking
-      completedPeaks: 3,
+      completedPeaks: 5,
       totalPeaks: 46,
     };
   },
