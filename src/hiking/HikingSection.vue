@@ -10,7 +10,7 @@
       <h3>Adirondack 46er Goal</h3>
       <p>Working towards summiting all 46 of the 4,000+ foot peaks in the Adirondacks.</p>
       <div class="progress-bar-container">
-        <div class="progress-bar" :style="{ width: progressPercentage + '%' }"></div>
+        <div class="progress-bar" :style="{ width: `${progressPercentage}%` }" />
         <span class="progress-text">{{ completedPeaks }} / {{ totalPeaks }} peaks</span>
       </div>
     </div>
