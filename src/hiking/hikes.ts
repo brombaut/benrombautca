@@ -426,8 +426,8 @@ const hikes: Hike[] = [
   },
   {
     name: "Cascade Mountain and Porter Mountain",
-    orderDate: new Date(2026, 0, 12),
-    date: new Date(2026, 0, 12),
+    orderDate: new Date(2026, 0, 11),
+    date: new Date(2026, 0, 11),
     location: "Adirondacks, New York, USA",
     description: "<p>Cascade Mountain (4,098 ft) and Porter Mountain (4,059 ft) are two of the Adirondack 46ers, the 46 highest peaks in New York's Adirondack Park. Cascade is one of the most popular of the 46ers due to its relatively short and accessible trail, while Porter is often done as a side trip from Cascade, adding a bit more distance to the hike.</p><p>This was my first hike where I used microspikes and snow shoes, which was a lot of fun. The winter conditions added a whole new dimension to the experience, and it was great to finally try out proper winter hiking gear on these peaks.</p>",
     images: [
