@@ -25,9 +25,6 @@ This file tracks potential improvements and tasks for the portfolio website.
 - [ ] Improve logging consistency
   - 00_goodreads_scraper.py has comprehensive logging
   - Other scripts have minimal or no logging
-- [ ] Add unit tests for scraping functions
-  - Test HTML parsing edge cases
-  - Test sync logic for books moving between shelves
 - [ ] Add progress indicators for long-running operations
   - Show progress when scraping multiple pages
   - Show conversion progress for images
