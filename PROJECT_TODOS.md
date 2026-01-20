@@ -1,7 +1,7 @@
 # Project TODOs - benrombautca
 
 **Generated:** 2025-11-24
-**Total Items:** 57
+**Total Items:** 55
 
 This document tracks technical debt, code quality issues, and improvement opportunities identified through a comprehensive codebase audit.
 
@@ -228,7 +228,7 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ---
 
-## 🟡 MEDIUM (26 items - 1-2 days each)
+## 🟡 MEDIUM (25 items - 1-2 days each)
 
 ### Vue 3 Migration
 
@@ -387,17 +387,12 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Bundle size can grow unnoticed
 - **Fix:** Add bundlesize or similar to CI to track size regression
 
-#### 52. Add test coverage reporting
-- **Issue:** No test coverage measurement or reporting configured
-- **Impact:** No visibility into test coverage (after tests exist)
-- **Fix:** Add coverage reporting with Vitest/Istanbul
-
-#### 53. Add cross-browser testing
+#### 52. Add cross-browser testing
 - **Issue:** No browser compatibility testing
 - **Impact:** Unknown compatibility issues
 - **Fix:** Add Browserstack or similar automated testing
 
-#### 56. Redesign bookshelf syncer to optimize Goodreads syncing
+#### 53. Redesign bookshelf syncer to optimize Goodreads syncing
 - **Files:** `src/bookshelf/syncer_v2/`, `.github/workflows/sync_bookshelf.yml`, bookshelf data JSON files
 - **Issue:** Current implementation scrapes all bookshelves (read, currently-reading, to-read) from Goodreads on every sync, causing frequent failures due to web scraping fragility and unnecessary resource usage
 - **Impact:**
@@ -420,18 +415,11 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ---
 
-## 🔴 HIGH (3 items - 1+ weeks each)
-
-### Testing Infrastructure
-
-#### 54. Add automated testing
-- **Issue:** Complete absence of unit, integration, or e2e tests (zero test files found)
-- **Impact:** No safety net for refactoring, regression bugs likely
-- **Fix:** Add Vitest for unit tests, start with critical business logic
+## 🔴 HIGH (2 items - 1+ weeks each)
 
 ### Memory & Performance
 
-#### 55. Fix memory leaks systematically
+#### 54. Fix memory leaks systematically
 - **Files:** `src/workEducation/WorkCard.vue:61`, `src/workEducation/EducationCard.vue:67`, `src/site-header/FullNavBar.vue:90`, `src/bookshelf/BookCard.vue:80`
 - **Issue:** Components add window event listeners but never remove them, causing memory leaks
 - **Impact:** Performance degradation over time as users navigate between routes
@@ -471,9 +459,9 @@ For maximum impact with minimal effort:
   - ✅ #23: Validate environment variables
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
-- [ ] Medium items completed: 0/26
-- [ ] High items completed: 0/3
-- **Overall progress: 15/57 (26.3%)**
+- [ ] Medium items completed: 0/25
+- [ ] High items completed: 0/2
+- **Overall progress: 15/55 (27.3%)**
 
 ---
 
