@@ -1,7 +1,7 @@
 # Project TODOs - benrombautca
 
 **Generated:** 2025-11-24
-**Total Items:** 55
+**Total Items:** 56
 
 This document tracks technical debt, code quality issues, and improvement opportunities identified through a comprehensive codebase audit.
 
@@ -228,7 +228,7 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ---
 
-## 🟡 MEDIUM (24 items - 1-2 days each)
+## 🟡 MEDIUM (25 items - 1-2 days each)
 
 ### Vue 3 Migration
 
@@ -319,60 +319,80 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ### Architecture & Organization
 
-#### 43. Extract hardcoded URLs
+#### 43. Redesign articles pipeline for better organization
+- **Files:** `src/articles/content/`, `scripts/02_existing_html_articles_syncer.py`, `scripts/01_md_to_html_converter.py`, `scripts/00_ipynb_to_md_converter.py`, `vue.config.js`
+- **Issue:** Current articles pipeline is disorganized with sources, converted files, and images in separate locations. Each article should have its own directory containing all related assets (source markdown/notebook, images, converted HTML).
+- **Impact:**
+  - Hard to manage article assets (finding which images belong to which article)
+  - Manual process to determine if article is markdown or notebook
+  - Unclear how to properly serve article images in dist bundle
+  - Poor developer experience when creating/editing articles
+- **Fix:**
+  - Restructure to `src/articles/content/<article-id>/` directory structure
+  - Each article directory contains: source file (`.md` or `.ipynb`), images folder, and generated HTML
+  - Update syncer to auto-detect source format (markdown vs notebook) and follow appropriate conversion pipeline
+  - Configure webpack CopyPlugin to copy article images to dist
+  - Update image paths in conversion scripts to reference article-specific directories
+- **Benefits:**
+  - Self-contained articles with all assets in one place
+  - Easier to add/remove articles (just add/delete a directory)
+  - Clear separation of concerns
+  - Better scalability as article count grows
+
+#### 44. Extract hardcoded URLs
 - **Files:** `src/workEducation/workEntities.ts`, `src/publications/publications.ts`, `src/site-header/SiteHeader.vue` (25+ URLs total)
 - **Issue:** URLs hardcoded instead of being in configuration
 - **Impact:** Harder to update, no single source of truth
 - **Fix:** Extract to configuration file or constants
 
-#### 44. Replace magic numbers
+#### 45. Replace magic numbers
 - **File:** `src/bookshelf/BookshelfSection.vue:131-144`
 - **Issue:** Hardcoded viewport width thresholds with comment "determined manually by resizing window lol"
 - **Impact:** Brittle responsive design, hard to maintain
 - **Fix:** Use CSS media queries or standardized breakpoints
 
-#### 45. Use CSS classes over inline styles
+#### 46. Use CSS classes over inline styles
 - **Files:** `src/shared/GitHubMarkdown.vue:17-22`, `src/site-header/FullNavBar.vue:48-51`, `src/running/ImageCarousel.vue:73-79`
 - **Issue:** Setting styles via JavaScript instead of CSS classes
 - **Impact:** Harder to maintain, poor separation of concerns
 - **Fix:** Use CSS classes with reactive class bindings
 
-#### 46. Add consistent date handling
+#### 47. Add consistent date handling
 - **Issue:** Multiple files parse dates differently, no consistent date parsing/formatting library
 - **Impact:** Potential timezone and format bugs
 - **Fix:** Add date-fns or dayjs for consistent date handling
 
 ### SEO & Routing
 
-#### 47. Switch to HTML5 history mode
+#### 48. Switch to HTML5 history mode
 - **File:** `src/site-header/router.ts:75-77`
 - **Issue:** Using hash routing (#/) instead of HTML5 history mode (TODO comment present)
 - **Impact:** Search engines may not properly index routes
 - **Fix:** Switch to HTML5 history mode, configure server-side routing
 
-#### 48. Document browser support
+#### 49. Document browser support
 - **Issue:** No documented browser support policy or testing
 - **Impact:** Unknown compatibility with older browsers
 - **Fix:** Add Browserstack or document supported browsers
 
 ### CI/CD & Deployment
 
-#### 49. Add staging environment
+#### 50. Add staging environment
 - **Issue:** Deploys directly to production from main branch
 - **Impact:** No testing ground for changes before production
 - **Fix:** Add staging deployment from develop branch
 
-#### 50. Track bundle size over time
+#### 51. Track bundle size over time
 - **Issue:** No tracking of bundle size over time
 - **Impact:** Bundle size can grow unnoticed
 - **Fix:** Add bundlesize or similar to CI to track size regression
 
-#### 51. Add test coverage reporting
+#### 52. Add test coverage reporting
 - **Issue:** No test coverage measurement or reporting configured
 - **Impact:** No visibility into test coverage (after tests exist)
 - **Fix:** Add coverage reporting with Vitest/Istanbul
 
-#### 52. Add cross-browser testing
+#### 53. Add cross-browser testing
 - **Issue:** No browser compatibility testing
 - **Impact:** Unknown compatibility issues
 - **Fix:** Add Browserstack or similar automated testing
@@ -383,14 +403,14 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ### Testing Infrastructure
 
-#### 53. Add automated testing
+#### 54. Add automated testing
 - **Issue:** Complete absence of unit, integration, or e2e tests (zero test files found)
 - **Impact:** No safety net for refactoring, regression bugs likely
 - **Fix:** Add Vitest for unit tests, start with critical business logic
 
 ### Memory & Performance
 
-#### 54. Fix memory leaks systematically
+#### 55. Fix memory leaks systematically
 - **Files:** `src/workEducation/WorkCard.vue:61`, `src/workEducation/EducationCard.vue:67`, `src/site-header/FullNavBar.vue:90`, `src/bookshelf/BookCard.vue:80`
 - **Issue:** Components add window event listeners but never remove them, causing memory leaks
 - **Impact:** Performance degradation over time as users navigate between routes
@@ -430,9 +450,9 @@ For maximum impact with minimal effort:
   - ✅ #23: Validate environment variables
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
-- [ ] Medium items completed: 0/24
+- [ ] Medium items completed: 0/25
 - [ ] High items completed: 0/3
-- **Overall progress: 15/55 (27.3%)**
+- **Overall progress: 15/56 (26.8%)**
 
 ---
 
