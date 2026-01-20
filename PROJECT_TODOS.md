@@ -1,7 +1,7 @@
 # Project TODOs - benrombautca
 
 **Generated:** 2025-11-24
-**Total Items:** 56
+**Total Items:** 57
 
 This document tracks technical debt, code quality issues, and improvement opportunities identified through a comprehensive codebase audit.
 
@@ -228,7 +228,7 @@ This document tracks technical debt, code quality issues, and improvement opport
 
 ---
 
-## 🟡 MEDIUM (25 items - 1-2 days each)
+## 🟡 MEDIUM (26 items - 1-2 days each)
 
 ### Vue 3 Migration
 
@@ -397,6 +397,27 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Impact:** Unknown compatibility issues
 - **Fix:** Add Browserstack or similar automated testing
 
+#### 56. Redesign bookshelf syncer to optimize Goodreads syncing
+- **Files:** `src/bookshelf/syncer_v2/`, `.github/workflows/sync_bookshelf.yml`, bookshelf data JSON files
+- **Issue:** Current implementation scrapes all bookshelves (read, currently-reading, to-read) from Goodreads on every sync, causing frequent failures due to web scraping fragility and unnecessary resource usage
+- **Impact:**
+  - Frequent sync failures due to Goodreads web scraping being brittle
+  - Wasted resources re-scraping books that never change (read books are permanent)
+  - Poor reliability of bookshelf updates
+  - No historical preservation of read books data
+- **Fix:** Implement hybrid syncing approach:
+  - **Read shelf**: Save all read books once to permanent JSON storage (assumption: books never move out of read shelf once added)
+  - **Currently-reading shelf**: Dynamically sync to update reading progress and potentially move books to read shelf when finished
+  - **To-read shelf**: Dynamically sync to update book ordering/priorities
+  - Update GitHub Actions workflow to support new hybrid sync strategy
+  - Add data migration script to initialize permanent read books JSON from current data
+- **Benefits:**
+  - More reliable syncing (less scraping = fewer failure points)
+  - Faster sync times (only updating what actually changes)
+  - Permanent storage of read books (historical data preserved)
+  - Reduced load on Goodreads servers
+  - Better separation of static vs dynamic data
+
 ---
 
 ## 🔴 HIGH (3 items - 1+ weeks each)
@@ -450,9 +471,9 @@ For maximum impact with minimal effort:
   - ✅ #23: Validate environment variables
   - ✅ #24: Update README.md
   - ✅ #25: Restructure README.md for practical developer onboarding
-- [ ] Medium items completed: 0/25
+- [ ] Medium items completed: 0/26
 - [ ] High items completed: 0/3
-- **Overall progress: 15/56 (26.8%)**
+- **Overall progress: 15/57 (26.3%)**
 
 ---
 
