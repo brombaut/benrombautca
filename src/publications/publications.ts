@@ -234,7 +234,7 @@ const publications: Publication[] = [
       "Dayi Lin",
       "Ahmed E. Hassan",
     ],
-    "AAAI Workshop on Next-Gen Code Development with Collaborative AI Agents '26",
+    "Proceedings of the AAAI Workshop on Next-Gen Code Development with Collaborative AI Agents (CodeMates), 2026",
     new Date(2026, 0, 27),
     [
       {
