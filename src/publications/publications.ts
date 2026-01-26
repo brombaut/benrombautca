@@ -223,6 +223,26 @@ const publications: Publication[] = [
       },
     ],
   ),
+  new Publication(
+    "From Vibe to Verifiable Spec-Driven Development: A Demo of Intent and Realization Engineering",
+    [
+      "Keheliya Gallaba",
+      "Zhiyu Fan",
+      "Jiahuei (Justina) Lin",
+      "Filipe R. Cogo",
+      "Benjamin Rombaut",
+      "Dayi Lin",
+      "Ahmed E. Hassan",
+    ],
+    "Proceedings of the AAAI Workshop on Next-Gen Code Development with Collaborative AI Agents (CodeMates), 2026",
+    new Date(2026, 0, 27),
+    [
+      {
+        type: "AAAI '26 Workshop",
+        url: "https://sites.google.com/view/next-gen-code-agents-aaai26",
+      },
+    ],
+  ),
 ];
 
 export default publications;
