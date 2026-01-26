@@ -254,7 +254,7 @@ const publications: Publication[] = [
       "Dayi Lin",
       "Ahmed E. Hassan",
     ],
-    "ICSE '26 Technical Briefings",
+    "International Conference on Software Engineering (ICSE) '26 Technical Briefings",
     new Date(2026, 3, 15),
     [
       {
