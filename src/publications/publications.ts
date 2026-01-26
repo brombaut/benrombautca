@@ -235,8 +235,13 @@ const publications: Publication[] = [
       "Ahmed E. Hassan",
     ],
     "AAAI Workshop on Next-Gen Code Development with Collaborative AI Agents '26",
-    new Date(2026, 1, 1),
-    [],
+    new Date(2026, 0, 27),
+    [
+      {
+        type: "AAAI '26 Workshop",
+        url: "https://sites.google.com/view/next-gen-code-agents-aaai26",
+      },
+    ],
   ),
 ];
 
