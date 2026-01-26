@@ -243,6 +243,26 @@ const publications: Publication[] = [
       },
     ],
   ),
+  new Publication(
+    "Vibe Engineering: Software Engineering for Software Makers",
+    [
+      "Keheliya Gallaba",
+      "Zhiyu Fan",
+      "Jiahuei (Justina) Lin",
+      "Filipe R. Cogo",
+      "Benjamin Rombaut",
+      "Dayi Lin",
+      "Ahmed E. Hassan",
+    ],
+    "ICSE '26 Technical Briefings",
+    new Date(2026, 3, 15),
+    [
+      {
+        type: "ICSE '26",
+        url: "https://conf.researchr.org/home/icse-2026",
+      },
+    ],
+  ),
 ];
 
 export default publications;
