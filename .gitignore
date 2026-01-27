@@ -9,6 +9,8 @@ articles_converter_venv
 .env
 .env.local
 .env.*.local
+src/bookshelf/syncer_v2/.env
+src/bookshelf/syncer_v2/credentials.env
 
 src/bookshelf/syncer/gr_response.*
 src/bookshelf/syncer/*.js
