@@ -1,5 +1,5 @@
 <template>
-  <header class="new-nav-bar header-dark">
+  <header class="new-nav-bar header-dark" ref="navHeader">
     <div class="wrapper">
       <FullNavBar />
       <div class='condensed-navbar-back-button'>
@@ -9,9 +9,11 @@
         class="condensed-navbar-icon"
         role="button"
         tabindex="0"
+        :aria-expanded="mobileNavbarVisible"
+        aria-label="Toggle navigation menu"
         @click="toggleMobileNavBar"
         @keydown.enter="toggleMobileNavBar">
-        <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" />
+        <font-awesome-icon :icon="['fas', mobileNavbarVisible ? 'xmark' : 'bars']" class="nav-icon" />
       </div>
     </div>
     <CondensedNavBar
@@ -42,6 +44,8 @@ export default defineComponent({
     return {
       mobileNavbarVisible: false,
       startingNavBarOffset: 0,
+      boundHandleOutsideClick: null as ((e: MouseEvent) => void) | null,
+      boundWatchStickyNav: null as (() => void) | null,
     };
   },
   methods: {
@@ -50,6 +54,12 @@ export default defineComponent({
     },
     closeMobileNavBar(): void {
       this.mobileNavbarVisible = false;
+    },
+    handleOutsideClick(event: MouseEvent): void {
+      const navHeader = this.$refs.navHeader as HTMLElement;
+      if (this.mobileNavbarVisible && navHeader && !navHeader.contains(event.target as Node)) {
+        this.closeMobileNavBar();
+      }
     },
     watchStickyNav(): void {
       // TODO: Fix these type conversions
@@ -64,7 +74,18 @@ export default defineComponent({
   },
   mounted() {
     this.startingNavBarOffset = (this.$el as HTMLElement).offsetTop;
-    window.onscroll = () => this.watchStickyNav();
+    this.boundWatchStickyNav = () => this.watchStickyNav();
+    this.boundHandleOutsideClick = (e: MouseEvent) => this.handleOutsideClick(e);
+    window.addEventListener("scroll", this.boundWatchStickyNav);
+    document.addEventListener("click", this.boundHandleOutsideClick);
+  },
+  beforeUnmount() {
+    if (this.boundWatchStickyNav) {
+      window.removeEventListener("scroll", this.boundWatchStickyNav);
+    }
+    if (this.boundHandleOutsideClick) {
+      document.removeEventListener("click", this.boundHandleOutsideClick);
+    }
   },
 });
 </script>

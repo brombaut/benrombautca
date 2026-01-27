@@ -1,60 +1,34 @@
 <template>
-  <nav class="condensed-navbar" ref="mobileNavbar" :class="{ showNavBar: mobileNavbarVisible }">
-    <a tabindex="0" @click="navigateMobile('/about-me')" @keydown.enter="navigateMobile('/about-me')">
+  <nav
+    class="condensed-navbar"
+    ref="mobileNavbar"
+    :class="{ showNavBar: mobileNavbarVisible }"
+    role="navigation"
+    aria-label="Mobile navigation">
+    <a
+      v-for="item in navItems"
+      :key="item.route"
+      tabindex="0"
+      role="menuitem"
+      @click="navigateMobile(item.path)"
+      @keydown.enter="navigateMobile(item.path)">
       <font-awesome-icon
         class='active-icon'
-        :class="{ active: routeIsActive('aboutMe') }"
+        :class="{ active: routeIsActive(item.route) }"
         :icon="['fas', 'chevron-right']" />
-      <span>About Me</span>
-    </a>
-    <a tabindex="0" @click="navigateMobile('/publications')" @keydown.enter="navigateMobile('/publications')">
-      <font-awesome-icon
-        class='active-icon'
-        :class="{ active: routeIsActive('publications') }"
-        :icon="['fas', 'chevron-right']" />
-      <span>Publications</span>
-    </a>
-    <a tabindex="0" @click="navigateMobile('/bookshelf')" @keydown.enter="navigateMobile('/bookshelf')">
-      <font-awesome-icon
-        class='active-icon'
-        :class="{ active: routeIsActive('bookshelf') }"
-        :icon="['fas', 'chevron-right']" />
-      <span>Bookshelf</span>
-    </a>
-    <a tabindex="0" @click="navigateMobile('/articles')" @keydown.enter="navigateMobile('/articles')">
-      <font-awesome-icon
-        class='active-icon'
-        :class="{ active: routeIsActive('articles') }"
-        :icon="['fas', 'chevron-right']" />
-      <span>Articles</span>
-    </a>
-    <!-- <a @click="navigateMobile('/software')">
-      <font-awesome-icon
-        class='active-icon'
-        :class="{active: routeIsActive('software')}"
-        :icon="['fas', 'chevron-right']"/>
-      <span>Software</span>
-    </a> -->
-    <a tabindex="0" @click="navigateMobile('/running')" @keydown.enter="navigateMobile('/running')">
-      <font-awesome-icon
-        class='active-icon'
-        :class="{ active: routeIsActive('running') }"
-        :icon="['fas', 'chevron-right']" />
-      <span>Running</span>
-    </a>
-    <a tabindex="0" @click="navigateMobile('/hiking')" @keydown.enter="navigateMobile('/hiking')">
-      <font-awesome-icon
-        class='active-icon'
-        :class="{ active: routeIsActive('hiking') }"
-        :icon="['fas', 'chevron-right']" />
-      <span>Hiking</span>
+      <span>{{ item.label }}</span>
     </a>
   </nav>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import appConfig from "@/app_config";
+
+interface NavItem {
+  path: string;
+  route: string;
+  label: string;
+}
 
 export default defineComponent({
   props: {
@@ -64,19 +38,27 @@ export default defineComponent({
     },
   },
   data() {
-    const showMarathons = appConfig.flagMarathons;
+    const navItems: NavItem[] = [
+      { path: "/about-me", route: "aboutMe", label: "About Me" },
+      { path: "/publications", route: "publications", label: "Publications" },
+      { path: "/bookshelf", route: "bookshelf", label: "Bookshelf" },
+      { path: "/articles", route: "articles", label: "Articles" },
+      // { path: "/software", route: "software", label: "Software" },
+      { path: "/running", route: "running", label: "Running" },
+      { path: "/hiking", route: "hiking", label: "Hiking" },
+    ];
     return {
-      showMarathons,
+      navItems,
     };
   },
   methods: {
-    navigateMobile(routeName: string): void {
+    navigateMobile(routePath: string): void {
       this.$emit("closeMobileNavBar");
-      this.navigate(routeName);
+      this.navigate(routePath);
     },
-    navigate(routeName: string): void {
-      if (routeName !== this.$route.path) {
-        this.$router.push(routeName);
+    navigate(routePath: string): void {
+      if (routePath !== this.$route.path) {
+        this.$router.push(routePath);
       }
     },
     routeIsActive(routeName: string): boolean {
@@ -92,7 +74,7 @@ export default defineComponent({
 
 <style lang="scss">
 .condensed-navbar {
-  display: none;
+  display: flex;
   position: absolute;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 99;
@@ -102,9 +84,13 @@ export default defineComponent({
   align-items: flex-end;
   justify-content: flex-end;
   background: $primaryDark;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease-out;
 
   &.showNavBar {
-    display: flex;
+    max-height: 500px;
+    transition: max-height 0.3s ease-in;
   }
 
   a {
@@ -123,7 +109,7 @@ export default defineComponent({
 }
 
 @media only screen and (min-width: $SMALL_DISPLAY_SIZE) {
-  .condensed-navbar.showNavBar {
+  .condensed-navbar {
     display: none;
   }
 }
