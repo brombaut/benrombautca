@@ -244,7 +244,7 @@ const publications: Publication[] = [
     ],
   ),
   new Publication(
-    "Vibe Engineering: Software Engineering for Software Makers",
+    "Software Engineering for Software Makers (SE4SM): Intent and Realization Engineering for Trustworthy Vibe Coding",
     [
       "Keheliya Gallaba",
       "Zhiyu Fan",
