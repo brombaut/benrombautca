@@ -184,7 +184,7 @@ const publications: Publication[] = [
     new Date(2025, 6, 28),
     [
       {
-        type: PublicationLinkType.ACM,
+        type: "FSE '25",
         url: "https://dl.acm.org/doi/abs/10.1145/3696630.3728621",
       },
     ],
