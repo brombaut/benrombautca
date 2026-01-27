@@ -14,7 +14,7 @@ const publications: Publication[] = [
     new Date(2022, 1, 24),
     [
       {
-        type: PublicationLinkType.ACM,
+        type: "TOSEM",
         url: "https://dl.acm.org/doi/10.1145/3522587",
       },
       {
