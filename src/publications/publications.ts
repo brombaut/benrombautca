@@ -259,7 +259,7 @@ const publications: Publication[] = [
     [
       {
         type: "ICSE '26",
-        url: "https://conf.researchr.org/home/icse-2026",
+        url: "https://conf.researchr.org/details/icse-2026/icse-2026-tutorials/7/Technical-Briefing-Vibe-Engineering-Software-Engineering-for-Software-Makers",
       },
     ],
   ),
