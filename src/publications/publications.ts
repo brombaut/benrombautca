@@ -68,11 +68,11 @@ const publications: Publication[] = [
     new Date(2024, 10, 8),
     [
       {
-        type: "AIWare Leadership Bootcamp '24",
+        type: "AIware Leadership Bootcamp'24",
         url: "https://www.aiwarebootcamp.io/",
       },
       {
-        type: "AIWare Mini Bootcamp '25",
+        type: "AIware Mini Bootcamp'25",
         url: "https://www.aiwarebootcamp.io/mini.html",
       },
       {
@@ -92,7 +92,7 @@ const publications: Publication[] = [
     new Date(2024, 10, 6),
     [
       {
-        type: "AIWare Leadership Bootcamp '24",
+        type: "AIware Leadership Bootcamp'24",
         url: "https://www.aiwarebootcamp.io/",
       },
       {
@@ -154,7 +154,7 @@ const publications: Publication[] = [
     new Date(2025, 10, 1),
     [
       {
-        type: "ASE '25",
+        type: "ASE'25",
         url: "https://conf.researchr.org/details/ase-2025/ase-2025-papers/148/Watson-A-Cognitive-Observability-Framework-for-the-Reasoning-of-LLM-Powered-Agents",
       },
       {
@@ -184,7 +184,7 @@ const publications: Publication[] = [
     new Date(2025, 6, 28),
     [
       {
-        type: "FSE '25",
+        type: "FSE'25",
         url: "https://dl.acm.org/doi/abs/10.1145/3696630.3728621",
       },
     ],
@@ -210,7 +210,7 @@ const publications: Publication[] = [
     new Date(2025, 7, 3),
     [
       {
-        type: "KDD '25",
+        type: "KDD'25",
         url: "https://dl.acm.org/doi/10.1145/3711896.3736572",
       },
       {
@@ -238,13 +238,13 @@ const publications: Publication[] = [
     new Date(2026, 0, 27),
     [
       {
-        type: "AAAI '26 Workshop",
+        type: "AAAI'26 Workshop",
         url: "https://sites.google.com/view/next-gen-code-agents-aaai26",
       },
     ],
   ),
   new Publication(
-    "Vibe Engineering: Software Engineering for Software Makers",
+    "Software Engineering for Software Makers (SE4SM): Intent and Realization Engineering for Trustworthy Vibe Coding",
     [
       "Keheliya Gallaba",
       "Zhiyu Fan",
@@ -258,7 +258,7 @@ const publications: Publication[] = [
     new Date(2026, 3, 15),
     [
       {
-        type: "ICSE '26",
+        type: "ICSE'26",
         url: "https://conf.researchr.org/details/icse-2026/icse-2026-tutorials/7/Technical-Briefing-Vibe-Engineering-Software-Engineering-for-Software-Makers",
       },
     ],
