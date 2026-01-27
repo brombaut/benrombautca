@@ -2,8 +2,9 @@
   <header class="new-nav-bar header-dark" ref="navHeader">
     <div class="wrapper">
       <FullNavBar />
-      <div class='condensed-navbar-back-button'>
+      <div class="condensed-navbar-left">
         <BackButton />
+        <span v-if="!isDetailPage" class="current-section-label">{{ currentSectionLabel }}</span>
       </div>
       <div
         class="condensed-navbar-icon"
@@ -47,6 +48,30 @@ export default defineComponent({
       boundHandleOutsideClick: null as ((e: MouseEvent) => void) | null,
       boundWatchStickyNav: null as (() => void) | null,
     };
+  },
+  computed: {
+    currentSectionLabel(): string {
+      const routeName = this.$route.name as string;
+      const labels: Record<string, string> = {
+        land: "About Me",
+        aboutMe: "About Me",
+        work: "About Me",
+        education: "About Me",
+        publications: "Publications",
+        bookshelf: "Bookshelf",
+        articles: "Articles",
+        selectedArticle: "Articles",
+        software: "Software",
+        selectedSoftware: "Software",
+        running: "Running",
+        hiking: "Hiking",
+      };
+      return labels[routeName] || "";
+    },
+    isDetailPage(): boolean {
+      const routeName = this.$route.name as string;
+      return routeName === "selectedArticle" || routeName === "selectedSoftware";
+    },
   },
   methods: {
     toggleMobileNavBar(): void {
@@ -110,8 +135,17 @@ export default defineComponent({
     justify-content: center;
     position: relative;
 
-    .condensed-navbar-back-button {
+    .condensed-navbar-left {
       display: none;
+      align-items: center;
+      margin-right: auto;
+      padding-left: 12px;
+
+      .current-section-label {
+        font-weight: 600;
+        font-size: 1.1em;
+        margin-left: 8px;
+      }
     }
 
     .condensed-navbar-icon {
@@ -129,14 +163,14 @@ export default defineComponent({
     }
 
     @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
-      justify-content: flex-end;
+      justify-content: space-between;
 
       .full-navbar {
         display: none;
       }
 
-      .condensed-navbar-back-button {
-        display: inline;
+      .condensed-navbar-left {
+        display: flex;
       }
 
       .condensed-navbar-icon {

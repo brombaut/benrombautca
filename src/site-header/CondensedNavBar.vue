@@ -63,6 +63,7 @@ export default defineComponent({
     },
     routeIsActive(routeName: string): boolean {
       switch (routeName) {
+      case ("aboutMe"): return this.$route.name === routeName || this.$route.name === "land";
       case ("articles"): return this.$route.name === routeName || this.$route.name === "selectedArticle";
       case ("software"): return this.$route.name === routeName || this.$route.name === "selectedSoftware";
       default: return this.$route.name === routeName;
