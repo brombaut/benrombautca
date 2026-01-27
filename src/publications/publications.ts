@@ -68,11 +68,11 @@ const publications: Publication[] = [
     new Date(2024, 10, 8),
     [
       {
-        type: "AIWare Leadership Bootcamp'24",
+        type: "AIware Leadership Bootcamp'24",
         url: "https://www.aiwarebootcamp.io/",
       },
       {
-        type: "AIWare Mini Bootcamp'25",
+        type: "AIware Mini Bootcamp'25",
         url: "https://www.aiwarebootcamp.io/mini.html",
       },
       {
@@ -92,7 +92,7 @@ const publications: Publication[] = [
     new Date(2024, 10, 6),
     [
       {
-        type: "AIWare Leadership Bootcamp'24",
+        type: "AIware Leadership Bootcamp'24",
         url: "https://www.aiwarebootcamp.io/",
       },
       {
