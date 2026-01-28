@@ -31,6 +31,7 @@ import {
   faUsers,
   faParagraph,
   faHiking,
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-regular-svg-icons";
 import { faGithub, faLinkedin, faDev, faStackOverflow, faResearchgate, faGoogleScholar } from "@fortawesome/free-brands-svg-icons";
@@ -75,6 +76,7 @@ library.add(faResearchgate);
 library.add(faParagraph);
 library.add(faGoogleScholar);
 library.add(faHiking);
+library.add(faXmark);
 
 const app = createApp({
   render: (h: any) => h(App),

@@ -1,17 +1,20 @@
 <template>
-  <header class="new-nav-bar header-dark">
+  <header class="new-nav-bar header-dark" ref="navHeader">
     <div class="wrapper">
       <FullNavBar />
-      <div class='condensed-navbar-back-button'>
+      <div class="condensed-navbar-left">
         <BackButton />
+        <span v-if="!isDetailPage" class="current-section-label">{{ currentSectionLabel }}</span>
       </div>
       <div
         class="condensed-navbar-icon"
         role="button"
         tabindex="0"
+        :aria-expanded="mobileNavbarVisible"
+        aria-label="Toggle navigation menu"
         @click="toggleMobileNavBar"
         @keydown.enter="toggleMobileNavBar">
-        <font-awesome-icon :icon="['fas', 'bars']" class="nav-icon" />
+        <font-awesome-icon :icon="['fas', mobileNavbarVisible ? 'xmark' : 'bars']" class="nav-icon" />
       </div>
     </div>
     <CondensedNavBar
@@ -42,7 +45,33 @@ export default defineComponent({
     return {
       mobileNavbarVisible: false,
       startingNavBarOffset: 0,
+      boundHandleOutsideClick: null as ((e: MouseEvent) => void) | null,
+      boundWatchStickyNav: null as (() => void) | null,
     };
+  },
+  computed: {
+    currentSectionLabel(): string {
+      const routeName = this.$route.name as string;
+      const labels: Record<string, string> = {
+        land: "About Me",
+        aboutMe: "About Me",
+        work: "About Me",
+        education: "About Me",
+        publications: "Publications",
+        bookshelf: "Bookshelf",
+        articles: "Articles",
+        selectedArticle: "Articles",
+        software: "Software",
+        selectedSoftware: "Software",
+        running: "Running",
+        hiking: "Hiking",
+      };
+      return labels[routeName] || "";
+    },
+    isDetailPage(): boolean {
+      const routeName = this.$route.name as string;
+      return routeName === "selectedArticle" || routeName === "selectedSoftware";
+    },
   },
   methods: {
     toggleMobileNavBar(): void {
@@ -50,6 +79,12 @@ export default defineComponent({
     },
     closeMobileNavBar(): void {
       this.mobileNavbarVisible = false;
+    },
+    handleOutsideClick(event: MouseEvent): void {
+      const navHeader = this.$refs.navHeader as HTMLElement;
+      if (this.mobileNavbarVisible && navHeader && !navHeader.contains(event.target as Node)) {
+        this.closeMobileNavBar();
+      }
     },
     watchStickyNav(): void {
       // TODO: Fix these type conversions
@@ -64,7 +99,18 @@ export default defineComponent({
   },
   mounted() {
     this.startingNavBarOffset = (this.$el as HTMLElement).offsetTop;
-    window.onscroll = () => this.watchStickyNav();
+    this.boundWatchStickyNav = () => this.watchStickyNav();
+    this.boundHandleOutsideClick = (e: MouseEvent) => this.handleOutsideClick(e);
+    window.addEventListener("scroll", this.boundWatchStickyNav);
+    document.addEventListener("click", this.boundHandleOutsideClick);
+  },
+  beforeUnmount() {
+    if (this.boundWatchStickyNav) {
+      window.removeEventListener("scroll", this.boundWatchStickyNav);
+    }
+    if (this.boundHandleOutsideClick) {
+      document.removeEventListener("click", this.boundHandleOutsideClick);
+    }
   },
 });
 </script>
@@ -89,8 +135,17 @@ export default defineComponent({
     justify-content: center;
     position: relative;
 
-    .condensed-navbar-back-button {
+    .condensed-navbar-left {
       display: none;
+      align-items: center;
+      margin-right: auto;
+      padding-left: 12px;
+
+      .current-section-label {
+        font-weight: 600;
+        font-size: 1.1em;
+        margin-left: 8px;
+      }
     }
 
     .condensed-navbar-icon {
@@ -108,14 +163,14 @@ export default defineComponent({
     }
 
     @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
-      justify-content: flex-end;
+      justify-content: space-between;
 
       .full-navbar {
         display: none;
       }
 
-      .condensed-navbar-back-button {
-        display: inline;
+      .condensed-navbar-left {
+        display: flex;
       }
 
       .condensed-navbar-icon {
