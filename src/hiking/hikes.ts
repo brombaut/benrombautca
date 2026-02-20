@@ -425,6 +425,14 @@ const hikes: Hike[] = [
     ],
   },
   {
+    name: "Street Mountain and Nye Mountain",
+    orderDate: new Date(2026, 1, 16),
+    date: new Date(2026, 1, 16),
+    location: "Adirondacks, New York, USA",
+    description: "<p>Street Mountain (4,166 ft) and Nye Mountain (3,895 ft) were #6 and #7 on my journey towards completing the Adirondack 46ers. The two peaks are accessed via the same trailhead and are typically done together as a loop or out-and-back.</p><p>It was a surprisingly warm day for mid-February. We started out under mostly gray skies, but the sun began to peek through as the hike went on, and we were treated to some nice blue skies on our way back down.</p>",
+    images: [],
+  },
+  {
     name: "Cascade Mountain and Porter Mountain",
     orderDate: new Date(2026, 0, 11),
     date: new Date(2026, 0, 11),
