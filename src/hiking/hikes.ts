@@ -5,7 +5,7 @@ const hikes: Hike[] = [
     name: "Mount Katahdin",
     orderDate: new Date(2019, 6, 21),
     date: new Date(2019, 6, 21),
-    location: "Maine, USA",
+    location: "Appalachian Mountains, Maine, USA",
     description: "<p>Mount Katahdin, standing at 5,269 feet (1,606 meters), is the highest peak in Maine and the northern terminus of the Appalachian Trail. Located in Baxter State Park, it is renowned for its rugged terrain, dramatic ridges, and breathtaking views.</p><p>We hiked up and down the peak in a single day, and the next day tackled the class V rapids on the Penobscot River.</p>",
     images: [
       { src: "hiking-images/19_01_katahdin/19_katahdin1.webp", caption: "" },
@@ -114,7 +114,7 @@ const hikes: Hike[] = [
     name: "Mont Serrat",
     orderDate: new Date(2023, 6, 24),
     date: new Date(2023, 6, 24),
-    location: "Spain",
+    location: "Montserrat Range, Catalonia, Spain",
     description: "<p>Montserrat is a striking multi-peaked mountain range near Barcelona, Spain, with its highest summit, Sant Jeroni, reaching 4,055 feet (1,236 meters). The mountain is famous for its unique jagged rock formations and the historic Montserrat Monastery, a pilgrimage site nestled among the cliffs. The hike offers panoramic views of Catalonia and passes through dramatic landscapes of rocky spires and lush forests.</p><p>Montserrat is one of the most iconic natural landmarks in the region, known for both its geological beauty and cultural significance.</p><p>I did this hike with some friends I met in a hostel while staying in Barcelona.</p>",
     images: [
       { src: "hiking-images/23_04_montserrat/23_4_montserrat_5.webp", caption: "" },
@@ -143,7 +143,7 @@ const hikes: Hike[] = [
     name: "Gros Morne",
     orderDate: new Date(2023, 7, 7),
     date: new Date(2023, 7, 7),
-    location: "Gros Morne National Park, Newfoundland, Canada",
+    location: "Long Range Mountains, Newfoundland, Canada",
     description: "<p>Gros Morne Mountain is the second highest peak in Newfoundland, rising to 2,644 feet (806 meters) above sea level. Located in Gros Morne National Park, the mountain is renowned for its dramatic views over fjords, coastal lowlands, and ancient geological formations. The hike to the summit is challenging, traversing steep rocky slopes and offering breathtaking panoramas of the park's unique landscape.</p><p>Gros Morne is a UNESCO World Heritage Site, celebrated for its exposed mantle rock and its role in illustrating the theory of plate tectonics. The area is also home to diverse wildlife and rare plant species.</p><p>Robin and I did this hike after visiting Jack in St. John's, who was amazing and let us borrow his car to drive across Newfoundland Island to get to the park.</p>",
     images: [
       { src: "hiking-images/23_06_grosmorne/23_6_grosmorne_4.JPG", caption: "" },
@@ -191,7 +191,7 @@ const hikes: Hike[] = [
     name: "Grand Teton National Park",
     orderDate: new Date(2023, 7, 25),
     date: new Date(2023, 7, 25),
-    location: "Wyoming, USA",
+    location: "Teton Range, Wyoming, USA",
     description: "<p>Grand Teton National Park is located in northwestern Wyoming and is famous for its stunning mountain scenery, pristine lakes, and abundant wildlife. The park's centerpiece is the Teton Range, with Grand Teton itself rising to 13,775 feet (4,199 meters), making it the highest peak in the range and one of the most iconic mountains in the United States.</p><p>The park offers a variety of hiking trails, from easy lakeside walks to challenging alpine routes. Hikers are treated to breathtaking views of rugged peaks, glacial valleys, and wildflower-filled meadows. Grand Teton National Park is also known for its rich biodiversity, including moose, elk, bears, and bald eagles.</p><p>At the midway point of our hike, my sister and I took a dip in a freezing cold pond and enjoyed a couple of drinks, which was a fantastic and memorable break during the trek.</p>",
     images: [
       { src: "hiking-images/23_09_grand_teton/23_09_grand_teton_2.webp", caption: "" },
@@ -228,7 +228,7 @@ const hikes: Hike[] = [
     name: "Glacier National Park",
     orderDate: new Date(2023, 7, 29),
     date: new Date(2023, 7, 29),
-    location: "Montana, USA",
+    location: "Rocky Mountains, Montana, USA",
     description: "<p>Glacier National Park, located in the Rocky Mountains of northern Montana, is renowned for its dramatic peaks, pristine alpine lakes, and over two dozen glaciers. The park is home to abundant wildlife such as mountain goats, grizzly bears, and moose, and offers some of the most breathtaking mountain scenery in North America.</p><p>We hiked up to a historic mining tunnel that was dug into the mountain, which lets you walk all the way through to the other side.</p>",
     images: [
       { src: "hiking-images/23_11_glacier/23_11_glacier_4.webp", caption: "" },
@@ -244,7 +244,7 @@ const hikes: Hike[] = [
     name: "Mount Rainier Side Hike",
     orderDate: new Date(2023, 7, 31),
     date: new Date(2023, 7, 31),
-    location: "Washington, USA",
+    location: "Cascade Range, Washington, USA",
     description: "<p>A little side hike we did around Mount Rainier, we hiked up to a nice waterfall. It was pretty wet and we got rained on where we had set up camp, Sis's tent flooded during the night, and you can see her trying to dry out the tent the next morning.</p>",
     images: [
       { src: "hiking-images/23_12_mount_rainier_1/23_12_mount_rainier_1_1.webp", caption: "" },
@@ -260,7 +260,7 @@ const hikes: Hike[] = [
     name: "Mount Rainier",
     orderDate: new Date(2023, 8, 1),
     date: new Date(2023, 8, 1),
-    location: "Washington, USA",
+    location: "Cascade Range, Washington, USA",
     description: "<p>Mount Rainier stands at 14,411 feet (4,392 meters), making it the highest peak in Washington and the Cascade Range. It's a massive stratovolcano, visible from miles around, and is known for its year-round glaciers and unpredictable weather. The mountain is surrounded by rugged terrain, alpine meadows, and dense forests.</p><p>We hiked up to Camp Muir, which is the highest you can go on the mountain without needing professional mountaineering gear like ropes or crampons. On the way up, we were stuck in a cloud and couldn't even see the direction we were heading—just following the route on AllTrails. We were walking on ice and snow most of the way, but when we got to the camp, we broke above the clouds and the view was incredible. This was my favourite hike on our roadtrip.</p>",
     images: [
       { src: "hiking-images/23_13_mount_rainier_2/23_13_mount_rainier_2_2.webp", caption: "" },
@@ -280,7 +280,7 @@ const hikes: Hike[] = [
     name: "Whistler",
     orderDate: new Date(2023, 8, 14),
     date: new Date(2023, 8, 14),
-    location: "British Columbia, Canada",
+    location: "Coast Mountains, British Columbia, Canada",
     description: "<p>This was the last hike of my sister and I's roadtrip across the States. We visited my old roommate Nick, who was living in Squamish at the time, and then headed up to Whistler for a two-day hike. I don't actually remember exactly which trail we did. Unfortunately, we couldn't take the chairlift down the mountain at the end.</p>",
     images: [
       { src: "hiking-images/23_14_whistler/23_14_whistler_7.JPG", caption: "" },
@@ -301,7 +301,7 @@ const hikes: Hike[] = [
     name: "Mount Mansfield",
     orderDate: new Date(2024, 5, 21),
     date: new Date(2024, 5, 21),
-    location: "Vermont, USA",
+    location: "Green Mountains, Vermont, USA",
     description: "<p>Mount Mansfield is the highest peak in Vermont, reaching 4,393 feet (1,339 meters). The summit ridge is known for its distinctive profile, which looks like a human face when viewed from the east. The upper part of the mountain is home to rare alpine tundra, which is unusual for the region.</p><p>This hike is only about 2 hours from Montreal, and is now one of my favourites in the area.</p>",
     images: [
       { src: "hiking-images/24_01_mount_mansfield/24_01_mount_mansfield_1.webp", caption: "" },
@@ -331,7 +331,7 @@ const hikes: Hike[] = [
     name: "Mount Mansfield",
     orderDate: new Date(2024, 8, 14),
     date: new Date(2024, 8, 14),
-    location: "Vermont, USA",
+    location: "Green Mountains, Vermont, USA",
     description: "<p>Second time hiking this. Mount Mansfield is the highest peak in Vermont, reaching 4,393 feet (1,339 meters). The summit ridge is known for its distinctive profile, which looks like a human face when viewed from the east. The upper part of the mountain is home to rare alpine tundra, which is unusual for the region.</p><p>This hike is only about 2 hours from Montreal, and is now one of my favourites in the area.</p>",
     images: [
       { src: "hiking-images/24_03_mount_mansfield/24_03_mount_mansfield_1.webp", caption: "" },
@@ -385,7 +385,7 @@ const hikes: Hike[] = [
     name: "Mount Katahdin",
     orderDate: new Date(2025, 6, 14),
     date: new Date(2025, 6, 14),
-    location: "Maine, USA",
+    location: "Appalachian Mountains, Maine, USA",
     description: "<p>The second time I've done this mountain. Mount Katahdin is the highest peak in Maine, standing at 5,269 feet (1,606 meters). It's the northern end of the Appalachian Trail and sits in Baxter State Park. The mountain is known for its rugged ridges, steep climbs, and unpredictable weather.</p><p>The Knife Edge trail, which is the trail I took this time, is probably the most famous route up, with some exposed sections that are a bit sketchy if you're not a fan of heights. The summit is usually windy and can be cold even in the summer. Katahdin is also a big deal for thru-hikers finishing (or starting) the Appalachian Trail.</p>",
     images: [
       { src: "hiking-images/25_02_mount_katahdin/25_02_mount_katahdin_1.webp", caption: "" },
@@ -401,7 +401,7 @@ const hikes: Hike[] = [
     name: "Mount Mansfield",
     orderDate: new Date(2025, 8, 28),
     date: new Date(2025, 8, 28),
-    location: "Vermont, USA",
+    location: "Green Mountains, Vermont, USA",
     description: "<p>Third time hiking this. Mount Mansfield is the highest peak in Vermont, reaching 4,393 feet (1,339 meters). The summit ridge is known for its distinctive profile, which looks like a human face when viewed from the east. The upper part of the mountain is home to rare alpine tundra, which is unusual for the region.</p><p>This hike is only about 2 hours from Montreal, and is now one of my favourites in the area.</p>",
     images: [
       { src: "hiking-images/25_03_mount_mansfield/25_03_mount_mansfield_1.webp", caption: "" },
@@ -415,7 +415,7 @@ const hikes: Hike[] = [
     name: "Mount Lafayette, Mount Lincoln, and Little Haystack",
     orderDate: new Date(2025, 9, 13),
     date: new Date(2025, 9, 13),
-    location: "New Hampshire, USA",
+    location: "White Mountains, New Hampshire, USA",
     description: "<p>This loop hike in the White Mountains covers three summits: Mount Lafayette (5,249 ft), Mount Lincoln (5,089 ft), and Little Haystack (4,780 ft). Lafayette is the highest peak outside the Presidential Range in New Hampshire and is known for its exposed summit and long views across the Whites.</p><p>The Franconia Ridge section is above treeline for a while, so you get a lot of wind and weather. The ridge walk is rocky and is one of the classic hikes in the region. Unfortunately, when I did this hike it was raining and incredibly windy, so I spent as little time as possible on the ridge.</p>",
     images: [
       { src: "hiking-images/25_04_mount_lafayette/25_04_mount_lafayette_1.webp", caption: "" },
