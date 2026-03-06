@@ -6,6 +6,12 @@ venv/
 venv*/
 **/venv/
 
+# Dolt internals
+.dolt/
+.doltcfg/
+beads_*/
+config.yaml
+
 # local env files
 .env
 .env.local
