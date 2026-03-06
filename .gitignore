@@ -10,7 +10,7 @@ venv*/
 .dolt/
 .doltcfg/
 beads_*/
-config.yaml
+/config.yaml
 
 # local env files
 .env
