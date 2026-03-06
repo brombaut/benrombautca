@@ -36,3 +36,6 @@ yarn-error.log*
 *.sw?
 
 *.pkg
+
+# Dolt database files (added by bd init)
+*.db

@@ -1,7 +1,7 @@
 {
   "database": "dolt",
-  "jsonl_export": "issues.jsonl",
   "backend": "dolt",
   "dolt_mode": "server",
-  "dolt_database": "beads_benrombautca"
+  "dolt_database": "beads_benrombautca",
+  "project_id": "a5b69729-9724-4d7e-aa43-738cfc682e07"
 }
