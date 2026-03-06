@@ -354,6 +354,25 @@ Steps:
 - Heavy use of `any` type in TypeScript (defeats type safety)
 - See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
 
+## Article Writing Style
+
+When writing or editing articles for this site, follow these conventions:
+
+### Voice and Tone
+- First-person, personal, honest — these are accounts of real experience, not guides or tutorials
+- Measured and direct, not flowery or over-written
+- Avoid clichéd phrases and filler expressions (e.g. "striking moment", "learned to stay vigilant", "reaching for")
+- Don't editorialize or over-explain — let the experience speak for itself
+
+### Punctuation and Formatting
+- **No em dashes** — use commas or restructure the sentence instead
+- Italics are fine for internal thoughts or emphasis (e.g. *I need to learn how to use this thing*)
+- Keep sentences clear and relatively short
+
+### Structure
+- Personal narrative articles often open with a brief framing paragraph before the main content begins — this sets context (e.g. what series this belongs to, what time period it covers)
+- Section headers use the `## Heading` format with a date or phase label where relevant
+
 ## AI Assistant Guidelines
 
 ### When Making Changes
