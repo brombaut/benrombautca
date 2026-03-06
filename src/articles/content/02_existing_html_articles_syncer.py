@@ -32,7 +32,6 @@ class ArticleMeta(TypedDict):
     _createdAt: str
     _updatedAt: str
     _description: str
-    _tags: List[str]
     _show: bool
 
 
@@ -61,7 +60,6 @@ def sync_articles(
                 "_createdAt": current_date,
                 "_updatedAt": current_date,
                 "_description": "",
-                "_tags": [],
                 "_show": False
             })
             existing_content_json.append({

@@ -5,13 +5,6 @@
         "_createdAt": "2026-03-05T00:00:00.000Z",
         "_updatedAt": "2026-03-05T00:00:00.000Z",
         "_description": "A personal timeline of how my habits and thinking shifted as I went from casually experimenting with AI chat tools to making them a core part of how I build software.",
-        "_tags": [
-            "ai",
-            "claude-code",
-            "github-copilot",
-            "chatgpt",
-            "tools"
-        ],
         "_show": true
     },
     {
@@ -20,12 +13,6 @@
         "_createdAt": "2021-06-24T14:13:24.709Z",
         "_updatedAt": "2025-04-07T19:34:56.382090Z",
         "_description": "How to create a GitHub actions YAML file that deploys the project to GitHub pages. Also touches on using environment variables in the pipeline.",
-        "_tags": [
-            "github-pages",
-            "github-actions",
-            "deploy",
-            "how-to"
-        ],
         "_show": true
     },
     {
@@ -34,12 +21,6 @@
         "_createdAt": "2021-06-20T14:13:24.709Z",
         "_updatedAt": "2025-04-07T19:34:56.382110Z",
         "_description": "How to initialize an npm & TypeScript project. Goes over configuration files for both.",
-        "_tags": [
-            "npm",
-            "typescript",
-            "init",
-            "how-to"
-        ],
         "_show": true
     },
     {
@@ -48,11 +29,6 @@
         "_createdAt": "2021-06-22T14:13:24.709Z",
         "_updatedAt": "2025-04-07T19:34:56.382147Z",
         "_description": "Explains how to set up the different npm scripts and the commands needed when publishing a package to npm.",
-        "_tags": [
-            "npm",
-            "publish",
-            "how-to"
-        ],
         "_show": true
     },
     {
@@ -61,9 +37,6 @@
         "_createdAt": "2021-06-30T13:26:44.333Z",
         "_updatedAt": "2025-04-07T19:34:56.382121Z",
         "_description": "Notes about different topics in statistics from the 'Practical Statistics for Data Scientists' book.",
-        "_tags": [
-            "statistics"
-        ],
         "_show": true
     },
     {
@@ -72,11 +45,6 @@
         "_createdAt": "2021-07-01T16:50:05.379Z",
         "_updatedAt": "2025-04-07T19:34:56.382106Z",
         "_description": "Notes about different design patterns from the 'Head First Design Patterns' book.",
-        "_tags": [
-            "design-patterns",
-            "software-architecture",
-            "example-repo"
-        ],
         "_show": true
     },
     {
@@ -85,13 +53,6 @@
         "_createdAt": "2021-09-26T01:39:05.452Z",
         "_updatedAt": "2025-04-07T19:34:56.382098Z",
         "_description": "Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.",
-        "_tags": [
-            "npm",
-            "publish",
-            "github-actions",
-            "deploy",
-            "how-to"
-        ],
         "_show": true
     },
     {
@@ -100,12 +61,6 @@
         "_createdAt": "2021-09-26T13:58:54.629Z",
         "_updatedAt": "2025-04-07T19:34:56.382119Z",
         "_description": "Explains how to track testing coverage with CodeCov and publish the results both from your local machine and automatically using GitHub Actions.",
-        "_tags": [
-            "testing",
-            "codecov",
-            "github-actions",
-            "how-to"
-        ],
         "_show": true
     },
     {
@@ -114,12 +69,6 @@
         "_createdAt": "2021-10-02T01:16:09.641Z",
         "_updatedAt": "2025-04-07T19:34:56.382139Z",
         "_description": "Explains how to configure a GitHub Action to run on a cron schedule.",
-        "_tags": [
-            "github-actions",
-            "scheduled",
-            "cron",
-            "how-to"
-        ],
         "_show": true
     },
     {
@@ -128,12 +77,6 @@
         "_createdAt": "2021-10-09T15:12:33.464Z",
         "_updatedAt": "2025-04-07T19:34:56.382161Z",
         "_description": "Notes on topics related to linear regression.",
-        "_tags": [
-            "linear-regression",
-            "residuals",
-            "correlation",
-            "statistics"
-        ],
         "_show": true
     },
     {
@@ -142,11 +85,6 @@
         "_createdAt": "2021-10-14T21:27:40.056Z",
         "_updatedAt": "2025-04-07T19:34:56.382076Z",
         "_description": "Quick reference for common programs and commands used on the command line.",
-        "_tags": [
-            "bash",
-            "command-line",
-            "linux"
-        ],
         "_show": true
     },
     {
@@ -155,12 +93,6 @@
         "_createdAt": "2021-10-15T00:10:35.201Z",
         "_updatedAt": "2025-04-07T19:34:56.382124Z",
         "_description": "A high-level overview of the TensorFlow API.",
-        "_tags": [
-            "tensorflow",
-            "machine-learning",
-            "deep-learning",
-            "software-design"
-        ],
         "_show": true
     },
     {
@@ -169,12 +101,6 @@
         "_createdAt": "2021-10-21T21:56:58.670Z",
         "_updatedAt": "2025-04-07T19:34:56.382153Z",
         "_description": "",
-        "_tags": [
-            "pandas",
-            "jupyter",
-            "python",
-            "data-analysis"
-        ],
         "_show": true
     },
     {
@@ -183,9 +109,6 @@
         "_createdAt": "2021-10-23T23:33:24.305Z",
         "_updatedAt": "2025-04-07T19:34:56.382104Z",
         "_description": "",
-        "_tags": [
-            "linux"
-        ],
         "_show": true
     },
     {
@@ -194,11 +117,6 @@
         "_createdAt": "2021-11-06T14:38:54.300Z",
         "_updatedAt": "2025-04-07T19:34:56.382101Z",
         "_description": "",
-        "_tags": [
-            "scikit-learn",
-            "machine-learning",
-            "statistics"
-        ],
         "_show": true
     },
     {
@@ -207,11 +125,6 @@
         "_createdAt": "2021-12-06T17:14:37.900Z",
         "_updatedAt": "2025-04-07T19:34:56.382114Z",
         "_description": "",
-        "_tags": [
-            "dependency-management",
-            "npm",
-            "node"
-        ],
         "_show": true
     },
     {
@@ -220,11 +133,6 @@
         "_createdAt": "2021-12-27T01:03:56.971Z",
         "_updatedAt": "2025-04-07T19:34:56.382171Z",
         "_description": "How I like to set up my latex projects for writing papers.",
-        "_tags": [
-            "latex",
-            "how-to",
-            "writing"
-        ],
         "_show": true
     },
     {
@@ -233,10 +141,6 @@
         "_createdAt": "2022-01-16T14:45:49.578Z",
         "_updatedAt": "2025-04-07T19:34:56.382133Z",
         "_description": "",
-        "_tags": [
-            "typescript",
-            "node"
-        ],
         "_show": true
     },
     {
@@ -245,10 +149,6 @@
         "_createdAt": "2022-01-16T15:21:36.279Z",
         "_updatedAt": "2025-04-07T19:34:56.382117Z",
         "_description": "",
-        "_tags": [
-            "typescript",
-            "node"
-        ],
         "_show": true
     },
     {
@@ -257,9 +157,6 @@
         "_createdAt": "2022-01-29T16:20:19.106Z",
         "_updatedAt": "2025-04-07T19:34:56.382156Z",
         "_description": "",
-        "_tags": [
-            "algorithms"
-        ],
         "_show": true
     },
     {
@@ -268,10 +165,6 @@
         "_createdAt": "2022-02-20T15:47:37.201Z",
         "_updatedAt": "2025-04-07T19:34:56.382145Z",
         "_description": "",
-        "_tags": [
-            "deep-learning",
-            "machine-learning"
-        ],
         "_show": true
     },
     {
@@ -280,12 +173,6 @@
         "_createdAt": "2022-06-19T14:41:23.672Z",
         "_updatedAt": "2025-04-07T19:34:56.382142Z",
         "_description": "",
-        "_tags": [
-            "machine-learning",
-            "scikit-learn",
-            "how-to",
-            "python"
-        ],
         "_show": true
     },
     {
@@ -294,9 +181,6 @@
         "_createdAt": "2022-06-19T18:35:03.379Z",
         "_updatedAt": "2026-03-06T18:11:50.847891Z",
         "_description": "",
-        "_tags": [
-            "data-structures"
-        ],
         "_show": true
     },
     {
@@ -305,12 +189,6 @@
         "_createdAt": "2022-06-21T21:31:57.166Z",
         "_updatedAt": "2025-04-07T19:34:56.382127Z",
         "_description": "",
-        "_tags": [
-            "machine-learning",
-            "scikit-learn",
-            "how-to",
-            "python"
-        ],
         "_show": true
     },
     {
@@ -319,9 +197,6 @@
         "_createdAt": "2022-06-22T01:50:29.484Z",
         "_updatedAt": "2026-03-06T18:11:50.847927Z",
         "_description": "",
-        "_tags": [
-            "algorithms"
-        ],
         "_show": true
     },
     {
@@ -330,11 +205,6 @@
         "_createdAt": "2022-06-26T17:48:25.798Z",
         "_updatedAt": "2025-04-07T20:18:22.011701Z",
         "_description": "",
-        "_tags": [
-            "machine-learning",
-            "scikit-learn",
-            "python"
-        ],
         "_show": true
     },
     {
@@ -343,11 +213,6 @@
         "_createdAt": "2022-06-27T00:00:00.093Z",
         "_updatedAt": "2026-03-06T18:11:50.847868Z",
         "_description": "",
-        "_tags": [
-            "machine-learning",
-            "scikit-learn",
-            "python"
-        ],
         "_show": true
     },
     {
@@ -356,9 +221,6 @@
         "_createdAt": "2022-06-29T22:01:58.602Z",
         "_updatedAt": "2026-03-06T18:11:50.847948Z",
         "_description": "",
-        "_tags": [
-            "data-structures"
-        ],
         "_show": true
     },
     {
@@ -367,9 +229,6 @@
         "_createdAt": "2022-07-04T00:19:27.219Z",
         "_updatedAt": "2025-04-07T20:18:22.011731Z",
         "_description": "",
-        "_tags": [
-            "algorithms"
-        ],
         "_show": true
     },
     {
@@ -378,10 +237,6 @@
         "_createdAt": "2023-02-28T01:34:43.901Z",
         "_updatedAt": "2025-04-07T20:18:22.011694Z",
         "_description": "",
-        "_tags": [
-            "deep-learning",
-            "machine-learning"
-        ],
         "_show": true
-    },
+    }
 ]
