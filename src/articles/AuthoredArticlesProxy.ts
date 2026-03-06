@@ -10,7 +10,6 @@ interface AuthoredArticleMeta {
   _id: string;
   _title: string,
   _createdAt: Date,
-  _updatedAt: Date,
   _description: string,
   _show: boolean
 }
@@ -19,7 +18,6 @@ export interface AuthoredArticle {
   readonly id: string,
   readonly title: string,
   readonly createdAt: Date,
-  readonly updatedAt: Date,
   readonly description: string,
   readonly body: string,
   readonly show: boolean
@@ -55,7 +53,6 @@ export class AuthoredArticlesProxy {
         id: dto._id,
         title: dto._title,
         createdAt: new Date(dto._createdAt),
-        updatedAt: new Date(dto._updatedAt),
         description: dto._description,
         body: dto._body,
         show: dto._show,

@@ -30,7 +30,6 @@ class ArticleMeta(TypedDict):
     _id: str
     _title: str
     _createdAt: str
-    _updatedAt: str
     _description: str
     _show: bool
 
@@ -49,8 +48,6 @@ def sync_articles(
                 existing_content["_body"] = source_file["body"]
                 # Update the corresponding meta information
                 existing_meta = next((item for item in existing_meta_json if item["_id"] == source_file["id"]), None)
-                if existing_meta:
-                    existing_meta["_updatedAt"] = datetime.now().isoformat() + "Z"
         else:
             # Add new article
             current_date = datetime.now().isoformat() + "Z"
@@ -58,7 +55,6 @@ def sync_articles(
                 "_id": source_file["id"],
                 "_title": "",
                 "_createdAt": current_date,
-                "_updatedAt": current_date,
                 "_description": "",
                 "_show": False
             })
@@ -81,7 +77,6 @@ def main(source_html_directory, aa_meta_json_path, aa_content_json_path):
         {
             "id": file_key,
             "createdAt": current_date,
-            "updatedAt": current_date,
             "body": file_content
         }
         for file_key, file_content in source_html_files_dict.items()

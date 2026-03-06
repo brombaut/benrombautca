@@ -13,8 +13,7 @@
         <td class="info-column">
           <div class="main"><b>{{article.title}}</b></div>
           <div class="secondary">
-            Created {{ formatDate(article.createdAt) }} •
-            Updated {{ formatDate(article.updatedAt) }}
+            Created {{ formatDate(article.createdAt) }}
           </div>
         </td>
       </tr>

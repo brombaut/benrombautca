@@ -10,7 +10,7 @@
     </header>
     <div class='body'>
       <div class="dates">
-        Created {{ formatDate(article.createdAt) }} • Updated {{ formatDate(article.updatedAt) }}
+        Created {{ formatDate(article.createdAt) }}
       </div>
       <div class="description"><p>{{article.description}}</p></div>
     </div>

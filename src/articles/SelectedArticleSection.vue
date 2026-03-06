@@ -3,11 +3,7 @@
     <SectionHeader :title="selectedArticle.title" icon="" :subtext="selectedArticle.description" />
     <div class="meta-container">
       <div class="dates">
-        Created {{ formatDate(selectedArticle.createdAt) }} •
-        Updated {{ formatDate(selectedArticle.updatedAt) }}
-      </div>
-      <div class="tags">
-        <Tag v-for="tag in selectedArticle.tags" :key="tag" :tag="tag" />
+        Created {{ formatDate(selectedArticle.createdAt) }}
       </div>
     </div>
     <div class="section-body">
@@ -19,7 +15,6 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
-import Tag from "../shared/Tag.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
 import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
 
@@ -27,7 +22,6 @@ export default defineComponent({
   name: "SelectedArticleSection",
   components: {
     SectionHeader,
-    Tag,
     GitHubMarkdown,
   },
   data() {
@@ -89,13 +83,6 @@ export default defineComponent({
 
     .dates {
       margin: 0px 0;
-    }
-
-    .tags {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      margin: 8px 0;
     }
 
   }
