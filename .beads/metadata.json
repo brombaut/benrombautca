@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "benrombautca",
+  "project_id": "a7e8bf8b-499e-4faf-846b-2c0648352276"
+}
