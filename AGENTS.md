@@ -85,6 +85,18 @@ bd automatically syncs with git:
 - Imports from JSONL when newer (e.g., after `git pull`)
 - No manual export/import needed!
 
+### Fresh Clone / Missing Database
+
+If `bd ready` or other commands fail with `table not found: issues`, the local Dolt database needs to be initialized from the JSONL file. This happens on fresh clones because the Dolt DB is gitignored.
+
+**Fix:**
+
+```bash
+bd init --force --prefix benrombautca --from-jsonl
+```
+
+This wipes the local Dolt DB and reimports all issues from `.beads/issues.jsonl`. The `--from-jsonl` flag is critical — without it, the DB is created empty.
+
 ### Important Rules
 
 - ✅ Use bd for ALL task tracking
