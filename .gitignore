@@ -2,8 +2,9 @@
 node_modules
 dist/
 commit_message.txt
-venvs/*
-articles_converter_venv
+venv/
+venv*/
+**/venv/
 
 # local env files
 .env
