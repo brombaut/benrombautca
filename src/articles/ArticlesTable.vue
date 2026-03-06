@@ -3,7 +3,6 @@
     <thead>
       <tr>
         <th>{{articles.length}} Articles</th>
-        <th>Tags</th>
       </tr>
     </thead>
     <tbody>
@@ -18,9 +17,6 @@
             Updated {{ formatDate(article.updatedAt) }}
           </div>
         </td>
-        <td class="tags-column">
-          <Tag v-for="tag in article.tags" :key="tag" :tag="tag" />
-        </td>
       </tr>
     </tbody>
   </table>
@@ -28,14 +24,11 @@
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue";
-import Tag from "@/shared/Tag.vue";
 import { AuthoredArticle } from "./AuthoredArticlesProxy";
 
 export default defineComponent({
   name: "ArticlesTable",
-  components: {
-    Tag,
-  },
+  components: {},
   props: {
     articles: {
       type: Array as PropType<AuthoredArticle[]>,
@@ -91,12 +84,6 @@ export default defineComponent({
           font-size: 0.8em;
           margin-top: 6px;
         }
-      }
-
-      .tags-column {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
       }
 
       &:hover {

@@ -14,24 +14,16 @@
       </div>
       <div class="description"><p>{{article.description}}</p></div>
     </div>
-    <footer>
-      <div class="tags">
-        <Tag v-for="tag in article.tags" :key="tag" :tag="tag" />
-      </div>
-    </footer>
   </div>
 </template>
 
 <script lang="ts">
 import { PropType, defineComponent } from "vue";
-import Tag from "@/shared/Tag.vue";
 import { AuthoredArticle } from "./AuthoredArticlesProxy";
 
 export default defineComponent({
   name: "ArticleCard",
-  components: {
-    Tag,
-  },
+  components: {},
   props: {
     article: {
       type: Object as PropType<AuthoredArticle>,
@@ -78,14 +70,6 @@ $verticalPadding: 8px;
     padding: $verticalPadding $horizontalPadding $verticalPadding $horizontalPadding;
     background-color: $secondaryLight;
   }
-  footer {
-    width: calc(100% - 2*$horizontalPadding);
-    padding: $verticalPadding $horizontalPadding 2*$verticalPadding $horizontalPadding;
-    background-color: $secondary;
-    border-bottom-left-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
-  }
-
   &:hover {
     $darkenPercent: 4%;
     cursor: pointer;
@@ -96,10 +80,6 @@ $verticalPadding: 8px;
 
     body {
       background-color: darken($secondaryLight, $darkenPercent);
-    }
-
-    footer {
-      background-color: darken($secondary, $darkenPercent);
     }
   }
 
@@ -117,11 +97,6 @@ $verticalPadding: 8px;
     font-size: 1em;
   }
 
-  .tags {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
 }
 
 @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {

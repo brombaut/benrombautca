@@ -49,30 +49,6 @@ export default defineComponent({
           return b.createdAt.getTime() - a.createdAt.getTime();
         });
     },
-    listOfUniqueTags(): string[] {
-      // TODO: Use it or remove it
-      const arrayOfTagsArrays: string[][] = this.authoredArticles.map(
-        (aa: AuthoredArticle) => aa.tags,
-      );
-      type TagCount = {
-        tag: string,
-        count: number
-      };
-      const result: TagCount[] = [];
-      arrayOfTagsArrays.forEach((tagsArr: string[]) => {
-        tagsArr.forEach((tag: string) => {
-          if (!result.find((tc: TagCount) => tc.tag === tag)) {
-            result.push({ tag, count: 0 });
-          }
-          const matchingTC: TagCount | undefined = result.find((tc: TagCount) => tc.tag === tag);
-          if (matchingTC) {
-            matchingTC.count++;
-          }
-        });
-      });
-
-      return result.map((tc: TagCount) => `${tc.tag} (${tc.count})`);
-    },
   },
   methods: {
     articleClicked(article: AuthoredArticle) {
@@ -91,22 +67,6 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    #tags-filter {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      background-color: darken($secondary, 2%);
-      padding: 8px 16px;
-      border-radius: 16px;
-      margin: 0px 20px;
-
-      .tags-filter__container{
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-    }
 
     .articles-cards-container {
       display: flex;
