@@ -1,6 +1,6 @@
 [
     {
-        "_id": "deploy_ghpages_actions",
+        "_id": "20210624_deploy_ghpages_actions",
         "_title": "🚀 Set up Continuous Deployment to GitHub Pages with GitHub Actions",
         "_createdAt": "2021-06-24T14:13:24.709Z",
         "_updatedAt": "2025-04-07T19:34:56.382090Z",
@@ -14,7 +14,7 @@
         "_show": true
     },
     {
-        "_id": "init_npm_project",
+        "_id": "20210620_init_npm_project",
         "_title": "🔨 Initialize an NPM project with TypeScript",
         "_createdAt": "2021-06-20T14:13:24.709Z",
         "_updatedAt": "2025-04-07T19:34:56.382110Z",
@@ -28,7 +28,7 @@
         "_show": true
     },
     {
-        "_id": "publish_npm_project",
+        "_id": "20210622_publish_npm_project",
         "_title": "📝 Publish an NPM project",
         "_createdAt": "2021-06-22T14:13:24.709Z",
         "_updatedAt": "2025-04-07T19:34:56.382147Z",
@@ -41,7 +41,7 @@
         "_show": true
     },
     {
-        "_id": "practical_statistics",
+        "_id": "20210630_practical_statistics",
         "_title": "📈 Practical Statistics - Notes",
         "_createdAt": "2021-06-30T13:26:44.333Z",
         "_updatedAt": "2025-04-07T19:34:56.382121Z",
@@ -52,7 +52,7 @@
         "_show": true
     },
     {
-        "_id": "design_patterns",
+        "_id": "20210701_design_patterns",
         "_title": "🏭 Design Patterns - Notes",
         "_createdAt": "2021-07-01T16:50:05.379Z",
         "_updatedAt": "2025-04-07T19:34:56.382106Z",
@@ -65,7 +65,7 @@
         "_show": true
     },
     {
-        "_id": "publish_npm_from_actions",
+        "_id": "20210926_publish_npm_from_actions",
         "_title": "📝 🚀 Publish NPM package from GitHub Actions",
         "_createdAt": "2021-09-26T01:39:05.452Z",
         "_updatedAt": "2025-04-07T19:34:56.382098Z",
@@ -80,7 +80,7 @@
         "_show": true
     },
     {
-        "_id": "add_codecov_to_project",
+        "_id": "20210926_add_codecov_to_project",
         "_title": "🎯 Track and Publish Test Coverage with CodeCov",
         "_createdAt": "2021-09-26T13:58:54.629Z",
         "_updatedAt": "2025-04-07T19:34:56.382119Z",
@@ -94,7 +94,7 @@
         "_show": true
     },
     {
-        "_id": "github_actions_scheduled",
+        "_id": "20211002_github_actions_scheduled",
         "_title": "🕒 Run GitHub Actions on a Schedule",
         "_createdAt": "2021-10-02T01:16:09.641Z",
         "_updatedAt": "2025-04-07T19:34:56.382139Z",
@@ -108,7 +108,7 @@
         "_show": true
     },
     {
-        "_id": "linear_regression",
+        "_id": "20211009_linear_regression",
         "_title": "📈 Linear Regression - Notes",
         "_createdAt": "2021-10-09T15:12:33.464Z",
         "_updatedAt": "2025-04-07T19:34:56.382161Z",
@@ -122,7 +122,7 @@
         "_show": true
     },
     {
-        "_id": "shell_script_utilities",
+        "_id": "20211014_shell_script_utilities",
         "_title": "💻 Shell Script Utilities",
         "_createdAt": "2021-10-14T21:27:40.056Z",
         "_updatedAt": "2025-04-07T19:34:56.382076Z",
@@ -135,7 +135,7 @@
         "_show": true
     },
     {
-        "_id": "tensorflow_overview",
+        "_id": "20211015_tensorflow_overview",
         "_title": "📖 TensorFlow API Overview",
         "_createdAt": "2021-10-15T00:10:35.201Z",
         "_updatedAt": "2025-04-07T19:34:56.382124Z",
@@ -149,7 +149,7 @@
         "_show": true
     },
     {
-        "_id": "progress_bars_in_jupyter",
+        "_id": "20211021_progress_bars_in_jupyter",
         "_title": "🔄 Progress Bars in Jupyter",
         "_createdAt": "2021-10-21T21:56:58.670Z",
         "_updatedAt": "2025-04-07T19:34:56.382153Z",
@@ -163,7 +163,7 @@
         "_show": true
     },
     {
-        "_id": "linux_directory_hierarchy_essentials",
+        "_id": "20211023_linux_directory_hierarchy_essentials",
         "_title": "📂 Linux Directory Hierarchy Essentials",
         "_createdAt": "2021-10-23T23:33:24.305Z",
         "_updatedAt": "2025-04-07T19:34:56.382104Z",
@@ -174,7 +174,7 @@
         "_show": true
     },
     {
-        "_id": "principal_component_analysis",
+        "_id": "20211106_principal_component_analysis",
         "_title": "🔍 Principal Component Analysis",
         "_createdAt": "2021-11-06T14:38:54.300Z",
         "_updatedAt": "2025-04-07T19:34:56.382101Z",
@@ -187,7 +187,7 @@
         "_show": true
     },
     {
-        "_id": "package_lock",
+        "_id": "20211206_package_lock",
         "_title": "🔒 Looking Into Lock Files",
         "_createdAt": "2021-12-06T17:14:37.900Z",
         "_updatedAt": "2025-04-07T19:34:56.382114Z",
@@ -200,7 +200,7 @@
         "_show": true
     },
     {
-        "_id": "latex_style_guide",
+        "_id": "20211227_latex_style_guide",
         "_title": "✍️ Latex Style Guide",
         "_createdAt": "2021-12-27T01:03:56.971Z",
         "_updatedAt": "2025-04-07T19:34:56.382171Z",
@@ -213,7 +213,7 @@
         "_show": true
     },
     {
-        "_id": "promise_all",
+        "_id": "20220116_promise_all",
         "_title": "🏃 Speed Up Async Loops with Promise.all()",
         "_createdAt": "2022-01-16T14:45:49.578Z",
         "_updatedAt": "2025-04-07T19:34:56.382133Z",
@@ -225,7 +225,7 @@
         "_show": true
     },
     {
-        "_id": "closure_proxy",
+        "_id": "20220116_closure_proxy",
         "_title": "📙 Using Closures to Cache Data",
         "_createdAt": "2022-01-16T15:21:36.279Z",
         "_updatedAt": "2025-04-07T19:34:56.382117Z",
@@ -237,7 +237,7 @@
         "_show": true
     },
     {
-        "_id": "search_and_sort_algorithms",
+        "_id": "20220129_search_and_sort_algorithms",
         "_title": "🔍 Search & Sort Algorithms",
         "_createdAt": "2022-01-29T16:20:19.106Z",
         "_updatedAt": "2025-04-07T19:34:56.382156Z",
@@ -248,7 +248,7 @@
         "_show": true
     },
     {
-        "_id": "deep_learning_architectures",
+        "_id": "20220220_deep_learning_architectures",
         "_title": "🤖 Deep Learning Architectures",
         "_createdAt": "2022-02-20T15:47:37.201Z",
         "_updatedAt": "2025-04-07T19:34:56.382145Z",
@@ -260,7 +260,7 @@
         "_show": true
     },
     {
-        "_id": "classify_mnist_hello_ml",
+        "_id": "20220619_classify_mnist_hello_ml",
         "_title": "🤖 Classifying the MNIST dataset - The Hello, World of ML",
         "_createdAt": "2022-06-19T14:41:23.672Z",
         "_updatedAt": "2025-04-07T19:34:56.382142Z",
@@ -274,7 +274,7 @@
         "_show": true
     },
     {
-        "_id": "data_structures_from_scratch",
+        "_id": "20220619_data_structures_from_scratch",
         "_title": "🧰 Data Structures From Scratch",
         "_createdAt": "2022-06-19T18:35:03.379Z",
         "_updatedAt": "2025-04-07T19:34:56.382159Z",
@@ -285,7 +285,7 @@
         "_show": true
     },
     {
-        "_id": "classify_mnist_additional_exercises",
+        "_id": "20220621_classify_mnist_additional_exercises",
         "_title": "🤖 Classifying the MNIST dataset - Additional Exercises",
         "_createdAt": "2022-06-21T21:31:57.166Z",
         "_updatedAt": "2025-04-07T19:34:56.382127Z",
@@ -299,7 +299,7 @@
         "_show": true
     },
     {
-        "_id": "prime_numbers",
+        "_id": "20220622_prime_numbers",
         "_title": "#️⃣ Checking for Prime Numbers",
         "_createdAt": "2022-06-22T01:50:29.484Z",
         "_updatedAt": "2025-04-07T19:34:56.382150Z",
@@ -310,7 +310,7 @@
         "_show": true
     },
     {
-        "_id": "titanic_dataset",
+        "_id": "20220626_titanic_dataset",
         "_title": "🤖 Titanic Dataset - Will a Passeger Survive?",
         "_createdAt": "2022-06-26T17:48:25.798Z",
         "_updatedAt": "2025-04-07T20:18:22.011701Z",
@@ -323,7 +323,7 @@
         "_show": true
     },
     {
-        "_id": "spam_classifier",
+        "_id": "20220627_spam_classifier",
         "_title": "🤖 Building a SPAM Classifier",
         "_createdAt": "2022-06-27T00:00:00.093Z",
         "_updatedAt": "2025-04-07T19:34:56.382095Z",
@@ -336,7 +336,7 @@
         "_show": true
     },
     {
-        "_id": "trees_and_graphs",
+        "_id": "20220629_trees_and_graphs",
         "_title": "🌲 Trees and Graphs",
         "_createdAt": "2022-06-29T22:01:58.602Z",
         "_updatedAt": "2025-04-07T19:34:56.382164Z",
@@ -347,7 +347,7 @@
         "_show": true
     },
     {
-        "_id": "recursion_and_dynamic_programming",
+        "_id": "20220704_recursion_and_dynamic_programming",
         "_title": "🔁 Recursion and Dynamic Programming",
         "_createdAt": "2022-07-04T00:19:27.219Z",
         "_updatedAt": "2025-04-07T20:18:22.011731Z",
@@ -358,7 +358,7 @@
         "_show": true
     },
     {
-        "_id": "nn_from_scratch",
+        "_id": "20230228_nn_from_scratch",
         "_title": "🤖 Simple Neural Network from Scratch",
         "_createdAt": "2023-02-28T01:34:43.901Z",
         "_updatedAt": "2025-04-07T20:18:22.011694Z",
