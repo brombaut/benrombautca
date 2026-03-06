@@ -288,18 +288,22 @@ Steps:
 
 ### Adding a New Article
 1. Write article in Markdown: `src/articles/content/sources_md/article-name.md`
-2. Run conversion script: `python 01_md_to_html_converter.py`
-3. Add metadata entry to `src/articles/authored_articles_meta.json`:
+2. Run conversion script from `src/articles/content/`: `python 01_md_to_html_converter.py`
+3. Run sync script from `src/articles/content/`: `python 02_existing_html_articles_syncer.py`
+   - This adds a blank stub entry to `authored_articles_meta.json` and populates `authored_articles_content.json` with the HTML body
+   - **Important**: The syncer appends a blank meta entry (`_title: ""`, `_show: false`) for any HTML file not already in the content JSON. You must manually fill in the metadata after running it — do not run the syncer again after editing the meta or it will append another blank stub.
+4. Edit the stub entry in `src/articles/authored_articles_meta.json` with the correct values:
    ```json
    {
-     "id": "unique-article-id",
-     "title": "Article Title",
-     "tags": ["tag1", "tag2"],
-     "created": "YYYY-MM-DD",
-     "updated": "YYYY-MM-DD"
+     "_id": "YYYYMMDD_article_slug",
+     "_title": "Article Title",
+     "_createdAt": "YYYY-MM-DDT00:00:00.000Z",
+     "_updatedAt": "YYYY-MM-DDT00:00:00.000Z",
+     "_description": "One-sentence description.",
+     "_tags": ["tag1", "tag2"],
+     "_show": true
    }
    ```
-4. Run sync script: `python 02_existing_html_articles_syncer.py`
 5. Commit changes
 
 ### Adding a New Section
