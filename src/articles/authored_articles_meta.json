@@ -1,5 +1,20 @@
 [
     {
+        "_id": "20260305_learning_to_use_ai_coding_tools",
+        "_title": "My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025",
+        "_createdAt": "2026-03-05T00:00:00.000Z",
+        "_updatedAt": "2026-03-05T00:00:00.000Z",
+        "_description": "A personal timeline of how my habits and thinking shifted as I went from casually experimenting with AI chat tools to making them a core part of how I build software.",
+        "_tags": [
+            "ai",
+            "claude-code",
+            "github-copilot",
+            "chatgpt",
+            "tools"
+        ],
+        "_show": true
+    },
+    {
         "_id": "20210624_deploy_ghpages_actions",
         "_title": "🚀 Set up Continuous Deployment to GitHub Pages with GitHub Actions",
         "_createdAt": "2021-06-24T14:13:24.709Z",
@@ -277,7 +292,7 @@
         "_id": "20220619_data_structures_from_scratch",
         "_title": "🧰 Data Structures From Scratch",
         "_createdAt": "2022-06-19T18:35:03.379Z",
-        "_updatedAt": "2025-04-07T19:34:56.382159Z",
+        "_updatedAt": "2026-03-06T18:11:50.847891Z",
         "_description": "",
         "_tags": [
             "data-structures"
@@ -302,7 +317,7 @@
         "_id": "20220622_prime_numbers",
         "_title": "#️⃣ Checking for Prime Numbers",
         "_createdAt": "2022-06-22T01:50:29.484Z",
-        "_updatedAt": "2025-04-07T19:34:56.382150Z",
+        "_updatedAt": "2026-03-06T18:11:50.847927Z",
         "_description": "",
         "_tags": [
             "algorithms"
@@ -326,7 +341,7 @@
         "_id": "20220627_spam_classifier",
         "_title": "🤖 Building a SPAM Classifier",
         "_createdAt": "2022-06-27T00:00:00.093Z",
-        "_updatedAt": "2025-04-07T19:34:56.382095Z",
+        "_updatedAt": "2026-03-06T18:11:50.847868Z",
         "_description": "",
         "_tags": [
             "machine-learning",
@@ -339,7 +354,7 @@
         "_id": "20220629_trees_and_graphs",
         "_title": "🌲 Trees and Graphs",
         "_createdAt": "2022-06-29T22:01:58.602Z",
-        "_updatedAt": "2025-04-07T19:34:56.382164Z",
+        "_updatedAt": "2026-03-06T18:11:50.847948Z",
         "_description": "",
         "_tags": [
             "data-structures"
@@ -368,5 +383,5 @@
             "machine-learning"
         ],
         "_show": true
-    }
+    },
 ]
