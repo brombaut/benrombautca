@@ -100,7 +100,11 @@ def get_book_review_id_from_html_row(tr_html):
     actions_link_url = actions_td.find('a')['href']
     review_id = actions_link_url.split('/')[-1]
     logger.debug(f"[get_book_review_id_from_html_row] Extracted review ID: {review_id}")
-    return int(review_id)
+    try:
+        return int(review_id)
+    except ValueError:
+        logger.warning(f"[get_book_review_id_from_html_row] Non-numeric review ID: {review_id}, using 0")
+        return 0
 
 
 def get_book_position_from_html_row(tr_html):
@@ -235,7 +239,7 @@ def authenticate_goodreads(page, email, password):
     try:
         # Navigate to sign-in page
         logger.debug("[authenticate_goodreads] Navigating to sign-in page")
-        page.goto("https://www.goodreads.com/user/sign_in", wait_until="networkidle")
+        page.goto("https://www.goodreads.com/user/sign_in", wait_until="domcontentloaded")
 
         # Check for CAPTCHA
         page_content = page.content()
@@ -247,7 +251,7 @@ def authenticate_goodreads(page, email, password):
         # Click "Sign in with email" button
         logger.debug("[authenticate_goodreads] Clicking 'Sign in with email' button")
         page.click("button.authPortalSignInButton, a:has(button.authPortalSignInButton)", timeout=10000)
-        page.wait_for_load_state("networkidle")
+        page.wait_for_load_state("domcontentloaded")
 
         # Wait for Amazon auth portal to load
         logger.debug("[authenticate_goodreads] Waiting for Amazon auth portal")
@@ -264,17 +268,72 @@ def authenticate_goodreads(page, email, password):
         logger.debug("[authenticate_goodreads] Entering email")
         page.fill("input[type='email'], input[name='email']", email)
 
-        # Enter password
-        logger.debug("[authenticate_goodreads] Entering password")
-        page.fill("input[type='password'], input[name='password']", password)
-
-        # Click sign-in button
-        logger.debug("[authenticate_goodreads] Clicking sign-in button")
-        page.click("input[type='submit'], button[type='submit']")
+        # Check if Amazon uses a two-step sign-in (email first, then password)
+        password_field = page.query_selector("input[type='password']:visible, input[name='password']:visible")
+        if password_field:
+            # Single page: both email and password fields visible
+            logger.debug("[authenticate_goodreads] Password field visible - single-step sign-in")
+            page.fill("input[type='password'], input[name='password']", password)
+            page.click("input[type='submit'], button[type='submit']")
+        else:
+            # Two-step: submit email first, then enter password on next page
+            logger.debug("[authenticate_goodreads] Password field not visible - two-step sign-in")
+            page.click("input[type='submit'], button[type='submit']")
+            logger.debug("[authenticate_goodreads] Submitted email, waiting for password page")
+            page.wait_for_selector("input[type='password'], input[name='password']", timeout=15000)
+            logger.debug("[authenticate_goodreads] Password field appeared, entering password")
+            page.fill("input[type='password'], input[name='password']", password)
+            page.click("input[type='submit'], button[type='submit']")
 
         # Wait for redirect back to Goodreads
+        # The auth portal is hosted at goodreads.com/ap/, so we must
+        # exclude auth-related paths from the URL check.
+        # Important: use page.wait_for_timeout() instead of time.sleep() so
+        # Playwright's event loop can process navigation events and update page.url.
         logger.debug("[authenticate_goodreads] Waiting for redirect to Goodreads")
-        page.wait_for_url("**/goodreads.com/**", timeout=20000)
+        auth_paths = ["/ap/", "/user/sign_in"]
+        deadline = 60  # seconds
+        elapsed = 0
+        last_url = ""
+        captcha_checked = False
+        while elapsed < deadline:
+            current_url = page.url
+            if current_url != last_url:
+                logger.debug(f"[authenticate_goodreads] URL: {current_url}")
+                last_url = current_url
+                captcha_checked = False
+
+            # Check for CAPTCHA/puzzle on CVF or auth pages
+            if not captcha_checked and "/ap/cvf" in current_url:
+                captcha_checked = True
+                try:
+                    page_content = page.content()
+                    if "solve this puzzle" in page_content.lower() or "captcha" in page_content.lower():
+                        logger.error("[authenticate_goodreads] CAPTCHA/puzzle detected on verification page")
+                        page.screenshot(path=os.path.join(script_dir, "error_captcha_cvf.png"))
+                        raise Exception(
+                            "CAPTCHA/puzzle detected during sign-in verification. "
+                            "Manually log into Goodreads from this machine's browser to clear the challenge, then retry."
+                        )
+                except Exception as e:
+                    if "CAPTCHA" in str(e):
+                        raise
+                    # page.content() may fail if page is navigating
+                    pass
+
+            on_goodreads = "goodreads.com" in current_url
+            on_auth_page = any(p in current_url for p in auth_paths)
+            if on_goodreads and not on_auth_page:
+                logger.debug(f"[authenticate_goodreads] Reached Goodreads: {current_url}")
+                break
+            page.wait_for_timeout(500)
+            elapsed += 0.5
+        else:
+            page.screenshot(path=os.path.join(script_dir, "error_timeout.png"))
+            raise PlaywrightTimeoutError(f"Timed out after {deadline}s waiting for redirect to Goodreads (current URL: {page.url})")
+
+        # Wait for page to finish rendering
+        page.wait_for_load_state("domcontentloaded", timeout=15000)
 
         # Verify authentication by checking for user-specific elements
         logger.debug("[authenticate_goodreads] Verifying authentication")
@@ -305,7 +364,7 @@ def get_shelf_html_authenticated(page, user_id, shelf, page_num):
     logger.debug(f"[get_shelf_html_authenticated] Navigating to: {url}")
 
     try:
-        page.goto(url, wait_until="networkidle", timeout=30000)
+        page.goto(url, wait_until="domcontentloaded", timeout=30000)
 
         # Check if we got redirected to sign-in (session expired)
         if "sign in" in page.url.lower():
@@ -390,7 +449,7 @@ def main():
 
             # Scrape currently reading books from profile
             logger.info("[main] Scraping currently reading books")
-            page.goto(f"https://www.goodreads.com/user/show/{user_id}", wait_until="networkidle")
+            page.goto(f"https://www.goodreads.com/user/show/{user_id}", wait_until="domcontentloaded")
             profile_html = page.content()
             currentlyreading_books = parse_currently_reading_from_profile_html(profile_html)
 
