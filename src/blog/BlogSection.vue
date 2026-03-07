@@ -57,7 +57,7 @@ export default defineComponent({
     postsByYear(): YearGroup[] {
       const groups: { [year: number]: BlogPost[] } = {};
       this.postsToDisplay.forEach((post: BlogPost) => {
-        const year = post.createdAt.getFullYear();
+        const year = post.createdAt.getUTCFullYear();
         if (!groups[year]) groups[year] = [];
         groups[year].push(post);
       });
@@ -73,7 +73,7 @@ export default defineComponent({
     },
     formatDate(d: Date) {
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      return `${months[d.getMonth()]} ${d.getDate()}`;
+      return `${months[d.getUTCMonth()]} ${d.getUTCDate()}`;
     },
   },
 });

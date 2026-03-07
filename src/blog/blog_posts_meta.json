@@ -2,7 +2,7 @@
     {
         "_id": "20260305_learning_to_use_ai_coding_tools",
         "_title": "My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025",
-        "_createdAt": "2026-03-05T00:00:00.000Z",
+        "_createdAt": "2026-03-05",
         "_description": "A personal timeline of how my habits and thinking shifted as I went from casually experimenting with AI chat tools to making them a core part of how I build software.",
         "_show": true,
         "_archived": false
@@ -10,7 +10,7 @@
     {
         "_id": "20210624_deploy_ghpages_actions",
         "_title": "Set up Continuous Deployment to GitHub Pages with GitHub Actions",
-        "_createdAt": "2021-06-24T14:13:24.709Z",
+        "_createdAt": "2021-06-24",
         "_description": "How to create a GitHub actions YAML file that deploys the project to GitHub pages. Also touches on using environment variables in the pipeline.",
         "_show": true,
         "_archived": true
@@ -18,7 +18,7 @@
     {
         "_id": "20210620_init_npm_project",
         "_title": "Initialize an NPM project with TypeScript",
-        "_createdAt": "2021-06-20T14:13:24.709Z",
+        "_createdAt": "2021-06-20",
         "_description": "How to initialize an npm & TypeScript project. Goes over configuration files for both.",
         "_show": true,
         "_archived": true
@@ -26,7 +26,7 @@
     {
         "_id": "20210622_publish_npm_project",
         "_title": "Publish an NPM project",
-        "_createdAt": "2021-06-22T14:13:24.709Z",
+        "_createdAt": "2021-06-22",
         "_description": "Explains how to set up the different npm scripts and the commands needed when publishing a package to npm.",
         "_show": true,
         "_archived": true
@@ -34,7 +34,7 @@
     {
         "_id": "20210630_practical_statistics",
         "_title": "Practical Statistics - Notes",
-        "_createdAt": "2021-06-30T13:26:44.333Z",
+        "_createdAt": "2021-06-30",
         "_description": "Notes about different topics in statistics from the 'Practical Statistics for Data Scientists' book.",
         "_show": true,
         "_archived": true
@@ -42,7 +42,7 @@
     {
         "_id": "20210701_design_patterns",
         "_title": "Design Patterns - Notes",
-        "_createdAt": "2021-07-01T16:50:05.379Z",
+        "_createdAt": "2021-07-01",
         "_description": "Notes about different design patterns from the 'Head First Design Patterns' book.",
         "_show": true,
         "_archived": true
@@ -50,7 +50,7 @@
     {
         "_id": "20210926_publish_npm_from_actions",
         "_title": "Publish NPM package from GitHub Actions",
-        "_createdAt": "2021-09-26T01:39:05.452Z",
+        "_createdAt": "2021-09-26",
         "_description": "Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.",
         "_show": true,
         "_archived": true
@@ -58,7 +58,7 @@
     {
         "_id": "20210926_add_codecov_to_project",
         "_title": "Track and Publish Test Coverage with CodeCov",
-        "_createdAt": "2021-09-26T13:58:54.629Z",
+        "_createdAt": "2021-09-26",
         "_description": "Explains how to track testing coverage with CodeCov and publish the results both from your local machine and automatically using GitHub Actions.",
         "_show": true,
         "_archived": true
@@ -66,7 +66,7 @@
     {
         "_id": "20211002_github_actions_scheduled",
         "_title": "Run GitHub Actions on a Schedule",
-        "_createdAt": "2021-10-02T01:16:09.641Z",
+        "_createdAt": "2021-10-02",
         "_description": "Explains how to configure a GitHub Action to run on a cron schedule.",
         "_show": true,
         "_archived": true
@@ -74,7 +74,7 @@
     {
         "_id": "20211009_linear_regression",
         "_title": "Linear Regression - Notes",
-        "_createdAt": "2021-10-09T15:12:33.464Z",
+        "_createdAt": "2021-10-09",
         "_description": "Notes on topics related to linear regression.",
         "_show": true,
         "_archived": true
@@ -82,7 +82,7 @@
     {
         "_id": "20211014_shell_script_utilities",
         "_title": "Shell Script Utilities",
-        "_createdAt": "2021-10-14T21:27:40.056Z",
+        "_createdAt": "2021-10-14",
         "_description": "Quick reference for common programs and commands used on the command line.",
         "_show": true,
         "_archived": true
@@ -90,7 +90,7 @@
     {
         "_id": "20211015_tensorflow_overview",
         "_title": "TensorFlow API Overview",
-        "_createdAt": "2021-10-15T00:10:35.201Z",
+        "_createdAt": "2021-10-15",
         "_description": "A high-level overview of the TensorFlow API.",
         "_show": true,
         "_archived": true
@@ -98,7 +98,7 @@
     {
         "_id": "20211021_progress_bars_in_jupyter",
         "_title": "Progress Bars in Jupyter",
-        "_createdAt": "2021-10-21T21:56:58.670Z",
+        "_createdAt": "2021-10-21",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -106,7 +106,7 @@
     {
         "_id": "20211023_linux_directory_hierarchy_essentials",
         "_title": "Linux Directory Hierarchy Essentials",
-        "_createdAt": "2021-10-23T23:33:24.305Z",
+        "_createdAt": "2021-10-23",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -114,7 +114,7 @@
     {
         "_id": "20211106_principal_component_analysis",
         "_title": "Principal Component Analysis",
-        "_createdAt": "2021-11-06T14:38:54.300Z",
+        "_createdAt": "2021-11-06",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -122,7 +122,7 @@
     {
         "_id": "20211206_package_lock",
         "_title": "Looking Into Lock Files",
-        "_createdAt": "2021-12-06T17:14:37.900Z",
+        "_createdAt": "2021-12-06",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -130,7 +130,7 @@
     {
         "_id": "20211227_latex_style_guide",
         "_title": "Latex Style Guide",
-        "_createdAt": "2021-12-27T01:03:56.971Z",
+        "_createdAt": "2021-12-27",
         "_description": "How I like to set up my latex projects for writing papers.",
         "_show": true,
         "_archived": true
@@ -138,7 +138,7 @@
     {
         "_id": "20220116_promise_all",
         "_title": "Speed Up Async Loops with Promise.all()",
-        "_createdAt": "2022-01-16T14:45:49.578Z",
+        "_createdAt": "2022-01-16",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -146,7 +146,7 @@
     {
         "_id": "20220116_closure_proxy",
         "_title": "Using Closures to Cache Data",
-        "_createdAt": "2022-01-16T15:21:36.279Z",
+        "_createdAt": "2022-01-16",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -154,7 +154,7 @@
     {
         "_id": "20220129_search_and_sort_algorithms",
         "_title": "Search & Sort Algorithms",
-        "_createdAt": "2022-01-29T16:20:19.106Z",
+        "_createdAt": "2022-01-29",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -162,7 +162,7 @@
     {
         "_id": "20220220_deep_learning_architectures",
         "_title": "Deep Learning Architectures",
-        "_createdAt": "2022-02-20T15:47:37.201Z",
+        "_createdAt": "2022-02-20",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -170,7 +170,7 @@
     {
         "_id": "20220619_classify_mnist_hello_ml",
         "_title": "Classifying the MNIST dataset - The Hello, World of ML",
-        "_createdAt": "2022-06-19T14:41:23.672Z",
+        "_createdAt": "2022-06-19",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -178,7 +178,7 @@
     {
         "_id": "20220619_data_structures_from_scratch",
         "_title": "Data Structures From Scratch",
-        "_createdAt": "2022-06-19T18:35:03.379Z",
+        "_createdAt": "2022-06-19",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -186,7 +186,7 @@
     {
         "_id": "20220621_classify_mnist_additional_exercises",
         "_title": "Classifying the MNIST dataset - Additional Exercises",
-        "_createdAt": "2022-06-21T21:31:57.166Z",
+        "_createdAt": "2022-06-21",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -194,7 +194,7 @@
     {
         "_id": "20220622_prime_numbers",
         "_title": "Checking for Prime Numbers",
-        "_createdAt": "2022-06-22T01:50:29.484Z",
+        "_createdAt": "2022-06-22",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -202,7 +202,7 @@
     {
         "_id": "20220626_titanic_dataset",
         "_title": "Titanic Dataset - Will a Passeger Survive?",
-        "_createdAt": "2022-06-26T17:48:25.798Z",
+        "_createdAt": "2022-06-26",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -210,7 +210,7 @@
     {
         "_id": "20220627_spam_classifier",
         "_title": "Building a SPAM Classifier",
-        "_createdAt": "2022-06-27T00:00:00.093Z",
+        "_createdAt": "2022-06-27",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -218,7 +218,7 @@
     {
         "_id": "20220629_trees_and_graphs",
         "_title": "Trees and Graphs",
-        "_createdAt": "2022-06-29T22:01:58.602Z",
+        "_createdAt": "2022-06-29",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -226,7 +226,7 @@
     {
         "_id": "20220704_recursion_and_dynamic_programming",
         "_title": "Recursion and Dynamic Programming",
-        "_createdAt": "2022-07-04T00:19:27.219Z",
+        "_createdAt": "2022-07-04",
         "_description": "",
         "_show": true,
         "_archived": true
@@ -234,7 +234,7 @@
     {
         "_id": "20230228_nn_from_scratch",
         "_title": "Simple Neural Network from Scratch",
-        "_createdAt": "2023-02-28T01:34:43.901Z",
+        "_createdAt": "2023-02-28",
         "_description": "",
         "_show": true,
         "_archived": true

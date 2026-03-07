@@ -40,7 +40,7 @@ export default defineComponent({
     },
     formatDate(d: Date) {
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-      return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
+      return `${months[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`;
     },
     backToBlog() {
       this.$router.push({ name: "blog" });
