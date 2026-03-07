@@ -23,6 +23,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+html {
+  font-size: 17px;
+
+  @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
+    font-size: 16px;
+  }
+}
+
 html,
 body {
   margin: 0;
