@@ -11,7 +11,8 @@ interface AuthoredArticleMeta {
   _title: string,
   _createdAt: Date,
   _description: string,
-  _show: boolean
+  _show: boolean,
+  _archived: boolean
 }
 
 export interface AuthoredArticle {
@@ -20,7 +21,8 @@ export interface AuthoredArticle {
   readonly createdAt: Date,
   readonly description: string,
   readonly body: string,
-  readonly show: boolean
+  readonly show: boolean,
+  readonly archived: boolean
 }
 
 export class AuthoredArticlesProxy {
@@ -56,6 +58,7 @@ export class AuthoredArticlesProxy {
         description: dto._description,
         body: dto._body,
         show: dto._show,
+        archived: dto._archived,
       };
     };
     this._authoredArticles = merged.map(mapper);

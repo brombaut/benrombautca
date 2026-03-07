@@ -32,6 +32,7 @@ class ArticleMeta(TypedDict):
     _createdAt: str
     _description: str
     _show: bool
+    _archived: bool
 
 
 def sync_articles(
@@ -56,7 +57,8 @@ def sync_articles(
                 "_title": "",
                 "_createdAt": current_date,
                 "_description": "",
-                "_show": False
+                "_show": False,
+                "_archived": False
             })
             existing_content_json.append({
                 "_id": source_file["id"],

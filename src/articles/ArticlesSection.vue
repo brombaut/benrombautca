@@ -49,7 +49,7 @@ export default defineComponent({
   computed: {
     articlesToDisplay(): AuthoredArticle[] {
       return this.authoredArticles
-        .filter((aa: AuthoredArticle) => aa.show)
+        .filter((aa: AuthoredArticle) => aa.show && !aa.archived)
         .sort((a: AuthoredArticle, b: AuthoredArticle) => {
           return b.createdAt.getTime() - a.createdAt.getTime();
         });
