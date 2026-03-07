@@ -21,7 +21,7 @@ export default defineComponent({
   computed: {
     isVisible(): boolean {
       const currRouteName: string = this.$route.name as string || "";
-      if (currRouteName === "selectedArticle") return true;
+      if (currRouteName === "selectedBlogPost") return true;
       if (currRouteName === "selectedSoftware") return true;
       return false;
     },

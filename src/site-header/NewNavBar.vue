@@ -59,8 +59,8 @@ export default defineComponent({
         education: "About Me",
         publications: "Publications",
         bookshelf: "Bookshelf",
-        articles: "Articles",
-        selectedArticle: "Articles",
+        blog: "Blog",
+        selectedBlogPost: "Blog",
         software: "Software",
         selectedSoftware: "Software",
         running: "Running",
@@ -70,7 +70,7 @@ export default defineComponent({
     },
     isDetailPage(): boolean {
       const routeName = this.$route.name as string;
-      return routeName === "selectedArticle" || routeName === "selectedSoftware";
+      return routeName === "selectedBlogPost" || routeName === "selectedSoftware";
     },
   },
   methods: {

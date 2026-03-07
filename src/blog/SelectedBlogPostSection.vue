@@ -1,13 +1,13 @@
 <template>
   <section id="selected-article">
-    <SectionHeader :title="selectedArticle.title" icon="" :subtext="selectedArticle.description" />
+    <SectionHeader :title="selectedPost.title" icon="" :subtext="selectedPost.description" />
     <div class="meta-container">
       <div class="dates">
-        Created {{ formatDate(selectedArticle.createdAt) }}
+        Created {{ formatDate(selectedPost.createdAt) }}
       </div>
     </div>
     <div class="section-body">
-      <GitHubMarkdown :content="selectedArticle.body" />
+      <GitHubMarkdown :content="selectedPost.body" />
     </div>
   </section>
 </template>
@@ -16,46 +16,44 @@
 import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
 import GitHubMarkdown from "../shared/GitHubMarkdown.vue";
-import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
+import { BlogPostsProxy, BlogPost } from "./BlogPostsProxy";
 
 export default defineComponent({
-  name: "SelectedArticleSection",
+  name: "SelectedBlogPostSection",
   components: {
     SectionHeader,
     GitHubMarkdown,
   },
   data() {
     return {
-      selectedArticleId: "",
-      selectedArticle: {} as AuthoredArticle,
+      selectedPostId: "",
+      selectedPost: {} as BlogPost,
     };
   },
   methods: {
-    loadSelectedArticle(aId: string): AuthoredArticle | null {
-      const allArticles: AuthoredArticle[] = new AuthoredArticlesProxy().authoredArticles;
-      const selectedArticle: AuthoredArticle | undefined = allArticles.find(
-        (aa: AuthoredArticle) => aa.id === aId,
+    loadSelectedPost(postId: string): BlogPost | null {
+      const allPosts: BlogPost[] = new BlogPostsProxy().blogPosts;
+      const selectedPost: BlogPost | undefined = allPosts.find(
+        (p: BlogPost) => p.id === postId,
       );
-      return selectedArticle || null;
+      return selectedPost || null;
     },
     formatDate(d: Date) {
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
     },
-    backToArticles() {
-      this.$router.push({ name: "articles" });
+    backToBlog() {
+      this.$router.push({ name: "blog" });
     },
   },
   created() {
     window.scrollTo(0, 0);
-    // From Vue2
-    // this.selectedArticleId = this.$router.currentRoute.params.articleId;
-    this.selectedArticleId = this.$router.currentRoute.value.params.articleId as string;
-    const loadedSelectedArticle: AuthoredArticle | null = this.loadSelectedArticle(
-      this.selectedArticleId,
+    this.selectedPostId = this.$router.currentRoute.value.params.postId as string;
+    const loadedPost: BlogPost | null = this.loadSelectedPost(
+      this.selectedPostId,
     );
-    if (loadedSelectedArticle) {
-      this.selectedArticle = loadedSelectedArticle;
+    if (loadedPost) {
+      this.selectedPost = loadedPost;
     }
   },
 });

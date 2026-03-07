@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**benrombautca** is Ben Rombaut's personal portfolio website, deployed at [benrombaut.ca](https://www.benrombaut.ca). This is a Vue 3 single-page application built with TypeScript, featuring a personal portfolio with multiple sections including About Me, Work/Education timeline, Publications, Articles, Software projects, Bookshelf, Running, and Hiking.
+**benrombautca** is Ben Rombaut's personal portfolio website, deployed at [benrombaut.ca](https://www.benrombaut.ca). This is a Vue 3 single-page application built with TypeScript, featuring a personal portfolio with multiple sections including About Me, Work/Education timeline, Publications, Blog, Software projects, Bookshelf, Running, and Hiking.
 
 ### Tech Stack
 - **Framework**: Vue 3 (migrated from Vue 2, using compatibility mode)
@@ -33,8 +33,8 @@ benrombautca/
 │   └── *.py                   # Image processing utilities
 ├── src/
 │   ├── aboutMe/               # About Me section components
-│   ├── articles/              # Articles section and content
-│   │   └── content/           # Article sources (MD) and converted (HTML)
+│   ├── blog/                  # Blog section and content
+│   │   └── content/           # Blog post sources (MD) and converted (HTML)
 │   ├── assets/                # Images, resumes, publications PDFs
 │   ├── bookshelf/             # Bookshelf section
 │   │   └── syncer_v2/         # Goodreads scraping and syncing logic
@@ -98,14 +98,14 @@ export default defineComponent({
 ### Routing
 - **Mode**: Hash-based routing (`createWebHashHistory`)
 - **Router Location**: `src/site-header/router.ts`
-- **Dynamic Routes**: Articles and Software sections have dynamic routes (`:articleId`, `:softwareId`)
+- **Dynamic Routes**: Blog and Software sections have dynamic routes (`:postId`, `:softwareId`)
 - **Code Splitting**: All routes use lazy loading (`component: () => import(...)`) for optimal bundle size
 
 ### State Management
 - **No Vuex/Pinia**: Simple prop passing and component-local state
 - **Data Sources**: JSON files imported directly into components
-  - `src/articles/authored_articles_meta.json` - Article metadata
-  - `src/articles/authored_articles_content.json` - Article HTML content
+  - `src/blog/blog_posts_meta.json` - Blog post metadata
+  - `src/blog/blog_posts_content.json` - Blog post HTML content
   - `src/software/software_articles_meta.json` - Software metadata
   - `src/software/software_articles_content.json` - Software README content
   - `src/bookshelf/syncer_v2/all_books_flattened.json` - Bookshelf data
@@ -144,15 +144,15 @@ Auto-imported in every component via `vue.config.js`.
 
 ## Content Management & Syncing
 
-### Articles
-- **Source**: Markdown files in `src/articles/content/sources_md/`
+### Blog
+- **Source**: Markdown files in `src/blog/content/sources_md/`
 - **Conversion**: Python scripts convert MD → HTML using Pandoc
 - **Scripts**:
   - `00_ipynb_to_md_converter.py` - Jupyter notebooks to markdown
   - `01_md_to_html_converter.py` - Markdown to HTML
   - `02_existing_html_articles_syncer.py` - Sync to content JSON
-- **Output**: `src/articles/content/converted_html/`
-- **Metadata**: Manually maintained in `authored_articles_meta.json`
+- **Output**: `src/blog/content/converted_html/`
+- **Metadata**: Manually maintained in `blog_posts_meta.json`
 
 ### Software Projects
 - **Source**: README files from external GitHub repositories
@@ -190,7 +190,7 @@ npm run lint
 # Sync bookshelf locally
 npm run sync-bookshelf
 
-# Sync articles locally
+# Sync blog locally
 npm run sync-articles
 ```
 
@@ -286,22 +286,21 @@ Steps:
 
 ## Common Development Tasks
 
-### Adding a New Article
-1. Write article in Markdown: `src/articles/content/sources_md/article-name.md`
-2. Run conversion script from `src/articles/content/`: `python 01_md_to_html_converter.py`
-3. Run sync script from `src/articles/content/`: `python 02_existing_html_articles_syncer.py`
-   - This adds a blank stub entry to `authored_articles_meta.json` and populates `authored_articles_content.json` with the HTML body
+### Adding a New Blog Post
+1. Write post in Markdown: `src/blog/content/sources_md/post-name.md`
+2. Run conversion script from `src/blog/content/`: `python 01_md_to_html_converter.py`
+3. Run sync script from `src/blog/content/`: `python 02_existing_html_articles_syncer.py`
+   - This adds a blank stub entry to `blog_posts_meta.json` and populates `blog_posts_content.json` with the HTML body
    - **Important**: The syncer appends a blank meta entry (`_title: ""`, `_show: false`) for any HTML file not already in the content JSON. You must manually fill in the metadata after running it — do not run the syncer again after editing the meta or it will append another blank stub.
-4. Edit the stub entry in `src/articles/authored_articles_meta.json` with the correct values:
+4. Edit the stub entry in `src/blog/blog_posts_meta.json` with the correct values:
    ```json
    {
-     "_id": "YYYYMMDD_article_slug",
-     "_title": "Article Title",
+     "_id": "YYYYMMDD_post_slug",
+     "_title": "Post Title",
      "_createdAt": "YYYY-MM-DDT00:00:00.000Z",
-     "_updatedAt": "YYYY-MM-DDT00:00:00.000Z",
      "_description": "One-sentence description.",
-     "_tags": ["tag1", "tag2"],
-     "_show": true
+     "_show": true,
+     "_archived": false
    }
    ```
 5. Commit changes
@@ -344,8 +343,8 @@ Steps:
 - **Add Resume & CV PDFs**: ✅ Done
 
 ### Planned Work
-- **Filter articles by tag**: Planned
-- **Consider moving Article-Syncer to cloud**: Under consideration
+- **Filter blog posts by tag**: Planned
+- **Consider moving Blog-Syncer to cloud**: Under consideration
 - **Change router to HTML5 mode**: TODO (see `router.ts:75`)
 - **Remove Vue 2 compatibility mode**: Planned for better performance
 - **Add automated testing**: High priority
@@ -358,9 +357,9 @@ Steps:
 - Heavy use of `any` type in TypeScript (defeats type safety)
 - See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
 
-## Article Writing Style
+## Blog Writing Style
 
-When writing or editing articles for this site, follow these conventions:
+When writing or editing blog posts for this site, follow these conventions:
 
 ### Voice and Tone
 - First-person, personal, honest — these are accounts of real experience, not guides or tutorials
@@ -374,7 +373,7 @@ When writing or editing articles for this site, follow these conventions:
 - Keep sentences clear and relatively short
 
 ### Structure
-- Personal narrative articles often open with a brief framing paragraph before the main content begins — this sets context (e.g. what series this belongs to, what time period it covers)
+- Personal narrative posts often open with a brief framing paragraph before the main content begins — this sets context (e.g. what series this belongs to, what time period it covers)
 - Section headers use the `## Heading` format with a date or phase label where relevant
 
 ## AI Assistant Guidelines
@@ -384,7 +383,7 @@ When writing or editing articles for this site, follow these conventions:
 1. **Read Before Editing**: Always read files before proposing changes
 2. **Maintain Conventions**: Follow existing patterns (2-space indent, double quotes)
 3. **Preserve Structure**: Keep feature-based directory organization
-4. **Update Metadata**: When adding articles/software, update corresponding JSON files
+4. **Update Metadata**: When adding blog posts/software, update corresponding JSON files
 5. **Test Locally**: Suggest running `npm run serve` to verify changes
 6. **Respect Responsive Design**: Use existing breakpoint variables
 7. **Use Type Safety**: Leverage TypeScript and PropType definitions
@@ -429,14 +428,14 @@ When writing or editing articles for this site, follow these conventions:
 npm run serve              # Start dev server
 npm run build              # Production build
 npm run sync-bookshelf     # Sync Goodreads data
-npm run sync-articles      # Sync article content
+npm run sync-articles      # Sync blog content
 ```
 
 ### Key Directories
 - `src/shared/` - Reusable components
 - `src/styles/` - Global SCSS
 - `src/assets/` - Static images and PDFs
-- `src/*/content/` - Content management (articles, software)
+- `src/*/content/` - Content management (blog, software)
 
 ## Contact & Ownership
 
@@ -447,7 +446,7 @@ npm run sync-articles      # Sync article content
 
 ---
 
-**Last Updated**: 2025-12-22
+**Last Updated**: 2026-03-07
 **Vue Version**: 3.2.47
 **Node Version**: 18+
 **TypeScript Version**: 5.6.3

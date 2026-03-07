@@ -6,7 +6,7 @@
       <FullNavItem ref="aboutMeNav" route="/about-me" text="About Me" @clicked="updateHighlight" />
       <FullNavItem ref="publicationsNav" route="/publications" text="Publications" @clicked="updateHighlight" />
       <FullNavItem ref="bookshelfNav" route="/bookshelf" text="Bookshelf" @clicked="updateHighlight" />
-      <FullNavItem ref="articlesNav" route="/articles" text="Articles" @clicked="updateHighlight" />
+      <FullNavItem ref="blogNav" route="/blog" text="Blog" @clicked="updateHighlight" />
       <FullNavItem ref="runningNav" route="/running" text="Running" @clicked="updateHighlight" />
       <FullNavItem ref="hikingNav" route="/hiking" text="Hiking" @clicked="updateHighlight" />
     </div>
@@ -53,7 +53,7 @@ export default defineComponent({
       let currRouteName: string = this.$route.name as string || "";
       if (!currRouteName) return "";
       if (currRouteName === "land") currRouteName = "aboutMe";
-      if (currRouteName === "selectedArticle") currRouteName = "articles";
+      if (currRouteName === "selectedBlogPost") currRouteName = "blog";
       if (currRouteName === "selectedSoftware") currRouteName = "software";
       const navEl: string = `${currRouteName}Nav`;
       return navEl;

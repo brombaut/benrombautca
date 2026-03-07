@@ -27,14 +27,14 @@ const routes = [
     component: () => import("@/bookshelf/BookshelfSection.vue"),
   },
   {
-    path: "/articles",
-    name: "articles",
-    component: () => import("@/articles/ArticlesSection.vue"),
+    path: "/blog",
+    name: "blog",
+    component: () => import("@/blog/BlogSection.vue"),
   },
   {
-    path: "/articles/:articleId",
-    name: "selectedArticle",
-    component: () => import("@/articles/SelectedArticleSection.vue"),
+    path: "/blog/:postId",
+    name: "selectedBlogPost",
+    component: () => import("@/blog/SelectedBlogPostSection.vue"),
   },
   {
     path: "/software",

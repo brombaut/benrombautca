@@ -42,7 +42,7 @@ export default defineComponent({
       { path: "/about-me", route: "aboutMe", label: "About Me" },
       { path: "/publications", route: "publications", label: "Publications" },
       { path: "/bookshelf", route: "bookshelf", label: "Bookshelf" },
-      { path: "/articles", route: "articles", label: "Articles" },
+      { path: "/blog", route: "blog", label: "Blog" },
       // { path: "/software", route: "software", label: "Software" },
       { path: "/running", route: "running", label: "Running" },
       { path: "/hiking", route: "hiking", label: "Hiking" },
@@ -64,7 +64,7 @@ export default defineComponent({
     routeIsActive(routeName: string): boolean {
       switch (routeName) {
       case ("aboutMe"): return this.$route.name === routeName || this.$route.name === "land";
-      case ("articles"): return this.$route.name === routeName || this.$route.name === "selectedArticle";
+      case ("blog"): return this.$route.name === routeName || this.$route.name === "selectedBlogPost";
       case ("software"): return this.$route.name === routeName || this.$route.name === "selectedSoftware";
       default: return this.$route.name === routeName;
       }

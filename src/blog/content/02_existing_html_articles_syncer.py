@@ -109,14 +109,14 @@ if __name__ == "__main__":
     parser.add_argument(
         "--meta-json",
         type=str,
-        default=os.path.join(script_dir, "../authored_articles_meta.json"),
-        help="The path to the authored_articles_meta.json file. Defaults to '../authored_articles_meta.json' relative to the script directory."
+        default=os.path.join(script_dir, "../blog_posts_meta.json"),
+        help="The path to the blog_posts_meta.json file. Defaults to '../blog_posts_meta.json' relative to the script directory."
     )
     parser.add_argument(
         "--content-json",
         type=str,
-        default=os.path.join(script_dir, "../authored_articles_content.json"),
-        help="The path to the authored_articles_content.json file. Defaults to '../authored_articles_content.json' relative to the script directory."
+        default=os.path.join(script_dir, "../blog_posts_content.json"),
+        help="The path to the blog_posts_content.json file. Defaults to '../blog_posts_content.json' relative to the script directory."
     )
     args = parser.parse_args()
     main(args.html_dir, args.meta_json, args.content_json)

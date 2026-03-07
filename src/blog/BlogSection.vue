@@ -1,24 +1,24 @@
 <template>
-  <section id="articles">
+  <section id="blog">
     <SectionHeader
-      title="Articles"
+      title="Blog"
       icon="pen-square"
       subtext="A collection of how-to guides and notes I've written on different topics, mostly so that I can use them as references later." />
     <div class="section-body">
-      <div v-for="group in articlesByYear" :key="group.year" class="year-group">
+      <div v-for="group in postsByYear" :key="group.year" class="year-group">
         <div class="year-label">{{ group.year }}</div>
         <div
-          v-for="article in group.articles"
-          :key="article.id"
-          class="article-row"
+          v-for="post in group.posts"
+          :key="post.id"
+          class="post-row"
           role="button"
           tabindex="0"
-          @click="articleClicked(article)"
-          @keydown.enter="articleClicked(article)">
-          <div class="article-title">{{ article.title }}</div>
-          <div class="article-meta">
-            <span class="article-date">{{ formatDate(article.createdAt) }}</span>
-            <span v-if="article.description" class="article-description"> &middot; {{ article.description }}</span>
+          @click="postClicked(post)"
+          @keydown.enter="postClicked(post)">
+          <div class="post-title">{{ post.title }}</div>
+          <div class="post-meta">
+            <span class="post-date">{{ formatDate(post.createdAt) }}</span>
+            <span v-if="post.description" class="post-description"> &middot; {{ post.description }}</span>
           </div>
         </div>
       </div>
@@ -29,47 +29,47 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import SectionHeader from "../shared/SectionHeader.vue";
-import { AuthoredArticlesProxy, AuthoredArticle } from "./AuthoredArticlesProxy";
+import { BlogPostsProxy, BlogPost } from "./BlogPostsProxy";
 
 interface YearGroup {
   year: number;
-  articles: AuthoredArticle[];
+  posts: BlogPost[];
 }
 
 export default defineComponent({
-  name: "ArticlesSection",
+  name: "BlogSection",
   components: {
     SectionHeader,
   },
   data() {
     return {
-      authoredArticles: new AuthoredArticlesProxy().authoredArticles as AuthoredArticle[],
+      blogPosts: new BlogPostsProxy().blogPosts as BlogPost[],
     };
   },
   computed: {
-    articlesToDisplay(): AuthoredArticle[] {
-      return this.authoredArticles
-        .filter((aa: AuthoredArticle) => aa.show && !aa.archived)
-        .sort((a: AuthoredArticle, b: AuthoredArticle) => {
+    postsToDisplay(): BlogPost[] {
+      return this.blogPosts
+        .filter((p: BlogPost) => p.show && !p.archived)
+        .sort((a: BlogPost, b: BlogPost) => {
           return b.createdAt.getTime() - a.createdAt.getTime();
         });
     },
-    articlesByYear(): YearGroup[] {
-      const groups: { [year: number]: AuthoredArticle[] } = {};
-      this.articlesToDisplay.forEach((article: AuthoredArticle) => {
-        const year = article.createdAt.getFullYear();
+    postsByYear(): YearGroup[] {
+      const groups: { [year: number]: BlogPost[] } = {};
+      this.postsToDisplay.forEach((post: BlogPost) => {
+        const year = post.createdAt.getFullYear();
         if (!groups[year]) groups[year] = [];
-        groups[year].push(article);
+        groups[year].push(post);
       });
       return Object.keys(groups)
         .map(Number)
         .sort((a, b) => b - a)
-        .map(year => ({ year, articles: groups[year] }));
+        .map(year => ({ year, posts: groups[year] }));
     },
   },
   methods: {
-    articleClicked(article: AuthoredArticle) {
-      this.$router.push({ name: "selectedArticle", params: { articleId: article.id } });
+    postClicked(post: BlogPost) {
+      this.$router.push({ name: "selectedBlogPost", params: { postId: post.id } });
     },
     formatDate(d: Date) {
       const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -80,7 +80,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-#articles {
+#blog {
   display: flex;
   flex-direction: column;
 
@@ -105,7 +105,7 @@ export default defineComponent({
     margin-bottom: 4px;
   }
 
-  .article-row {
+  .post-row {
     padding: 14px 8px;
     border-bottom: 1px solid $secondaryDark;
     cursor: pointer;
@@ -114,13 +114,13 @@ export default defineComponent({
     &:hover {
       background-color: $secondaryLight;
 
-      .article-title {
+      .post-title {
         color: $primary;
       }
     }
   }
 
-  .article-title {
+  .post-title {
     font-size: 1.05em;
     font-weight: 600;
     color: $fontColor;
@@ -128,12 +128,12 @@ export default defineComponent({
     line-height: 1.4;
   }
 
-  .article-meta {
+  .post-meta {
     font-size: 0.82em;
     color: $silver;
   }
 
-  .article-description {
+  .post-description {
     font-style: italic;
   }
 }

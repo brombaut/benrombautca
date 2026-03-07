@@ -5,7 +5,7 @@ import shutil
 NOTEBOOK_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/sources_notebooks"
 MD_DIR = f"{os.path.dirname(os.path.realpath(__file__))}/sources_md"
 ASSETS_IMAGES_DIR = f"{NOTEBOOK_DIR}/images"
-GH_IMAGES_PREFIX = "https://raw.githubusercontent.com/brombaut/benrombautca/main/src/articles/content/sources_notebooks/images"
+GH_IMAGES_PREFIX = "https://raw.githubusercontent.com/brombaut/benrombautca/main/src/blog/content/sources_notebooks/images"
 
 
 def get_list_of_notebook_directories():
