@@ -13,7 +13,7 @@
         "_createdAt": "2021-06-24T14:13:24.709Z",
         "_description": "How to create a GitHub actions YAML file that deploys the project to GitHub pages. Also touches on using environment variables in the pipeline.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20210620_init_npm_project",
@@ -21,7 +21,7 @@
         "_createdAt": "2021-06-20T14:13:24.709Z",
         "_description": "How to initialize an npm & TypeScript project. Goes over configuration files for both.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20210622_publish_npm_project",
@@ -29,7 +29,7 @@
         "_createdAt": "2021-06-22T14:13:24.709Z",
         "_description": "Explains how to set up the different npm scripts and the commands needed when publishing a package to npm.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20210630_practical_statistics",
@@ -37,7 +37,7 @@
         "_createdAt": "2021-06-30T13:26:44.333Z",
         "_description": "Notes about different topics in statistics from the 'Practical Statistics for Data Scientists' book.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20210701_design_patterns",
@@ -45,7 +45,7 @@
         "_createdAt": "2021-07-01T16:50:05.379Z",
         "_description": "Notes about different design patterns from the 'Head First Design Patterns' book.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20210926_publish_npm_from_actions",
@@ -53,7 +53,7 @@
         "_createdAt": "2021-09-26T01:39:05.452Z",
         "_description": "Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20210926_add_codecov_to_project",
@@ -61,7 +61,7 @@
         "_createdAt": "2021-09-26T13:58:54.629Z",
         "_description": "Explains how to track testing coverage with CodeCov and publish the results both from your local machine and automatically using GitHub Actions.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211002_github_actions_scheduled",
@@ -69,7 +69,7 @@
         "_createdAt": "2021-10-02T01:16:09.641Z",
         "_description": "Explains how to configure a GitHub Action to run on a cron schedule.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211009_linear_regression",
@@ -77,7 +77,7 @@
         "_createdAt": "2021-10-09T15:12:33.464Z",
         "_description": "Notes on topics related to linear regression.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211014_shell_script_utilities",
@@ -85,7 +85,7 @@
         "_createdAt": "2021-10-14T21:27:40.056Z",
         "_description": "Quick reference for common programs and commands used on the command line.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211015_tensorflow_overview",
@@ -93,7 +93,7 @@
         "_createdAt": "2021-10-15T00:10:35.201Z",
         "_description": "A high-level overview of the TensorFlow API.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211021_progress_bars_in_jupyter",
@@ -101,7 +101,7 @@
         "_createdAt": "2021-10-21T21:56:58.670Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211023_linux_directory_hierarchy_essentials",
@@ -109,7 +109,7 @@
         "_createdAt": "2021-10-23T23:33:24.305Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211106_principal_component_analysis",
@@ -117,7 +117,7 @@
         "_createdAt": "2021-11-06T14:38:54.300Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211206_package_lock",
@@ -125,7 +125,7 @@
         "_createdAt": "2021-12-06T17:14:37.900Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20211227_latex_style_guide",
@@ -133,7 +133,7 @@
         "_createdAt": "2021-12-27T01:03:56.971Z",
         "_description": "How I like to set up my latex projects for writing papers.",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220116_promise_all",
@@ -141,7 +141,7 @@
         "_createdAt": "2022-01-16T14:45:49.578Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220116_closure_proxy",
@@ -149,7 +149,7 @@
         "_createdAt": "2022-01-16T15:21:36.279Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220129_search_and_sort_algorithms",
@@ -157,7 +157,7 @@
         "_createdAt": "2022-01-29T16:20:19.106Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220220_deep_learning_architectures",
@@ -165,7 +165,7 @@
         "_createdAt": "2022-02-20T15:47:37.201Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220619_classify_mnist_hello_ml",
@@ -173,7 +173,7 @@
         "_createdAt": "2022-06-19T14:41:23.672Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220619_data_structures_from_scratch",
@@ -181,7 +181,7 @@
         "_createdAt": "2022-06-19T18:35:03.379Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220621_classify_mnist_additional_exercises",
@@ -189,7 +189,7 @@
         "_createdAt": "2022-06-21T21:31:57.166Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220622_prime_numbers",
@@ -197,7 +197,7 @@
         "_createdAt": "2022-06-22T01:50:29.484Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220626_titanic_dataset",
@@ -205,7 +205,7 @@
         "_createdAt": "2022-06-26T17:48:25.798Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220627_spam_classifier",
@@ -213,7 +213,7 @@
         "_createdAt": "2022-06-27T00:00:00.093Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220629_trees_and_graphs",
@@ -221,7 +221,7 @@
         "_createdAt": "2022-06-29T22:01:58.602Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20220704_recursion_and_dynamic_programming",
@@ -229,7 +229,7 @@
         "_createdAt": "2022-07-04T00:19:27.219Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     },
     {
         "_id": "20230228_nn_from_scratch",
@@ -237,6 +237,6 @@
         "_createdAt": "2023-02-28T01:34:43.901Z",
         "_description": "",
         "_show": true,
-        "_archived": false
+        "_archived": true
     }
 ]
