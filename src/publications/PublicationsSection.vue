@@ -11,12 +11,12 @@
         :key="vPub.header">
         <h3 class="publication-type-header">{{ vPub.header }}</h3>
         <h5 class="publication-type-sub-header">{{ vPub.subHeader }}</h5>
-        <ul>
+        <div class="publication-list">
           <PublicationItem
             v-for="publication in vPub.items"
             :key="publication.title"
             :publication="publication" />
-        </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -93,56 +93,23 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    width: 100%;
 
     .publication-type-header {
       color: $primaryDark;
+      margin-bottom: 0;
     }
 
-    ul {
-      padding-inline-start: 8px;
-      margin-block-start: 8px;
-      margin-block-end: 20px;
+    .publication-type-sub-header {
+      color: #777;
+      font-weight: 400;
+      margin-top: 4px;
+    }
 
-      li {
-        margin: 16px 0;
-
-          .publication-info {
-            display: flex;
-            flex-direction: column;
-          }
-
-          .underline {
-            text-decoration: underline;
-          }
-
-          .publication-info-entity {
-            margin: 2px 0;
-          }
-
-          .title {
-            color: $primary;
-            font-size: 1.3em;
-            margin-bottom: 2px;
-          }
-
-          .authors, .venue, .location, .links {
-            margin-left: 20px;
-          }
-
-          .links {
-            a {
-              font-weight: 500;
-              margin-right: 8px;
-              color: $primaryDark;
-
-              &:hover {
-                cursor: pointer;
-              }
-            }
-          }
-      }
+    .publication-list {
+      width: 100%;
+      margin-bottom: 32px;
     }
   }
-
 }
 </style>
