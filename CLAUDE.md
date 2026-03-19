@@ -374,6 +374,7 @@ When writing or editing blog posts for this site, follow these conventions:
 - **No em dashes** — use commas or restructure the sentence instead
 - Italics are fine for internal thoughts or emphasis (e.g. *I need to learn how to use this thing*)
 - Keep sentences clear and relatively short
+- **Always specify a language on markdown code blocks** for syntax highlighting (e.g. ```python, ```bash, ```typescript). If writing pseudocode, use ```python since its highlighting is the closest match.
 
 ### Structure
 - Personal narrative posts often open with a brief framing paragraph before the main content begins — this sets context (e.g. what series this belongs to, what time period it covers)
