@@ -1,14 +1,14 @@
-# What 12 Coding Agents Actually Look Like Inside
+# What 13 Coding Agents Actually Look Like Inside
 
-Coding agents are everywhere. SWE-agent, OpenHands, Aider, Codex CLI, Gemini CLI, Cline, and the list keeps growing. They all promise to fix bugs, implement features, and navigate codebases autonomously. But how do they actually work under the hood? Are they all just "wrap an LLM in a ReAct loop"?
+Coding agents are everywhere. SWE-agent, OpenHands, Aider, Codex CLI, Gemini CLI, Cline, OpenCode, and the list keeps growing. They all promise to fix bugs, implement features, and navigate codebases autonomously. But how do they actually work under the hood? Are they all just "wrap an LLM in a ReAct loop"?
 
-To find out, this analysis cloned 12 open-source coding agent repositories and traced their architectures line by line. Not the READMEs, not the blog posts, the actual source code. Control loops, tool registrations, state management, context strategies, all pinned to specific files and commits.
+To find out, this analysis cloned 13 open-source coding agent repositories and traced their architectures line by line. Not the READMEs, not the blog posts, the actual source code. Control loops, tool registrations, state management, context strategies, all pinned to specific files and commits.
 
 The short answer: no, they're not all ReAct loops. The design space is far wider than it looks from the outside, and the architectural choices these agents make have real consequences that aren't obvious until you read the code.
 
 ## The Corpus
 
-The 12 agents span the full range: CLI tools (SWE-agent, Codex CLI, Gemini CLI, Aider), SWE-bench-oriented agents (Agentless, OpenHands, AutoCodeRover, Moatless Tools, DARS-Agent, Prometheus), a minimal baseline (mini-swe-agent), and an IDE-native agent (Cline). They range from 100 lines of Python to sprawling TypeScript monorepos. Some have papers at NeurIPS and ICSE; others are community-driven tools with tens of thousands of GitHub stars.
+The 13 agents span the full range: CLI tools (SWE-agent, Codex CLI, Gemini CLI, Aider, OpenCode), SWE-bench-oriented agents (Agentless, OpenHands, AutoCodeRover, Moatless Tools, DARS-Agent, Prometheus), a minimal baseline (mini-swe-agent), and an IDE-native agent (Cline). They range from 100 lines of Python to sprawling TypeScript monorepos. Some have papers at NeurIPS and ICSE; others are community-driven tools with tens of thousands of GitHub stars.
 
 Each agent was analyzed across 9 architectural dimensions: control loop, tool set, tool discovery, state management, context retrieval, execution isolation, context compaction, multi-model routing, and persistent memory.
 
@@ -18,9 +18,9 @@ Despite radically different origins, coding agents agree on more than expected.
 
 Every LLM-driven agent needs the same four capability categories: **read** code, **search** for code, **edit** code, and **execute** commands. This holds whether the agent exposes a single `bash` tool (mini-swe-agent) or registers 37 action classes (Moatless Tools). A coding task requires understanding the codebase, making changes, and verifying them. The capability categories reflect that.
 
-At the level of individual steps, 10 of 12 agents follow the ReAct pattern: the LLM generates a thought, selects a tool, receives an observation, repeats. The two exceptions are Aider (where the user drives the loop) and Agentless (which is a pipeline, not a loop). But calling these "ReAct agents" is like calling every web app a "request-response app." Technically true and completely uninformative. The interesting differences are in what's *around* the ReAct loop.
+At the level of individual steps, 11 of 13 agents follow the ReAct pattern: the LLM generates a thought, selects a tool, receives an observation, repeats. The two exceptions are Aider (where the user drives the loop) and Agentless (which is a pipeline, not a loop). But calling these "ReAct agents" is like calling every web app a "request-response app." Technically true and completely uninformative. The interesting differences are in what's *around* the ReAct loop.
 
-There's also unexpected convergence in edit interfaces. OpenHands, SWE-agent, DARS-Agent, and mini-swe-agent all use the Anthropic-style `str_replace_editor`, giving 4 of 12 agents the same tool interface. Not because they copied each other, but because Anthropic's tool spec became a de facto standard. Meanwhile, Aider takes the opposite approach: 13 different text-parsed edit formats, optimized per model. One standard interface vs. adapting the format to each model's strengths. A real design fork.
+There's also unexpected convergence in edit interfaces. OpenHands, SWE-agent, DARS-Agent, mini-swe-agent, and OpenCode all use the Anthropic-style `str_replace_editor` (or its equivalent oldString/newString replacement), giving 5 of 13 agents the same tool interface. Not because they copied each other, but because Anthropic's tool spec became a de facto standard. Meanwhile, Aider takes the opposite approach: 13 different text-parsed edit formats, optimized per model. One standard interface vs. adapting the format to each model's strengths. A real design fork.
 
 ## Where They Diverge
 
@@ -48,7 +48,7 @@ def run(issue):
 
 The LLM generates ~40 independent patch candidates via temperature sampling and picks the best through majority voting. No feedback, no iteration. The bet: diversity of independent attempts can substitute for feedback loops. It's cheap and parallelizable, but if the localization step points to the wrong file, every downstream patch is wasted.
 
-**Sequential loop (SWE-agent, OpenHands, Codex CLI, Gemini CLI, Cline, mini-swe-agent).** The standard approach:
+**Sequential loop (SWE-agent, OpenHands, Codex CLI, Gemini CLI, Cline, OpenCode, mini-swe-agent).** The standard approach:
 
 ```python
 def run(issue):
@@ -186,6 +186,7 @@ Tool count sounds like a simple metric. It's not:
 | DARS-Agent | ~15 |
 | Gemini CLI | 17 + MCP |
 | Prometheus | 17 (1-10 per node) |
+| OpenCode | 18 + MCP + plugins |
 | Codex CLI | ~20 + MCP |
 | Cline | 27 + MCP |
 | Moatless Tools | 37 (~15 active) |
@@ -242,7 +243,7 @@ def truncate(history, n=5):
 
 No LLM calls, deterministic behavior, but older context is either fully in or fully out.
 
-**LLM summarization (Aider, OpenHands).** Use a cheaper model to summarize older messages. More flexible than rules, but lossy, and the quality depends on the summarization model. Aider's approach is destructive: the original messages are overwritten in place. OpenHands preserves raw events alongside summaries.
+**LLM summarization (Aider, OpenHands, OpenCode).** Use a cheaper model to summarize older messages. More flexible than rules, but lossy, and the quality depends on the summarization model. Aider's approach is destructive: the original messages are overwritten in place. OpenHands preserves raw events alongside summaries. OpenCode adds a twist: a two-phase approach that first prunes old tool outputs (keeping message structure but removing verbose content) before summarizing via a dedicated compaction agent, preserving more conversational context than either pure truncation or full summarization alone.
 
 **Structural isolation (Prometheus).** The graph-based control flow means each LLM call only sees messages relevant to its current node. No explicit compaction needed because the structure prevents unbounded accumulation. Elegant, but only works if you have explicit control flow structure.
 
@@ -256,7 +257,7 @@ The tradeoff here is subtle. Simpler compaction strategies are easier to reason 
 
 Most agents use a single model for everything. The question is: when does multi-model routing earn its keep?
 
-The clearest case is **role-based routing**. Aider assigns different models to different subtasks: a capable model for coding, a cheap model for summarization, a specialized model for applying edits. The roles are well-defined, the savings are concrete, and the complexity is minimal.
+The clearest case is **role-based routing**. Aider assigns different models to different subtasks: a capable model for coding, a cheap model for summarization, a specialized model for applying edits. OpenCode takes a similar approach but enforces it structurally: different agent types (build, plan, explore, general) can each use a different model, with the scaffold controlling which agent handles which task. The roles are well-defined, the savings are concrete, and the complexity is minimal.
 
 **Per-attempt model cycling** (SWE-agent) is a more speculative bet: on retry, switch to a different model entirely, on the hypothesis that different models have different failure modes. More of the solution space gets covered, but the agent has no signal about *which* model is better for a given problem.
 
@@ -276,7 +277,7 @@ Calling some of these "agents" and others "not agents" misses the point. The int
 
 ### The Scaffold Constrains What's Possible
 
-These 12 agents can all use the same underlying LLMs. Yet their architectures are radically different: pipelines vs loops vs tree search, 0 tools vs 37 tools, destructive state vs event-sourced state, no isolation vs Docker vs shadow mode. These scaffold decisions determine what strategies are even *possible* for the LLM. A model inside Agentless literally cannot iterate on a failed attempt, while a model inside Moatless Tools can explore 50 alternative branches.
+These 13 agents can all use the same underlying LLMs. Yet their architectures are radically different: pipelines vs loops vs tree search, 0 tools vs 37 tools, destructive state vs event-sourced state, no isolation vs Docker vs shadow mode. These scaffold decisions determine what strategies are even *possible* for the LLM. A model inside Agentless literally cannot iterate on a failed attempt, while a model inside Moatless Tools can explore 50 alternative branches.
 
 The scaffold doesn't just affect performance. It defines the ceiling.
 
@@ -284,8 +285,8 @@ The scaffold doesn't just affect performance. It defines the ceiling.
 
 DARS-Agent forks SWE-agent's entire codebase to add tree search. mini-swe-agent imports SWE-agent as a dependency. Both extend the same base architecture, but one can track upstream improvements and the other can't. Moatless Tools, Prometheus, and OpenHands each build their own tool frameworks, state management, and execution environments from scratch.
 
-There are no shared abstractions. Each agent reinvents tool registration, command execution, history management, and context formatting. This is a field still figuring out its fundamental abstractions, which means the design space is wide open. Building a coding agent today is as much about choosing where to sit in that space as it is about prompt engineering.
+There are no shared abstractions. Each agent reinvents tool registration, command execution, history management, and context formatting. OpenCode is a partial exception: it uses the Vercel AI SDK as an LLM abstraction layer and Drizzle ORM for state persistence, building on existing libraries rather than rolling its own. But the core scaffold logic (control loop, tool definitions, compaction strategy) is still bespoke. This is a field still figuring out its fundamental abstractions, which means the design space is wide open. Building a coding agent today is as much about choosing where to sit in that space as it is about prompt engineering.
 
 ---
 
-*This analysis is part of an ongoing research project studying the architectural design space of coding agent scaffolds. All findings are based on source code analysis of specific commits, not documentation or marketing materials. The 12 agents analyzed: Aider, OpenHands, SWE-agent, Agentless, AutoCodeRover, Codex CLI, Gemini CLI, Moatless Tools, DARS-Agent, Prometheus, mini-swe-agent, and Cline.*
+*This analysis is part of an ongoing research project studying the architectural design space of coding agent scaffolds. All findings are based on source code analysis of specific commits, not documentation or marketing materials. The 13 agents analyzed: Aider, OpenHands, SWE-agent, Agentless, AutoCodeRover, Codex CLI, Gemini CLI, OpenCode, Moatless Tools, DARS-Agent, Prometheus, mini-swe-agent, and Cline.*
