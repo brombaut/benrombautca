@@ -241,9 +241,9 @@
     },
     {
         "_id": "coding-agent-architectures",
-        "_title": "Inside 12 Coding Agents: Control Loops, Tools, and Tradeoffs",
+        "_title": "Inside 13 Coding Agents: Control Loops, Tools, and Tradeoffs",
         "_createdAt": "2026-03-19",
-        "_description": "A source-code-level analysis of 12 open-source coding agents, comparing their control loops, tool sets, state management, and architectural tradeoffs.",
+        "_description": "A source-code-level analysis of 13 open-source coding agents, comparing their control loops, tool sets, state management, and architectural tradeoffs.",
         "_show": true,
         "_archived": false
     }
