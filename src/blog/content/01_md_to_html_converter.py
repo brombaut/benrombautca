@@ -10,8 +10,11 @@ def convert_md_to_html(md_file_path, html_file_path):
         pypandoc.download_pandoc()
     
     # Convert Markdown to HTML using pandoc
-    html_content = pypandoc.convert_file(md_file_path, 'html')
-    
+    html_content = pypandoc.convert_file(md_file_path, 'html', extra_args=['-f', 'markdown-implicit_figures'])
+
+    # Rewrite local image paths for deployed site
+    html_content = html_content.replace('src="images/', 'src="blog-images/')
+
     # Write the HTML content to a file
     with open(html_file_path, 'w', encoding='utf-8') as html_file:
         html_file.write(html_content)

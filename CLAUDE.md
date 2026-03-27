@@ -369,6 +369,13 @@ When writing or editing blog posts for this site, follow these conventions:
 - Measured and direct, not flowery or over-written
 - Avoid clichéd phrases and filler expressions (e.g. "striking moment", "learned to stay vigilant", "reaching for")
 - Don't editorialize or over-explain — let the experience speak for itself
+- Show genuine reactions to findings or results ("This one surprised me", "I'm not sure if this is a strength or a limitation"). Opinions and uncertainty are good. Dry reporting is not.
+- When tools or automation did the work, say so: "I had Claude Code generate..." not "I generated...". Don't claim personal credit for automated work.
+
+### Content Decisions
+- Cut implementation noise that doesn't serve the reader: internal version numbers, zero-count stats, details only a developer would care about. If a number or fact isn't interesting, don't report it.
+- Go deep on methodology. Readers want enough process detail to judge whether the approach is sound. Explain the "how" thoroughly, especially when the method is novel or non-obvious.
+- Organize around insights, not analysis structure. Each section heading should promise something interesting, not describe a data processing step. "The Model Invents Its Own Pattern Vocabulary" over "Section B: Pattern Analysis".
 
 ### Punctuation and Formatting
 - **No em dashes** — use commas or restructure the sentence instead

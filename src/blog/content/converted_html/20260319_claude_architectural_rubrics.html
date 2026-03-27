@@ -1,0 +1,405 @@
+<h1 id="what-does-claude-think-is-architecturally-important">What Does
+Claude Think Is Architecturally Important?</h1>
+<p>I wanted to know what a frontier model actually values when it looks
+at code architecture. Not what it says in a generic prompt about “best
+practices,” but what it reaches for when it’s staring at a real codebase
+with a real problem to solve.</p>
+<p>So I had Claude Code with Opus 4.6 generate 500 architectural
+rubrics, one for every instance in SWE-bench Verified. Each rubric
+required the model to explore a codebase, identify its architectural
+patterns, and decide which structural properties matter most for
+evaluating a patch. Then I had all 500 parsed and analyzed to see what
+came out.</p>
+<h2 id="how-the-rubrics-get-made">How the Rubrics Get Made</h2>
+<p>The rubrics come from an architectural evaluation pipeline I’ve been
+building. It has three stages:</p>
+<p><strong>Stage 1</strong> looks at each SWE-bench problem and judges
+how much codebase-specific architectural understanding you’d need to
+solve it. It outputs a complexity verdict from <code>trivial</code> to
+<code>expert</code>, based on things like structural depth, how many
+files you’d need to explore, and how many modules need to
+coordinate.</p>
+<p><strong>Stage 2</strong> is what we’re analyzing here, and it’s the
+most involved stage. For each SWE-bench instance, Claude Code receives
+the problem statement and the full source repository. It then runs
+through a multi-step process to produce the rubric.</p>
+<p><strong>Stage 3</strong> takes a patch and evaluates it against the
+rubric, producing a verdict. We’re not looking at Stage 3 output
+here.</p>
+<p>All three stages run Opus 4.6 inside Docker containers, one per
+SWE-bench instance. Everything is static structural analysis, no code
+execution.</p>
+<h3 id="how-stage-2-works">How Stage 2 Works</h3>
+<p>The rubric generation skill orchestrates four steps:</p>
+<p><strong>Step 1: Read and classify.</strong> The model reads the
+problem statement and scans the top-level project structure in parallel.
+It classifies the issue as a <code>bug_fix</code>,
+<code>feature_addition</code>, <code>refactoring</code>, or
+<code>architectural_change</code>, and identifies which components are
+likely affected. The classification matters because different issue
+types shift what’s architecturally important: a bug fix should involve
+minimal structural change, a feature addition should demonstrate
+extensibility, a refactoring should measurably improve structure.</p>
+<p><strong>Step 2: Deep exploration.</strong> This is the expensive
+part. The model dispatches a subagent to perform what the skill calls an
+“evidence-based architecture review” of the codebase. The subagent is
+prompted as a senior software architect. It scans directories and config
+files to build a mental map, follows dependency chains from entry points
+to core logic, examines interfaces before implementations, and then
+reports back on: architectural styles (with confidence scores), design
+patterns (with evidence, scope, and confidence), cross-cutting
+conventions, critical boundaries (with instructions for how to detect
+violations), and code organization patterns. Every claim must cite
+specific files and imports. “Insufficient evidence” is an acceptable
+answer; guessing is not.</p>
+<p><strong>Step 3: Determine axes and priority.</strong> Based on what
+the exploration actually found (not a generic checklist), the model
+selects which structural properties to evaluate and assigns each a
+priority. The priorities are guided by a few questions: which patterns
+are most load-bearing for this issue type, which structural properties
+are most at risk, and where did the exploration reveal fragility? Only
+properties backed by evidence with confidence &gt;= 0.6 make the
+cut.</p>
+<p><strong>Step 4: Generate the YAML.</strong> A second subagent writes
+the actual rubric file. This subagent has no memory of the conversation
+so far; it receives the issue context, the axis priorities, and the full
+exploration output as a single prompt. For each axis, it writes two
+prose anchors describing ideal and poor conformance. There’s an
+important constraint here: the anchors must describe structural
+<em>properties</em>, not specific <em>mechanisms</em>. Instead of “the
+fix calls <code>rhs.bump_prefix()</code> before change_map
+construction,” the rubric should say “newly generated aliases are
+guaranteed to not appear as keys in the change_map.” This matters
+because multiple implementations might satisfy the same property, and
+the rubric shouldn’t prescribe a particular one.</p>
+<p>The subagent verifies the file against a checklist before finishing:
+all required keys present, at least one primary axis, anchors are
+substantive paragraphs (not single sentences), no numeric scoring
+anywhere, no implementation-correctness language. If anything fails the
+check, it fixes the file and re-verifies.</p>
+<h3 id="whats-in-a-rubric">What’s in a Rubric</h3>
+<p>Each rubric is a YAML file with three main sections:</p>
+<p><strong>Metadata</strong> classifies the issue: <code>bug_fix</code>
+/ <code>feature_addition</code> / <code>refactoring</code>, risk level
+(<code>low</code> / <code>medium</code> / <code>high</code>), and which
+files are affected.</p>
+<p><strong>Architectural context</strong> captures what the model
+discovered about the codebase: the dominant style (free-text,
+e.g. “Class-based view hierarchy with mixin composition”), named
+patterns with evidence and confidence scores, and critical boundaries
+the patch must respect.</p>
+<p><strong>Axes</strong> are the evaluation dimensions, typically 3-5
+per rubric. Each axis has a priority (<code>primary</code> /
+<code>secondary</code> / <code>minor</code>), a description grounded in
+what the model found during exploration, and two prose anchors:
+<code>ideal_conformance</code> and <code>poor_conformance</code>. The
+anchors describe structural properties, not specific code mechanisms. No
+numbers anywhere.</p>
+<p>One design choice worth flagging: the rubric deliberately ignores
+implementation correctness. Bugs, syntax errors, edge cases, runtime
+behavior are all out of scope. A patch can be architecturally perfect
+and still have bugs. A patch can work flawlessly and still violate
+architecture. The rubric only measures the structural dimension.</p>
+<h2 id="the-dataset">The Dataset</h2>
+<p>500 rubrics across 12 repos. Django dominates with 231 instances
+(46%). 89.6% are bug fixes, which is just SWE-bench’s composition, not a
+choice I made. 63.6% medium risk, 33.8% low, 2.6% high.</p>
+<p><img src="blog-images/claude-architectural-rubrics/section_a_overview.png"
+alt="Dataset overview" /></p>
+<h2 id="what-the-model-considers-load-bearing">What the Model Considers
+Load-Bearing</h2>
+<p>This is the part I was most curious about. Every rubric has 3-5
+evaluation axes, each tagged with a priority. Across all 2,176 axes, I
+had the keys clustered into semantic themes and looked at how the model
+assigns priority within each theme.</p>
+<p>It turns out the model has opinions, and they’re remarkably
+consistent:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Theme</th>
+<th>% Primary</th>
+<th>% Secondary</th>
+<th>% Minor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Delegation / Responsibility</td>
+<td>58%</td>
+<td>39%</td>
+<td>3%</td>
+</tr>
+<tr class="even">
+<td>Contract / API</td>
+<td>52%</td>
+<td>33%</td>
+<td>15%</td>
+</tr>
+<tr class="odd">
+<td>Pattern Conformance</td>
+<td>44%</td>
+<td>47%</td>
+<td>9%</td>
+</tr>
+<tr class="even">
+<td>Boundary Preservation</td>
+<td>34%</td>
+<td>51%</td>
+<td>15%</td>
+</tr>
+<tr class="odd">
+<td>Hierarchy / Inheritance</td>
+<td>33%</td>
+<td>55%</td>
+<td>12%</td>
+</tr>
+<tr class="even">
+<td>Consistency / Convention</td>
+<td>30%</td>
+<td>41%</td>
+<td>29%</td>
+</tr>
+<tr class="odd">
+<td>Minimality / Scope</td>
+<td>3%</td>
+<td>34%</td>
+<td><strong>64%</strong></td>
+</tr>
+<tr class="even">
+<td>Test Infrastructure</td>
+<td>2%</td>
+<td>26%</td>
+<td><strong>72%</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The headline: the model cares deeply about contracts and delegation
+chains. “Don’t break the API contract” and “respect the delegation
+chain” are the things that make or break a patch in its eyes. Boundary
+preservation matters but is rarely the deciding factor on its own, it
+tends to sit at secondary.</p>
+<p>The bottom of the table is just as telling. Minimality (“keep the
+diff small”) is almost never primary (3%) and lands at minor 64% of the
+time. Test infrastructure is explicitly deprioritized at 72% minor. The
+model treats diff size and test conventions as things worth mentioning,
+never as things worth failing a patch over.</p>
+<p>I find this interesting because it’s a coherent worldview, not just
+noise. Contracts and delegation are structural. Diff size is cosmetic.
+You could disagree with this ranking, but it’s clearly a
+<em>position</em>, not randomness.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_c_priority_mix.png"
+alt="Priority mix per theme" /></p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_c_themes_by_priority.png"
+alt="Themes by priority" /></p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_c_primary_vs_minor.png"
+alt="Primary vs minor" /></p>
+<h2 id="the-model-invents-its-own-pattern-vocabulary">The Model Invents
+Its Own Pattern Vocabulary</h2>
+<p>This one surprised me. Out of 2,034 total pattern identifications,
+1,935 names are unique. “Template Method” appears 49 times, “Mixin
+Composition” 9 times, and after that it’s basically all one-offs. Names
+like “Dimensional Bookkeeping via Index Arrays,” “Precedence-Based
+Parenthesization,” “Relaxed-mode Column Building.”</p>
+<p>The model isn’t reaching for a GoF cheat sheet. It’s coining terms
+for the structures it actually finds.</p>
+<p>To make sense of this, I had the 1,935 names clustered into 14
+canonical families via keyword matching. After clustering, each repo
+gets a distinct fingerprint that, honestly, reads like a reasonable
+architectural summary:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Repo</th>
+<th>Top Pattern Families</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>sympy</strong></td>
+<td>Strategy/Dispatch (0.63/inst), expression evaluation via type
+dispatch</td>
+</tr>
+<tr class="even">
+<td><strong>django</strong></td>
+<td>Template Method (0.41/inst), the CBV hook/override hierarchy</td>
+</tr>
+<tr class="odd">
+<td><strong>scikit-learn</strong></td>
+<td>Mixin/Composition (0.59/inst), the estimator mixin architecture</td>
+</tr>
+<tr class="even">
+<td><strong>pylint</strong></td>
+<td>Convention/Config (0.70/inst), Registry (0.50/inst), plugin/checker
+registration</td>
+</tr>
+<tr class="odd">
+<td><strong>requests</strong></td>
+<td>Decorator/Wrapper, Layer Separation, Strategy all at 0.62, the
+transport adapter stack</td>
+</tr>
+<tr class="even">
+<td><strong>sphinx</strong></td>
+<td>Template Method (0.55/inst), Registry (0.45/inst), documenter
+hierarchy + extensions</td>
+</tr>
+</tbody>
+</table>
+<p>If you’ve worked in any of these codebases, this probably looks about
+right. sympy really is built around type dispatch. Django really is
+Template Method all the way down. scikit-learn really is mixins.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_b_pattern_families.png"
+alt="Pattern families" /></p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_b_family_repo_heatmap.png"
+alt="Pattern families by repo" /></p>
+<h2 id="different-codebases-different-concerns">Different Codebases,
+Different Concerns</h2>
+<p>The model doesn’t just identify different patterns per repo, it
+worries about different things too:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Repo</th>
+<th>Top Axis Theme (per instance)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>pytest</strong></td>
+<td>Boundary Preservation (1.11), plugin isolation matters most</td>
+</tr>
+<tr class="even">
+<td><strong>scikit-learn</strong></td>
+<td>Contract/API (1.00), the estimator API contract is paramount</td>
+</tr>
+<tr class="odd">
+<td><strong>matplotlib</strong></td>
+<td>Consistency/Convention (0.88), visual consistency across
+backends</td>
+</tr>
+<tr class="even">
+<td><strong>xarray</strong></td>
+<td>Contract/API (0.86), DataArray/Dataset interface contracts</td>
+</tr>
+<tr class="odd">
+<td><strong>django</strong></td>
+<td>Contract/API (0.81), ORM and view API stability</td>
+</tr>
+</tbody>
+</table>
+<p>pytest’s plugin architecture means boundary preservation shows up
+more often than in any other repo. scikit-learn’s strict estimator API
+means contract preservation dominates. These aren’t generic, they
+reflect the actual architectural pressure points of each project.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_e_theme_repo_heatmap.png"
+alt="Axis themes by repo" /></p>
+<h2 id="harder-problems-get-richer-rubrics">Harder Problems Get Richer
+Rubrics</h2>
+<p>Risk level correlates cleanly with rubric complexity across every
+metric:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Risk</th>
+<th>Patterns</th>
+<th>Axes</th>
+<th>Primary Axes</th>
+<th>Boundaries</th>
+<th>Components</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Low</td>
+<td>3.9</td>
+<td>4.0</td>
+<td>1.5</td>
+<td>2.4</td>
+<td>1.6</td>
+</tr>
+<tr class="even">
+<td>Medium</td>
+<td>4.1</td>
+<td>4.5</td>
+<td>1.7</td>
+<td>2.7</td>
+<td>2.6</td>
+</tr>
+<tr class="odd">
+<td>High</td>
+<td>4.4</td>
+<td>4.9</td>
+<td>2.0</td>
+<td>3.0</td>
+<td>4.3</td>
+</tr>
+</tbody>
+</table>
+<p>The biggest jump is affected components: 1.6 to 4.3. When a problem
+touches more of the codebase, the model responds by generating more
+evaluation dimensions and more primary axes. It’s not just stamping out
+the same rubric every time.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_f_risk_complexity.png"
+alt="Risk vs complexity" /></p>
+<h2 id="the-template-is-fixed-the-content-isnt">The Template Is Fixed,
+the Content Isn’t</h2>
+<p>One thing that’s worth calling out: the <em>structure</em> of the
+rubrics barely varies. Axes per rubric ranges from 3.8 to 4.5 across all
+repos. Patterns: 3.0 to 5.0. Boundaries: 2.0 to 3.0. The model applies a
+consistent template regardless of which codebase it’s looking at.</p>
+<p>But the <em>content</em> varies a lot. Which patterns, which themes,
+which boundaries, what the prose anchors describe. The model uses the
+same frame every time but fills it with genuinely different
+architectural content. I’m not sure if this is a strength (consistent
+evaluation format) or a limitation (the model can’t break its own mold
+when a problem warrants it). Probably a bit of both.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_e_complexity.png"
+alt="Rubric complexity by repo" /></p>
+<h2 id="boundaries-layers-and-delegation-over-and-over">Boundaries:
+Layers and Delegation, Over and Over</h2>
+<p>Across 1,311 critical boundaries, layer/module separation (24.8%) and
+delegation/responsibility (16.7%) are the most common types. Boundaries
+like “view classes must not embed model-layer logic” and “must delegate
+to ModelAdmin for model-specific operations” are what the model
+identifies most often.</p>
+<p>This echoes the axis priority findings. The model’s architectural
+worldview is centered on: who delegates to whom, and which layers are
+not allowed to reach across into each other.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_d_boundaries.png"
+alt="Boundary types" /></p>
+<h2 id="confidence-is-always-high-not-useful">Confidence Is Always High
+(Not Useful)</h2>
+<p>Style confidence: mean 0.932, std 0.025, range [0.85, 0.95]. Pattern
+confidence: mean 0.918, std 0.033, range [0.80, 1.00].</p>
+<p>The model is confident about everything. There’s no discriminating
+signal here. It’s more of an “I found evidence” flag than a calibrated
+uncertainty estimate. If you were hoping to use confidence to find
+instances where the model struggled to read the architecture, this isn’t
+going to help.</p>
+<h2 id="what-i-take-away">What I Take Away</h2>
+<p>The model has a real architectural perspective. It’s not random, not
+generic, and not just parroting textbook patterns. It prioritizes
+contracts and delegation over diff size and test conventions. It adapts
+its pattern vocabulary per codebase. It generates richer rubrics for
+harder problems.</p>
+<p>Whether this perspective is <em>correct</em> is a different question,
+and one that Stage 3 of the pipeline is designed to help answer. But as
+a window into what a frontier model thinks “good architecture” means, I
+found this more interesting than I expected.</p>

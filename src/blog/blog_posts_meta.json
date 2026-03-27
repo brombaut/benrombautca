@@ -246,5 +246,13 @@
         "_description": "A source-code-level analysis of 13 open-source coding agents, comparing their control loops, tool sets, state management, and architectural tradeoffs.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20260319_claude_architectural_rubrics",
+        "_title": "What Does Claude Think Is Architecturally Important?",
+        "_createdAt": "2026-03-19T00:00:00.000Z",
+        "_description": "Analyzing 500 AI-generated architectural rubrics across SWE-bench Verified to see what a frontier model actually values in code architecture.",
+        "_show": true,
+        "_archived": false
     }
 ]
