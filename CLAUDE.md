@@ -308,6 +308,27 @@ Steps:
 
 **IMPORTANT**: Never directly edit `blog_posts_content.json`. To change blog post content, always edit the source markdown file in `src/blog/content/sources_md/`, then re-run the conversion and sync scripts (steps 2 and 3). The content JSON is a generated artifact and will be overwritten by the syncer.
 
+### Blog Post Images
+Images are served via CopyPlugin, which copies `src/blog/content/images/` to `dist/blog-images/` at build time. The MD-to-HTML converter rewrites `src="images/` to `src="blog-images/"` during conversion.
+
+**To add images to a post:**
+1. Create a directory: `src/blog/content/images/<post-slug>/`
+2. Place image files in that directory
+3. Reference them in your markdown as: `![Alt text](images/<post-slug>/image.png)`
+4. The converter handles path rewriting automatically — no manual HTML editing needed
+
+**When copying a post from an external source (e.g. a README from another repo):**
+- Image paths must be rewritten from bare filenames (e.g. `![](image.png)`) to the `images/<post-slug>/` convention
+- Remove any repo-specific sections (e.g. `## Files` listing notebook/data files) that don't belong on the blog
+- Copy all referenced images into the corresponding `src/blog/content/images/<post-slug>/` directory
+
+**To update an existing post's content:**
+1. Overwrite the markdown source in `sources_md/`
+2. Rewrite image paths to use the `images/<post-slug>/` prefix
+3. Remove any repo-specific sections
+4. Re-run `01_md_to_html_converter.py` and `02_existing_html_articles_syncer.py`
+5. The syncer will update the content JSON without creating a duplicate meta entry
+
 ### Adding a New Section
 1. Create directory in `src/` (e.g., `src/newSection/`)
 2. Create main section component (e.g., `NewSection.vue`)
@@ -376,6 +397,10 @@ When writing or editing blog posts for this site, follow these conventions:
 - Cut implementation noise that doesn't serve the reader: internal version numbers, zero-count stats, details only a developer would care about. If a number or fact isn't interesting, don't report it.
 - Go deep on methodology. Readers want enough process detail to judge whether the approach is sound. Explain the "how" thoroughly, especially when the method is novel or non-obvious.
 - Organize around insights, not analysis structure. Each section heading should promise something interesting, not describe a data processing step. "The Model Invents Its Own Pattern Vocabulary" over "Section B: Pattern Analysis".
+- When an article is part of a larger system or pipeline, explain the full pipeline briefly before diving into the piece you're analyzing. The reader needs to know where this fits. Keep it self-contained though: don't cross-link to other articles, just say "this article covers X" and move on.
+- Every plot needs two things: a brief sentence explaining what the chart shows (axes, colors, groupings), then the insight or takeaway. Don't drop a plot and jump straight to analysis, and don't just describe the data without drawing a conclusion.
+- Don't duplicate a chart's data in a table. If the plot shows it, the prose should highlight the insight, not restate the numbers in a different format.
+- When discussing limitations, be honest about whether the issue is with the method or with the dataset. "The scale goes unused" could mean the scale is miscalibrated or it could mean the data doesn't have hard enough problems. Name the ambiguity instead of defaulting to self-criticism.
 
 ### Punctuation and Formatting
 - **No em dashes** — use commas or restructure the sentence instead
