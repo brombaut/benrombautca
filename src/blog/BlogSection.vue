@@ -84,6 +84,14 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
 
+  .section-header .section-header_content {
+    font-size: 2rem;
+  }
+
+  .section-header > p {
+    font-size: 1.15rem;
+  }
+
   .section-body {
     display: flex;
     flex-direction: column;
@@ -130,7 +138,7 @@ export default defineComponent({
 
   .post-meta {
     font-size: 0.82em;
-    color: $silver;
+    color: $onyx;
   }
 
   .post-description {

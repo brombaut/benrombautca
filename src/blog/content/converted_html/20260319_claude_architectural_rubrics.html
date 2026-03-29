@@ -1,0 +1,389 @@
+<h1 id="what-does-claude-think-is-architecturally-important">What Does
+Claude Think Is Architecturally Important?</h1>
+<p>I wanted to know what a frontier model actually values when it looks
+at code architecture. Not what it says in a generic prompt about “best
+practices,” but what it reaches for when it’s staring at a real codebase
+with a real problem to solve.</p>
+<p>So I had Claude Code with Opus 4.6 generate 500 architectural
+rubrics, one for every instance in SWE-bench Verified. Each rubric
+required the model to explore a codebase, identify its architectural
+patterns, and decide which structural properties matter most for
+evaluating a patch. Then I had all 500 parsed and analyzed to see what
+came out.</p>
+<h2 id="the-pipeline">The Pipeline</h2>
+<p>The rubrics come from an architectural evaluation pipeline I’ve been
+building. It has three stages:</p>
+<p><strong>Stage 1</strong> looks at each SWE-bench Verified problem and
+judges how much codebase-specific architectural understanding you’d need
+to solve it. It outputs a complexity verdict from <code>trivial</code>
+to <code>expert</code>, based on things like structural depth, how many
+files you’d need to explore, and how many modules need to
+coordinate.</p>
+<p><strong>Stage 2</strong> is what we’re analyzing here, and it’s the
+most involved stage. For each SWE-bench Verified instance, Claude Code
+receives the problem statement and the full source repository. It then
+runs through a multi-step process to produce the rubric.</p>
+<p><strong>Stage 3</strong> takes a patch and evaluates it against the
+rubric, producing a categorical verdict on architectural
+conformance.</p>
+<p>This article covers Stage 2.</p>
+<p>All three stages run Opus 4.6 inside Docker containers, one per
+SWE-bench Verified instance. Everything is static structural analysis,
+no code execution.</p>
+<h3 id="how-stage-2-works">How Stage 2 Works</h3>
+<p>The rubric generation skill orchestrates four steps:</p>
+<p><strong>Step 1: Read and classify.</strong> The model reads the
+problem statement and scans the top-level project structure in parallel.
+It classifies the issue as a <code>bug_fix</code>,
+<code>feature_addition</code>, <code>refactoring</code>, or
+<code>architectural_change</code>, and identifies which components are
+likely affected. The classification matters because different issue
+types shift what’s architecturally important: a bug fix should involve
+minimal structural change, a feature addition should demonstrate
+extensibility, a refactoring should measurably improve structure.</p>
+<p><strong>Step 2: Deep exploration.</strong> This is the expensive
+part. The model dispatches a subagent to perform what the skill calls an
+“evidence-based architecture review” of the codebase. The subagent is
+prompted as a senior software architect. It scans directories and config
+files to build a mental map, follows dependency chains from entry points
+to core logic, examines interfaces before implementations, and then
+reports back on: architectural styles (with confidence scores), design
+patterns (with evidence, scope, and confidence), cross-cutting
+conventions, critical boundaries (with instructions for how to detect
+violations), and code organization patterns. Every claim must cite
+specific files and imports. “Insufficient evidence” is an acceptable
+answer; guessing is not.</p>
+<p><strong>Step 3: Determine axes and priority.</strong> Based on what
+the exploration actually found (not a generic checklist), the model
+selects which structural properties to evaluate and assigns each a
+priority. The priorities are guided by a few questions: which patterns
+are most load-bearing for this issue type, which structural properties
+are most at risk, and where did the exploration reveal fragility? Only
+properties backed by evidence with confidence &gt;= 0.6 make the
+cut.</p>
+<p><strong>Step 4: Generate the YAML.</strong> A second subagent writes
+the actual rubric file. This subagent has no memory of the conversation
+so far; it receives the issue context, the axis priorities, and the full
+exploration output as a single prompt. For each axis, it writes two
+prose anchors describing ideal and poor conformance. There’s an
+important constraint here: the anchors must describe structural
+<em>properties</em>, not specific <em>mechanisms</em>. Instead of “the
+fix calls <code>rhs.bump_prefix()</code> before change_map
+construction,” the rubric should say “newly generated aliases are
+guaranteed to not appear as keys in the change_map.” This matters
+because multiple implementations might satisfy the same property, and
+the rubric shouldn’t prescribe a particular one.</p>
+<p>The subagent verifies the file against a checklist before finishing:
+all required keys present, at least one primary axis, anchors are
+substantive paragraphs (not single sentences), no numeric scoring
+anywhere, no implementation-correctness language. If anything fails the
+check, it fixes the file and re-verifies.</p>
+<h3 id="whats-in-a-rubric">What’s in a Rubric</h3>
+<p>Each rubric is a YAML file with four main sections:</p>
+<p><strong>Metadata</strong> classifies the issue: <code>bug_fix</code>
+/ <code>feature_addition</code> / <code>refactoring</code> /
+<code>architectural_change</code>, risk level (<code>low</code> /
+<code>medium</code> / <code>high</code>), and which components are
+affected.</p>
+<p><strong>Architectural context</strong> captures what the model
+discovered about the codebase: the dominant style (free-text,
+e.g. “Class-based view hierarchy with mixin composition”), named
+patterns with evidence and confidence scores, and critical boundaries
+the patch must respect.</p>
+<p><strong>Axes</strong> are the evaluation dimensions, typically 3-5
+per rubric. Each axis has a priority (<code>primary</code> /
+<code>secondary</code> / <code>minor</code>), a description grounded in
+what the model found during exploration, and two prose anchors:
+<code>ideal_conformance</code> and <code>poor_conformance</code>. The
+anchors describe structural properties, not specific code mechanisms. No
+numbers anywhere.</p>
+<p><strong>Evaluation guidance</strong> tells the evaluator how to use
+the rubric: read each axis’s anchors, write a prose assessment of where
+the patch falls, cite specific evidence, and weight primary axes more
+heavily than secondary or minor ones. It also scopes out
+non-architectural artifacts (debug scripts, reproduction files) from the
+assessment.</p>
+<p>One design choice worth flagging: the rubric deliberately ignores
+implementation correctness. Bugs, syntax errors, edge cases, runtime
+behavior are all out of scope. A patch can be architecturally perfect
+and still have bugs. A patch can work flawlessly and still violate
+architecture. The rubric only measures the structural dimension.</p>
+<p>Here’s the skeleton of a rubric (prose fields trimmed for
+brevity):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">issue_file</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;issue-report.md&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">issue_summary</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;QuerySet.bulk_create() crashes when update_conflicts=True and unique_fields contains expressions&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">issue_type</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;bug_fix&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">issue_type_rationale</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Restoring correct behavior for an existing API.&quot;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">risk_level</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;medium&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">affected_components</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">&quot;db.models&quot;</span><span class="kw">,</span><span class="at"> </span><span class="st">&quot;db.backends&quot;</span><span class="kw">]</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">evaluation_scope</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;architectural_conformance&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">evaluation_format</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;prose&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">architectural_context</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">primary_style</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Layered ORM with backend-specific SQL compilation&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">style_evidence</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;django/db/models/ depends on django/db/backends/ through compiler interface&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">style_confidence</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.92</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">key_patterns</span><span class="kw">:</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;SQL Compiler Delegation&quot;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">evidence</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;SQLCompiler in django/db/models/sql/compiler.py delegates dialect-specific SQL to backend operations&quot;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">scope</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;system-wide&quot;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">confidence</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.90</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">critical_boundaries</span><span class="kw">:</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">boundary</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;ORM layer must not embed backend-specific SQL syntax&quot;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">evidence</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;All SQL dialect differences are handled through backend compiler classes&quot;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">violation_check</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Check whether the patch adds raw SQL strings in django/db/models/ rather than delegating to the backend layer&quot;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="fu">axes</span><span class="kw">:</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sql_compilation_delegation</span><span class="kw">:</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">priority</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;primary&quot;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">priority_rationale</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;The compiler delegation chain is load-bearing for this bug fix. A patch that bypasses it would work for one backend but break others.&quot;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Whether the fix respects the separation between ORM-level query construction and backend-specific SQL compilation.&quot;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">baseline_context</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;bulk_create currently delegates conflict handling to the backend compiler via on_conflict_suffix_sql().&quot;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">    ideal_conformance</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>      The fix preserves the property that all SQL dialect differences</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      are resolved at the backend compiler layer. Expression resolution</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>      happens through the same resolve_expression path used by other</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>      queryset operations, so backend-specific type handling is applied</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>      uniformly. No new SQL string construction appears in the ORM layer.</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">    poor_conformance</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      The fix inlines SQL generation for the conflict clause directly</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>      in the ORM layer, bypassing the backend compiler. Expression</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>      objects are converted to SQL strings before reaching the compiler,</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>      losing backend-specific type information and breaking the</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>      delegation boundary that allows multiple database backends to</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      coexist.</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">expression_resolution_consistency</span><span class="kw">:</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">priority</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;secondary&quot;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">priority_rationale</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Expressions in unique_fields should resolve through the same pipeline as expressions elsewhere in the ORM.&quot;</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Whether expressions in unique_fields are resolved consistently with how the ORM resolves expressions in other contexts.&quot;</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">baseline_context</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;The ORM resolves expressions via resolve_expression() during query compilation.&quot;</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">    ideal_conformance</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>      Expressions passed in unique_fields go through the standard</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>      resolve_expression pipeline, gaining access to the query&#39;s</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>      alias map and compiler context. The resolution path is the same</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>      one used for expressions in filter(), annotate(), and other</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>      queryset methods.</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="fu">    poor_conformance</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>      Expressions in unique_fields are special-cased with a separate</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>      resolution path, or are stringified before the compiler sees them.</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>      This creates a second way to resolve expressions that may diverge</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>      from the standard pipeline as the ORM evolves.</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="fu">evaluation_guidance</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>  For each axis, read both anchors and assess where the patch falls.</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>  Cite specific file:line references. Primary axes are load-bearing;</span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>  problems there are fundamental. Non-architectural artifacts (test</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>  scripts, debug files) are out of scope.</span></code></pre></div>
+<p>The key thing to notice is the prose anchors. They describe
+structural properties (“all SQL dialect differences are resolved at the
+backend compiler layer”) rather than specific mechanisms (“the fix calls
+<code>on_conflict_suffix_sql()</code>”). This is what allows the rubric
+to evaluate multiple correct implementations against the same
+standard.</p>
+<h2 id="the-dataset">The Dataset</h2>
+<p><img src="blog-images/claude-architectural-rubrics/section_a_overview.png"
+alt="Dataset overview" /></p>
+<p>500 rubrics across 12 repos. The left panel shows risk level
+distribution per repo (stacked bars), the right shows how many
+components each rubric identifies as affected (lollipop chart). Django
+dominates with 231 instances (46%). 89.6% are bug fixes, which is just
+SWE-bench Verified’s composition, not a choice I made. Most instances
+touch 2-3 components, with a long tail out to 14.</p>
+<h2 id="what-the-model-considers-load-bearing">What the Model Considers
+Load-Bearing</h2>
+<p>This is the part I was most curious about. Every rubric has 3-5
+evaluation axes, each tagged with a priority. Across all 2,176 axes, I
+had the keys clustered into semantic themes and looked at how the model
+assigns priority within each theme.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_c_priority_mix.png"
+alt="Priority mix per theme" /></p>
+<p>Each bar shows the priority breakdown for one theme: what percentage
+of axes in that theme are tagged primary, secondary, or minor.
+Delegation/Responsibility and Contract/API are overwhelmingly primary.
+Test Infrastructure and Minimality/Scope are overwhelmingly minor.</p>
+<p>The model has a coherent worldview here. Contracts and delegation
+chains are the things that make or break a patch in its eyes. “Don’t
+break the API contract” and “respect the delegation chain” are
+structural concerns, and the model treats them as load-bearing.
+Minimality (“keep the diff small”) is almost never primary (3%) and
+lands at minor 64% of the time. Test infrastructure is explicitly
+deprioritized at 72% minor. The model treats diff size and test
+conventions as things worth mentioning, never as things worth failing a
+patch over.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_c_themes_by_priority.png"
+alt="Themes by priority" /></p>
+<p>The same data from the other direction: total axis count per theme,
+broken down by priority level. Contract/API and Consistency/Convention
+are the most <em>frequent</em> themes (404 and 353 axes respectively),
+but Delegation/Responsibility has the highest primary <em>rate</em>
+despite being rare in absolute terms (38 axes, 58% primary). The model
+doesn’t create delegation axes often, but when it does, it almost always
+makes them the deciding factor.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_c_primary_vs_minor.png"
+alt="Primary vs minor" /></p>
+<p>A butterfly chart showing primary axes (right) vs minor axes (left)
+for each theme. This is the clearest view of the model’s priorities.
+Contract/API and Delegation skew heavily right. Minimality and Test
+Infrastructure skew heavily left. You could disagree with this ranking,
+but it’s clearly a <em>position</em>, not randomness.</p>
+<h2 id="the-model-invents-its-own-pattern-vocabulary">The Model Invents
+Its Own Pattern Vocabulary</h2>
+<p>This one surprised me. Out of 2,034 total pattern identifications,
+1,935 names are unique. “Template Method” appears 49 times, “Mixin
+Composition” 9 times, and after that it’s basically all one-offs. Names
+like “Dimensional Bookkeeping via Index Arrays,” “Precedence-Based
+Parenthesization,” “Relaxed-mode Column Building.”</p>
+<p>The model isn’t reaching for a GoF cheat sheet. It’s coining terms
+for the structures it actually finds.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_b_pattern_families.png"
+alt="Pattern families" /></p>
+<p>To make sense of this, I had the 1,935 names clustered into 14
+canonical families via keyword matching. The bar chart shows how many
+patterns landed in each family. “Other / Domain-Specific” is the largest
+bucket at 32.5%, meaning a third of the model’s pattern names didn’t
+match any canonical family. Strategy/Dispatch, Template Method, and
+Decorator/Wrapper are the most common recognizable families.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_b_family_repo_heatmap.png"
+alt="Pattern families by repo" /></p>
+<p>The heatmap shows how often each pattern family appears per instance,
+broken down by repo. Each repo gets a distinct fingerprint that reads
+like a reasonable architectural summary. sympy lights up on
+Strategy/Dispatch (0.63/inst), because it really is built around type
+dispatch for expression evaluation. Django lights up on Template Method
+(0.41/inst), the CBV hook/override hierarchy. scikit-learn lights up on
+Mixin/Composition (0.59/inst), the estimator mixin architecture. If
+you’ve worked in any of these codebases, the fingerprints probably look
+about right.</p>
+<h2 id="different-codebases-different-concerns">Different Codebases,
+Different Concerns</h2>
+<p>The model doesn’t just identify different patterns per repo, it
+worries about different things too.</p>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_e_theme_repo_heatmap.png"
+alt="Axis themes by repo" /></p>
+<p>Each cell shows how many axes of a given theme appear per instance in
+that repo. pytest’s plugin architecture means Boundary Preservation
+shows up more often (1.11/inst) than in any other repo. scikit-learn’s
+strict estimator API means Contract/API dominates (1.00/inst). These
+aren’t generic, they reflect the actual architectural pressure points of
+each project.</p>
+<h2 id="harder-problems-get-richer-rubrics">Harder Problems Get Richer
+Rubrics</h2>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_f_risk_complexity.png"
+alt="Risk vs complexity" /></p>
+<p>Three panels showing how rubric complexity (patterns, axes, and
+boundaries per instance) scales with the model’s own risk assessment.
+Each dot is one instance, diamonds mark the mean. The model generates
+richer rubrics for harder problems: high-risk instances average 4.9 axes
+vs 4.0 for low-risk, and 3.0 boundaries vs 2.4.</p>
+<p>The biggest jump is in affected components (not shown in this chart
+but visible in the dataset overview): 1.6 for low-risk to 4.3 for
+high-risk. When a problem touches more of the codebase, the model
+responds with more evaluation dimensions and more primary axes. It’s not
+just stamping out the same rubric every time.</p>
+<h2 id="the-template-is-fixed-the-content-isnt">The Template Is Fixed,
+the Content Isn’t</h2>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_e_complexity.png"
+alt="Rubric complexity by repo" /></p>
+<p>Mean rubric complexity per repo across four metrics: patterns, axes,
+primary axes, and boundaries. Each metric is a separate dot per repo,
+connected by a horizontal line to show the spread.</p>
+<p>The <em>structure</em> of the rubrics barely varies. Axes per rubric
+ranges from 3.8 to 4.5 across all repos. Patterns: 3.0 to 5.0.
+Boundaries: 2.0 to 3.0. The model applies a consistent template
+regardless of which codebase it’s looking at. But the <em>content</em>
+varies a lot: which patterns, which themes, which boundaries, what the
+prose anchors describe. The model uses the same frame every time but
+fills it with genuinely different architectural content. I’m not sure if
+this is a strength (consistent evaluation format) or a limitation (the
+model can’t break its own mold when a problem warrants it). Probably a
+bit of both.</p>
+<h2 id="boundaries-layers-and-delegation-over-and-over">Boundaries:
+Layers and Delegation, Over and Over</h2>
+<p><img
+src="blog-images/claude-architectural-rubrics/section_d_boundaries.png"
+alt="Boundary types" /></p>
+<p>The left panel shows total boundary counts by type across all
+rubrics. The right panel is a heatmap of boundary types per instance by
+repo. Layer/module separation (24.8%) and delegation/responsibility
+(16.7%) are the most common types. Boundaries like “view classes must
+not embed model-layer logic” and “must delegate to ModelAdmin for
+model-specific operations” are what the model identifies most often.</p>
+<p>This echoes the axis priority findings. The model’s architectural
+worldview is centered on: who delegates to whom, and which layers are
+not allowed to reach across into each other.</p>
+<h2 id="confidence-is-always-high-not-useful">Confidence Is Always High
+(Not Useful)</h2>
+<p>Style confidence: mean 0.932, std 0.025, range [0.85, 0.95]. Pattern
+confidence: mean 0.918, std 0.033, range [0.80, 1.00].</p>
+<p>The model is confident about everything. There’s no discriminating
+signal here. It’s more of an “I found evidence” flag than a calibrated
+uncertainty estimate. If you were hoping to use confidence to find
+instances where the model struggled to read the architecture, this isn’t
+going to help.</p>
+<h2 id="what-i-take-away">What I Take Away</h2>
+<p>The model has a real architectural perspective. It’s not random, not
+generic, and not just parroting textbook patterns. It prioritizes
+contracts and delegation over diff size and test conventions. It adapts
+its pattern vocabulary per codebase. It generates richer rubrics for
+harder problems.</p>
+<p>Whether this perspective is <em>correct</em> is a different question,
+and one that Stage 3 of the pipeline is designed to help answer. But as
+a window into what a frontier model thinks “good architecture” means, I
+found this more interesting than I expected.</p>
+<h2 id="what-id-change">What I’d Change</h2>
+<p><strong>The “Other / Domain-Specific” bucket is too large.</strong> A
+third of all pattern identifications and a quarter of all boundary types
+land in the catch-all category. The keyword-based clustering is too
+coarse. The model is generating genuinely specific pattern names, and
+the analysis can’t distinguish between “the model identified a real
+pattern that doesn’t fit canonical families” and “the model generated
+noise.” A more sophisticated clustering approach (semantic similarity
+rather than keyword matching) would give a clearer picture of whether
+the long tail of unique pattern names contains real signal.</p>
+<p><strong>Confidence scores carry no information.</strong> Style
+confidence clusters in [0.85, 0.95] with a standard deviation of 0.025.
+Pattern confidence is similar. The model never expresses meaningful
+uncertainty. This could be a rubric design issue (the skill asks for
+confidence but doesn’t give the model enough reason to be uncertain), or
+it could be that the model genuinely found clear evidence in every case.
+Either way, the confidence field adds nothing to the analysis and could
+be dropped or replaced with something that has more dynamic range, like
+asking the model to identify which of its findings it’s <em>least</em>
+sure about rather than assigning a number.</p>
+<p><strong>Rubric structure is suspiciously uniform.</strong> Axes per
+rubric ranges from 3 to 5 across all 500 instances, with most repos
+averaging 4.0-4.5. Boundaries per instance ranges from 2.0 to 3.0. The
+model is clearly applying a template. The skill doesn’t actually
+constrain the axis count to 3-5. It suggests “expect 1-2 primary, 1-3
+secondary, 0-2 minor,” which allows anywhere from 2 to 7 axes, but the
+model consistently lands in a narrow band. Whether the expected-count
+hints are anchoring the model or the model just gravitates to 4 on its
+own isn’t clear. A follow-up experiment could remove the count guidance
+entirely and see whether the model produces 2-axis rubrics for simple
+problems and 8-axis rubrics for complex ones, or whether it gravitates
+to 4 regardless.</p>
+<p><strong>No validation against human judgment.</strong> The rubrics
+represent what the model <em>thinks</em> is architecturally important.
+Whether those judgments are correct, whether the patterns it identifies
+are real, whether the boundaries it flags actually matter, is untested.
+Stage 3 evaluates patches against these rubrics, which tells you whether
+the rubrics are internally consistent, but not whether they’re right.
+Validating a subset against expert human judgment would be the most
+valuable next step, and the hardest to do.</p>

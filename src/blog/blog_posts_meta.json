@@ -238,5 +238,29 @@
         "_description": "",
         "_show": true,
         "_archived": true
+    },
+    {
+        "_id": "coding-agent-architectures",
+        "_title": "Inside 13 Coding Agents: Control Loops, Tools, and Tradeoffs",
+        "_createdAt": "2026-03-19",
+        "_description": "A source-code-level analysis of 13 open-source coding agents, comparing their control loops, tool sets, state management, and architectural tradeoffs.",
+        "_show": true,
+        "_archived": false
+    },
+    {
+        "_id": "20260319_claude_architectural_rubrics",
+        "_title": "What Does Claude Think Is Architecturally Important?",
+        "_createdAt": "2026-03-27T00:00:00.000Z",
+        "_description": "Analyzing 500 AI-generated architectural rubrics across SWE-bench Verified to see what a frontier model actually values in code architecture.",
+        "_show": true,
+        "_archived": false
+    },
+    {
+        "_id": "20260320_swebench_architectural_complexity",
+        "_title": "Most of SWE-bench Verified Doesn't Require Deep Architectural Understanding",
+        "_createdAt": "2026-03-26T00:00:00.000Z",
+        "_description": "Evaluating all 500 SWE-bench Verified instances for architectural complexity. 62% are trivial or low, and reasoning coordination consistently exceeds changes coordination.",
+        "_show": true,
+        "_archived": false
     }
 ]

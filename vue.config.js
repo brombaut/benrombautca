@@ -60,6 +60,10 @@ module.exports = {
             from: "./src/hiking/hiking-images",
             to: "./hiking-images/",
           },
+          {
+            from: "./src/blog/content/images",
+            to: "./blog-images/",
+          },
         ],
       }),
     ],

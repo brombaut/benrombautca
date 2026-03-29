@@ -1,0 +1,454 @@
+<h1 id="what-13-coding-agents-actually-look-like-inside">What 13 Coding
+Agents Actually Look Like Inside</h1>
+<p>Coding agents are everywhere. SWE-agent, OpenHands, Aider, Codex CLI,
+Gemini CLI, Cline, OpenCode, and the list keeps growing. They all
+promise to fix bugs, implement features, and navigate codebases
+autonomously. But how do they actually work under the hood? Are they all
+just “wrap an LLM in a ReAct loop”?</p>
+<p>To find out, this analysis cloned 13 open-source coding agent
+repositories and traced their architectures line by line. Not the
+READMEs, not the blog posts, the actual source code. Control loops, tool
+registrations, state management, context strategies, all pinned to
+specific files and commits.</p>
+<p>The short answer: no, they’re not all ReAct loops. The design space
+is far wider than it looks from the outside, and the architectural
+choices these agents make have real consequences that aren’t obvious
+until you read the code.</p>
+<h2 id="the-corpus">The Corpus</h2>
+<p>The 13 agents span the full range: CLI tools (SWE-agent, Codex CLI,
+Gemini CLI, Aider, OpenCode), SWE-bench-oriented agents (Agentless,
+OpenHands, AutoCodeRover, Moatless Tools, DARS-Agent, Prometheus), a
+minimal baseline (mini-swe-agent), and an IDE-native agent (Cline). They
+range from 100 lines of Python to sprawling TypeScript monorepos. Some
+have papers at NeurIPS and ICSE; others are community-driven tools with
+tens of thousands of GitHub stars.</p>
+<p>Each agent was analyzed across 9 architectural dimensions: control
+loop, tool set, tool discovery, state management, context retrieval,
+execution isolation, context compaction, multi-model routing, and
+persistent memory.</p>
+<h2 id="where-they-converge">Where They Converge</h2>
+<p>Despite radically different origins, coding agents agree on more than
+expected.</p>
+<p>Every LLM-driven agent needs the same four capability categories:
+<strong>read</strong> code, <strong>search</strong> for code,
+<strong>edit</strong> code, and <strong>execute</strong> commands. This
+holds whether the agent exposes a single <code>bash</code> tool
+(mini-swe-agent) or registers 37 action classes (Moatless Tools). A
+coding task requires understanding the codebase, making changes, and
+verifying them. The capability categories reflect that.</p>
+<p>At the level of individual steps, 11 of 13 agents follow the ReAct
+pattern: the LLM generates a thought, selects a tool, receives an
+observation, repeats. The two exceptions are Aider (where the user
+drives the loop) and Agentless (which is a pipeline, not a loop). But
+calling these “ReAct agents” is like calling every web app a
+“request-response app.” Technically true and completely uninformative.
+The interesting differences are in what’s <em>around</em> the ReAct
+loop.</p>
+<p>There’s also unexpected convergence in edit interfaces. OpenHands,
+SWE-agent, DARS-Agent, mini-swe-agent, and OpenCode all use the
+Anthropic-style <code>str_replace_editor</code> (or its equivalent
+oldString/newString replacement), giving 5 of 13 agents the same tool
+interface. Not because they copied each other, but because Anthropic’s
+tool spec became a de facto standard. Meanwhile, Aider takes the
+opposite approach: 13 different text-parsed edit formats, optimized per
+model. One standard interface vs. adapting the format to each model’s
+strengths. A real design fork.</p>
+<h2 id="where-they-diverge">Where They Diverge</h2>
+<p>The convergence story is about capabilities. The divergence story is
+about <em>architecture</em>, how agents compose those capabilities into
+systems.</p>
+<h3 id="control-loop-pipeline-to-tree-search">Control Loop: Pipeline to
+Tree Search</h3>
+<p>The most fundamental architectural axis isn’t “which tools does the
+agent have?” but “how does the agent decide what to do next?”</p>
+<p>There’s a clear spectrum. To make the differences concrete, here’s
+what each control flow pattern actually looks like as code.</p>
+<p><strong>Fixed pipeline (Agentless).</strong> No loop at all.
+Localize, repair, validate, each stage runs once:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(issue):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    locations <span class="op">=</span> localize(issue)           <span class="co"># LLM identifies relevant files/functions</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    patches <span class="op">=</span> []</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_samples):          <span class="co"># generate ~40 candidates independently</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        patch <span class="op">=</span> repair(issue, locations,  <span class="co"># each call is independent, high temperature</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                       temperature<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        patches.append(patch)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    best <span class="op">=</span> majority_vote(patches)         <span class="co"># pick most common fix via string matching</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> best</span></code></pre></div>
+<p>The LLM generates ~40 independent patch candidates via temperature
+sampling and picks the best through majority voting. No feedback, no
+iteration. The bet: diversity of independent attempts can substitute for
+feedback loops. It’s cheap and parallelizable, but if the localization
+step points to the wrong file, every downstream patch is wasted.</p>
+<p><strong>Sequential loop (SWE-agent, OpenHands, Codex CLI, Gemini CLI,
+Cline, OpenCode, mini-swe-agent).</strong> The standard approach:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(issue):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    messages <span class="op">=</span> [system_prompt, issue]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> step <span class="op">&lt;</span> max_steps:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> llm(messages)                  <span class="co"># LLM chooses action</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        tool_name, tool_args <span class="op">=</span> parse(response)    <span class="co"># extract tool call</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        observation <span class="op">=</span> execute(tool_name, tool_args)  <span class="co"># run in environment</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        messages.append(response)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        messages.append(observation)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> is_done(response):</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> get_patch()</span></code></pre></div>
+<p>The LLM picks a tool, sees the result, picks the next tool.
+Depth-first exploration of a single trajectory. If something goes wrong,
+the agent can course-correct but can’t undo its previous actions. It
+works with the state its past decisions created. Flexible, but a bad
+early decision compounds. The agent has to dig itself out of holes it
+made.</p>
+<p><strong>Phased loop (AutoCodeRover, Prometheus).</strong> The loop is
+divided into distinct stages with different tool access:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(issue):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Phase 1: Search (read-only tools only)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    search_tools <span class="op">=</span> [search_class, search_method, search_code, ...]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    context <span class="op">=</span> search_loop(issue, tools<span class="op">=</span>search_tools, max_steps<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Phase 2: Patch (write tools only, no search allowed)</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    patch_tools <span class="op">=</span> [write_patch]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    patch <span class="op">=</span> patch_loop(issue, context, tools<span class="op">=</span>patch_tools)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Phase 3: Validate</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> run_tests(patch)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> result.passed:</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        retry()  <span class="co"># go back through the graph&#39;s retry mechanism</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> patch</span></code></pre></div>
+<p>AutoCodeRover enforces this phase separation <em>at the code
+level</em>: the PatchAgent literally cannot import the SearchBackend.
+Prometheus goes further with a LangGraph state machine where each node
+binds only 1-10 tools relevant to its task. The edit node gets editing
+tools; the verification node gets only <code>run_command</code>. This
+structurally prevents the LLM from modifying code while it’s still
+supposed to be figuring out what’s wrong. The cost: no interleaving. If
+the agent realizes mid-patch that it needs more context, it can’t just
+run a search. It has to go through the graph’s retry mechanism.</p>
+<p><strong>Tree search (DARS-Agent, Moatless Tools).</strong> Instead of
+committing to one trajectory, explore alternatives. This is where the
+most interesting gradient appeared.</p>
+<p>DARS-Agent does depth-first tree search with dynamic resampling:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(issue):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> Node(action<span class="op">=</span>issue)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    current <span class="op">=</span> root</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> step <span class="op">&lt;</span> max_steps:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> llm(messages_from(current))</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        current <span class="op">=</span> current.add_child(response)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> should_expand(current):            <span class="co"># only at edit/append/create actions</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>            candidates <span class="op">=</span> []</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_samples):      <span class="co"># generate 3 alternatives</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                alt <span class="op">=</span> llm(messages_from(current.parent),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>                          temperature<span class="op">=</span><span class="fl">0.8</span>)    <span class="co"># higher temperature for diversity</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                candidates.append(alt)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>            best <span class="op">=</span> critic(current, candidates)  <span class="co"># LLM compares candidates pairwise</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>            current <span class="op">=</span> best                      <span class="co"># continue down best branch</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> is_done(current):</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> get_patch(root.leftmost_path())    <span class="co"># final answer: always leftmost path</span></span></code></pre></div>
+<p>At branch points (edits, appends, creates), DARS generates 3
+alternative actions at higher temperature, uses an LLM critic to compare
+them, and continues down the best branch. No rewards, no
+backpropagation. The critic makes purely local decisions.</p>
+<p>Moatless Tools does full Monte Carlo Tree Search:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run(issue):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    root <span class="op">=</span> Node(state<span class="op">=</span>initial_state(issue))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> budget_remaining():</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        leaf <span class="op">=</span> select(root)                     <span class="co"># UCB1 traversal to promising leaf</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        child <span class="op">=</span> expand(leaf)                    <span class="co"># generate new action</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        reward <span class="op">=</span> simulate(child)                <span class="co"># evaluate with value function</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        backpropagate(child, reward)            <span class="co"># update all ancestors&#39; statistics</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="co"># reward is numeric: -100 (broken) to +100 (tests pass)</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># each node tracks: visit_count, total_reward, avg_reward</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    best_path <span class="op">=</span> highest_reward_path(root)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> get_patch(best_path)</span></code></pre></div>
+<p>Textbook MCTS applied to code generation: select, expand, simulate,
+backpropagate, with numeric rewards (-100 to 100), visit counting, and
+pluggable value functions.</p>
+<p>The tradeoff across this spectrum is straightforward: pipelines are
+cheap but rigid. Sequential loops are flexible but can get stuck. Tree
+search explores alternatives but is expensive, and that expense has a
+specific, non-obvious architectural root.</p>
+<h3 id="the-environment-replay-problem">The Environment Replay
+Problem</h3>
+<p>Here’s a tradeoff that isn’t visible from documentation or blog
+posts. It only becomes clear in the source code.</p>
+<p>Tree search in coding agents is fundamentally constrained by
+execution environment state. When DARS-Agent wants to explore an
+alternative branch at depth N, it must reset the Docker container and
+replay all N previous actions from scratch:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> reset_env_to_node(target_node):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    docker.reset()                              <span class="co"># full container reset</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    path <span class="op">=</span> get_path_from_root(target_node)      <span class="co"># walk up parent pointers</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ancestor <span class="kw">in</span> path:                       <span class="co"># replay every action in order</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        execute(ancestor.action)                <span class="co"># re-run each shell command</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># now environment matches state at target_node</span></span></code></pre></div>
+<p>At depth 20, that’s 20 shell commands re-executed just to reach the
+branch point. This is why DARS limits branching to only
+edit/append/create/submit actions. Branching at every step would be
+prohibitively expensive.</p>
+<p>Moatless Tools solves this differently: <code>shadow_mode</code> lets
+the agent reason about file modifications without writing to disk:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FileContext:</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> apply_change(<span class="va">self</span>, file_path, change):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="va">self</span>.shadow_mode:</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.pending_patches[file_path].append(change)  <span class="co"># store in memory</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="va">self</span>.reconstruct(file_path)              <span class="co"># return virtual state</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>            write_to_disk(file_path, change)                <span class="co"># real modification</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> read_from_disk(file_path)</span></code></pre></div>
+<p>A <code>FileContext</code> tracks code spans and patches as data
+structures. The execution environment stays clean because edits are
+virtual until committed.</p>
+<p>This reveals a deep architectural tradeoff. Stateful execution
+environments (Docker containers with real file modifications) give
+ground truth but make branching expensive. Virtual execution (shadow
+mode, in-memory patches) makes branching cheap but requires trusting the
+simulation. The right choice depends on whether the value of exploring
+alternatives outweighs the cost of imperfect execution feedback.</p>
+<h3 id="how-much-agency-to-give-the-llm">How Much Agency to Give the
+LLM</h3>
+<p>Tool count sounds like a simple metric. It’s not:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Agent</th>
+<th>LLM-Callable Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Aider</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>Agentless</td>
+<td>0 (default) / 1 (Anthropic path)</td>
+</tr>
+<tr class="odd">
+<td>mini-swe-agent</td>
+<td>1 (bash)</td>
+</tr>
+<tr class="even">
+<td>SWE-agent</td>
+<td>3 (default) / ~34 (all bundles)</td>
+</tr>
+<tr class="odd">
+<td>AutoCodeRover</td>
+<td>8 (all read-only)</td>
+</tr>
+<tr class="even">
+<td>OpenHands</td>
+<td>9 + MCP</td>
+</tr>
+<tr class="odd">
+<td>DARS-Agent</td>
+<td>~15</td>
+</tr>
+<tr class="even">
+<td>Gemini CLI</td>
+<td>17 + MCP</td>
+</tr>
+<tr class="odd">
+<td>Prometheus</td>
+<td>17 (1-10 per node)</td>
+</tr>
+<tr class="even">
+<td>OpenCode</td>
+<td>18 + MCP + plugins</td>
+</tr>
+<tr class="odd">
+<td>Codex CLI</td>
+<td>~20 + MCP</td>
+</tr>
+<tr class="even">
+<td>Cline</td>
+<td>27 + MCP</td>
+</tr>
+<tr class="odd">
+<td>Moatless Tools</td>
+<td>37 (~15 active)</td>
+</tr>
+</tbody>
+</table>
+<p>The numbers alone are misleading. Aider has 0 LLM-callable tools
+because the <em>user</em> drives the loop. The LLM’s job is to produce
+edit blocks, not to decide what to do next. AutoCodeRover has 8 tools,
+but they’re all read-only search operations. The LLM can’t modify code
+during its search phase. mini-swe-agent has 1 tool (<code>bash</code>)
+but that tool can do anything.</p>
+<p>The real design decision is how much autonomy to give the LLM. More
+tools means more flexibility and more surface area for mistakes. Fewer
+tools means more constrained and more predictable behavior.
+AutoCodeRover’s search-only tool set during localization is a deliberate
+architectural bet: constraining the LLM to read-only operations while
+it’s still figuring out the problem produces better results than letting
+it modify code mid-investigation.</p>
+<p>And then there’s Agentless’s strangest trick. Its Anthropic code path
+has a 10-iteration tool-use loop where the LLM calls
+<code>str_replace_editor</code> to make edits, but every tool call gets
+a hardcoded response:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> tool_use_repair(issue, file_content):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    messages <span class="op">=</span> [system_prompt, file_content]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> llm(messages, tools<span class="op">=</span>[str_replace_editor])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> response.has_tool_calls():</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> call <span class="kw">in</span> response.tool_calls:</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                edits.append(call.arguments)        <span class="co"># collect the edit</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                messages.append(</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                    tool_result<span class="op">=</span><span class="st">&quot;File is successfully edited.&quot;</span>  <span class="co"># always this string</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> apply_edits(edits, file_content)         <span class="co"># apply all at once at the end</span></span></code></pre></div>
+<p>The LLM never sees actual file state. It’s structured output
+extraction disguised as tool use. The expectation that tool use means
+tool <em>execution</em> doesn’t always hold.</p>
+<h3 id="context-compaction-five-strategies">Context Compaction: Five
+Strategies</h3>
+<p>Long coding sessions generate more context than fits in a model’s
+context window. Five distinct strategies emerged:</p>
+<p><strong>No compaction (mini-swe-agent).</strong> The message list
+grows until context overflow crashes the agent. Combined with cost and
+step limits, this works for bounded tasks. Not every problem needs a
+sophisticated solution.</p>
+<p><strong>Rule-based truncation (SWE-agent, DARS-Agent).</strong> Keep
+the first message and last N observations, placeholder everything
+else:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> truncate(history, n<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> []</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    user_msgs <span class="op">=</span> [m <span class="cf">for</span> m <span class="kw">in</span> history <span class="cf">if</span> m.role <span class="op">==</span> <span class="st">&quot;user&quot;</span> <span class="kw">and</span> <span class="kw">not</span> m.is_demo]</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    total <span class="op">=</span> <span class="bu">len</span>(user_msgs)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> msg <span class="kw">in</span> history:</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> msg.role <span class="op">!=</span> <span class="st">&quot;user&quot;</span> <span class="kw">or</span> msg.is_demo:</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>            result.append(msg)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> idx <span class="op">==</span> <span class="dv">1</span> <span class="kw">or</span> idx <span class="op">&gt;</span> total <span class="op">-</span> n:             <span class="co"># keep first + last N</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>            result.append(msg)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>            result.append(<span class="ss">f&quot;Old output omitted (</span><span class="sc">{</span>msg<span class="sc">.</span>line_count<span class="sc">}</span><span class="ss"> lines)&quot;</span>)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span></code></pre></div>
+<p>No LLM calls, deterministic behavior, but older context is either
+fully in or fully out.</p>
+<p><strong>LLM summarization (Aider, OpenHands, OpenCode).</strong> Use
+a cheaper model to summarize older messages. More flexible than rules,
+but lossy, and the quality depends on the summarization model. Aider’s
+approach is destructive: the original messages are overwritten in place.
+OpenHands preserves raw events alongside summaries. OpenCode adds a
+twist: a two-phase approach that first prunes old tool outputs (keeping
+message structure but removing verbose content) before summarizing via a
+dedicated compaction agent, preserving more conversational context than
+either pure truncation or full summarization alone.</p>
+<p><strong>Structural isolation (Prometheus).</strong> The graph-based
+control flow means each LLM call only sees messages relevant to its
+current node. No explicit compaction needed because the structure
+prevents unbounded accumulation. Elegant, but only works if you have
+explicit control flow structure.</p>
+<p><strong>LLM-initiated compaction (Cline).</strong> The LLM itself has
+a <code>condense</code> tool and can proactively request context
+summarization when it judges its window is getting too full. The only
+agent where the LLM has agency over its own context management.</p>
+<p>Gemini CLI adds a twist on top of LLM summarization: after
+summarizing, it runs a <strong>verification probe</strong>, a
+self-correction turn that checks whether critical information was lost.
+No other agent validates its own compaction quality.</p>
+<p>The tradeoff here is subtle. Simpler compaction strategies are easier
+to reason about and don’t cost extra LLM calls. But they can’t
+distinguish between “this old observation is irrelevant” and “this old
+observation contains the key insight the agent needs.” LLM-based
+approaches can make that distinction, at the cost of sometimes getting
+it wrong.</p>
+<h3 id="model-routing-when-does-it-justify-the-complexity">Model
+Routing: When Does It Justify the Complexity?</h3>
+<p>Most agents use a single model for everything. The question is: when
+does multi-model routing earn its keep?</p>
+<p>The clearest case is <strong>role-based routing</strong>. Aider
+assigns different models to different subtasks: a capable model for
+coding, a cheap model for summarization, a specialized model for
+applying edits. OpenCode takes a similar approach but enforces it
+structurally: different agent types (build, plan, explore, general) can
+each use a different model, with the scaffold controlling which agent
+handles which task. The roles are well-defined, the savings are
+concrete, and the complexity is minimal.</p>
+<p><strong>Per-attempt model cycling</strong> (SWE-agent) is a more
+speculative bet: on retry, switch to a different model entirely, on the
+hypothesis that different models have different failure modes. More of
+the solution space gets covered, but the agent has no signal about
+<em>which</em> model is better for a given problem.</p>
+<p>At the sophisticated end, <strong>Moatless Tools</strong> uses
+actor-critic routing in tree search: one model generates actions, a
+separate value function (potentially a different model) evaluates them
+with numeric rewards. And <strong>Gemini CLI</strong> has a 7-layer
+routing chain including an optional local Gemma model for client-side
+classification. This is model routing treated as a first-class
+architectural concern, but it’s fair to ask whether the complexity pays
+off. The answer isn’t obvious from architecture alone.</p>
+<p>The most surprising use of multi-model routing is for
+<strong>safety</strong>: Codex CLI’s “Guardian” uses a separate,
+potentially more capable model to evaluate tool call risk before
+execution, with structured risk scoring and fail-closed behavior. Every
+other agent relies on static sandboxing or user approval.</p>
+<h2 id="the-bigger-picture">The Bigger Picture</h2>
+<p>Three cross-cutting patterns stood out.</p>
+<h3 id="agent-is-a-spectrum-not-a-binary">“Agent” is a Spectrum, Not a
+Binary</h3>
+<p>There’s a continuous spectrum from pure pipeline (Agentless) through
+user-driven loop (Aider) to fully autonomous agent (OpenHands).
+Agentless has 0 tools and no loop. Aider has 0 LLM-callable tools but
+has a lint/test reflection loop. SWE-agent has tools and a loop but the
+user sets it up and walks away. Codex CLI and Cline are interactive,
+with the LLM and user collaborating in real time.</p>
+<p>Calling some of these “agents” and others “not agents” misses the
+point. The interesting question is: where on the autonomy spectrum does
+a given design sit, and what does that position cost?</p>
+<h3 id="the-scaffold-constrains-whats-possible">The Scaffold Constrains
+What’s Possible</h3>
+<p>These 13 agents can all use the same underlying LLMs. Yet their
+architectures are radically different: pipelines vs loops vs tree
+search, 0 tools vs 37 tools, destructive state vs event-sourced state,
+no isolation vs Docker vs shadow mode. These scaffold decisions
+determine what strategies are even <em>possible</em> for the LLM. A
+model inside Agentless literally cannot iterate on a failed attempt,
+while a model inside Moatless Tools can explore 50 alternative
+branches.</p>
+<p>The scaffold doesn’t just affect performance. It defines the
+ceiling.</p>
+<h3 id="the-ecosystem-hasnt-stabilized">The Ecosystem Hasn’t
+Stabilized</h3>
+<p>DARS-Agent forks SWE-agent’s entire codebase to add tree search.
+mini-swe-agent imports SWE-agent as a dependency. Both extend the same
+base architecture, but one can track upstream improvements and the other
+can’t. Moatless Tools, Prometheus, and OpenHands each build their own
+tool frameworks, state management, and execution environments from
+scratch.</p>
+<p>There are no shared abstractions. Each agent reinvents tool
+registration, command execution, history management, and context
+formatting. OpenCode is a partial exception: it uses the Vercel AI SDK
+as an LLM abstraction layer and Drizzle ORM for state persistence,
+building on existing libraries rather than rolling its own. But the core
+scaffold logic (control loop, tool definitions, compaction strategy) is
+still bespoke. This is a field still figuring out its fundamental
+abstractions, which means the design space is wide open. Building a
+coding agent today is as much about choosing where to sit in that space
+as it is about prompt engineering.</p>
+<hr />
+<p><em>This analysis is part of an ongoing research project studying the
+architectural design space of coding agent scaffolds. All findings are
+based on source code analysis of specific commits, not documentation or
+marketing materials. The 13 agents analyzed: Aider, OpenHands,
+SWE-agent, Agentless, AutoCodeRover, Codex CLI, Gemini CLI, OpenCode,
+Moatless Tools, DARS-Agent, Prometheus, mini-swe-agent, and
+Cline.</em></p>

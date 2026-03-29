@@ -2,23 +2,15 @@
   <footer class="site-footer">
     <div class="wrapper">
       <div>Created By Ben Rombaut</div>
-      <div class="dash">-</div>
-      <div>Last Updated {{ lastDeployed }}</div>
     </div>
   </footer>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import lastDeployed from "./last-deployed";
 
 export default defineComponent({
   name: "SiteFooter",
-  data() {
-    return {
-      lastDeployed,
-    };
-  },
 });
 </script>
 
@@ -38,9 +30,6 @@ export default defineComponent({
     padding: 32px 0;
     color: white;
 
-    .dash {
-      margin: 0 4px;
-    }
   }
 }
 </style>
