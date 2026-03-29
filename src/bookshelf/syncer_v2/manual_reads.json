@@ -4,10 +4,34 @@
         "author": "Jon Krakauer",
         "book_id": "271285.Into_Thin_Air",
         "link": "https://www.goodreads.com/review/show/3747054078",
-        "date_finished": null,
-        "rating": 0,
+        "date_finished": "2022-09-05",
+        "rating": 4,
         "avg_rating": 4.3,
         "isbn": "0385492081",
+        "review": null,
+        "numPages": null
+    },
+    {
+        "title": "Into Thin Air: A Personal Account of the Mt. Everest Disaster",
+        "author": "Jon Krakauer",
+        "book_id": "271285.Into_Thin_Air",
+        "link": "https://www.goodreads.com/review/show/3747054078",
+        "date_finished": "2021-01-31",
+        "rating": 4,
+        "avg_rating": 4.3,
+        "isbn": "0385492081",
+        "review": null,
+        "numPages": null
+    },
+    {
+        "title": "Inside the Machine: An Illustrated Introduction to Microprocessors and Computer Architecture",
+        "author": "Jon Stokes",
+        "book_id": "26483599-inside-the-machine",
+        "link": "https://www.goodreads.com/review/show/3349147220",
+        "date_finished": "2019-02-01",
+        "rating": 5,
+        "avg_rating": 4.5,
+        "isbn": "1593276680",
         "review": null,
         "numPages": null
     }
