@@ -196,6 +196,40 @@ Number of files the model explored during evaluation, grouped by verdict. The ve
 
 The scaling is clean: trivial instances average 1.9 files, low averages 2.9, moderate 4.3, and high 6.5. This is reassuring as a sanity check. The model explores more code for problems it considers more architecturally complex. The outliers are interesting too: one moderate instance required 14 files, suggesting a problem that was sprawling in footprint but not deeply architectural.
 
+## Comparison with SWE-bench Verified's Difficulty Labels
+
+SWE-bench Verified ships with a human-estimated `difficulty` field based on expected time-to-fix: `<15 min fix`, `15 min - 1 hour`, `1-4 hours`, `>4 hours`. This measures something fundamentally different from the architectural complexity verdict. One is about how long a fix takes, the other is about how much codebase-specific structural understanding you need. Comparing the two shows where they agree and where they diverge.
+
+![Difficulty vs verdict](images/swebench-architectural-complexity/difficulty_vs_verdict.png)
+
+The left panel is a heatmap of counts (with row percentages) crossing the two scales. The right panel shows every instance as a dot, with the diamond marking the mean architectural verdict for each difficulty level.
+
+The two scales correlate at r = 0.48, positive but not strong. They agree directionally: `<15 min` fixes average a verdict of 0.78 (between trivial and low), while `1-4 hour` fixes average 2.02 (solidly moderate). But they diverge on individual instances, and the divergences are informative.
+
+**Quick fixes that require real architectural understanding.** 28 instances are rated `<15 min fix` by the SWE-bench annotators but `moderate` or higher by the model. Looking at these cases: 20 of the 28 involve cross-component structural depth, 20 require cross-boundary coordination, and 16 need architectural-conventions-level implicit knowledge. These are problems where a maintainer who already understands the architecture can apply a small, targeted fix in minutes, but someone approaching the codebase cold would need to trace interactions across module boundaries first. The time estimate assumes familiarity that the architectural verdict doesn't.
+
+A few examples:
+
+- **`django__django-13109`**: `ForeignKey.validate()` should use `_base_manager` instead of `_default_manager`. The fix is literally a single token change. But arriving at it requires understanding that Django's ORM distinguishes between these two managers and *why*: `_default_manager` may apply filters that exclude valid foreign key targets, while `_base_manager` is the unfiltered view. Patch: 4 changed lines. Architectural verdict: moderate (component-scoped depth, architectural-conventions implicit knowledge).
+
+- **`matplotlib__matplotlib-23476`**: Figure DPI doubles after unpickling on M1 Mac. The fix is one line in `__getstate__`, but you need to understand the `_dpi` / `_original_dpi` contract between `Figure` and `FigureCanvasBase`, and that the canvas's DPI-ratio callback re-applies a scaling factor when the figure is restored. Patch: 5 changed lines. Architectural verdict: moderate (cross-component depth, cross-boundary coordination).
+
+- **`django__django-11490`**: Composed queries can't change columns with `values()`/`values_list()`. The fix is a single line: clone before mutating. But you need to know that `_combinator_query` stores *direct references* to `Query` objects in `combined_queries`, so mutating one query silently corrupts the other. Patch: 3 changed lines. Architectural verdict: moderate (cross-component depth, cross-boundary coordination).
+
+**Slow fixes that are architecturally trivial.** 30 instances go the other way: rated `15 min - 1 hour` but `trivial` architecturally. All 30 are localized in depth, with minimal implicit knowledge and independent coordination. The time cost comes from mechanical work (reading the problem, understanding the specific behavior, writing the implementation), not from structural reasoning.
+
+A few examples:
+
+- **`django__django-11276`**: Replace Django's custom `html.escape()` with Python's stdlib `html.escape()`. Pure mechanical substitution. Patch: 28 changed lines. Architecturally trivial: localized, no coordination, no implicit knowledge needed.
+
+- **`django__django-10973`**: Modernize the postgres backend client to use `subprocess.run` and `PGPASSWORD`. Straightforward stdlib upgrade. Patch: 39 changed lines. The large patch size reflects implementation effort, not architectural complexity.
+
+- **`sympy__sympy-20154`**: Make `partitions()` stop reusing output dictionaries. The fix is self-contained within a single iterator function. Patch: 25 changed lines. No understanding of sympy's broader architecture required.
+
+The `1-4 hours` bucket is where the two scales align best: 74% of those instances land at `moderate` architectural complexity, and 14% at `high`. The `>4 hours` bucket has only 3 instances, too few to draw conclusions.
+
+The pattern makes sense: *time-to-fix conflates architectural difficulty with implementation effort*. A quick fix can still require genuine architectural understanding (if the fixer already has it), and a slow fix can be architecturally trivial (if the slowness comes from mechanical work). The architectural complexity verdict isolates the structural dimension that time-to-fix bundles together with everything else.
+
 ## What I Take Away
 
 SWE-bench Verified, through the lens of architectural complexity, is mostly a test of localized bug fixing. 62% of problems require understanding at most one component. The benchmark's value is real, these are genuine bugs from real projects, but it's not testing the kind of architectural reasoning that distinguishes senior engineers. If you built an AI system that was great at understanding cross-component interactions and implicit codebase conventions, SWE-bench Verified would only exercise that capability on about a third of its instances.

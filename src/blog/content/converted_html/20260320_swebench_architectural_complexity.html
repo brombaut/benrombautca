@@ -358,6 +358,106 @@ check. The model explores more code for problems it considers more
 architecturally complex. The outliers are interesting too: one moderate
 instance required 14 files, suggesting a problem that was sprawling in
 footprint but not deeply architectural.</p>
+<h2
+id="comparison-with-swe-bench-verifieds-difficulty-labels">Comparison
+with SWE-bench Verified’s Difficulty Labels</h2>
+<p>SWE-bench Verified ships with a human-estimated
+<code>difficulty</code> field based on expected time-to-fix:
+<code>&lt;15 min fix</code>, <code>15 min - 1 hour</code>,
+<code>1-4 hours</code>, <code>&gt;4 hours</code>. This measures
+something fundamentally different from the architectural complexity
+verdict. One is about how long a fix takes, the other is about how much
+codebase-specific structural understanding you need. Comparing the two
+shows where they agree and where they diverge.</p>
+<p><img
+src="blog-images/swebench-architectural-complexity/difficulty_vs_verdict.png"
+alt="Difficulty vs verdict" /></p>
+<p>The left panel is a heatmap of counts (with row percentages) crossing
+the two scales. The right panel shows every instance as a dot, with the
+diamond marking the mean architectural verdict for each difficulty
+level.</p>
+<p>The two scales correlate at r = 0.48, positive but not strong. They
+agree directionally: <code>&lt;15 min</code> fixes average a verdict of
+0.78 (between trivial and low), while <code>1-4 hour</code> fixes
+average 2.02 (solidly moderate). But they diverge on individual
+instances, and the divergences are informative.</p>
+<p><strong>Quick fixes that require real architectural
+understanding.</strong> 28 instances are rated
+<code>&lt;15 min fix</code> by the SWE-bench annotators but
+<code>moderate</code> or higher by the model. Looking at these cases: 20
+of the 28 involve cross-component structural depth, 20 require
+cross-boundary coordination, and 16 need architectural-conventions-level
+implicit knowledge. These are problems where a maintainer who already
+understands the architecture can apply a small, targeted fix in minutes,
+but someone approaching the codebase cold would need to trace
+interactions across module boundaries first. The time estimate assumes
+familiarity that the architectural verdict doesn’t.</p>
+<p>A few examples:</p>
+<ul>
+<li><p><strong><code>django__django-13109</code></strong>:
+<code>ForeignKey.validate()</code> should use <code>_base_manager</code>
+instead of <code>_default_manager</code>. The fix is literally a single
+token change. But arriving at it requires understanding that Django’s
+ORM distinguishes between these two managers and <em>why</em>:
+<code>_default_manager</code> may apply filters that exclude valid
+foreign key targets, while <code>_base_manager</code> is the unfiltered
+view. Patch: 4 changed lines. Architectural verdict: moderate
+(component-scoped depth, architectural-conventions implicit
+knowledge).</p></li>
+<li><p><strong><code>matplotlib__matplotlib-23476</code></strong>:
+Figure DPI doubles after unpickling on M1 Mac. The fix is one line in
+<code>__getstate__</code>, but you need to understand the
+<code>_dpi</code> / <code>_original_dpi</code> contract between
+<code>Figure</code> and <code>FigureCanvasBase</code>, and that the
+canvas’s DPI-ratio callback re-applies a scaling factor when the figure
+is restored. Patch: 5 changed lines. Architectural verdict: moderate
+(cross-component depth, cross-boundary coordination).</p></li>
+<li><p><strong><code>django__django-11490</code></strong>: Composed
+queries can’t change columns with
+<code>values()</code>/<code>values_list()</code>. The fix is a single
+line: clone before mutating. But you need to know that
+<code>_combinator_query</code> stores <em>direct references</em> to
+<code>Query</code> objects in <code>combined_queries</code>, so mutating
+one query silently corrupts the other. Patch: 3 changed lines.
+Architectural verdict: moderate (cross-component depth, cross-boundary
+coordination).</p></li>
+</ul>
+<p><strong>Slow fixes that are architecturally trivial.</strong> 30
+instances go the other way: rated <code>15 min - 1 hour</code> but
+<code>trivial</code> architecturally. All 30 are localized in depth,
+with minimal implicit knowledge and independent coordination. The time
+cost comes from mechanical work (reading the problem, understanding the
+specific behavior, writing the implementation), not from structural
+reasoning.</p>
+<p>A few examples:</p>
+<ul>
+<li><p><strong><code>django__django-11276</code></strong>: Replace
+Django’s custom <code>html.escape()</code> with Python’s stdlib
+<code>html.escape()</code>. Pure mechanical substitution. Patch: 28
+changed lines. Architecturally trivial: localized, no coordination, no
+implicit knowledge needed.</p></li>
+<li><p><strong><code>django__django-10973</code></strong>: Modernize the
+postgres backend client to use <code>subprocess.run</code> and
+<code>PGPASSWORD</code>. Straightforward stdlib upgrade. Patch: 39
+changed lines. The large patch size reflects implementation effort, not
+architectural complexity.</p></li>
+<li><p><strong><code>sympy__sympy-20154</code></strong>: Make
+<code>partitions()</code> stop reusing output dictionaries. The fix is
+self-contained within a single iterator function. Patch: 25 changed
+lines. No understanding of sympy’s broader architecture
+required.</p></li>
+</ul>
+<p>The <code>1-4 hours</code> bucket is where the two scales align best:
+74% of those instances land at <code>moderate</code> architectural
+complexity, and 14% at <code>high</code>. The <code>&gt;4 hours</code>
+bucket has only 3 instances, too few to draw conclusions.</p>
+<p>The pattern makes sense: <em>time-to-fix conflates architectural
+difficulty with implementation effort</em>. A quick fix can still
+require genuine architectural understanding (if the fixer already has
+it), and a slow fix can be architecturally trivial (if the slowness
+comes from mechanical work). The architectural complexity verdict
+isolates the structural dimension that time-to-fix bundles together with
+everything else.</p>
 <h2 id="what-i-take-away">What I Take Away</h2>
 <p>SWE-bench Verified, through the lens of architectural complexity, is
 mostly a test of localized bug fixing. 62% of problems require
