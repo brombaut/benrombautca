@@ -25,6 +25,16 @@ def main():
             else:
                 book["shelf"] = "currently-reading"
             flattened.append(book)
+
+    # Merge in any manually-preserved re-reads
+    manual_reads_path = os.path.join(script_dir, "manual_reads.json")
+    if os.path.exists(manual_reads_path):
+        manual_reads = load_json(manual_reads_path)
+        for book in manual_reads:
+            book["shelf"] = "read"
+        flattened.extend(manual_reads)
+        print(f"Merged {len(manual_reads)} manual read(s) from manual_reads.json")
+
     all_books_flattened_json_file_path = os.path.join(script_dir, "all_books_flattened.json")
     write_json_to_file(flattened, all_books_flattened_json_file_path)
 

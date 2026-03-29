@@ -181,6 +181,49 @@ def parse_currentlyreading_books(items):
     return books
 
 
+def preserve_rereads(old_read_books, new_read_books):
+    """Compare old and new read lists. If a book's date_finished changed, the old
+    entry represents a previous read that the RSS has now overwritten — save it to
+    manual_reads.json so it isn't lost.
+
+    Uses (book_id, date_finished) as a unique key to avoid duplicates across runs.
+    """
+    manual_reads_path = os.path.join(script_dir, "manual_reads.json")
+
+    # Load existing manual reads (accumulate across runs)
+    if os.path.exists(manual_reads_path):
+        with open(manual_reads_path) as f:
+            manual_reads = json.load(f)
+    else:
+        manual_reads = []
+
+    existing_keys = {(b["book_id"], b["date_finished"]) for b in manual_reads}
+
+    # Index new books by book_id for quick lookup
+    new_by_id = {b["book_id"]: b for b in new_read_books}
+
+    added = 0
+    for old_book in old_read_books:
+        book_id = old_book["book_id"]
+        new_book = new_by_id.get(book_id)
+        if new_book is None:
+            continue  # book removed from shelf entirely, not a re-read
+        if new_book["date_finished"] != old_book["date_finished"]:
+            key = (book_id, old_book["date_finished"])
+            if key not in existing_keys:
+                logger.info(f"[preserve_rereads] Saving previous read of '{old_book['title']}' ({old_book['date_finished']}) to manual_reads.json")
+                manual_reads.append(old_book)
+                existing_keys.add(key)
+                added += 1
+
+    if added:
+        with open(manual_reads_path, "w") as f:
+            json.dump(manual_reads, f, indent=4)
+        logger.info(f"[preserve_rereads] Saved {added} previous read(s) to manual_reads.json")
+    else:
+        logger.debug("[preserve_rereads] No new re-reads detected")
+
+
 def main():
     logger.debug("[main] Starting main function")
     read_items = fetch_shelf("read")
@@ -191,12 +234,18 @@ def main():
     toread_books = parse_toread_books(toread_items)
     currentlyreading_books = parse_currentlyreading_books(currentlyreading_items)
 
+    # Before overwriting, check if any read books have been re-read since last sync
+    all_books_json_file_path = os.path.join(script_dir, "all_books.json")
+    if os.path.exists(all_books_json_file_path):
+        with open(all_books_json_file_path) as f:
+            old_all_books = json.load(f)
+        preserve_rereads(old_all_books.get(Bookshelf.READ, []), read_books)
+
     all_books = {
         Bookshelf.TO_READ: toread_books,
         Bookshelf.CURRENTLY_READING: currentlyreading_books,
         Bookshelf.READ: read_books,
     }
-    all_books_json_file_path = os.path.join(script_dir, "all_books.json")
     dict_to_json_file(all_books, all_books_json_file_path)
     logger.debug("[main] Main function completed")
 

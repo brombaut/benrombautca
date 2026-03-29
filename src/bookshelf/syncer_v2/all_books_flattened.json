@@ -2682,5 +2682,18 @@
         "review": null,
         "numPages": null,
         "shelf": "read"
+    },
+    {
+        "title": "Into Thin Air: A Personal Account of the Mt. Everest Disaster",
+        "author": "Jon Krakauer",
+        "book_id": "271285.Into_Thin_Air",
+        "link": "https://www.goodreads.com/review/show/3747054078",
+        "date_finished": null,
+        "rating": 0,
+        "avg_rating": 4.3,
+        "isbn": "0385492081",
+        "review": null,
+        "numPages": null,
+        "shelf": "read"
     }
 ]
