@@ -32,6 +32,8 @@ jobs:
         run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/00_goodreads_scraper.py --working-directory ${{ github.workspace }}/src/bookshelf/syncer_v2
       - name: Run 02_all_books_flattener.py
         run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/02_all_books_flattener.py --working-directory ${{ github.workspace }}/src/bookshelf/syncer_v2
+      - name: Run 04_download_missing_thumbnails.py
+        run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/04_download_missing_thumbnails.py
       - name: Run 03_show_missing_thumbnails.py
         run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/03_show_missing_thumbnails.py --working-directory ${{ github.workspace }}/src/bookshelf/syncer_v2
       # - name: Deactivate venv

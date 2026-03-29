@@ -1,5 +1,5 @@
 <template>
-  <div class="book-card slide-in" :class="{ 'to-read': toRead }">
+  <div class="book-card slide-in">
     <div class="image-container">
       <img
         :src="currentImageSource"
@@ -9,15 +9,6 @@
     </div>
     <h5 class="title">{{ formattedTitle }}</h5>
     <h6 class="author">{{ book.author }}</h6>
-    <div v-if="toRead" class="up-next-label">
-      <span>Up Next</span>
-    </div>
-    <ProgressBar
-      v-if="currentlyReading"
-      text="On page"
-      :numer="Number(book.onPage)"
-      :denom="Number(book.numPages)"
-      :hidePercent="shouldHidePercentText" />
     <div v-if="read" class="rating">
       <span v-for="i in bookRating" :key="i" class="star">
         <font-awesome-icon :icon="['fas', 'star']" />
@@ -30,7 +21,6 @@
 import { PropType, defineComponent } from "vue";
 // import { Book, Shelf } from "@brombaut/types";
 import uiUtils from "@/utils/ui-utils";
-import ProgressBar from "./ProgressBar.vue";
 
 export default defineComponent({
   name: "BookCard",
@@ -39,13 +29,8 @@ export default defineComponent({
       type: Object as PropType<any>,
       required: true,
     },
-    shouldHidePercentText: {
-      type: Boolean,
-      default: false,
-    },
   },
   components: {
-    ProgressBar,
   },
   data() {
     return {
@@ -54,9 +39,6 @@ export default defineComponent({
     };
   },
   computed: {
-    toRead(): boolean {
-      return this.book.shelf === "to-read";
-    },
     currentlyReading(): boolean {
       return this.book.shelf === "currently-reading";
     },
@@ -127,10 +109,6 @@ export default defineComponent({
   text-align: left;
   margin: 0 2px;
 
-  &.to-read {
-    filter: brightness(60%);
-  }
-
   .image-container {
     height: var(--image-height);
     width: var(--image-width);
@@ -178,10 +156,6 @@ export default defineComponent({
         color: $primaryDark;
       }
     }
-  }
-
-  .up-next-label {
-    font-size: 0.8em;
   }
 
   @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {

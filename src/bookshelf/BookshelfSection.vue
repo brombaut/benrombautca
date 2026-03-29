@@ -6,13 +6,12 @@
       subtext="Books I've read and am currently reading." />
     <div class="section-body">
       <div class="book-group">
-        <h2 class='book-group-header'>Currently Reading & Up Next</h2>
+        <h2 class='book-group-header'>Currently Reading</h2>
         <div class="books">
           <BookCard
-            v-for="book in currentlyReadingAndToReadBooks"
-            :key="book.review_id"
-            :book="book"
-            :shouldHidePercentText="shouldHidePercentText" />
+            v-for="book in currentlyReadingBooks"
+            :key="book.link"
+            :book="book" />
         </div>
       </div>
       <div v-for="yearBookGroup in readBooksByYear" :key="yearBookGroup.year" class="book-group">
@@ -21,7 +20,7 @@
           <h2 class='year-header'>{{ yearBookGroup.year }}</h2>
         </div>
         <div class="books">
-          <BookCard v-for="book in yearBookGroup.books" :key="book.review_id" :book="book" />
+          <BookCard v-for="book in yearBookGroup.books" :key="book.link" :book="book" />
         </div>
       </div>
     </div>
@@ -38,19 +37,12 @@ interface Book {
     title: string;
     author: string;
     book_id: string;
-    review_id: number;
+    link: string;
     shelf: string;
-}
-
-interface ToReadBook extends Book {
-    date_added: string;
-    position: number;
 }
 
 interface CurrentlyReadingBook extends Book {
     date_added: string;
-    onPage: number;
-    numPages: number;
 }
 
 interface ReadBook extends Book {
@@ -70,10 +62,7 @@ export default defineComponent({
     SectionHeader,
   },
   data() {
-    return {
-      numberOfBookCardsToRow: 6,
-      shouldHidePercentText: false,
-    };
+    return {};
   },
   computed: {
     readBooksByYear(): YearBooksPair[] {
@@ -106,7 +95,7 @@ export default defineComponent({
       );
       return sortedByYear;
     },
-    currentlyReadingAndToReadBooks(): Book[] {
+    currentlyReadingBooks(): Book[] {
       const typedBooksData = booksData as Book[];
       const currentlyReadingBooks: CurrentlyReadingBook[] = typedBooksData.filter((book) => book.shelf === "currently-reading") as CurrentlyReadingBook[];
       currentlyReadingBooks.sort((a, b) => {
@@ -114,16 +103,7 @@ export default defineComponent({
         if (!b.date_added) return 1;
         return new Date(a.date_added).getTime() - new Date(b.date_added).getTime();
       });
-      const toReadBooks: ToReadBook[] = typedBooksData
-        .filter((book) => book.shelf === "to-read") as ToReadBook[];
-      toReadBooks.sort((a, b) => {
-        if (!a.position) return -1;
-        if (!b.position) return 1;
-        return a.position - b.position;
-      });
-
-      const combined = [...currentlyReadingBooks, ...toReadBooks];
-      return combined.slice(0, this.numberOfBookCardsToRow);
+      return currentlyReadingBooks;
     },
   },
   methods: {
@@ -148,35 +128,6 @@ export default defineComponent({
       // Final fallback to current year
       return new Date().getFullYear();
     },
-    setNumberOfBookCardsToRow() {
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      let result = 6;
-      // These were determined manually just by resizing the window until the row broke lol
-      if (vw === 0) result = 6;
-      if (vw < 1127) result = 5;
-      if (vw < 946) result = 4;
-      if (vw < 766 && vw >= 640) result = 3;
-      if (vw < 640 && vw >= 600) result = 4;
-      if (vw < 600 && vw >= 550) result = 3;
-      if (vw < 550 && vw >= 480) result = 4;
-      if (vw < 480) result = 3;
-      if (vw < 370) result = 2;
-      this.numberOfBookCardsToRow = result;
-    },
-    setShouldHidePercentText() {
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      this.shouldHidePercentText = vw < 640;
-    },
-  },
-  created() {
-    this.setNumberOfBookCardsToRow();
-    this.setShouldHidePercentText();
-    window.addEventListener("resize", this.setNumberOfBookCardsToRow);
-    window.addEventListener("resize", this.setShouldHidePercentText);
-  },
-  beforeUnmount() {
-    window.removeEventListener("resize", this.setNumberOfBookCardsToRow);
-    window.removeEventListener("resize", this.setShouldHidePercentText);
   },
 });
 </script>
