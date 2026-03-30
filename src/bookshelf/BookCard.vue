@@ -30,8 +30,6 @@ export default defineComponent({
       required: true,
     },
   },
-  components: {
-  },
   data() {
     return {
       imageLoadFailed: false,
@@ -39,9 +37,6 @@ export default defineComponent({
     };
   },
   computed: {
-    currentlyReading(): boolean {
-      return this.book.shelf === "currently-reading";
-    },
     read(): boolean {
       return this.book.shelf === "read";
     },
@@ -141,23 +136,6 @@ export default defineComponent({
     }
   }
 
-  .link {
-    margin: 4px 0;
-    font-size: 0.7em;
-    color: $primaryDark;
-
-    svg {
-      color: $primaryDark !important;
-    }
-
-    &:visited {
-      color: $primaryDark;
-      svg {
-        color: $primaryDark;
-      }
-    }
-  }
-
   @media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
     height: var(--small-card-height);
     width: var(--small-card-width);
@@ -175,12 +153,6 @@ export default defineComponent({
 
     .author {
       font-size: 0.7em;
-      margin: 2px 0;
-    }
-
-    .link {
-      display: none;
-      font-size: 0.6em;
       margin: 2px 0;
     }
 
@@ -209,12 +181,6 @@ export default defineComponent({
     .author {
       font-size: 0.2em;
       margin: 2px 0;
-    }
-
-    .link {
-      display: none;
-      font-size: 0.3em;
-      margin: 0px 0;
     }
 
     .rating {

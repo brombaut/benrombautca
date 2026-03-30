@@ -61,9 +61,6 @@ export default defineComponent({
     BookCard,
     SectionHeader,
   },
-  data() {
-    return {};
-  },
   computed: {
     readBooksByYear(): YearBooksPair[] {
       const typedBooksData = booksData as Book[];
