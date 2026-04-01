@@ -3,7 +3,8 @@
     <SectionHeader
       title="Ben's Bookshelf"
       icon="book-open"
-      subtext="Books I've read and am currently reading." />
+      subtext="" />
+    <p class="bookshelf-subtext">Books I've read and am currently reading. My Goodreads profile is linked <a href="https://www.goodreads.com/user/show/115130270-ben-rombaut" target="_blank" rel="noopener noreferrer">here</a>.</p>
     <div class="section-body">
       <div class="book-group">
         <h2 class='book-group-header'>Currently Reading</h2>
@@ -133,6 +134,14 @@ export default defineComponent({
 #bookshelf {
   display: flex;
   flex-direction: column;
+
+  .bookshelf-subtext {
+    text-align: left;
+
+    a {
+      color: $primaryDark;
+    }
+  }
 
   .section-body {
     display: flex;
