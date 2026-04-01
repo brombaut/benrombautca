@@ -131,22 +131,12 @@
             "numPages": null
         },
         {
-            "title": "The Company: The Rise and Fall of the Hudson's Bay Empire",
-            "author": "Stephen R. Bown",
-            "book_id": "51114662-the-company",
-            "link": "https://www.goodreads.com/review/show/7151093247?utm_medium=api&utm_source=rss",
-            "date_added": "2025-01-01",
-            "position": 14,
-            "avg_rating": 4.09,
-            "numPages": null
-        },
-        {
             "title": "Dominion: The Railway and the Rise of Canada",
             "author": "Stephen R. Bown",
             "book_id": "124028447-dominion",
             "link": "https://www.goodreads.com/review/show/7151097869?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-01",
-            "position": 15,
+            "position": 14,
             "avg_rating": 4.16,
             "numPages": null
         },
@@ -156,7 +146,7 @@
             "book_id": "60143672-10-days-that-shaped-modern-canada",
             "link": "https://www.goodreads.com/review/show/7151122689?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-01",
-            "position": 16,
+            "position": 15,
             "avg_rating": 3.84,
             "numPages": null
         },
@@ -166,7 +156,7 @@
             "book_id": "195450005-yr-dead",
             "link": "https://www.goodreads.com/review/show/7154593369?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-01",
-            "position": 17,
+            "position": 16,
             "avg_rating": 3.83,
             "numPages": null
         },
@@ -176,7 +166,7 @@
             "book_id": "17614857-straight-jacket",
             "link": "https://www.goodreads.com/review/show/7171089645?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-04",
-            "position": 18,
+            "position": 17,
             "avg_rating": 3.9,
             "numPages": null
         },
@@ -186,7 +176,7 @@
             "book_id": "62039259-open-throat",
             "link": "https://www.goodreads.com/review/show/7176912940?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-05",
-            "position": 19,
+            "position": 18,
             "avg_rating": 4.0,
             "numPages": null
         },
@@ -196,7 +186,7 @@
             "book_id": "17573681-spillover",
             "link": "https://www.goodreads.com/review/show/7207457558?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-12",
-            "position": 20,
+            "position": 19,
             "avg_rating": 4.44,
             "numPages": null
         },
@@ -206,7 +196,7 @@
             "book_id": "139400713-martyr",
             "link": "https://www.goodreads.com/review/show/7207462626?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-12",
-            "position": 21,
+            "position": 20,
             "avg_rating": 4.16,
             "numPages": null
         },
@@ -216,7 +206,7 @@
             "book_id": "17165596-the-kite-runner",
             "link": "https://www.goodreads.com/review/show/7208632650?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-12",
-            "position": 22,
+            "position": 21,
             "avg_rating": 4.46,
             "numPages": null
         },
@@ -226,7 +216,7 @@
             "book_id": "43352954-this-is-how-you-lose-the-time-war",
             "link": "https://www.goodreads.com/review/show/7260518091?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-26",
-            "position": 23,
+            "position": 22,
             "avg_rating": 3.84,
             "numPages": null
         },
@@ -236,7 +226,7 @@
             "book_id": "58582927-time-is-a-mother",
             "link": "https://www.goodreads.com/review/show/7266301043?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-28",
-            "position": 24,
+            "position": 23,
             "avg_rating": 3.92,
             "numPages": null
         },
@@ -246,7 +236,7 @@
             "book_id": "23841432-night-sky-with-exit-wounds",
             "link": "https://www.goodreads.com/review/show/7266303759?utm_medium=api&utm_source=rss",
             "date_added": "2025-01-28",
-            "position": 25,
+            "position": 24,
             "avg_rating": 4.19,
             "numPages": null
         },
@@ -256,7 +246,7 @@
             "book_id": "257845.True_Grit",
             "link": "https://www.goodreads.com/review/show/7280940820?utm_medium=api&utm_source=rss",
             "date_added": "2025-02-01",
-            "position": 26,
+            "position": 25,
             "avg_rating": 4.15,
             "numPages": null
         },
@@ -266,7 +256,7 @@
             "book_id": "49418.The_Velvet_Rage",
             "link": "https://www.goodreads.com/review/show/7372314595?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-03",
-            "position": 27,
+            "position": 26,
             "avg_rating": 4.01,
             "numPages": null
         },
@@ -276,7 +266,7 @@
             "book_id": "30780006-the-things-you-can-see-only-when-you-slow-down",
             "link": "https://www.goodreads.com/review/show/7374444604?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-04",
-            "position": 28,
+            "position": 27,
             "avg_rating": 4.04,
             "numPages": null
         },
@@ -286,7 +276,7 @@
             "book_id": "43159429-the-power-of-nunchi",
             "link": "https://www.goodreads.com/review/show/7374445536?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-04",
-            "position": 29,
+            "position": 28,
             "avg_rating": 3.42,
             "numPages": null
         },
@@ -296,7 +286,7 @@
             "book_id": "39692401-wabi-sabi",
             "link": "https://www.goodreads.com/review/show/7374446893?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-04",
-            "position": 30,
+            "position": 29,
             "avg_rating": 3.89,
             "numPages": null
         },
@@ -306,7 +296,7 @@
             "book_id": "62888191-monstrilio",
             "link": "https://www.goodreads.com/review/show/7406281237?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-15",
-            "position": 31,
+            "position": 30,
             "avg_rating": 4.07,
             "numPages": null
         },
@@ -316,7 +306,7 @@
             "book_id": "199635125-rejection",
             "link": "https://www.goodreads.com/review/show/7406282292?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-15",
-            "position": 32,
+            "position": 31,
             "avg_rating": 3.78,
             "numPages": null
         },
@@ -326,7 +316,7 @@
             "book_id": "65215321-blackouts",
             "link": "https://www.goodreads.com/review/show/7406282933?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-15",
-            "position": 33,
+            "position": 32,
             "avg_rating": 3.73,
             "numPages": null
         },
@@ -336,7 +326,7 @@
             "book_id": "43317482-in-the-dream-house",
             "link": "https://www.goodreads.com/review/show/7406283550?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-15",
-            "position": 34,
+            "position": 33,
             "avg_rating": 4.39,
             "numPages": null
         },
@@ -346,7 +336,7 @@
             "book_id": "208931300-intermezzo",
             "link": "https://www.goodreads.com/review/show/7406284704?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-15",
-            "position": 35,
+            "position": 34,
             "avg_rating": 3.78,
             "numPages": null
         },
@@ -356,7 +346,7 @@
             "book_id": "34051011-pachinko",
             "link": "https://www.goodreads.com/review/show/7408917310?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-16",
-            "position": 36,
+            "position": 35,
             "avg_rating": 4.35,
             "numPages": null
         },
@@ -366,7 +356,7 @@
             "book_id": "6224935-this-is-where-i-leave-you",
             "link": "https://www.goodreads.com/review/show/7412313673?utm_medium=api&utm_source=rss",
             "date_added": "2025-03-17",
-            "position": 37,
+            "position": 36,
             "avg_rating": 3.87,
             "numPages": null
         },
@@ -376,7 +366,7 @@
             "book_id": "41729631-wilderness-the-gateway-to-the-soul",
             "link": "https://www.goodreads.com/review/show/7509782513?utm_medium=api&utm_source=rss",
             "date_added": "2025-04-22",
-            "position": 38,
+            "position": 37,
             "avg_rating": 4.14,
             "numPages": null
         },
@@ -386,7 +376,7 @@
             "book_id": "479471.Dance_on_My_Grave",
             "link": "https://www.goodreads.com/review/show/7601695960?utm_medium=api&utm_source=rss",
             "date_added": "2025-05-26",
-            "position": 39,
+            "position": 38,
             "avg_rating": 3.96,
             "numPages": null
         },
@@ -396,7 +386,7 @@
             "book_id": "51320613-shadow-of-doubt",
             "link": "https://www.goodreads.com/review/show/7603812720?utm_medium=api&utm_source=rss",
             "date_added": "2025-05-27",
-            "position": 40,
+            "position": 39,
             "avg_rating": 4.15,
             "numPages": null
         },
@@ -406,7 +396,7 @@
             "book_id": "221280092-the-lions-of-winter-survival-and-sacrifice-on-mount-washington",
             "link": "https://www.goodreads.com/review/show/7866027633?utm_medium=api&utm_source=rss",
             "date_added": "2025-08-27",
-            "position": 41,
+            "position": 40,
             "avg_rating": 4.68,
             "numPages": null
         },
@@ -416,7 +406,7 @@
             "book_id": "209529202-juris-ex-machina",
             "link": "https://www.goodreads.com/review/show/7866081798?utm_medium=api&utm_source=rss",
             "date_added": "2025-08-27",
-            "position": 42,
+            "position": 41,
             "avg_rating": 4.35,
             "numPages": null
         },
@@ -426,7 +416,7 @@
             "book_id": "173754979-james",
             "link": "https://www.goodreads.com/review/show/8167491390?utm_medium=api&utm_source=rss",
             "date_added": "2025-12-22",
-            "position": 43,
+            "position": 42,
             "avg_rating": 4.39,
             "numPages": null
         },
@@ -436,7 +426,7 @@
             "book_id": "124718.One_Man_s_Wilderness",
             "link": "https://www.goodreads.com/review/show/8230631666?utm_medium=api&utm_source=rss",
             "date_added": "2026-01-06",
-            "position": 44,
+            "position": 43,
             "avg_rating": 4.33,
             "numPages": null
         },
@@ -446,7 +436,7 @@
             "book_id": "44421460-before-the-coffee-gets-cold",
             "link": "https://www.goodreads.com/review/show/8235002708?utm_medium=api&utm_source=rss",
             "date_added": "2026-01-07",
-            "position": 45,
+            "position": 44,
             "avg_rating": 3.64,
             "numPages": null
         },
@@ -456,7 +446,7 @@
             "book_id": "239960837-daggermouth",
             "link": "https://www.goodreads.com/review/show/8395158357?utm_medium=api&utm_source=rss",
             "date_added": "2026-02-27",
-            "position": 46,
+            "position": 45,
             "avg_rating": 4.36,
             "numPages": null
         },
@@ -466,7 +456,7 @@
             "book_id": "50202953-piranesi",
             "link": "https://www.goodreads.com/review/show/8395383209?utm_medium=api&utm_source=rss",
             "date_added": "2026-02-27",
-            "position": 47,
+            "position": 46,
             "avg_rating": 4.21,
             "numPages": null
         },
@@ -476,7 +466,7 @@
             "book_id": "18505792-the-ocean-at-the-end-of-the-lane",
             "link": "https://www.goodreads.com/review/show/8395386218?utm_medium=api&utm_source=rss",
             "date_added": "2026-02-27",
-            "position": 48,
+            "position": 47,
             "avg_rating": 4.03,
             "numPages": null
         },
@@ -486,7 +476,7 @@
             "book_id": "21853621-the-nightingale",
             "link": "https://www.goodreads.com/review/show/8399535051?utm_medium=api&utm_source=rss",
             "date_added": "2026-02-28",
-            "position": 49,
+            "position": 48,
             "avg_rating": 4.64,
             "numPages": null
         },
@@ -496,7 +486,7 @@
             "book_id": "35133922-educated",
             "link": "https://www.goodreads.com/review/show/8399542982?utm_medium=api&utm_source=rss",
             "date_added": "2026-02-28",
-            "position": 50,
+            "position": 49,
             "avg_rating": 4.45,
             "numPages": null
         },
@@ -506,19 +496,19 @@
             "book_id": "39644215-the-autobiography-of-a-transgender-scientist",
             "link": "https://www.goodreads.com/review/show/8399574129?utm_medium=api&utm_source=rss",
             "date_added": "2026-02-28",
-            "position": 51,
+            "position": 50,
             "avg_rating": 3.94,
             "numPages": null
         }
     ],
     "currentlyreading_books": [
         {
-            "title": "The Rest of Us Just Live Here",
-            "author": "Patrick Ness",
-            "book_id": "22910900-the-rest-of-us-just-live-here",
-            "link": "https://www.goodreads.com/review/show/7357330071?utm_medium=api&utm_source=rss",
-            "date_added": "2026-02-25",
-            "avg_rating": 3.68,
+            "title": "The Company: The Rise and Fall of the Hudson's Bay Empire",
+            "author": "Stephen R. Bown",
+            "book_id": "51114662-the-company",
+            "link": "https://www.goodreads.com/review/show/7151093247?utm_medium=api&utm_source=rss",
+            "date_added": "2026-03-31",
+            "avg_rating": 4.09,
             "numPages": null
         },
         {
@@ -541,6 +531,18 @@
         }
     ],
     "read_books": [
+        {
+            "title": "The Rest of Us Just Live Here",
+            "author": "Patrick Ness",
+            "book_id": "22910900-the-rest-of-us-just-live-here",
+            "link": "https://www.goodreads.com/review/show/7357330071?utm_medium=api&utm_source=rss",
+            "date_finished": "2026-03-30",
+            "rating": 2,
+            "avg_rating": 3.68,
+            "isbn": "1406331163",
+            "review": null,
+            "numPages": null
+        },
         {
             "title": "Remarkably Bright Creatures",
             "author": "Shelby Van Pelt",
@@ -836,7 +838,7 @@
             "link": "https://www.goodreads.com/review/show/4072715205?utm_medium=api&utm_source=rss",
             "date_finished": "2021-08-24",
             "rating": 4,
-            "avg_rating": 4.13,
+            "avg_rating": 4.12,
             "isbn": "0593084640",
             "review": null,
             "numPages": null
