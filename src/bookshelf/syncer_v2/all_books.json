@@ -499,6 +499,16 @@
             "position": 50,
             "avg_rating": 3.94,
             "numPages": null
+        },
+        {
+            "title": "Brassy Bit of Aging Crumpet: A Memoir in Pieces",
+            "author": "Mary Walsh",
+            "book_id": "199793528-brassy-bit-of-aging-crumpet",
+            "link": "https://www.goodreads.com/review/show/8485577638?utm_medium=api&utm_source=rss",
+            "date_added": "2026-04-01",
+            "position": 51,
+            "avg_rating": 0.0,
+            "numPages": null
         }
     ],
     "currentlyreading_books": [
@@ -512,15 +522,6 @@
             "numPages": null
         },
         {
-            "title": "Wilderness Camping in the Adirondacks: 25 Hiking and Canoeing Overnight Adventures",
-            "author": "Bill Ingersoll",
-            "book_id": "180350281-wilderness-camping-in-the-adirondacks",
-            "link": "https://www.goodreads.com/review/show/8222051033?utm_medium=api&utm_source=rss",
-            "date_added": "2026-01-04",
-            "avg_rating": 1.0,
-            "numPages": null
-        },
-        {
             "title": "A Little Life",
             "author": "Hanya Yanagihara",
             "book_id": "22822858-a-little-life",
@@ -531,6 +532,18 @@
         }
     ],
     "read_books": [
+        {
+            "title": "Wilderness Camping in the Adirondacks: 25 Hiking and Canoeing Overnight Adventures",
+            "author": "Bill Ingersoll",
+            "book_id": "180350281-wilderness-camping-in-the-adirondacks",
+            "link": "https://www.goodreads.com/review/show/8222051033?utm_medium=api&utm_source=rss",
+            "date_finished": "2026-04-02",
+            "rating": 4,
+            "avg_rating": 2.5,
+            "isbn": "1493080946",
+            "review": "Very excited for hiking this summer",
+            "numPages": null
+        },
         {
             "title": "The Rest of Us Just Live Here",
             "author": "Patrick Ness",
@@ -706,7 +719,7 @@
             "link": "https://www.goodreads.com/review/show/6659398420?utm_medium=api&utm_source=rss",
             "date_finished": "2025-03-04",
             "rating": 2,
-            "avg_rating": 3.48,
+            "avg_rating": 3.49,
             "isbn": "1439191255",
             "review": null,
             "numPages": null
