@@ -24,6 +24,10 @@ CREATE TABLE issues (
 
 **Parent/child**: Epics are parents. Tasks, features, and bugs can have a `parent_id` pointing to an epic (or another issue). This replaces a separate dependencies table — the hierarchy is just a foreign key.
 
+## Keeping the remote in sync
+
+Any time you modify `issues.db` (creating, updating, or closing issues), commit and push the file immediately so the remote always has the latest issue state. Do not batch issue changes with unrelated work — commit `issues.db` on its own or alongside `ISSUES.md` changes only.
+
 ## How to interact with it
 
 Use `sqlite3 issues.db` from the project root. All queries below work as bash one-liners or from inside the sqlite3 shell.
