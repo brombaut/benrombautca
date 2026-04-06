@@ -6,7 +6,6 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prepare": "husky install",
     "sync-bookshelf": "bash ./scripts/sync_bookshelf.sh",
     "sync-articles": "bash ./scripts/sync_articles.sh"
   },
@@ -40,7 +39,6 @@
     "eslint": "^8.39.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-vue": "^9.3.0",
-    "husky": "^8.0.3",
     "sass": "^1.62.0",
     "sass-loader": "^13.2.2",
     "typescript": "^5.6.3"

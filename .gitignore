@@ -6,12 +6,6 @@ venv/
 venv*/
 **/venv/
 
-# Dolt internals
-.dolt/
-.doltcfg/
-beads_*/
-/config.yaml
-
 # local env files
 .env
 .env.local
@@ -36,6 +30,3 @@ yarn-error.log*
 *.sw?
 
 *.pkg
-
-# Dolt database files (added by bd init)
-*.db
