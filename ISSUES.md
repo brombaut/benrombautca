@@ -26,7 +26,7 @@ CREATE TABLE issues (
 
 ## Keeping the remote in sync
 
-Any time you modify `issues.db` (creating, updating, or closing issues), commit and push the file immediately so the remote always has the latest issue state. Do not batch issue changes with unrelated work — commit `issues.db` on its own or alongside `ISSUES.md` changes only.
+**IMPORTANT — always follow this rule.** Any time you modify `issues.db` (creating, updating, or closing issues), you MUST commit and push the file immediately so the remote always has the latest issue state. Do not batch issue changes with unrelated work — commit `issues.db` on its own or alongside `ISSUES.md` changes only. Never defer this step or forget about it.
 
 ## How to interact with it
 
