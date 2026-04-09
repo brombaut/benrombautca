@@ -1,0 +1,511 @@
+<h1
+id="from-checklists-to-prose-verdicts-building-an-architectural-evaluation-pipeline">From
+Checklists to Prose Verdicts: Building an Architectural Evaluation
+Pipeline</h1>
+<p>This is the development story behind the architectural evaluation
+pipeline I’ve written about in two previous articles, one analyzing what
+Claude thinks is architecturally important, and another measuring how
+architecturally demanding SWE-bench Verified actually is. Those articles
+describe the pipeline’s outputs. This one describes how the pipeline got
+built, what broke along the way, and what I learned from 12 experiments
+of pressure-testing assumptions about how to evaluate code architecture
+with AI.</p>
+<p>The core question stayed the same throughout: can an AI agent look at
+an issue, explore a codebase, infer what “architecturally good” looks
+like for that context, and then evaluate candidate patches against that
+standard?</p>
+<p>What changed from experiment to experiment was the answer to a harder
+question: what kind of rubric actually holds up once you start comparing
+many patches, many issues, and many evaluators?</p>
+<h2 id="what-i-was-trying-to-build">What I Was Trying to Build</h2>
+<p>I was not trying to build a general “is this patch good?” grader.</p>
+<p>The target was narrower and more architectural. Ignore implementation
+correctness. Focus on whether a patch fits the codebase’s existing
+structural logic. Reward extending existing mechanisms over introducing
+parallel ones. Penalize boundary violations, wrong-layer fixes,
+structural duplication, and unnecessary blast radius. Make the
+evaluation robust enough that scores mean something across multiple
+patches for the same issue.</p>
+<p>That sounds straightforward until you try to operationalize it. The
+hard part is not generating a rubric once. The hard part is generating a
+rubric that remains coherent when the patch uses a different but equally
+valid mechanism, when the evaluator has to make threshold calls near
+boundaries, when two similar patches are judged by different runs, and
+when the codebase doesn’t match the architectural assumptions baked into
+the rubric template.</p>
+<p>Most of the 12 experiments were responses to one of those
+problems.</p>
+<h2 id="getting-a-rubric-to-exist-at-all">Getting a Rubric to Exist at
+All</h2>
+<p>The earliest work was just getting the loop off the ground. Build a
+rubric-generation skill. Build a patch-evaluation skill that can use
+those rubrics. Try them on a small set of SymPy and RefactorBench-style
+examples.</p>
+<p>At this stage I wasn’t aiming for high-confidence evaluation quality.
+I was proving the workflow was even possible: explore a codebase, infer
+architectural expectations, write them down as a rubric, score a patch
+against that rubric.</p>
+<p>It worked, in the sense that Claude Code could produce structurally
+meaningful observations rather than just style comments, and it was
+possible to push evaluation away from “did tests pass?” toward “did this
+preserve the codebase’s design logic?” But the rubric structure was
+primitive, the evaluations weren’t battle-tested, and too much of the
+rubric logic was implicit in the prompt rather than committed into
+outputs that later evaluators could reuse.</p>
+<p>The real lesson from these first experiments: generation was
+feasible, but calibration and repeatability would be the actual
+problems.</p>
+<h2 id="separating-architecture-from-correctness">Separating
+Architecture from Correctness</h2>
+<p>The next experiments made what turned out to be the most important
+conceptual correction in the whole project: architectural evaluation is
+not the same thing as correctness evaluation.</p>
+<p>That seems obvious in hindsight, but it matters a lot. If a rubric
+quietly mixes “architecturally clean” with “functionally right,” it
+becomes impossible to tell what’s being measured. So I explicitly
+excluded implementation correctness from the rubric’s scope and reframed
+evaluation around architectural conformance only, using continuous 0-1
+scoring with multiple rubric items per axis.</p>
+<p>The evaluation target became much cleaner. It was easier to ask
+focused questions like “did this preserve the existing mechanism?”
+instead of blurring that with “does this fully solve the bug?” The
+rubric became more useful for comparing different patches that all
+“worked” functionally but took different structural approaches.</p>
+<p>But the itemized, continuous scoring setup was too checklist-shaped.
+Here’s what a rubric axis looked like at this stage, from a Django admin
+ordering issue:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boundary_preservation</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.35</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rubrics</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;BP1&quot;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Respects admin-to-ORM boundary by using field.get_choices(ordering=...)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="st">        API rather than direct model queries&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">metric</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;All choice retrieval uses field.get_choices() method, zero direct</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="st">        queries to field.remote_field.model&quot;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;No new direct queries to related model&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">id</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;BP2&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Maintains encapsulation of ordering logic within admin layer&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">metric</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Ordering decisions made in admin code, not leaked into ORM queries&quot;</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">threshold</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;No ordering-related changes to model or queryset layer&quot;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span></code></pre></div>
+<p>Each item gets a binary pass/fail against its threshold, weighted and
+summed into a 0-1 score. The problem is that a patch could satisfy BP1
+and BP2 and still be architecturally off, because the checklist can’t
+express “this patch introduces a parallel mechanism that duplicates
+existing logic.” It rewarded local compliance while missing larger
+structural problems. A checklist rubric can catch individual violations
+but miss the overall structural fit, which is the thing you actually
+care about.</p>
+<h2 id="the-first-real-test">The First Real Test</h2>
+<p>The first production-style run used 6 medium-difficulty SWE-bench
+Verified issues, evaluating official resolved patches alongside Claude
+Code-generated patches.</p>
+<p>The headline result was strong. Claude Code ranked near the top and
+looked competitive against the resolved submissions. Architectural
+evaluation clearly separated stronger and weaker patch strategies. But
+the rubric still behaved like a well-organized checklist, sometimes
+under-penalizing bigger architectural violations, and the continuous 0-1
+scheme created an illusion of precision.</p>
+<h2 id="holistic-scoring-changes-everything">Holistic Scoring Changes
+Everything</h2>
+<p>The next experiment kept the same dataset and changed the rubric
+itself. This was the first major scoring redesign: move from continuous
+0-1 item scoring to discrete 0-5 axis scoring. Evaluate each axis
+holistically by level descriptions. Treat architecture more like a
+structural judgment than a checklist tally.</p>
+<p>This turned out to be one of the most useful shifts in the whole
+sequence.</p>
+<p>The same axis now looked like this, from an Astropy WCS wrapper
+issue:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">architectural_alignment</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">weight</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.30</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">rubric</span><span class="kw">:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">5</span><span class="kw">:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">label</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Excellent&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">      criteria</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        Perfectly maintains Wrapper pattern in SlicedLowLevelWCS. All changes</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        within world_to_pixel_values or helper methods, preserving delegation</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        model. Does not modify self._wcs. Maintains abstract method contract</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        signatures. No new architectural styles introduced.</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">3</span><span class="kw">:</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">label</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Acceptable&quot;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">      criteria</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        Follows Wrapper pattern in most changes but introduces inconsistencies.</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        Adds public method that doesn&#39;t follow delegation pattern, or modifies</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        multiple methods beyond world_to_pixel_values without clear justification.</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">1</span><span class="kw">:</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">label</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Poor&quot;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">      criteria</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        Minimal adherence to Wrapper pattern. Uses different approach: direct WCS</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        manipulation instead of wrapping. Introduces 4+ new dependencies.</span></code></pre></div>
+<p>Instead of checking individual items against thresholds, the
+evaluator reads the level descriptions and makes a holistic judgment
+about where the patch falls on the spectrum. The question shifts from
+“did this pass each check?” to “how well does this preserve the system’s
+structural logic?”</p>
+<p>The new rubric was stricter in the right way. It caught issues the
+old version had softened or missed, including layer violations, parallel
+mechanisms, and architectural compromises hidden by partial item
+compliance. Claude Code’s relative standing actually improved under the
+stricter rubric, which suggested its patches had genuinely better
+structural integrity rather than just better checklist coverage. That
+was a reassuring signal.</p>
+<p>Running both rubric versions on the same 6 issues made the difference
+concrete:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th>Checklist Score</th>
+<th>Holistic Score</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Claude Code</td>
+<td>96.8%</td>
+<td>93.1%</td>
+<td>-3.7%</td>
+</tr>
+<tr class="even">
+<td>Gold Standard</td>
+<td>99.5%</td>
+<td>92.1%</td>
+<td>-7.4%</td>
+</tr>
+<tr class="odd">
+<td>OpenHands Claude 4</td>
+<td>96.4%</td>
+<td>87.0%</td>
+<td>-9.4%</td>
+</tr>
+<tr class="even">
+<td>SWE-Exp DeepSeek-V3</td>
+<td>96.3%</td>
+<td>85.6%</td>
+<td>-10.7%</td>
+</tr>
+</tbody>
+</table>
+<p>Every model scored lower under the holistic rubric, but the drops
+weren’t uniform. Models that had been gaming the checklist (high item
+compliance, weaker structural integrity) fell further. Claude Code had
+the smallest drop and moved from #2 to #1, which suggested the checklist
+had been flattering patches that looked locally clean but had broader
+structural issues.</p>
+<p>But holistic scoring also increased room for evaluator discretion. As
+soon as you have level boundaries, you have threshold ambiguities. The
+rubric became better at architectural judgment and more vulnerable to
+inconsistency between runs.</p>
+<h2 id="scaling-up-reveals-the-cracks">Scaling Up Reveals the
+Cracks</h2>
+<p>Scaling from 6 issues to 9 was when the problems got concrete. A lot
+of evaluation systems look good on a small sample and then start
+wobbling as diversity increases.</p>
+<p>Claude Code still performed well. The evaluation still produced
+plausible top-level results. But scaling exposed three specific failure
+modes that I hadn’t seen clearly before.</p>
+<p><strong>Baseline variance.</strong> Different evaluations were
+sometimes comparing patches against different baseline measurements for
+the same issue. That meant scores were no longer fully comparable.</p>
+<p><strong>Missing removal verification.</strong> Evaluations were good
+at checking what a patch added. They were worse at checking whether the
+old problematic structure had actually been removed. That let
+structurally incomplete patches look cleaner than they were.</p>
+<p><strong>Thoroughness variance.</strong> Some evaluations explored the
+codebase deeply, others did a shallower pass. Those differences in
+exploration depth leaked directly into score quality.</p>
+<p>This was a pivotal experiment because it moved the project out of the
+vague zone of “maybe the rubric is inconsistent” into the concrete zone
+of “here are specific mechanisms producing inconsistency.” A plausible
+rubric is not enough. If the baseline, exploration depth, and deletion
+checks aren’t standardized, the scores aren’t trustworthy.</p>
+<h2 id="making-evaluation-mechanically-comparable">Making Evaluation
+Mechanically Comparable</h2>
+<p>The next version was less about inventing a new theory of
+architectural quality and more about making evaluation mechanically
+comparable.</p>
+<p>Three targeted fixes. First, baselines were calculated once during
+rubric generation, with the measurement methodology committed into the
+rubric so that patch evaluators would reuse it rather than silently
+re-deriving it. Second, evaluation now explicitly checked what code was
+removed, not just what was added. Third, evaluation depth was made
+explicit and expected to stay uniform across patches for a given
+issue.</p>
+<p>The evaluation became meaningfully more stable. Several concrete
+inconsistencies from the previous experiment were directly addressed.
+The rubric started behaving more like an instrument and less like a
+loosely guided essay.</p>
+<p>But even with better mechanics, there were still small ranking
+anomalies. Some score differences were clearly noise rather than genuine
+quality separation. The system had become more disciplined, but not
+fully calibrated. Consistency problems don’t end once you fix obvious
+process variance. They reappear at the level of interpretation.</p>
+<h2 id="the-scoring-consistency-audit">The Scoring Consistency
+Audit</h2>
+<p>This is where the work became more self-critical in a useful way. I
+expanded the comparison across multiple models and then performed a
+post-hoc scoring consistency audit. That audit was one of the most
+important pieces of the whole project because it separated three things
+that are easy to conflate: real architectural differences between
+patches, harmless noise near score boundaries, and systematic evaluator
+inconsistency.</p>
+<p>Three recurring failure modes showed up.</p>
+<p><strong>Threshold boundary calls.</strong> Evaluators made different
+decisions when a metric sat near a threshold. Small judgment differences
+became visible as score differences that looked more meaningful than
+they really were.</p>
+<p><strong>Inconsistent severity language.</strong> Similar violations
+were described as “minor” in one run and “moderate” in another. Once
+severity language drifts, the numeric score tends to drift with it.</p>
+<p><strong>Cross-evaluator calibration.</strong> Within a single
+evaluation, scores were often coherent. Across different evaluations of
+different patches, the threshold interpretation changed subtly.</p>
+<p>The audit also surfaced a subtler problem: the skills themselves were
+getting overfit to the experiment history. Over time, the prompts had
+accumulated a fixed six-axis template, an issue-type weight table, and a
+hardcoded exception-handler check. Each had a good local reason for
+being added. Together, they were pushing the system toward
+Django/Astropy-shaped evaluation rather than codebase-specific
+architectural reasoning.</p>
+<p>I responded by improving methodological commitment: explicit
+definitions for metrics, instructions to use committed baselines, a
+weight floor to discourage low-weight noisy axes. It helped. But some of
+that prescription was solving yesterday’s problems by hardcoding
+yesterday’s examples.</p>
+<p>This is the fundamental tension in prompt engineering: you can reduce
+inconsistency by specifying more, but over-specification biases the
+rubric toward the datasets that taught you those rules.</p>
+<h2 id="letting-the-codebase-drive-the-evaluation">Letting the Codebase
+Drive the Evaluation</h2>
+<p>The corrective swing against accumulated prompt bias was one of the
+most important experiments. The core change was philosophical: stop
+assuming every codebase needs the same fixed architectural axes. Let the
+codebase exploration determine what axes matter. Remove hardcoded checks
+unless the exploration justifies them.</p>
+<p>Concretely, I removed the fixed six-axis template, the issue-type
+weight table, and the hardcoded exception-handler check. I added a
+cross-axis calibration pass and explicit boundary-call documentation so
+threshold discretion had to be surfaced rather than hidden.</p>
+<p>This was an important maturation step. Instead of asking the
+evaluator to fill in a pre-labeled scorecard, it asked the evaluator to
+infer the scorecard from the system under study.</p>
+<p>The skills became more codebase-driven and less obviously biased by
+prior experiments. But this experiment also produced the biggest
+surprise of the whole project.</p>
+<p>Even when Claude Code generated both the rubrics and the patches, the
+patches did not reliably match the architectural ideal described by the
+rubrics.</p>
+<p>The rubric-generation workflow naturally involved deep architectural
+reconnaissance. The patch-generation workflow could still lapse into
+implementation search. So the system could often <em>describe</em> the
+right architectural move without actually <em>taking</em> it when
+writing the patch.</p>
+<p>I found this genuinely interesting. It’s not just a patch-generation
+bug. It says something broader: architectural understanding and
+architectural execution are related, but they’re not identical
+capabilities. The model can articulate what the right structural
+approach looks like and then not follow it. A “know vs do” gap.</p>
+<p>The response was practical. I updated the patch-generation prompt
+with a simple but strategically important instruction: before
+implementing, understand the patterns in the affected area and prefer
+extending existing mechanisms over building new ones. That sentence
+tries to import the reconnaissance behavior from rubric generation into
+patch generation. I also restructured the rubric-generation workflow
+operationally, delegating YAML generation and validation to subagents
+with isolated context to reduce contamination from the main
+conversation.</p>
+<p>Some problems aren’t rubric-theory problems. They’re workflow
+problems.</p>
+<h2 id="numeric-scores-reach-their-limits">Numeric Scores Reach Their
+Limits</h2>
+<p>The final major experiment is where the project stopped trying to
+squeeze everything into a weighted 0-5 framework.</p>
+<p>By this point, the numeric system had shown both its value and its
+limits. It offered finer-grained ranking, it was easy to aggregate and
+compare, and it imposed useful structure on the evaluation. But it
+encouraged false precision, it sometimes rewarded mechanism matching
+instead of property satisfaction, and it could miss semantic
+architectural failures if those failures weren’t cleanly represented in
+axis criteria.</p>
+<p>So I replaced numeric 0-5 scoring with prose-based evaluation and
+categorical verdicts like High, Acceptable, and Low. Here’s what an
+evaluation looked like in the new format, for the same Astropy WCS
+issue:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">verdict</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">classification</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;High&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">  rationale</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    Both primary axes show exemplary conformance. The WCS API contract is fully</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    preserved: method signature, dimensional semantics, and caller-visible</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    behavior are unchanged. The wrapper delegation pattern is maintained</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    precisely: only the expansion step is modified, using the existing</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    _pixel_to_world_values_all helper, while the delegation call and output</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    contraction remain untouched. No new state is introduced, and the structural</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    asymmetry that was the root cause of the bug is cleanly resolved.</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">  scope_clarification</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    This verdict is based on ARCHITECTURAL QUALITY only. A verdict of &quot;High&quot;</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    does not guarantee the patch is bug-free or functionally correct.</span></code></pre></div>
+<p>And the per-axis assessments became prose paragraphs rather than
+numbers:</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 35%" />
+<col style="width: 42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Axis</th>
+<th>Priority</th>
+<th>Assessment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>WCS API Contract Conformance</td>
+<td>Primary</td>
+<td>Fully preserves the BaseLowLevelWCS interface contract. Method
+signature, input/output dimensionality, and delegation semantics are
+unchanged.</td>
+</tr>
+<tr class="even">
+<td>Wrapper Delegation Integrity</td>
+<td>Primary</td>
+<td>Maintains the three-step delegation pattern (expand, delegate,
+contract). Only the expansion step is modified; the delegation call and
+output contraction are untouched.</td>
+</tr>
+<tr class="odd">
+<td>Dimension Tracking Consistency</td>
+<td>Secondary</td>
+<td>No new instance attributes introduced. Computes dropped-dimension
+values on the fly using existing helpers.</td>
+</tr>
+<tr class="even">
+<td>Inverse Operation Symmetry</td>
+<td>Secondary</td>
+<td>Resolves the structural asymmetry between pixel_to_world_values and
+world_to_pixel_values. Both methods now use actual coordinate values for
+dropped dimensions.</td>
+</tr>
+</tbody>
+</table>
+<p>Prose evaluation was genuinely better at catching semantic
+architectural errors, tracing a mechanism’s blast radius beyond the
+immediate patch, recognizing that two different mechanisms can be
+architecturally equivalent, and calling out dead code and structural
+noise that numeric axes had sometimes let through.</p>
+<p>But it was worse at fine-grained separation within the top tier,
+producing neat aggregate statistics, and constraining evaluator judgment
+in a reproducible way.</p>
+<p>The tradeoff is clear. Numeric scoring gives you precision, but some
+of it is false. Prose verdicts give you better reasoning depth, but some
+of the nuance collapses into broad categories. The right system probably
+combines prose judgment with better anchors, not pure numbers or pure
+freeform narrative.</p>
+<h2 id="what-held-up-across-all-12-experiments">What Held Up Across All
+12 Experiments</h2>
+<p>A few ideas kept proving themselves.</p>
+<p><strong>Separating architecture from correctness.</strong> This was
+one of the earliest decisions and it held up the whole way through. When
+the rubric focuses on architecture, structural fit becomes visible,
+parallel mechanisms become visible, wrong-layer fixes become visible. If
+correctness is mixed in, those signals get blurred.</p>
+<p><strong>Holistic judgment over itemized checklists.</strong> The
+shift from continuous item scoring to holistic axis scoring was the
+first major quality jump. Checklist rubrics feel objective, but they’re
+often objective about the wrong thing. Architecture is about whether the
+patch preserves or extends the system’s existing structural logic, not
+about how many local boxes it checked.</p>
+<p><strong>Committed methodology.</strong> Whenever baselines, counting
+rules, or definitions were left implicit, evaluator variance filled the
+gap. The project improved substantially once rubrics started committing
+how metrics were measured, what the baseline was, what counted as blast
+radius, and what counting scope applied. If those details aren’t
+committed, they get silently reinvented at evaluation time.</p>
+<p><strong>Codebase-derived evaluation.</strong> The fixed-axis phase
+was useful, but it eventually became clear that it was imposing a
+worldview onto the codebase instead of reading the codebase on its own
+terms. Letting axes emerge from exploration was the right move, even if
+it increased the burden on the evaluation pipeline.</p>
+<h2 id="what-didnt-work-or-only-worked-temporarily">What Didn’t Work, or
+Only Worked Temporarily</h2>
+<p><strong>Fine-grained numeric scores created false
+confidence.</strong> Scores like 4.10, 4.35, and 4.90 look precise.
+Often they weren’t. Sometimes they represented real distinctions,
+sometimes threshold ambiguity dressed up as measurement.</p>
+<p><strong>Hardcoding yesterday’s failure mode into tomorrow’s
+rubric.</strong> This happened repeatedly and understandably. One
+experiment reveals a miss, a new prompt rule gets added to catch that
+exact miss, the next version is more robust locally and more biased
+globally. That’s a natural path in prompt engineering, but it doesn’t
+generalize indefinitely.</p>
+<p><strong>Evaluating the right thing didn’t guarantee generating the
+right thing.</strong> This may be the most interesting failure in the
+project. The model could generate a strong rubric describing the right
+architectural move, yet still generate a patch that failed to follow
+that move.</p>
+<p><strong>Pure prose wasn’t a complete answer either.</strong> Prose
+verdicts fixed some of the numeric system’s weaknesses, especially
+around semantic reasoning and mechanism equivalence. But they also
+flattened distinctions that were sometimes worth preserving.</p>
+<h2 id="what-id-compress-the-whole-project-into">What I’d Compress the
+Whole Project Into</h2>
+<p>If I had to distill 12 experiments into a handful of durable
+lessons:</p>
+<p><strong>The hard part is not generating a rubric, it’s generating one
+that survives comparison.</strong> A single rubric can look impressive
+in isolation. The real test is whether it still makes sense when
+multiple patches are compared on the same issue, similar patches are
+judged similarly, and different evaluators don’t quietly change the
+measurement rules.</p>
+<p><strong>Architectural evaluation needs both exploration and
+commitment.</strong> Exploration is how the system discovers what
+matters in this codebase. Commitment is how it stops later evaluators
+from reinterpreting what was discovered. Exploration without commitment
+drifts. Commitment without exploration calcifies.</p>
+<p><strong>A rubric should describe architectural properties, not
+prescribe specific mechanisms.</strong> If the rubric says “the correct
+patch calls this specific function,” it stops evaluating architecture
+and starts evaluating imitation. A stronger rubric asks whether the
+patch preserves the relevant structural property, even if it reaches
+that property by a different but architecturally sound route.</p>
+<p><strong>The evaluation stack itself needs architecture.</strong> By
+the later experiments, the work was not just about patch architecture.
+It was also about evaluation architecture: when do subagents help, what
+context should be isolated, what gets committed into the rubric, what
+gets recalculated, where does calibration happen. The quality of the
+evaluation depended heavily on the structure of the evaluation
+process.</p>
+<h2 id="where-its-heading">Where It’s Heading</h2>
+<p>The project started with fixed axes, checklist scoring, numeric
+precision, and implicit evaluator judgment. It moved toward
+codebase-derived axes, holistic judgment, committed measurement
+methodology, explicit calibration, and prose-based reasoning about
+architectural properties.</p>
+<p>The next step is probably a hybrid: property-based rubrics derived
+from exploration, prose axis judgments with explicit conformance
+anchors, stronger verdict-boundary rules, required gap reporting,
+explicit blast-radius tracing, and enough categorical structure to
+preserve comparability without pretending to have more precision than
+the evaluator actually has.</p>
+<p>What I like about this project is that it records the real shape of
+prompt-and-evaluation research. The progress was not linear. Most
+improvements came from finding out that something apparently sensible
+failed under pressure. A checklist missed structural violations. A
+metric wasn’t measured consistently. A rubric overfit to the examples
+that inspired it. A model could articulate the right architecture
+without implementing it. A numeric score implied more certainty than the
+process could honestly support.</p>
+<p>That’s why the experiments are useful as a sequence rather than just
+as a latest version. The value is not only in where the rubric ended up.
+It’s in seeing how each failure forced a better question.</p>

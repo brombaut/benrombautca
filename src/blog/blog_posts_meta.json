@@ -262,5 +262,13 @@
         "_description": "Evaluating all 500 SWE-bench Verified instances for architectural complexity. 62% are trivial or low, and reasoning coordination consistently exceeds changes coordination.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20260409_from_checklists_to_prose_verdicts",
+        "_title": "From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline",
+        "_createdAt": "2026-04-09T00:00:00.000Z",
+        "_description": "The development story behind 12 experiments building an AI-powered architectural evaluation pipeline, from brittle checklist rubrics to prose-based verdicts.",
+        "_show": false,
+        "_archived": false
     }
 ]
