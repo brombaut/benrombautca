@@ -268,7 +268,7 @@
         "_title": "From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline",
         "_createdAt": "2026-04-09T00:00:00.000Z",
         "_description": "The development story behind 12 experiments building an AI-powered architectural evaluation pipeline, from brittle checklist rubrics to prose-based verdicts.",
-        "_show": false,
+        "_show": true,
         "_archived": false
     }
 ]
