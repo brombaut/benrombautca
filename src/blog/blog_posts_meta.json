@@ -270,5 +270,13 @@
         "_description": "The development story behind 12 experiments building an AI-powered architectural evaluation pipeline, from brittle checklist rubrics to prose-based verdicts.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20260401_ai_tools_q1_2026",
+        "_title": "My Experience Learning to Use AI for Software Development: Q1 2026",
+        "_createdAt": "2026-04-17T00:00:00.000Z",
+        "_description": "Going deeper with Claude Code, building an observability tool, trying agent command centers, and discovering that most new tools don't stick.",
+        "_show": true,
+        "_archived": false
     }
 ]

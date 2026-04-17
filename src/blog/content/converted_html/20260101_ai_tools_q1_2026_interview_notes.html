@@ -1,0 +1,155 @@
+<h1
+id="interview-notes-ai-tools-in-my-development-workflow---q1-2026">Interview
+Notes: AI Tools in My Development Workflow - Q1 2026</h1>
+<h1 id="issue-benrombautca-ssw">Issue: benrombautca-ssw</h1>
+<h1 id="status-interview-in-progress-paused">Status: Interview in
+progress (paused)</h1>
+<hr />
+<h2 id="questions-asked-answers">Questions Asked &amp; Answers</h2>
+<p><strong>Q: Walk me through Q1 roughly month by month — what was
+January like, what shifted in February, what was March
+about?</strong></p>
+<p>January and February were about deepening the Claude Code practice: -
+Really started using tmux and parallel sessions — both within the same
+project (same git repo) and across different projects, leading to lots
+of context switching - Constantly checking tmux sessions to see which
+were waiting for input/approval — this friction led to building the
+Claude Code Radar (CCR) app - CCR is an observability tool that hooks
+into all Claude Code sessions, captures all events, and displays them in
+a session-timeline view frontend — so you can see at a glance which
+sessions are actively working and which are waiting on input - Started
+reading and listening to Steve Yegge interviews — he created beads and
+Gastown, liked his vibe and ideas - Started using beads for issue
+tracking with the goal: get all issues and dependencies set up early in
+a way agents can handle, so less manual monitoring/check-ins needed</p>
+<p>March: briefly tried opencode and Codex but neither hooked in the way
+Claude Code did — kept coming back to Claude Code. Work got busy, so not
+much time to explore. Plans to try opencode and model-per-role routing
+(from the inetanel article) more seriously next quarter.</p>
+<p><strong>Q: The Claude Code Radar sounds like the most technically
+interesting thing you built. Was it mostly a fun side project, or did it
+actually meaningfully change how you managed parallel
+sessions?</strong></p>
+<p>Mostly a fun side project. It kept growing from the original timeline
+view of a session to also showing subagent sessions, tool calls,
+capturing input/output content, token tracking, failure rates, etc. It
+didn’t really change how I managed day-to-day sessions — it was just
+something cool to look at to help watch agents work. Abandoned it
+towards the end of March, the habit of using it didn’t stick.</p>
+<p><strong>Q: Kintsugi — what is it exactly, and what was your
+experience with it?</strong></p>
+<p>Kintsugi (https://events.sonarsource.com/kintsugi/) — first try at
+using an “agent command center” or “agent orchestrator”. Mental model: a
+nice UI that sits on top of tmux, tries to organize sessions better.
+Very cool to work with at first, but same thing happened — didn’t stick,
+went back to tmux.</p>
+<p><strong>Q: Which Steve Yegge articles/interviews specifically stood
+out? What did they change about how you think or work?</strong></p>
+<p>Articles on Gastown, Beads, the AI Vampire, The Anthropic Hive Mind
+(all on https://steve-yegge.medium.com/). Also watched interviews with
+him. “Smart crazy guy” — his excitement for these things is contagious.
+Started working with beads in some projects as a result.</p>
+<p><strong>Q: Did you actually use beads meaningfully this quarter, or
+more of an experiment?</strong></p>
+<p>Definitely still “trying it out” phase. Only used it artificially on
+smaller projects, which isn’t really its wheelhouse. Wants to try it on
+a much larger project where the work pipeline can stay full for a while.
+Main issues: keeping the pipeline full, and tracking beads issues across
+different clones — but those are growing pains.</p>
+<p><strong>Q: The inetanel article on Claude Code vs. opencode — what
+sparked the model-per-role routing interest?</strong></p>
+<p>Mostly seeing the true cost of using Anthropic models. With opencode,
+you can define different models for different types of tasks and not be
+locked into high-cost models all the time. Didn’t look into it too
+deeply, but an interesting idea to come back to in the coming months.
+(Link:
+https://inetanel.com/articles/claude-code-vs-opencode-cto-decision)</p>
+<p><strong>Q: opencode and Codex honest take — what specifically didn’t
+hook you?</strong></p>
+<p>OpenCode: didn’t give it much of a chance — already had a Claude Code
+subscription and naturally came back to it. Plans to spend a couple days
+getting familiar with OpenCode and trying the model-per-role idea
+soon.</p>
+<p>Codex: genuinely tries it every once in a while (usually when the
+Claude Code quota runs out, which happens two or three times per week),
+but doesn’t get the same results. Too often typing things like “WHY DID
+YOU DO THAT I TOLD YOU TO DO THIS THING” or stopping it as it goes down
+weird rabbit holes and having to correct it.</p>
+<p><strong>Q: What tone/format is this article meant to be?</strong></p>
+<p>Continuation of the first blog post about getting started with AI
+tools (20260305_learning_to_use_ai_coding_tools.md). Personal journal
+entry, plans to do these 3-4 times per year to document the journey.</p>
+<p><strong>Q: Anything you’re deliberately leaving out?</strong></p>
+<p>No, covered most of it. End of March / beginning of April: still
+using tmux and Claude Code as main drivers, looking into different agent
+command centers to try in coming months, no longer writing any code,
+getting Claude to always write docs and handoff readmes so it can come
+back to them later. Working with agents is getting better.</p>
+<p><strong>Q: Context management strategies — what changed? Claude Code
+skills — what clicked?</strong></p>
+<p>More aware of context management now. Compacting prematurely at
+natural break points. Has a new handoff skill to keep a markdown record
+of the agent’s work.</p>
+<p><strong>Q: Did you use Gemini CLI at all this quarter?</strong></p>
+<p>No, didn’t come back to it. It’s just sitting off to the
+sidelines.</p>
+<hr />
+<h2 id="terminal-setup-clarified-during-interview">Terminal Setup
+(clarified during interview)</h2>
+<ul>
+<li><strong>Windows work computer</strong>: Tabby — easy to save and
+quickly connect to SSH profiles on different servers</li>
+<li><strong>Personal Mac</strong>: Ghostty (not Tabby — correct the
+issue notes which say Tabby)</li>
+<li>VS Code role reduced to: looking at data and file systems only</li>
+</ul>
+<hr />
+<h2 id="interview-complete-2026-04-17">Interview Complete
+(2026-04-17)</h2>
+<h2 id="key-themes-threads-for-article">Key Themes / Threads for
+Article</h2>
+<ul>
+<li><strong>Pattern of tools not sticking</strong>: CCR, Kintsugi, paper
+summary workflows, quick-capture convos — all exciting at first, then
+abandoned. Honest about this.</li>
+<li><strong>Claude Code as the constant</strong>: Everything else comes
+and goes, but Claude Code remains the primary tool.</li>
+<li><strong>Cost awareness emerging</strong>: The inetanel article
+sparked interest in model-per-role routing for cost reasons.</li>
+<li><strong>Codex frustration</strong>: Genuine, visceral frustration
+compared to Claude Code — good anecdote material.</li>
+<li><strong>Steve Yegge influence</strong>: Cultural/mindset influence,
+not just technical.</li>
+<li><strong>Beads as aspirational</strong>: Not yet proven at scale, but
+the vision is clear.</li>
+<li><strong>No longer writing code</strong>: A significant milestone in
+the journey from the first article.</li>
+<li><strong>Context management maturing</strong>: More deliberate about
+compaction, handoffs, agent continuity.</li>
+<li><strong>Gemini CLI sidelined</strong>: Fully replaced by Claude
+Code.</li>
+<li><strong>Continuation of journey</strong>: Same tone as first
+article, personal and honest.</li>
+</ul>
+<h2 id="article-topics-from-issue-final-status">Article Topics from
+Issue (final status)</h2>
+<ul>
+<li>Claude Code as primary tool ✅</li>
+<li>Gemini CLI usage ✅ (sidelined, not used this quarter)</li>
+<li>Shift toward working more in the terminal / terminal emulator switch
+✅</li>
+<li>Increased use of tmux ✅</li>
+<li>Running multiple Claude Code sessions in parallel ✅</li>
+<li>Trying out Kintsugi ✅</li>
+<li>Building Claude Code Radar app for observability ✅</li>
+<li>Using VS Code mainly to look at data rather than write code ✅</li>
+<li>Claude Code skills (prompting, context management, workflows)
+✅</li>
+<li>Context management strategies ✅</li>
+<li>Getting started with Beads issue tracker ✅</li>
+<li>Reading Steve Yegge / GasTown articles ✅</li>
+<li>March: experimenting with opencode, Codex, other models ✅</li>
+<li>model-per-role routing idea from inetanel article ✅</li>
+<li>Workflows that didn’t stick (paper summaries, quick-capture convos
+with Claude) ✅</li>
+</ul>
