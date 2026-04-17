@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Issue Tracking
 
-This project tracks work in a SQLite database at `issues.db` in the project root. See `ISSUES.md` for the schema and example queries. Use `sqlite3 issues.db` to read and write issues.
+This project uses a SQLite database (`issues.db`) for issue tracking — **not beads**. See `ISSUES.md` for the schema and example queries. Use `sqlite3 issues.db` to read and write issues.
 
 ## Project Overview
 
