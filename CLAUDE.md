@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This project uses a SQLite database (`issues.db`) for issue tracking — **not beads**. See `ISSUES.md` for the schema and example queries. Use `sqlite3 issues.db` to read and write issues.
 
+When reporting the status of any issue, always query `issues.db` directly rather than relying on conversation context — issue state may have changed on another machine.
+
 ## Project Overview
 
 **benrombautca** is Ben Rombaut's personal portfolio website, deployed at [benrombaut.ca](https://www.benrombaut.ca). This is a Vue 3 single-page application built with TypeScript, featuring a personal portfolio with multiple sections including About Me, Work/Education timeline, Publications, Blog, Software projects, Bookshelf, Running, and Hiking.
