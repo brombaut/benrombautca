@@ -8,6 +8,8 @@ This project uses a SQLite database (`issues.db`) for issue tracking — **not b
 
 When reporting the status of any issue, always query `issues.db` directly rather than relying on conversation context — issue state may have changed on another machine.
 
+After every write to `issues.db`, immediately commit and push it so the remote is always up to date with issue tracking.
+
 ## Project Overview
 
 **benrombautca** is Ben Rombaut's personal portfolio website, deployed at [benrombaut.ca](https://www.benrombaut.ca). This is a Vue 3 single-page application built with TypeScript, featuring a personal portfolio with multiple sections including About Me, Work/Education timeline, Publications, Blog, Software projects, Bookshelf, Running, and Hiking.
