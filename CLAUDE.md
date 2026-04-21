@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This project uses a SQLite database (`issues.db`) for issue tracking — **not beads**. See `ISSUES.md` for the schema and example queries. Use `sqlite3 issues.db` to read and write issues.
 
+Before the first read of `issues.db` in a session, run `git pull` to ensure you have the latest version — it may have been updated from another machine.
+
 When reporting the status of any issue, always query `issues.db` directly rather than relying on conversation context — issue state may have changed on another machine.
 
 After every write to `issues.db`, immediately commit and push it so the remote is always up to date with issue tracking.
