@@ -5,14 +5,29 @@
       icon="hiking"
       subtext="Some of the hikes I've done over the years." />
 
-    <!-- Adirondack 46er Goal -->
-    <div class="hiking-goal">
-      <h3>Adirondack 46er Goal</h3>
-      <p>Working towards summiting all 46 of the 4,000+ foot peaks in the Adirondacks.</p>
-      <div class="progress-bar-container">
-        <div class="progress-bar" :style="{ width: `${progressPercentage}%` }" />
-        <span class="progress-text">{{ completedPeaks }} / {{ totalPeaks }} peaks</span>
-      </div>
+    <!-- Highlights -->
+    <div class="hiking-highlights">
+      <h3>Highlights</h3>
+      <ul>
+        <li>
+          Summited Mount Kilimanjaro via the Lemosho route, 7 days to reach 19,341 feet,
+          the highest point on the African continent. An incredible experience!
+        </li>
+        <li>
+          A multi-week east-to-west coast road trip with my sister through national parks across
+          the northern US, including Maquoketa Caves, Badlands, Grand Teton, Yellowstone, Glacier,
+          and Mount Rainier, before finishing with hiking in British Columbia and driving back
+          through Canada.
+        </li>
+        <li>
+          Working towards completing all 46 Adirondack High Peaks (the "46ers"),
+          the 46 mountains in the Adirondacks over 4,000 feet.
+          <div class="progress-bar-container">
+            <div class="progress-bar" :style="{ width: `${progressPercentage}%` }" />
+            <span class="progress-text">{{ completedPeaks }} / {{ totalPeaks }} peaks</span>
+          </div>
+        </li>
+      </ul>
     </div>
 
     <div class="section-body">
@@ -91,39 +106,47 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
 
-  .hiking-goal {
+  .hiking-highlights {
     margin: 1.5rem 0;
     padding: 1.5rem;
     background: rgba(51, 129, 219, 0.05);
     border-radius: 8px;
-    border-left: 4px solid $primary;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     box-sizing: border-box;
 
     h3 {
-      margin: 0 0 0.5rem 0;
+      margin: 0 0 0.75rem 0;
       color: $primary;
       font-size: 1.3rem;
       font-weight: 600;
     }
 
-    p {
-      margin: 0 0 1rem 0;
+    ul {
+      margin: 0;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    li {
       color: $fontColor;
       line-height: 1.5;
     }
 
     .progress-bar-container {
       position: relative;
-      height: 30px;
+      height: 18px;
+      margin-top: 0.5rem;
+      max-width: 320px;
       background: rgba(0, 0, 0, 0.1);
-      border-radius: 15px;
+      border-radius: 9px;
       overflow: hidden;
 
       .progress-bar {
         height: 100%;
-        background: linear-gradient(90deg, $primary 0%, $primaryDark 100%);
-        transition: width 0.3s ease;
-        border-radius: 15px;
+        background: $primary;
+        border-radius: 9px;
       }
 
       .progress-text {
@@ -133,8 +156,9 @@ export default defineComponent({
         transform: translate(-50%, -50%);
         color: $fontColor;
         font-weight: 600;
-        font-size: 0.9rem;
+        font-size: 0.75rem;
         text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+        white-space: nowrap;
       }
     }
   }
