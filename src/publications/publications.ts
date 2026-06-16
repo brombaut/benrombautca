@@ -123,6 +123,30 @@ const publications: Publication[] = [
     ],
   ),
   new Publication(
+    "Beyond Correctness: Enhancing Architectural Reasoning in Code LLMs via Scalable Labeling with Agentic Judgment",
+    [
+      "Kirill Vasilevski",
+      "Ximing Dong",
+      "Benjamin Rombaut",
+      "Ruochen Deng",
+      "Jiahuei (Justina) Lin",
+      "Arthur Leung",
+      "Dayi Lin",
+      "Boyuan Chen",
+      "Shaowei Wang",
+      "Ahmed E. Hassan",
+    ],
+    "Unpublished",
+    new Date(2026, 5, 16),
+    [
+      {
+        type: PublicationLinkType.Arxiv,
+        url: "https://arxiv.org/abs/2606.14948",
+      },
+    ],
+  ),
+
+  new Publication(
     "An Empirical Study of Library Usage and Dependency in Deep Learning Frameworks",
     [
       "Mohamed Raed El aoun",
