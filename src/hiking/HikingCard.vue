@@ -14,7 +14,7 @@
         <div v-html="hike.description" />
       </div>
     </div>
-    <div class="hike-images">
+    <div v-if="hike.images.length > 0" class="hike-images">
       <ImageCarousel :images="hike.images" />
     </div>
   </div>
