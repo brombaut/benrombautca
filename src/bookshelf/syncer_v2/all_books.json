@@ -67,7 +67,7 @@
             "link": "https://www.goodreads.com/review/show/5985527379?utm_medium=api&utm_source=rss",
             "date_added": "2023-11-18",
             "position": 7,
-            "avg_rating": 3.86,
+            "avg_rating": 3.85,
             "numPages": null
         },
         {
@@ -437,7 +437,7 @@
             "link": "https://www.goodreads.com/review/show/8395158357?utm_medium=api&utm_source=rss",
             "date_added": "2026-02-27",
             "position": 44,
-            "avg_rating": 4.32,
+            "avg_rating": 4.31,
             "numPages": null
         },
         {
@@ -497,7 +497,7 @@
             "link": "https://www.goodreads.com/review/show/8485577638?utm_medium=api&utm_source=rss",
             "date_added": "2026-04-01",
             "position": 50,
-            "avg_rating": 3.65,
+            "avg_rating": 3.57,
             "numPages": null
         },
         {
@@ -523,15 +523,6 @@
     ],
     "currentlyreading_books": [
         {
-            "title": "The Things You Can See Only When You Slow Down: How to Be Calm in a Busy World",
-            "author": "Haemin Sunim",
-            "book_id": "30780006-the-things-you-can-see-only-when-you-slow-down",
-            "link": "https://www.goodreads.com/review/show/7374444604?utm_medium=api&utm_source=rss",
-            "date_added": "2026-06-15",
-            "avg_rating": 4.04,
-            "numPages": null
-        },
-        {
             "title": "A Little Life",
             "author": "Hanya Yanagihara",
             "book_id": "22822858-a-little-life",
@@ -542,6 +533,18 @@
         }
     ],
     "read_books": [
+        {
+            "title": "The Things You Can See Only When You Slow Down: How to Be Calm in a Busy World",
+            "author": "Haemin Sunim",
+            "book_id": "30780006-the-things-you-can-see-only-when-you-slow-down",
+            "link": "https://www.goodreads.com/review/show/7374444604?utm_medium=api&utm_source=rss",
+            "date_finished": "2026-07-02",
+            "rating": 5,
+            "avg_rating": 4.04,
+            "isbn": "0143130773",
+            "review": null,
+            "numPages": null
+        },
         {
             "title": "The Company: The Rise and Fall of the Hudson's Bay Empire",
             "author": "Stephen R. Bown",
@@ -561,7 +564,7 @@
             "link": "https://www.goodreads.com/review/show/8222051033?utm_medium=api&utm_source=rss",
             "date_finished": "2026-04-02",
             "rating": 4,
-            "avg_rating": 2.5,
+            "avg_rating": 3.33,
             "isbn": "1493080946",
             "review": "Very excited for hiking this summer",
             "numPages": null
@@ -705,7 +708,7 @@
             "link": "https://www.goodreads.com/review/show/7358032190?utm_medium=api&utm_source=rss",
             "date_finished": "2025-03-29",
             "rating": 4,
-            "avg_rating": 4.52,
+            "avg_rating": 4.51,
             "isbn": "1925815579",
             "review": null,
             "numPages": null
@@ -957,7 +960,7 @@
             "link": "https://www.goodreads.com/review/show/5823043566?utm_medium=api&utm_source=rss",
             "date_finished": "2024-01-30",
             "rating": 5,
-            "avg_rating": 4.28,
+            "avg_rating": 4.27,
             "isbn": "1442408928",
             "review": null,
             "numPages": null
@@ -1257,7 +1260,7 @@
             "link": "https://www.goodreads.com/review/show/4522000116?utm_medium=api&utm_source=rss",
             "date_finished": "2022-05-24",
             "rating": 2,
-            "avg_rating": 4.09,
+            "avg_rating": 4.08,
             "isbn": "0316486094",
             "review": null,
             "numPages": null
@@ -1857,7 +1860,7 @@
             "link": "https://www.goodreads.com/review/show/3909039286?utm_medium=api&utm_source=rss",
             "date_finished": "2021-05-02",
             "rating": 5,
-            "avg_rating": 4.45,
+            "avg_rating": 4.46,
             "isbn": "0261102354",
             "review": null,
             "numPages": null
@@ -2181,7 +2184,7 @@
             "link": "https://www.goodreads.com/review/show/3481115569?utm_medium=api&utm_source=rss",
             "date_finished": "2020-08-24",
             "rating": 3,
-            "avg_rating": 4.19,
+            "avg_rating": 4.18,
             "isbn": "149207294X",
             "review": null,
             "numPages": null
@@ -2373,7 +2376,7 @@
             "link": "https://www.goodreads.com/review/show/3334142236?utm_medium=api&utm_source=rss",
             "date_finished": "2019-12-01",
             "rating": 4,
-            "avg_rating": 4.72,
+            "avg_rating": 4.71,
             "isbn": "1105979121",
             "review": null,
             "numPages": null
