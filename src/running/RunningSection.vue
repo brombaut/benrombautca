@@ -15,7 +15,7 @@
             rel="noopener noreferrer">
             Quebec City Half Marathon
           </a>
-          &mdash; Beneva Quebec City Marathon, Summer 2026
+          - Beneva Quebec City Marathon, Fall 2026 (Oct 5)
         </li>
       </ul>
     </div>
