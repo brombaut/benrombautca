@@ -1,0 +1,206 @@
+<p>This is the third post in my recurring series about using AI tools
+for software development. The first covered early 2023 through the end
+of 2025. The second covered Q1 2026, when Claude Code became my main
+development environment and I was mostly figuring out how to manage
+multiple agent sessions without losing track of everything.</p>
+<p>Q2 was different. I did not adopt one big new tool that changed
+everything. Instead, the quarter was about workflow gravity: which
+habits survived after the novelty wore off, which tools became default,
+and which parts of agentic development started to feel like the real
+bottlenecks.</p>
+<p>The short version is that Codex became my daily driver, Claude Code
+stayed important for heavier work, and context management became the
+thing I think about constantly.</p>
+<h2 id="april---building-personal-workflows-on-top-of-agents">April -
+Building Personal Workflows on Top of Agents</h2>
+<p>At the start of the quarter I was still deep in Claude Code. The most
+useful experiment was not a coding task exactly, but a custom research
+workflow.</p>
+<p>I built a <code>research-junshi</code> skill and a
+<code>research-checkin</code> workflow for keeping research projects
+moving. The idea was to sync the active state of a research project,
+then use that state to produce a daily digest of related papers, ideas,
+and possible next steps from arXiv and top software engineering
+venues.</p>
+<p>This is one of the places where AI tools feel genuinely different
+from normal automation. A script can fetch papers. A feed reader can
+show me what is new. But the useful part was not just retrieval. It was
+having a workflow that knew what I was currently thinking about and
+could keep nudging the project forward from that context.</p>
+<p>For research, that mattered. When I was actively focused on a paper,
+the workflow helped me keep momentum. It gave me small hooks back into
+the problem every day: related work to skim, nearby ideas to consider,
+possible framing changes. It felt like a lightweight research assistant
+tuned to my current project instead of a generic paper recommender.</p>
+<p>It did not become a universal daily habit, though. Once June shifted
+more toward engineering work, I stopped using it as much. That has been
+a recurring pattern for me: workflows that are extremely useful in one
+mode of work do not automatically survive when the mode changes. The
+tool was good, but its value depended on being in a research-heavy
+period.</p>
+<h2 id="the-context-problem-got-louder">The Context Problem Got
+Louder</h2>
+<p>The biggest practical problem this quarter was not model
+intelligence. It was context.</p>
+<p>I was running many sessions across different projects, and the hard
+part was not always getting an agent to do a task. The hard part was
+remembering what I had asked, what had already been tried, what was
+blocked, and what state each project was in.</p>
+<p>That led to another set of custom workflow experiments: daily and
+weekly summary skills. The daily summary scans Claude Code session
+transcripts for a given day and turns them into a structured recap:
+projects touched, accomplishments, trouble spots, follow-up work, and
+anything that needs attention. The weekly summary rolls those daily
+summaries up into a multi-day view organized by day and project.</p>
+<p>This solved a real problem. When you are running multiple agents, the
+work can become strangely hard to account for. A lot happens, but it is
+distributed across terminal sessions, compacted conversations, temporary
+branches, and half-finished ideas. At the end of the day I can have the
+feeling that I was busy, but not a clean memory of what actually
+moved.</p>
+<p>The summaries help because they give me a recoverable thread. They
+are not perfect, but they reduce the “what was I even working on?”
+feeling. More importantly, they make agent work feel less ephemeral.
+Instead of every session disappearing into terminal scrollback, there is
+a durable record of the day.</p>
+<p>This is also where I started to feel the difference between using
+agents occasionally and using them as the center of the workflow.
+Occasional use creates local productivity. Daily use creates
+coordination problems. You need memory, summaries, handoffs, project
+state, and ways to decide what deserves attention next.</p>
+<h2 id="may---codex-became-the-default">May - Codex Became the
+Default</h2>
+<p>The biggest tool shift happened around May. I started using Codex
+more and more, partly because I kept hitting Claude Code limits and
+partly because Claude Code had enough availability issues that it
+stopped feeling like the always-on default.</p>
+<p>This surprised me a bit because in Q1 I was still frustrated with
+Codex. I would try it when Claude Code ran out, get annoyed, and go back
+as soon as I could. But by the middle of Q2 the tradeoff had changed.
+Codex was quicker, more available, and good enough for a large amount of
+day-to-day work.</p>
+<p>That does not mean Claude Code went away. It still feels better for
+heavier tasks, especially when I already have well-developed skills or
+workflows built around it. If I need something that benefits from a lot
+of project-specific scaffolding, Claude Code still fits naturally.</p>
+<p>But for smaller work, Codex became easier to reach for. Quick fixes,
+repo inspection, drafting changes, implementation tasks where I already
+know the shape of the solution - Codex became the tool I used without
+thinking much about it.</p>
+<p>By the end of June, the split was pretty clear:</p>
+<ul>
+<li>Codex for light and medium engineering work where speed and
+availability matter.</li>
+<li>Claude Code for heavier work, research workflows, or tasks where my
+existing Claude-specific skills matter.</li>
+<li>ChatGPT or Claude chat for quick questions, writing help, and
+thinking through ideas outside the repo.</li>
+</ul>
+<p>That split has not stabilized into a grand theory. It is just the
+pattern I actually follow.</p>
+<h2 id="writing-reasoning-and-tool-fit">Writing, Reasoning, and Tool
+Fit</h2>
+<p>One thing that became clearer this quarter is that I do not think
+about AI tools as a single category anymore. They have different
+fits.</p>
+<p>For coding, the center of gravity is the terminal. I want the model
+inside the repo, with access to files, tests, git state, and commands.
+The chat window is not enough for serious implementation work.</p>
+<p>For writing, I still care a lot about voice. Claude often feels
+better for long-form writing and revision. It tends to produce prose
+that is closer to how I want to sound, while other tools can drift into
+bullets, summaries, or generic structure too quickly.</p>
+<p>For quick questions, I am less picky. The best tool is usually
+whichever one is open and fast.</p>
+<p>This matches the broader pattern I keep seeing other people describe:
+coding is the center of the workflow, but the workflow is layered. You
+do not just “use AI.” You use different models and surfaces for
+different kinds of work. Terminal agents for code. Chat for thinking.
+Specialized workflows for research. Maybe IDE tools for narrower
+completion or editing tasks.</p>
+<p>The important part is not picking one winner. It is knowing which
+surface matches the job.</p>
+<h2 id="the-ai-vampire-is-still-real">The AI Vampire Is Still Real</h2>
+<p>I also kept running into what Steve Yegge calls the “AI Vampire”: the
+feeling that AI tools make it too easy to keep delegating one more
+thing.</p>
+<p>This is not just normal workaholism with a new label. The feedback
+loop is different. If I have an idea at 9:30 p.m., I can hand it to an
+agent and see progress immediately. If that works, I can hand it another
+task. Then another. The cost of starting work drops so low that stopping
+becomes the harder action.</p>
+<p>I do not have a good solution for this yet. I am aware of it, and I
+can tell when it is happening, but awareness does not automatically
+create a boundary. The tools are useful enough that the unhealthy
+pattern is not obvious in the moment. It feels productive because it is
+productive.</p>
+<p>That is the uncomfortable part. The problem is not that the work is
+fake. The problem is that real progress becomes available at any time,
+with almost no activation energy.</p>
+<h2 id="comprehension-debt">Comprehension Debt</h2>
+<p>Another shift this quarter was my relationship with agent-written
+code.</p>
+<p>In late 2025, I was still trying hard to understand every line. If an
+agent wrote a feature, I wanted to read through the implementation
+carefully and make sure I knew what happened.</p>
+<p>That has changed. I still review important changes, and I still
+manually test things when needed, but I do not read every line with the
+same intensity. I have become more comfortable trusting agents for
+routine implementation work.</p>
+<p>This is useful, but it creates comprehension debt. The codebase moves
+faster than my mental model. I may know what task was completed, but not
+exactly how the solution was structured. After enough of that, the risk
+is not that the code fails immediately. The risk is that I become less
+able to steer the system because I no longer understand the details I am
+asking agents to modify.</p>
+<p>The compensation strategy I have been using is to spend more time
+upfront. Before implementation, I often ask the agent to investigate the
+codebase and write a plan. I review the plan, the intended files, the
+expected shape of the change, and the assumptions. Then the agent
+implements.</p>
+<p>That means I am shifting from verifying implementation to verifying
+intent.</p>
+<p>I still need to inspect code, but the highest-leverage review often
+happens before the code exists. If the plan is wrong, the implementation
+will be wrong in a way that looks locally reasonable. If the plan is
+right, I can trust more of the mechanical execution.</p>
+<p>This feels like one of the biggest skill changes in agentic
+development. The job is less “write the correct code” and more “shape
+the task so the agent writes the correct code.”</p>
+<h2 id="june---the-workflow-is-the-product">June - The Workflow Is the
+Product</h2>
+<p>By the end of Q2, the most interesting work was not any single
+generated feature. It was the workflow around the generated
+features.</p>
+<p>The daily summaries, research check-ins, handoff documents, planning
+passes, and tool split all point in the same direction: the development
+environment is becoming a layer of personal process automation.</p>
+<p>That sounds abstract, but in practice it is very concrete. I need to
+know:</p>
+<ul>
+<li>What did I work on today?</li>
+<li>Which agent sessions are blocked?</li>
+<li>Which projects have dangling tasks?</li>
+<li>What context needs to survive compaction?</li>
+<li>What should an agent read before touching this code?</li>
+<li>When should I use Codex, Claude Code, or a chat model?</li>
+<li>Which work is real progress and which work is just momentum?</li>
+</ul>
+<p>These are not coding questions in the old sense, but they now
+determine how effective the coding is.</p>
+<h2 id="where-things-stand">Where Things Stand</h2>
+<p>At the end of Q2 2026, Codex is my day-to-day coding agent. Claude
+Code is still important, especially for heavier or more customized
+workflows, but it is no longer the only center of gravity.</p>
+<p>The biggest lesson of the quarter is that context management is the
+real bottleneck. Not in the narrow sense of “the model needs more
+tokens,” but in the broader sense of keeping project state, personal
+memory, task intent, and agent output aligned over time.</p>
+<p>I am still optimistic. The tools are better than they were three
+months ago, and I am better at using them. But the work feels less like
+“learning to code with AI” now and more like building an operating
+system for my own attention.</p>
+<p>Q1 was about going deeper with Claude Code. Q2 was about discovering
+that the agent is only one part of the system. The real system is the
+loop around it: planning, delegation, verification, memory,
+summarization, and knowing when to stop.</p>

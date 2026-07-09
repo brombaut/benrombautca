@@ -294,5 +294,13 @@
         "_description": "A practical taxonomy of AI-generated code slop, from hygiene debris and annotation noise to fake-done implementations, weak tests, type escape hatches, and scope creep.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20260701_ai_tools_q2_2026",
+        "_title": "My Experience Learning to Use AI for Software Development: Q2 2026",
+        "_createdAt": "2026-07-01T00:00:00.000Z",
+        "_description": "Codex becoming my daily driver, custom research and summary workflows, context management, comprehension debt, and the agent loop around the code.",
+        "_show": true,
+        "_archived": false
     }
 ]
