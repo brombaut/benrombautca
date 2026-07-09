@@ -1,0 +1,202 @@
+<h1 id="eleven-families-of-ai-code-slop">Eleven Families of AI Code
+Slop</h1>
+<p>This is the second of two posts on AI code slop. The first covered
+why AI-generated code fails differently from human-written code, and why
+some traditional quality signals have started pointing the wrong
+direction. This one is the practical companion: what slop actually looks
+like, organized by the kind of damage it does.</p>
+<p>These families came from surveying 70+ AI code quality tools,
+selecting 42 for deep rule analysis, and cataloging 575 individual
+rules. Each family groups patterns by what they break in the codebase.
+The taxonomy is scoped to source code: process metadata, prose/docs
+slop, and security guardrails are real surfaces, but they are not
+top-level code-slop families here. Cross-language leakage is treated as
+part of Integrity / Fake-Done rather than as a separate family.</p>
+<p>I’m including compact examples where they make the pattern
+clearer.</p>
+<h2 id="hygiene-debris">1. Hygiene Debris</h2>
+<p>Leftovers from the generation process that should have been cleaned
+before commit. Unused imports, dead functions, debug logging,
+commented-out code, ephemeral planning files like <code>PLAN.md</code>
+and <code>SCRATCH.md</code>.</p>
+<p>Models generate artifacts as part of solving a task but don’t track
+whether those artifacts end up wired into the final solution. There’s no
+feedback signal when something goes unused, so over many sessions these
+leftovers accumulate silently. One project accumulated 11,903 lines of
+dead code in 7 months, including entire orphaned extension subsystems
+for Telegram, Signal, Matrix, and iMessage.</p>
+<p>This is the most statically detectable family. About 33 of 37 rules
+need no LLM at all: just AST analysis, module graphs, and pattern
+matching.</p>
+<h2 id="annotation-noise">2. Annotation Noise</h2>
+<p>Comments that add no information beyond what the code already
+says.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check for missing, null, or empty type</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> exposure_type <span class="kw">is</span> <span class="va">None</span> <span class="kw">or</span> (<span class="bu">isinstance</span>(exposure_type, <span class="bu">str</span>) <span class="kw">and</span> exposure_type <span class="op">==</span> <span class="st">&quot;&quot;</span>):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the allowed set for this type</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>allowed_fields <span class="op">=</span> {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Gateway&quot;</span>: gateway_allowed,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;DirectPort&quot;</span>: directport_allowed,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Balancer&quot;</span>: balancer_allowed,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}.get(exposure_type, <span class="bu">set</span>())</span></code></pre></div>
+<p>Both comments restate what the next line does. This isn’t
+under-documented code. It’s code with extra text because the model
+writes in explanation mode. Models can’t distinguish contexts where
+comments add value (non-obvious business logic, API contracts) from
+contexts where they restate the code.</p>
+<p>One team built a compiled Go binary that fires on every file write to
+intercept narrator comments in real time. Another went through a
+five-month escalation, eventually concluding that “cleanup” framing
+enables write-now-delete-later behavior. They reframed to “do not write
+in the first place.”</p>
+<h2 id="redundant-guarding">3. Redundant Guarding</h2>
+<p>Runtime guards that duplicate guarantees the type system or call
+context already provides.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>config.get(<span class="st">&quot;database&quot;</span>, {}).get(<span class="st">&quot;host&quot;</span>, {}).get(<span class="st">&quot;primary&quot;</span>, <span class="st">&quot;localhost&quot;</span>)</span></code></pre></div>
+<p>When the dict structure is known from the caller, this fallback chain
+is pure noise. Models produce guards as part of “careful code” without
+tracking whether the guarantee already exists. Defensive programming was
+a positive signal in training data, so the model keeps producing it
+regardless.</p>
+<p>Detection requires type checker integration, making this harder to
+clean automatically than the first two families.</p>
+<h2 id="structural-bloat">4. Structural Bloat</h2>
+<p>The largest family at 102 rules. Unnecessary wrappers, premature
+abstractions, factories that always return the same thing,
+over-fragmented file structures.</p>
+<p>Models produce structure because training data rewards structure, but
+humans had a natural brake: creating an abstraction costs effort, so you
+only do it when the payoff exceeds the cost. Models have no production
+cost. They create a helper for every operation, an interface for every
+class, a wrapper for every boundary.</p>
+<p>The classic example: a single-implementation interface where
+<code>AbstractUserRepository</code> has exactly one concrete
+<code>UserRepository</code>. Or an async function wrapping a synchronous
+call with no internal await. One project’s AGENTS.md captures the right
+instinct: “New helpers and files must pay rent immediately.”</p>
+<h2 id="duplication-by-regeneration">5. Duplication by Regeneration</h2>
+<p>Models don’t copy-paste. When a model needs a helper that already
+exists, it writes a new one from scratch. The result is functionally
+identical code that’s syntactically different, which traditional clone
+detectors miss entirely.</p>
+<p>One project explicitly bans this in their AGENTS.md: “NEVER create
+local <code>formatAge</code>, <code>formatDuration</code>,
+<code>formatElapsedTime</code> functions.” That ban exists because
+agents kept creating them. The root cause is simple: humans remember
+what they’ve already written. Models don’t. Each invocation starts
+fresh.</p>
+<h2 id="test-slop">6. Test Slop</h2>
+<p>Tests that exist to pass rather than to catch bugs.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_calculate_tax():</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    amount <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    rate <span class="op">=</span> <span class="fl">0.15</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> amount <span class="op">*</span> rate  <span class="co"># same formula as the implementation</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> calculate_tax(amount, rate) <span class="op">==</span> expected</span></code></pre></div>
+<p>This is circular verification: the test recomputes the expected value
+using the same formula as the production code, so it can never fail.
+When a test fails, the cheapest path to green is weakening the test
+rather than fixing the code, and models have no feedback signal that
+distinguishes these two actions.</p>
+<p>Other patterns: zero-assertion tests, tests that mock the unit under
+test itself, and <code>@pytest.mark.skip</code> where the agent disabled
+the test rather than fixing the underlying failure. One project treats
+weakened test expectations as a violation triggering mandatory halt.</p>
+<h2 id="integrity-and-fake-done">7. Integrity and Fake-Done</h2>
+<p>Agent output that misrepresents the state of the work.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> enforce_rate_limit(user_id: <span class="bu">str</span>, action: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Return whether the user is allowed to perform this action.&quot;&quot;&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span><span class="al">TODO</span><span class="co">: integrate with Redis-backed limiter</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span></code></pre></div>
+<p>This isn’t just an incomplete TODO. The damaging part is the
+executable success path: callers can now build on a function that claims
+to enforce a policy but silently permits every request.</p>
+<p>This family also includes cross-language leakage:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> []</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>items.forEach(<span class="kw">lambda</span> item: results.push(normalize(item)))</span></code></pre></div>
+<p>JavaScript Array methods leaked into Python. The code <em>looks</em>
+like it could work, which is exactly what makes it dangerous.</p>
+<p>This is the hardest family to mitigate. Even the deepest prevention
+system I surveyed, with three converging skills and verification
+requirements, has documented failures where agents fabricate entire
+verification dialogues.</p>
+<h2 id="error-swallowing">8. Error-Swallowing</h2>
+<p>Mechanisms that suppress or silently discard error signals. Detected
+by 18 tools, this is one of the strongest convergence signals in the
+survey.</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    type_class <span class="op">=</span> <span class="bu">getattr</span>(builtins, type_name)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> name <span class="kw">in</span> <span class="bu">dir</span>(type_class):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        ...</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span>:</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">pass</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> attributes</span></code></pre></div>
+<p>Models reproduce the <em>form</em> of error handling without the
+<em>substance</em>. A catch block that returns a default looks identical
+to robust error handling in training data, even though at runtime it
+silently swallows the error. The same checkpoint that produced this had
+35 swallowed-exception findings versus 11 in the reference solution.</p>
+<p>Detection is heavily static: empty catch bodies, broad exception
+types, <code>_ = err</code> patterns. One of the easiest families to
+detect deterministically.</p>
+<h2 id="type-laxity">9. Type Laxity</h2>
+<p>Type system escape hatches.</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> result <span class="op">=</span> response<span class="op">.</span><span class="at">data</span> <span class="im">as</span> <span class="dt">unknown</span> <span class="im">as</span> UserProfile<span class="op">;</span></span></code></pre></div>
+<p>The double-cast <code>as unknown as X</code> is a pattern nearly
+exclusive to AI generation. In agentic workflows, type errors block the
+generation loop. <code>as any</code> or <code>as unknown as X</code>
+unblocks immediately, so models that optimize for compilable output
+converge on escape hatches. Nine tools detect unsafe type assertions,
+making it one of the most agreed-upon patterns.</p>
+<h2 id="kinetic-slop">10. Kinetic Slop</h2>
+<p>The agent does more than was asked. Scope creep, drive-by edits to
+unrelated code, bundled refactoring, formatting changes mixed with
+functional changes.</p>
+<p>This is harder to demonstrate with a code example because it’s about
+diff scope rather than any single pattern. The test is lineage: every
+modified line must trace to the user’s request. If it doesn’t, revert
+it. One project tracks net LOC growth as a slop signal. Another enforces
+“touch only what was asked” at the harness level rather than relying on
+the model’s self-restraint.</p>
+<h2 id="naming-drift">11. Naming Drift</h2>
+<p>Names that obscure meaning, break project conventions, or signal AI
+generation.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process_data(input_data):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> helper_1(input_data)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> helper_2(result)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> temp</span></code></pre></div>
+<p><code>process_data</code>, <code>handle_response</code>,
+<code>get_result</code>, <code>do_thing</code>. Models produce names
+drawn from the average of training data rather than matching the
+conventions of the project. The result is generic names that compile and
+work but carry no domain meaning. The opposite tendency also appears:
+over-verbose names like
+<code>currentUserAuthenticationStatusBoolean</code> where
+<code>isAuthenticated</code> would do.</p>
+<h2 id="the-common-thread">The Common Thread</h2>
+<p>Every family is a different surface where the same fundamental
+property shows up: models optimize for plausible output rather than
+durable code. Comments that look helpful, tests that look thorough,
+structure that looks professional, error handling that looks robust. The
+code <em>looks right</em> because the model is optimized to produce text
+that looks right. Whether it serves the project is a question the model
+has no mechanism to answer.</p>
+<p>These families fall into three tooling modes. Some can often be
+cleaned deterministically or CI-gated: hygiene debris, many
+annotation-noise rules, obvious error-swallowing, shallow integrity
+stubs, type escape hatches, and direct cross-language leakage. Some need
+candidate generation plus judgment: structural bloat, semantic
+duplication, redundant guarding, test slop, semantic error-swallowing,
+and deep integrity violations. And some are better prevented through
+workflow control: kinetic slop, test weakening, verification gaming,
+search-before-write failures, and repeated architecture reinvention. A
+useful system needs all three.</p>

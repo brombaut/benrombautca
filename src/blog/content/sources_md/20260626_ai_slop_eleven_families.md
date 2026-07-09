@@ -2,7 +2,9 @@
 
 This is the second of two posts on AI code slop. The first covered why AI-generated code fails differently from human-written code, and why some traditional quality signals have started pointing the wrong direction. This one is the practical companion: what slop actually looks like, organized by the kind of damage it does.
 
-These families came from surveying 70+ AI code quality tools, selecting 42 for deep rule analysis, and cataloging 575 individual rules. Each family groups patterns by what they break in the codebase. I'm including the best code example I found for each.
+These families came from surveying 70+ AI code quality tools, selecting 42 for deep rule analysis, and cataloging 575 individual rules. Each family groups patterns by what they break in the codebase. The taxonomy is scoped to source code: process metadata, prose/docs slop, and security guardrails are real surfaces, but they are not top-level code-slop families here. Cross-language leakage is treated as part of Integrity / Fake-Done rather than as a separate family.
+
+I'm including compact examples where they make the pattern clearer.
 
 ## 1. Hygiene Debris
 
@@ -101,7 +103,7 @@ This is the hardest family to mitigate. Even the deepest prevention system I sur
 
 ## 8. Error-Swallowing
 
-Mechanisms that suppress or silently discard error signals. Detected by 18 tools, the strongest convergence signal in the survey.
+Mechanisms that suppress or silently discard error signals. Detected by 18 tools, this is one of the strongest convergence signals in the survey.
 
 ```python
 try:
@@ -150,4 +152,4 @@ def process_data(input_data):
 
 Every family is a different surface where the same fundamental property shows up: models optimize for plausible output rather than durable code. Comments that look helpful, tests that look thorough, structure that looks professional, error handling that looks robust. The code *looks right* because the model is optimized to produce text that looks right. Whether it serves the project is a question the model has no mechanism to answer.
 
-These families fall into three tooling modes. Some can be cleaned deterministically (hygiene debris, annotation noise, obvious error-swallowing, shallow integrity stubs). Some need an LLM or human to judge whether the fix is correct (structural bloat, semantic duplication, deep integrity violations). And some are better prevented than cleaned (kinetic slop, test weakening, regenerated duplication). A useful system needs all three.
+These families fall into three tooling modes. Some can often be cleaned deterministically or CI-gated: hygiene debris, many annotation-noise rules, obvious error-swallowing, shallow integrity stubs, type escape hatches, and direct cross-language leakage. Some need candidate generation plus judgment: structural bloat, semantic duplication, redundant guarding, test slop, semantic error-swallowing, and deep integrity violations. And some are better prevented through workflow control: kinetic slop, test weakening, verification gaming, search-before-write failures, and repeated architecture reinvention. A useful system needs all three.

@@ -10,6 +10,17 @@ But they're not the whole story. When I scanned AI-generated repositories agains
 
 AI code quality has three tiers: traditional smells (the same ones we've always had), gray smells (old patterns at elevated rates), and AI-specific slop (genuinely new defects). A useful quality tool can't only target the new stuff.
 
+The AI-specific tier is the strange one because the code can look like progress while quietly changing the truth of the system:
+
+```python
+def enforce_rate_limit(user_id: str, action: str) -> bool:
+    """Return whether the user is allowed to perform this action."""
+    # TODO: integrate with Redis-backed limiter
+    return True
+```
+
+That is not just an incomplete TODO. It is an executable success path. Everything downstream can now behave as if rate limiting exists, while every request is actually permitted.
+
 ## Boredom Was a Quality Control
 
 The deeper question is *why* AI produces these patterns. The answer comes down to economics.
@@ -19,6 +30,18 @@ Clean code was a scarcity discipline. Everything about the pre-AI quality moveme
 When we replaced the human producer with an LLM agent, we lost all of these limiters at once. The quality mechanisms were bundled with the producer, and we automated away both.
 
 The result is a producer whose characteristic failures are the opposite of human failures. Humans fail by omission: too few tests, missing documentation, copy-paste instead of careful abstraction. AI fails by commission: too much code, too many tests, too many comments, the same logic written from scratch because the model doesn't remember it exists, hedging compiled into control flow because the model doesn't know the correct type, and code that looks correct but silently does nothing.
+
+The hedging often shows up as "careful" code that has no relationship to the actual contract:
+
+```typescript
+const customerId =
+  request?.body?.customer?.id ??
+  request?.query?.customerId ??
+  request?.headers?.["x-customer-id"] ??
+  "unknown";
+```
+
+If the route contract says `customer.id` is required, this fallback chain is not robustness. It is uncertainty compiled into production behavior.
 
 ## Chesterton's Fence Falls
 
@@ -34,9 +57,48 @@ One consequence of this shift is that signals traditionally used to measure code
 
 Comment density was a positive signal when humans were too lazy to document. Under model overproduction, dense comments signal noise: restating comments, narrator comments, step-by-step annotations that add nothing beyond what the code already says.
 
-Code coverage was positive when humans skipped writing tests. Under model overproduction, high coverage can mean tests that verify the type system, the framework, or mock behavior rather than business logic. One project documented ten patterns of fake tests, including a circular verification pattern where the test recomputes the expected value using the same formula as the production code, making failure impossible.
+```python
+# Check if the user is active
+if user.is_active:
+    # Send the welcome email
+    send_welcome_email(user.email)
+```
+
+There is nothing to preserve here. The comments are not design intent, business context, or a warning about a non-obvious edge case. They are a transcript of the next line.
+
+Code coverage was positive when humans skipped writing tests. Under model overproduction, high coverage can mean tests that verify the type system, the framework, or mock behavior rather than business logic. nWave documents ten patterns of fake tests, including a circular verification pattern where the test recomputes the expected value using the same formula as the production code, making failure impossible.
+
+```python
+def test_calculate_tax():
+    amount = 100
+    rate = 0.15
+    expected = amount * rate
+
+    assert calculate_tax(amount, rate) == expected
+```
+
+This test raises coverage, but it does not protect behavior. If the production implementation uses the same wrong formula, the test stays green.
 
 Clone detection shows the same inversion. Traditional detectors look for copy-paste duplication: textual similarity. But models don't copy-paste. When a model needs a helper that already exists, it writes a new one from scratch. Same logic, different names, different structure, different file. Traditional clone detectors catch the shrinking fraction (human-style copy-paste) and miss the growing fraction (model-style regeneration).
+
+```typescript
+export function formatDuration(ms: number): string {
+  const seconds = Math.floor(ms / 1000);
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}m ${seconds % 60}s`;
+}
+```
+
+```typescript
+export function humanizeElapsedTime(milliseconds: number): string {
+  const totalSeconds = Math.trunc(milliseconds / 1000);
+  const mins = Math.trunc(totalSeconds / 60);
+  const secs = totalSeconds - mins * 60;
+  return `${mins}m ${secs}s`;
+}
+```
+
+Textually, these are different enough to evade simple clone detection. Semantically, the second function probably should not exist.
 
 ## What Real Teams Are Seeing
 
@@ -56,7 +118,7 @@ The theoretical argument is interesting on its own. What makes it concrete is th
 
 > "About every other day we get somebody submitting a pull request that is 60,000 lines of diff."
 
-Industry-scale data supports the pattern. LinearB's study of 8.1 million PRs found AI PRs accepted at 32.7% versus 84.4% for human PRs, with agentic PRs waiting 5.3x longer for first review. GitClear found copy-pasted lines rising while moved/refactored lines dropped. Google's DORA report estimated that for every 25% increase in AI adoption, delivery stability drops 7.2%.
+Industry-scale data supports the pattern. LinearB's study of 8.1 million PRs found AI PRs accepted at 32.7% versus 84.4% for human PRs, with agentic PRs waiting 5.3x longer for pickup. GitClear found copy-pasted lines rising while moved/refactored lines dropped. Google's DORA report estimated that for every 25% increase in AI adoption, delivery stability drops 7.2%, even as reported code quality increases 3.4%.
 
 ## What Teams Are Converging On
 
@@ -69,3 +131,18 @@ The most interesting finding wasn't the problem but how teams independently arri
 **Deterministic plus LLM is the production architecture.** Every team that gets serious about slop arrives at deterministic pre-filtering (AST analysis, module graphs, regex patterns) combined with LLM judgment as a later stage. Pure-prompt approaches are absent from the top of every ranking.
 
 Cleanup needs to be a recurring development phase, not a post-hoc report. The question isn't whether to clean, but when and how often.
+
+## References
+
+- <https://github.com/nWave-ai/nWave>
+- <https://github.com/openclaw/openclaw/issues/38283>
+- <https://github.com/openclaw/openclaw/pull/91020>
+- <https://openai.com/index/harness-engineering/>
+- <https://gitlab.com/gitlab-org/orbit/knowledge-graph/-/blob/main/AGENTS.md>
+- <https://blog.fsck.com/2026/03/31/slop-prs/>
+- <https://github.com/obra/superpowers/issues/1749>
+- <https://github.com/obra/superpowers/issues/1701>
+- <https://linearb.io/resources/engineering-benchmarks>
+- <https://www.gitclear.com/ai_assistant_code_quality_2025_research>
+- <https://dora.dev/research/2024/dora-report/>
+- <https://discuss.scientific-python.org/t/agents-md-and-claude-md-addition-to-scipy-repository/2233>
