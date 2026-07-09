@@ -1,4 +1,4 @@
-# Eleven Families of AI Code Slop
+# [AI Slop 2] Eleven Families of AI Code Slop
 
 This is the second of two posts on AI code slop. The first covered why AI-generated code fails differently from human-written code, and why some traditional quality signals have started pointing the wrong direction. This one is the practical companion: what slop actually looks like, organized by the kind of damage it does.
 

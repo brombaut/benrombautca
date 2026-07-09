@@ -1,4 +1,4 @@
-# Most of SWE-bench Verified Doesn't Require Deep Architectural Understanding
+# [SWE-bench Architecture 1] Most of SWE-bench Verified Doesn't Require Deep Architectural Understanding
 
 I wanted to know how architecturally demanding SWE-bench Verified actually is. Not whether the problems are *hard* in general, but specifically: how much do you need to understand about a codebase's architecture to solve them?
 
@@ -253,4 +253,3 @@ Some of these are clear rubric design issues. Others might just be SWE-bench Ver
 **Address the lack of inter-rater reliability.** Each instance is evaluated once by one model. There's no way to know how stable the verdicts are. If you ran the same instance twice, would you get the same verdict? The high axis correlations suggest the model is applying a consistent template, which is encouraging, but it could also mean the model has a systematic bias (e.g., always conservative) that would be invisible without a second evaluation. Running a subset twice with different random seeds, or with a different model, would give some signal on this.
 
 **The gold patch biases which architecture gets explored.** The skill explicitly treats the patch as a guide, not the subject of evaluation. It measures the architectural understanding needed to solve the *problem*, not to produce the specific patch. But the exploration still starts from the files the patch changed and works outward. A different correct fix might touch different files, cross different boundaries, and require different architectural context. The evaluation captures the architectural complexity surrounding one particular solution path, which may not represent the full landscape of what the problem demands. For SWE-bench, where there's typically one canonical fix, this is probably fine. For a more general evaluation, it would be a real limitation.
-

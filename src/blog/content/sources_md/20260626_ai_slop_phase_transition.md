@@ -1,4 +1,4 @@
-# When Code Is Cheaper to Produce Than to Justify
+# [AI Slop 1] When Code Is Cheaper to Produce Than to Justify
 
 I've spent the last few months researching how AI-generated code fails. Not the obvious stuff, like syntax errors or hallucinated APIs, but the subtler patterns that accumulate in codebases where AI agents do most of the writing. This post covers what I think is the most important finding: the problem isn't mainly about new kinds of defects. A follow-up post catalogs what slop actually looks like across eleven families.
 

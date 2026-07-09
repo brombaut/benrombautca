@@ -1,4 +1,4 @@
-# What Does Claude Think Is Architecturally Important?
+# [SWE-bench Architecture 2] What Does Claude Think Is Architecturally Important?
 
 I wanted to know what a frontier model actually values when it looks at code architecture. Not what it says in a generic prompt about "best practices," but what it reaches for when it's staring at a real codebase with a real problem to solve.
 
@@ -216,4 +216,3 @@ Whether this perspective is *correct* is a different question, and one that Stag
 **Rubric structure is suspiciously uniform.** Axes per rubric ranges from 3 to 5 across all 500 instances, with most repos averaging 4.0-4.5. Boundaries per instance ranges from 2.0 to 3.0. The model is clearly applying a template. The skill doesn't actually constrain the axis count to 3-5. It suggests "expect 1-2 primary, 1-3 secondary, 0-2 minor," which allows anywhere from 2 to 7 axes, but the model consistently lands in a narrow band. Whether the expected-count hints are anchoring the model or the model just gravitates to 4 on its own isn't clear. A follow-up experiment could remove the count guidance entirely and see whether the model produces 2-axis rubrics for simple problems and 8-axis rubrics for complex ones, or whether it gravitates to 4 regardless.
 
 **No validation against human judgment.** The rubrics represent what the model *thinks* is architecturally important. Whether those judgments are correct, whether the patterns it identifies are real, whether the boundaries it flags actually matter, is untested. Stage 3 evaluates patches against these rubrics, which tells you whether the rubrics are internally consistent, but not whether they're right. Validating a subset against expert human judgment would be the most valuable next step, and the hardest to do.
-

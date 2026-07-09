@@ -1,4 +1,4 @@
-# From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline
+# [SWE-bench Architecture 3] From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline
 
 This is the development story behind the architectural evaluation pipeline I've written about in two previous articles, one analyzing what Claude thinks is architecturally important, and another measuring how architecturally demanding SWE-bench Verified actually is. Those articles describe the pipeline's outputs. This one describes how the pipeline got built, what broke along the way, and what I learned from 12 experiments of pressure-testing assumptions about how to evaluate code architecture with AI.
 

@@ -1,7 +1,7 @@
 [
     {
         "_id": "20260305_learning_to_use_ai_coding_tools",
-        "_title": "My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025",
+        "_title": "[AI Experience 1] My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025",
         "_createdAt": "2026-03-05",
         "_description": "A personal timeline of how my habits and thinking shifted as I went from casually experimenting with AI chat tools to making them a core part of how I build software.",
         "_show": true,
@@ -249,7 +249,7 @@
     },
     {
         "_id": "20260319_claude_architectural_rubrics",
-        "_title": "What Does Claude Think Is Architecturally Important?",
+        "_title": "[SWE-bench Architecture 2] What Does Claude Think Is Architecturally Important?",
         "_createdAt": "2026-03-27T00:00:00.000Z",
         "_description": "Analyzing 500 AI-generated architectural rubrics across SWE-bench Verified to see what a frontier model actually values in code architecture.",
         "_show": true,
@@ -257,7 +257,7 @@
     },
     {
         "_id": "20260320_swebench_architectural_complexity",
-        "_title": "Most of SWE-bench Verified Doesn't Require Deep Architectural Understanding",
+        "_title": "[SWE-bench Architecture 1] Most of SWE-bench Verified Doesn't Require Deep Architectural Understanding",
         "_createdAt": "2026-03-26T00:00:00.000Z",
         "_description": "Evaluating all 500 SWE-bench Verified instances for architectural complexity. 62% are trivial or low, and reasoning coordination consistently exceeds changes coordination.",
         "_show": true,
@@ -265,7 +265,7 @@
     },
     {
         "_id": "20260409_from_checklists_to_prose_verdicts",
-        "_title": "From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline",
+        "_title": "[SWE-bench Architecture 3] From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline",
         "_createdAt": "2026-04-09T00:00:00.000Z",
         "_description": "The development story behind 12 experiments building an AI-powered architectural evaluation pipeline, from brittle checklist rubrics to prose-based verdicts.",
         "_show": true,
@@ -273,7 +273,7 @@
     },
     {
         "_id": "20260401_ai_tools_q1_2026",
-        "_title": "My Experience Learning to Use AI for Software Development: Q1 2026",
+        "_title": "[AI Experience 2] My Experience Learning to Use AI for Software Development: Q1 2026",
         "_createdAt": "2026-04-17T00:00:00.000Z",
         "_description": "Going deeper with Claude Code, building an observability tool, trying agent command centers, and discovering that most new tools don't stick.",
         "_show": true,
@@ -281,7 +281,7 @@
     },
     {
         "_id": "20260626_ai_slop_phase_transition",
-        "_title": "When Code Is Cheaper to Produce Than to Justify",
+        "_title": "[AI Slop 1] When Code Is Cheaper to Produce Than to Justify",
         "_createdAt": "2026-06-26T00:00:00.000Z",
         "_description": "Why AI-generated code changes the economics of software quality, inverting old quality signals and forcing teams toward recurring cleanup systems.",
         "_show": true,
@@ -289,7 +289,7 @@
     },
     {
         "_id": "20260626_ai_slop_eleven_families",
-        "_title": "Eleven Families of AI Code Slop",
+        "_title": "[AI Slop 2] Eleven Families of AI Code Slop",
         "_createdAt": "2026-06-27T00:00:00.000Z",
         "_description": "A practical taxonomy of AI-generated code slop, from hygiene debris and annotation noise to fake-done implementations, weak tests, type escape hatches, and scope creep.",
         "_show": true,
@@ -297,7 +297,7 @@
     },
     {
         "_id": "20260701_ai_tools_q2_2026",
-        "_title": "My Experience Learning to Use AI for Software Development: Q2 2026",
+        "_title": "[AI Experience 3] My Experience Learning to Use AI for Software Development: Q2 2026",
         "_createdAt": "2026-07-01T00:00:00.000Z",
         "_description": "Codex becoming my daily driver, custom research and summary workflows, context management, comprehension debt, and the agent loop around the code.",
         "_show": true,
