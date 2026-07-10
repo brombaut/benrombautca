@@ -302,5 +302,13 @@
         "_description": "Codex becoming my daily driver, custom research and summary workflows, context management, comprehension debt, and the agent loop around the code.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20260710_aiware_observability",
+        "_title": "AIware Observability: Monitoring and Understanding AI Systems",
+        "_createdAt": "2026-07-10T00:00:00.000Z",
+        "_description": "Operational and cognitive observability for AIware, from ordinary metrics and traces to reasoning path observability with Watson.",
+        "_show": true,
+        "_archived": false
     }
 ]

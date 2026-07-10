@@ -1,0 +1,320 @@
+<h1
+id="aiware-observability-monitoring-and-understanding-ai-systems">AIware
+Observability: Monitoring and Understanding AI Systems</h1>
+<p>The evolution of software development has brought us from measuring
+code quality by “WTFs per minute” during code review to a new era where
+AI agents make decisions on the fly. That shift changes what it means to
+observe a system.</p>
+<p>This post is based on my paper <a
+href="https://www.arxiv.org/abs/2411.03455">Watson: A Cognitive
+Observability Framework for the Reasoning of LLM-Powered Agents</a> and
+the related <a
+href="publications/202411_aiware_bootcamp_observability_for_pdf.pdf">AIware
+Observability slides</a> from the AIware Leadership Bootcamp 2024 and
+Mini Bootcamp 2025. The goal here is to turn that material into a more
+accessible blog-form explanation of why AIware needs observability
+beyond ordinary logs, traces, and metrics.</p>
+<p>Traditional observability is still necessary. We still care about
+latency, cost, errors, throughput, and resource usage. But AI-powered
+systems, or AIware, also need a different layer of observability: one
+that helps us understand not only what happened, but why an agent made a
+decision and how that decision moved through the system.</p>
+<h2 id="what-is-observability">What Is Observability?</h2>
+<p>Observability is the ability to understand a system’s capabilities
+and behavior by analyzing the data it produces.</p>
+<p>After deploying an application, we usually want to answer four
+questions:</p>
+<ul>
+<li>What is happening?</li>
+<li>Where are potential problems?</li>
+<li>Why is it happening?</li>
+<li>How is the system performing?</li>
+</ul>
+<p><img src="blog-images/aiware-observability/slide_05_observability.webp"
+alt="Observability questions" /></p>
+<p>Traditional software answers these questions through assertions,
+metrics, logs, and traces. These methods work well because there is
+usually direct traceability between system behavior and executed code.
+Developers can instrument the code, track execution flows, identify
+bottlenecks, and trace issues back to their source.</p>
+<p>AIware changes the shape of the problem. Operational metrics remain
+valuable, but they are not enough. If an AI agent takes an unexpected
+action, the failure may not live in a specific branch, condition, or
+function. It may emerge from the model’s interpretation of context, its
+intermediate reasoning, a prompt ambiguity, or a cascade of decisions
+across multiple agents.</p>
+<p>That means AIware observability needs to include both operational
+observability and cognitive observability.</p>
+<h2 id="operational-observability-for-aiware">Operational Observability
+for AIware</h2>
+<p>Operational observability extends traditional monitoring to
+foundation-model-powered systems. Beyond basic API monitoring, we need
+to track how models and agentic components behave inside the larger
+application.</p>
+<p>Useful operational signals include:</p>
+<p><strong>Volume metrics.</strong> How many calls are made to each
+foundation model, route, agent, or tool?</p>
+<p><strong>Latency metrics.</strong> Where do delays occur across AIware
+components, and which model or tool interactions dominate user-facing
+response time?</p>
+<p><strong>Token metrics.</strong> How much prompt and completion
+traffic is the system producing, and how does that affect cost, latency,
+and context-window pressure?</p>
+<p><strong>Resource utilization.</strong> How efficiently are compute,
+memory, storage, vector indexes, retrieval systems, and model calls
+being used?</p>
+<p><strong>Tool monitoring.</strong> Which tools do agents call, how
+often do they call them, what arguments do they pass, and how successful
+are those calls?</p>
+<p><img
+src="blog-images/aiware-observability/slide_11_operational_metrics.webp"
+alt="Operational observability metrics" /></p>
+<p>Modern observability platforms such as LangSmith, Langfuse, and
+Dynatrace have started adding AIware-specific features. OpenLLMetry
+provides instrumentation standards for LLM providers and vector
+databases, tracking traces and runs made up of prompts, model calls,
+responses, and associated metrics.</p>
+<p>This layer matters. Without it, you cannot answer basic production
+questions about cost, reliability, latency, and failure rates. But it
+still leaves a harder question unresolved: why did the agent behave that
+way?</p>
+<p><img
+src="blog-images/aiware-observability/slide_15_abstraction_shift.webp"
+alt="AIware observability moves to higher levels of abstraction" /></p>
+<h2 id="why-aiware-is-harder-to-observe">Why AIware Is Harder to
+Observe</h2>
+<p>As foundation models become more capable and AIware becomes more
+complex, observability requirements move to a higher level of
+abstraction. Three challenges stand out.</p>
+<p><img
+src="blog-images/aiware-observability/slide_17_aiware_challenges.webp"
+alt="AIware observability challenges" /></p>
+<h3 id="abstract-behaviors">Abstract Behaviors</h3>
+<p>In traditional software, errors can often be traced back to code that
+can be reviewed, tested, and debugged. A condition was wrong. A function
+mishandled input. A database query returned unexpected data.</p>
+<p>In agentic systems, errors can stem from abstract behavior that has
+no explicit code representation. Many decisions are generated on the fly
+from model responses. The behavior exists in the interaction between
+prompt, context, model, tools, and output, not in a fixed implementation
+that can be inspected line by line.</p>
+<p>That makes traditional debugging techniques less direct. You can
+inspect the prompt and the output, but the path between them is
+opaque.</p>
+<h3 id="reasoning-chains">Reasoning Chains</h3>
+<p>Consider a fraud detection system.</p>
+<p>In a rule-based approach, if a transaction is wrongly flagged as
+fraudulent, you can trace the decision back to specific conditions.
+Maybe the transaction amount crossed a threshold. Maybe a geolocation
+rule fired. The rule can be inspected and adjusted.</p>
+<p>In an agent-based approach, the same wrong flag may not have a clear
+logic path. The decision may arise from complex interactions among
+learned features, contextual cues, and prompt framing. The model may be
+using latent knowledge that is difficult to inspect directly.</p>
+<p>The issue is not just that the system made a wrong decision. The
+issue is that the reasoning chain is hard to recover.</p>
+<h3 id="cascading-actions">Cascading Actions</h3>
+<p>The problem becomes even harder in multi-agent systems. An error
+introduced by an early agent may only become visible later in the
+workflow.</p>
+<p>Imagine a code generation workflow with three agents:</p>
+<ul>
+<li>A conversational agent gathers requirements from the user.</li>
+<li>A system design agent proposes an architecture.</li>
+<li>A code generation agent implements the design.</li>
+</ul>
+<p>If the conversational agent makes a wrong assumption about resource
+constraints, the system design agent may produce a poor architecture.
+The code generation agent may then implement that architecture
+faithfully. By the time the developer sees incorrect storage allocation
+in the generated code, the visible failure is far downstream from the
+original mistake.</p>
+<p>Operational traces can show the sequence of events. They may not
+explain the reasoning error that caused the sequence to go wrong.</p>
+<h2 id="cognitive-observability">Cognitive Observability</h2>
+<p>Cognitive observability shifts the focus from technical metrics alone
+to the cognitive and linguistic behavior of AI systems. It asks how
+foundation models appear to think, communicate, and decide.</p>
+<p>This does not replace operational observability. It sits above it.
+Operational observability tells us what happened in the system.
+Cognitive observability helps us understand why the AIware produced a
+particular response or action.</p>
+<p>There are three useful pillars.</p>
+<p><img
+src="blog-images/aiware-observability/slide_22_cognitive_observability.webp"
+alt="Cognitive observability pillars" /></p>
+<h2 id="output-integrity">Output Integrity</h2>
+<p>Output integrity focuses on the quality and trustworthiness of
+prompts and responses.</p>
+<p>This includes signals such as:</p>
+<ul>
+<li>hallucination risk</li>
+<li>prompt injection attempts</li>
+<li>toxicity</li>
+<li>sentiment</li>
+<li>readability</li>
+<li>complexity</li>
+<li>text quality</li>
+<li>output drift</li>
+</ul>
+<p>Tools such as WhyLabs LangKit use natural language processing
+techniques to extract signals from prompts and responses. These signals
+help developers identify quality issues, security threats, and
+behavioral drift.</p>
+<p>Output integrity is the easiest cognitive layer to make concrete
+because it treats prompts and completions as observable artifacts. The
+model produced text, and that text can be analyzed.</p>
+<p>But output quality is not the same as reasoning quality. A response
+can look fluent and still be based on the wrong reasoning path.</p>
+<h2 id="semantic-feedback">Semantic Feedback</h2>
+<p>Semantic feedback collects and interprets feedback about agent
+outputs.</p>
+<p>There are several forms:</p>
+<p><strong>Explicit feedback.</strong> Direct user ratings, such as
+thumbs up or thumbs down.</p>
+<p><strong>Implicit feedback.</strong> Signals inferred from user
+behavior, such as whether a suggestion was copied, saved, dismissed,
+edited, or retained. GitHub Copilot’s suggestion-retention metrics are
+an example of this kind of signal.</p>
+<p><strong>Free-form feedback.</strong> Corrections, explanations, or
+comments provided by users. Evaluation systems such as Humanloop can
+collect this kind of feedback and use it to assess model behavior.</p>
+<p>Semantic feedback helps estimate whether AIware outputs are useful in
+practice. It can also inform model training, prompt design, retrieval
+configuration, and workflow changes.</p>
+<p>However, feedback becomes harder to interpret in multi-agent systems.
+If the final output is bad, which agent should receive the blame? The
+one that gathered the requirement? The one that planned? The one that
+executed? The one that summarized? Cognitive observability needs to
+preserve enough context to answer that attribution question.</p>
+<h2 id="reasoning-path">Reasoning Path</h2>
+<p>The most difficult pillar is reasoning path observability:
+understanding how a model reached a conclusion.</p>
+<p>For developers, reasoning paths are essential. If an agent makes a
+mistake, we do not only want to know that the output was wrong. We want
+to know what assumption, interpretation, or intermediate step led to the
+wrong output. Without that, prompt improvement becomes guesswork.</p>
+<p>The challenge is that reasoning is not directly exposed. We can ask a
+model to explain itself, but the explanation may not be faithful to the
+process that produced the answer. We can ask the model to reason step by
+step, but that changes the completion itself.</p>
+<p>That is the motivation behind Watson.</p>
+<h2 id="watson-a-framework-for-reasoning-path-observability">Watson: A
+Framework for Reasoning Path Observability</h2>
+<p>Watson is a framework for observing the reasoning of
+foundation-model-powered agents without requiring the primary agent to
+expose its reasoning directly.</p>
+<h3 id="the-problem">The Problem</h3>
+<p>We cannot simply instruct every agent to output its reasoning
+alongside its answer.</p>
+<p>First, asking for reasoning changes the completion. The system is no
+longer observing the original behavior; it is observing behavior under
+an additional instruction. That creates an observer effect.</p>
+<p>Second, downstream systems in Agentware are often tightly coupled to
+agent outputs. They may require strict JSON schemas, exact labels,
+tool-call formats, or other structured outputs. Adding a long
+explanation can break the contract.</p>
+<p>So the question becomes: how can we observe reasoning without
+interfering with the agent’s primary behavior?</p>
+<h3 id="the-surrogate-agent">The Surrogate Agent</h3>
+<p>Watson uses a surrogate agent that operates alongside the primary
+agent.</p>
+<p>The primary agent receives its prompt and produces its answer
+normally. The surrogate agent receives the same configuration, the
+original prompt, and the final answer. Its job is not to change the
+answer. Its job is to generate plausible reasoning paths that connect
+the prompt to the answer.</p>
+<p>In other words, the surrogate “reasons out loud” about how the
+primary agent may have reached the observed output.</p>
+<h3 id="how-watson-works">How Watson Works</h3>
+<p>Watson has four core steps.</p>
+<p><strong>1. Mirror configuration.</strong> The surrogate agent mirrors
+the primary agent’s configuration so that its reasoning is generated
+under a similar setup.</p>
+<p><strong>2. Fill-in-the-middle reasoning generation.</strong> Watson
+treats the primary agent’s input prompt as the prefix and the primary
+agent’s answer as the suffix. The surrogate then generates reasoning
+that fills in the middle, connecting prompt to answer.</p>
+<p><strong>3. Multiple reasoning paths.</strong> The surrogate generates
+multiple reasoning samples. Watson then extracts common threads and
+recurring ideas across those samples. This captures patterns in the
+implicit reasoning paths that may explain the primary agent’s
+output.</p>
+<p><strong>4. Attribution-based verification.</strong> Watson checks
+whether ideas represented by high-attribution prompt components are
+emphasized in the generated reasoning. This helps validate whether the
+generated reasoning aligns with the influential parts of the prompt.</p>
+<p><img src="blog-images/aiware-observability/slide_29_watson_operates.webp"
+alt="How Watson operates" /></p>
+<p>The goal is not to claim perfect access to the model’s hidden
+cognition. The goal is to make the reasoning path more observable and
+useful for debugging.</p>
+<h2 id="example-debugging-moral-reasoning">Example: Debugging Moral
+Reasoning</h2>
+<p>Suppose an agent is asked whether two scenarios are morally wrong.
+The correct answer is:</p>
+<pre class="text"><code>Not wrong, Wrong</code></pre>
+<p>But the primary agent responds:</p>
+<pre class="text"><code>Wrong, Not wrong</code></pre>
+<p>The raw output tells us that the answer is incorrect, but not
+why.</p>
+<p>Watson’s surrogate analysis generates multiple reasoning paths and
+identifies a common thread: the agent is not considering the order of
+the “wrong” and “not wrong” options when analyzing the scenarios.</p>
+<p><img src="blog-images/aiware-observability/slide_31_watson_example.webp"
+alt="Watson surrogate agent debugging example" /></p>
+<p>That gives the developer a more useful diagnosis. The model may not
+be misunderstanding the scenarios themselves. It may be mishandling the
+ordering of the options. The developer can then add explicit
+instructions about preserving option order in the prompt.</p>
+<p>This is the value of reasoning path observability. It turns “the
+model got it wrong” into a more actionable debugging hypothesis.</p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Cognitive observability gives developers a way to work with AIware
+behavior at the right level of abstraction.</p>
+<p>For developers, it helps identify and correct reasoning errors,
+refine prompts, improve agent interactions, and debug failures that do
+not map cleanly to a line of code.</p>
+<p>For agents, it creates the possibility of observing and improving
+their own behavior. An agent that can inspect reasoning paths may be
+better able to adjust future decisions.</p>
+<p>For multi-agent systems, it supports collaboration. Agents can
+observe and reflect on each other’s reasoning, making it easier to
+identify where a workflow drifted off course.</p>
+<p>The larger point is that AIware observability cannot stop at traces
+and metrics. Those tell us what happened. But when decisions are
+generated dynamically, we also need tools that help us reason about the
+reasoning.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Observability for AI systems is evolving from operational metrics
+focused on what happened toward cognitive observability focused on why
+and how decisions are made.</p>
+<p>Understanding reasoning paths is crucial for building trustworthy,
+accountable, and transparent AI systems. Frameworks like Watson
+represent one approach to making opaque agent behavior more observable
+without compromising the primary agent’s functionality.</p>
+<p>As AI systems become more complex and autonomous, this cognitive
+layer of observability will become essential for debugging, improving,
+and trusting AI-powered applications.</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Rombaut et al. “<a
+href="https://www.arxiv.org/abs/2411.03455">Watson: A Cognitive
+Observability Framework for the Reasoning of LLM-Powered Agents</a>” (<a
+href="https://conf.researchr.org/details/ase-2025/ase-2025-papers/148/Watson-A-Cognitive-Observability-Framework-for-the-Reasoning-of-LLM-Powered-Agents">ASE
+2025 page</a>, <a
+href="publications/202505_agent_observability_ase2025.pdf">PDF</a>)</li>
+<li>Rombaut. “<a
+href="publications/202411_aiware_bootcamp_observability_for_pdf.pdf">AIware
+Observability</a>” (<a href="https://www.aiwarebootcamp.io/">AIware
+Leadership Bootcamp 2024</a>, <a
+href="https://www.aiwarebootcamp.io/mini.html">AIware Mini Bootcamp
+2025</a>, <a
+href="https://www.youtube.com/watch?v=gXsZgtyJ3s8">video</a>)</li>
+<li>Hassan et al. “Rethinking Software Engineering in the Foundation
+Model Era”</li>
+<li>Wei et al. “Chain-of-thought prompting elicits reasoning in large
+language models”</li>
+<li>Bavarian et al. “Efficient Training of Language Models to Fill in
+the Middle”</li>
+</ul>
