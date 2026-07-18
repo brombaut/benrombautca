@@ -486,8 +486,18 @@ const hikes: Hike[] = [
     orderDate: new Date(2026, 6, 6),
     date: new Date(2026, 6, 6),
     location: "Adirondacks, New York, USA",
-    description: "<p>Whiteface Mountain (4,867 ft) and Esther Mountain (4,240 ft) are both Adirondack 46ers. Whiteface is the fifth-highest peak in New York and is unusual among the High Peaks because there is an observatory and a road to the summit. Esther is a quieter side trip from the Wilmington Trail and does not have the same kind of open summit views.</p><p>This hike marked #13 and #14 on my journey toward becoming an Adirondack 46er: Esther was #13, and Whiteface was #14.</p><p>I got to the trailhead around 5:45 AM and was the first one there, so I had the entire trail to myself. It was still a little cool when I started, but it really started to heat up as the morning went on. I went out to Esther first, which did not have much in the way of views, and then continued up toward Whiteface.</p><p>The climb to Whiteface was the best part of the day. I had views of the mountain on the way up that I remembered from skiing at Whiteface a couple of years ago, when it was around -40 degrees. I reached the summit a little before 9 AM, before the road and observatory opened, so I had the top to myself for a little while too. The views from the summit were really great: sunny, a little hazy, and a pretty perfect reward for the early start.</p>",
-    images: [],
+    description: "<p>Whiteface Mountain (4,867 ft) and Esther Mountain (4,240 ft) are both Adirondack 46ers. Whiteface is the fifth-highest peak in New York and is unusual among the High Peaks because there is an observatory and a road to the summit. Esther is a quieter side trip from the Wilmington Trail and does not have the same kind of open summit views.</p><p>This hike marked #13 and #14 on my journey toward becoming an Adirondack 46er: Esther was #13, and Whiteface was #14.</p><p>I got to the trailhead around 5:45 AM and was the first one there, so I had the entire trail to myself. It was still a little cool when I started, but it really started to heat up as the morning went on. I went out to Esther first, which did not have much in the way of views, and then continued up toward Whiteface.</p><p>The climb to Whiteface was the best part of the day. I had views of the mountain on the way up that I remembered from skiing at Whiteface a couple of years ago, when it was around -40 degrees (pictures from that at the end). I reached the summit a little before 9 AM, before the road and observatory opened, so I had the top to myself for a little while too. The views from the summit were really great: sunny, a little hazy, and a pretty perfect reward for the early start.</p>",
+    images: [
+      { src: "hiking-images/26_07_whiteface_esther/1.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/2.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/3.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/4.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/5.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/6.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/7.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/8.webp", caption: "" },
+      { src: "hiking-images/26_07_whiteface_esther/9.webp", caption: "" },
+    ],
   },
 ];
 
