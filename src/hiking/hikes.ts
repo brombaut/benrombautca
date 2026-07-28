@@ -499,6 +499,24 @@ const hikes: Hike[] = [
       { src: "hiking-images/26_07_whiteface_esther/9.webp", caption: "" },
     ],
   },
+  {
+    name: "Mount Mansfield",
+    orderDate: new Date(2026, 6, 19),
+    date: new Date(2026, 6, 19),
+    location: "Green Mountains, Vermont, USA",
+    description: "<p>Fourth time hiking Mount Mansfield. It is the highest peak in Vermont, reaching 4,393 feet (1,339 meters). The summit ridge is known for its distinctive profile, which looks like a human face when viewed from the east, and the upper mountain is home to rare alpine tundra.</p><p>I did this hike with Alex. We arrived at the trailhead around 6 AM, and the fog made the walk through the woods feel a little eerie. By the time we reached the treeline, it was even foggier and incredibly windy.</p><p>There were basically no views along the ridge. We could barely see 30 feet in front of us, and the wind was forcing the fog straight across the mountain. It was actually really cool and made the hike feel completely different from my previous trips up Mansfield. We had a beer at the summit while looking at absolutely nothing, but luckily, as we started heading down, we dropped below the clouds and got some nice sunny views across Vermont.</p>",
+    images: [],
+    visible: false,
+  },
+  {
+    name: "Upper Great Range Traverse",
+    orderDate: new Date(2026, 6, 25),
+    date: "July 25–26, 2026",
+    location: "Adirondacks, New York, USA",
+    description: "<p>The Upper Great Range Traverse crosses some of the most rugged terrain in the Adirondack High Peaks. We climbed Saddleback Mountain (4,515 ft), Basin Mountain (4,827 ft), Little Haystack, Mount Haystack (4,960 ft), and Mount Marcy (5,344 ft), in that order. Saddleback, Basin, Haystack, and Marcy were #15 through #18 on my journey toward becoming an Adirondack 46er.</p><p>We arrived at the Garden trailhead a little after 7 AM, but the parking lot was already full, so we parked at Marcy Fields and took the shuttle back to the trailhead. We planned to camp overnight and had heavy packs carrying all of our camping gear. After hiking about seven kilometres past Johns Brook Lodge and up Ore Bed Brook, we reached a wild camping spot, set up our tents, dropped off the heavy gear, and continued toward Saddleback with our day packs.</p><p>It was a hot, sunny day. Once we reached the ridge, the route involved a lot of quick elevation loss and regain as we moved from peak to peak, which was exhausting. The views were great, and Haystack was my favourite summit, with a 360-degree view of both the Great Range and Marcy. Marcy also had a good view, but as the highest peak in New York, it was a little crowded. We still found room for a quick nap at the summit before carrying on.</p><p>We reached our campsite around 8 PM, just as it was getting dark. We made some food and looked at the stars, which are incredible in the Adirondacks, before going to bed. We hiked out the next morning, stopped at the farmers market at Marcy Fields after getting back to the car, and finished the trip with a swim in the Ausable River.</p>",
+    images: [],
+    visible: false,
+  },
 ];
 
 // Update all image src extensions to .webp

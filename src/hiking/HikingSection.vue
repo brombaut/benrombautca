@@ -33,12 +33,12 @@
     <div class="section-body">
       <HikingCard
         v-for="hike in orderedHikes"
-        :key="new Date(hike.date).getTime()"
+        :key="hike.orderDate.getTime()"
         :hike="hike" />
 
       <!-- Show More button -->
       <button
-        v-if="currentMax < hikes.length"
+        v-if="currentMax < visibleHikes.length"
         type="button"
         class="show-more"
         @click="showMore">
@@ -73,7 +73,7 @@ export default defineComponent({
       // initialize a mutable currentMax from the prop so we can extend it
       currentMax: (this as any).maxHikes,
       // Adirondack 46er tracking
-      completedPeaks: 14,
+      completedPeaks: 18,
       totalPeaks: 46,
     };
   },
@@ -85,12 +85,18 @@ export default defineComponent({
   },
   methods: {
     showMore() {
-      (this as any).currentMax = Math.min((this as any).currentMax + 10, this.hikes.length);
+      (this as any).currentMax = Math.min(
+        (this as any).currentMax + 10,
+        (this as any).visibleHikes.length,
+      );
     },
   },
   computed: {
+    visibleHikes(): Hike[] {
+      return this.hikes.filter((hike: Hike) => hike.visible !== false);
+    },
     orderedHikes(): Hike[] {
-      return [...this.hikes]
+      return [...(this as any).visibleHikes]
         .sort((a: Hike, b: Hike) => b.orderDate.getTime() - a.orderDate.getTime())
         .slice(0, (this as any).currentMax);
     },

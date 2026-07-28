@@ -5,6 +5,7 @@ export interface Hike {
   location: string;
   description: string;
   images: HikingImage[];
+  visible?: boolean;
 }
 
 export interface HikingImage {
