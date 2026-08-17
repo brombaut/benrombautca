@@ -541,6 +541,15 @@ const hikes: Hike[] = [
       { src: "hiking-images/26_09_upper_great_range/12.webp", caption: "" },
     ],
   },
+  {
+    name: "Lower Great Range Traverse",
+    orderDate: new Date(2026, 7, 15),
+    date: new Date(2026, 7, 15),
+    location: "Adirondacks, New York, USA",
+    description: "<p>I did the Lower Great Range Traverse with Justin. We got to the Marcy Fields parking lot a little after 7 AM and took the shuttle to the Garden trailhead. From there, we hiked along Johns Brook and then climbed the Ore Bed Brook Trail, which had a lot of steep steps. Once we reached the ridge, we headed north and took the \"cable\" route, a series of chains anchored into the side of the mountain, up toward the peaks.</p><p>We first stopped at a false summit before taking the out-and-back detour to Pyramid Peak (4,515 ft). Pyramid had the nicest view of the day. It was sunny and warm on that side of the ridge, with very little wind. From there, we continued across Gothics Mountain (4,736 ft), Armstrong Mountain (4,400 ft), Upper Wolfjaw Mountain (4,185 ft), and Lower Wolfjaw Mountain (4,173 ft).</p><p>After Lower Wolfjaw, we descended the Wolfjaw Trail back to Johns Brook and followed it out to the Garden trailhead before returning to Marcy Fields. Overall, the hike was about 27 kilometres with 1,700 metres of elevation gain. Gothics, Armstrong, Upper Wolfjaw, and Lower Wolfjaw were #19 through #22 on my journey toward becoming an Adirondack 46er.</p>",
+    images: [],
+    visible: false,
+  },
 ];
 
 // Update all image src extensions to .webp
