@@ -73,7 +73,7 @@ export default defineComponent({
       // initialize a mutable currentMax from the prop so we can extend it
       currentMax: (this as any).maxHikes,
       // Adirondack 46er tracking
-      completedPeaks: 18,
+      completedPeaks: 22,
       totalPeaks: 46,
     };
   },
