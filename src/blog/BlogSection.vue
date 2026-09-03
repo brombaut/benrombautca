@@ -3,7 +3,7 @@
     <SectionHeader
       title="Blog"
       icon="pen-square"
-      subtext="A blog. Some things I've written." />
+      subtext="Writings about some things I've done" />
     <div class="section-body">
       <div v-for="group in postsByYear" :key="group.year" class="year-group">
         <div class="year-label">{{ group.year }}</div>

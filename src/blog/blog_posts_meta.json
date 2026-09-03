@@ -310,5 +310,13 @@
         "_description": "Operational and cognitive observability for AIware, from ordinary metrics and traces to reasoning path observability with Watson.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20260903_building_a_gpt_from_scratch",
+        "_title": "[Learning LLMs 1] Learning How GPTs Work by Building One from Scratch",
+        "_createdAt": "2026-09-03T00:00:00.000Z",
+        "_description": "Building a small GPT first with scalar Python and hand-written autograd, then in PyTorch, and reflecting on what made backpropagation, attention, and batching click.",
+        "_show": true,
+        "_archived": false
     }
 ]
