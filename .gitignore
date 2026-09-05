@@ -30,3 +30,7 @@ yarn-error.log*
 *.sw?
 
 *.pkg
+
+# Python
+__pycache__/
+*.pyc
