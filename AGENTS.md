@@ -1,8 +1,19 @@
 # Agent Instructions
 
+Guidance for AI coding agents working in this repository.
+
+`CLAUDE.md` is a symlink to this file, so Claude Code and any tool that reads
+`AGENTS.md` see exactly the same instructions. Edit this file, never the symlink.
+
 ## Issue Tracking
 
-This project tracks work in a SQLite database at `issues.db`. See `ISSUES.md` for schema and query reference.
+This project uses a SQLite database (`issues.db`) for issue tracking — **not beads**. See `ISSUES.md` for the schema and example queries. Use `sqlite3 issues.db` to read and write issues.
+
+Before the first read of `issues.db` in a session, run `git pull` to ensure you have the latest version — it may have been updated from another machine.
+
+When reporting the status of any issue, always query `issues.db` directly rather than relying on conversation context — issue state may have changed on another machine.
+
+After every write to `issues.db`, immediately commit and push it so the remote is always up to date with issue tracking.
 
 ## Non-Interactive Shell Commands
 
@@ -27,3 +38,510 @@ cp -rf source dest          # NOT: cp -r source dest
 - `ssh` - use `-o BatchMode=yes` to fail instead of prompting
 - `apt-get` - use `-y` flag
 - `brew` - use `HOMEBREW_NO_AUTO_UPDATE=1` env var
+
+## Project Overview
+
+**benrombautca** is Ben Rombaut's personal portfolio website, deployed at [benrombaut.ca](https://www.benrombaut.ca). This is a Vue 3 single-page application built with TypeScript, featuring a personal portfolio with multiple sections including About Me, Work/Education timeline, Publications, Blog, Software projects, Bookshelf, Running, and Hiking.
+
+### Tech Stack
+- **Framework**: Vue 3 (migrated from Vue 2, using compatibility mode)
+- **Language**: TypeScript
+- **Build Tool**: Vue CLI 5 with Webpack
+- **Routing**: Vue Router 4 (hash mode)
+- **Styling**: SCSS with global variables
+- **Icons**: FontAwesome (solid, regular, and brands)
+- **Deployment**: GitHub Pages
+- **Automation**: GitHub Actions
+
+## Repository Structure
+
+```
+benrombautca/
+├── .github/workflows/          # GitHub Actions workflows
+│   ├── gh_pages_deploy.yml    # Main deployment workflow
+│   ├── sync_bookshelf.yml     # Bookshelf syncing automation
+│   ├── sync_software.yml      # Software projects syncing
+│   └── install_lint_build.yml # CI checks
+├── public/                     # Static assets
+├── scripts/                    # Utility scripts
+│   ├── diagrams/              # Blog diagram generators (Python -> SVG + PNG)
+│   ├── sync_bookshelf.sh      # Local bookshelf sync script
+│   ├── sync_articles.sh       # Local articles sync script
+│   ├── sync_software.sh       # Local software sync script
+│   └── *.py                   # Image processing utilities
+├── src/
+│   ├── aboutMe/               # About Me section components
+│   ├── blog/                  # Blog section and content
+│   │   └── content/           # Blog post sources (MD) and converted (HTML)
+│   ├── assets/                # Images, resumes, publications PDFs
+│   ├── bookshelf/             # Bookshelf section
+│   │   └── syncer_v2/         # Goodreads scraping and syncing logic
+│   ├── footer/                # Site footer
+│   ├── hiking/                # Hiking section with image carousel
+│   ├── publications/          # Academic publications section
+│   ├── running/               # Running section with image carousel
+│   ├── shared/                # Shared/reusable components
+│   ├── site-header/           # Navigation and routing
+│   ├── software/              # Software projects section
+│   ├── styles/                # Global SCSS styles
+│   ├── utils/                 # Utility functions
+│   ├── workEducation/         # Work and education timeline
+│   ├── App.vue                # Root component
+│   ├── main.ts                # Application entry point
+│   └── app_config.ts          # Env var validation + feature flags
+├── AGENTS.md                  # This file: agent/AI guidance (canonical)
+├── CLAUDE.md                  # Symlink -> AGENTS.md
+├── package.json               # Dependencies and scripts
+├── tsconfig.json              # TypeScript configuration
+├── vue.config.js              # Vue CLI/Webpack configuration
+└── babel.config.js            # Babel configuration
+```
+
+## Key Architecture Patterns
+
+### Component Structure
+Components follow Vue 3 Composition API patterns with TypeScript:
+
+```vue
+<template>
+  <!-- Template with v-if, v-for, :class bindings -->
+</template>
+
+<script lang="ts">
+import { defineComponent, PropType } from "vue";
+
+export default defineComponent({
+  name: "ComponentName",
+  props: {
+    // Typed props
+  },
+  components: {
+    // Child components
+  },
+  computed: {
+    // Computed properties
+  },
+  methods: {
+    // Component methods
+  },
+  mounted() {
+    // Lifecycle hooks
+  },
+});
+</script>
+
+<style lang="scss">
+// Scoped or global styles with SCSS
+</style>
+```
+
+### Routing
+- **Mode**: Hash-based routing (`createWebHashHistory`)
+- **Router Location**: `src/site-header/router.ts`
+- **Dynamic Routes**: Blog and Software sections have dynamic routes (`:postId`, `:softwareId`)
+- **Code Splitting**: All routes use lazy loading (`component: () => import(...)`) for optimal bundle size
+
+### State Management
+- **No Vuex/Pinia**: Simple prop passing and component-local state
+- **Data Sources**: JSON files imported directly into components
+  - `src/blog/blog_posts_meta.json` - Blog post metadata
+  - `src/blog/blog_posts_content.json` - Blog post HTML content
+  - `src/software/software_articles_meta.json` - Software metadata
+  - `src/software/software_articles_content.json` - Software README content
+  - `src/bookshelf/syncer_v2/all_books_flattened.json` - Bookshelf data
+
+### Shared Components
+- **Location**: `src/shared/`
+- **Components**:
+  - `ImageCarousel.vue` - Generic image carousel used by Running and Hiking sections
+  - `GitHubMarkdown.vue` - Markdown renderer for articles and software READMEs
+  - `SectionHeader.vue` - Section title header
+  - `SkeletonLoader.vue` - Loading placeholder
+  - `Tag.vue` / `TagColor.ts` - Tag chip and its colour mapping
+
+### Styling System
+
+#### Global Styles
+- **Variables**: `src/styles/variables.scss` - Colors, breakpoints, sizes
+- **Common**: `src/styles/common.scss` - Shared utility styles
+- **Keyframes**: `src/styles/keyframes.scss` - Animation definitions
+- **GitHub Article**: `src/styles/github_article.scss` - Markdown rendering styles
+
+#### Color Scheme
+- Primary: `#3381db` (benBlue)
+- Secondary: `#f1f5fa` (aliceBlue)
+- Font: `#33343C` (vsCodeDullBlue)
+- Background: `#f1f5fa` (aliceBlue)
+
+#### Responsive Breakpoints
+```scss
+$MAX_SECTION_SIZE: 1132px;
+$MEDIUM_DISPLAY_SIZE: 900px;
+$SMALL_DISPLAY_SIZE: 640px;
+$TINY_DISPLAY_SIZE: 550px;
+$PHONE_DISPLAY_SIZE: 550px;
+```
+
+Auto-imported in every component via `vue.config.js`.
+
+## Content Management & Syncing
+
+### Blog
+- **Source**: Markdown files in `src/blog/content/sources_md/`
+- **Conversion**: Python scripts convert MD → HTML using Pandoc
+- **Scripts**:
+  - `00_ipynb_to_md_converter.py` - Jupyter notebooks to markdown
+  - `01_md_to_html_converter.py` - Markdown to HTML
+  - `02_existing_html_articles_syncer.py` - Sync to content JSON
+- **Output**: `src/blog/content/converted_html/`
+- **Metadata**: Manually maintained in `blog_posts_meta.json`
+- **IMPORTANT**: Never directly edit `blog_posts_content.json`. It is generated by the syncer pipeline. Always edit the source markdown file in `sources_md/`, then re-run `01_md_to_html_converter.py` and `02_existing_html_articles_syncer.py` to regenerate it.
+
+### Blog Diagrams
+- **Source**: Python generators in `scripts/diagrams/` (one `d_*.py` per diagram)
+- **Output**: `.svg` and `.png` written to `src/blog/content/images/<post-slug>/`
+- **Rebuild**: `python3 scripts/diagrams/build.py`, or a single `d_*.py`
+- **IMPORTANT**: Never hand-edit a generated SVG. Edit the `d_*.py` and rebuild, the
+  same rule that applies to `blog_posts_content.json`.
+- Boxes are sized from real font metrics, so text cannot silently overflow. The build
+  prints `!!` warnings when something does not fit.
+- See `scripts/diagrams/README.md` for dependencies, the layout skeleton, and the palette.
+
+### Software Projects
+- **Source**: README files from external GitHub repositories
+- **Sync**: GitHub Actions fetch and convert READMEs
+- **Manual Trigger**: `workflow_dispatch` event
+- **Metadata**: Manually maintained in `software_articles_meta.json`
+
+### Bookshelf
+- **Source**: Goodreads user profile (web scraping)
+- **Pipeline**:
+  1. `00_goodreads_scraper.py` - Scrapes Goodreads profile
+  2. `02_all_books_flattener.py` - Flattens book data structure
+  3. `03_show_missing_thumbnails.py` - Reports missing covers
+  4. `04_download_missing_thumbnails.py` - Fetches the covers reported missing
+- **Automation**: GitHub Actions (currently `workflow_dispatch` only, cron commented out)
+- **Data**: `src/bookshelf/syncer_v2/all_books_flattened.json`
+
+## Development Workflows
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start dev server (http://localhost:8080)
+npm run serve
+
+# Build for production
+npm run build
+
+# Lint and fix code issues
+npm run lint
+
+# Sync bookshelf locally
+npm run sync-bookshelf
+
+# Sync blog locally
+npm run sync-articles
+
+# Sync software projects locally (no npm alias for this one)
+bash ./scripts/sync_software.sh
+
+# Regenerate blog diagrams
+python3 scripts/diagrams/build.py
+```
+
+### Environment Variables
+Written to `.env` by CI and stored in GitHub Secrets. Note that `src/app_config.ts`
+currently declares **no required** variables: the Firebase values are provisioned but
+not yet read anywhere in the app, and `VUE_APP_FLAG_MARATHON` is the only one the code
+actually consumes.
+```
+VUE_APP_API_KEY
+VUE_APP_AUTH_DOMAIN
+VUE_APP_PROJECT_ID
+VUE_APP_STORAGE_BUCKET
+VUE_APP_MESSAGING_SENDER_ID
+VUE_APP_APP_ID
+VUE_APP_MEASUREMENT_ID
+VUE_APP_TEST_USER_EMAIL
+VUE_APP_TEST_USER_PASSWORD
+VUE_APP_FLAG_MARATHON=false
+```
+
+### Git Workflow
+- **Main Branch**: `main`
+- **Deployment**: Automatic on push to `main` via GitHub Actions
+- **Protected Branch**: Deploys to `gh-pages` branch
+
+## Coding Conventions
+
+### TypeScript/JavaScript
+- **Indentation**: 2 spaces
+- **Quotes**: Double quotes (`"`)
+- **Semicolons**: Not enforced
+- **Max Line Length**: 600 characters (warn only)
+- **ESLint**: Based on Vue Essential + Airbnb (many rules disabled for flexibility)
+
+### File Naming
+- **Components**: PascalCase (e.g., `BookCard.vue`, `SiteHeader.vue`)
+- **Utilities**: kebab-case (e.g., `ui-utils.ts`)
+- **Types**: PascalCase (e.g., `types.ts` with PascalCase exports)
+
+### Import Aliases
+- `@/` → `src/` (configured in `tsconfig.json` and Webpack)
+
+Example:
+```typescript
+import BookCard from "@/bookshelf/BookCard.vue";
+```
+
+### Component Organization
+1. Template
+2. Script (imports, component definition, props, computed, methods, lifecycle)
+3. Style (SCSS, usually not scoped to allow global variable usage)
+
+## Build & Deployment
+
+### Build Process
+```bash
+npm run build
+```
+Outputs to `dist/` directory with:
+- Minified JS/CSS bundles
+- Copied static assets (CNAME, images, PDFs)
+- HTML entry point
+
+### GitHub Actions Deployment
+**Workflow**: `.github/workflows/gh_pages_deploy.yml`
+
+Triggers:
+- Push to `main` branch
+- Completion of `bookshelf-syncer` workflow
+
+Steps:
+1. Checkout code
+2. Create `.env` file from secrets
+3. Install and Build - runs `npm ci`, then `npm run lint`, then `npm run build`
+   (lint is enforced here; a violation fails the deploy)
+4. Deploy to `gh-pages` branch
+
+### Static Asset Copying
+`vue.config.js` uses `CopyPlugin` to copy:
+- `CNAME` → root (for custom domain)
+- Book thumbnails → `book_thumbnails_v2/`
+- Resumes → `resumes/`
+- Publications → `publications/`
+- Running images → `running-images/`
+- Hiking images → `hiking-images/`
+- Blog images (`src/blog/content/images`) → `blog-images/`
+
+## Testing
+
+**Status**: No automated tests currently configured
+- ESLint is enabled and configured with Vue Essential + Airbnb rules
+- Test framework not set up (unit/integration/e2e tests planned for future)
+
+## Common Development Tasks
+
+### Adding a New Blog Post
+1. Write post in Markdown: `src/blog/content/sources_md/post-name.md`
+2. Run conversion script from `src/blog/content/`: `python 01_md_to_html_converter.py`
+3. Run sync script from `src/blog/content/`: `python 02_existing_html_articles_syncer.py`
+   - This adds a blank stub entry to `blog_posts_meta.json` and populates `blog_posts_content.json` with the HTML body
+   - **Important**: The syncer appends a blank meta entry (`_title: ""`, `_show: false`) for any HTML file not already in the content JSON. You must manually fill in the metadata after running it — do not run the syncer again after editing the meta or it will append another blank stub.
+4. Edit the stub entry in `src/blog/blog_posts_meta.json` with the correct values:
+   ```json
+   {
+     "_id": "YYYYMMDD_post_slug",
+     "_title": "Post Title",
+     "_createdAt": "YYYY-MM-DDT00:00:00.000Z",
+     "_description": "One-sentence description.",
+     "_show": true,
+     "_archived": false
+   }
+   ```
+5. Commit changes
+
+**IMPORTANT**: Never directly edit `blog_posts_content.json`. To change blog post content, always edit the source markdown file in `src/blog/content/sources_md/`, then re-run the conversion and sync scripts (steps 2 and 3). The content JSON is a generated artifact and will be overwritten by the syncer.
+
+### Blog Post Images
+Images are served via CopyPlugin, which copies `src/blog/content/images/` to `dist/blog-images/` at build time. The MD-to-HTML converter rewrites `src="images/` to `src="blog-images/"` during conversion.
+
+**To add images to a post:**
+1. Create a directory: `src/blog/content/images/<post-slug>/`
+2. Place image files in that directory
+3. Reference them in your markdown as: `![Alt text](images/<post-slug>/image.png)`
+4. The converter handles path rewriting automatically — no manual HTML editing needed
+
+**When copying a post from an external source (e.g. a README from another repo):**
+- Image paths must be rewritten from bare filenames (e.g. `![](image.png)`) to the `images/<post-slug>/` convention
+- Remove any repo-specific sections (e.g. `## Files` listing notebook/data files) that don't belong on the blog
+- Copy all referenced images into the corresponding `src/blog/content/images/<post-slug>/` directory
+
+**To update an existing post's content:**
+1. Overwrite the markdown source in `sources_md/`
+2. Rewrite image paths to use the `images/<post-slug>/` prefix
+3. Remove any repo-specific sections
+4. Re-run `01_md_to_html_converter.py` and `02_existing_html_articles_syncer.py`
+5. The syncer will update the content JSON without creating a duplicate meta entry
+
+### Adding a New Section
+1. Create directory in `src/` (e.g., `src/newSection/`)
+2. Create main section component (e.g., `NewSection.vue`)
+3. Add route to `src/site-header/router.ts`
+4. Add navigation item to header component
+5. Update this file (`AGENTS.md`)
+
+### Updating Bookshelf
+- **Automated**: Trigger `workflow_dispatch` on `sync_bookshelf.yml`
+- **Manual**: Run `npm run sync-bookshelf` locally
+
+### Modifying Styles
+- **Global changes**: Edit `src/styles/variables.scss`
+- **Component-specific**: Add styles to component's `<style>` block
+- **Colors**: Use SCSS variables (`$primary`, `$secondary`, etc.)
+- **Breakpoints**: Use provided breakpoint variables for responsive design
+
+## Known Issues & Future Work
+
+### Recent Improvements (2025-11-22 to 2025-12-22)
+- ✅ Re-enabled ESLint and fixed violations
+- ✅ Updated GitHub Actions to latest versions (v4/v5)
+- ✅ Fixed Vue 2→3 lifecycle hooks (`beforeDestroy` → `beforeUnmount`)
+- ✅ Updated TypeScript shims to Vue 3
+- ✅ Removed duplicate ImageCarousel components
+- ✅ Standardized all components to use `defineComponent`
+- ✅ Added route-level code splitting (lazy loading)
+- ✅ Added environment variable validation
+- ✅ Replaced DOM queries with Vue template refs
+- ✅ Restructured README.md for better developer onboarding
+
+### Completed Features
+- **Migrate to Vue 3**: ✅ Done (using compatibility mode)
+- **Merge Bookshelf-Syncer**: ✅ Done
+- **Merge Software-Syncer**: ✅ Done
+- **Add Resume & CV PDFs**: ✅ Done
+
+### Planned Work
+- **Filter blog posts by tag**: Planned
+- **Consider moving Blog-Syncer to cloud**: Under consideration
+- **Change router to HTML5 mode**: TODO (see `router.ts:66`)
+- **Remove Vue 2 compatibility mode**: Planned for better performance
+- **Add automated testing**: High priority
+
+### Technical Debt
+- No automated tests (unit/integration/e2e)
+- Some ESLint rules are disabled for flexibility (see `package.json` eslintConfig)
+- Vue 2 compatibility mode still enabled (could be removed for better performance)
+- Memory leaks in some components (event listeners not cleaned up)
+- Some remaining `any` types in TypeScript (~12 occurrences in `src/`)
+- See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
+
+## Blog Writing Style
+
+When writing or editing blog posts for this site, follow these conventions:
+
+### Voice and Tone
+- First-person, personal, honest — these are accounts of real experience, not guides or tutorials
+- Measured and direct, not flowery or over-written
+- Avoid clichéd phrases and filler expressions (e.g. "striking moment", "learned to stay vigilant", "reaching for")
+- Don't editorialize or over-explain — let the experience speak for itself
+- Show genuine reactions to findings or results ("This one surprised me", "I'm not sure if this is a strength or a limitation"). Opinions and uncertainty are good. Dry reporting is not.
+- When tools or automation did the work, say so: "I had Claude Code generate..." not "I generated...". Don't claim personal credit for automated work.
+
+### Content Decisions
+- Cut implementation noise that doesn't serve the reader: internal version numbers, zero-count stats, details only a developer would care about. If a number or fact isn't interesting, don't report it.
+- Go deep on methodology. Readers want enough process detail to judge whether the approach is sound. Explain the "how" thoroughly, especially when the method is novel or non-obvious.
+- Organize around insights, not analysis structure. Each section heading should promise something interesting, not describe a data processing step. "The Model Invents Its Own Pattern Vocabulary" over "Section B: Pattern Analysis".
+- When an article is part of a larger system or pipeline, explain the full pipeline briefly before diving into the piece you're analyzing. The reader needs to know where this fits. Keep it self-contained though: don't cross-link to other articles, just say "this article covers X" and move on.
+- Every plot needs two things: a brief sentence explaining what the chart shows (axes, colors, groupings), then the insight or takeaway. Don't drop a plot and jump straight to analysis, and don't just describe the data without drawing a conclusion.
+- Don't duplicate a chart's data in a table. If the plot shows it, the prose should highlight the insight, not restate the numbers in a different format.
+- When discussing limitations, be honest about whether the issue is with the method or with the dataset. "The scale goes unused" could mean the scale is miscalibrated or it could mean the data doesn't have hard enough problems. Name the ambiguity instead of defaulting to self-criticism.
+
+### Punctuation and Formatting
+- **No em dashes** — use commas or restructure the sentence instead
+- Italics are fine for internal thoughts or emphasis (e.g. *I need to learn how to use this thing*)
+- Keep sentences clear and relatively short
+- **Always specify a language on markdown code blocks** for syntax highlighting (e.g. ```python, ```bash, ```typescript). If writing pseudocode, use ```python since its highlighting is the closest match.
+
+### Structure
+- Personal narrative posts often open with a brief framing paragraph before the main content begins — this sets context (e.g. what series this belongs to, what time period it covers)
+- Section headers use the `## Heading` format with a date or phase label where relevant
+
+## AI Assistant Guidelines
+
+### When Making Changes
+
+1. **Read Before Editing**: Always read files before proposing changes
+2. **Maintain Conventions**: Follow existing patterns (2-space indent, double quotes)
+3. **Preserve Structure**: Keep feature-based directory organization
+4. **Update Metadata**: When adding blog posts/software, update corresponding JSON files
+5. **Test Locally**: Suggest running `npm run serve` to verify changes
+6. **Respect Responsive Design**: Use existing breakpoint variables
+7. **Use Type Safety**: Leverage TypeScript and PropType definitions
+8. **Global Styles**: Prefer SCSS variables over hardcoded colors
+
+### When Adding Features
+
+1. **Feature-First Organization**: Create dedicated directories for new major sections
+2. **Shared Components**: Put reusable components in `src/shared/`
+3. **Route Registration**: Update `router.ts` for new pages
+4. **Navigation**: Update header component for new nav items
+5. **Assets**: Use `CopyPlugin` in `vue.config.js` for static assets
+6. **Data Files**: Follow JSON structure patterns for content management
+
+### When Debugging
+
+1. **Check Browser Console**: Vue Router, component errors appear here
+2. **Verify Paths**: Ensure import aliases (`@/`) resolve correctly
+3. **SCSS Variables**: Ensure global SCSS is imported (auto-imported via `vue.config.js`)
+4. **Build Output**: Check `dist/` after `npm run build`
+5. **Image Paths**: Verify paths relative to build output (e.g., `book_thumbnails_v2/`)
+
+### When Refactoring
+
+1. **Backward Compatibility**: Ensure routes and data structures remain compatible
+2. **Global Impact**: Check if SCSS variable changes affect other components
+3. **TypeScript Types**: Update type definitions when changing data structures
+4. **JSON Schema**: Maintain consistency in metadata/content JSON files
+
+## Quick Reference
+
+### Important Files to Know
+- `src/main.ts` - Application entry, FontAwesome setup
+- `src/App.vue` - Root component with header/footer
+- `src/site-header/router.ts` - All route definitions
+- `vue.config.js` - Webpack config, asset copying, SCSS auto-import
+- `src/styles/variables.scss` - Global color/size variables
+- `package.json` - Scripts and dependencies
+
+### Common Commands
+```bash
+npm run serve              # Start dev server
+npm run build              # Production build
+npm run sync-bookshelf     # Sync Goodreads data
+npm run sync-articles      # Sync blog content
+```
+
+### Key Directories
+- `src/shared/` - Reusable components
+- `src/styles/` - Global SCSS
+- `src/assets/` - Static images and PDFs
+- `src/*/content/` - Content management (blog, software)
+
+## Contact & Ownership
+
+- **Owner**: Ben Rombaut
+- **Email**: rombaut.benj@gmail.com
+- **Website**: [benrombaut.ca](https://www.benrombaut.ca)
+- **GitHub**: [@brombaut](https://github.com/brombaut)
+
+---
+
+**Last Updated**: 2026-09-04
+**Vue Version**: 3.2.47
+**Node Version**: 18+
+**TypeScript Version**: 5.6.3

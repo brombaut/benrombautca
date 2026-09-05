@@ -32,7 +32,8 @@ This is a personal portfolio site, but suggestions and bug reports are welcome v
 
 ## Documentation
 
-- **[CLAUDE.md](./CLAUDE.md)** - Comprehensive AI assistant guide with detailed architecture, patterns, and development workflows
+- **[AGENTS.md](./AGENTS.md)** - Comprehensive AI assistant guide with detailed architecture, patterns, and development workflows
+- **[CLAUDE.md](./CLAUDE.md)** - Symlink to `AGENTS.md`, so Claude Code reads the same guidance
 - **[PROJECT_TODOS.md](./PROJECT_TODOS.md)** - Technical debt tracking and improvement opportunities
 
 ## License
