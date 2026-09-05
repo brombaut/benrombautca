@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1090" viewBox="0 0 1600 1090">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1090" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1060" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Pre-norm and post-norm: what the residual path passes through</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Both blocks normalize. The difference is whether the identity shortcut passes through it.</text>
+  <rect x="70" y="200" width="705" height="775" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">PRE-NORM</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Normalize the branch, add the result</text>
+  <rect x="110" y="330" width="200" height="70" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="210" y="373.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">hidden</text>
+  <path d="M210 400 V690" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="152" y="528" width="116" height="34" rx="17" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="210" y="552" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a6b45" text-anchor="middle">identity</text>
+  <path d="M210 442 H407 V466" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <circle cx="210" cy="442" r="8" fill="#2f9e68" stroke="none" stroke-width="3"/>
+  <rect x="324.5" y="466" width="165" height="70" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="407" y="509.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">norm</text>
+  <path d="M407 536 V576" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <rect x="324.5" y="576" width="165" height="84" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="407" y="614" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#4b3193" text-anchor="middle">attention</text>
+  <text x="407" y="641" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">or MLP</text>
+  <path d="M407 660 V716 H236" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <g><circle cx="210" cy="716" r="26" fill="#ffffff" stroke="#2f9e68" stroke-width="3"/><path d="M197 716 H223 M210 703 V729" stroke="#2f9e68" stroke-width="3.5" stroke-linecap="round"/></g>
+  <text x="170" y="723" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="end">add</text>
+  <path d="M210 742 V762" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGreen)"/>
+  <rect x="110" y="762" width="200" height="74" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="210" y="806.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">updated hidden</text>
+  <text x="520" y="490" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">Normalization</text>
+  <text x="520" y="519" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">prepares only the</text>
+  <text x="520" y="548" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">branch input.</text>
+  <text x="520" y="636" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="start">The identity path</text>
+  <text x="520" y="665" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="start">reaches the</text>
+  <text x="520" y="694" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="start">addition</text>
+  <text x="520" y="723" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="start">untouched.</text>
+  <rect x="110" y="880" width="625" height="56" rx="14" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="422.5" y="917" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">A clean identity path through the block.</text>
+  <rect x="825" y="200" width="705" height="775" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">POST-NORM</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Add the result, then normalize the sum</text>
+  <rect x="865" y="330" width="200" height="70" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="965" y="373.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">hidden</text>
+  <path d="M965 400 V580" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="907" y="473" width="116" height="34" rx="17" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="965" y="497" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a6b45" text-anchor="middle">identity</text>
+  <path d="M965 442 H1162 V466" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <circle cx="965" cy="442" r="8" fill="#2f9e68" stroke="none" stroke-width="3"/>
+  <rect x="1079.5" y="466" width="165" height="84" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1162" y="504" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#4b3193" text-anchor="middle">attention</text>
+  <text x="1162" y="531" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">or MLP</text>
+  <path d="M1162 550 V606 H991" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <g><circle cx="965" cy="606" r="26" fill="#ffffff" stroke="#2f9e68" stroke-width="3"/><path d="M952 606 H978 M965 593 V619" stroke="#2f9e68" stroke-width="3.5" stroke-linecap="round"/></g>
+  <text x="925" y="613" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="end">add</text>
+  <path d="M965 632 V652" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGreen)"/>
+  <rect x="865" y="652" width="200" height="70" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="965" y="695.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">norm</text>
+  <path d="M965 722 V762" fill="none" stroke="#d08a1e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <rect x="865" y="762" width="200" height="74" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="965" y="806.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">updated hidden</text>
+  <text x="1275" y="490" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">The branch reads</text>
+  <text x="1275" y="519" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">the hidden state</text>
+  <text x="1275" y="548" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">directly.</text>
+  <text x="1275" y="674" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">The sum is</text>
+  <text x="1275" y="703" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">normalized, so the</text>
+  <text x="1275" y="732" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">identity path</text>
+  <text x="1275" y="761" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">passes through it</text>
+  <text x="1275" y="790" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="start">too.</text>
+  <rect x="865" y="880" width="625" height="56" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="1177.5" y="917" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">The identity path is normalized.</text>
+  <text x="800" y="1021" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">At two layers the gap is small. Pre-norm's cleaner gradient route is expected to matter more as the stack gets deeper.</text>
+</svg>
