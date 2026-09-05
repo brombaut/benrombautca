@@ -1,0 +1,312 @@
+<h1
+id="learning-llms-2-learning-what-transformer-architecture-choices-actually-do">[Learning
+LLMs 2] Learning What Transformer Architecture Choices Actually Do</h1>
+<p>The first phase of my LLM learning project ended with a small GPT
+that I could follow from tokenization through backpropagation. I
+understood the basic pieces well enough to change them, but I still had
+a fairly static picture of the architecture. I knew what the context
+window, embedding size, attention heads, layers, activation function,
+and positional embeddings were supposed to do. I didn’t yet have much
+intuition for what would happen if I changed one of them.</p>
+<p>That became the focus of Phase 2. I kept the training loop as stable
+as I could and changed one architectural choice at a time. The goal
+wasn’t to find the best small language model. It was to make the
+relationship between a piece of the implementation and the resulting
+behavior less abstract.</p>
+<p>The experiments ran on Tiny Shakespeare, a character-level dataset
+with a 65-character vocabulary. The original word-level children’s-book
+dataset was too easy for this purpose. Most of the architectural changes
+either produced nearly the same result or simply overfit it. Shakespeare
+was still tiny, but it had enough dialogue structure, names,
+punctuation, and longer-range patterns to expose differences between
+models.</p>
+<p>The baseline model had a context length of 16 characters, 32
+embedding values, 4 attention heads, and 2 transformer layers. It had
+29,248 parameters and finished with a validation loss of 1.848. Its
+generated text could pick up some of the formatting of the source, but
+it also fell into repetitive loops like <code>the shall</code>.</p>
+<p>That was a much better starting point than a model that did
+everything well. There was room for changes to be visible.</p>
+<p><img
+src="blog-images/learning-llms-2/architecture-variation-loss-curves.png"
+alt="Validation loss curves for the Phase 2 architecture experiments" /></p>
+<p>The curves made the comparisons easier to reason about than a table
+of final losses alone. Some changes separated early and stayed
+separated, while others ended up nearly on top of the baseline. The
+generated samples still mattered, but the plot helped show whether a
+final difference reflected the whole run or just the last
+checkpoint.</p>
+<h2 id="making-the-model-larger">Making the Model Larger</h2>
+<p>I started with the most direct questions: what happens if the model
+can see more characters, represent each character with more features, or
+perform more transformer layers of processing?</p>
+<p>Doubling the context length from 16 to 32 improved validation loss
+from 1.848 to 1.779. The model could see more of the surrounding text,
+which seemed especially relevant for dialogue turns and character names.
+The cost was also clear: training took about 1.6 times as long, even
+though the parameter count barely changed. The position embedding table
+added only 512 parameters, but attention had more pairs of positions to
+compare.</p>
+<p>This was the first result that made the context window feel like
+something other than a configuration setting. A character at the current
+position does not just need to know what came immediately before it.
+Sometimes the useful clue is further back in the line, and the model
+cannot use information it was never allowed to see.</p>
+<p>Doubling the embedding size from 32 to 64 produced the strongest
+improvement in this group. Validation loss reached 1.745, although the
+parameter count grew from 29,248 to 107,648. The same change had mostly
+caused overfitting on the simpler dataset. On Shakespeare, the extra
+capacity was useful enough to justify itself.</p>
+<p>This made the dataset choice important in a way I had not fully
+appreciated. Whether a model is too small, large enough, or too large is
+not a property of the model by itself. It depends on what the data asks
+it to represent. A wider model looked wasteful on the simple corpus and
+useful on the more demanding one.</p>
+<p>Depth helped too, but less dramatically. Reducing the model to one
+layer made validation loss worse, from 1.848 to 1.935. Increasing it to
+four layers improved validation loss to 1.800, at roughly twice the
+training time. I found the comparison more useful than either result on
+its own. One layer was not enough for the richer patterns, while four
+layers could build on intermediate representations, but the improvement
+was modest compared with simply making the representation wider.</p>
+<p>I had heard people talk about width and depth as two different kinds
+of model capacity. Running both changes made that distinction more
+concrete. Width gives each token representation more room to describe
+things. Depth gives the model more sequential transformations through
+which it can refine those descriptions. They are both capacity, but they
+do not buy exactly the same capability or cost the same amount to
+use.</p>
+<h2 id="what-is-an-attention-head-for">What Is an Attention Head
+For?</h2>
+<p>The head experiments were less exciting in the metrics and more
+useful for my mental model. I reduced the number of heads from 4 to 2
+and then increased it to 8, keeping the embedding size fixed at 32.
+Since the embedding dimension is split between the heads, this changed
+the size of each head rather than simply adding more total features.</p>
+<p>With 2 heads, each head had 16 values instead of 8. Validation loss
+became slightly worse at 1.874. With 8 heads, each head had only 4
+values, and the validation loss was 1.867. Neither change beat the
+baseline, and both had the same total parameter count.</p>
+<p>Before running these experiments, I had a tendency to describe more
+heads as more parallel attention patterns. That is true, but incomplete.
+More heads also divide the fixed representation into smaller pieces. At
+this model size, four heads seemed to be a reasonable compromise: enough
+separate attention patterns without leaving each one too little room to
+represent anything.</p>
+<p>The experiments did not show that four is a universally correct
+number. They showed that the number of heads cannot be interpreted
+independently from the embedding size. Changing the head count changes
+how the same total information budget is divided.</p>
+<p>That was a recurring pattern in this phase. A configuration value
+often looked like one isolated knob, but it was really connected to
+several tensor shapes and computational costs elsewhere in the
+model.</p>
+<h2 id="relu-and-gelu">ReLU and GELU</h2>
+<p>The next change was smaller in code: replacing ReLU with GELU. ReLU
+has a hard cutoff. Negative inputs become zero, while positive inputs
+pass through. GELU uses a smooth transition around zero instead.</p>
+<p>I expected GELU to be more helpful in a larger or deeper model, where
+the smoother behavior might make optimization easier. In this two-layer,
+32-value model, the result was basically a tie. Validation loss changed
+from 1.848 to 1.846, which was not enough to treat as a meaningful
+improvement.</p>
+<p>This was a useful non-result. Modern LLMs use choices such as GELU
+for reasons that may be real without being visible in every small
+reproduction. It is easy to see a component in a current model and
+assume that replacing it should make a tiny model noticeably better. The
+experiment reminded me that an architectural choice can matter because
+of the scale or training regime it was designed for, not because it is
+universally superior in isolation.</p>
+<h2 id="moving-normalization-around">Moving Normalization Around</h2>
+<p>I also compared the pre-normalization structure from the baseline
+with post-normalization, which was used in the original Transformer
+paper. The difference was where normalization happened relative to the
+residual addition.</p>
+<p>In the pre-norm version, the block looked roughly like this:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> hidden <span class="op">+</span> attention(norm(hidden))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> hidden <span class="op">+</span> mlp(norm(hidden))</span></code></pre></div>
+<p>In the post-norm version, normalization wrapped the result of the
+residual:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> norm(hidden <span class="op">+</span> attention(hidden))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hidden <span class="op">=</span> norm(hidden <span class="op">+</span> mlp(hidden))</span></code></pre></div>
+<p><img src="blog-images/learning-llms-2/norm-placement-explained.png"
+alt="Pre-norm preserves a clean residual path while post-norm normalizes the residual addition" /></p>
+<p>At two layers, the results were almost identical. The post-norm run
+reached a validation loss of 1.857 instead of 1.848. That was not a
+dramatic training failure, which was consistent with the hypothesis that
+the difference becomes more important in deeper networks.</p>
+<p>The implementation made the reason easier to understand than the
+usual short description of “pre-norm is more stable.” The residual
+connection is supposed to provide an identity path through the network.
+A sub-layer can add a small correction while the original representation
+continues forward unchanged. With pre-norm, the normalization prepares
+the input to the attention or MLP branch, but the residual stream itself
+is not normalized before the addition.</p>
+<p>With post-norm, even that identity path is passed through
+normalization. The gradient no longer has the same clean route through a
+stack of blocks. Two layers were not enough for this to matter much, but
+the code gave me a better reason to expect pre-norm to become useful as
+the model gets deeper.</p>
+<p>I also noticed an awkward detail in my implementation: it had an
+initial normalization inherited from the scalar model, but did not
+cleanly implement the final normalization normally associated with a
+pre-norm GPT. That was a good reminder that an experiment can compare
+two named choices without either version being a perfect production
+implementation.</p>
+<h2 id="rope-was-the-first-real-surprise">RoPE Was the First Real
+Surprise</h2>
+<p>The positional encoding experiment was the point where the validation
+loss stopped telling the whole story.</p>
+<p>The baseline used learned absolute position embeddings. Each position
+had a learned vector, and that vector was added to the token embedding
+at the start of the model. Position 3 had one learned representation,
+position 4 had another, and so on.</p>
+<p>For the RoPE experiment, I removed the active use of that position
+table and rotated pairs of dimensions in the query and key vectors
+inside each attention layer. The rotations were fixed mathematical
+operations, not learned parameters. Their angles changed with position,
+and the important effect was that a query-key comparison could reflect
+the relative distance between two positions.</p>
+<p>The core distinction eventually became clear to me this way:</p>
+<ul>
+<li>Learned position embeddings tell a token where it is before
+attention begins.</li>
+<li>RoPE makes the interaction between two tokens position-aware when
+they are compared.</li>
+</ul>
+<p><img src="blog-images/learning-llms-2/rope-positioning-explained.png"
+alt="Learned absolute positions change token representations while RoPE changes attention comparisons" /></p>
+<p>The values are not rotated. Queries and keys decide which positions
+should interact; values carry the content that gets retrieved. That
+separation made the implementation less mysterious. Position affects the
+routing decision, while the value vectors remain the information being
+routed.</p>
+<p>The training result looked unremarkable. RoPE reached a validation
+loss of 1.844, essentially the same as the baseline’s 1.848. At a
+context length of 16, a learned table can simply memorize the positions
+it needs, so I did not expect RoPE’s longer-context advantages to be
+obvious.</p>
+<p>The generated sample was much more interesting. The model produced
+only newlines.</p>
+<p>At first this seemed impossible. If the validation loss was
+competitive, why was generation completely degenerate? The answer took
+some working through. During training, the model sees varied character
+sequences. Even if the attention routing changes, the value vectors
+contain different content, so the weighted sum can produce different
+results. During greedy generation from the start token, this tiny model
+entered a newline loop. Once every position contained the same
+character, all of the value vectors were effectively the same.
+Position-aware queries and keys could choose different positions, but
+retrieving a weighted average of identical values still produced the
+same content.</p>
+<p>The repeated newline then reinforced itself on the next generation
+step.</p>
+<p>This was probably the most important evaluation lesson of the phase.
+A good teacher-forced validation loss does not guarantee useful
+autoregressive generation. During validation, the model is given the
+correct previous characters. During generation, it has to live with its
+own outputs. Those are different situations, and a model can look
+healthy in one while failing in the other.</p>
+<p>The failure was also partly an artifact of the tiny model, the short
+context, and greedy decoding from a single start token. I do not take it
+as evidence that RoPE is unsuitable for language models. I take it as
+evidence that generation samples are necessary evidence, especially when
+experimenting with architectural changes.</p>
+<h2 id="gqa-and-the-difference-between-training-and-inference">GQA and
+the Difference Between Training and Inference</h2>
+<p>The final Phase 2 experiment was grouped-query attention. Standard
+multi-head attention gave every query head its own key and value head.
+GQA kept a separate query for each of the four heads, but shared the
+keys and values in groups. In this run, two query heads shared one
+key/value pair and the other two shared another.</p>
+<p>The question that made GQA click was: does every query head really
+need its own keys and values?</p>
+<p>Each query head can still have a different question it is asking.
+Several heads can search the same set of keys and retrieve from the same
+values while producing different attention patterns. I found the analogy
+of multiple historians using the same library useful: they can research
+different topics even though the available books are shared.</p>
+<p><img src="blog-images/learning-llms-2/gqa-kv-cache-explained.png"
+alt="Grouped-query attention shares keys and values while keeping a separate query for each head" /></p>
+<p>The code initially confused me because it used
+<code>repeat_interleave</code> to expand the smaller set of keys and
+values back to the number of query heads. It looked as though the
+implementation reduced the number of heads and then immediately undid
+that reduction.</p>
+<p>The important distinction was between the attention calculation and
+inference storage. The repetition was a convenient way to keep the
+existing attention tensor shapes unchanged during training. The
+practical benefit of GQA appears when generating tokens one at a time.
+The model stores previous keys and values in a KV cache, and GQA stores
+fewer of them. It does not need to cache a separate copy for every query
+head.</p>
+<p>On this tiny model, the parameter count fell by about 2,048 and
+validation loss got slightly worse, from 1.848 to 1.869. Training speed
+was effectively the same. That was not a failure of the idea so much as
+a consequence of the experiment’s scale. With only 32 embedding values
+and a context of 16, the KV cache was too small for its memory advantage
+to matter, while the lost key/value capacity was large enough to be
+visible.</p>
+<p>This helped me separate two questions that I had been blending
+together:</p>
+<ul>
+<li>Does this architecture train more accurately in a tiny
+benchmark?</li>
+<li>Does this architecture make a large model cheaper to serve?</li>
+</ul>
+<p>GQA is mainly answering the second question. A small model can make
+the trade-off look unattractive because the fixed overheads and lost
+capacity are large relative to the total model. In a large model,
+reducing the KV cache can matter much more than the small loss in
+attention projection capacity.</p>
+<h2 id="what-changed-in-my-mental-model">What Changed in My Mental
+Model</h2>
+<p>The experiments did not produce one generally best architecture. The
+wider embedding model was the strongest run on this dataset, but that
+was not the point of the phase. The point was to stop treating
+architecture diagrams as a list of interchangeable parts with obvious
+effects.</p>
+<p>Context length changes what information can be available to
+attention, but its cost grows because positions compare with more
+positions. Embedding size gives each token representation more room, but
+increases the rest of the model’s matrix operations. Depth allows
+representations to be refined through more blocks, but the cost is
+sequential. Head count changes how a fixed embedding budget is divided.
+Activation and normalization choices may matter more at scales this
+experiment did not reach.</p>
+<p>RoPE showed me that training metrics and generation behavior can
+disagree for structural reasons. GQA showed me that parameter count and
+training speed do not capture an inference optimization whose main value
+is reducing cached state. The same code can therefore be evaluated from
+several different perspectives depending on whether I am asking about
+learning, generation, or serving.</p>
+<p>The other major change was methodological. I became more careful
+about what a result actually supported. A validation improvement does
+not automatically prove that a component is better. A flat curve may
+mean the change has no effect, or that the model is too small for the
+effect to appear. A slower run may be paying for more useful
+computation, or it may be spending time moving small pieces of data
+around.</p>
+<p>The experiments gave me enough concrete failures and near-ties to ask
+those questions against code and outputs rather than only against
+explanations from other people.</p>
+<h2 id="where-i-ended-up">Where I Ended Up</h2>
+<p>By the end of Phase 2, I could look at a transformer configuration
+and ask more specific questions about it. What information can each
+position access? How is the representation budget divided between heads?
+Is this change intended to improve optimization, model capacity,
+training throughput, or inference memory? What tensor shapes change, and
+what code has to compensate for that change?</p>
+<p>I also stopped assuming that the validation loss was the final judge.
+It was still the most convenient metric for comparing runs, but the
+generated text could expose a failure that the loss hid. The model’s
+behavior during sampling was part of the result, not just a
+demonstration added at the end.</p>
+<p>The next part of the project moved from changing the transformer
+architecture to changing how it trains. That brought a different set of
+questions: how learning rate schedules interact with weight decay, why
+Adam and AdamW are not the same thing, how dropout delays overfitting,
+and whether mixed precision can make training faster without changing
+what the model learns.</p>

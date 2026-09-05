@@ -318,5 +318,13 @@
         "_description": "Building a small GPT first with scalar Python and hand-written autograd, then in PyTorch, and reflecting on what made backpropagation, attention, and batching click.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20260904_learning_llms_2_architecture_variations",
+        "_title": "[Learning LLMs 2] Learning What Transformer Architecture Choices Actually Do",
+        "_createdAt": "2026-09-04T00:00:00.000Z",
+        "_description": "A learning journey through Phase 2: changing model capacity, normalization, positional encoding, and attention structure one experiment at a time.",
+        "_show": true,
+        "_archived": false
     }
 ]
