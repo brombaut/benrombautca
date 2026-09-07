@@ -1,5 +1,3 @@
-# What 13 Coding Agents Actually Look Like Inside
-
 Coding agents are everywhere. SWE-agent, OpenHands, Aider, Codex CLI, Gemini CLI, Cline, OpenCode, and the list keeps growing. They all promise to fix bugs, implement features, and navigate codebases autonomously. But how do they actually work under the hood? Are they all just "wrap an LLM in a ReAct loop"?
 
 To find out, this analysis cloned 13 open-source coding agent repositories and traced their architectures line by line. Not the READMEs, not the blog posts, the actual source code. Control loops, tool registrations, state management, context strategies, all pinned to specific files and commits.

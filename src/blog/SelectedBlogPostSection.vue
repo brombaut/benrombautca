@@ -1,9 +1,13 @@
 <template>
   <section id="selected-article">
-    <SectionHeader :title="selectedPost.title" icon="" :subtext="selectedPost.description" />
+    <div v-if="selectedPost.series" class="post-series">
+      {{ selectedPost.series.name }} <span class="post-series-part">&middot; Part {{ selectedPost.series.part }}</span>
+    </div>
+    <SectionHeader :title="selectedPost.displayTitle" icon="" :subtext="selectedPost.description" />
     <div class="meta-container">
       <div class="dates">
         Created {{ formatDate(selectedPost.createdAt) }}
+        &middot; {{ selectedPost.readingMinutes }} min read
       </div>
     </div>
     <div class="section-body">
@@ -64,6 +68,21 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  .post-series {
+    margin-bottom: 4px;
+    font-size: 0.85em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: $primaryDark;
+
+    .post-series-part {
+      font-weight: 600;
+      color: $onyx;
+      opacity: 0.75;
+    }
+  }
 
   .section-header {
     margin-bottom: 4px;

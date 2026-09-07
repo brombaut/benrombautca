@@ -15,6 +15,11 @@ interface BlogPostMeta {
   _archived: boolean
 }
 
+export interface BlogPostSeries {
+  readonly name: string,
+  readonly part: number
+}
+
 export interface BlogPost {
   readonly id: string,
   readonly title: string,
@@ -22,7 +27,54 @@ export interface BlogPost {
   readonly description: string,
   readonly body: string,
   readonly show: boolean,
-  readonly archived: boolean
+  readonly archived: boolean,
+  // Derived: the series a post belongs to, parsed from a "[Series N] " title prefix
+  readonly series: BlogPostSeries | null,
+  // Derived: the title with any series prefix removed
+  readonly displayTitle: string,
+  // Derived: estimated reading time in minutes, from the body word count
+  readonly readingMinutes: number,
+  // Derived: icon shown before the title, shared by every post in a series
+  readonly emoji: string
+}
+
+const SERIES_PREFIX = /^\[(.+?)\s+(\d+)\]\s*/;
+const WORDS_PER_MINUTE = 225;
+
+// Every post in a series shares its series icon
+const SERIES_EMOJI: { [name: string]: string } = {
+  "AI Experience": "🧭",
+  "AI Slop": "🧹",
+  "SWE-bench Architecture": "🏗️",
+  "Learning LLMs": "🧠",
+};
+
+// One-off posts that aren't part of a series can opt into their own icon
+const POST_EMOJI: { [id: string]: string } = {
+  "20260710_aiware_observability": "🔭",
+  "coding-agent-architectures": "🤖",
+};
+
+const DEFAULT_EMOJI = "📝";
+
+function parseSeries(title: string): BlogPostSeries | null {
+  const match = title.match(SERIES_PREFIX);
+  if (!match) return null;
+  return { name: match[1], part: Number(match[2]) };
+}
+
+function stripSeries(title: string): string {
+  return title.replace(SERIES_PREFIX, "");
+}
+
+function emojiFor(id: string, series: BlogPostSeries | null): string {
+  if (series && SERIES_EMOJI[series.name]) return SERIES_EMOJI[series.name];
+  return POST_EMOJI[id] || DEFAULT_EMOJI;
+}
+
+function readingMinutes(body: string): number {
+  const words = body.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
 }
 
 export class BlogPostsProxy {
@@ -51,6 +103,7 @@ export class BlogPostsProxy {
       });
     });
     const mapper = (dto: any): BlogPost => {
+      const series = parseSeries(dto._title);
       return {
         id: dto._id,
         title: dto._title,
@@ -59,6 +112,10 @@ export class BlogPostsProxy {
         body: dto._body,
         show: dto._show,
         archived: dto._archived,
+        series,
+        displayTitle: stripSeries(dto._title),
+        readingMinutes: readingMinutes(dto._body),
+        emoji: emojiFor(dto._id, series),
       };
     };
     this._blogPosts = merged.map(mapper);

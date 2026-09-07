@@ -1,5 +1,3 @@
-# [AI Slop 2] Eleven Families of AI Code Slop
-
 This is the second of two posts on AI code slop. The first covered why AI-generated code fails differently from human-written code, and why some traditional quality signals have started pointing the wrong direction. This one is the practical companion: what slop actually looks like, organized by the kind of damage it does.
 
 These families came from surveying 70+ AI code quality tools, selecting 42 for deep rule analysis, and cataloging 575 individual rules. Each family groups patterns by what they break in the codebase. The taxonomy is scoped to source code: process metadata, prose/docs slop, and security guardrails are real surfaces, but they are not top-level code-slop families here. Cross-language leakage is treated as part of Integrity / Fake-Done rather than as a separate family.

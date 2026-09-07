@@ -1,7 +1,3 @@
-<h1
-id="swe-bench-architecture-3-from-checklists-to-prose-verdicts-building-an-architectural-evaluation-pipeline">[SWE-bench
-Architecture 3] From Checklists to Prose Verdicts: Building an
-Architectural Evaluation Pipeline</h1>
 <p>This is the development story behind the architectural evaluation
 pipeline I’ve written about in two previous articles, one analyzing what
 Claude thinks is architecturally important, and another measuring how
@@ -160,7 +156,7 @@ was a reassuring signal.</p>
 concrete:</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>Model</th>
 <th>Checklist Score</th>
 <th>Holistic Score</th>
@@ -168,25 +164,25 @@ concrete:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Claude Code</td>
 <td>96.8%</td>
 <td>93.1%</td>
 <td>-3.7%</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Gold Standard</td>
 <td>99.5%</td>
 <td>92.1%</td>
 <td>-7.4%</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>OpenHands Claude 4</td>
 <td>96.4%</td>
 <td>87.0%</td>
 <td>-9.4%</td>
 </tr>
-<tr class="even">
+<tr>
 <td>SWE-Exp DeepSeek-V3</td>
 <td>96.3%</td>
 <td>85.6%</td>
@@ -363,34 +359,34 @@ numbers:</p>
 <col style="width: 42%" />
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>Axis</th>
 <th>Priority</th>
 <th>Assessment</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>WCS API Contract Conformance</td>
 <td>Primary</td>
 <td>Fully preserves the BaseLowLevelWCS interface contract. Method
 signature, input/output dimensionality, and delegation semantics are
 unchanged.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Wrapper Delegation Integrity</td>
 <td>Primary</td>
 <td>Maintains the three-step delegation pattern (expand, delegate,
 contract). Only the expansion step is modified; the delegation call and
 output contraction are untouched.</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Dimension Tracking Consistency</td>
 <td>Secondary</td>
 <td>No new instance attributes introduced. Computes dropped-dimension
 values on the fly using existing helpers.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Inverse Operation Symmetry</td>
 <td>Secondary</td>
 <td>Resolves the structural asymmetry between pixel_to_world_values and

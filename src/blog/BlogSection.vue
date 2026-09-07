@@ -15,10 +15,20 @@
           tabindex="0"
           @click="postClicked(post)"
           @keydown.enter="postClicked(post)">
-          <div class="post-title">{{ post.title }}</div>
-          <div class="post-meta">
+          <div class="post-top">
+            <span v-if="post.series" class="post-series">
+              {{ post.series.name }} <span class="post-series-part">&middot; Part {{ post.series.part }}</span>
+            </span>
             <span class="post-date">{{ formatDate(post.createdAt) }}</span>
-            <span v-if="post.description" class="post-description"> &middot; {{ post.description }}</span>
+          </div>
+          <h3 class="post-title">
+            <span class="post-emoji" aria-hidden="true">{{ post.emoji }}</span>
+            {{ post.displayTitle }}
+          </h3>
+          <p v-if="post.description" class="post-description">{{ post.description }}</p>
+          <div class="post-footer">
+            <span class="post-reading-time">{{ post.readingMinutes }} min read</span>
+            <span class="post-read-more">Read post &rarr;</span>
           </div>
         </div>
       </div>
@@ -99,7 +109,7 @@ export default defineComponent({
   }
 
   .year-group {
-    margin-bottom: 32px;
+    margin-bottom: 40px;
   }
 
   .year-label {
@@ -114,35 +124,120 @@ export default defineComponent({
   }
 
   .post-row {
-    padding: 14px 8px;
+    padding: 28px 20px 26px 20px;
     border-bottom: 1px solid $secondaryDark;
+    border-left: 3px solid transparent;
+    text-align: left;
     cursor: pointer;
-    transition: background-color 0.1s;
+    transition: background-color 0.15s, border-left-color 0.15s;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       background-color: $secondaryLight;
+      border-left-color: $primary;
+      outline: none;
 
       .post-title {
         color: $primary;
       }
+
+      .post-read-more {
+        opacity: 1;
+      }
     }
   }
 
-  .post-title {
-    font-size: 1.05em;
-    font-weight: 600;
-    color: $fontColor;
-    margin-bottom: 4px;
-    line-height: 1.4;
+  .post-top {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 0.78em;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
   }
 
-  .post-meta {
-    font-size: 0.82em;
+  .post-series {
+    font-weight: 700;
+    color: $primaryDark;
+  }
+
+  .post-series-part {
+    font-weight: 600;
     color: $onyx;
+    opacity: 0.75;
+  }
+
+  .post-date {
+    margin-left: auto;
+    color: $onyx;
+    opacity: 0.75;
+    white-space: nowrap;
+  }
+
+  .post-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    color: $fontColor;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+    transition: color 0.15s;
+  }
+
+  .post-emoji {
+    margin-right: 6px;
+    font-size: 0.95em;
+    // Emoji shouldn't shift with the title colour on hover
+    color: initial;
   }
 
   .post-description {
-    font-style: italic;
+    margin: 0;
+    max-width: 68ch;
+    font-size: 1em;
+    line-height: 1.65;
+    color: $onyx;
+  }
+
+  .post-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 12px;
+    margin-top: 14px;
+    font-size: 0.82em;
+    color: $onyx;
+    opacity: 0.85;
+  }
+
+  .post-read-more {
+    margin-left: auto;
+    color: $primary;
+    font-weight: 600;
+    opacity: 0;
+    transition: opacity 0.15s;
+    white-space: nowrap;
+  }
+}
+
+@media only screen and (max-width: $SMALL_DISPLAY_SIZE) {
+  #blog {
+    .post-row {
+      padding: 20px 12px 18px 12px;
+    }
+
+    .post-title {
+      font-size: 1.25em;
+    }
+
+    .post-description {
+      font-size: 0.92em;
+    }
+
+    .post-read-more {
+      display: none;
+    }
   }
 }
 </style>

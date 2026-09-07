@@ -1,5 +1,3 @@
-# [Learning LLMs 1] Learning How GPTs Work by Building One from Scratch
-
 I've wanted to properly understand how GPTs work for a while. I knew most of
 the words that come up when people explain transformers: embeddings, attention,
 softmax, residual connections, and so on. I had used PyTorch before and built a

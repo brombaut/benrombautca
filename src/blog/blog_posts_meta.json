@@ -3,7 +3,7 @@
         "_id": "20260305_learning_to_use_ai_coding_tools",
         "_title": "[AI Experience 1] My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025",
         "_createdAt": "2026-03-05",
-        "_description": "A personal timeline of how my habits and thinking shifted as I went from casually experimenting with AI chat tools to making them a core part of how I build software.",
+        "_description": "The first post in this series, covering early 2023 through the end of 2025. It is a rough timeline of how I went from pasting stack traces into ChatGPT out of curiosity to making AI tools a core part of how I build software. Not a guide or a set of recommendations, just an honest account of how the habits shifted.",
         "_show": true,
         "_archived": false
     },
@@ -243,7 +243,7 @@
         "_id": "coding-agent-architectures",
         "_title": "Inside 13 Coding Agents: Control Loops, Tools, and Tradeoffs",
         "_createdAt": "2026-03-19",
-        "_description": "A source-code-level analysis of 13 open-source coding agents, comparing their control loops, tool sets, state management, and architectural tradeoffs.",
+        "_description": "Coding agents all promise roughly the same thing, so I wanted to know whether they are all just an LLM wrapped in a ReAct loop. This analysis cloned 13 open-source agents and traced their control loops, tool registrations, state management, and context strategies through the actual source code, not the READMEs. They are not all ReAct loops, and the design space is wider than it looks from the outside.",
         "_show": true,
         "_archived": false
     },
@@ -251,7 +251,7 @@
         "_id": "20260319_claude_architectural_rubrics",
         "_title": "[SWE-bench Architecture 2] What Does Claude Think Is Architecturally Important?",
         "_createdAt": "2026-03-27T00:00:00.000Z",
-        "_description": "Analyzing 500 AI-generated architectural rubrics across SWE-bench Verified to see what a frontier model actually values in code architecture.",
+        "_description": "I wanted to know what a frontier model actually values in code architecture when it is looking at a real codebase with a real problem, not answering a generic prompt about best practices. So I had Claude Code generate 500 architectural rubrics, one for every instance in SWE-bench Verified, then analyzed all of them to see which structural properties it reaches for and how much they vary by repo.",
         "_show": true,
         "_archived": false
     },
@@ -259,7 +259,7 @@
         "_id": "20260320_swebench_architectural_complexity",
         "_title": "[SWE-bench Architecture 1] Most of SWE-bench Verified Doesn't Require Deep Architectural Understanding",
         "_createdAt": "2026-03-26T00:00:00.000Z",
-        "_description": "Evaluating all 500 SWE-bench Verified instances for architectural complexity. 62% are trivial or low, and reasoning coordination consistently exceeds changes coordination.",
+        "_description": "How architecturally demanding is SWE-bench Verified, really? I had Claude Code evaluate all 500 instances for how much codebase-specific architectural understanding a correct fix would require. 62% came back trivial or low, which says something about what the benchmark is actually measuring.",
         "_show": true,
         "_archived": false
     },
@@ -267,7 +267,7 @@
         "_id": "20260409_from_checklists_to_prose_verdicts",
         "_title": "[SWE-bench Architecture 3] From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline",
         "_createdAt": "2026-04-09T00:00:00.000Z",
-        "_description": "The development story behind 12 experiments building an AI-powered architectural evaluation pipeline, from brittle checklist rubrics to prose-based verdicts.",
+        "_description": "The other two articles in this series describe what the architectural evaluation pipeline produced. This one is the development story: 12 experiments, what broke along the way, and how the design moved from brittle rubric checklists to prose verdicts. The question stayed the same throughout, which is whether an agent can infer what architecturally good means for a codebase and then judge a patch against it.",
         "_show": true,
         "_archived": false
     },
@@ -275,7 +275,7 @@
         "_id": "20260401_ai_tools_q1_2026",
         "_title": "[AI Experience 2] My Experience Learning to Use AI for Software Development: Q1 2026",
         "_createdAt": "2026-04-17T00:00:00.000Z",
-        "_description": "Going deeper with Claude Code, building an observability tool, trying agent command centers, and discovering that most new tools don't stick.",
+        "_description": "Q1 2026 was not about adopting anything new, it was about going deeper with Claude Code: running several sessions at once in tmux, building an observability tool for my own agent runs, and trying a few agent command centers. Most of the new tools did not stick, and the post is honest about which ones and why.",
         "_show": true,
         "_archived": false
     },
@@ -283,7 +283,7 @@
         "_id": "20260626_ai_slop_phase_transition",
         "_title": "[AI Slop 1] When Code Is Cheaper to Produce Than to Justify",
         "_createdAt": "2026-06-26T00:00:00.000Z",
-        "_description": "Why AI-generated code changes the economics of software quality, inverting old quality signals and forcing teams toward recurring cleanup systems.",
+        "_description": "After a few months of researching how AI-generated code fails, the most important finding was not a new category of defect. It is that when code becomes cheaper to produce than to justify, old quality signals start pointing the wrong way and Chesterton's Fence stops holding. This post covers that shift and what teams seem to be converging on in response.",
         "_show": true,
         "_archived": false
     },
@@ -291,7 +291,7 @@
         "_id": "20260626_ai_slop_eleven_families",
         "_title": "[AI Slop 2] Eleven Families of AI Code Slop",
         "_createdAt": "2026-06-27T00:00:00.000Z",
-        "_description": "A practical taxonomy of AI-generated code slop, from hygiene debris and annotation noise to fake-done implementations, weak tests, type escape hatches, and scope creep.",
+        "_description": "The practical companion to the first slop post: what AI code slop actually looks like, organized into eleven families by the kind of damage each one does. The taxonomy came from surveying 70+ AI code quality tools, analyzing 42 of them in depth, and cataloging 575 individual rules. The families run from hygiene debris and annotation noise to fake-done implementations and naming drift.",
         "_show": true,
         "_archived": false
     },
@@ -299,7 +299,7 @@
         "_id": "20260701_ai_tools_q2_2026",
         "_title": "[AI Experience 3] My Experience Learning to Use AI for Software Development: Q2 2026",
         "_createdAt": "2026-07-01T00:00:00.000Z",
-        "_description": "Codex becoming my daily driver, custom research and summary workflows, context management, comprehension debt, and the agent loop around the code.",
+        "_description": "Q2 was less about adopting a new tool and more about which habits survived once the novelty wore off. Codex became my daily driver, Claude Code stayed for the heavier work, and context management turned into the thing I think about constantly. Also covers comprehension debt, the code that ships without anyone really understanding it.",
         "_show": true,
         "_archived": false
     },
@@ -307,7 +307,7 @@
         "_id": "20260710_aiware_observability",
         "_title": "AIware Observability: Monitoring and Understanding AI Systems",
         "_createdAt": "2026-07-10T00:00:00.000Z",
-        "_description": "Operational and cognitive observability for AIware, from ordinary metrics and traces to reasoning path observability with Watson.",
+        "_description": "Traditional observability tells you that an agent was slow or expensive, but not why it decided what it did. This post works through what breaks when you point ordinary metrics, logs, and traces at LLM-powered agents, and what cognitive observability adds on top. Based on my Watson paper and the AIware Leadership Bootcamp slides, rewritten for a general audience.",
         "_show": true,
         "_archived": false
     },

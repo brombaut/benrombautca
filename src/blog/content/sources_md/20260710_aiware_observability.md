@@ -1,5 +1,3 @@
-# AIware Observability: Monitoring and Understanding AI Systems
-
 The evolution of software development has brought us from measuring code quality by "WTFs per minute" during code review to a new era where AI agents make decisions on the fly. That shift changes what it means to observe a system.
 
 This post is based on my paper [Watson: A Cognitive Observability Framework for the Reasoning of LLM-Powered Agents](https://www.arxiv.org/abs/2411.03455) and the related [AIware Observability slides](publications/202411_aiware_bootcamp_observability_for_pdf.pdf) from the AIware Leadership Bootcamp 2024 and Mini Bootcamp 2025. The goal here is to turn that material into a more accessible blog-form explanation of why AIware needs observability beyond ordinary logs, traces, and metrics.

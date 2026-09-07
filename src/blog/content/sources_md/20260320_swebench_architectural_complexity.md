@@ -1,5 +1,3 @@
-# [SWE-bench Architecture 1] Most of SWE-bench Verified Doesn't Require Deep Architectural Understanding
-
 I wanted to know how architecturally demanding SWE-bench Verified actually is. Not whether the problems are *hard* in general, but specifically: how much do you need to understand about a codebase's architecture to solve them?
 
 So I had Claude Code with Opus 4.6 evaluate all 500 instances in SWE-bench Verified. For each one, the model explored the repository, examined the problem, and rendered a verdict: how much codebase-specific architectural understanding would a developer need to produce a correct fix? The verdicts range from `trivial` (fix is derivable from the changed file alone using general programming knowledge) to `expert` (requires comprehensive understanding of the system's architecture, both deep structural knowledge and wide exploration).

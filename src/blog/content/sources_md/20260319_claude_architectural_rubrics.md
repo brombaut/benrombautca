@@ -1,5 +1,3 @@
-# [SWE-bench Architecture 2] What Does Claude Think Is Architecturally Important?
-
 I wanted to know what a frontier model actually values when it looks at code architecture. Not what it says in a generic prompt about "best practices," but what it reaches for when it's staring at a real codebase with a real problem to solve.
 
 So I had Claude Code with Opus 4.6 generate 500 architectural rubrics, one for every instance in SWE-bench Verified. Each rubric required the model to explore a codebase, identify its architectural patterns, and decide which structural properties matter most for evaluating a patch. Then I had all 500 parsed and analyzed to see what came out.

@@ -1,5 +1,3 @@
-# [Learning LLMs 2] Learning What Transformer Architecture Choices Actually Do
-
 The first phase of my LLM learning project ended with a small GPT that I could
 follow from tokenization through backpropagation. I understood the basic pieces
 well enough to change them, but I still had a fairly static picture of the
