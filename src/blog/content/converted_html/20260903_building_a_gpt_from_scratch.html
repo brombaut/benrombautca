@@ -11,7 +11,7 @@ Way</a>, which builds a small GPT in TypeScript without using a machine
 learning framework. I followed the same general path in Python, first
 with a version where every value in the model was an individual scalar,
 and then with a more normal PyTorch implementation. That PyTorch
-baseline was the final part of Phase 1, rather than the start of the
+baseline was the last thing I built here, rather than the start of the
 later architecture experiments.</p>
 <p>The model I ended up with was very small and generated simple
 sentences like <code>the sheep is by the tent</code>. That obviously
@@ -124,9 +124,8 @@ there. If the layer has nothing useful to add yet, the original values
 still have a direct path through the model. The same shortcut also gives
 gradients a cleaner path backward.</p>
 <h2 id="attention-took-the-longest">Attention Took the Longest</h2>
-<p>Attention was the main thing I wanted to understand during this
-phase, and it was also the part I spent the most time going back
-over.</p>
+<p>Attention was the main thing I wanted to understand going in, and it
+was also the part I spent the most time going back over.</p>
 <p>I had seen queries, keys, and values explained a number of times
 before. The names are memorable, but I still found it difficult to
 picture what was actually being calculated. What helped was separating
@@ -228,10 +227,10 @@ model, a smaller specialized dataset, and gentler updates. The tricky
 parts were keeping the original tokenizer and making sure the model
 didn’t overwrite too much of what it had already learned.</p>
 <h2 id="rebuilding-it-in-pytorch">Rebuilding It in PyTorch</h2>
-<p>The last part of this phase was moving the model to PyTorch. This is
-where all of the scalar work started to feel worthwhile. I wasn’t
-looking at a completely different implementation anymore. I could
-recognize the same operations, just applied to many values at once.</p>
+<p>The last thing I did was move the model to PyTorch. This is where all
+of the scalar work started to feel worthwhile. I wasn’t looking at a
+completely different implementation anymore. I could recognize the same
+operations, just applied to many values at once.</p>
 <p>The part I struggled with now was tensor shapes. The PyTorch model
 trained on 64 sequences at a time, with 16 token positions in each
 sequence. Each token position had 32 features, split into four attention
@@ -295,9 +294,9 @@ build the calculation graph during the forward pass, clear gradients
 left over from the previous step, walk the graph backward, and then
 update the weights.</p>
 <h2 id="where-i-ended-up">Where I Ended Up</h2>
-<p>By the end of this phase, I still wouldn’t claim to understand every
-detail of transformers. There were plenty of smaller things I had to
-revisit, especially around tensor dimensions, normalization, and how the
+<p>By the end of it, I still wouldn’t claim to understand every detail
+of transformers. There were plenty of smaller things I had to revisit,
+especially around tensor dimensions, normalization, and how the
 attention heads were arranged in memory.</p>
 <p>But I could now follow a token through the model. I understood how
 its ID chose an embedding, how attention mixed information from earlier
@@ -313,5 +312,5 @@ updates.</p>
 <p>The final model wasn’t interesting because of what it could generate.
 It was interesting because I understood enough of it to start changing
 things and have some idea of what those changes meant. That became the
-goal of the next phase: varying the model’s size and architecture one
+goal of what I did next: varying the model’s size and architecture one
 part at a time and seeing what actually happened.</p>

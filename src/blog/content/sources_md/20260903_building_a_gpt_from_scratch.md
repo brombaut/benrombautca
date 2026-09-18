@@ -6,12 +6,12 @@ full path from some input text to the model updating one of its weights, my
 understanding would get hand-wavy pretty quickly.
 
 So I decided to go back through it from the beginning. I worked through Ian
-Bull's [LLMs, the Hard Way](https://llms.ianbull.com/), which builds a small GPT
-in TypeScript without using a machine learning framework. I followed the same
-general path in Python, first with a version where every value in the model was
-an individual scalar, and then with a more normal PyTorch implementation. That
-PyTorch baseline was the final part of Phase 1, rather than the start of the
-later architecture experiments.
+Bull's [LLMs, the Hard Way](https://llms.ianbull.com/), which builds a small
+GPT in TypeScript without using a machine learning framework. I followed the
+same general path in Python, first with a version where every value in the
+model was an individual scalar, and then with a more normal PyTorch
+implementation. That PyTorch baseline was the last thing I built here, rather
+than the start of the later architecture experiments.
 
 The model I ended up with was very small and generated simple sentences like
 `the sheep is by the tent`. That obviously isn't useful on its own, but model
@@ -143,8 +143,8 @@ model. The same shortcut also gives gradients a cleaner path backward.
 
 ## Attention Took the Longest
 
-Attention was the main thing I wanted to understand during this phase, and it
-was also the part I spent the most time going back over.
+Attention was the main thing I wanted to understand going in, and it was also
+the part I spent the most time going back over.
 
 I had seen queries, keys, and values explained a number of times before. The
 names are memorable, but I still found it difficult to picture what was
@@ -262,8 +262,8 @@ it had already learned.
 
 ## Rebuilding It in PyTorch
 
-The last part of this phase was moving the model to PyTorch. This is where all
-of the scalar work started to feel worthwhile. I wasn't looking at a completely
+The last thing I did was move the model to PyTorch. This is where all of the
+scalar work started to feel worthwhile. I wasn't looking at a completely
 different implementation anymore. I could recognize the same operations, just
 applied to many values at once.
 
@@ -345,7 +345,7 @@ previous step, walk the graph backward, and then update the weights.
 
 ## Where I Ended Up
 
-By the end of this phase, I still wouldn't claim to understand every detail of
+By the end of it, I still wouldn't claim to understand every detail of
 transformers. There were plenty of smaller things I had to revisit, especially
 around tensor dimensions, normalization, and how the attention heads were
 arranged in memory.
@@ -362,7 +362,7 @@ The optimizer was taking the gradients stored on the parameters and turning
 them into small updates.
 
 The final model wasn't interesting because of what it could generate. It was
-interesting because I understood enough of it to start changing things and have
-some idea of what those changes meant. That became the goal of the next phase:
-varying the model's size and architecture one part at a time and seeing what
-actually happened.
+interesting because I understood enough of it to start changing things and
+have some idea of what those changes meant. That became the goal of what I did
+next: varying the model's size and architecture one part at a time and seeing
+what actually happened.

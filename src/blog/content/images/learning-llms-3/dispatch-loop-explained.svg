@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1180" viewBox="0 0 1600 1180">
+  <defs><marker id="agrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker><marker id="agreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker><marker id="aamber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker><marker id="apurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker><marker id="ateal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker><marker id="afaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker></defs>
+  <rect width="1600" height="1180" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1150" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Loop over tokens, or loop over experts</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Same routing decisions, two ways to execute them. Only one uses the hardware well.</text>
+  <rect x="70" y="200" width="1460" height="250" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">THE OBVIOUS VERSION</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Loop over tokens and look up each one's expert</text>
+  <rect x="110" y="340" width="88" height="64" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="154.0" y="379.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">t0</text>
+  <path d="M198 372 H234" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="238" y="340" width="110" height="64" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="293.0" y="379.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="middle">call</text>
+  <rect x="345" y="340" width="88" height="64" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="389.0" y="379.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="middle">t1</text>
+  <path d="M433 372 H469" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="473" y="340" width="110" height="64" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="528.0" y="379.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="middle">call</text>
+  <rect x="580" y="340" width="88" height="64" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="624.0" y="379.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#4b3193" text-anchor="middle">t2</text>
+  <path d="M668 372 H704" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="708" y="340" width="110" height="64" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="763.0" y="379.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="middle">call</text>
+  <rect x="815" y="340" width="88" height="64" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="859.0" y="379.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#0a5f59" text-anchor="middle">t3</text>
+  <path d="M903 372 H939" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="943" y="340" width="110" height="64" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="998.0" y="379.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="middle">call</text>
+  <rect x="1050" y="340" width="88" height="64" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1094.0" y="379.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="middle">t4</text>
+  <path d="M1138 372 H1174" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="1178" y="340" width="110" height="64" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="1233.0" y="379.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="middle">call</text>
+  <text x="1400" y="360" font-family="Noto Sans, sans-serif" font-size="30" font-weight="700" fill="#64718a" text-anchor="middle">… 1,024</text>
+  <text x="1400" y="396" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="middle">calls per layer</text>
+  <rect x="70" y="490" width="1460" height="630" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="542" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">THE INSIDE-OUT VERSION</text>
+  <text x="110" y="587" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Loop over experts and gather their tokens</text>
+  <text x="110" y="645" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">tokens in order</text>
+  <rect x="110" y="665" width="165" height="44" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="192.5" y="694.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="middle">row 0</text>
+  <rect x="110" y="717" width="165" height="44" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="192.5" y="746.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">row 1</text>
+  <rect x="110" y="769" width="165" height="44" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="192.5" y="798.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#4b3193" text-anchor="middle">row 2</text>
+  <rect x="110" y="821" width="165" height="44" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="192.5" y="850.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="middle">row 3</text>
+  <rect x="110" y="873" width="165" height="44" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="192.5" y="902.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="middle">row 4</text>
+  <rect x="110" y="925" width="165" height="44" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="192.5" y="954.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">row 5</text>
+  <rect x="110" y="977" width="165" height="44" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="192.5" y="1006.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="middle">row 6</text>
+  <rect x="110" y="1029" width="165" height="44" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="192.5" y="1058.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#4b3193" text-anchor="middle">row 7</text>
+  <text x="400" y="870" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#64718a" text-anchor="middle">gather</text>
+  <path d="M330 895 H470" fill="none" stroke="#7d8ba3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="510" y="665" width="230" height="88" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="625.0" y="707.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1a6b45" text-anchor="middle">expert 0</text>
+  <text x="625.0" y="735.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">rows 0, 3, 6</text>
+  <path d="M740 709 H806" fill="none" stroke="#7d8ba3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="810" y="665" width="190" height="88" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="905.0" y="717.05" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a6b45" text-anchor="middle">one call</text>
+  <rect x="510" y="773" width="230" height="88" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="625.0" y="815.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="middle">expert 1</text>
+  <text x="625.0" y="843.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">rows 1, 5</text>
+  <path d="M740 817 H806" fill="none" stroke="#7d8ba3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="810" y="773" width="190" height="88" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="905.0" y="825.05" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#8a5905" text-anchor="middle">one call</text>
+  <rect x="510" y="881" width="230" height="88" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="625.0" y="923.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#4b3193" text-anchor="middle">expert 2</text>
+  <text x="625.0" y="951.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">rows 2, 7</text>
+  <path d="M740 925 H806" fill="none" stroke="#7d8ba3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="810" y="881" width="190" height="88" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="905.0" y="933.05" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#4b3193" text-anchor="middle">one call</text>
+  <rect x="510" y="989" width="230" height="88" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="625.0" y="1031.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#0a5f59" text-anchor="middle">expert 3</text>
+  <text x="625.0" y="1059.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">row 4</text>
+  <path d="M740 1033 H806" fill="none" stroke="#7d8ba3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="810" y="989" width="190" height="88" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="905.0" y="1041.05" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#0a5f59" text-anchor="middle">one call</text>
+  <text x="1140" y="870" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#64718a" text-anchor="middle">scatter</text>
+  <path d="M1070 895 H1210" fill="none" stroke="#7d8ba3" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <text x="1250" y="645" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">results, same rows</text>
+  <rect x="1250" y="665" width="165" height="44" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1332.5" y="694.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="middle">row 0</text>
+  <rect x="1250" y="717" width="165" height="44" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1332.5" y="746.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">row 1</text>
+  <rect x="1250" y="769" width="165" height="44" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1332.5" y="798.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#4b3193" text-anchor="middle">row 2</text>
+  <rect x="1250" y="821" width="165" height="44" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1332.5" y="850.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="middle">row 3</text>
+  <rect x="1250" y="873" width="165" height="44" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="1332.5" y="902.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="middle">row 4</text>
+  <rect x="1250" y="925" width="165" height="44" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1332.5" y="954.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">row 5</text>
+  <rect x="1250" y="977" width="165" height="44" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1332.5" y="1006.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="middle">row 6</text>
+  <rect x="1250" y="1029" width="165" height="44" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1332.5" y="1058.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#4b3193" text-anchor="middle">row 7</text>
+  <text x="800" y="1155" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="middle">The mask that selected the rows is the same mask that puts the results back, so every row is filled exactly once.</text>
+</svg>

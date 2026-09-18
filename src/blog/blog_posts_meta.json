@@ -323,7 +323,15 @@
         "_id": "20260904_learning_llms_2_architecture_variations",
         "_title": "[Learning LLMs 2] Learning What Transformer Architecture Choices Actually Do",
         "_createdAt": "2026-09-04T00:00:00.000Z",
-        "_description": "A learning journey through Phase 2: changing model capacity, normalization, positional encoding, and attention structure one experiment at a time.",
+        "_description": "Changing model capacity, normalization, positional encoding, and attention structure one experiment at a time, and what each change actually did.",
+        "_show": false,
+        "_archived": false
+    },
+    {
+        "_id": "20260918_learning_llms_3_mixture_of_experts",
+        "_title": "[Learning LLMs 3] What a Mixture of Experts Layer Actually Costs",
+        "_createdAt": "2026-09-18T00:00:00.000Z",
+        "_description": "Implementing sparse Mixture of Experts routing: a one-line bug that silently froze the router, why sparse computation was not faster, and what an auxiliary load-balancing loss fixes.",
         "_show": false,
         "_archived": false
     }

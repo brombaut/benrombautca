@@ -1,14 +1,15 @@
-The first phase of my LLM learning project ended with a small GPT that I could
-follow from tokenization through backpropagation. I understood the basic pieces
-well enough to change them, but I still had a fairly static picture of the
-architecture. I knew what the context window, embedding size, attention heads,
-layers, activation function, and positional embeddings were supposed to do. I
-didn't yet have much intuition for what would happen if I changed one of them.
+My last post ended with a small GPT that I could follow from tokenization
+through backpropagation. I understood the basic pieces well enough to change
+them, but I still had a fairly static picture of the architecture. I knew what
+the context window, embedding size, attention heads, layers, activation
+function, and positional embeddings were supposed to do. I didn't yet have
+much intuition for what would happen if I changed one of them.
 
-That became the focus of Phase 2. I kept the training loop as stable as I could
-and changed one architectural choice at a time. The goal wasn't to find the
-best small language model. It was to make the relationship between a piece of
-the implementation and the resulting behavior less abstract.
+That became the focus of the next set of experiments. I kept the training loop
+as stable as I could and changed one architectural choice at a time. The goal
+wasn't to find the best small language model. It was to make the relationship
+between a piece of the implementation and the resulting behavior less
+abstract.
 
 The experiments ran on Tiny Shakespeare, a character-level dataset with a
 65-character vocabulary. The original word-level children's-book dataset was
@@ -26,7 +27,7 @@ like `the shall`.
 That was a much better starting point than a model that did everything well.
 There was room for changes to be visible.
 
-![Validation loss curves for the Phase 2 architecture experiments](images/learning-llms-2/architecture-variation-loss-curves.png)
+![Validation loss curves for the architecture experiments](images/learning-llms-2/architecture-variation-loss-curves.png)
 
 The curves made the comparisons easier to reason about than a table of final
 losses alone. Some changes separated early and stayed separated, while others
@@ -104,9 +105,9 @@ showed that the number of heads cannot be interpreted independently from the
 embedding size. Changing the head count changes how the same total information
 budget is divided.
 
-That was a recurring pattern in this phase. A configuration value often looked
-like one isolated knob, but it was really connected to several tensor shapes
-and computational costs elsewhere in the model.
+That was a recurring pattern here. A configuration value often looked like one
+isolated knob, but it was really connected to several tensor shapes and
+computational costs elsewhere in the model.
 
 ## ReLU and GELU
 
@@ -222,8 +223,8 @@ content.
 
 The repeated newline then reinforced itself on the next generation step.
 
-This was probably the most important evaluation lesson of the phase. A good
-teacher-forced validation loss does not guarantee useful autoregressive
+This was probably the most important lesson about evaluation I took away. A
+good teacher-forced validation loss does not guarantee useful autoregressive
 generation. During validation, the model is given the correct previous
 characters. During generation, it has to live with its own outputs. Those are
 different situations, and a model can look healthy in one while failing in the
@@ -237,11 +238,11 @@ architectural changes.
 
 ## GQA and the Difference Between Training and Inference
 
-The final Phase 2 experiment was grouped-query attention. Standard multi-head
-attention gave every query head its own key and value head. GQA kept a separate
-query for each of the four heads, but shared the keys and values in groups. In
-this run, two query heads shared one key/value pair and the other two shared
-another.
+The last experiment in this set was grouped-query attention. Standard
+multi-head attention gave every query head its own key and value head. GQA
+kept a separate query for each of the four heads, but shared the keys and
+values in groups. In this run, two query heads shared one key/value pair and
+the other two shared another.
 
 The question that made GQA click was: does every query head really need its own
 keys and values?
@@ -287,8 +288,8 @@ matter much more than the small loss in attention projection capacity.
 
 The experiments did not produce one generally best architecture. The wider
 embedding model was the strongest run on this dataset, but that was not the
-point of the phase. The point was to stop treating architecture diagrams as a
-list of interchangeable parts with obvious effects.
+point. The point was to stop treating architecture diagrams as a list of
+interchangeable parts with obvious effects.
 
 Context length changes what information can be available to attention, but its
 cost grows because positions compare with more positions. Embedding size gives
@@ -318,11 +319,12 @@ other people.
 
 ## Where I Ended Up
 
-By the end of Phase 2, I could look at a transformer configuration and ask more
-specific questions about it. What information can each position access? How is
-the representation budget divided between heads? Is this change intended to
-improve optimization, model capacity, training throughput, or inference memory?
-What tensor shapes change, and what code has to compensate for that change?
+By the end of these experiments, I could look at a transformer configuration
+and ask more specific questions about it. What information can each position
+access? How is the representation budget divided between heads? Is this change
+intended to improve optimization, model capacity, training throughput, or
+inference memory? What tensor shapes change, and what code has to compensate
+for that change?
 
 I also stopped assuming that the validation loss was the final judge. It was
 still the most convenient metric for comparing runs, but the generated text
