@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080">
+  <defs><marker id="agrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker><marker id="agreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker><marker id="aamber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker><marker id="apurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker><marker id="ateal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker><marker id="afaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker></defs>
+  <rect width="1600" height="1080" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1050" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Where the gradient stops</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Selecting an expert is a hard choice. The weight multiplied into its output is the router's only way back.</text>
+  <rect x="70" y="200" width="705" height="760" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">WHAT I WROTE</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">softmax after the selection</text>
+  <rect x="260" y="330" width="280" height="66" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="400.0" y="371.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">router scores</text>
+  <path d="M400 396 V432" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="260" y="436" width="280" height="72" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="400.0" y="470.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#64718a" text-anchor="middle">top-k picks 1</text>
+  <text x="400.0" y="498.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">not differentiable</text>
+  <path d="M400 508 V544" fill="none" stroke="#b6c1d2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="260" y="548" width="280" height="72" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="400.0" y="582.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#64718a" text-anchor="middle">softmax over 1</text>
+  <text x="400.0" y="610.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">always returns 1.0</text>
+  <path d="M400 620 V656" fill="none" stroke="#b6c1d2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="260" y="660" width="280" height="72" rx="16" fill="#f1f4f9" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="400.0" y="694.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#64718a" text-anchor="middle">weight = 1.0</text>
+  <text x="400.0" y="722.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">a constant</text>
+  <path d="M400 732 V768" fill="none" stroke="#b6c1d2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#afaint)"/>
+  <rect x="260" y="772" width="280" height="66" rx="16" fill="#eef1f6" stroke="#7d8ba3" stroke-width="3"/>
+  <text x="400.0" y="813.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#64718a" text-anchor="middle">expert output</text>
+  <path d="M545 805 H660 V733" fill="none" stroke="#b6c1d2" stroke-width="4" stroke-linecap="round" stroke-dasharray="9 9"/>
+  <circle cx="660" cy="700" r="26" fill="#ffffff" stroke="#b6c1d2" stroke-width="3.5"/><path d="M647.52 687.52 L672.48 712.48 M672.48 687.52 L647.52 712.48" stroke="#b6c1d2" stroke-width="4" stroke-linecap="round"/>
+  <text x="660" y="632" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="middle">gradient</text>
+  <text x="660" y="660" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="middle">stops here</text>
+  <text x="400" y="900" font-family="Noto Sans, sans-serif" font-size="26" font-weight="700" fill="#64718a" text-anchor="middle">0.000e+00 largest gradient</text>
+  <text x="400" y="932" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="middle">0 of 128 router entries nonzero</text>
+  <rect x="825" y="200" width="705" height="760" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">WHAT IT SHOULD BE</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">softmax before the selection</text>
+  <rect x="1015" y="330" width="280" height="66" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1155.0" y="371.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">router scores</text>
+  <path d="M1155 396 V432" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="1015" y="436" width="280" height="72" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1155.0" y="470.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1a6b45" text-anchor="middle">softmax over all 4</text>
+  <text x="1155.0" y="498.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">differentiable</text>
+  <path d="M1155 508 V544" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="1015" y="548" width="280" height="72" rx="16" fill="#eef1f6" stroke="#7d8ba3" stroke-width="3"/>
+  <text x="1155.0" y="582.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#64718a" text-anchor="middle">top-k picks 1</text>
+  <text x="1155.0" y="610.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">of the probabilities</text>
+  <path d="M1155 620 V656" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="1015" y="660" width="280" height="72" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1155.0" y="694.0" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1a6b45" text-anchor="middle">weight varies</text>
+  <text x="1155.0" y="722.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">moves with the scores</text>
+  <path d="M1155 732 V768" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agrey)"/>
+  <rect x="1015" y="772" width="280" height="66" rx="16" fill="#eef1f6" stroke="#7d8ba3" stroke-width="3"/>
+  <text x="1155.0" y="813.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#64718a" text-anchor="middle">expert output</text>
+  <path d="M1300 805 H1330 V363 H1303" fill="none" stroke="#2f9e68" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#agreen)"/>
+  <text x="1356" y="560" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a6b45" text-anchor="start">gradient</text>
+  <text x="1356" y="588" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a6b45" text-anchor="start">reaches</text>
+  <text x="1356" y="616" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a6b45" text-anchor="start">the router</text>
+  <text x="1155" y="900" font-family="Noto Sans, sans-serif" font-size="26" font-weight="700" fill="#1a6b45" text-anchor="middle">2.771e-03 largest gradient</text>
+  <text x="1155" y="932" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="middle">128 of 128 router entries nonzero</text>
+</svg>

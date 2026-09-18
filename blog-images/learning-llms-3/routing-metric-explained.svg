@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1140" viewBox="0 0 1600 1140">
+  <defs><marker id="agrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker><marker id="agreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker><marker id="aamber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker><marker id="apurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker><marker id="ateal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker><marker id="afaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker></defs>
+  <rect width="1600" height="1140" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1110" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Two ways to count the same routing</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">With two experts per token, 1,024 tokens produce 2,048 assignments. The denominator changes the story.</text>
+  <rect x="70" y="200" width="705" height="480" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">SHARE OF ASSIGNMENTS</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">what my logger reported</text>
+  <rect x="110" y="320" width="625" height="54" rx="27.0" fill="#eef1f6"/>
+  <rect x="110" y="320" width="218.75" height="54" rx="27.0" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="110" y="412" font-family="Noto Sans, sans-serif" font-size="40" font-weight="700" fill="#8a5905" text-anchor="start">0.35</text>
+  <text x="215" y="412" font-family="Noto Sans, sans-serif" font-size="25" font-weight="400" fill="#64718a" text-anchor="start">of 2,048 assignments</text>
+  <text x="110" y="480" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">Looks like a fair share of four experts.</text>
+  <text x="110" y="530" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">No expert can pass 0.50 here: it cannot be</text>
+  <text x="110" y="562" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">picked twice for the same token, so the</text>
+  <text x="110" y="594" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">metric flattens everything by construction.</text>
+  <rect x="825" y="200" width="705" height="480" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">SHARE OF TOKENS</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">the same expert, counted per token</text>
+  <rect x="865" y="320" width="625" height="54" rx="27.0" fill="#eef1f6"/>
+  <rect x="865" y="320" width="437.5" height="54" rx="27.0" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="865" y="412" font-family="Noto Sans, sans-serif" font-size="40" font-weight="700" fill="#4b3193" text-anchor="start">70%</text>
+  <text x="985" y="412" font-family="Noto Sans, sans-serif" font-size="25" font-weight="400" fill="#64718a" text-anchor="start">of 1,024 tokens</text>
+  <text x="865" y="480" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">The same expert, seen by most of the batch.</text>
+  <text x="865" y="530" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">This is the number I should have been</text>
+  <text x="865" y="562" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">logging: it says how much of the data each</text>
+  <text x="865" y="594" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">expert actually handles.</text>
+  <rect x="70" y="720" width="1460" height="340" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="772" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">THE SECOND BLOCK, CONVERTED</text>
+  <text x="110" y="817" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Token selection rates before load balancing, all four experts</text>
+  <text x="110" y="884" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">expert 0</text>
+  <rect x="290" y="862" width="1040" height="32" rx="16.0" fill="#eef1f6"/>
+  <rect x="290" y="862" width="889.1999999999999" height="32" rx="16.0" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1490" y="886" font-family="Noto Sans, sans-serif" font-size="26" font-weight="700" fill="#4b3193" text-anchor="end">85.5%</text>
+  <text x="110" y="932" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">expert 1</text>
+  <rect x="290" y="910" width="1040" height="32" rx="16.0" fill="#eef1f6"/>
+  <rect x="290" y="910" width="162.24" height="32" rx="16.0" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1490" y="934" font-family="Noto Sans, sans-serif" font-size="26" font-weight="700" fill="#8a5905" text-anchor="end">15.6%</text>
+  <text x="110" y="980" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">expert 2</text>
+  <rect x="290" y="958" width="1040" height="32" rx="16.0" fill="#eef1f6"/>
+  <rect x="290" y="958" width="942.2399999999999" height="32" rx="16.0" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1490" y="982" font-family="Noto Sans, sans-serif" font-size="26" font-weight="700" fill="#4b3193" text-anchor="end">90.6%</text>
+  <text x="110" y="1028" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="start">expert 3</text>
+  <rect x="290" y="1006" width="1040" height="32" rx="16.0" fill="#eef1f6"/>
+  <rect x="290" y="1006" width="86.32000000000001" height="32" rx="16.0" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1490" y="1030" font-family="Noto Sans, sans-serif" font-size="26" font-weight="700" fill="#8a5905" text-anchor="end">8.3%</text>
+</svg>
