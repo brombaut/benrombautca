@@ -334,5 +334,13 @@
         "_description": "Implementing sparse Mixture of Experts routing: a one-line bug that silently froze the router, why sparse computation was not faster, and what an auxiliary load-balancing loss fixes.",
         "_show": false,
         "_archived": false
+    },
+    {
+        "_id": "20260919_learning_llms_4_training_decisions",
+        "_title": "[Learning LLMs 4] Learning What Training Decisions Actually Do",
+        "_createdAt": "2026-09-19",
+        "_description": "Learning rate schedules, optimizers, gradient clipping, dropout, batch size, and bfloat16 on a small GPT - and how often the setting I changed dragged a second one along with it.",
+        "_show": false,
+        "_archived": false
     }
 ]
