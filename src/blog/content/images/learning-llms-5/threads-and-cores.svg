@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1090" viewBox="0 0 1600 1090">
+  <defs><marker id="agrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker><marker id="agreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker><marker id="aamber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker><marker id="apurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker><marker id="ateal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker><marker id="afaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker></defs>
+  <rect width="1600" height="1090" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1060" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Twelve threads, not twenty-four</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Two hardware threads on a core share that core's arithmetic units</text>
+  <rect x="80" y="210" width="1440" height="270" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="120" y="262" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">12 THREADS</text>
+  <text x="120" y="307" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">One worker per physical core</text>
+  <rect x="125" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="139" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="177.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="241" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="255" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="293.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="357" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="371" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="409.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="473" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="487" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="525.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="589" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="603" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="641.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="705" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="719" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="757.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="821" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="835" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="873.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="937" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="951" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="989.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="1053" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1067" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1105.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="1169" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1183" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1221.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="1285" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1299" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1337.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <rect x="1401" y="325" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1415" y="367" width="77" height="50" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1453.5" y="399.7" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">1</text>
+  <text x="80" y="540" font-family="Noto Sans, sans-serif" font-size="30" font-weight="700" fill="#1a6b45" text-anchor="start">14,528 tokens/sec</text>
+  <text x="360" y="540" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">4.44x the single-threaded run.</text>
+  <rect x="80" y="600" width="1440" height="270" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="120" y="652" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">24 THREADS</text>
+  <text x="120" y="697" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Two workers queued for the same execution units</text>
+  <rect x="125" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="135" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="177.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="135" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="177.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="241" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="251" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="293.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="251" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="293.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="357" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="367" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="409.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="367" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="409.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="473" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="483" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="525.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="483" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="525.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="589" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="599" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="641.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="599" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="641.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="705" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="715" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="757.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="715" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="757.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="821" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="831" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="873.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="831" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="873.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="937" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="947" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="989.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="947" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="989.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="1053" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1063" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1105.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="1063" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1105.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="1169" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1179" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1221.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="1179" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1221.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="1285" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1295" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1337.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="1295" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1337.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <rect x="1401" y="715" width="105" height="134" rx="16" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="1411" y="733" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1453.5" y="763.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">1</text>
+  <rect x="1411" y="785" width="85" height="46" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1453.5" y="815.35" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="middle">2</text>
+  <text x="80" y="930" font-family="Noto Sans, sans-serif" font-size="30" font-weight="700" fill="#8a5905" text-anchor="start">11,540 tokens/sec</text>
+  <text x="360" y="930" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">1.26x slower than 12, on an idle machine, doing identical work.</text>
+  <text x="80" y="1005" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">Twelve physical cores, twenty-four logical CPUs. The second worker on a core does not</text>
+  <text x="80" y="1038" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">get its own hardware, it gets a place in line behind the first.</text>
+</svg>

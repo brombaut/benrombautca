@@ -342,5 +342,13 @@
         "_description": "Learning rate schedules, optimizers, gradient clipping, dropout, batch size, and bfloat16 on a small GPT - and how often the setting I changed dragged a second one along with it.",
         "_show": false,
         "_archived": false
+    },
+    {
+        "_id": "20260920_learning_llms_5_training_systems",
+        "_title": "[Learning LLMs 5] What the Loss Curve Doesn't Tell You",
+        "_createdAt": "2026-09-20",
+        "_description": "Instrumenting the training loop instead of the model: memory high-water marks, what a checkpoint has to contain, a failure that was already unrecoverable when it was detected, where the memory goes, and the right CPU thread count.",
+        "_show": false,
+        "_archived": false
     }
 ]
