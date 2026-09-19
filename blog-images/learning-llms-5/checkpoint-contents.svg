@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1010" viewBox="0 0 1600 1010">
+  <defs><marker id="agrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker><marker id="agreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker><marker id="aamber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker><marker id="apurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker><marker id="ateal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker><marker id="afaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker></defs>
+  <rect width="1600" height="1010" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="980" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Two kinds of checkpoint</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Enough to run the model again, versus enough to keep training it</text>
+  <rect x="80" y="200" width="620" height="660" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="120" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">MODEL CHECKPOINT</text>
+  <text x="120" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Enough to reproduce outputs</text>
+  <rect x="120" y="330" width="540" height="84" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="390.0" y="370.0" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">model_state_dict</text>
+  <text x="390.0" y="398.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">every weight in the network</text>
+  <text x="390" y="500" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="middle">Restores the same outputs, forever.</text>
+  <circle cx="390" cy="590" r="30" fill="#ffffff" stroke="#b6c1d2" stroke-width="3.5"/><path d="M375.6 575.6 L404.4 604.4 M404.4 575.6 L375.6 604.4" stroke="#b6c1d2" stroke-width="4" stroke-linecap="round"/>
+  <text x="390" y="665" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="middle">Says nothing about what the</text>
+  <text x="390" y="695" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="middle">optimizer was about to do next.</text>
+  <rect x="740" y="200" width="780" height="660" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="780" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">TRAINING CHECKPOINT</text>
+  <text x="780" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Enough to continue unchanged</text>
+  <rect x="780" y="330" width="700" height="62" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1130.0" y="369.4" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1a6b45" text-anchor="middle">model_state_dict</text>
+  <rect x="780" y="408" width="700" height="176" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1130.0" y="504.4" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="middle"></text>
+  <text x="1130" y="448" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="middle">optimizer_state_dict</text>
+  <rect x="810" y="472" width="200" height="62" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="910.0" y="501.0" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="middle">m</text>
+  <text x="910.0" y="529.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">momentum</text>
+  <rect x="1030" y="472" width="200" height="62" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1130.0" y="501.0" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8a5905" text-anchor="middle">v</text>
+  <text x="1130.0" y="529.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">scale</text>
+  <rect x="1250" y="472" width="200" height="62" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1350.0" y="501.0" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#4b3193" text-anchor="middle">t</text>
+  <text x="1350.0" y="529.0" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">step counter</text>
+  <rect x="780" y="600" width="700" height="62" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="1130.0" y="639.4" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#0a5f59" text-anchor="middle">train_generator_state</text>
+  <rect x="780" y="678" width="700" height="62" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="1130.0" y="717.4" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#0a5f59" text-anchor="middle">torch_rng_state</text>
+  <text x="780" y="790" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#4b3193" text-anchor="start">t drives the bias correction 1 - beta^t. A fresh optimizer</text>
+  <text x="780" y="822" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">starts it at 0, whatever step the training loop is on.</text>
+  <text x="80" y="925" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">Restoring the weights but not the optimizer produced a run that never crashed, never</text>
+  <text x="80" y="958" font-family="Noto Sans, sans-serif" font-size="24" font-weight="400" fill="#64718a" text-anchor="start">diverged, and never matched the control again after its very first step.</text>
+</svg>
