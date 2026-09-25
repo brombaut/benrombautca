@@ -324,7 +324,7 @@
         "_title": "[Learning LLMs 2] Learning What Transformer Architecture Choices Actually Do",
         "_createdAt": "2026-09-04T00:00:00.000Z",
         "_description": "Changing model capacity, normalization, positional encoding, and attention structure one experiment at a time, and what each change actually did.",
-        "_show": false,
+        "_show": true,
         "_archived": false
     },
     {
