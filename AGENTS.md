@@ -7,13 +7,13 @@ Guidance for AI coding agents working in this repository.
 
 ## Issue Tracking
 
-This project uses a SQLite database (`issues.db`) for issue tracking — **not beads**. See `ISSUES.md` for the schema and example queries. Use `sqlite3 issues.db` to read and write issues.
+This project uses **GitHub Issues** for issue tracking, driven from the terminal with the `gh` CLI — not beads, and no longer a local `issues.db` SQLite file. See `ISSUES.md` for the label conventions and the command reference.
 
-Before the first read of `issues.db` in a session, run `git pull` to ensure you have the latest version — it may have been updated from another machine.
+Priority and type are labels (`p0`–`p4`, and `epic`/`feature`/`task`/`bug`). Epics are parents and their children are attached as GitHub sub-issues.
 
-When reporting the status of any issue, always query `issues.db` directly rather than relying on conversation context — issue state may have changed on another machine.
+When reporting the status of any issue, always query GitHub directly (`gh issue view <number>`) rather than relying on conversation context — issue state may have changed elsewhere.
 
-After every write to `issues.db`, immediately commit and push it so the remote is always up to date with issue tracking.
+Because GitHub holds the issue state, there is nothing to `git pull` before reading issues and nothing to commit or push after changing them.
 
 ## Non-Interactive Shell Commands
 
@@ -541,7 +541,7 @@ npm run sync-articles      # Sync blog content
 
 ---
 
-**Last Updated**: 2026-09-04
+**Last Updated**: 2026-09-24
 **Vue Version**: 3.2.47
 **Node Version**: 18+
 **TypeScript Version**: 5.6.3

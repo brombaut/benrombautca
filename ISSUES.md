@@ -1,130 +1,132 @@
 # Issue Tracker
 
-This project tracks work in a SQLite database at `issues.db` in the project root.
+This project tracks work in **GitHub Issues** on [brombaut/benrombautca](https://github.com/brombaut/benrombautca/issues), managed from the terminal with the [`gh`](https://cli.github.com/) CLI.
 
-## Schema
+There is no local issue database. GitHub is the single source of truth, so there is nothing to pull before reading and nothing to commit after writing.
 
-```sql
-CREATE TABLE issues (
-    id TEXT PRIMARY KEY,
-    title TEXT NOT NULL,
-    description TEXT DEFAULT '',
-    status TEXT NOT NULL DEFAULT 'open' CHECK(status IN ('open', 'in_progress', 'closed')),
-    priority INTEGER NOT NULL DEFAULT 2 CHECK(priority BETWEEN 0 AND 4),
-    type TEXT NOT NULL DEFAULT 'task' CHECK(type IN ('epic', 'feature', 'task', 'bug')),
-    parent_id TEXT REFERENCES issues(id),
-    created_at TEXT NOT NULL,
-    updated_at TEXT NOT NULL,
-    closed_at TEXT,
-    close_reason TEXT
-);
-```
+## Conventions
 
-**Priority**: 0 = critical, 1 = high, 2 = medium, 3 = low, 4 = backlog.
+Priority and type are expressed as labels, since GitHub has no native field for either.
 
-**Parent/child**: Epics are parents. Tasks, features, and bugs can have a `parent_id` pointing to an epic (or another issue). This replaces a separate dependencies table — the hierarchy is just a foreign key.
+| Label | Meaning |
+| --- | --- |
+| `p0` | Critical |
+| `p1` | High |
+| `p2` | Medium (default) |
+| `p3` | Low |
+| `p4` | Backlog |
+| `epic` | Parent issue grouping related work |
+| `feature` | New functionality |
+| `task` | Small unit of work |
+| `bug` | Something is broken |
 
-## Keeping the remote in sync
+Every issue gets exactly one priority label and one type label.
 
-**IMPORTANT — always follow this rule.** Any time you modify `issues.db` (creating, updating, or closing issues), you MUST commit and push the file immediately so the remote always has the latest issue state. Do not batch issue changes with unrelated work — commit `issues.db` on its own or alongside `ISSUES.md` changes only. Never defer this step or forget about it.
+**Parent/child**: use GitHub's native sub-issues. An `epic` is the parent; features, tasks, and bugs are attached to it as sub-issues. Progress rolls up automatically in the GitHub UI.
 
 ## How to interact with it
 
-Use `sqlite3 issues.db` from the project root. All queries below work as bash one-liners or from inside the sqlite3 shell.
+All commands run from the project root.
 
 ### View open issues
 
 ```bash
-sqlite3 issues.db -header -column "
-  SELECT i.id, i.title, i.type, i.priority, p.title AS parent
-  FROM issues i
-  LEFT JOIN issues p ON i.parent_id = p.id
-  WHERE i.status = 'open'
-  ORDER BY i.priority, i.type DESC, i.created_at;
-"
+gh issue list --state open --limit 50 \
+  --json number,title,labels \
+  --jq '.[] | "\(.number)\t\([.labels[].name]|join(","))\t\(.title)"'
 ```
 
-### View an epic and its children
+Filter to one priority or type with `--label`:
 
 ```bash
-sqlite3 issues.db -header -column "
-  SELECT id, title, type, status, priority
-  FROM issues
-  WHERE id = '<epic-id>' OR parent_id = '<epic-id>'
-  ORDER BY status, priority;
-"
+gh issue list --state open --label epic
+gh issue list --state open --label p0
 ```
 
 ### View a single issue
 
 ```bash
-sqlite3 issues.db -header -column "SELECT * FROM issues WHERE id = '<issue-id>';"
+gh issue view <number>
+```
+
+Add `--comments` to include discussion, or `--web` to open it in a browser.
+
+### View an epic and its sub-issues
+
+```bash
+gh issue view <epic-number>   # sub-issues are listed in the output
+```
+
+For just the children:
+
+```bash
+gh api repos/brombaut/benrombautca/issues/<epic-number>/sub_issues \
+  --jq '.[] | "\(.number)\t\(.state)\t\(.title)"'
 ```
 
 ### Create an issue
 
 ```bash
-sqlite3 issues.db "
-  INSERT INTO issues (id, title, description, type, priority, parent_id, created_at, updated_at)
-  VALUES ('<id>', '<title>', '<description>', '<type>', <priority>, '<parent_id or NULL>', datetime('now'), datetime('now'));
-"
+gh issue create --title "Issue title" --body "Description." --label feature,p2
 ```
 
-For IDs, use a short descriptive slug (e.g. `fix-carousel-bug`, `add-dark-mode`). If it's a child of an epic, set `parent_id` to the epic's ID.
+Use `--body-file` for anything longer than a sentence or two, which avoids shell quoting problems:
+
+```bash
+gh issue create --title "Issue title" --body-file /tmp/body.md --label feature,p2
+```
+
+### Attach an issue to an epic
+
+Sub-issues are referenced by internal ID, not issue number, so look it up first:
+
+```bash
+CHILD_ID=$(gh api repos/brombaut/benrombautca/issues/<child-number> --jq .id)
+gh api -X POST repos/brombaut/benrombautca/issues/<epic-number>/sub_issues \
+  -F sub_issue_id=$CHILD_ID
+```
 
 ### Start working on an issue
 
+GitHub has no `in_progress` state. Assign it to yourself to signal active work:
+
 ```bash
-sqlite3 issues.db "UPDATE issues SET status = 'in_progress', updated_at = datetime('now') WHERE id = '<issue-id>';"
+gh issue edit <number> --add-assignee @me
 ```
 
 ### Close an issue
 
 ```bash
-sqlite3 issues.db "
-  UPDATE issues
-  SET status = 'closed', closed_at = datetime('now'), updated_at = datetime('now'), close_reason = '<reason>'
-  WHERE id = '<issue-id>';
-"
+gh issue close <number> --reason completed --comment "What was done."
 ```
 
-### Create an epic with children
+Use `--reason "not planned"` for work being abandoned. The closing comment replaces the old `close_reason` column, so write one.
+
+### Reopen an issue
 
 ```bash
-sqlite3 issues.db "
-  INSERT INTO issues (id, title, type, priority, created_at, updated_at)
-  VALUES ('my-epic', 'Epic title', 'epic', 2, datetime('now'), datetime('now'));
-
-  INSERT INTO issues (id, title, description, type, priority, parent_id, created_at, updated_at)
-  VALUES ('my-epic-1', 'First task', 'Description', 'task', 2, 'my-epic', datetime('now'), datetime('now'));
-
-  INSERT INTO issues (id, title, description, type, priority, parent_id, created_at, updated_at)
-  VALUES ('my-epic-2', 'Second task', 'Description', 'task', 2, 'my-epic', datetime('now'), datetime('now'));
-"
+gh issue reopen <number>
 ```
 
-### Check epic progress
+### Change priority
 
 ```bash
-sqlite3 issues.db -header -column "
-  SELECT
-    p.id,
-    p.title,
-    COUNT(c.id) AS total_children,
-    SUM(CASE WHEN c.status = 'closed' THEN 1 ELSE 0 END) AS done,
-    SUM(CASE WHEN c.status = 'in_progress' THEN 1 ELSE 0 END) AS active,
-    SUM(CASE WHEN c.status = 'open' THEN 1 ELSE 0 END) AS remaining
-  FROM issues p
-  LEFT JOIN issues c ON c.parent_id = p.id
-  WHERE p.type = 'epic' AND p.status != 'closed'
-  GROUP BY p.id;
-"
+gh issue edit <number> --remove-label p2 --add-label p1
 ```
 
-### All issues summary
+### Epic progress
 
 ```bash
-sqlite3 issues.db -header -column "
-  SELECT status, COUNT(*) AS count FROM issues GROUP BY status;
-"
+for e in $(gh issue list --state open --label epic --json number --jq '.[].number'); do
+  gh api repos/brombaut/benrombautca/issues/$e/sub_issues \
+    --jq "[\"#$e\", (map(select(.state==\"closed\"))|length|tostring) + \"/\" + (length|tostring) + \" done\"] | @tsv"
+done
 ```
+
+### Link commits to issues
+
+Including `Fixes #123` or `Closes #123` in a commit message that lands on `main` closes that issue automatically. Prefer this over closing by hand.
+
+## History
+
+Issues were previously tracked in a local SQLite database (`issues.db`) and, before that, in [beads](https://github.com/steveyegge/beads). All 25 issues from that database were migrated into GitHub Issues in September 2026 as #497–#521. Each migrated issue carries a footer in its body recording its original database ID and its original creation and closure dates, since GitHub does not allow those timestamps to be backdated. The database file has been removed from the repository.
