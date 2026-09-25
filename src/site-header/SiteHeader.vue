@@ -2,7 +2,7 @@
   <header id="site-header" class="header-bright">
     <div class="banner">
       <h1>Ben Rombaut</h1>
-      <h4><i>Software Engineering Researcher</i></h4>
+      <h4><i>AI Researcher &amp; Engineer</i></h4>
       <div id="external-profiles-container">
         <ExternalProfileIcon
           v-for="ep in externalProfiles"
