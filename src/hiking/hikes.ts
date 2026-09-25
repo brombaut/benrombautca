@@ -602,12 +602,12 @@ const hikes: Hike[] = [
     location: "Madeira, Portugal",
     description: "<p>More of a walk than a hike. Fanal sits on the Paul da Serra plateau at around 1,150 metres and is part of Madeira's Laurisilva, a UNESCO World Heritage forest that's the largest surviving stretch of primary laurel forest in the world. The til trees, some estimated to be over 800 years old, are gnarled and moss-covered with branches that twist down to the ground and back up again.</p><p>It looked incredible.</p>",
     images: [
+      { src: "hiking-images/26_13_fanal_forest/6.webp", caption: "" },
       { src: "hiking-images/26_13_fanal_forest/1.webp", caption: "" },
       { src: "hiking-images/26_13_fanal_forest/2.webp", caption: "" },
       { src: "hiking-images/26_13_fanal_forest/3.webp", caption: "" },
       { src: "hiking-images/26_13_fanal_forest/4.webp", caption: "" },
       { src: "hiking-images/26_13_fanal_forest/5.webp", caption: "" },
-      { src: "hiking-images/26_13_fanal_forest/6.webp", caption: "" },
       { src: "hiking-images/26_13_fanal_forest/7.webp", caption: "" },
     ],
     visible: true,
