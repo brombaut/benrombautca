@@ -203,7 +203,7 @@ each, it's an operational requirement.
 
 Mixture of Experts wasn't worth it at this scale. My best run reached 1.7467
 with 76,608 parameters. Extending the context window from 16 to 32 characters
-reached 1.7789 with 29,760. That's 2.6 times the parameters, and slower steps,
+took the dense model from 1.848 to 1.7789 with 29,760. That's 2.6 times the parameters, and slower steps,
 for about 0.03 over a much simpler change.
 
 That's not an argument against the technique. It says my model was limited by

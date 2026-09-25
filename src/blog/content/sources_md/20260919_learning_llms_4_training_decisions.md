@@ -93,7 +93,7 @@ in the middle.
 
 The three panels show validation loss, learning rate, and effective decay pull
 for each schedule. The pinned run didn't land in the middle. It reached 1.7094,
-better than both the cosine run and the constant baseline. Nearly all the extra
+better than both the cosine run (2.1337) and the constant baseline (1.9037). Nearly all the extra
 overfitting was the decay following the learning rate down, and with that held
 fixed, the smaller late steps turned into a small independent win.
 
@@ -142,7 +142,8 @@ first few hundred steps, which normally corrects itself. Coupling glues the
 decay onto the gradient during exactly that window, so it gets amplified by
 the shaky early calibration.
 
-Plain SGD just lost, finishing at 2.9942 with no spike. The learning rate I'd
+Plain SGD just lost, finishing at 2.9942 against AdamW's 1.9037, with no
+spike. The learning rate I'd
 tuned for Adam is far too small for SGD. I left it untuned on purpose so the
 optimizer was the only change, which makes this less a verdict on SGD than a
 measure of how much of Adam's value comes from per-parameter step sizes.
@@ -208,7 +209,7 @@ turned. It had run out of room. So I reran it for twice as many steps.
 
 The chart shows the 0.3 run extended past its original budget. Validation loss
 kept improving for another 9,000 steps, reaching 1.4636 at step 38,750, better
-than anything in the original sweep. Then it climbed while training loss kept
+than the original sweep's best of 1.4689. Then it climbed while training loss kept
 falling, the same overfitting signature as the baseline, ending at 1.4997.
 
 Dropout didn't remove overfitting. It postponed it, from step 8,250 to about
@@ -247,7 +248,7 @@ but pins the shrink back at `3e-5`.
 The top panel plots validation loss against tokens processed for the three
 batch-32 runs and the baseline, and the bottom shows each run's effective decay
 pull. The pinned run
-came last, at 2.0429, worse than the unscaled run (1.9668) and the baseline.
+came last, at 2.0429, worse than the unscaled run (1.9668) and the baseline (1.9037).
 It also had the lowest training loss and the widest gap: bigger steps memorized
 the corpus faster, and the decay pull hadn't grown to match.
 
@@ -257,8 +258,9 @@ because bigger steps are as good as more small ones. The rule is about step
 *direction* and says nothing about whether a fixed decay coefficient still
 regularizes enough.
 
-Separately, all three batch-32 runs were about 15% faster, around 14,000 tokens
-per second, from spreading per-step overhead over more tokens. That part holds
+Separately, all three batch-32 runs were about 15% faster, going from the baseline's
+12,169 tokens per second to around 14,000. That came from spreading per-step
+overhead over more tokens. That part holds
 regardless of the loss.
 
 ## One Result That Held Up
