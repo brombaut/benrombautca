@@ -21,7 +21,7 @@ module.exports = {
           };
         });
 
-      args[0].title = "Ben Rombaut | Software Developer";
+      args[0].title = "Ben Rombaut | AI Researcher & Engineer";
       return args;
     });
   },
