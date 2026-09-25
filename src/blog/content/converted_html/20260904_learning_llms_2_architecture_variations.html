@@ -161,7 +161,7 @@ hid.</p>
 questions. What can each position see? How is the representation budget
 split between heads? Is a change meant to improve capacity,
 optimization, throughput, or inference memory?</p>
-<p>The next part of the project moved from the architecture to how it
-trains: learning rate schedules and weight decay, why Adam and AdamW
-differ, how dropout delays overfitting, and whether mixed precision
-speeds things up without changing what the model learns.</p>
+<p>Every experiment here changed a part I had already built. Next I
+added one I hadn’t: a Mixture of Experts layer, which swaps the single
+MLP in each block for several, plus a small router that picks which one
+each token uses.</p>
