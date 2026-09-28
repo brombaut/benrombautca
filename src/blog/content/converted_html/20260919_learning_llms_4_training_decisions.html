@@ -268,6 +268,62 @@ against 5.5614. Same weights, same data, one forward pass in two
 precisions. That’s the size of what bfloat16 actually changes. After
 five experiments where the appealing number had something hiding behind
 it, this one just worked as advertised.</p>
+<h2 id="a-late-addition-swapping-the-mlp">A Late Addition: Swapping the
+MLP</h2>
+<p>Later, after the training-systems work in the next post, I came back
+to this baseline for one change that is not a training decision at all:
+the feed-forward layer. It is an architecture change, so it would have
+belonged in the architecture post, but that post was written before this
+baseline existed, and a baseline that overfits on schedule is exactly
+what I wanted to test it against.</p>
+<p>Every transformer block does two things. Attention lets each
+character’s vector pull in information from earlier characters. Then a
+small two-layer network, the MLP, processes each character’s vector on
+its own. Mine expanded each 256-number vector to 1,024 numbers, passed
+them through GELU, and projected back down to 256. You can picture those
+1,024 middle numbers as feature detectors. Each one measures how well
+the input matches its pattern, GELU switches it roughly off if the match
+is negative, and whatever survives gets written back out, scaled by how
+strongly it fired.</p>
+<p>The limitation is that one number does two jobs. The same score
+decides <em>whether</em> a detector fires and <em>how much</em> it
+contributes. SwiGLU, from Noam Shazeer’s 2020 paper <em><a
+href="https://arxiv.org/abs/2002.05202">GLU Variants Improve
+Transformer</a></em> and now the default in the Llama family, splits
+those jobs. Two separate projections read the input: one passes through
+SiLU (a curve almost identical to GELU) and acts as a dimmer, and the
+other carries the signal. The two are multiplied together element by
+element before the projection back down. The curve barely changes.
+What’s new is that multiplication, which lets a single channel express
+“this pattern, but only in that context.”</p>
+<p>Three matrices instead of two cost 50% more parameters at the same
+width. This time I asked what else the change was attached to
+<em>before</em> running it, and shrank the middle from 1,024 to 683.
+That’s the same two-thirds reduction the paper made, and the closest a
+whole number gets to an exact match: 5,839,104 parameters against
+5,837,056, a difference of 0.035%.</p>
+<p><img src="blog-images/learning-llms-4/036-swiglu.png"
+alt="SwiGLU reaches every validation level sooner, bottoms out at the same loss, then overfits harder" /></p>
+<p>My prediction was a better best validation loss, with overfitting
+setting in earlier. Only the second half held up. SwiGLU’s best was
+1.5168 at step 6,250, against 1.5260 at step 8,250. That’s lower, but
+the validation loss already wobbles by 0.006 or so between one check and
+the next near the minimum, so 0.009 from a single run each is a tie.
+After step 7,500 it was worse at every single check, and it finished at
+2.0798 against 1.9037.</p>
+<p>What SwiGLU really changed was speed. It reached every validation
+milestone in 55 to 60 percent of the steps the GELU model needed: 1.60
+at step 2,000 instead of 3,500, and 1.55 at step 3,250 instead of 5,750.
+Then it hit the same floor and started memorizing, faster.</p>
+<p>That fits the dropout result more than it contradicts the paper.
+Shazeer measured at equal training steps on a corpus so large that
+nothing is ever seen twice, and there, learning more per step simply
+<em>is</em> a better model. Here the model reads the same megabyte of
+Shakespeare thirty times, and the limit was never the MLP. It was how
+much there is to learn from that megabyte before the only thing left is
+memorizing it. Dropout pushed that point later, and SwiGLU reached it
+sooner. Neither moved the floor. How much an architectural improvement
+buys depends on what is limiting you. Here the limit was the data.</p>
 <h2 id="where-i-ended-up">Where I Ended Up</h2>
 <p>I can now explain what a cosine schedule does to weight decay, why
 coupled and decoupled decay aren’t the same thing, what dropout buys and

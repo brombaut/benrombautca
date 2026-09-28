@@ -10,14 +10,14 @@
     "_externalRepos": [
       {
         "_id": "github",
-        "_imagePath": "github_icon.png",
+        "_imagePath": "github_icon.webp",
         "_url": "https://github.com/brombaut/firebase-firestore-facade",
         "_title": "GitHub",
         "_hoverText": "Source Code"
       },
       {
         "_id": "npm",
-        "_imagePath": "npm_icon.png",
+        "_imagePath": "npm_icon.webp",
         "_url": "https://www.npmjs.com/package/firebase-firestore-facade",
         "_title": "NPM",
         "_hoverText": "Package"
@@ -26,19 +26,19 @@
     "_techUsed": [
       {
         "_id": "typescript",
-        "_imagePath": "typescript_icon.png",
+        "_imagePath": "typescript_icon.webp",
         "_title": "TypeScript",
         "_hoverText": "TypeScript"
       },
       {
         "_id": "node",
-        "_imagePath": "node_icon.png",
+        "_imagePath": "node_icon.webp",
         "_title": "Node",
         "_hoverText": "Node"
       },
       {
         "_id": "firebase",
-        "_imagePath": "firebase_icon.png",
+        "_imagePath": "firebase_icon.webp",
         "_title": "Firebase",
         "_hoverText": "Firebase"
       }
@@ -55,14 +55,14 @@
     "_externalRepos": [
       {
         "_id": "github",
-        "_imagePath": "github_icon.png",
+        "_imagePath": "github_icon.webp",
         "_url": "https://github.com/brombaut/article-scraper",
         "_title": "GitHub",
         "_hoverText": "Source Code"
       },
       {
         "_id": "npm",
-        "_imagePath": "npm_icon.png",
+        "_imagePath": "npm_icon.webp",
         "_url": "https://www.npmjs.com/package/article_scraper",
         "_title": "NPM",
         "_hoverText": "Package"
@@ -71,13 +71,13 @@
     "_techUsed": [
       {
         "_id": "typescript",
-        "_imagePath": "typescript_icon.png",
+        "_imagePath": "typescript_icon.webp",
         "_title": "TypeScript",
         "_hoverText": "TypeScript"
       },
       {
         "_id": "node",
-        "_imagePath": "node_icon.png",
+        "_imagePath": "node_icon.webp",
         "_title": "Node",
         "_hoverText": "Node"
       }
@@ -94,7 +94,7 @@
     "_externalRepos": [
       {
         "_id": "github",
-        "_imagePath": "github_icon.png",
+        "_imagePath": "github_icon.webp",
         "_url": "https://github.com/brombaut/benrombautca",
         "_title": "GitHub",
         "_hoverText": "Source Code"
@@ -103,19 +103,19 @@
     "_techUsed": [
       {
         "_id": "vue",
-        "_imagePath": "vue_icon.png",
+        "_imagePath": "vue_icon.webp",
         "_title": "Vue",
         "_hoverText": "Vue"
       },
       {
         "_id": "typescript",
-        "_imagePath": "typescript_icon.png",
+        "_imagePath": "typescript_icon.webp",
         "_title": "TypeScript",
         "_hoverText": "TypeScript"
       },
       {
         "_id": "python",
-        "_imagePath": "python_icon.png",
+        "_imagePath": "python_icon.webp",
         "_title": "Python",
         "_hoverText": "Python"
       }
@@ -132,14 +132,14 @@
     "_externalRepos": [
       {
         "_id": "github",
-        "_imagePath": "github_icon.png",
+        "_imagePath": "github_icon.webp",
         "_url": "https://github.com/brombaut/game-of-life",
         "_title": "GitHub",
         "_hoverText": "Source Code"
       },
       {
         "_id": "liveSite",
-        "_imagePath": "web_icon.png",
+        "_imagePath": "web_icon.webp",
         "_url": "https://brombaut.github.io/game-of-life/",
         "_title": "Live Site",
         "_hoverText": "Live Site"
@@ -148,13 +148,13 @@
     "_techUsed": [
       {
         "_id": "vue",
-        "_imagePath": "vue_icon.png",
+        "_imagePath": "vue_icon.webp",
         "_title": "Vue",
         "_hoverText": "Vue"
       },
       {
         "_id": "typescript",
-        "_imagePath": "typescript_icon.png",
+        "_imagePath": "typescript_icon.webp",
         "_title": "TypeScript",
         "_hoverText": "TypeScript"
       }

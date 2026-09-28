@@ -3,7 +3,7 @@ import { AboutMe } from "./about-me";
 const aboutMe: AboutMe = {
   description: `
   <p>
-  I'm a Software Engineering Researcher with the Centre for Software Excellence at Huawei Canada, living in Montreal, Quebec, 
+  I'm an AI Researcher & Engineer with the Centre for Software Excellence at Huawei Canada, living in Montreal, Quebec, 
   where I work with a team researching bleeding edge topics and tools related to AI for software engineering (AI4SE) and software engineering for AI systems (SE4AI). 
   I earned my M.Sc. from the School of Computing at Queen's University in 2022, and my B.Sc. in Software Engineering from the University of New Brunswick in 2019.
   </p>

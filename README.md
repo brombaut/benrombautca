@@ -30,6 +30,18 @@ Photo galleries with image carousels showcasing outdoor activities.
 
 This is a personal portfolio site, but suggestions and bug reports are welcome via GitHub Issues.
 
+## Testing
+
+Browser smoke tests load every page of the production build in headless Chromium and fail on
+any rendering failure, console error, or broken asset:
+
+```bash
+npx playwright install chromium   # one-time
+npm run test:smoke:build
+```
+
+They also run in CI on every pull request and before each deploy. See `AGENTS.md` for details.
+
 ## Documentation
 
 - **[AGENTS.md](./AGENTS.md)** - Comprehensive AI assistant guide with detailed architecture, patterns, and development workflows

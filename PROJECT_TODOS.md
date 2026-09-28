@@ -94,6 +94,7 @@ This document tracks technical debt, code quality issues, and improvement opport
 - **Issue:** Vue 2 compatibility mode (MODE: 2) is still active despite migration to Vue 3
 - **Impact:** Missing out on Vue 3 performance improvements and tree-shaking benefits
 - **Fix:** Test with compatConfig MODE: 3, then remove compatibility entirely
+- **Status:** ✅ Completed - Removed the `@vue/compat` alias, `compatConfig` and dependency; `main.ts` now uses `createApp(App)`
 
 #### 12. Update ESLint configuration
 - **File:** `package.json:62-103`

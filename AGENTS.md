@@ -44,7 +44,7 @@ cp -rf source dest          # NOT: cp -r source dest
 **benrombautca** is Ben Rombaut's personal portfolio website, deployed at [benrombaut.ca](https://www.benrombaut.ca). This is a Vue 3 single-page application built with TypeScript, featuring a personal portfolio with multiple sections including About Me, Work/Education timeline, Publications, Blog, Software projects, Bookshelf, Running, and Hiking.
 
 ### Tech Stack
-- **Framework**: Vue 3 (migrated from Vue 2, using compatibility mode)
+- **Framework**: Vue 3 (migrated from Vue 2; the `@vue/compat` bridge has been removed)
 - **Language**: TypeScript
 - **Build Tool**: Vue CLI 5 with Webpack
 - **Routing**: Vue Router 4 (hash mode)
@@ -61,7 +61,7 @@ benrombautca/
 │   ├── gh_pages_deploy.yml    # Main deployment workflow
 │   ├── sync_bookshelf.yml     # Bookshelf syncing automation
 │   ├── sync_software.yml      # Software projects syncing
-│   └── install_lint_build.yml # CI checks
+│   └── install_lint_build.yml # CI checks (lint, build, smoke tests)
 ├── public/                     # Static assets
 ├── scripts/                    # Utility scripts
 │   ├── diagrams/              # Blog diagram generators (Python -> SVG + PNG)
@@ -89,6 +89,8 @@ benrombautca/
 │   ├── App.vue                # Root component
 │   ├── main.ts                # Application entry point
 │   └── app_config.ts          # Env var validation + feature flags
+├── tests/smoke/               # Playwright smoke tests (every route renders, no console errors)
+├── playwright.config.ts       # Playwright config (serves dist/)
 ├── AGENTS.md                  # This file: agent/AI guidance (canonical)
 ├── CLAUDE.md                  # Symlink -> AGENTS.md
 ├── package.json               # Dependencies and scripts
@@ -240,6 +242,9 @@ npm run build
 # Lint and fix code issues
 npm run lint
 
+# Build and run the browser smoke tests
+npm run test:smoke:build
+
 # Sync bookshelf locally
 npm run sync-bookshelf
 
@@ -324,9 +329,10 @@ Triggers:
 Steps:
 1. Checkout code
 2. Create `.env` file from secrets
-3. Install and Build - runs `npm ci`, then `npm run lint`, then `npm run build`
+3. Install and Build - runs `npm install`, then `npm run lint`, then `npm run build`
    (lint is enforced here; a violation fails the deploy)
-4. Deploy to `gh-pages` branch
+4. Smoke Test - runs `npm run test:smoke` against the build (a failure blocks the deploy)
+5. Deploy to `gh-pages` branch
 
 ### Static Asset Copying
 `vue.config.js` uses `CopyPlugin` to copy:
@@ -340,9 +346,32 @@ Steps:
 
 ## Testing
 
-**Status**: No automated tests currently configured
-- ESLint is enabled and configured with Vue Essential + Airbnb rules
-- Test framework not set up (unit/integration/e2e tests planned for future)
+**Status**: Browser smoke tests (Playwright) plus ESLint. No unit tests yet.
+
+The smoke tests in `tests/smoke/` load the **production build** in headless Chromium and:
+- Visit every route in `router.ts` (the dynamic blog/software routes use the first visible
+  entry from the meta JSON files) and assert each page's `<section>` and title are visible
+- Click every header nav item and check it lands on the right section
+- Fail on any `console.error`, uncaught exception, or failed same-origin request
+  (JS chunks, images, PDFs)
+
+Third-party requests (e.g. the ClustrMaps visitor counter) are blocked so the tests are
+hermetic. A known-harmless console error can be added to `ALLOWED_CONSOLE_ERRORS` in
+`tests/smoke/smoke.spec.ts`, with a comment explaining why; don't loosen the check instead.
+
+```bash
+npx playwright install chromium   # one-time browser download
+npm run test:smoke:build          # build, then run the smoke tests
+npm run test:smoke                # run against an existing dist/
+```
+
+`playwright.config.ts` serves `dist/` with `tests/smoke/serve-dist.js` (no extra
+dependency). If a preinstalled Chromium doesn't match the Playwright version, point
+`PLAYWRIGHT_CHROMIUM_EXECUTABLE` at it. When adding a new route or section, add it to the
+`routes` (and `navItems`) lists in the spec.
+
+CI runs the smoke tests on every PR (`install_lint_build.yml`) and before deploying
+(`gh_pages_deploy.yml`), so a broken view never ships.
 
 ## Common Development Tasks
 
@@ -420,7 +449,8 @@ Images are served via CopyPlugin, which copies `src/blog/content/images/` to `di
 - ✅ Restructured README.md for better developer onboarding
 
 ### Completed Features
-- **Migrate to Vue 3**: ✅ Done (using compatibility mode)
+- **Migrate to Vue 3**: ✅ Done
+- **Remove Vue 2 compatibility mode**: ✅ Done
 - **Merge Bookshelf-Syncer**: ✅ Done
 - **Merge Software-Syncer**: ✅ Done
 - **Add Resume & CV PDFs**: ✅ Done
@@ -429,13 +459,11 @@ Images are served via CopyPlugin, which copies `src/blog/content/images/` to `di
 - **Filter blog posts by tag**: Planned
 - **Consider moving Blog-Syncer to cloud**: Under consideration
 - **Change router to HTML5 mode**: TODO (see `router.ts:66`)
-- **Remove Vue 2 compatibility mode**: Planned for better performance
-- **Add automated testing**: High priority
+- **Add automated testing**: Smoke tests done; unit/component tests still high priority
 
 ### Technical Debt
-- No automated tests (unit/integration/e2e)
+- No unit or component tests (only browser smoke tests)
 - Some ESLint rules are disabled for flexibility (see `package.json` eslintConfig)
-- Vue 2 compatibility mode still enabled (could be removed for better performance)
 - Memory leaks in some components (event listeners not cleaned up)
 - Some remaining `any` types in TypeScript (~12 occurrences in `src/`)
 - See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
@@ -479,7 +507,7 @@ When writing or editing blog posts for this site, follow these conventions:
 2. **Maintain Conventions**: Follow existing patterns (2-space indent, double quotes)
 3. **Preserve Structure**: Keep feature-based directory organization
 4. **Update Metadata**: When adding blog posts/software, update corresponding JSON files
-5. **Test Locally**: Suggest running `npm run serve` to verify changes
+5. **Test Locally**: Run `npm run lint` and `npm run test:smoke:build` before pushing; suggest `npm run serve` for visual checks
 6. **Respect Responsive Design**: Use existing breakpoint variables
 7. **Use Type Safety**: Leverage TypeScript and PropType definitions
 8. **Global Styles**: Prefer SCSS variables over hardcoded colors
@@ -522,6 +550,7 @@ When writing or editing blog posts for this site, follow these conventions:
 ```bash
 npm run serve              # Start dev server
 npm run build              # Production build
+npm run test:smoke:build   # Build + smoke tests
 npm run sync-bookshelf     # Sync Goodreads data
 npm run sync-articles      # Sync blog content
 ```
@@ -543,5 +572,5 @@ npm run sync-articles      # Sync blog content
 
 **Last Updated**: 2026-09-24
 **Vue Version**: 3.2.47
-**Node Version**: 18+
+**Node Version**: 20+ (required by Playwright)
 **TypeScript Version**: 5.6.3

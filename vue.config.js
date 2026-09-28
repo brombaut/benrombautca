@@ -4,24 +4,7 @@ module.exports = {
   publicPath: "",
   chainWebpack: (config) => {
     config.plugin("html").tap((args) => {
-
-      config.resolve.alias.set("vue", "@vue/compat");
-
-      config.module
-        .rule("vue")
-        .use("vue-loader")
-        .tap(options => {
-          return {
-            ...options,
-            compilerOptions: {
-              compatConfig: {
-                MODE: 2,
-              },
-            },
-          };
-        });
-
-      args[0].title = "Ben Rombaut | Software Developer";
+      args[0].title = "Ben Rombaut | AI Researcher & Engineer";
       return args;
     });
   },

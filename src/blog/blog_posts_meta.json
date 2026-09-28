@@ -332,7 +332,7 @@
         "_title": "[Learning LLMs 3] What a Mixture of Experts Layer Actually Costs",
         "_createdAt": "2026-09-18T00:00:00.000Z",
         "_description": "Implementing sparse Mixture of Experts routing: a one-line bug that silently froze the router, why sparse computation was not faster, and what an auxiliary load-balancing loss fixes.",
-        "_show": false,
+        "_show": true,
         "_archived": false
     },
     {

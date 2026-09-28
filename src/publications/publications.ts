@@ -136,8 +136,8 @@ const publications: Publication[] = [
       "Shaowei Wang",
       "Ahmed E. Hassan",
     ],
-    "Unpublished",
-    new Date(2026, 5, 16),
+    "Asia-Pacific Chapter of the Association for Computational Linguistics and International Joint Conference on Natural Language Processing (AACL-IJCNLP) '26",
+    new Date(2026, 8, 25),
     [
       {
         type: PublicationLinkType.Arxiv,

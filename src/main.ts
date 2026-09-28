@@ -78,9 +78,7 @@ library.add(faGoogleScholar);
 library.add(faHiking);
 library.add(faXmark);
 
-const app = createApp({
-  render: (h: any) => h(App),
-});
+const app = createApp(App);
 app.use(router);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.mount("#app");
