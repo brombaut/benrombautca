@@ -1,0 +1,19 @@
+// The single stylesheet entry point. Eleventy compiles this to /styles/main.css;
+// everything else under src/styles/ is a Sass partial (leading underscore) and
+// is never compiled on its own.
+//
+// The design system (tokens, type scale, the left-right layout shell) lands in
+// #535. This file deliberately holds almost nothing until then: the old
+// `_variables.scss` blue palette and `_common.scss` were deleted rather than
+// carried over, since #501 replaces the palette outright and `_common.scss` was
+// mostly the `.slide-in` animation that the no-animation rule removes.
+
+// GitHub-flavoured styling for rendered markdown bodies (blog posts, software
+// READMEs). Standalone, references no tokens, and #537 reuses it as-is.
+@use "github_article";
+
+// The ClustrMaps visitor counter injects its widget into the page; it is only
+// there to register the visit, and is never shown.
+#clustrmaps-widget-v2 {
+  display: none !important;
+}

@@ -1,14 +1,24 @@
 /* eslint-disable no-restricted-syntax -- sequential for...of loops are clearer for browser steps */
-import { test as base, expect, Page } from "@playwright/test";
-import blogPostsMeta from "../../src/blog/blog_posts_meta.json";
-import softwareMeta from "../../src/software/software_articles_meta.json";
+import { test as base, expect } from "@playwright/test";
+
+/*
+ * The route matrix and the nav-click walk that used to live here were written
+ * against the Vue app's hash routes (`/#/blog/<id>`) and its `#site-header` /
+ * `section#<id>` markup. None of that exists in the static rewrite, and the
+ * pages it would visit are not built yet, so this file is currently down to the
+ * one page #534 produces.
+ *
+ * #544 restores the full coverage against real nested paths, adds the screenshot
+ * baselines, and is a precondition for merging the rewrite to `main`. The error
+ * fixture below is unchanged and is what #544 builds back on top of.
+ */
 
 // Console errors that are known and harmless. Add a substring here, with a
 // comment explaining why, rather than loosening the check.
 const ALLOWED_CONSOLE_ERRORS: string[] = [];
 
 // Fails any test that logs a console error, throws an uncaught exception, or
-// gets a failed response for a same-origin asset (JS chunk, image, PDF, ...).
+// gets a failed response for a same-origin asset (CSS, image, PDF, ...).
 const test = base.extend<{ pageProblems: string[] }>({
   pageProblems: [async ({ page, baseURL }, use) => {
     const problems: string[] = [];
@@ -46,73 +56,33 @@ const test = base.extend<{ pageProblems: string[] }>({
   }, { auto: true }],
 });
 
-const firstBlogPost = blogPostsMeta.find((p) => p._show && !p._archived);
-const firstSoftware = softwareMeta.find((s) => s._show);
-
-interface RouteCase {
-  path: string;
-  // Ids of the <section> elements that must be visible with a title.
-  sections: string[];
-}
-
-const routes: RouteCase[] = [
-  { path: "/", sections: ["about-me", "work-education"] },
-  { path: "/about-me", sections: ["about-me", "work-education"] },
-  { path: "/work", sections: ["about-me", "work-education"] },
-  { path: "/education", sections: ["about-me", "work-education"] },
-  { path: "/bookshelf", sections: ["bookshelf"] },
-  { path: "/blog", sections: ["blog"] },
-  { path: `/blog/${firstBlogPost?._id}`, sections: ["selected-article"] },
-  { path: "/software", sections: ["software"] },
-  { path: `/software/${firstSoftware?._id}`, sections: ["selected-software"] },
-  { path: "/publications", sections: ["publications"] },
-  { path: "/running", sections: ["races"] },
-  { path: "/hiking", sections: ["hikes"] },
-];
-
-async function expectSectionsVisible(page: Page, sections: string[]): Promise<void> {
-  await expect(page.locator("#site-header")).toBeVisible();
-  for (const id of sections) {
-    const section = page.locator(`section#${id}`);
-    await expect(section).toBeVisible();
-    await expect(section.locator(".section-title").first()).toBeVisible();
-    await expect(section.locator(".section-title").first()).not.toBeEmpty();
-  }
-}
-
-test("test data has a visible blog post and software project", () => {
-  expect(firstBlogPost, "no visible blog post in blog_posts_meta.json").toBeDefined();
-  expect(firstSoftware, "no visible project in software_articles_meta.json").toBeDefined();
+test("the home page renders with its stylesheet", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("main h1")).toBeVisible();
+  await expect(page).toHaveTitle(/Ben Rombaut/);
+  const stylesheet = await page.request.get("/styles/main.css");
+  expect(stylesheet.ok(), "main.css is served").toBe(true);
+  await page.waitForLoadState("networkidle");
 });
 
-for (const route of routes) {
-  test(`renders ${route.path}`, async ({ page }) => {
-    await page.goto(`/#${route.path}`);
-    await expectSectionsVisible(page, route.sections);
-    // Let lazy-loaded images and late errors surface before the fixture checks.
-    await page.waitForLoadState("networkidle");
-  });
-}
-
-const navItems: { text: string; path: string; sections: string[] }[] = [
-  { text: "Publications", path: "/publications", sections: ["publications"] },
-  { text: "Bookshelf", path: "/bookshelf", sections: ["bookshelf"] },
-  { text: "Blog", path: "/blog", sections: ["blog"] },
-  { text: "Running", path: "/running", sections: ["races"] },
-  { text: "Hiking", path: "/hiking", sections: ["hikes"] },
-  { text: "About Me", path: "/about-me", sections: ["about-me", "work-education"] },
+// Passthrough copy is easy to break silently, and every section that follows
+// depends on these paths. One representative file from each copied tree.
+const copiedAssets = [
+  "/CNAME",
+  "/favicon.ico",
+  "/robots.txt",
+  "/images/benrombaut.webp",
+  "/resumes/BenRombaut_Resume.pdf",
+  "/publications/Rombaut_Benjamin_J_202205_MSc.pdf",
+  "/hiking-images/19_01_katahdin/19_katahdin1.webp",
+  "/running-images/22fredericton_06.webp",
+  "/blog-images/learning-llms-2/gqa-kv-cache-explained.svg",
+  "/book_thumbnails_v2/10284614-the-clean-coder.webp",
 ];
 
-test("header nav links reach every section", async ({ page }) => {
-  await page.goto("/#/");
-  await expectSectionsVisible(page, ["about-me"]);
-
-  const navLinks = page.locator(".full-navbar .full-nav-item");
-  await expect(navLinks).toHaveCount(navItems.length);
-
-  for (const item of navItems) {
-    await navLinks.filter({ hasText: item.text }).click();
-    await expect(page).toHaveURL(new RegExp(`#${item.path}$`));
-    await expectSectionsVisible(page, item.sections);
+test("static assets are copied to their expected paths", async ({ page }) => {
+  for (const path of copiedAssets) {
+    const res = await page.request.get(path);
+    expect(res.ok(), `${path} is served`).toBe(true);
   }
 });

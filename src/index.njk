@@ -1,0 +1,20 @@
+---
+layout: base.njk
+---
+{#
+  Placeholder home page. #534 is the build scaffold only: the layout shell and
+  the real sections land in #535 onwards. It is here so `npm run build` has a
+  page to render, and so the counts below fail loudly if the data layer breaks.
+#}
+<main>
+  <h1>{{ site.author }}</h1>
+  <p>The static rewrite is under construction. See issue #501.</p>
+  <ul>
+    <li>{{ blog.all | length }} blog posts ({{ blog.listed | length }} listed across {{ blog.byYear | length }} years)</li>
+    <li>{{ software.projects | length }} software projects</li>
+    <li>{{ publications | length }} publications</li>
+    <li>{{ hikes | length }} hikes, {{ races | length }} races</li>
+    <li>{{ books.read | length }} books read, {{ books.currentlyReading | length }} in progress</li>
+    <li>{{ work | length }} work entries, {{ education | length }} education entries</li>
+  </ul>
+</main>

@@ -4,7 +4,13 @@
 [![bookshelf-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml)
 [![software-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml)
 
-Personal portfolio website built with Vue 3 and TypeScript. Visit the live site at [benrombaut.ca](https://www.benrombaut.ca).
+Personal portfolio website, built as a framework-free static site with
+[Eleventy](https://www.11ty.dev/). Visit the live site at
+[benrombaut.ca](https://www.benrombaut.ca).
+
+> **This branch is mid-rewrite.** `redesign/static-rewrite` is replacing the
+> Vue 3 SPA that still runs on `main`. See issue #501 for the plan and
+> `AGENTS.md` for the current state of the build.
 
 ## Site Features
 
@@ -32,8 +38,10 @@ This is a personal portfolio site, but suggestions and bug reports are welcome v
 
 ## Testing
 
-Browser smoke tests load every page of the production build in headless Chromium and fail on
-any rendering failure, console error, or broken asset:
+Browser smoke tests load the production build in headless Chromium and fail on any
+rendering failure, console error, or broken asset. Coverage is reduced to the pages
+the rewrite currently builds; issue #544 restores the full route matrix and adds
+screenshot baselines.
 
 ```bash
 npx playwright install chromium   # one-time
