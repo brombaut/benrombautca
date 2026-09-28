@@ -146,11 +146,32 @@ topics in the same library.
 
 ![Grouped-query attention shares keys and values while keeping a separate query for each head](images/learning-llms-2/gqa-kv-cache-explained.png)
 
-The code confused me at first. It used `repeat_interleave` to expand the shared
-keys and values back to one per query head, which looked like undoing the
-whole point. The repetition just keeps the attention tensor shapes unchanged.
-The real benefit is at inference, where previous keys and values are stored in
-a KV cache and GQA stores fewer of them.
+The code confused me at first. The key and value projections are narrower than
+the query projection, so they produce two heads where the query produces four:
+
+```python
+# n_embd 32, n_head 4, n_kv_head 2, head_dim 8
+self.query = nn.Linear(n_embd, n_head * head_dim, bias=False)     # 32 -> 32
+self.key = nn.Linear(n_embd, n_kv_head * head_dim, bias=False)    # 32 -> 16
+self.value = nn.Linear(n_embd, n_kv_head * head_dim, bias=False)  # 32 -> 16
+```
+
+Then the forward pass expands them straight back to four:
+
+```python
+query = self._split_heads(self.query(hidden), n_head)     # (B, 4, T, 8)
+key = self._split_heads(self.key(hidden), n_kv_head)      # (B, 2, T, 8)
+value = self._split_heads(self.value(hidden), n_kv_head)  # (B, 2, T, 8)
+
+# A KV cache would store key and value at this size, before the repeat.
+n_rep = n_head // n_kv_head
+key = key.repeat_interleave(n_rep, dim=1)                 # (B, 4, T, 8)
+value = value.repeat_interleave(n_rep, dim=1)             # (B, 4, T, 8)
+```
+
+That expansion looked like undoing the whole point. The repetition just keeps
+the attention tensor shapes unchanged. The real benefit is at inference, where
+previous keys and values are stored in a KV cache and GQA stores fewer of them.
 
 On this model, GQA saved about 2,048 parameters, made loss slightly worse
 (1.848 to 1.869), and trained at the same speed. With 32 embedding values and a context
