@@ -17,7 +17,6 @@
     "@fortawesome/free-regular-svg-icons": "~6.5.0",
     "@fortawesome/free-solid-svg-icons": "~6.5.0",
     "@fortawesome/vue-fontawesome": "~3.0.8",
-    "@vue/compat": "^3.2.47",
     "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.30.1",
     "dotenv": "^16.0.3",

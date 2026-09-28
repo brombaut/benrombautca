@@ -44,7 +44,7 @@ cp -rf source dest          # NOT: cp -r source dest
 **benrombautca** is Ben Rombaut's personal portfolio website, deployed at [benrombaut.ca](https://www.benrombaut.ca). This is a Vue 3 single-page application built with TypeScript, featuring a personal portfolio with multiple sections including About Me, Work/Education timeline, Publications, Blog, Software projects, Bookshelf, Running, and Hiking.
 
 ### Tech Stack
-- **Framework**: Vue 3 (migrated from Vue 2, using compatibility mode)
+- **Framework**: Vue 3 (migrated from Vue 2; the `@vue/compat` bridge has been removed)
 - **Language**: TypeScript
 - **Build Tool**: Vue CLI 5 with Webpack
 - **Routing**: Vue Router 4 (hash mode)
@@ -449,7 +449,8 @@ Images are served via CopyPlugin, which copies `src/blog/content/images/` to `di
 - ✅ Restructured README.md for better developer onboarding
 
 ### Completed Features
-- **Migrate to Vue 3**: ✅ Done (using compatibility mode)
+- **Migrate to Vue 3**: ✅ Done
+- **Remove Vue 2 compatibility mode**: ✅ Done
 - **Merge Bookshelf-Syncer**: ✅ Done
 - **Merge Software-Syncer**: ✅ Done
 - **Add Resume & CV PDFs**: ✅ Done
@@ -458,13 +459,11 @@ Images are served via CopyPlugin, which copies `src/blog/content/images/` to `di
 - **Filter blog posts by tag**: Planned
 - **Consider moving Blog-Syncer to cloud**: Under consideration
 - **Change router to HTML5 mode**: TODO (see `router.ts:66`)
-- **Remove Vue 2 compatibility mode**: Planned for better performance
 - **Add automated testing**: Smoke tests done; unit/component tests still high priority
 
 ### Technical Debt
 - No unit or component tests (only browser smoke tests)
 - Some ESLint rules are disabled for flexibility (see `package.json` eslintConfig)
-- Vue 2 compatibility mode still enabled (could be removed for better performance)
 - Memory leaks in some components (event listeners not cleaned up)
 - Some remaining `any` types in TypeScript (~12 occurrences in `src/`)
 - See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
