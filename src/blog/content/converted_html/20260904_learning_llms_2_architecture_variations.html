@@ -131,12 +131,28 @@ a different question of the same shared keys and values, like several
 historians researching different topics in the same library.</p>
 <p><img src="blog-images/learning-llms-2/gqa-kv-cache-explained.png"
 alt="Grouped-query attention shares keys and values while keeping a separate query for each head" /></p>
-<p>The code confused me at first. It used <code>repeat_interleave</code>
-to expand the shared keys and values back to one per query head, which
-looked like undoing the whole point. The repetition just keeps the
-attention tensor shapes unchanged. The real benefit is at inference,
-where previous keys and values are stored in a KV cache and GQA stores
-fewer of them.</p>
+<p>The code confused me at first. The key and value projections are
+narrower than the query projection, so they produce two heads where the
+query produces four:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># n_embd 32, n_head 4, n_kv_head 2, head_dim 8</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.query <span class="op">=</span> nn.Linear(n_embd, n_head <span class="op">*</span> head_dim, bias<span class="op">=</span><span class="va">False</span>)     <span class="co"># 32 -&gt; 32</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.key <span class="op">=</span> nn.Linear(n_embd, n_kv_head <span class="op">*</span> head_dim, bias<span class="op">=</span><span class="va">False</span>)    <span class="co"># 32 -&gt; 16</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="va">self</span>.value <span class="op">=</span> nn.Linear(n_embd, n_kv_head <span class="op">*</span> head_dim, bias<span class="op">=</span><span class="va">False</span>)  <span class="co"># 32 -&gt; 16</span></span></code></pre></div>
+<p>Then the forward pass expands them straight back to four:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="va">self</span>._split_heads(<span class="va">self</span>.query(hidden), n_head)     <span class="co"># (B, 4, T, 8)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> <span class="va">self</span>._split_heads(<span class="va">self</span>.key(hidden), n_kv_head)      <span class="co"># (B, 2, T, 8)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> <span class="va">self</span>._split_heads(<span class="va">self</span>.value(hidden), n_kv_head)  <span class="co"># (B, 2, T, 8)</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># A KV cache would store key and value at this size, before the repeat.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>n_rep <span class="op">=</span> n_head <span class="op">//</span> n_kv_head</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>key <span class="op">=</span> key.repeat_interleave(n_rep, dim<span class="op">=</span><span class="dv">1</span>)                 <span class="co"># (B, 4, T, 8)</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>value <span class="op">=</span> value.repeat_interleave(n_rep, dim<span class="op">=</span><span class="dv">1</span>)             <span class="co"># (B, 4, T, 8)</span></span></code></pre></div>
+<p>That expansion looked like undoing the whole point. The repetition
+just keeps the attention tensor shapes unchanged. The real benefit is at
+inference, where previous keys and values are stored in a KV cache and
+GQA stores fewer of them.</p>
 <p>On this model, GQA saved about 2,048 parameters, made loss slightly
 worse (1.848 to 1.869), and trained at the same speed. With 32 embedding
 values and a context of 16, the KV cache was too small for the savings
