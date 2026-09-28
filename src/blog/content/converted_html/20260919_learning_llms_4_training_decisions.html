@@ -183,10 +183,10 @@ little and the model memorizes, too much and it can’t learn.</p>
 <p>I swept five rates from 0.1 to 0.5. Through 0.3, each step up beat
 the last, with best validation loss falling from 1.5260 to 1.4689, and
 the best checkpoint landing later each time, from step 8,250 to 28,750.
-At 0.4 it was a tie. At 0.5 it broke: best, final validation, and final
-<em>training</em> loss all rose, which makes it real underfitting. The
-samples picked up small disfluencies too, like “this are not
-delight”.</p>
+At 0.4 it was a tie, 1.4694 against 0.3’s 1.4689. At 0.5 it broke: best,
+final validation, and final <em>training</em> loss all rose, which makes
+it real underfitting. The samples picked up small disfluencies too, like
+“this are not delight”.</p>
 <p>So the sweet spot was 0.3 to 0.4, with a ceiling just past it. That
 was the finding, and it was wrong.</p>
 <p>The problem was 0.3’s best checkpoint: step 28,750 of 29,410. Its

@@ -195,7 +195,7 @@ much and it can't learn.
 I swept five rates from 0.1 to 0.5. Through 0.3, each step up beat the last,
 with best validation loss falling from 1.5260 to 1.4689, and the best
 checkpoint landing later each time, from step 8,250 to 28,750. At 0.4 it was a
-tie. At 0.5 it broke: best, final validation, and final *training* loss all
+tie, 1.4694 against 0.3's 1.4689. At 0.5 it broke: best, final validation, and final *training* loss all
 rose, which makes it real underfitting. The samples picked up small
 disfluencies too, like "this are not delight".
 
