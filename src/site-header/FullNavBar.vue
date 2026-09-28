@@ -52,15 +52,17 @@ export default defineComponent({
     getActiveRouteNavElRef(): string {
       let currRouteName: string = this.$route.name as string || "";
       if (!currRouteName) return "";
-      if (currRouteName === "land") currRouteName = "aboutMe";
+      if (["land", "work", "education"].includes(currRouteName)) currRouteName = "aboutMe";
       if (currRouteName === "selectedBlogPost") currRouteName = "blog";
       if (currRouteName === "selectedSoftware") currRouteName = "software";
       const navEl: string = `${currRouteName}Nav`;
       return navEl;
     },
-    getNavElFromRef(ref: string): HTMLAnchorElement {
+    getNavElFromRef(ref: string): HTMLAnchorElement | null {
       // const fromRefs = this.$refs[ref] as Vue;
       const fromRefs: any = this.$refs[ref];
+      // Routes without a nav item (e.g. software) have no ref to highlight
+      if (!fromRefs) return null;
       const activeNavEl: HTMLAnchorElement = fromRefs.$el as HTMLAnchorElement;
       return activeNavEl;
     },
