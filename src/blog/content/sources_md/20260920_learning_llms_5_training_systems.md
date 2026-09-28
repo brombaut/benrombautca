@@ -261,10 +261,10 @@ There was a confound worth keeping in. I had other things running on the
 machine during those runs, which hits the 24-thread arm hardest because it
 claims every logical CPU. So I reran it with the machine idle.
 
-Both explanations were partly right. Going idle brought 24 threads up to
-11,540.09 tokens per second, so the competing processes really were a factor.
+Both explanations were partly right. Going idle brought 24 threads from
+7,684.50 up to 11,540.09 tokens per second, so the competing processes really were a factor.
 But it was still 1.259 times slower than 12 threads, with matrix multiply self
-time still higher at 1.003s. That residual is the cost of two threads sharing
+time still higher at 1.003s against 0.862s. That residual is the cost of two threads sharing
 a core. A confounded result was worth rerunning cleanly rather than trusting
 it or throwing it out.
 

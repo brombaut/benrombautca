@@ -25,31 +25,31 @@ changes separated early and stayed separated, while others landed right
 on top of the baseline, which told me whether a final difference
 reflected the whole run or just the last checkpoint.</p>
 <h2 id="making-the-model-larger">Making the Model Larger</h2>
-<p>Doubling the context length from 16 to 32 improved validation loss to
-1.779. Seeing further back seemed to help with dialogue turns and
-character names. Training took about 1.6 times as long even though the
-parameter count barely changed, because attention had more pairs of
-positions to compare. This was the first time the context window felt
-like more than a config value: the model cannot use a clue it was never
-allowed to see.</p>
+<p>Doubling the context length from 16 to 32 improved validation loss
+from 1.848 to 1.779. Seeing further back seemed to help with dialogue
+turns and character names. Training took about 1.6 times as long even
+though the parameter count barely changed, because attention had more
+pairs of positions to compare. This was the first time the context
+window felt like more than a config value: the model cannot use a clue
+it was never allowed to see.</p>
 <p>Doubling the embedding size from 32 to 64 gave the biggest
-improvement, to 1.745, while growing the model from 29,248 to 107,648
-parameters. The same change had mostly caused overfitting on the simpler
-dataset. Whether a model is too small or too large isn’t a property of
-the model alone. It depends on what the data asks of it.</p>
-<p>Depth helped less. One layer made loss worse (1.935), and four layers
-improved it to 1.800 at roughly twice the training time. I’d heard width
-and depth described as two kinds of capacity, and this made it concrete.
-Width gives each token more room to describe things. Depth gives the
-model more passes to refine those descriptions. They don’t buy the same
-thing or cost the same.</p>
+improvement, from 1.848 to 1.745, while growing the model from 29,248 to
+107,648 parameters. The same change had mostly caused overfitting on the
+simpler dataset. Whether a model is too small or too large isn’t a
+property of the model alone. It depends on what the data asks of it.</p>
+<p>Depth helped less. One layer made loss worse, from 1.848 to 1.935,
+and four layers improved it from 1.848 to 1.800 at roughly twice the
+training time. I’d heard width and depth described as two kinds of
+capacity, and this made it concrete. Width gives each token more room to
+describe things. Depth gives the model more passes to refine those
+descriptions. They don’t buy the same thing or cost the same.</p>
 <h2 id="what-is-an-attention-head-for">What Is an Attention Head
 For?</h2>
 <p>I tried 2 and 8 heads with the embedding size fixed at 32. Since the
 embedding is split between heads, this changes the size of each head
 rather than adding features. With 2 heads (16 values each) loss was
 1.874. With 8 heads (4 values each) it was 1.867. Neither beat the
-baseline, and the parameter count didn’t change.</p>
+baseline’s 1.848, and the parameter count didn’t change.</p>
 <p>I used to think of more heads as simply more parallel attention
 patterns. That is true, but more heads also means each one gets a
 smaller slice of the same budget. The head count can’t be interpreted
@@ -103,9 +103,10 @@ distance.</li>
 alt="Learned absolute positions change token representations while RoPE changes attention comparisons" /></p>
 <p>Values aren’t rotated. Position affects which tokens get looked at,
 not the content that gets retrieved.</p>
-<p>RoPE reached 1.844, essentially the baseline. With a context of 16, a
-learned table can memorize every position it needs, so I didn’t expect
-much. The surprise was the generated sample: nothing but newlines.</p>
+<p>RoPE reached 1.844, essentially the baseline’s 1.848. With a context
+of 16, a learned table can memorize every position it needs, so I didn’t
+expect much. The surprise was the generated sample: nothing but
+newlines.</p>
 <p>It took me a while to work out why. During training the model sees
 varied text, so even if attention routing changes, the values it
 retrieves differ. During greedy generation, this tiny model fell into a
@@ -137,9 +138,9 @@ attention tensor shapes unchanged. The real benefit is at inference,
 where previous keys and values are stored in a KV cache and GQA stores
 fewer of them.</p>
 <p>On this model, GQA saved about 2,048 parameters, made loss slightly
-worse (1.869), and trained at the same speed. With 32 embedding values
-and a context of 16, the KV cache was too small for the savings to
-matter, while the lost capacity was noticeable. That separated two
+worse (1.848 to 1.869), and trained at the same speed. With 32 embedding
+values and a context of 16, the KV cache was too small for the savings
+to matter, while the lost capacity was noticeable. That separated two
 questions I’d been blending together: does this train better in a tiny
 benchmark, and does it make a large model cheaper to serve? GQA is
 answering the second one.</p>

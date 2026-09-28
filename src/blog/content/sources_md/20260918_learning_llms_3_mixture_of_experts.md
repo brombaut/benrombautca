@@ -129,7 +129,8 @@ shuffling becomes network traffic and the dominant engineering problem.
 
 Going to two experts per token made this concrete. Parameters stayed at exactly
 76,608, but each token now passed through two experts. Training time went from
-81.0 to 123.5 seconds, 52.5% slower, for a validation improvement of 0.0133.
+81.0 to 123.5 seconds, 52.5% slower, for a validation improvement of 0.0133,
+from 1.7745 to 1.7613.
 Parameter count describes what's stored. Experts per token describes what's
 run. I had been treating those as one number.
 
@@ -203,7 +204,7 @@ each, it's an operational requirement.
 
 Mixture of Experts wasn't worth it at this scale. My best run reached 1.7467
 with 76,608 parameters. Extending the context window from 16 to 32 characters
-reached 1.7789 with 29,760. That's 2.6 times the parameters, and slower steps,
+took the dense model from 1.848 to 1.7789 with 29,760. That's 2.6 times the parameters, and slower steps,
 for about 0.03 over a much simpler change.
 
 That's not an argument against the technique. It says my model was limited by
