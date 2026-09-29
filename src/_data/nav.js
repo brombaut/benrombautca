@@ -6,7 +6,6 @@ module.exports = {
   items: [
     { label: "About", url: "/" },
     { label: "Blog", url: "/blog/" },
-    { label: "Software", url: "/software/" },
     { label: "Publications", url: "/publications/" },
     { label: "Bookshelf", url: "/bookshelf/" },
     { label: "Running", url: "/running/" },

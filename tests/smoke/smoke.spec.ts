@@ -54,7 +54,7 @@ test("the home page renders with its stylesheet", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("main h1")).toBeVisible();
   await expect(page).toHaveTitle(/Ben Rombaut/);
-  await expect(page.locator(".sidebar .sidenav a")).toHaveCount(7);
+  await expect(page.locator(".sidebar .sidenav a")).toHaveCount(6);
   const stylesheet = await page.request.get("/styles/main.css");
   expect(stylesheet.ok(), "main.css is served").toBe(true);
   await page.waitForLoadState("networkidle");
@@ -92,13 +92,6 @@ test("the blog index lists posts by year", async ({ page }) => {
 // One post with the lot: code blocks, tables and images. The old build sized
 // every <pre> in JavaScript to stop it blowing out the layout; this asserts the
 // CSS replacement holds, since nothing would throw if it didn't.
-test("the software index links every project", async ({ page }) => {
-  await page.goto("/software/");
-  await expect(page.locator(".dated-list__title")).toHaveCount(4);
-  await page.locator(".dated-list__title").first().click();
-  await expect(page.locator(".article-body")).toBeVisible();
-  await page.waitForLoadState("networkidle");
-});
 
 test("a post renders its body without overflowing the page", async ({ page }) => {
   await page.goto("/blog/20220626_titanic_dataset/");
