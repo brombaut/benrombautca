@@ -348,11 +348,9 @@ hr {
   margin: 0;
 }
 
-// A hairline rotated a couple of degrees. A static transform, not motion.
 .separator {
   border-top-width: 2px;
   border-top-color: var(--primary);
-  transform: rotate(-1.5deg);
 }
 
 // A date column and a body column. Used by the blog index and anything else
