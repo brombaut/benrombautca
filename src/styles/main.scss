@@ -26,12 +26,14 @@
 }
 
 :root {
-  --background: #fff;
-  --foreground: #111;
+  // The old site's paper beige is back as the page colour, so the neutrals are
+  // warm rather than the greys that sat on white.
+  --background: #f7f5e7;
+  --foreground: #1b1a14;
   --primary: #5857ff;
-  --secondary: #6b6a6a;
-  --tertiary: #e2e2e2;
-  --quaternary: #f3f2f2;
+  --secondary: #6b6754;
+  --tertiary: #ddd9c0;
+  --quaternary: #efecd7;
   --primary-dark: #4646cc;
 
   --font-sans: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -164,10 +166,10 @@ hr {
 }
 
 .sidebar__name a {
-  color: inherit;
+  color: var(--primary);
 
   &:hover {
-    color: var(--primary);
+    color: var(--primary-dark);
   }
 }
 
@@ -256,7 +258,7 @@ hr {
   .topnav > summary {
     cursor: pointer;
     list-style: none;
-    color: var(--secondary);
+    color: var(--primary);
     font-size: var(--text-tiny);
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -348,6 +350,8 @@ hr {
 
 // A hairline rotated a couple of degrees. A static transform, not motion.
 .separator {
+  border-top-width: 2px;
+  border-top-color: var(--primary);
   transform: rotate(-1.5deg);
 }
 
@@ -369,7 +373,7 @@ hr {
 }
 
 .dated-list time {
-  color: var(--secondary);
+  color: var(--primary);
   font-size: var(--text-tiny);
   white-space: nowrap;
 }
@@ -410,7 +414,7 @@ hr {
 
 .year-heading {
   margin: 3rem 0 0.5rem;
-  color: var(--secondary);
+  color: var(--primary);
   font-size: var(--text-tiny);
   font-weight: 600;
   letter-spacing: 0.08em;
