@@ -91,6 +91,7 @@ benrombautca/
 │   ├── blog/                  # Blog section and content
 │   │   └── content/           # Blog post sources (MD) and converted (HTML)
 │   ├── assets/                # Images, resumes, publications PDFs
+│   ├── bio.njk                # Bio page: career phases, newest first
 │   ├── bookshelf/             # Bookshelf section
 │   │   └── syncer_v2/         # Goodreads scraping and syncing logic
 │   ├── footer/                # Site footer
@@ -100,7 +101,6 @@ benrombautca/
 │   ├── shared/                # Shared/reusable components
 │   ├── styles/                # Global SCSS styles
 │   ├── utils/                 # Utility functions
-│   ├── workEducation/         # Work and education timeline
 │   └── App.vue                # Root component (reference only, not built)
 ├── tests/smoke/               # Playwright smoke tests (every route renders, no console errors)
 ├── playwright.config.ts       # Playwright config (serves dist/)
@@ -124,7 +124,8 @@ computation happens once per build, not per render:
 
 | File | What it provides |
 | --- | --- |
-| `hikes.json`, `races.json`, `publications.json`, `work.json`, `education.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
+| `hikes.json`, `races.json`, `publications.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
+| `work.json`, `education.json` | Source notes only. Nothing renders them: #543 was dropped, so there is no Work/Education section and the history is hand-written prose in `src/bio.njk` |
 | `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, and the `all` / `listed` split |
 | `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year |
 | `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list |
@@ -149,8 +150,9 @@ None. Eleventy writes one HTML file per page and the paths are real:
 `/blog/<postId>/`. The old Vue hash URLs (`/#/blog/<postId>`) are handled by a
 small inline script in `src/_includes/hash-redirect.njk`, included in `<head>` on
 the home page only, since every hash URL requests `/` (#518). It holds an
-explicit mapping table and `location.replace`s to the new path. `/#/about-me`,
-`/#/work` and `/#/education` all go to `/` (the About content is the home page);
+explicit mapping table and `location.replace`s to the new path. `/#/about-me`
+goes to `/` (the About content is the home page) and `/#/work` and
+`/#/education` go to `/bio/` (#545);
 `/#/software` and `/#/software/<id>` go to `/` (that section is deleted);
 `/#/articles` and `/#/articles/<slug>` go to `/blog/` (those slugs lack the date
 prefix real post ids have, so they can't be mapped to a post).
@@ -483,7 +485,9 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 - **Add Resume & CV PDFs**: ✅ Done
 
 ### Planned Work
-- **Static rewrite**: in progress on `redesign/static-rewrite`. See #501 for the
+- **Static rewrite**: in progress on `redesign/static-rewrite`. #545 landed the
+  Bio page and #543 (a Work/Education section) was dropped with it: there is no
+  such section, and the home page carries no timeline. See #501 for the
   full sub-issue list and the go/no-go checkpoint (#534, #535, #537)
 - **Filter blog posts by tag**: Planned
 - **Consider moving Blog-Syncer to cloud**: Under consideration
@@ -494,7 +498,7 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 ### Technical Debt
 - No unit tests (only browser smoke tests)
 - The reference-only Vue components in `src/` still need deleting as their
-  replacement sections land
+  replacement sections land (`src/workEducation/` went with #543)
 - See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
 
 ## Blog Writing Style

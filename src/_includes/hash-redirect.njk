@@ -6,14 +6,15 @@
 #}
 <script>
   (function () {
-    // Explicit table. The old router sent /, /about-me, /work and /education to
-    // the same About component, which is now the home page. The software
-    // section is deleted and isn't coming back, so it lands on About too.
+    // Explicit table. The old router sent /, /about-me, /work and /education
+    // to the same About component; the About content is now the home page and
+    // the work/education history is the Bio page (#545). The software section is
+    // deleted and isn't coming back, so it lands on About too.
     var map = {
       "/": "/",
       "/about-me": "/",
-      "/work": "/",
-      "/education": "/",
+      "/work": "/bio/",
+      "/education": "/bio/",
       "/software": "/",
       "/blog": "/blog/",
       // /#/articles was in the old sitemap but never matched a router route.

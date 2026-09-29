@@ -5,6 +5,7 @@
 module.exports = {
   items: [
     { label: "About", url: "/" },
+    { label: "Bio", url: "/bio/" },
     { label: "Blog", url: "/blog/" },
     { label: "Publications", url: "/publications/" },
     { label: "Bookshelf", url: "/bookshelf/" },

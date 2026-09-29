@@ -11,6 +11,7 @@ import { test as base, expect } from "@playwright/test";
 // src/_data/nav.js; there is no software section in the rewrite.
 const sections: [string, string][] = [
   ["About", "/"],
+  ["Bio", "/bio/"],
   ["Blog", "/blog/"],
   ["Publications", "/publications/"],
   ["Bookshelf", "/bookshelf/"],
@@ -76,7 +77,7 @@ test("the home page renders with its stylesheet", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("main h1")).toBeVisible();
   await expect(page).toHaveTitle(/Ben Rombaut/);
-  await expect(page.locator(".sidebar .sidenav a")).toHaveCount(6);
+  await expect(page.locator(".sidebar .sidenav a")).toHaveCount(sections.length);
   const stylesheet = await page.request.get("/styles/main.css");
   expect(stylesheet.ok(), "main.css is served").toBe(true);
   await page.waitForLoadState("networkidle");
@@ -226,8 +227,8 @@ test("hiking and running render their entries and scroll galleries internally", 
 // <head> does the mapping. These are the URLs that exist in the wild.
 const hashRedirects: [string, string][] = [
   ["/#/about-me", "/"],
-  ["/#/work", "/"],
-  ["/#/education", "/"],
+  ["/#/work", "/bio/"],
+  ["/#/education", "/bio/"],
   ["/#/blog", "/blog/"],
   ["/#/blog/20210624_deploy_ghpages_actions", "/blog/20210624_deploy_ghpages_actions/"],
   ["/#/articles", "/blog/"],
@@ -254,8 +255,8 @@ test("the sitemap is generated from the page list", async ({ page }) => {
   const xml = await res.text();
   expect(xml, "no stale hash URLs").not.toContain("/#/");
   expect(xml).toContain("<loc>https://www.benrombaut.ca/blog/20210624_deploy_ghpages_actions/</loc>");
-  // Every built page, and nothing else: 6 sections plus one page per post.
-  expect(xml.match(/<url>/g)?.length).toBe(48);
+  // Every built page, and nothing else: 7 sections plus one page per post.
+  expect(xml.match(/<url>/g)?.length).toBe(49);
 });
 
 test("404.html is a real page with a way back", async ({ page }) => {

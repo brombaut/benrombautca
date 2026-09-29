@@ -1,0 +1,126 @@
+---
+layout: base.njk
+title: Bio
+description: The phases of my career so far, newest first.
+permalink: /bio/
+---
+<h1>Bio</h1>
+<p class="hero__lede">
+  Where I have worked and studied, newest first, with a bit about what each phase
+  was actually like.
+</p>
+
+<section class="phase">
+  <h2>2021 to now</h2>
+  <p class="phase__where">
+    Software engineering researcher, <a href="https://www.huawei.com/ca/" rel="noopener" target="_blank">Huawei Canada</a>,
+    Centre for Software Excellence. Montreal, Quebec.
+  </p>
+  <p>
+    I research how software gets built when a large part of it is written by, or
+    delegated to, foundation models. That splits roughly into two halves: AI for
+    software engineering, and software engineering for AI systems. In practice
+    the two are hard to separate, because the tools we study are also the tools
+    we build with.
+  </p>
+  <p>
+    Most of my published work here has been about making these systems legible.
+    <a href="/publications/">Watson</a> is a cognitive observability framework
+    for the reasoning of LLM-powered agents, which came out of a fairly simple
+    frustration: when an agent goes wrong, the trace tells you what it did and
+    almost nothing about why. More recently I have been working on
+    specification-driven development, the idea that the durable artifact is the
+    stated intent rather than the generated code, and on labeling architectural
+    reasoning in code models at a scale that does not require a human reading
+    every diff.
+  </p>
+  <p>
+    I joined from Kingston and eventually moved to Montreal. The work is
+    industrial research, which means papers and prototypes both, and the ratio
+    between them shifts month to month. I like that more than I expected to.
+  </p>
+</section>
+
+<section class="phase">
+  <h2>2020 to 2022</h2>
+  <p class="phase__where">
+    M.Sc. in Computing, <a href="https://www.queensu.ca/" rel="noopener" target="_blank">Queen's University</a>,
+    Software Analysis &amp; Intelligence Lab. Kingston, Ontario.
+  </p>
+  <p>
+    I did my master's at SAIL with Ahmed E. Hassan, and most of my time went
+    into dependency management bots. The
+    <a href="/publications/">thesis</a> asks two questions about them: what do
+    they actually cost the projects that adopt them, and can the crowd of other
+    projects already running the same upgrade tell you whether yours is safe. The
+    Greenkeeper study is the first half, the Dependabot compatibility score study
+    is the second.
+  </p>
+  <p>
+    Empirical software engineering was a real adjustment after a few years of
+    shipping product. The unit of work stops being a feature and becomes a
+    claim you have to defend, and a lot of the effort goes into the parts nobody
+    reads: mining the data, deciding what counts as a signal, convincing yourself
+    the result is not an artifact of how you sampled. Filipe Cogo walked me
+    through most of that.
+  </p>
+  <p>
+    I was also head TA for CISC221, Computer Architecture, for two years.
+    Teaching a course you did not take yourself is a good way to find out how
+    shallow your understanding of something is.
+  </p>
+</section>
+
+<section class="phase">
+  <h2>2018 to 2020</h2>
+  <p class="phase__where">
+    Software developer, <a href="https://eigen.io/" rel="noopener" target="_blank">Eigen Innovations</a>.
+    Fredericton, New Brunswick.
+  </p>
+  <p>
+    I started at Eigen as a front-end co-op student and came back full time after
+    graduating. Eigen builds industrial machine vision for manufacturing, so the
+    software sits between cameras on a factory floor and the people who need to
+    know when a part came out wrong. That gave me an unusually wide surface for a
+    first real job: Vue in the browser, Django and Postgres behind it, an
+    Electron app for the plant floor, and C and C++ where the cameras were.
+  </p>
+  <p>
+    This is the phase where I learned what production actually means. The
+    customer's line does not stop because your abstraction was elegant, and a
+    deployment you cannot debug over a slow connection to a plant in another
+    province is not a deployment. I still think of it as the most
+    formative two years I have had.
+  </p>
+</section>
+
+<section class="phase">
+  <h2>2014 to 2019</h2>
+  <p class="phase__where">
+    B.Sc. in Software Engineering, co-operative education program,
+    <a href="https://www.unb.ca/" rel="noopener" target="_blank">University of New Brunswick</a>.
+    Fredericton, New Brunswick.
+  </p>
+  <p>
+    Software engineering at UNB is a joint degree between computer science and
+    electrical and computer engineering, which in practice meant alternating
+    between compilers and circuits. I took the co-op stream, so the five years
+    were split between terms on campus and terms working.
+  </p>
+  <p>
+    The placements went, in order: IT support and then development at
+    <a href="https://www.linkedin.com/company/brunswick-news-inc-/?originalSubdomain=ca" rel="noopener" target="_blank">Brunswick News</a>,
+    quality assurance at <a href="https://www.siemens.com/ca/en.html" rel="noopener" target="_blank">Siemens Canada</a>,
+    a research assistantship in UNB's
+    <a href="https://hcilab.github.io/" rel="noopener" target="_blank">Human-Computer Interaction Lab</a>
+    building Android and Bluetooth LE prototypes, and finally Eigen. Four
+    very different kinds of software organization before I had a degree, which is
+    the whole argument for co-op.
+  </p>
+  <p>
+    The HCI lab term is the one that changed the trajectory. It was the first
+    time I saw research as something a person could do as a job rather than
+    something that happened in papers, and it is a straight line from there to
+    SAIL and then to where I am now.
+  </p>
+</section>
