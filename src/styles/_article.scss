@@ -60,8 +60,12 @@
     margin-bottom: 0;
   }
 
+  // Inline, not block: README badge rows are several images in one paragraph
+  // and block-level stacks them one per line. A lone image still gets its own
+  // line, since its paragraph is block-level anyway.
   img {
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
     max-width: 100%;
     height: auto;
     margin: 0.5rem 0;

@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Software
+description: Projects I've built, with their source and packages.
+permalink: /software/
+---
+{% from "chips.njk" import chips %}
+<h1>Software</h1>
+<p class="hero__lede">Projects I've built, with their source and packages.</p>
+
+{#
+  Four projects, so no card grid: the blog index's list, minus its date column.
+  These are ordered by the `_order` field, which is hand-curated and not
+  chronological, so a date column would read as a broken sort. The year goes in
+  the meta line instead.
+#}
+<ul class="dated-list dated-list--undated">
+  {% for project in software.projects %}
+    <li>
+      <div>
+        <a class="dated-list__title" href="{{ project.url }}">{{ project.title }}</a>
+        <p class="post-description">{{ project.description }}</p>
+        {{ chips(project.techUsed) }}
+        <p class="dated-list__meta"><time datetime="{{ project.createdAt }}">{{ project.year }}</time></p>
+      </div>
+    </li>
+  {% endfor %}
+</ul>

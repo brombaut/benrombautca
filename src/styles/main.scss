@@ -403,6 +403,61 @@ hr {
   font-size: var(--text-tiny);
 }
 
+// A list with no date column, for entries whose order is curated rather than
+// chronological.
+.dated-list--undated > li {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+// --- chips -----------------------------------------------------------------
+
+// Icon plus label, for external repos and tech used. One form in both places:
+// the old ExternalRepoIcon had a `verbose` switch between icon-only and
+// icon-plus-label, and the brand-coloured backgrounds it and TechUsedIcon
+// carried (GitHub charcoal, npm red, Vue green, ...) are dropped for the
+// palette from #535.
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips li {
+  max-width: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--tertiary);
+  border-radius: 999px;
+  background: var(--quaternary);
+  color: var(--secondary);
+  font-size: var(--text-tiny);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+a.chip:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.chip img {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.project-meta {
+  margin-bottom: 2.5rem;
+}
+
 // --- blog ------------------------------------------------------------------
 
 .year-heading {
