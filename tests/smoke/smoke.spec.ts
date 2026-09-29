@@ -102,3 +102,11 @@ test("a post renders its body without overflowing the page", async ({ page }) =>
   expect(overflow, "no horizontal page scroll").toBeLessThanOrEqual(0);
   await page.waitForLoadState("networkidle");
 });
+
+test("the publications page lists both groups and serves its PDFs", async ({ page }) => {
+  await page.goto("/publications/");
+  expect(await page.locator(".pub-list > li").count()).toBe(13);
+  await expect(page.locator(".pub-authors__me").first()).toBeVisible();
+  const pdf = await page.locator(".pub-links a[href^='/publications/']").first().getAttribute("href");
+  expect((await page.request.get(pdf as string)).ok(), `${pdf} is served`).toBe(true);
+});

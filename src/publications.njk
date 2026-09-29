@@ -1,0 +1,43 @@
+---
+layout: base.njk
+title: Publications
+description: Academic publications, theses and talks.
+permalink: /publications/
+---
+{% macro publist(items) %}
+  <ul class="pub-list">
+    {% for pub in items %}
+      <li>
+        <p class="pub-title">{{ pub.title }}</p>
+        <p class="pub-authors">
+          {%- for a in pub.authors -%}
+            {% if a.me %}<span class="pub-authors__me">{{ a.name }}</span>{% else %}{{ a.name }}{% endif %}
+            {{- ", " if not loop.last }}
+          {%- endfor -%}
+        </p>
+        <p class="pub-meta">
+          {% if pub.venue %}<span class="pub-venue">{{ pub.venue }}</span> &middot; {% endif %}{{ pub.month }} {{ pub.year }}
+        </p>
+        {% if pub.links.length %}
+          <p class="pub-links">
+            {% for link in pub.links %}
+              <a href="{{ link.url }}" rel="noopener" target="_blank">{{ link.type }}</a>
+            {% endfor %}
+          </p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+<h1>Publications</h1>
+<p class="hero__lede">{{ description }}</p>
+
+{{ publist(publications | rejectattr("unpublished")) }}
+
+{% set unpublished = publications | selectattr("unpublished") | list %}
+{% if unpublished.length %}
+  <h2>Unpublished Works</h2>
+  <p class="pub-note">These have not appeared anywhere. They are listed for completeness.</p>
+  {{ publist(unpublished) }}
+{% endif %}
