@@ -110,3 +110,11 @@ test("the publications page lists both groups and serves its PDFs", async ({ pag
   const pdf = await page.locator(".pub-links a[href^='/publications/']").first().getAttribute("href");
   expect((await page.request.get(pdf as string)).ok(), `${pdf} is served`).toBe(true);
 });
+
+test("the bookshelf renders books grouped by year", async ({ page }) => {
+  await page.goto("/bookshelf/");
+  await expect(page.locator("h1")).toHaveText("Bookshelf");
+  expect(await page.locator(".book").count()).toBeGreaterThan(100);
+  await expect(page.locator(".book__cover").first()).toBeVisible();
+  await page.waitForLoadState("networkidle");
+});

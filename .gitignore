@@ -40,3 +40,6 @@ __pycache__/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Agent worktrees
+.claude/worktrees/

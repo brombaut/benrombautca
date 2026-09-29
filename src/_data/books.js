@@ -15,14 +15,22 @@ const yearOf = (date) => (date ? Number(date.slice(0, 4)) : 0);
 
 const byShelf = (shelf) => all.filter((b) => b.shelf === shelf);
 
-const read = byShelf("read").sort((a, b) => (b.date_finished || "").localeCompare(a.date_finished || ""));
+// Ratings are 2-5 and every read book has one, so filled stars alone are
+// enough; no empty-star track needed.
+const withStars = (b) => ({ ...b, stars: "\u2605".repeat(Number(b.rating) || 0) });
+
+const read = byShelf("read")
+  .sort((a, b) => (b.date_finished || "").localeCompare(a.date_finished || ""))
+  .map(withStars);
 
 const readByYear = [...new Set(read.map((b) => yearOf(b.date_finished)))]
   .sort((a, b) => b - a)
   .map((year) => ({ year, books: read.filter((b) => yearOf(b.date_finished) === year) }));
 
+// Oldest first: the book that's been on the go longest leads, which is what
+// the old component did.
 const currentlyReading = byShelf("currently-reading")
-  .sort((a, b) => (b.date_added || "").localeCompare(a.date_added || ""));
+  .sort((a, b) => (a.date_added || "").localeCompare(b.date_added || ""));
 
 const toRead = byShelf("to-read").sort((a, b) => a.position - b.position);
 
