@@ -2,10 +2,30 @@
 import { test as base, expect } from "@playwright/test";
 
 /*
- * Covers the pages the rewrite has built so far: the home page (#535) and the
- * blog (#537). The remaining sections get added as they land, and #544 does the
- * full sweep plus screenshot baselines before the cutover merge.
+ * Smoke coverage for the static site (#544): every section page and every blog
+ * post URL, the sidebar nav above the 782px breakpoint and the <details> top bar
+ * below it, the passthrough-copied assets, the #518 redirects/sitemap/404, and
+ * screenshot baselines for a handful of representative pages.
  */
+
+// The sidebar/top bar nav, and the full set of section pages. Mirrors
+// src/_data/nav.js; there is no software section in the rewrite.
+const sections: [string, string][] = [
+  ["About", "/"],
+  ["Blog", "/blog/"],
+  ["Publications", "/publications/"],
+  ["Bookshelf", "/bookshelf/"],
+  ["Running", "/running/"],
+  ["Hiking", "/hiking/"],
+];
+
+// Representative posts: one with tables and many code blocks, one with diagrams.
+const samplePosts = [
+  "/blog/20220626_titanic_dataset/",
+  "/blog/20260904_learning_llms_2_architecture_variations/",
+];
+
+const MOBILE = { width: 390, height: 844 };
 
 // Console errors that are known and harmless. Add a substring here, with a
 // comment explaining why, rather than loosening the check.
@@ -50,6 +70,9 @@ const test = base.extend<{ pageProblems: string[] }>({
   }, { auto: true }],
 });
 
+const horizontalOverflow = (page: import("@playwright/test").Page) =>
+  page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+
 test("the home page renders with its stylesheet", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("main h1")).toBeVisible();
@@ -67,6 +90,7 @@ const copiedAssets = [
   "/favicon.ico",
   "/robots.txt",
   "/images/benrombaut.webp",
+  "/fonts/albert-sans-latin.woff2",
   "/resumes/BenRombaut_Resume.pdf",
   "/publications/Rombaut_Benjamin_J_202205_MSc.pdf",
   "/hiking-images/19_01_katahdin/19_katahdin1.webp",
@@ -82,11 +106,79 @@ test("static assets are copied to their expected paths", async ({ page }) => {
   }
 });
 
-test("the blog index lists posts by year", async ({ page }) => {
+test("every section page renders with a heading, a title and its nav marked", async ({ page }) => {
+  for (const [label, url] of sections) {
+    await page.goto(url);
+    await expect(page.locator("main h1")).toBeVisible();
+    await expect(page).toHaveTitle(/Ben Rombaut/);
+    await expect(page.locator(`.sidebar .sidenav a[aria-current="page"]`)).toHaveText(label);
+    expect(await horizontalOverflow(page), `no horizontal page scroll on ${url}`).toBeLessThanOrEqual(0);
+    await page.waitForLoadState("networkidle");
+  }
+});
+
+test("the sidebar nav reaches every section", async ({ page }) => {
+  await page.goto("/");
+  for (const [label, url] of sections) {
+    await page.locator(".sidebar .sidenav a", { hasText: label }).click();
+    await expect(page).toHaveURL(new RegExp(`${url.replace(/\//g, "\\/")}$`));
+    await expect(page.locator("main h1")).toBeVisible();
+  }
+});
+
+test("the top bar nav takes over below the breakpoint", async ({ page }) => {
+  await page.setViewportSize(MOBILE);
+  await page.goto("/");
+  await expect(page.locator(".sidebar")).toBeHidden();
+  await expect(page.locator(".topbar")).toBeVisible();
+
+  // The menu is a <details>, so it opens with no JavaScript.
+  const menu = page.locator(".topnav");
+  await expect(menu.locator(".topnav__list")).toBeHidden();
+  await menu.locator("summary").click();
+  await expect(menu.locator("a")).toHaveCount(sections.length + 3); // + social links
+
+  await menu.locator("a", { hasText: "Bookshelf" }).click();
+  await expect(page).toHaveURL(/\/bookshelf\/$/);
+  await expect(page.locator("main h1")).toHaveText("Bookshelf");
+});
+
+test("pages fit the mobile viewport", async ({ page }) => {
+  await page.setViewportSize(MOBILE);
+  for (const url of [...sections.map(([, u]) => u), ...samplePosts]) {
+    await page.goto(url);
+    await expect(page.locator("main h1")).toBeVisible();
+    expect(await horizontalOverflow(page), `no horizontal page scroll on ${url}`).toBeLessThanOrEqual(0);
+    await page.waitForLoadState("networkidle");
+  }
+});
+
+test("the blog index lists posts by year and links to pages that exist", async ({ page }) => {
   await page.goto("/blog/");
   await expect(page.locator("h1")).toHaveText("Blog");
   expect(await page.locator(".year-heading").count()).toBeGreaterThan(0);
-  expect(await page.locator(".dated-list__title").count()).toBeGreaterThan(0);
+
+  // Only the `listed` posts appear here; the unlisted ones still get a page.
+  const links = await page.locator("a.dated-list__title").evaluateAll(
+    (els) => els.map((el) => (el as HTMLAnchorElement).getAttribute("href") as string),
+  );
+  expect(links.length, "posts are listed").toBeGreaterThan(10);
+  for (const href of links) {
+    expect((await page.request.get(href)).ok(), `${href} is built`).toBe(true);
+  }
+});
+
+// A post page that fails to build is invisible from the index (most posts are
+// unlisted), so walk every post URL the sitemap advertises instead.
+test("every blog post URL in the sitemap is built", async ({ page }) => {
+  const xml = await (await page.request.get("/sitemap.xml")).text();
+  const posts = [...xml.matchAll(/<loc>[^<]*(\/blog\/[^<]+\/)<\/loc>/g)].map((m) => m[1]);
+  expect(posts.length, "posts are in the sitemap").toBe(42);
+  for (const url of posts) {
+    const res = await page.request.get(url);
+    expect(res.ok(), `${url} is built`).toBe(true);
+    expect(await res.text(), `${url} has a body`).toContain("article-body");
+  }
 });
 
 // One post with the lot: code blocks, tables and images. The old build sized
@@ -96,10 +188,7 @@ test("the blog index lists posts by year", async ({ page }) => {
 test("a post renders its body without overflowing the page", async ({ page }) => {
   await page.goto("/blog/20220626_titanic_dataset/");
   await expect(page.locator(".article-body")).toBeVisible();
-  const overflow = await page.evaluate(
-    () => document.documentElement.scrollWidth - window.innerWidth,
-  );
-  expect(overflow, "no horizontal page scroll").toBeLessThanOrEqual(0);
+  expect(await horizontalOverflow(page), "no horizontal page scroll").toBeLessThanOrEqual(0);
   await page.waitForLoadState("networkidle");
 });
 
@@ -130,8 +219,7 @@ test("hiking and running render their entries and scroll galleries internally", 
   const gallery = page.locator(".gallery").first();
   const scrolls = await gallery.evaluate((el) => el.scrollWidth > el.clientWidth);
   expect(scrolls, "gallery scrolls horizontally").toBe(true);
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
-  expect(overflow, "no horizontal page scroll").toBeLessThanOrEqual(0);
+  expect(await horizontalOverflow(page), "no horizontal page scroll").toBeLessThanOrEqual(0);
   await page.waitForLoadState("networkidle");
 });
 
@@ -175,4 +263,35 @@ test("404.html is a real page with a way back", async ({ page }) => {
   await page.goto("/404.html");
   await expect(page.locator("main h1")).toHaveText("Page not found");
   await expect(page.locator(".buttons a[href='/']")).toBeVisible();
+});
+
+/*
+ * Screenshot baselines. These are the only tests here that can fail for a reason
+ * other than a real bug: text rasterisation differs between the Linux of this
+ * machine and CI's ubuntu-latest image even with the fonts self-hosted, and a
+ * false failure would block a deploy. So they run locally only, which is also
+ * where the branch is verified (direct commits to redesign/static-rewrite get no
+ * CI run). Update with `npx playwright test --update-snapshots`.
+ */
+const baselines: [string, string][] = [
+  ["home", "/"],
+  ["blog-index", "/blog/"],
+  ["blog-post", "/blog/20220626_titanic_dataset/"],
+  ["publications", "/publications/"],
+];
+
+test.describe("screenshot baselines", () => {
+  test.skip(!!process.env.CI, "rasterisation differs between machines; local only");
+
+  for (const [name, url] of baselines) {
+    for (const [width, size] of [["desktop", { width: 1280, height: 900 }], ["mobile", MOBILE]] as const) {
+      test(`${name} looks right on ${width}`, async ({ page }) => {
+        await page.setViewportSize(size);
+        await page.goto(url);
+        await page.waitForLoadState("networkidle");
+        await page.evaluate(() => document.fonts.ready);
+        await expect(page).toHaveScreenshot(`${name}-${width}.png`, { fullPage: true });
+      });
+    }
+  }
 });

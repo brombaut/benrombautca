@@ -361,18 +361,27 @@ HTML the blog converter emits, which is why they are kept as-is.
 
 **Status**: Browser smoke tests (Playwright) plus ESLint. No unit tests yet.
 
-The smoke tests in `tests/smoke/` load the **production build** in headless Chromium.
-The route matrix and nav walk were written against the Vue hash routes and have been
-reduced to what the rewrite currently builds; #544 restores full coverage against
-real nested paths and adds screenshot baselines, and is a precondition for the
-cutover merge. What runs today:
+The smoke tests in `tests/smoke/` load the **production build** in headless Chromium,
+against the real nested paths (#544). What runs:
 - The home page renders and its stylesheet is served
 - One representative file from every passthrough-copied tree is reachable
-- Every section page renders its entries
+- Every section page renders its entries, has a title, and marks its nav item
+- The sidebar nav reaches every section above 782px, and below it the `<details>`
+  top bar menu opens and navigates with no JavaScript
+- Nothing overflows horizontally at 390px, on every section page and two
+  content-heavy posts
+- Every blog post URL in the sitemap is built with a body (most posts are
+  unlisted, so the index alone doesn't cover them)
 - Every old hash URL redirects to its real path, `/sitemap.xml` has no hash URLs,
   and `/404.html` renders
 - Any `console.error`, uncaught exception, or failed same-origin request
   (CSS, images, PDFs) fails the run
+- Screenshot baselines for four pages at two widths, in
+  `tests/smoke/smoke.spec.ts-snapshots/`. These are **skipped when `CI` is set**:
+  text rasterisation differs between machines even with the fonts self-hosted, and
+  a false failure would block the deploy. Run them locally (which is where this
+  branch is verified anyway) and update with
+  `npx playwright test --update-snapshots` after an intentional design change.
 
 Third-party requests (e.g. the ClustrMaps visitor counter) are blocked so the tests are
 hermetic. A known-harmless console error can be added to `ALLOWED_CONSOLE_ERRORS` in
@@ -391,7 +400,8 @@ which is why the config and spec stay TypeScript with no `typescript` dependency
 
 CI runs the smoke tests on every PR (`install_lint_build.yml`, which triggers on PRs
 into `main` *and* into `redesign/static-rewrite`) and before deploying
-(`gh_pages_deploy.yml`), so a broken view never ships.
+(`gh_pages_deploy.yml`), so a broken view never ships. CI runs everything except the
+screenshot baselines.
 
 ## Common Development Tasks
 
@@ -486,7 +496,7 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
   in #518
 
 ### Technical Debt
-- No unit tests (only browser smoke tests), and smoke coverage is reduced until #544
+- No unit tests (only browser smoke tests)
 - The reference-only Vue components in `src/` still need deleting as their
   replacement sections land
 - See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
