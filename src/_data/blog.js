@@ -50,6 +50,24 @@ function emojiFor(id, series) {
   return POST_EMOJI[id] || DEFAULT_EMOJI;
 }
 
+// The Pandoc pipeline writes image and PDF links relative to the page
+// ("blog-images/foo.png"), which worked under hash routing because every page
+// was served from the site root. Real nested URLs like /blog/<id>/ break them,
+// so anchor them to the root here rather than changing the Python converter.
+function rootRelative(body) {
+  return body.replace(
+    /(\s(?:src|href)=")(?!https?:|\/|#|mailto:|data:|")/g,
+    "$1/",
+  );
+}
+
+// Most posts open with an <h1> carrying the document title, which the page
+// already renders above the body. The old site showed both. Drop the leading
+// one; any later <h1> is a real section heading and stays.
+function stripLeadingHeading(body) {
+  return body.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/, "");
+}
+
 function readingMinutes(body) {
   const words = body.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
@@ -60,7 +78,7 @@ const bodies = new Map(content.map((c) => [c._id, c._body]));
 const all = meta
   .filter((m) => m._show)
   .map((m) => {
-    const body = bodies.get(m._id) || "";
+    const body = stripLeadingHeading(rootRelative(bodies.get(m._id) || ""));
     const series = parseSeries(m._title);
     return {
       id: m._id,

@@ -2,7 +2,7 @@
 // Partials (leading underscore) are the only other .scss files; Eleventy
 // compiles this one to /styles/main.css.
 
-@use "github_article";
+@use "article";
 
 // Albert Sans, self-hosted so there's no Google Fonts request. One variable
 // font per style covers every weight.
@@ -400,5 +400,42 @@ hr {
   cursor: pointer;
   padding: 0.75rem 0;
   color: var(--primary);
+  font-size: var(--text-tiny);
+}
+
+// --- blog ------------------------------------------------------------------
+
+.year-heading {
+  margin: 3rem 0 0.5rem;
+  color: var(--secondary);
+  font-size: var(--text-tiny);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.post-series {
+  margin: 0 0 0.25rem;
+  color: var(--primary);
+  font-size: var(--text-tiny);
+  font-weight: 500;
+}
+
+.post-description {
+  margin: 0.35rem 0 0;
+  color: var(--secondary);
+  font-size: var(--text-tiny);
+}
+
+.post-meta {
+  margin-bottom: 2.5rem;
+  color: var(--secondary);
+  font-size: var(--text-tiny);
+}
+
+.post-back {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--tertiary);
   font-size: var(--text-tiny);
 }

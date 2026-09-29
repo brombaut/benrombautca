@@ -1,0 +1,28 @@
+---
+layout: base.njk
+pagination:
+  data: blog.all
+  size: 1
+  alias: post
+permalink: "{{ post.url }}"
+eleventyComputed:
+  title: "{{ post.displayTitle }}"
+  description: "{{ post.description }}"
+---
+<article>
+  {% if post.series %}
+    <p class="post-series">{{ post.series.name }} &middot; Part {{ post.series.part }}</p>
+  {% endif %}
+  <h1>{{ post.displayTitle }}</h1>
+  {% if post.description %}<p class="hero__lede">{{ post.description }}</p>{% endif %}
+  <p class="post-meta">
+    <time datetime="{{ post.createdAt }}">{{ post.createdAt | longDate }}</time>
+    &middot; {{ post.readingMinutes }} min read
+  </p>
+
+  <div class="article-body">
+    {{ post.body | safe }}
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>

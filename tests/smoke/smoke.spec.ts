@@ -2,15 +2,9 @@
 import { test as base, expect } from "@playwright/test";
 
 /*
- * The route matrix and the nav-click walk that used to live here were written
- * against the Vue app's hash routes (`/#/blog/<id>`) and its `#site-header` /
- * `section#<id>` markup. None of that exists in the static rewrite, and the
- * pages it would visit are not built yet, so this file is currently down to the
- * one page #534 produces.
- *
- * #544 restores the full coverage against real nested paths, adds the screenshot
- * baselines, and is a precondition for merging the rewrite to `main`. The error
- * fixture below is unchanged and is what #544 builds back on top of.
+ * Covers the pages the rewrite has built so far: the home page (#535) and the
+ * blog (#537). The remaining sections get added as they land, and #544 does the
+ * full sweep plus screenshot baselines before the cutover merge.
  */
 
 // Console errors that are known and harmless. Add a substring here, with a
@@ -86,4 +80,24 @@ test("static assets are copied to their expected paths", async ({ page }) => {
     const res = await page.request.get(path);
     expect(res.ok(), `${path} is served`).toBe(true);
   }
+});
+
+test("the blog index lists posts by year", async ({ page }) => {
+  await page.goto("/blog/");
+  await expect(page.locator("h1")).toHaveText("Blog");
+  expect(await page.locator(".year-heading").count()).toBeGreaterThan(0);
+  expect(await page.locator(".dated-list__title").count()).toBeGreaterThan(0);
+});
+
+// One post with the lot: code blocks, tables and images. The old build sized
+// every <pre> in JavaScript to stop it blowing out the layout; this asserts the
+// CSS replacement holds, since nothing would throw if it didn't.
+test("a post renders its body without overflowing the page", async ({ page }) => {
+  await page.goto("/blog/20220626_titanic_dataset/");
+  await expect(page.locator(".article-body")).toBeVisible();
+  const overflow = await page.evaluate(
+    () => document.documentElement.scrollWidth - window.innerWidth,
+  );
+  expect(overflow, "no horizontal page scroll").toBeLessThanOrEqual(0);
+  await page.waitForLoadState("networkidle");
 });

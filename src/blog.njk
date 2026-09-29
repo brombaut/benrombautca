@@ -1,0 +1,27 @@
+---
+layout: base.njk
+title: Blog
+description: Writing about software engineering, AI, and things I've built.
+permalink: /blog/
+---
+<h1>Blog</h1>
+<p class="hero__lede">Writing about software engineering, AI, and things I've built.</p>
+
+{% for group in blog.byYear %}
+  <h2 class="year-heading">{{ group.year }}</h2>
+  <ul class="dated-list">
+    {% for post in group.posts %}
+      <li>
+        <time datetime="{{ post.createdAt }}">{{ post.createdAt | shortDate }}</time>
+        <div>
+          {% if post.series %}
+            <p class="post-series">{{ post.series.name }} &middot; Part {{ post.series.part }}</p>
+          {% endif %}
+          <a class="dated-list__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
+          {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
+          <p class="dated-list__meta">{{ post.readingMinutes }} min read</p>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endfor %}

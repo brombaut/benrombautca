@@ -14,6 +14,10 @@ module.exports = function eleventyConfig(config) {
     month: "short", day: "numeric", timeZone: "UTC",
   }));
 
+  config.addFilter("longDate", (value) => new Date(value).toLocaleDateString("en-CA", {
+    month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
+  }));
+
   // --- static assets --------------------------------------------------------
   // These were CopyPlugin patterns in vue.config.js. The image directories live
   // next to the content that references them, and are served from a flat path at

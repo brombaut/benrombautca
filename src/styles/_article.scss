@@ -1,0 +1,169 @@
+// Styling for rendered article bodies: blog posts and software READMEs, both
+// finished HTML from the Pandoc pipeline.
+//
+// Replaces _github_article.scss, which was the stock "GitHub markdown CSS"
+// boilerplate. Most of it was dead against this corpus (definition lists,
+// span.frame / align / float wrappers, <tt>, .highlight, a.anchor, and
+// `body > h1:first-child` rules that can never match inside a div), so only
+// what the posts actually emit is here.
+//
+// The syntax colours used to be nested per language, which meant java,
+// typescript, uri, text, latex, js and less rendered with no highlighting at
+// all. They are language-agnostic now.
+
+.article-body {
+  // Lets a wide code block or table shrink rather than stretching the column.
+  min-width: 0;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    margin: 2.5rem 0 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  h1 { font-size: var(--text-x-large); }
+  h2 { font-size: var(--text-large); }
+  h3 { font-size: var(--text-medium); }
+
+  h4,
+  h5 {
+    font-size: 1rem;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  ul,
+  ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin-bottom: 0.35rem;
+    max-width: 68ch;
+  }
+
+  blockquote {
+    margin: 1.5rem 0;
+    padding-left: 1.25rem;
+    border-left: 2px solid var(--tertiary);
+    color: var(--secondary);
+  }
+
+  blockquote > :last-child {
+    margin-bottom: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0.5rem 0;
+  }
+
+  // Footnote markers.
+  sup,
+  sub {
+    font-size: 0.75em;
+    line-height: 0;
+  }
+
+  // --- tables --------------------------------------------------------------
+
+  // Wrapped so a wide table scrolls instead of stretching the page. Pandoc and
+  // pandas both emit bare tables, so the scroll lives on the table itself.
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 0 0 1.25rem;
+    border-collapse: collapse;
+    font-size: var(--text-tiny);
+  }
+
+  th,
+  td {
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--tertiary);
+    text-align: left;
+  }
+
+  th {
+    background: var(--quaternary);
+    font-weight: 600;
+  }
+
+  tr:nth-child(2n) td {
+    background: var(--quaternary);
+  }
+
+  // --- code ----------------------------------------------------------------
+
+  code {
+    padding: 0.1em 0.35em;
+    background: var(--quaternary);
+    border-radius: 3px;
+    font-size: 0.875em;
+  }
+
+  // The old build measured each <pre> in JavaScript and set a pixel width on it
+  // to stop code blocks blowing out the flex container, re-running on every
+  // resize. `max-width: 100%` plus `min-width: 0` on the flex child does the
+  // same thing with no script.
+  pre {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 0 0 1.25rem;
+    padding: 0.75rem 1rem;
+    background: var(--quaternary);
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+    white-space: pre;
+  }
+
+  // Pandoc wraps highlighted blocks in div.sourceCode.
+  div.sourceCode {
+    max-width: 100%;
+    margin: 0 0 1.25rem;
+  }
+
+  div.sourceCode pre {
+    margin: 0;
+  }
+
+  // Syntax tokens, from Pandoc's skylighting. One palette for every language.
+  .co, .ot, .al { color: #7c7c7c; }        // comments, other, alerts
+  .kw, .cf, .fu { color: #5c9cd4; }        // keywords, control flow, functions
+  .bu, .dt, .im, .ex { color: #bd5193; }   // builtins, types, imports
+  .st, .ss, .vs, .ch, .sc { color: #57a86b; } // strings and chars
+  .dv, .fl, .bn { color: #d39a62; }        // numbers
+  .op { color: #1c2786; }                  // operators
+  .at { color: #424242; }                  // attributes
+  .er { color: #8c8c8c; }                  // parse errors
+
+  // --- misc ----------------------------------------------------------------
+
+  // Pandoc emits display math as a raw $$...$$ span, with no MathJax on the
+  // page. Only the 2022-23 posts have any. Putting it on its own line is the
+  // cheapest thing that stops it reading as a run-on sentence.
+  .math.display {
+    display: block;
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  hr {
+    margin: 2rem 0;
+  }
+}
