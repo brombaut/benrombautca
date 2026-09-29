@@ -4,8 +4,7 @@ import { test as base, expect } from "@playwright/test";
 /*
  * Smoke coverage for the static site (#544): every section page and every blog
  * post URL, the sidebar nav above the 782px breakpoint and the <details> top bar
- * below it, the passthrough-copied assets, the #518 redirects/sitemap/404, and
- * screenshot baselines for a handful of representative pages.
+ * below it, the passthrough-copied assets, and the #518 redirects/sitemap/404.
  */
 
 // The sidebar/top bar nav, and the full set of section pages. Mirrors
@@ -263,38 +262,4 @@ test("404.html is a real page with a way back", async ({ page }) => {
   await page.goto("/404.html");
   await expect(page.locator("main h1")).toHaveText("Page not found");
   await expect(page.locator(".buttons a[href='/']")).toBeVisible();
-});
-
-/*
- * Screenshot baselines. These are the only tests here that can fail for a reason
- * other than a real bug: text rasterisation differs between the Linux of this
- * machine and CI's ubuntu-latest image even with the fonts self-hosted, and a
- * false failure would block a deploy. So they run locally only, which is also
- * where the branch is verified (direct commits to redesign/static-rewrite get no
- * CI run). Update with `npx playwright test --update-snapshots`.
- */
-const baselines: [string, string][] = [
-  ["home", "/"],
-  ["blog-index", "/blog/"],
-  ["blog-post", "/blog/20220626_titanic_dataset/"],
-  ["publications", "/publications/"],
-];
-
-test.describe("screenshot baselines", () => {
-  test.skip(!!process.env.CI, "rasterisation differs between machines; local only");
-
-  for (const [name, url] of baselines) {
-    for (const [width, size] of [["desktop", { width: 1280, height: 900 }], ["mobile", MOBILE]] as const) {
-      test(`${name} looks right on ${width}`, async ({ page }) => {
-        await page.setViewportSize(size);
-        await page.goto(url);
-        await page.waitForLoadState("networkidle");
-        await page.evaluate(() => document.fonts.ready);
-        // Playwright's default per-pixel threshold of 0.2 is loose enough that a
-        // whole palette swap (indigo to blue) compared as identical, so these
-        // are stricter. Regenerated on this machine, so antialiasing matches.
-        await expect(page).toHaveScreenshot(`${name}-${width}.png`, { fullPage: true, threshold: 0.1 });
-      });
-    }
-  }
 });

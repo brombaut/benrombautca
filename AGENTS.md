@@ -376,12 +376,10 @@ against the real nested paths (#544). What runs:
   and `/404.html` renders
 - Any `console.error`, uncaught exception, or failed same-origin request
   (CSS, images, PDFs) fails the run
-- Screenshot baselines for four pages at two widths, in
-  `tests/smoke/smoke.spec.ts-snapshots/`. These are **skipped when `CI` is set**:
-  text rasterisation differs between machines even with the fonts self-hosted, and
-  a false failure would block the deploy. Run them locally (which is where this
-  branch is verified anyway) and update with
-  `npx playwright test --update-snapshots` after an intentional design change.
+
+There are deliberately no screenshot baselines while the redesign is in flux: every
+design change would invalidate them. They are to be added once the design settles,
+just before the cutover to `main`.
 
 Third-party requests (e.g. the ClustrMaps visitor counter) are blocked so the tests are
 hermetic. A known-harmless console error can be added to `ALLOWED_CONSOLE_ERRORS` in
@@ -400,8 +398,7 @@ which is why the config and spec stay TypeScript with no `typescript` dependency
 
 CI runs the smoke tests on every PR (`install_lint_build.yml`, which triggers on PRs
 into `main` *and* into `redesign/static-rewrite`) and before deploying
-(`gh_pages_deploy.yml`), so a broken view never ships. CI runs everything except the
-screenshot baselines.
+(`gh_pages_deploy.yml`), so a broken view never ships.
 
 ## Common Development Tasks
 

@@ -35,9 +35,8 @@ This is a personal portfolio site, but suggestions and bug reports are welcome v
 ## Testing
 
 Browser smoke tests load the production build in headless Chromium and fail on any
-rendering failure, console error, or broken asset. Coverage is reduced to the pages
-the rewrite currently builds; issue #544 restores the full route matrix and adds
-screenshot baselines.
+rendering failure, console error, or broken asset. They cover every section page and
+every blog post, the desktop and mobile nav, and the old hash-URL redirects.
 
 ```bash
 npx playwright install chromium   # one-time
