@@ -98,7 +98,6 @@ benrombautca/
 │   ├── publications/          # Academic publications section
 │   ├── running/               # Running section with image carousel
 │   ├── shared/                # Shared/reusable components
-│   ├── site-header/           # Navigation and routing
 │   ├── styles/                # Global SCSS styles
 │   ├── utils/                 # Utility functions
 │   ├── workEducation/         # Work and education timeline
