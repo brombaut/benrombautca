@@ -134,3 +134,45 @@ test("hiking and running render their entries and scroll galleries internally", 
   expect(overflow, "no horizontal page scroll").toBeLessThanOrEqual(0);
   await page.waitForLoadState("networkidle");
 });
+
+// #518. Old hash URLs all request "/", so an inline script in the home page's
+// <head> does the mapping. These are the URLs that exist in the wild.
+const hashRedirects: [string, string][] = [
+  ["/#/about-me", "/"],
+  ["/#/work", "/"],
+  ["/#/education", "/"],
+  ["/#/blog", "/blog/"],
+  ["/#/blog/20210624_deploy_ghpages_actions", "/blog/20210624_deploy_ghpages_actions/"],
+  ["/#/articles", "/blog/"],
+  ["/#/articles/prime_numbers", "/blog/"],
+  ["/#/software", "/"],
+  ["/#/software/game_of_life", "/"],
+  ["/#/publications", "/publications/"],
+  ["/#/bookshelf", "/bookshelf/"],
+  ["/#/running", "/running/"],
+  ["/#/hiking", "/hiking/"],
+];
+
+test("old hash URLs redirect to their real paths", async ({ page, baseURL }) => {
+  for (const [from, to] of hashRedirects) {
+    await page.goto(from);
+    await page.waitForURL(new URL(to, baseURL).href);
+    await expect(page.locator("main h1")).toBeVisible();
+  }
+});
+
+test("the sitemap is generated from the page list", async ({ page }) => {
+  const res = await page.request.get("/sitemap.xml");
+  expect(res.ok(), "sitemap.xml is served").toBe(true);
+  const xml = await res.text();
+  expect(xml, "no stale hash URLs").not.toContain("/#/");
+  expect(xml).toContain("<loc>https://www.benrombaut.ca/blog/20210624_deploy_ghpages_actions/</loc>");
+  // Every built page, and nothing else: 6 sections plus one page per post.
+  expect(xml.match(/<url>/g)?.length).toBe(48);
+});
+
+test("404.html is a real page with a way back", async ({ page }) => {
+  await page.goto("/404.html");
+  await expect(page.locator("main h1")).toHaveText("Page not found");
+  await expect(page.locator(".buttons a[href='/']")).toBeVisible();
+});

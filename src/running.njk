@@ -25,7 +25,7 @@ permalink: /running/
 
 {% for race in outdoors.races %}
   <article class="entry">
-    <h3 class="entry__title"><a href="{{ race.link }}" target="_blank" rel="noopener noreferrer">{{ race.name }}</a></h3>
+    <h3 class="entry__title">{% if race.link %}<a href="{{ race.link }}" target="_blank" rel="noopener noreferrer">{{ race.name }}</a>{% else %}{{ race.name }}{% endif %}</h3>
     <p class="entry__meta">{{ race.date | longDate }}</p>
     <dl class="entry__facts">
       {% if race.runningTime %}<dt>Official time</dt><dd>{{ race.runningTime | safe }}</dd>{% endif %}

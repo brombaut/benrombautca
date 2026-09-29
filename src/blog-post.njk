@@ -4,6 +4,9 @@ pagination:
   data: blog.all
   size: 1
   alias: post
+  # Without this only the first post reaches collections.all, which the
+  # generated sitemap reads (#518).
+  addAllPagesToCollections: true
 permalink: "{{ post.url }}"
 eleventyComputed:
   title: "{{ post.displayTitle }}"

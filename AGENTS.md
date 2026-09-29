@@ -147,12 +147,29 @@ the syncer writes UTC timestamps there, so read them back with `getUTC*`.
 ### Routing
 
 None. Eleventy writes one HTML file per page and the paths are real:
-`/blog/<postId>/`. The old hash URLs
-(`/#/blog/<postId>`) need redirects before cutover, tracked in #518.
+`/blog/<postId>/`. The old Vue hash URLs (`/#/blog/<postId>`) are handled by a
+small inline script in `src/_includes/hash-redirect.njk`, included in `<head>` on
+the home page only, since every hash URL requests `/` (#518). It holds an
+explicit mapping table and `location.replace`s to the new path. `/#/about-me`,
+`/#/work` and `/#/education` all go to `/` (the About content is the home page);
+`/#/software` and `/#/software/<id>` go to `/` (that section is deleted);
+`/#/articles` and `/#/articles/<slug>` go to `/blog/` (those slugs lack the date
+prefix real post ids have, so they can't be mapped to a post).
+
+`src/404.njk` builds `/404.html`, which GitHub Pages serves for unmatched paths.
+It is a real 404 page, not the old SPA-routing hack.
+
+`src/sitemap.njk` generates `/sitemap.xml` from `collections.all` at build time,
+so it can't drift. The hand-maintained `public/sitemap.xml` is gone.
+`blog-post.njk` sets `pagination.addAllPagesToCollections: true` so every post
+reaches that collection. `public/robots.txt` points at
+`https://www.benrombaut.ca/sitemap.xml`, which is still correct.
 
 ### Shared Markup
 Shared markup lives in `src/_includes/` as layouts and partials:
-- `base.njk` - The HTML shell: head, stylesheet link, ClustrMaps script
+- `base.njk` - The HTML shell: head, canonical link, og/twitter tags, stylesheet
+  link, ClustrMaps script
+- `hash-redirect.njk` - The old-hash-URL redirect script (#518), included on `/` only
 
 #501 rules that not every old shared component needs an equivalent.
 `SkeletonLoader.vue` is already gone (nothing loads on a static site), and the
@@ -302,7 +319,8 @@ npm run build
 Runs `rm -rf dist` and then `eleventy`. Outputs to `dist/`:
 - One HTML file per page, no JS bundle
 - `styles/main.css`, compiled and minified from `src/styles/main.scss`
-- Copied static assets (CNAME, favicon, robots.txt, sitemap.xml, images, PDFs)
+- `sitemap.xml`, generated from the page list, and `404.html`
+- Copied static assets (CNAME, favicon, robots.txt, images, PDFs)
 
 Sass is compiled *through* Eleventy (a custom extension in `eleventy.config.js`)
 rather than by a separate `sass` CLI process, so one command covers build,
@@ -334,7 +352,7 @@ Steps:
 - Blog images (`src/blog/content/images`) → `blog-images/`
 - Component images (`src/assets/images`) → `images/` (replaces the old webpack
   `require.context` lookup in `ui-utils.ts`)
-- `public/` → root (favicon.ico, robots.txt, sitemap.xml)
+- `public/` → root (favicon.ico, robots.txt). `sitemap.xml` is generated, not copied
 
 These flat root paths are already baked into the migrated data files and into the
 HTML the blog converter emits, which is why they are kept as-is.
@@ -350,6 +368,9 @@ real nested paths and adds screenshot baselines, and is a precondition for the
 cutover merge. What runs today:
 - The home page renders and its stylesheet is served
 - One representative file from every passthrough-copied tree is reachable
+- Every section page renders its entries
+- Every old hash URL redirects to its real path, `/sitemap.xml` has no hash URLs,
+  and `/404.html` renders
 - Any `console.error`, uncaught exception, or failed same-origin request
   (CSS, images, PDFs) fails the run
 
@@ -460,8 +481,9 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
   full sub-issue list and the go/no-go checkpoint (#534, #535, #537)
 - **Filter blog posts by tag**: Planned
 - **Consider moving Blog-Syncer to cloud**: Under consideration
-- ~~**Change router to HTML5 mode**~~: obsolete. The rewrite has no router; real
-  nested paths and the hash redirects are tracked in #518
+- ~~**Change router to HTML5 mode**~~: obsolete. The rewrite has no router. Real
+  nested paths, the hash redirects, `404.html` and the generated sitemap landed
+  in #518
 
 ### Technical Debt
 - No unit tests (only browser smoke tests), and smoke coverage is reduced until #544
@@ -574,6 +596,6 @@ npm run sync-articles      # Sync blog content
 
 ---
 
-**Last Updated**: 2026-09-28
+**Last Updated**: 2026-09-29
 **Eleventy Version**: 3.1.6
 **Node Version**: 20+ (required by Eleventy and Playwright)
