@@ -41,7 +41,8 @@
   --font-sans: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   // Fluid scale, interpolating between 384px and 1440px viewport width.
-  --text-tiny: clamp(0.875rem, 0.83rem + 0.19vw, 1rem);
+  --text-tiny: clamp(0.9375rem, 0.91rem + 0.12vw, 1.0625rem);
+  --text-normal: clamp(1.0625rem, 1.02rem + 0.19vw, 1.1875rem);
   --text-medium: clamp(1.0625rem, 0.97rem + 0.38vw, 1.3125rem);
   --text-large: clamp(1.3125rem, 1.24rem + 0.28vw, 1.5rem);
   --text-x-large: clamp(1.5625rem, 1.25rem + 1.29vw, 2.625rem);
@@ -69,6 +70,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: var(--text-normal);
   line-height: 1.6;
 }
 
@@ -112,9 +114,8 @@ hr {
 
 // --- layout ----------------------------------------------------------------
 
-// Two columns above the breakpoint, one below. The sidebar's vertical spread
-// (name at the top, social links at the bottom of the viewport) is the point of
-// the design, and comes from space-between on a full-height flex column.
+// Two columns above the breakpoint, one below. The social links sit directly
+// under the nav rather than pinned to the bottom of the viewport.
 
 .layout {
   display: grid;
@@ -129,17 +130,12 @@ hr {
 .sidebar {
   position: sticky;
   top: var(--outer);
-  display: flex;
-  flex-direction: column;
-  min-height: calc(100vh - var(--outer) * 2);
 }
 
 .sidebar__inner {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  justify-content: space-between;
-  gap: 3rem;
+  gap: 1.5rem;
 }
 
 .sidebar__name {
@@ -297,7 +293,30 @@ hr {
 // --- content patterns ------------------------------------------------------
 
 .hero {
+  display: flex;
+  gap: 2.5rem;
+  align-items: flex-start;
   margin-bottom: 4rem;
+}
+
+.hero__text {
+  min-width: 0;
+}
+
+.hero__photo {
+  flex: 0 0 auto;
+  width: clamp(8rem, 6rem + 6vw, 12rem);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+}
+
+@media (max-width: 40rem) {
+  .hero {
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
 }
 
 .hero__lede {

@@ -1,17 +1,13 @@
 ---
 layout: base.njk
 ---
-{#
-  The representative page for #535: hero, button pair, pull-quote, angled
-  separator rule, and the dated list with a disclosure. #542 rewrites this copy.
-#}
+{# #542 rewrites this copy. #}
 <section class="hero">
-  <h1>Hi, I'm Ben.</h1>
-  {{ aboutMe.description | safe }}
-
-  <div class="buttons">
-    <a class="button button--filled" href="/blog/">Read the blog</a>
+  <div class="hero__text">
+    <h1>Hi, I'm Ben.</h1>
+    {{ aboutMe.description | safe }}
   </div>
+  <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
 </section>
 
 <hr class="separator">
