@@ -60,6 +60,7 @@ test("the home page renders with its stylesheet", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("main h1")).toBeVisible();
   await expect(page).toHaveTitle(/Ben Rombaut/);
+  await expect(page.locator(".sidebar .sidenav a")).toHaveCount(7);
   const stylesheet = await page.request.get("/styles/main.css");
   expect(stylesheet.ok(), "main.css is served").toBe(true);
   await page.waitForLoadState("networkidle");

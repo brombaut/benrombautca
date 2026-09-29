@@ -8,6 +8,12 @@ require("dotenv").config();
  * framework ships. See #501 for the rewrite plan.
  */
 module.exports = function eleventyConfig(config) {
+  // Dates in the data are date-only ISO strings; read them back in UTC so the
+  // displayed day doesn't shift with the build machine's timezone.
+  config.addFilter("shortDate", (value) => new Date(value).toLocaleDateString("en-CA", {
+    month: "short", day: "numeric", timeZone: "UTC",
+  }));
+
   // --- static assets --------------------------------------------------------
   // These were CopyPlugin patterns in vue.config.js. The image directories live
   // next to the content that references them, and are served from a flat path at
@@ -17,6 +23,7 @@ module.exports = function eleventyConfig(config) {
   // favicon.ico, robots.txt, sitemap.xml
   config.addPassthroughCopy({ public: "." });
   config.addPassthroughCopy({ "src/assets/images": "images" });
+  config.addPassthroughCopy({ "src/assets/fonts": "fonts" });
   config.addPassthroughCopy({ "src/assets/resumes": "resumes" });
   config.addPassthroughCopy({ "src/assets/publications": "publications" });
   config.addPassthroughCopy({ "src/running/running-images": "running-images" });

@@ -7,11 +7,20 @@
   <meta name="description" content="{{ description or site.description }}">
   <title>{% if title %}{{ title }} | {{ site.author }}{% else %}{{ site.title }}{% endif %}</title>
   <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
 </head>
 
 <body>
-  {{ content | safe }}
+  {% include "topbar.njk" %}
+
+  <div class="layout">
+    {% include "sidebar.njk" %}
+
+    <main class="content">
+      {{ content | safe }}
+    </main>
+  </div>
 
   <script type="text/javascript" id="clustrmaps" src="{{ site.clustrmapsSrc }}"></script>
 </body>

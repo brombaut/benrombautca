@@ -1,19 +1,404 @@
-// The single stylesheet entry point. Eleventy compiles this to /styles/main.css;
-// everything else under src/styles/ is a Sass partial (leading underscore) and
-// is never compiled on its own.
-//
-// The design system (tokens, type scale, the left-right layout shell) lands in
-// #535. This file deliberately holds almost nothing until then: the old
-// `_variables.scss` blue palette and `_common.scss` were deleted rather than
-// carried over, since #501 replaces the palette outright and `_common.scss` was
-// mostly the `.slide-in` animation that the no-animation rule removes.
+// The whole design system, in one file. Small site, one stylesheet.
+// Partials (leading underscore) are the only other .scss files; Eleventy
+// compiles this one to /styles/main.css.
 
-// GitHub-flavoured styling for rendered markdown bodies (blog posts, software
-// READMEs). Standalone, references no tokens, and #537 reuses it as-is.
 @use "github_article";
 
-// The ClustrMaps visitor counter injects its widget into the page; it is only
-// there to register the visit, and is never shown.
-#clustrmaps-widget-v2 {
-  display: none !important;
+// Albert Sans, self-hosted so there's no Google Fonts request. One variable
+// font per style covers every weight.
+@font-face {
+  font-family: "Albert Sans";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/albert-sans-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Albert Sans";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/albert-sans-italic-latin.woff2") format("woff2");
+}
+
+:root {
+  --background: #fff;
+  --foreground: #111;
+  --primary: #5857ff;
+  --secondary: #6b6a6a;
+  --tertiary: #e2e2e2;
+  --quaternary: #f3f2f2;
+  --primary-dark: #4646cc;
+
+  --font-sans: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  // Fluid scale, interpolating between 384px and 1440px viewport width.
+  --text-tiny: clamp(0.875rem, 0.83rem + 0.19vw, 1rem);
+  --text-medium: clamp(1.0625rem, 0.97rem + 0.38vw, 1.3125rem);
+  --text-large: clamp(1.3125rem, 1.24rem + 0.28vw, 1.5rem);
+  --text-x-large: clamp(1.5625rem, 1.25rem + 1.29vw, 2.625rem);
+  --text-huge: clamp(2.25rem, 1.72rem + 2.12vw, 4rem);
+
+  // The gutter the sticky sidebar offsets itself by.
+  --outer: clamp(1.25rem, 0.9rem + 1.5vw, 2.5rem);
+  --sidebar-width: 15rem;
+  --content-max: 46rem;
+}
+
+// Sass needs this as a variable; custom properties don't work in media queries.
+$breakpoint: 782px;
+
+// --- elements --------------------------------------------------------------
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 1.25rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: var(--text-huge); }
+h2 { font-size: var(--text-x-large); }
+h3 { font-size: var(--text-large); }
+
+p {
+  margin: 0 0 1.25rem;
+  max-width: 68ch;
+}
+
+a {
+  color: var(--primary);
+
+  &:hover {
+    color: var(--primary-dark);
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+hr {
+  height: 0;
+  margin: 3rem 0;
+  border: 0;
+  border-top: 1px solid var(--tertiary);
+}
+
+// --- layout ----------------------------------------------------------------
+
+// Two columns above the breakpoint, one below. The sidebar's vertical spread
+// (name at the top, social links at the bottom of the viewport) is the point of
+// the design, and comes from space-between on a full-height flex column.
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+  gap: 4rem;
+  align-items: start;
+  max-width: calc(var(--sidebar-width) + var(--content-max) + 4rem + var(--outer) * 2);
+  margin: 0 auto;
+  padding: var(--outer);
+}
+
+.sidebar {
+  position: sticky;
+  top: var(--outer);
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--outer) * 2);
+}
+
+.sidebar__inner {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.sidebar__name {
+  margin: 0;
+  font-size: var(--text-large);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.sidebar__role {
+  margin: 0.25rem 0 0;
+  color: var(--secondary);
+  font-size: var(--text-tiny);
+  font-style: italic;
+}
+
+.sidenav {
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar a,
+.topbar a {
+  text-decoration: none;
+}
+
+.sidebar__name a {
+  color: inherit;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.sidenav a {
+  display: block;
+  padding: 0.25rem 0;
+  color: var(--foreground);
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+// Set in the markup, not inferred by script.
+[aria-current="page"] {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+.social {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social a {
+  display: flex;
+  color: var(--secondary);
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.social svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+}
+
+.content {
+  min-width: 0; // lets wide code blocks shrink instead of overflowing
+  padding-bottom: 4rem;
+}
+
+.topbar {
+  display: none;
+}
+
+@media (max-width: #{$breakpoint - 1px}) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    padding: 0;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  // The menu is a <details>, so it needs no JavaScript. #277 owns what this
+  // becomes.
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 0.75rem var(--outer);
+    background: var(--background);
+    border-bottom: 1px solid var(--tertiary);
+  }
+
+  .topbar__name {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .topbar__name a {
+    color: inherit;
+  }
+
+  .topnav > summary {
+    cursor: pointer;
+    list-style: none;
+    color: var(--secondary);
+    font-size: var(--text-tiny);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .topnav__list {
+    position: absolute;
+    right: var(--outer);
+    min-width: 11rem;
+    margin: 0.5rem 0 0;
+    padding: 0.5rem;
+    list-style: none;
+    background: var(--background);
+    border: 1px solid var(--tertiary);
+  }
+
+  .topnav__list a {
+    display: block;
+    padding: 0.5rem;
+    color: var(--foreground);
+  }
+
+  .topnav__list .social {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--tertiary);
+  }
+
+  .content {
+    padding: 2rem var(--outer) 4rem;
+  }
+}
+
+// --- content patterns ------------------------------------------------------
+
+.hero {
+  margin-bottom: 4rem;
+}
+
+.hero__lede {
+  max-width: 60ch;
+  color: var(--secondary);
+  font-size: var(--text-medium);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--primary);
+  border-radius: 4px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.button--filled {
+  background: var(--primary);
+  color: var(--background);
+
+  &:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: var(--background);
+  }
+}
+
+.button--outline:hover {
+  background: var(--quaternary);
+}
+
+.pullquote {
+  margin: 3rem 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--primary);
+  color: var(--secondary);
+  font-size: var(--text-medium);
+  font-style: italic;
+}
+
+.pullquote p {
+  margin: 0;
+}
+
+// A hairline rotated a couple of degrees. A static transform, not motion.
+.separator {
+  transform: rotate(-1.5deg);
+}
+
+// A date column and a body column. Used by the blog index and anything else
+// that lists dated entries.
+.dated-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dated-list > li {
+  display: grid;
+  grid-template-columns: 5.5rem minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: baseline;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--tertiary);
+}
+
+.dated-list time {
+  color: var(--secondary);
+  font-size: var(--text-tiny);
+  white-space: nowrap;
+}
+
+.dated-list__title {
+  color: var(--foreground);
+  font-weight: 500;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+.dated-list__meta {
+  margin: 0.25rem 0 0;
+  color: var(--secondary);
+  font-size: var(--text-tiny);
+}
+
+@media (max-width: 30rem) {
+  .dated-list > li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.25rem;
+  }
+}
+
+// Older entries collapse behind this. No JavaScript, which is why the pattern
+// was worth copying from the reference site.
+.disclosure > summary {
+  cursor: pointer;
+  padding: 0.75rem 0;
+  color: var(--primary);
+  font-size: var(--text-tiny);
 }

@@ -2,19 +2,47 @@
 layout: base.njk
 ---
 {#
-  Placeholder home page. #534 is the build scaffold only: the layout shell and
-  the real sections land in #535 onwards. It is here so `npm run build` has a
-  page to render, and so the counts below fail loudly if the data layer breaks.
+  The representative page for #535: hero, button pair, pull-quote, angled
+  separator, and the dated list with a disclosure. #542 rewrites this copy.
 #}
-<main>
-  <h1>{{ site.author }}</h1>
-  <p>The static rewrite is under construction. See issue #501.</p>
-  <ul>
-    <li>{{ blog.all | length }} blog posts ({{ blog.listed | length }} listed across {{ blog.byYear | length }} years)</li>
-    <li>{{ software.projects | length }} software projects</li>
-    <li>{{ publications | length }} publications</li>
-    <li>{{ hikes | length }} hikes, {{ races | length }} races</li>
-    <li>{{ books.read | length }} books read, {{ books.currentlyReading | length }} in progress</li>
-    <li>{{ work | length }} work entries, {{ education | length }} education entries</li>
-  </ul>
-</main>
+<section class="hero">
+  <h1>Hi, I'm Ben.</h1>
+  {{ aboutMe.description | safe }}
+
+  <div class="buttons">
+    <a class="button button--filled" href="/blog/">Read the blog</a>
+    <a class="button button--outline" href="/resumes/BenRombaut_CV.pdf">Curriculum vitae</a>
+  </div>
+</section>
+
+<hr class="separator">
+
+<h2>Writing</h2>
+<ul class="dated-list">
+  {% for post in blog.listed.slice(0, 5) %}
+    <li>
+      <time datetime="{{ post.createdAt }}">{{ post.createdAt | shortDate }}</time>
+      <div>
+        <a class="dated-list__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
+        <p class="dated-list__meta">{{ post.readingMinutes }} min read</p>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
+{% if blog.listed.length > 5 %}
+  <details class="disclosure">
+    <summary>Earlier posts</summary>
+    <ul class="dated-list">
+      {% for post in blog.listed.slice(5) %}
+        <li>
+          <time datetime="{{ post.createdAt }}">{{ post.createdAt | shortDate }}</time>
+          <div>
+            <a class="dated-list__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
+            <p class="dated-list__meta">{{ post.readingMinutes }} min read</p>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  </details>
+{% endif %}

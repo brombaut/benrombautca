@@ -1,0 +1,17 @@
+{# Shown at or below 782px. A <details> menu, so no JavaScript. #}
+<header class="topbar">
+  <p class="topbar__name"><a href="/">{{ site.author }}</a></p>
+
+  <details class="topnav">
+    <summary>Menu</summary>
+    <ul class="topnav__list">
+      {% for item in nav.items %}
+        <li>
+          <a href="{{ item.url }}"
+            {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.label }}</a>
+        </li>
+      {% endfor %}
+      <li>{% include "social.njk" %}</li>
+    </ul>
+  </details>
+</header>
