@@ -41,9 +41,9 @@
   --font-sans: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   // Fluid scale, interpolating between 384px and 1440px viewport width.
-  --text-tiny: clamp(0.9375rem, 0.91rem + 0.12vw, 1.0625rem);
-  --text-normal: clamp(1.0625rem, 1.02rem + 0.19vw, 1.1875rem);
-  --text-medium: clamp(1.0625rem, 0.97rem + 0.38vw, 1.3125rem);
+  --text-tiny: clamp(1rem, 0.98rem + 0.09vw, 1.0625rem);
+  --text-normal: clamp(1.125rem, 1.08rem + 0.19vw, 1.25rem);
+  --text-medium: clamp(1.1875rem, 1.1rem + 0.38vw, 1.4375rem);
   --text-large: clamp(1.3125rem, 1.24rem + 0.28vw, 1.5rem);
   --text-x-large: clamp(1.5625rem, 1.25rem + 1.29vw, 2.625rem);
   --text-huge: clamp(2.25rem, 1.72rem + 2.12vw, 4rem);
