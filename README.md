@@ -2,7 +2,6 @@
 
 [![deploy](https://github.com/brombaut/benrombautca/actions/workflows/gh_pages_deploy.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/gh_pages_deploy.yml)
 [![bookshelf-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml)
-[![software-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml)
 
 Personal portfolio website, built as a framework-free static site with
 [Eleventy](https://www.11ty.dev/). Visit the live site at
@@ -22,9 +21,6 @@ Books I've read and am currently reading, synced from [Goodreads](https://www.go
 
 ### Articles
 Technical how-to guides and notes written in Markdown, converted to HTML using [Pandoc](https://pandoc.org/). Articles cover various programming topics and serve as personal references.
-
-### Software Projects
-Showcases README files from my GitHub projects, automatically synced and converted to HTML for display.
 
 ### Publications
 Academic publications and research papers.

@@ -76,14 +76,12 @@ benrombautca/
 ├── .github/workflows/          # GitHub Actions workflows
 │   ├── gh_pages_deploy.yml    # Main deployment workflow
 │   ├── sync_bookshelf.yml     # Bookshelf syncing automation
-│   ├── sync_software.yml      # Software projects syncing
 │   └── install_lint_build.yml # CI checks (lint, build, smoke tests)
 ├── public/                     # Static assets
 ├── scripts/                    # Utility scripts
 │   ├── diagrams/              # Blog diagram generators (Python -> SVG + PNG)
 │   ├── sync_bookshelf.sh      # Local bookshelf sync script
 │   ├── sync_articles.sh       # Local articles sync script
-│   ├── sync_software.sh       # Local software sync script
 │   └── *.py                   # Image processing utilities
 ├── src/                        # Eleventy input directory
 │   ├── _data/                 # Global data: JSON content + derived JS data files
@@ -101,7 +99,6 @@ benrombautca/
 │   ├── running/               # Running section with image carousel
 │   ├── shared/                # Shared/reusable components
 │   ├── site-header/           # Navigation and routing
-│   ├── software/              # Software projects section
 │   ├── styles/                # Global SCSS styles
 │   ├── utils/                 # Utility functions
 │   ├── workEducation/         # Work and education timeline
@@ -130,13 +127,12 @@ computation happens once per build, not per render:
 | --- | --- |
 | `hikes.json`, `races.json`, `publications.json`, `work.json`, `education.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
 | `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, and the `all` / `listed` split |
-| `software.js` | Merges the two `software_articles_*.json` files; strips the syncer's `_` field prefixes and sorts by `_order` |
 | `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year |
 | `flags.js` | `FLAG_MARATHON`, the only environment variable the site reads |
 | `site.js` | Site title, description, canonical URL, ClustrMaps script src |
 
 The JSON written by the Python and GitHub Actions syncers stays exactly where
-those syncers put it (`src/blog/`, `src/software/`, `src/bookshelf/syncer_v2/`)
+those syncers put it (`src/blog/`, `src/bookshelf/syncer_v2/`)
 and is read in place. **Never move those files.**
 
 ### Dates in the data files
@@ -151,7 +147,7 @@ the syncer writes UTC timestamps there, so read them back with `getUTC*`.
 ### Routing
 
 None. Eleventy writes one HTML file per page and the paths are real:
-`/blog/<postId>/`, `/software/<softwareId>/`. The old hash URLs
+`/blog/<postId>/`. The old hash URLs
 (`/#/blog/<postId>`) need redirects before cutover, tracked in #518.
 
 ### Shared Markup
@@ -170,7 +166,7 @@ compiles; everything else in `src/styles/` is a Sass partial with a leading
 underscore that `main.scss` `@use`s. It compiles to `/styles/main.css`.
 
 - `_github_article.scss` - GitHub-flavoured styling for rendered markdown bodies
-  (blog posts, software READMEs). Standalone, references no tokens.
+  (blog posts). Standalone, references no tokens.
 
 The design system (tokens, fluid type scale, the left-right layout shell) lands
 in #535. The old `variables.scss` blue palette, `common.scss`, and
@@ -219,12 +215,6 @@ bar with a hamburger. See #501 and #277.
   prints `!!` warnings when something does not fit.
 - See `scripts/diagrams/README.md` for dependencies, the layout skeleton, and the palette.
 
-### Software Projects
-- **Source**: README files from external GitHub repositories
-- **Sync**: GitHub Actions fetch and convert READMEs
-- **Manual Trigger**: `workflow_dispatch` event
-- **Metadata**: Manually maintained in `software_articles_meta.json`
-
 ### Bookshelf
 - **Source**: Goodreads user profile (web scraping)
 - **Pipeline**:
@@ -261,8 +251,6 @@ npm run sync-bookshelf
 # Sync blog locally
 npm run sync-articles
 
-# Sync software projects locally (no npm alias for this one)
-bash ./scripts/sync_software.sh
 
 # Regenerate blog diagrams
 python3 scripts/diagrams/build.py
@@ -521,7 +509,7 @@ When writing or editing blog posts for this site, follow these conventions:
 1. **Read Before Editing**: Always read files before proposing changes
 2. **Maintain Conventions**: Follow existing patterns (2-space indent, double quotes)
 3. **Preserve Structure**: Keep feature-based directory organization
-4. **Update Metadata**: When adding blog posts/software, update corresponding JSON files
+4. **Update Metadata**: When adding blog posts, update the corresponding JSON files
 5. **Test Locally**: Run `npm run lint` and `npm run test:smoke:build` before pushing; suggest `npm run serve` for visual checks
 6. **Respect Responsive Design**: One breakpoint, 782px
 7. **Compute at Build Time**: Derived values belong in `src/_data/`, not in a template
@@ -577,7 +565,7 @@ npm run sync-articles      # Sync blog content
 - `src/_includes/` - Layouts and partials
 - `src/styles/` - SCSS
 - `src/assets/` - Static images and PDFs
-- `src/*/content/` - Content management (blog, software)
+- `src/blog/content/` - Blog content pipeline (markdown sources, converted HTML, images)
 
 ## Contact & Ownership
 
