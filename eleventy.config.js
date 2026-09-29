@@ -1,8 +1,6 @@
 const sass = require("sass");
 const path = require("node:path");
 
-require("dotenv").config();
-
 /**
  * Eleventy replaces Vue CLI + webpack. Output is plain HTML and CSS; no runtime
  * framework ships. See #501 for the rewrite plan.
@@ -14,9 +12,13 @@ module.exports = function eleventyConfig(config) {
     month: "short", day: "numeric", timeZone: "UTC",
   }));
 
-  config.addFilter("longDate", (value) => new Date(value).toLocaleDateString("en-CA", {
-    month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
-  }));
+  // A few hike and race dates are free text ("Saturday Mornings"), so anything
+  // that isn't a YYYY-MM-DD date passes straight through.
+  config.addFilter("longDate", (value) => (/^\d{4}-\d{2}-\d{2}/.test(value)
+    ? new Date(value).toLocaleDateString("en-CA", {
+      month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
+    })
+    : value));
 
   // --- static assets --------------------------------------------------------
   // These were CopyPlugin patterns in vue.config.js. The image directories live

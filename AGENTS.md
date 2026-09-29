@@ -128,7 +128,7 @@ computation happens once per build, not per render:
 | `hikes.json`, `races.json`, `publications.json`, `work.json`, `education.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
 | `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, and the `all` / `listed` split |
 | `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year |
-| `flags.js` | `FLAG_MARATHON`, the only environment variable the site reads |
+| `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list |
 | `site.js` | Site title, description, canonical URL, ClustrMaps script src |
 
 The JSON written by the Python and GitHub Actions syncers stays exactly where
@@ -257,16 +257,14 @@ python3 scripts/diagrams/build.py
 ```
 
 ### Environment Variables
-`FLAG_MARATHON` is the only variable the site reads, via `src/_data/flags.js`.
-CI writes it to `.env` and `eleventy.config.js` loads that with `dotenv`.
+**None.** The build reads no environment variables at all, so CI writes no `.env`.
 
-```
-FLAG_MARATHON=false
-```
-
-The seven `VUE_APP_*` Firebase secrets that CI used to write were never read by
-any code; they were removed in #534 along with `app_config.ts`, which existed
-only to validate them. The GitHub Secrets themselves can be deleted.
+`FLAG_MARATHON` was the last one standing after #534, but #541 found it gated
+nothing: `FullNavBar.vue` assigned it into `data()` and no template ever read it,
+so the Running nav item was unconditional. It went, along with `src/_data/flags.js`,
+the `.env` step in both workflows, and the `dotenv` dependency. The seven
+`VUE_APP_*` Firebase secrets went the same way in #534. All of those GitHub
+Secrets can now be deleted.
 
 ### Git Workflow
 - **Main Branch**: `main`

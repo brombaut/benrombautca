@@ -16,7 +16,6 @@
     "@11ty/eleventy": "^3.1.6",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.63.0",
-    "dotenv": "^16.0.3",
     "eslint": "^10.11.0",
     "sass": "^1.62.0"
   }

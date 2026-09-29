@@ -14,14 +14,6 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      # FLAG_MARATHON is the only environment variable the site reads. The seven
-      # VUE_APP_* Firebase secrets that used to be written here were never read
-      # by any code and were dropped in #534.
-      - name: Create .env File
-        run: |
-          touch .env
-          echo FLAG_MARATHON=false >> .env
-
       - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
         run: |
           npm install

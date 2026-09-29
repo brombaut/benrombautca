@@ -118,3 +118,19 @@ test("the bookshelf renders books grouped by year", async ({ page }) => {
   await expect(page.locator(".book__cover").first()).toBeVisible();
   await page.waitForLoadState("networkidle");
 });
+
+test("hiking and running render their entries and scroll galleries internally", async ({ page }) => {
+  await page.goto("/hiking/");
+  expect(await page.locator(".entry").count()).toBe(37);
+  await expect(page.locator(".progress__fill")).toHaveAttribute("style", /width: \d+%/);
+
+  await page.goto("/running/");
+  expect(await page.locator(".entry").count()).toBe(5);
+  // The image strip must scroll inside itself, not widen the page.
+  const gallery = page.locator(".gallery").first();
+  const scrolls = await gallery.evaluate((el) => el.scrollWidth > el.clientWidth);
+  expect(scrolls, "gallery scrolls horizontally").toBe(true);
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow, "no horizontal page scroll").toBeLessThanOrEqual(0);
+  await page.waitForLoadState("networkidle");
+});
