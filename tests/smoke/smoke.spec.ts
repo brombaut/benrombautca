@@ -102,3 +102,11 @@ test("a post renders its body without overflowing the page", async ({ page }) =>
   expect(overflow, "no horizontal page scroll").toBeLessThanOrEqual(0);
   await page.waitForLoadState("networkidle");
 });
+
+test("the bookshelf renders books grouped by year", async ({ page }) => {
+  await page.goto("/bookshelf/");
+  await expect(page.locator("h1")).toHaveText("Bookshelf");
+  expect(await page.locator(".book").count()).toBeGreaterThan(100);
+  await expect(page.locator(".book__cover").first()).toBeVisible();
+  await page.waitForLoadState("networkidle");
+});

@@ -1,0 +1,37 @@
+---
+layout: base.njk
+title: Bookshelf
+description: Books I've read and am currently reading, synced from Goodreads.
+permalink: /bookshelf/
+---
+<h1>Bookshelf</h1>
+<p class="hero__lede">Books I've read and am currently reading, synced from my
+<a href="https://www.goodreads.com/user/show/115130270-ben-rombaut" target="_blank" rel="noopener noreferrer">Goodreads profile</a>.</p>
+
+{% macro shelf(books) %}
+  <ul class="books">
+    {% for book in books %}
+      <li class="book">
+        <a href="{{ book.link }}" target="_blank" rel="noopener noreferrer">
+          <img class="book__cover"
+            src="/book_thumbnails_v2/{{ book.book_id }}.webp"
+            alt="{{ book.title }}"
+            loading="lazy">
+          <span class="book__title">{{ book.title }}</span>
+        </a>
+        <span class="book__author">{{ book.author }}</span>
+        {% if book.stars %}<span class="book__rating" aria-label="{{ book.rating }} out of 5">{{ book.stars }}</span>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% if books.currentlyReading.length %}
+  <h2 class="year-heading">Currently reading</h2>
+  {{ shelf(books.currentlyReading) }}
+{% endif %}
+
+{% for group in books.readByYear %}
+  <h2 class="year-heading">{{ group.year }}</h2>
+  {{ shelf(group.books) }}
+{% endfor %}
