@@ -30,11 +30,13 @@
   // warm rather than the greys that sat on white.
   --background: #f7f5e7;
   --foreground: #1b1a14;
-  --primary: #5857ff;
+  // The old site's blue ($benBlue), not the indigo #501 borrowed from the
+  // reference site.
+  --primary: #3381db;
   --secondary: #6b6754;
   --tertiary: #ddd9c0;
   --quaternary: #efecd7;
-  --primary-dark: #4646cc;
+  --primary-dark: #1d5ca4;
 
   --font-sans: "Albert Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 

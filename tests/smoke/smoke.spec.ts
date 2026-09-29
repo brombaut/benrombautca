@@ -290,7 +290,10 @@ test.describe("screenshot baselines", () => {
         await page.goto(url);
         await page.waitForLoadState("networkidle");
         await page.evaluate(() => document.fonts.ready);
-        await expect(page).toHaveScreenshot(`${name}-${width}.png`, { fullPage: true });
+        // Playwright's default per-pixel threshold of 0.2 is loose enough that a
+        // whole palette swap (indigo to blue) compared as identical, so these
+        // are stricter. Regenerated on this machine, so antialiasing matches.
+        await expect(page).toHaveScreenshot(`${name}-${width}.png`, { fullPage: true, threshold: 0.1 });
       });
     }
   }
