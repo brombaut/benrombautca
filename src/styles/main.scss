@@ -440,10 +440,76 @@ hr {
   font-weight: 500;
 }
 
-.post-description {
-  margin: 0.35rem 0 0;
+// The index is a list of cards: title, description, meta line, and the post's
+// own first image as a thumbnail on the right (its shape borrowed from Medium's
+// profile feed). Six of the 13 listed posts have an image; the rest let the text
+// run the full width rather than showing a placeholder.
+.post-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: start;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--tertiary);
+}
+
+.post-card__title {
+  display: block;
+  color: var(--foreground);
+  font-size: var(--text-medium);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--primary);
+  }
+}
+
+// Two lines, like Medium's, so a long description can't set the card's height.
+.post-card__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin: 0.5rem 0 0;
+  max-width: 58ch;
+  color: var(--secondary);
+}
+
+.post-card__meta {
+  margin: 0.75rem 0 0;
   color: var(--secondary);
   font-size: var(--text-tiny);
+}
+
+// One fixed box so the text column's right edge stays put down the page. These
+// are plots and diagrams rather than photos, and a `cover` crop of one is an
+// unreadable fragment of somebody's axis labels, so `contain` fits the whole
+// figure instead. The box is white because the figures are.
+.post-card__thumb {
+  width: 9rem;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--tertiary);
+}
+
+@media (max-width: 30rem) {
+  .post-card {
+    gap: 1rem;
+  }
+
+  .post-card__thumb {
+    width: 5.5rem;
+  }
 }
 
 .post-meta {

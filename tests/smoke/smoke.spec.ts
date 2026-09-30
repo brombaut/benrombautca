@@ -159,13 +159,21 @@ test("the blog index lists posts by year and links to pages that exist", async (
   expect(await page.locator(".year-heading").count()).toBeGreaterThan(0);
 
   // Only the `listed` posts appear here; the unlisted ones still get a page.
-  const links = await page.locator("a.dated-list__title").evaluateAll(
+  const links = await page.locator("a.post-card__title").evaluateAll(
     (els) => els.map((el) => (el as HTMLAnchorElement).getAttribute("href") as string),
   );
   expect(links.length, "posts are listed").toBeGreaterThan(10);
   for (const href of links) {
     expect((await page.request.get(href)).ok(), `${href} is built`).toBe(true);
   }
+
+  // Card thumbnails are pulled out of the post bodies, so a change to that
+  // regex could silently drop every one of them. The images themselves are
+  // same-origin, so a broken path already fails the failed-request check.
+  expect(
+    await page.locator(".post-card__thumb").count(),
+    "cards show a thumbnail",
+  ).toBeGreaterThan(3);
 });
 
 // A post page that fails to build is invisible from the index (most posts are

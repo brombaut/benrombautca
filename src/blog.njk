@@ -9,18 +9,24 @@ permalink: /blog/
 
 {% for group in blog.byYear %}
   <h2 class="year-heading">{{ group.year }}</h2>
-  <ul class="dated-list">
+  <ul class="post-list">
     {% for post in group.posts %}
-      <li>
-        <time datetime="{{ post.createdAt }}">{{ post.createdAt | shortDate }}</time>
-        <div>
+      <li class="post-card">
+        <div class="post-card__text">
           {% if post.series %}
             <p class="post-series">{{ post.series.name }} &middot; Part {{ post.series.part }}</p>
           {% endif %}
-          <a class="dated-list__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
-          {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
-          <p class="dated-list__meta">{{ post.readingMinutes }} min read</p>
+          <a class="post-card__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
+          {% if post.description %}<p class="post-card__description">{{ post.description }}</p>{% endif %}
+          <p class="post-card__meta">
+            <time datetime="{{ post.createdAt }}">{{ post.createdAt | longDate }}</time>
+            &middot; {{ post.readingMinutes }} min read
+          </p>
         </div>
+        {% if post.image %}
+          {# Decorative: the title beside it already names the post. #}
+          <img class="post-card__thumb" src="{{ post.image }}" alt="" loading="lazy">
+        {% endif %}
       </li>
     {% endfor %}
   </ul>

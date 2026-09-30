@@ -11,6 +11,10 @@
  *                appear on the blog index.
  *   blog.byYear  `listed`, grouped by year, newest year first.
  *
+ * Each post also carries `image`: the first blog image in its body, used as the
+ * index card's thumbnail. Seven of the 13 listed posts have no image at all, so
+ * templates must handle it being null.
+ *
  * `_show` and `_archived` are separate on purpose: 29 of the 42 shown posts are
  * archived, and the old hash router still resolved a URL for every one of them
  * even though the index hid them. Keeping a page for each preserves those links,
@@ -68,6 +72,16 @@ function stripLeadingHeading(body) {
   return body.replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/, "");
 }
 
+// The card thumbnail on the blog index is the post's own first image, so
+// nothing has to be authored or maintained alongside the post. Only
+// /blog-images/ paths qualify: an absolute URL here would be a shields.io badge
+// or similar rather than a picture of anything, and a local path is guaranteed
+// to be a file the passthrough copy ships.
+function firstImage(body) {
+  const match = body.match(/<img\b[^>]*\bsrc="(\/blog-images\/[^"]+)"/);
+  return match ? match[1] : null;
+}
+
 function readingMinutes(body) {
   const words = body.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
@@ -94,6 +108,7 @@ const all = meta
       // The title with any series prefix removed.
       displayTitle: m._title.replace(SERIES_PREFIX, ""),
       readingMinutes: readingMinutes(body),
+      image: firstImage(body),
       emoji: emojiFor(m._id, series),
       url: `/blog/${m._id}/`,
     };
