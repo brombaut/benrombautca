@@ -512,13 +512,6 @@ hr {
   object-position: center right;
 }
 
-// #545: MEDFAR has no logo in the repo yet.
-.phase__photo--todo {
-  width: 11rem;
-  border: 1px dashed var(--tertiary);
-  border-radius: 4px;
-}
-
 @media (max-width: #{$breakpoint - 1px}) {
   // The 390px text column has nothing to spare, so the logo goes above the
   // heading at its natural height rather than squeezing beside it.
@@ -533,9 +526,5 @@ hr {
     height: auto;
     max-height: 3.5rem;
     object-position: center left;
-  }
-
-  .phase__photo--todo {
-    height: 3.5rem;
   }
 }
