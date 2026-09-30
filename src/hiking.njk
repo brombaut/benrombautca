@@ -18,14 +18,26 @@ permalink: /hiking/
 <h1>Hiking</h1>
 <p class="hero__lede">{{ description }}</p>
 
-<p>The one I still can't quite believe is Kilimanjaro: seven days up the Lemosho
-route to 19,341 feet, the highest point on the African continent. Closer to home,
-my sister and I spent a few weeks driving coast to coast across the northern US,
-stopping at Maquoketa Caves, Badlands, Grand Teton, Yellowstone, Glacier and Mount
-Rainier, then hiking in British Columbia before the drive back through Canada.</p>
-
-<p>The long-running project is the 46ers, the Adirondack High Peaks over 4,000
-feet. {{ outdoors.peaks.completed }} down, {{ outdoors.peaks.total - outdoors.peaks.completed }} to go.</p>
+<div class="highlights">
+  <h2>Highlights</h2>
+  <ul>
+    <li>Summited Mount Kilimanjaro via the Lemosho route, 7 days to reach 19,341 feet,
+      the highest point on the African continent. An incredible experience!</li>
+    <li>A multi-week east-to-west coast road trip with my sister through national parks
+      across the northern US, including Maquoketa Caves, Badlands, Grand Teton,
+      Yellowstone, Glacier, and Mount Rainier, before finishing with hiking in British
+      Columbia and driving back through Canada.</li>
+    <li>Working towards completing all 46 Adirondack High Peaks (the "46ers"),
+      the 46 mountains in the Adirondacks over 4,000 feet.
+      <div class="progress">
+        <div class="progress__track">
+          <div class="progress__fill" style="width: {{ outdoors.peaksPercent }}%"></div>
+        </div>
+        <span class="progress__text">{{ outdoors.peaks.completed }} / {{ outdoors.peaks.total }} peaks</span>
+      </div>
+    </li>
+  </ul>
+</div>
 
 {% set shown = outdoors.hikes %}
 

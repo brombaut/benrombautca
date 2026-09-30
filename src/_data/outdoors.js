@@ -18,4 +18,5 @@ module.exports = {
   hikes: hikes.filter((h) => h.visible !== false).sort(newestFirst),
   races: [...races].sort(newestFirst),
   peaks,
+  peaksPercent: Math.round((peaks.completed / peaks.total) * 100),
 };
