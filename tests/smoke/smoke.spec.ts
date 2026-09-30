@@ -218,7 +218,8 @@ test("the bookshelf renders books grouped by year", async ({ page }) => {
 test("hiking and running render their entries and scroll galleries internally", async ({ page }) => {
   await page.goto("/hiking/");
   expect(await page.locator(".entry").count()).toBe(37);
-  await expect(page.locator(".progress__fill")).toHaveAttribute("style", /width: \d+%/);
+  // The 46er count is the one number on the page that comes from the data layer.
+  await expect(page.locator("main")).toContainText("46ers");
 
   await page.goto("/running/");
   expect(await page.locator(".entry").count()).toBe(5);
