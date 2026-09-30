@@ -490,14 +490,16 @@ hr {
   font-size: var(--text-tiny);
 }
 
-// A small square, Medium's proportions. At this size the image is texture
-// rather than something you read, so it crops to fill rather than fitting the
-// whole figure inside a letterboxed box.
+// One fixed box so the text column's right edge stays put down the page. These
+// are plots and diagrams rather than photos, and a `cover` crop of one is an
+// unreadable fragment of somebody's axis labels, so `contain` fits the whole
+// figure instead. The box is white because the figures are.
 .post-card__thumb {
-  width: 5.5rem;
-  aspect-ratio: 1;
-  object-fit: cover;
-  background: var(--quaternary);
+  width: 9rem;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  background: #fff;
+  border: 1px solid var(--tertiary);
 }
 
 @media (max-width: 30rem) {
@@ -506,7 +508,7 @@ hr {
   }
 
   .post-card__thumb {
-    width: 4.5rem;
+    width: 5.5rem;
   }
 }
 
