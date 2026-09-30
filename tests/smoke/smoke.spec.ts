@@ -153,10 +153,9 @@ test("pages fit the mobile viewport", async ({ page }) => {
   }
 });
 
-test("the blog index lists posts by year and links to pages that exist", async ({ page }) => {
+test("the blog index lists posts and links to pages that exist", async ({ page }) => {
   await page.goto("/blog/");
   await expect(page.locator("h1")).toHaveText("Blog");
-  expect(await page.locator(".year-heading").count()).toBeGreaterThan(0);
 
   // Only the `listed` posts appear here; the unlisted ones still get a page.
   const links = await page.locator("a.post-card__title").evaluateAll(

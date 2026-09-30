@@ -9,7 +9,6 @@
  *   blog.all     every post with `_show`, newest first. These get a page.
  *   blog.listed  the subset that is also not `_archived`, newest first. These
  *                appear on the blog index.
- *   blog.byYear  `listed`, grouped by year, newest year first.
  *
  * Each post also carries `image`: the first blog image in its body, used as the
  * index card's thumbnail. Seven of the 13 listed posts have no image at all, so
@@ -117,8 +116,4 @@ const all = meta
 
 const listed = all.filter((p) => !p.archived);
 
-const byYear = [...new Set(listed.map((p) => p.year))]
-  .sort((a, b) => b - a)
-  .map((year) => ({ year, posts: listed.filter((p) => p.year === year) }));
-
-module.exports = { all, listed, byYear };
+module.exports = { all, listed };
