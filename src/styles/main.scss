@@ -292,31 +292,24 @@ hr {
 
 // --- content patterns ------------------------------------------------------
 
+// flow-root contains the floated photo.
 .hero {
-  display: flex;
-  gap: 2.5rem;
-  align-items: flex-start;
+  display: flow-root;
   margin-bottom: 4rem;
 }
 
-.hero__text {
-  min-width: 0;
-}
-
+// Floated so the intro wraps around it; shape-outside makes the text follow
+// the circle rather than the square box.
 .hero__photo {
-  flex: 0 0 auto;
-  width: clamp(8rem, 6rem + 6vw, 12rem);
+  float: right;
+  width: clamp(7rem, 5rem + 6vw, 12rem);
   aspect-ratio: 1;
+  margin: 0.25rem 0 1rem 1.75rem;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid var(--primary);
-}
-
-@media (max-width: 40rem) {
-  .hero {
-    flex-direction: column-reverse;
-    gap: 1.5rem;
-  }
+  shape-outside: circle(50%);
+  shape-margin: 1rem;
 }
 
 .hero__lede {

@@ -129,6 +129,8 @@ computation happens once per build, not per render:
 | `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, and the `all` / `listed` split |
 | `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year |
 | `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list |
+| `news.js` | The home page News list: the 5 newest dated items across listed blog posts, publications, hikes, past races and `milestones.json`. Books are left out on purpose |
+| `milestones.json` | Hand-authored one-off events for News that no other file records, e.g. job changes |
 | `site.js` | Site title, description, canonical URL, ClustrMaps script src |
 
 The JSON written by the Python and GitHub Actions syncers stays exactly where

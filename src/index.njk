@@ -1,43 +1,23 @@
 ---
 layout: base.njk
 ---
-{# #542 rewrites this copy. #}
 <section class="hero">
-  <div class="hero__text">
-    <h1>Hi, I'm Ben.</h1>
-    {{ aboutMe.description | safe }}
-  </div>
+  <h1>Hi, I'm Ben.</h1>
   <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
+  {{ aboutMe.description | safe }}
 </section>
 
 <hr class="separator">
 
-<h2>Writing</h2>
+<h2>News</h2>
 <ul class="dated-list">
-  {% for post in blog.listed.slice(0, 5) %}
+  {% for item in news %}
     <li>
-      <time datetime="{{ post.createdAt }}">{{ post.createdAt | shortDate }}</time>
+      <time datetime="{{ item.date }}">{{ item.date | monthYear }}</time>
       <div>
-        <a class="dated-list__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
-        <p class="dated-list__meta">{{ post.readingMinutes }} min read</p>
+        <a class="dated-list__title" href="{{ item.url }}">{{ item.title }}</a>
+        <p class="dated-list__meta">{{ item.kind }}</p>
       </div>
     </li>
   {% endfor %}
 </ul>
-
-{% if blog.listed.length > 5 %}
-  <details class="disclosure">
-    <summary>Earlier posts</summary>
-    <ul class="dated-list">
-      {% for post in blog.listed.slice(5) %}
-        <li>
-          <time datetime="{{ post.createdAt }}">{{ post.createdAt | shortDate }}</time>
-          <div>
-            <a class="dated-list__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
-            <p class="dated-list__meta">{{ post.readingMinutes }} min read</p>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
-  </details>
-{% endif %}

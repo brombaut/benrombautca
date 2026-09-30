@@ -12,6 +12,10 @@ module.exports = function eleventyConfig(config) {
     month: "short", day: "numeric", timeZone: "UTC",
   }));
 
+  config.addFilter("monthYear", (value) => new Date(value).toLocaleDateString("en-CA", {
+    month: "short", year: "numeric", timeZone: "UTC",
+  }));
+
   // A few hike and race dates are free text ("Saturday Mornings"), so anything
   // that isn't a YYYY-MM-DD date passes straight through.
   config.addFilter("longDate", (value) => (/^\d{4}-\d{2}-\d{2}/.test(value)
