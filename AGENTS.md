@@ -12,11 +12,10 @@ into a framework-free static site built with Eleventy. See issue #501 for the
 plan and the go/no-go checkpoint, and #534 for the build scaffold that landed
 first.
 
-**What this means when reading the rest of this file:** the build, tooling,
-data, styling and testing sections below describe the *new* Eleventy setup and
-are current. The per-section component documentation still describes the Vue
-components, which are kept in `src/` as reference only. Nothing builds them, and
-each one is deleted as the issue that replaces it lands (#535 onwards).
+Every sub-issue of #501 has landed, and the reference-only Vue components are
+now deleted, so everything in this file describes the Eleventy site. What remains
+before the cutover: a manual pass over all ~55 pages and the screenshot baselines
+deferred by #544.
 
 `main` still builds and deploys the Vue site, and does so until the single
 cutover merge described in #501.
@@ -87,21 +86,23 @@ benrombautca/
 │   ├── _data/                 # Global data: JSON content + derived JS data files
 │   ├── _includes/             # Layouts and partials
 │   ├── index.njk              # Home page
-│   ├── aboutMe/               # About Me section components
-│   ├── blog/                  # Blog section and content
-│   │   └── content/           # Blog post sources (MD) and converted (HTML)
-│   ├── assets/                # Images, resumes, publications PDFs
 │   ├── bio.njk                # Bio page: career phases, newest first
-│   ├── bookshelf/             # Bookshelf section
+│   ├── blog.njk               # Blog index
+│   ├── blog-post.njk          # Blog post pages (paginated over every post)
+│   ├── bookshelf.njk          # Bookshelf page
+│   ├── publications.njk       # Publications page
+│   ├── running.njk            # Running page
+│   ├── hiking.njk             # Hiking page
+│   ├── 404.njk                # Builds /404.html
+│   ├── sitemap.njk            # Builds /sitemap.xml
+│   ├── assets/                # Fonts, images, resumes, publications PDFs
+│   ├── blog/                  # Blog JSON + the content pipeline
+│   │   └── content/           # Blog post sources (MD) and converted (HTML)
+│   ├── bookshelf/             # Bookshelf data
 │   │   └── syncer_v2/         # Goodreads scraping and syncing logic
-│   ├── footer/                # Site footer
-│   ├── hiking/                # Hiking section with image carousel
-│   ├── publications/          # Academic publications section
-│   ├── running/               # Running section with image carousel
-│   ├── shared/                # Shared/reusable components
-│   ├── styles/                # Global SCSS styles
-│   ├── utils/                 # Utility functions
-│   └── App.vue                # Root component (reference only, not built)
+│   ├── hiking/hiking-images/  # Hiking photos
+│   ├── running/running-images/ # Running photos
+│   └── styles/                # SCSS
 ├── tests/smoke/               # Playwright smoke tests (every route renders, no console errors)
 ├── playwright.config.ts       # Playwright config (serves dist/)
 ├── AGENTS.md                  # This file: agent/AI guidance (canonical)
@@ -499,8 +500,6 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 
 ### Technical Debt
 - No unit tests (only browser smoke tests)
-- The reference-only Vue components in `src/` still need deleting as their
-  replacement sections land (`src/workEducation/` went with #543)
 - See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
 
 ## Blog Writing Style

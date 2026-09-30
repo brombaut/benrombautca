@@ -66,10 +66,6 @@ module.exports = function eleventyConfig(config) {
   // The blog pipeline's markdown sources and the HTML Pandoc emits from them are
   // inputs to the data layer, not pages. The Python syncers own these paths.
   config.ignores.add("src/blog/content/");
-  // Reference-only Vue components, kept until the sections that replace them
-  // land (#535 onwards). Not a template format, but ignoring them keeps the
-  // watcher quiet.
-  config.ignores.add("src/**/*.vue");
 
   return {
     dir: {
