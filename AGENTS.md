@@ -504,7 +504,10 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 
 ### Technical Debt
 - No unit tests (only browser smoke tests)
-- See `PROJECT_TODOS.md` for comprehensive list of improvement opportunities
+- `TODO.md` lists open items in the bookshelf syncer pipeline. The old
+  `PROJECT_TODOS.md` audit was deleted with the Vue app it described: it indexed
+  `.vue` files, webpack config and a `.husky/` directory that no longer exist.
+  Anything still worth doing belongs on a GitHub issue (see `ISSUES.md`)
 
 ## Blog Writing Style
 
