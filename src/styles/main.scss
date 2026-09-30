@@ -484,40 +484,39 @@ hr {
 }
 
 // Headings on the left, the institution's logo on the right. The row's height
-// comes from the text, so the logo stays small; min-height stops it collapsing
-// to a postage stamp when the subheader is a single line.
+// comes from the text alone: the heading block is 57px with a one-line
+// subheader, so a 3.5rem logo box never grows it.
 .phase__head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 1.5rem;
-  min-height: 6.5rem;
+  align-items: center;
   margin-bottom: 1.25rem;
 }
 
-// Wordmarks, not photos, so `contain` rather than `cover`: the logo is letter-
-// boxed inside the row instead of cropped. max-width caps the widest of them;
-// height: 100% is what ties the box to the heading block.
+// One fixed box for every logo, with `contain` fitting each one inside it.
+// These are wordmarks of very different proportions (UNB is 2.5:1, MEDFAR is
+// 7.3:1), so sizing them by height alone made MEDFAR 407px wide and sizing
+// them by width alone made it a sliver next to the others. A shared box is the
+// compromise: nothing is oversized, and the column edge lines up down the page.
 .phase__photo {
-  width: auto;
-  height: 100%;
-  max-width: 11rem;
+  width: 12rem;
+  height: 3.5rem;
   object-fit: contain;
   object-position: center right;
 }
 
 @media (max-width: #{$breakpoint - 1px}) {
   // The 390px text column has nothing to spare, so the logo goes above the
-  // heading at its natural height rather than squeezing beside it.
+  // heading rather than squeezing beside it.
   .phase__head {
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
-    min-height: 0;
+    align-items: start;
   }
 
   .phase__photo {
     order: -1;
-    height: auto;
-    max-height: 3.5rem;
     object-position: center left;
   }
 }
