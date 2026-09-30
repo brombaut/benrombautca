@@ -29,12 +29,17 @@ permalink: /hiking/
       Columbia and driving back through Canada.</li>
     <li>Working towards completing all 46 Adirondack High Peaks (the "46ers"),
       the 46 mountains in the Adirondacks over 4,000 feet.
-      <div class="progress">
-        <div class="progress__track">
-          <div class="progress__fill" style="width: {{ outdoors.peaksPercent }}%"></div>
-        </div>
-        <span class="progress__text">{{ outdoors.peaks.completed }} / {{ outdoors.peaks.total }} peaks</span>
-      </div>
+      <p class="peaks">
+        {# One tick per peak, filled ones first. Built at compile time, so it is
+           46 empty spans and no script. #}
+        <span class="peaks__ticks" role="img"
+              aria-label="{{ outdoors.peaks.completed }} of {{ outdoors.peaks.total }} peaks summited">
+          {%- for i in range(0, outdoors.peaks.total) -%}
+            <span class="peaks__tick{% if i < outdoors.peaks.completed %} peaks__tick--done{% endif %}"></span>
+          {%- endfor -%}
+        </span>
+        <span class="peaks__count">{{ outdoors.peaks.completed }} / {{ outdoors.peaks.total }}</span>
+      </p>
     </li>
   </ul>
 </div>

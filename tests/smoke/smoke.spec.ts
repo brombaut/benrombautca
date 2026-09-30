@@ -218,7 +218,9 @@ test("the bookshelf renders books grouped by year", async ({ page }) => {
 test("hiking and running render their entries and scroll galleries internally", async ({ page }) => {
   await page.goto("/hiking/");
   expect(await page.locator(".entry").count()).toBe(37);
-  await expect(page.locator(".progress__fill")).toHaveAttribute("style", /width: \d+%/);
+  // One tick per Adirondack peak, the filled ones counted from the data layer.
+  expect(await page.locator(".peaks__tick").count()).toBe(46);
+  expect(await page.locator(".peaks__tick--done").count()).toBeGreaterThan(0);
 
   await page.goto("/running/");
   expect(await page.locator(".entry").count()).toBe(5);
