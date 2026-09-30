@@ -9,20 +9,6 @@ permalink: /running/
 <h1>Running</h1>
 <p class="hero__lede">{{ description }}</p>
 
-{% if outdoors.upcomingRaces.length %}
-  <div class="highlights">
-    <h2>Upcoming</h2>
-    <ul>
-      {% for race in outdoors.upcomingRaces %}
-        <li>
-          <a href="{{ race.url }}" target="_blank" rel="noopener noreferrer">{{ race.name }}</a>
-          &middot; {{ race.event }}, {{ race.date | longDate }}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endif %}
-
 {% for race in outdoors.races %}
   <article class="entry">
     <h3 class="entry__title">{% if race.link %}<a href="{{ race.link }}" target="_blank" rel="noopener noreferrer">{{ race.name }}</a>{% else %}{{ race.name }}{% endif %}</h3>
