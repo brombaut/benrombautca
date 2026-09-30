@@ -485,7 +485,57 @@ hr {
 }
 
 .phase__where {
-  margin-bottom: 1.25rem;
+  margin-bottom: 0;
   color: var(--secondary);
   font-size: var(--text-tiny);
+}
+
+// Headings on the left, the institution's logo on the right. The row's height
+// comes from the text, so the logo stays small; min-height stops it collapsing
+// to a postage stamp when the subheader is a single line.
+.phase__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  min-height: 6.5rem;
+  margin-bottom: 1.25rem;
+}
+
+// Wordmarks, not photos, so `contain` rather than `cover`: the logo is letter-
+// boxed inside the row instead of cropped. max-width caps the widest of them;
+// height: 100% is what ties the box to the heading block.
+.phase__photo {
+  width: auto;
+  height: 100%;
+  max-width: 11rem;
+  object-fit: contain;
+  object-position: center right;
+}
+
+// #545: MEDFAR has no logo in the repo yet.
+.phase__photo--todo {
+  width: 11rem;
+  border: 1px dashed var(--tertiary);
+  border-radius: 4px;
+}
+
+@media (max-width: #{$breakpoint - 1px}) {
+  // The 390px text column has nothing to spare, so the logo goes above the
+  // heading at its natural height rather than squeezing beside it.
+  .phase__head {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+    min-height: 0;
+  }
+
+  .phase__photo {
+    order: -1;
+    height: auto;
+    max-height: 3.5rem;
+    object-position: center left;
+  }
+
+  .phase__photo--todo {
+    height: 3.5rem;
+  }
 }
