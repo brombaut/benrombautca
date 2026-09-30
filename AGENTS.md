@@ -12,10 +12,9 @@ into a framework-free static site built with Eleventy. See issue #501 for the
 plan and the go/no-go checkpoint, and #534 for the build scaffold that landed
 first.
 
-Every sub-issue of #501 has landed, and the reference-only Vue components are
-now deleted, so everything in this file describes the Eleventy site. What remains
-before the cutover: a manual pass over all ~55 pages and the screenshot baselines
-deferred by #544.
+Every sub-issue of #501 has landed, the manual pass over all ~55 pages is done,
+and the reference-only Vue components are now deleted, so everything in this file
+describes the Eleventy site. All that remains is the cutover merge itself.
 
 `main` still builds and deploys the Vue site, and does so until the single
 cutover merge described in #501.
@@ -284,8 +283,10 @@ python3 scripts/diagrams/build.py
 nothing: `FullNavBar.vue` assigned it into `data()` and no template ever read it,
 so the Running nav item was unconditional. It went, along with `src/_data/flags.js`,
 the `.env` step in both workflows, and the `dotenv` dependency. The seven
-`VUE_APP_*` Firebase secrets went the same way in #534. All of those GitHub
-Secrets can now be deleted.
+`VUE_APP_*` Firebase secrets went the same way in #534, and all of those GitHub
+Secrets have since been deleted. `BOOKSHELF_PAT` is the only repository secret
+left, and no workflow references it: `sync_bookshelf.yml` pushes with the
+built-in `GITHUB_TOKEN`.
 
 ### Git Workflow
 - **Main Branch**: `main`
@@ -339,9 +340,9 @@ Triggers:
 
 Steps:
 1. Checkout code
-2. Create `.env` file from secrets
-3. Install and Build - runs `npm install`, then `npm run lint`, then `npm run build`
+2. Install and Build - runs `npm install`, then `npm run lint`, then `npm run build`
    (lint is enforced here; a violation fails the deploy)
+3. Install Playwright Chromium
 4. Smoke Test - runs `npm run test:smoke` against the build (a failure blocks the deploy)
 5. Deploy to `gh-pages` branch
 
@@ -381,9 +382,12 @@ against the real nested paths (#544). What runs:
 - Any `console.error`, uncaught exception, or failed same-origin request
   (CSS, images, PDFs) fails the run
 
-There are deliberately no screenshot baselines while the redesign is in flux: every
-design change would invalidate them. They are to be added once the design settles,
-just before the cutover to `main`.
+There are deliberately **no screenshot baselines**, and none are planned. A set was
+committed under #544 and removed again in 748f4d5: they needed regenerating after
+every design change, and because text rasterisation differs from CI's
+`ubuntu-latest` they had to be skipped there anyway, which left a check that only
+ran locally and mostly reported its own staleness. Not worth the upkeep. The
+functional smoke tests above are the safety net.
 
 Third-party requests (e.g. the ClustrMaps visitor counter) are blocked so the tests are
 hermetic. A known-harmless console error can be added to `ALLOWED_CONSOLE_ERRORS` in
