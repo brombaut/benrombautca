@@ -495,7 +495,8 @@ hr {
 // unreadable fragment of somebody's axis labels, so `contain` fits the whole
 // figure instead. The box is white because the figures are.
 .post-card__thumb {
-  width: 9rem;
+  align-self: center;
+  width: 11rem;
   aspect-ratio: 4 / 3;
   object-fit: contain;
   background: #fff;
@@ -508,7 +509,7 @@ hr {
   }
 
   .post-card__thumb {
-    width: 5.5rem;
+    width: 7rem;
   }
 }
 
