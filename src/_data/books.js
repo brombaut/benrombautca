@@ -32,8 +32,7 @@ const readByYear = [...new Set(read.map((b) => yearOf(b.date_finished)))]
 const currentlyReading = byShelf("currently-reading")
   .sort((a, b) => (a.date_added || "").localeCompare(b.date_added || ""));
 
-const toRead = byShelf("to-read").sort((a, b) => a.position - b.position);
-
-module.exports = {
-  all, read, readByYear, currentlyReading, toRead,
-};
+// The to-read shelf is deliberately not exposed: the Bookshelf page shows what
+// has been read and what is on the go, not a wishlist. `all` and the flat `read`
+// list aren't exported either, since only the by-year grouping is rendered.
+module.exports = { readByYear, currentlyReading };

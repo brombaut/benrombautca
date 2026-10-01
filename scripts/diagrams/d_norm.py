@@ -2,6 +2,8 @@ from svgkit import Svg, INK, MUTED, FAINT, ARROW, C
 from frame import (page, panel, takeaway, footnote, emit,
                    PANEL_L_X, PANEL_R_X, PANEL_W, INNER, COL_W, GUT, GUT_W)
 
+POST = "learning-llms-2"
+
 H = 1090
 TOP, BOT = 200, 975
 
@@ -97,4 +99,4 @@ takeaway(s, PANEL_R_X, TAKE[0], TAKE[1], "The identity path is normalized.", "po
 
 footnote(s, BOT + 46, "At two layers the gap is small. Pre-norm's cleaner gradient route is "
                       "expected to matter more as the stack gets deeper.")
-emit(s, "norm-placement-explained.svg")
+emit(s, POST, "norm-placement-explained.svg")

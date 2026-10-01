@@ -2,6 +2,8 @@ from svgkit import Svg, INK, MUTED, FAINT, EDGE, ARROW, C
 from frame import (page, panel, takeaway, footnote, emit,
                    PANEL_L_X, PANEL_R_X, PANEL_W, INNER, COL_W, GUT, GUT_W)
 
+POST = "learning-llms-2"
+
 H = 1140
 TOP, BOT = 200, 1028
 
@@ -88,4 +90,4 @@ takeaway(s, PANEL_R_X, TAKE[0], TAKE[1], "Four query heads, two sets to cache.",
 
 footnote(s, BOT + 46, "Training expands the shared keys and values back to four heads, so GQA is "
                       "about cache size at inference, not training speed.")
-emit(s, "gqa-kv-cache-explained.svg")
+emit(s, POST, "gqa-kv-cache-explained.svg")

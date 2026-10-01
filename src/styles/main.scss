@@ -57,6 +57,12 @@
 // Sass needs this as a variable; custom properties don't work in media queries.
 $breakpoint: 782px;
 
+// The ClustrMaps visitor counter injects its widget into the page; it is only
+// there to register the visit, and is never shown.
+#clustrmaps-widget-v2 {
+  display: none !important;
+}
+
 // --- elements --------------------------------------------------------------
 
 *,
@@ -347,19 +353,6 @@ hr {
 
 .button--outline:hover {
   background: var(--quaternary);
-}
-
-.pullquote {
-  margin: 3rem 0;
-  padding-left: 1.25rem;
-  border-left: 2px solid var(--primary);
-  color: var(--secondary);
-  font-size: var(--text-medium);
-  font-style: italic;
-}
-
-.pullquote p {
-  margin: 0;
 }
 
 .separator {

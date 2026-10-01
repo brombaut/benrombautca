@@ -2,6 +2,8 @@ from svgkit import Svg, INK, MUTED, FAINT, ARROW, C
 from frame import (page, panel, takeaway, footnote, emit,
                    PANEL_L_X, PANEL_R_X, PANEL_W, INNER, COL_W, GUT, GUT_W)
 
+POST = "learning-llms-2"
+
 H = 1030
 TOP, BOT = 200, 940
 
@@ -111,4 +113,4 @@ takeaway(s, PANEL_R_X, TAKE[0], TAKE[1], "Position changes how two tokens compar
 
 footnote(s, BOT + 48, "Queries and keys decide which positions interact. Values carry the "
                       "content being retrieved, so they are left alone.")
-emit(s, "rope-positioning-explained.svg")
+emit(s, POST, "rope-positioning-explained.svg")

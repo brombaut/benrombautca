@@ -1,8 +1,7 @@
 "use strict";
 
 /*
- * Plain-JS lint config, replacing the Vue + Airbnb + TypeScript stack that went
- * away with Vue CLI. `npm run lint` is a required step in both
+ * Plain-JS lint config. `npm run lint` is a required step in both
  * install_lint_build.yml and gh_pages_deploy.yml, so this has to keep passing.
  *
  * The rules are deliberately thin: correctness checks plus the two formatting
@@ -18,14 +17,8 @@ module.exports = [
       "venvs/",
       "test-results/",
       "playwright-report/",
-      // Reference-only Vue components, deleted as the sections that replace them
-      // land (#535 onwards). Nothing builds them and this config cannot parse
-      // them.
-      "src/**/*.vue",
       // Playwright type-checks its own TS config and spec files.
       "**/*.ts",
-      // Written by the software syncer, not by hand.
-      "**/f3_syncer.js",
     ],
   },
   js.configs.recommended,

@@ -52,7 +52,7 @@ They also run in CI on every pull request and before each deploy. See `AGENTS.md
 
 ## License
 
-Copyright © 2025 Ben Rombaut. All rights reserved.
+Copyright © 2026 Ben Rombaut. All rights reserved.
 
 ## Contact
 

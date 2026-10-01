@@ -91,7 +91,6 @@ const copiedAssets = [
   "/robots.txt",
   "/images/benrombaut.webp",
   "/fonts/albert-sans-latin.woff2",
-  "/resumes/BenRombaut_Resume.pdf",
   "/publications/Rombaut_Benjamin_J_202205_MSc.pdf",
   "/hiking-images/19_01_katahdin/19_katahdin1.webp",
   "/running-images/22fredericton_06.webp",

@@ -20,13 +20,34 @@ measurement are the ones librsvg will actually render with.
 ## Regenerating
 
 ```bash
-python3 scripts/diagrams/build.py          # every diagram: SVG + PNG
+python3 scripts/diagrams/build.py          # every diagram that has a generator
 python3 scripts/diagrams/d_rope.py         # just one
 ```
 
-Output goes to `src/blog/content/images/<post-slug>/`, overwriting both the `.svg`
-and the `.png`. The SVGs are plain shapes and text with no embedded rasters, so they
-stay hand-editable; regenerating discards hand edits.
+Each generator sets `POST` to the post slug it writes into, and `emit()` puts the
+files in `src/blog/content/images/<POST>/`, overwriting both the `.svg` and the
+`.png`. The SVGs are plain shapes and text with no embedded rasters, so they stay
+hand-editable; regenerating discards hand edits.
+
+## Which diagrams have a generator
+
+Only the three in `learning-llms-2`: `gqa-kv-cache-explained`,
+`norm-placement-explained` and `rope-positioning-explained`.
+
+The nine diagrams under `learning-llms-3`, `learning-llms-4` and `learning-llms-5`
+have **no generator in this directory**. They were committed as finished SVG + PNG
+pairs in 46d4db0 and after, produced by an earlier variant of this toolkit that was
+never checked in; you can tell them apart by their lowercase marker ids (`agrey`
+rather than `aGrey`) and single-line `<defs>`. `build.py` does not touch them, so the
+"edit the generator, never the SVG" rule cannot apply to them. To change one, either
+edit its SVG directly and re-rasterize it:
+
+```bash
+python3 scripts/diagrams/render.py src/blog/content/images/learning-llms-3/moe-block-explained.svg
+```
+
+or write a `d_*.py` for it and accept that the output will not be byte-identical to
+what is published.
 
 Watch the build output. A line starting with `!!` means a string did not fit its
 container and the layout needs adjusting:

@@ -15,11 +15,6 @@ jobs:
         with:
           python-version: "3.9" # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: "x64" # optional x64 or x86. Defaults to x64 if not specified
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-      # - name: Run Bookshelf Syncer
-      #   run: npm run sync-bookshelf
       - name: Install virtualenv
         run: pip3 install virtualenv
       - name: Create venv-bookshelf-syncer
@@ -36,8 +31,6 @@ jobs:
         run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/04_download_missing_thumbnails.py
       - name: Run 03_show_missing_thumbnails.py
         run: python3 ${{ github.workspace }}/src/bookshelf/syncer_v2/03_show_missing_thumbnails.py --working-directory ${{ github.workspace }}/src/bookshelf/syncer_v2
-      # - name: Deactivate venv
-      #   run: deactivate
       - name: Commit and push changes
         run: |
           git config --global user.name "Ben Rombaut"

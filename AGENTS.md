@@ -77,7 +77,7 @@ benrombautca/
 │   ├── diagrams/              # Blog diagram generators (Python -> SVG + PNG)
 │   ├── sync_bookshelf.sh      # Local bookshelf sync script
 │   ├── sync_articles.sh       # Local articles sync script
-│   └── *.py                   # Image processing utilities
+│   └── *.py                   # Image utilities, all run by hand (nothing calls them)
 ├── src/                        # Eleventy input directory
 │   ├── _data/                 # Global data: JSON content + derived JS data files
 │   ├── _includes/             # Layouts and partials
@@ -91,7 +91,7 @@ benrombautca/
 │   ├── hiking.njk             # Hiking page
 │   ├── 404.njk                # Builds /404.html
 │   ├── sitemap.njk            # Builds /sitemap.xml
-│   ├── assets/                # Fonts, images, resumes, publications PDFs
+│   ├── assets/                # Fonts, images, publications PDFs
 │   ├── blog/                  # Blog JSON + the content pipeline
 │   │   └── content/           # Blog post sources (MD) and converted (HTML)
 │   ├── bookshelf/             # Bookshelf data
@@ -123,11 +123,12 @@ computation happens once per build, not per render:
 | --- | --- |
 | `hikes.json`, `races.json`, `publications.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
 | `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, and the `all` / `listed` split |
-| `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year |
+| `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year. Exports only `readByYear` and `currentlyReading`; the to-read shelf is deliberately not shown |
 | `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list |
 | `news.js` | The home page News list: the 5 newest dated items across listed blog posts, publications, hikes, past races and `milestones.json`. Books are left out on purpose |
 | `milestones.json` | Hand-authored one-off events for News that no other file records, e.g. job changes |
-| `site.js` | Site title, description, canonical URL, ClustrMaps script src |
+| `site.js` | Site title, description, canonical URL, author, role, ClustrMaps script src |
+| `nav.js` | The sidebar/top-bar nav items and the social links. **Nav items live here, not in a partial** |
 
 There is no `work.json` / `education.json`. #543 was dropped, so there is no
 Work/Education section: the career history is hand-written prose in `src/bio.njk`,
@@ -171,7 +172,17 @@ reaches that collection. `public/robots.txt` points at
 ### Shared Markup
 Shared markup lives in `src/_includes/` as layouts and partials:
 - `base.njk` - The HTML shell: head, canonical link, og/twitter tags, stylesheet
-  link, ClustrMaps script
+  link, ClustrMaps script. Includes `topbar.njk` and `sidebar.njk` around the
+  page body
+- `sidebar.njk` - The left sidebar shown above 782px; loops over `nav.items`
+- `topbar.njk` - The mobile top bar below 782px: a `<details>` disclosure menu
+  over the same `nav.items`, so it needs no JavaScript
+- `social.njk` - The social-link list, looping over `nav.social` and inlining
+  `icons/<icon>.svg` by name. Used by both the sidebar and the top bar
+- `icons/*.svg` - The three inlined social icons (#536): `github`,
+  `linkedin`, `google-scholar`. Named by `icon` in `src/_data/nav.js`
+- `gallery.njk` - The `gallery()` macro behind the Running and Hiking photo
+  strips: a CSS scroll-snap row, no JavaScript
 - `hash-redirect.njk` - The old-hash-URL redirect script (#518), included on `/` only
 
 #501 ruled that not every old shared component needed an equivalent.
@@ -203,16 +214,23 @@ There is no auto-import of globals any more. A partial that needs tokens `@use`s
 them explicitly.
 
 #### Colour Scheme
-Per #501, one scheme only, no dark variant:
+One scheme only, no dark variant. The tokens live in `:root` in `main.scss`, which
+is the source of truth; this table follows it.
+
+#501 originally specified white and indigo (`#fff` / `#5857ff`), borrowed from a
+reference site. That was replaced: the page colour is the old site's paper beige
+again, which makes the neutrals warm rather than grey, and the accent is the old
+site's blue (`$benBlue`) rather than the indigo.
 
 | Token | Value |
 | --- | --- |
-| background | `#fff` |
-| foreground | `#111` |
-| primary | `#5857ff` |
-| secondary | `#6b6a6a` |
-| tertiary | `#e2e2e2` |
-| quaternary | `#f3f2f2` |
+| background | `#f7f5e7` |
+| foreground | `#1b1a14` |
+| primary | `#3381db` |
+| primary-dark | `#1d5ca4` |
+| secondary | `#6b6754` |
+| tertiary | `#ddd9c0` |
+| quaternary | `#efecd7` |
 
 #### Responsive Breakpoint
 A single breakpoint at **782px**: above it the left sidebar shows, below it a top
@@ -233,10 +251,15 @@ bar with a hamburger. See #501 and #277.
 
 ### Blog Diagrams
 - **Source**: Python generators in `scripts/diagrams/` (one `d_*.py` per diagram)
-- **Output**: `.svg` and `.png` written to `src/blog/content/images/<post-slug>/`
+- **Output**: `.svg` and `.png` written to `src/blog/content/images/<POST>/`, where
+  each generator sets `POST` to its own post slug
 - **Rebuild**: `python3 scripts/diagrams/build.py`, or a single `d_*.py`
-- **IMPORTANT**: Never hand-edit a generated SVG. Edit the `d_*.py` and rebuild, the
-  same rule that applies to `blog_posts_content.json`.
+- **IMPORTANT**: Never hand-edit a *generated* SVG. Edit the `d_*.py` and rebuild,
+  the same rule that applies to `blog_posts_content.json`.
+- **Only three diagrams are generated**: the `learning-llms-2` ones. The nine under
+  `learning-llms-{3,4,5}` have no `d_*.py` and `build.py` does not touch them, so
+  that rule cannot apply to them. `scripts/diagrams/README.md` says what to do with
+  those instead.
 - Boxes are sized from real font metrics, so text cannot silently overflow. The build
   prints `!!` warnings when something does not fit.
 - See `scripts/diagrams/README.md` for dependencies, the layout skeleton, and the palette.
@@ -372,6 +395,9 @@ against different dependency versions than a local run and `package-lock.json` w
 effectively advisory. `npm ci` fails loudly on any lockfile drift instead. Keep the
 two workflows on the same Node version, and bump them together.
 
+`sync_bookshelf.yml` is Python-only and sets up no Node at all; it is not part of
+that pairing.
+
 The deploy action is `JamesIves/github-pages-deploy-action@v4` with `folder: dist`.
 It defaults to `clean: true`, so each deploy replaces the whole `gh-pages` tree
 rather than layering onto it. `dist/CNAME` is what keeps the custom domain working,
@@ -381,7 +407,8 @@ so it must stay in the passthrough copy list.
 `eleventy.config.js` uses passthrough copy for:
 - `CNAME` → root (for custom domain)
 - Book thumbnails → `book_thumbnails_v2/`
-- Resumes → `resumes/`
+- Fonts (`src/assets/fonts`) → `fonts/`, which the `@font-face` rules in
+  `main.scss` and the `<link rel="preload">` in `base.njk` both point at
 - Publications → `publications/`
 - Running images → `running-images/`
 - Hiking images → `hiking-images/`
@@ -486,7 +513,7 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 1. Add its content to `src/_data/` (JSON for hand-authored content, a `.js` file if
    anything needs deriving)
 2. Create the page template (e.g. `src/newSection.njk`) with `layout:` front matter
-3. Add a navigation item to the sidebar partial in `src/_includes/`
+3. Add a navigation item to `src/_data/nav.js`
 4. Add the route to the smoke test's coverage
 5. Update this file (`AGENTS.md`)
 
@@ -502,25 +529,18 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 
 ## Known Issues & Future Work
 
-### Recent Improvements (2025-11-22 to 2025-12-22)
-- ✅ Re-enabled ESLint and fixed violations
-- ✅ Updated GitHub Actions to latest versions (v4/v5)
-- ✅ Fixed Vue 2→3 lifecycle hooks (`beforeDestroy` → `beforeUnmount`)
-- ✅ Updated TypeScript shims to Vue 3
-- ✅ Removed duplicate ImageCarousel components
-- ✅ Standardized all components to use `defineComponent`
-- ✅ Added route-level code splitting (lazy loading)
-- ✅ Added environment variable validation
-- ✅ Replaced DOM queries with Vue template refs
-- ✅ Restructured README.md for better developer onboarding
-
 ### Completed Features
-- **Migrate to Vue 3**: ✅ Done
-- **Remove Vue 2 compatibility mode**: ✅ Done
 - **Merge Bookshelf-Syncer**: ✅ Done
-- **Merge Software-Syncer**: ✅ Done
-- **Add Resume & CV PDFs**: ✅ Done
 - **Static rewrite, Vue 3 SPA to Eleventy** (#501): ✅ Done, deployed 2026-10-01
+
+The Vue-era entries that used to sit here (Vue 3 migration, lifecycle hooks,
+`defineComponent`, route code splitting, TypeScript shims, the software syncer)
+described code the rewrite deleted, so they are gone rather than kept as history.
+#501 is the record of that work.
+
+The résumé and CV PDFs used to be listed as a shipped feature. They were not:
+nothing on the site linked them after the rewrite, so `src/assets/resumes/` and
+its passthrough-copy entry were removed. Re-adding them means adding the link too.
 
 ### Planned Work
 - **Filter blog posts by tag**: Planned
@@ -531,6 +551,12 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 
 ### Technical Debt
 - No unit tests (only browser smoke tests)
+- **Nine blog diagrams have no generator.** Those under
+  `src/blog/content/images/learning-llms-{3,4,5}/` were committed as finished
+  SVG + PNG pairs by an earlier, uncommitted variant of `scripts/diagrams/`, so
+  `build.py` cannot rebuild them and the "edit the generator, never the SVG" rule
+  does not apply to them. Only the three `learning-llms-2` diagrams have a
+  `d_*.py`. See `scripts/diagrams/README.md`
 - **There are no scratch TODO files in this repo, by design.** `PROJECT_TODOS.md`,
   `TODO.md`, `GITHUB_ISSUES_TO_CREATE.md`, `dependency_upgrade_todos.md`,
   `scratch_ideas.md` and `plans/` were all deleted: they drifted out of date and
@@ -586,7 +612,8 @@ When writing or editing blog posts for this site, follow these conventions:
 1. **Prefer no JavaScript**: then a little JS, then a partial (#501)
 2. **Shared Markup**: Put reusable markup in `src/_includes/`
 3. **Pages**: A new page is a new template; its path is its output path
-4. **Navigation**: Update the sidebar partial for new nav items
+4. **Navigation**: Add nav items to `src/_data/nav.js`; `sidebar.njk` and
+   `topbar.njk` both loop over it, so neither partial needs touching
 5. **Assets**: Add a passthrough copy entry in `eleventy.config.js`
 6. **Data Files**: Follow the patterns in `src/_data/`
 
@@ -644,4 +671,4 @@ npm run sync-articles      # Sync blog content
 
 **Last Updated**: 2026-10-01
 **Eleventy Version**: 3.1.6
-**Node Version**: 20+ required by Eleventy and Playwright; CI pins 24
+**Node Version**: 20+ required by Eleventy and Playwright; both Node workflows pin 24

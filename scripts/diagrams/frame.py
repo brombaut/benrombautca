@@ -4,9 +4,10 @@ import pathlib
 from render import render_png
 from svgkit import Svg, INK, MUTED, FAINT, PAGE, CARD, EDGE, ARROW, C, tw, shrink
 
-# Diagrams are written straight into the blog post's image directory.
-OUT = (pathlib.Path(__file__).resolve().parents[2]
-       / "src" / "blog" / "content" / "images" / "learning-llms-2")
+# Diagrams are written straight into the blog post's image directory. Each
+# generator names its own post, since one post's diagrams are not another's.
+IMAGES = (pathlib.Path(__file__).resolve().parents[2]
+          / "src" / "blog" / "content" / "images")
 
 W = 1600
 PAD = 34            # outer card inset
@@ -53,9 +54,10 @@ def footnote(s, y, text):
     s.text(W / 2, y, text, 22, 400, FAINT, "middle")
 
 
-def emit(s, filename):
-    """Write the SVG into the blog images directory and rasterize it alongside."""
-    OUT.mkdir(parents=True, exist_ok=True)
-    path = OUT / filename
+def emit(s, post, filename):
+    """Write the SVG into the post's image directory and rasterize it alongside."""
+    out = IMAGES / post
+    out.mkdir(parents=True, exist_ok=True)
+    path = out / filename
     s.save(path)
     render_png(path)
