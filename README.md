@@ -50,7 +50,6 @@ They also run in CI on every pull request and before each deploy. See `AGENTS.md
 - **[AGENTS.md](./AGENTS.md)** - Comprehensive AI assistant guide with detailed architecture, patterns, and development workflows
 - **[CLAUDE.md](./CLAUDE.md)** - Symlink to `AGENTS.md`, so Claude Code reads the same guidance
 - **[ISSUES.md](./ISSUES.md)** - GitHub Issues label conventions and the `gh` command reference
-- **[TODO.md](./TODO.md)** - Open items in the bookshelf syncer pipeline
 
 ## License
 

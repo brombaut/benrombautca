@@ -507,10 +507,11 @@ Images are served via Eleventy passthrough copy, which copies `src/blog/content/
 
 ### Technical Debt
 - No unit tests (only browser smoke tests)
-- `TODO.md` lists open items in the bookshelf syncer pipeline. The old
-  `PROJECT_TODOS.md` audit was deleted with the Vue app it described: it indexed
-  `.vue` files, webpack config and a `.husky/` directory that no longer exist.
-  Anything still worth doing belongs on a GitHub issue (see `ISSUES.md`)
+- **There are no scratch TODO files in this repo, by design.** `PROJECT_TODOS.md`,
+  `TODO.md`, `GITHUB_ISSUES_TO_CREATE.md`, `dependency_upgrade_todos.md`,
+  `scratch_ideas.md` and `plans/` were all deleted: they drifted out of date and
+  duplicated the issue tracker. Anything worth doing goes on a GitHub issue
+  (see `ISSUES.md`). Do not recreate them
 
 ## Blog Writing Style
 
