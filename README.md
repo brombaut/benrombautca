@@ -7,26 +7,25 @@ Personal portfolio website, built as a framework-free static site with
 [Eleventy](https://www.11ty.dev/). Visit the live site at
 [benrombaut.ca](https://www.benrombaut.ca).
 
-> **This branch is mid-rewrite.** `redesign/static-rewrite` is replacing the
-> Vue 3 SPA that still runs on `main`. See issue #501 for the plan and
-> `AGENTS.md` for the current state of the build.
-
 ## Site Features
 
 ### About Me
-Personal introduction with work and education timeline.
+Personal introduction and a News list of recent posts, publications and hikes.
+
+### Bio
+Career history in reverse chronological order.
 
 ### Ben's Bookshelf
 Books I've read and am currently reading, synced from [Goodreads](https://www.goodreads.com). Data is scraped and stored using automated syncing pipelines that run via GitHub Actions.
 
-### Articles
-Technical how-to guides and notes written in Markdown, converted to HTML using [Pandoc](https://pandoc.org/). Articles cover various programming topics and serve as personal references.
+### Blog
+Technical how-to guides and notes written in Markdown, converted to HTML using [Pandoc](https://pandoc.org/). Posts cover various programming topics and serve as personal references.
 
 ### Publications
 Academic publications and research papers.
 
 ### Running & Hiking
-Photo galleries with image carousels showcasing outdoor activities.
+Photo galleries showcasing outdoor activities.
 
 ## Contributing
 

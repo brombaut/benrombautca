@@ -3,9 +3,6 @@ on:
   pull_request:
     branches:
       - main
-      # The static-rewrite branch (#501) takes PRs of its own, and they need the
-      # same lint + build + smoke coverage.
-      - redesign/static-rewrite
 jobs:
   install_lint_build:
     runs-on: ubuntu-latest
