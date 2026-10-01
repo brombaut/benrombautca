@@ -4,66 +4,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Ben Rombaut&#39;s personal website.">
-  <title>Ben Rombaut | Senior AI Engineer</title>
-  <link rel="canonical" href="https://www.benrombaut.ca/">
+  <meta name="description" content="A high-level overview of the TensorFlow API.">
+  <title>TensorFlow API Overview | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20211015_tensorflow_overview/">
 
   
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ben Rombaut">
-  <meta property="og:title" content="Ben Rombaut | Senior AI Engineer">
-  <meta property="og:description" content="Ben Rombaut&#39;s personal website.">
-  <meta property="og:url" content="https://www.benrombaut.ca/">
+  <meta property="og:title" content="TensorFlow API Overview | Ben Rombaut">
+  <meta property="og:description" content="A high-level overview of the TensorFlow API.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20211015_tensorflow_overview/">
   <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
   <meta name="twitter:card" content="summary">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-
-<script>
-  (function () {
-    // Explicit table. The old router sent /, /about-me, /work and /education
-    // to the same About component; the About content is now the home page and
-    // the work/education history is the Bio page (#545). The software section is
-    // deleted and isn't coming back, so it lands on About too.
-    var map = {
-      "/": "/",
-      "/about-me": "/",
-      "/work": "/bio/",
-      "/education": "/bio/",
-      "/software": "/",
-      "/blog": "/blog/",
-      // /#/articles was in the old sitemap but never matched a router route.
-      "/articles": "/blog/",
-      "/publications": "/publications/",
-      "/bookshelf": "/bookshelf/",
-      "/running": "/running/",
-      "/hiking": "/hiking/"
-    };
-
-    function redirect() {
-      if (location.hash.slice(0, 2) !== "#/") return;
-      var path = location.hash.slice(1).split("?")[0].replace(/\/+$/, "") || "/";
-      var target = map[path];
-      if (!target) {
-        var post = /^\/blog\/([A-Za-z0-9_-]+)$/.exec(path);
-        // The /#/articles/<slug> ids lack the date prefix real post ids have
-        // ("prime_numbers" vs "20200510_prime_numbers"), so they can't be mapped
-        // to a post; they go to the index.
-        if (post) target = "/blog/" + post[1] + "/";
-        else if (path.indexOf("/articles/") === 0) target = "/blog/";
-        else if (path.indexOf("/software/") === 0) target = "/";
-      }
-      if (target) location.replace(target);
-    }
-
-    // A hash-only change doesn't reload the page, so a hash URL followed while
-    // already on this page needs the listener as well as the call.
-    window.addEventListener("hashchange", redirect);
-    redirect();
-  })();
-</script>
 
 </head>
 
@@ -78,7 +34,7 @@
       
         <li>
           <a href="/"
-            aria-current="page">About</a>
+            >About</a>
         </li>
       
         <li>
@@ -158,7 +114,7 @@
           
             <li>
               <a href="/"
-                aria-current="page">About</a>
+                >About</a>
             </li>
           
             <li>
@@ -229,59 +185,166 @@
 
 
     <main class="content">
-      <section class="hero">
-  <h1>Hi, I'm Ben.</h1>
-  <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
-  <p>I'm a Senior AI Engineer at <a href="https://www.medfarsolutions.com/en/" rel="noopener" target="_blank">MEDFAR Clinical Solutions</a> in Montreal, where I lead prompt and model evaluation for AI features used by physicians. Before that I was an AI and software engineering researcher at Huawei Canada's Centre for Software Excellence. I have an M.Sc. in Computing from Queen's University and a B.Sc. in Software Engineering from UNB.</p>
-<p>My interests are AI for software engineering, software engineering for AI systems, AI in healthcare, and how LLMs work under the hood. More on my professional career can be found in my <a href="/bio/">bio</a> and my <a href="/publications/">publications</a>. Outside work, I <a href="/running/">run</a>, <a href="/hiking/">hike</a>, and <a href="/bookshelf/">read</a>.</p>
-</section>
+      <article>
+  
+  <h1>TensorFlow API Overview</h1>
+  <p class="hero__lede">A high-level overview of the TensorFlow API.</p>
+  <p class="post-meta">
+    <time datetime="2021-10-15">October 15, 2021</time>
+    &middot; 1 min read
+  </p>
 
-<hr class="separator">
-
-<h2>News</h2>
-<ul class="dated-list">
-  
-    <li>
-      <time datetime="2026-09-21">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/bio/">Joined MEDFAR Clinical Solutions as a Senior AI Engineer</a>
-        <p class="dated-list__meta">Career</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-18">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/blog/20260918_learning_llms_3_mixture_of_experts/">🧠 What a Mixture of Experts Layer Actually Costs</a>
-        <p class="dated-list__meta">New blog post</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-16">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Pico Grande via Caminho Real da Encumeada (PR12)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-15">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Ponta de São Lourenço Trail (PR8)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-14">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Porto da Cruz - Boca do Risco via Vereda do Larano</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
+  <div class="article-body">
+    <h2 id="tensorflow-overview">Tensorflow Overview</h2>
+<p>What does TensorFlow offer?</p>
+<ul>
+<li>Its core is very similar to NumPy, but with GPU support.</li>
+<li>It supports distributed computing (across multiple devices and
+servers).</li>
+<li>It includes a kind of just-in-time (JIT) compiler that allows it to
+optimize computations for speed and memory usage. It works by extracting
+the <em>computation graph</em> from a Python function, then optimizing
+it (e.g., by pruning unused nodes), and finally running it efficiently
+(e.g., by automatically running independent operations in
+parallel).</li>
+<li>Computation graphs can be exported to a portable format, so you can
+train a TensorFlow model in one environment (e.g., using Python on
+Linux) and run it in another (e.g., using Java on an Android
+device).</li>
+<li>It implements autodiff and provides some excellent optimizers so you
+can easily minimize all sorts of of loss functions.</li>
 </ul>
+<p>At the lowest level, each TensorFlow operation (<em>op</em> for
+short) is implemented using highly efficient C++ code. Many operations
+have multiple implementations called <em>kernels</em>: each kernel is
+dedicated to a specific device type, such as CPUs, GPUs, or even TPUs
+(<em>tensor processing units</em>). GPUs can dramatically speed up
+computations by splitting them into many smaller chuncks and running
+them in parallel across many GPU threads. TPUs are even faster: they are
+custom ASIC chips built specifically for Deep Learning operations.</p>
+<h3 id="high-level-deep-learning-apis">High-level Deep Learning
+APIs</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/keras">tf.keras</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/estimator">tf.estimator</a></p>
+</blockquote>
+<h3 id="low-level-deep-learning-apis">Low-level Deep Learning APIs</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/nn">tf.nn</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/losses">tf.losses</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/metrics">tf.metrics</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/optimizers">tf.optimizers</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/train">tf.train</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/initializers">tf.initializers</a></p>
+</blockquote>
+<h3 id="autodiff">Autodiff</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/GradientTape">tf.GradientTape</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/gradients">tf.gradients()</a></p>
+</blockquote>
+<h3 id="io-and-preprocessing">I/O and Preprocessing</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/data">tf.data</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/feature_column">tf.feature_column</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/audio">tf.audio</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/image">tf.image</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/io">tf.io</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/queue">tf.queue</a></p>
+</blockquote>
+<h3 id="visualization-with-tensorboard">Visualization with
+TensorBoard</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/summary">tf.summary</a><br />
+</p>
+</blockquote>
+<h3 id="deployment-and-optimization">Deployment and Optimization</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/distribute">tf.distribute</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/saved_model">tf.saved_model</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/autograph">tf.autograph</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/graph_util">tf.graph_util</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/lite">tf.lite</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/quantization">tf.quantization</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/tpu">tf.tpu</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/xla">tf.xla</a></p>
+</blockquote>
+<h3 id="special-data-structures">Special Data Structures</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/lookup">tf.lookup</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/nest">tf.nest</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/ragged">tf.ragged</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/sets">tf.sets</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/sparse">tf.sparse</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/strings">tf.strings</a></p>
+</blockquote>
+<h3
+id="mathematics-including-linear-algebra-and-signal-processing">Mathematics
+(including linear algebra and signal processing)</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/math">tf.math</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/linalg">tf.linalg</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/signal">tf.signal</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/random">tf.random</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/bitwise">tf.bitwise</a></p>
+</blockquote>
+<h3 id="miscellaneous">Miscellaneous</h3>
+<blockquote>
+<p><a
+href="https://www.tensorflow.org/api_docs/python/tf/compat">tf.compat</a><br />
+<a
+href="https://www.tensorflow.org/api_docs/python/tf/config">tf.config</a><br />
+and more…</p>
+</blockquote>
+<h3 id="references">References</h3>
+<ul>
+<li><a href="https://www.tensorflow.org/api_docs/python/tf">TensorFlow
+API Docs</a></li>
+<li><a
+href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/">Hands-On
+Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd
+Edition</a></li>
+</ul>
+
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
 
     </main>
   </div>

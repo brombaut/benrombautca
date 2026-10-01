@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Explains how to configure a GitHub Action to run on a cron schedule.">
+  <title>Run GitHub Actions on a Schedule | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20211002_github_actions_scheduled/">
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ben Rombaut">
+  <meta property="og:title" content="Run GitHub Actions on a Schedule | Ben Rombaut">
+  <meta property="og:description" content="Explains how to configure a GitHub Action to run on a cron schedule.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20211002_github_actions_scheduled/">
+  <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body>
+  
+<header class="topbar">
+  <p class="topbar__name"><a href="/">Ben Rombaut</a></p>
+
+  <details class="topnav">
+    <summary>Menu</summary>
+    <ul class="topnav__list">
+      
+        <li>
+          <a href="/"
+            >About</a>
+        </li>
+      
+        <li>
+          <a href="/bio/"
+            >Bio</a>
+        </li>
+      
+        <li>
+          <a href="/blog/"
+            >Blog</a>
+        </li>
+      
+        <li>
+          <a href="/publications/"
+            >Publications</a>
+        </li>
+      
+        <li>
+          <a href="/bookshelf/"
+            >Bookshelf</a>
+        </li>
+      
+        <li>
+          <a href="/running/"
+            >Running</a>
+        </li>
+      
+        <li>
+          <a href="/hiking/"
+            >Hiking</a>
+        </li>
+      
+      <li><ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+</li>
+    </ul>
+  </details>
+</header>
+
+
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div>
+      <p class="sidebar__name"><a href="/">Ben Rombaut</a></p>
+      <p class="sidebar__role">Senior AI Engineer</p>
+
+      <nav aria-label="Main">
+        <ul class="sidenav">
+          
+            <li>
+              <a href="/"
+                >About</a>
+            </li>
+          
+            <li>
+              <a href="/bio/"
+                >Bio</a>
+            </li>
+          
+            <li>
+              <a href="/blog/"
+                >Blog</a>
+            </li>
+          
+            <li>
+              <a href="/publications/"
+                >Publications</a>
+            </li>
+          
+            <li>
+              <a href="/bookshelf/"
+                >Bookshelf</a>
+            </li>
+          
+            <li>
+              <a href="/running/"
+                >Running</a>
+            </li>
+          
+            <li>
+              <a href="/hiking/"
+                >Hiking</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+
+    <ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+
+  </div>
+</aside>
+
+
+    <main class="content">
+      <article>
+  
+  <h1>Run GitHub Actions on a Schedule</h1>
+  <p class="hero__lede">Explains how to configure a GitHub Action to run on a cron schedule.</p>
+  <p class="post-meta">
+    <time datetime="2021-10-02">October 2, 2021</time>
+    &middot; 1 min read
+  </p>
+
+  <div class="article-body">
+    <h2 id="create-a-scheduled-github-actions-yaml-file.">Create a scheduled
+GitHub Actions YAML file.</h2>
+<p>You can schedule a workflow to run at specific UTC times using POSIX
+cron syntax. Scheduled workflows run on the latest commit on the default
+or base branch. The shortest interval you can run scheduled workflows is
+once every 5 minutes.</p>
+<p>This example triggers the workflow every day at 5:30 and 17:30
+UTC:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .github/workflows/scheduled_action.yml</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Translate Goodreads to F3</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">schedule</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    # * is a special character in YAML so you have to quote this string</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">cron</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;30 5,17 * * *&quot;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">goodreads_f3_translator</span><span class="kw">:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v2</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;3.x&quot;</span><span class="co"> # Version range or exact version of a Python version to use, using SemVer&#39;s version range syntax</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">architecture</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;x64&quot;</span><span class="co"> # optional x64 or x86. Defaults to x64 if not specified</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-node@v2</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">node-version</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;16&quot;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> BSFishy/pip-action@v1</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">requirements</span><span class="kw">:</span><span class="at"> requirements.txt</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> NPM Clean Install</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> npm ci</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run goodreads_translator.py</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> python goodreads_translator.py</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run F3 Syncer</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>          npm run build</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>          npm run start</span></code></pre></div>
+<p>Cron syntax has five fields separated by a space, and each field
+represents a unit of time.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">┌─────────────</span> minute <span class="er">(</span><span class="ex">0</span> <span class="at">-</span> 59<span class="kw">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span> ┌───────────── hour <span class="er">(</span><span class="ex">0</span> <span class="at">-</span> 23<span class="kw">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span> │ ┌───────────── day of the month <span class="er">(</span><span class="ex">1</span> <span class="at">-</span> 31<span class="kw">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span> │ │ ┌───────────── month <span class="er">(</span><span class="ex">1</span> <span class="at">-</span> 12 or JAN-DEC<span class="kw">)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span> │ │ │ ┌───────────── day of the week <span class="er">(</span><span class="ex">0</span> <span class="at">-</span> 6 or SUN-SAT<span class="kw">)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span> │ │ │ │</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span> │ │ │ │</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span> │ │ │ │</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">*</span> <span class="pp">*</span> <span class="pp">*</span> <span class="pp">*</span> <span class="pp">*</span></span></code></pre></div>
+<p>Information on notifications for scheduled actions can be found at <a
+href="https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration#notifications-for-workflow-runs">https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration#notifications-for-workflow-runs</a></p>
+<p>All information gathered at <a
+href="https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows">https://docs.github.com/en/actions/learn-github-actions/events-that-trigger-workflows</a>.</p>
+<p>Other helpful references</p>
+<ul>
+<li>No assurance on scheduled jobs: <a
+href="https://github.community/t/no-assurance-on-scheduled-jobs/133753">https://github.community/t/no-assurance-on-scheduled-jobs/133753</a></li>
+<li>GitHub Actions workflow not triggering at scheduled time: <a
+href="https://upptime.js.org/blog/2021/01/22/github-actions-schedule-not-working/">https://upptime.js.org/blog/2021/01/22/github-actions-schedule-not-working/</a></li>
+</ul>
+
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
+
+    </main>
+  </div>
+
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Q99mXo-xiPCKbsApT4FWdYQCY7RuCZM9nyNspx6iAmI&amp;cl=ffffff&amp;w=a"></script>
+</body>
+
+</html>

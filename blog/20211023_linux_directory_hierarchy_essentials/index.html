@@ -5,65 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="description" content="Ben Rombaut&#39;s personal website.">
-  <title>Ben Rombaut | Senior AI Engineer</title>
-  <link rel="canonical" href="https://www.benrombaut.ca/">
+  <title>Linux Directory Hierarchy Essentials | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20211023_linux_directory_hierarchy_essentials/">
 
   
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ben Rombaut">
-  <meta property="og:title" content="Ben Rombaut | Senior AI Engineer">
+  <meta property="og:title" content="Linux Directory Hierarchy Essentials | Ben Rombaut">
   <meta property="og:description" content="Ben Rombaut&#39;s personal website.">
-  <meta property="og:url" content="https://www.benrombaut.ca/">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20211023_linux_directory_hierarchy_essentials/">
   <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
   <meta name="twitter:card" content="summary">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-
-<script>
-  (function () {
-    // Explicit table. The old router sent /, /about-me, /work and /education
-    // to the same About component; the About content is now the home page and
-    // the work/education history is the Bio page (#545). The software section is
-    // deleted and isn't coming back, so it lands on About too.
-    var map = {
-      "/": "/",
-      "/about-me": "/",
-      "/work": "/bio/",
-      "/education": "/bio/",
-      "/software": "/",
-      "/blog": "/blog/",
-      // /#/articles was in the old sitemap but never matched a router route.
-      "/articles": "/blog/",
-      "/publications": "/publications/",
-      "/bookshelf": "/bookshelf/",
-      "/running": "/running/",
-      "/hiking": "/hiking/"
-    };
-
-    function redirect() {
-      if (location.hash.slice(0, 2) !== "#/") return;
-      var path = location.hash.slice(1).split("?")[0].replace(/\/+$/, "") || "/";
-      var target = map[path];
-      if (!target) {
-        var post = /^\/blog\/([A-Za-z0-9_-]+)$/.exec(path);
-        // The /#/articles/<slug> ids lack the date prefix real post ids have
-        // ("prime_numbers" vs "20200510_prime_numbers"), so they can't be mapped
-        // to a post; they go to the index.
-        if (post) target = "/blog/" + post[1] + "/";
-        else if (path.indexOf("/articles/") === 0) target = "/blog/";
-        else if (path.indexOf("/software/") === 0) target = "/";
-      }
-      if (target) location.replace(target);
-    }
-
-    // A hash-only change doesn't reload the page, so a hash URL followed while
-    // already on this page needs the listener as well as the call.
-    window.addEventListener("hashchange", redirect);
-    redirect();
-  })();
-</script>
 
 </head>
 
@@ -78,7 +34,7 @@
       
         <li>
           <a href="/"
-            aria-current="page">About</a>
+            >About</a>
         </li>
       
         <li>
@@ -158,7 +114,7 @@
           
             <li>
               <a href="/"
-                aria-current="page">About</a>
+                >About</a>
             </li>
           
             <li>
@@ -229,59 +185,131 @@
 
 
     <main class="content">
-      <section class="hero">
-  <h1>Hi, I'm Ben.</h1>
-  <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
-  <p>I'm a Senior AI Engineer at <a href="https://www.medfarsolutions.com/en/" rel="noopener" target="_blank">MEDFAR Clinical Solutions</a> in Montreal, where I lead prompt and model evaluation for AI features used by physicians. Before that I was an AI and software engineering researcher at Huawei Canada's Centre for Software Excellence. I have an M.Sc. in Computing from Queen's University and a B.Sc. in Software Engineering from UNB.</p>
-<p>My interests are AI for software engineering, software engineering for AI systems, AI in healthcare, and how LLMs work under the hood. More on my professional career can be found in my <a href="/bio/">bio</a> and my <a href="/publications/">publications</a>. Outside work, I <a href="/running/">run</a>, <a href="/hiking/">hike</a>, and <a href="/bookshelf/">read</a>.</p>
-</section>
+      <article>
+  
+  <h1>Linux Directory Hierarchy Essentials</h1>
+  
+  <p class="post-meta">
+    <time datetime="2021-10-23">October 23, 2021</time>
+    &middot; 3 min read
+  </p>
 
-<hr class="separator">
-
-<h2>News</h2>
-<ul class="dated-list">
-  
-    <li>
-      <time datetime="2026-09-21">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/bio/">Joined MEDFAR Clinical Solutions as a Senior AI Engineer</a>
-        <p class="dated-list__meta">Career</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-18">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/blog/20260918_learning_llms_3_mixture_of_experts/">🧠 What a Mixture of Experts Layer Actually Costs</a>
-        <p class="dated-list__meta">New blog post</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-16">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Pico Grande via Caminho Real da Encumeada (PR12)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-15">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Ponta de São Lourenço Trail (PR8)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-14">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Porto da Cruz - Boca do Risco via Vereda do Larano</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
+  <div class="article-body">
+    <p>The details of the Linux directory structure are outlines in the
+Filesystem Hierarchy Standard, or FHS (<a
+href="https://refspecs.linuxfoundation.org/fhs.shtml">https://refspecs.linuxfoundation.org/fhs.shtml</a>).
+Below are the most important subdirectories in root:</p>
+<h3 id="bin"><strong><em>/bin</em></strong></h3>
+<p>Contains ready-to-run programs (also known as <em>executables</em>),
+including most of the basic Unix commands such as <code>ls</code> and
+<code>cp</code>. Most of the programs in <em>/bin</em> are in binary
+format, having been created by a C compiler, but some are shell scripts
+in modern systems.</p>
+<h3 id="dev"><strong><em>/dev</em></strong></h3>
+<p>Contains device files.</p>
+<h3 id="etc"><strong><em>/etc</em></strong></h3>
+<p>This core system configuration directory contains the user password,
+boot, device, networking, and other setup files.</p>
+<h3 id="home"><strong><em>/home</em></strong></h3>
+<p>Holds home (personal) directories for regular users.</p>
+<h3 id="lib"><strong><em>/lib</em></strong></h3>
+<p>An abbreviation for <em>library</em>, this directory holds library
+files containing code that executables can use. There are two types of
+libraries: static and shared. The <em>lib</em> directory should contain
+only shared libraries, but other lib directories, such as
+<em>/usr/lib</em>, contain both varieties as well as other auxiliary
+files.</p>
+<h3 id="proc"><strong><em>/proc</em></strong></h3>
+<p>Provides system statistics through a browsable directory-and-file
+interface. Much of the <em>/proc</em> subdirectory structure on Linux is
+unique, but many other Unix variants have similar features. The
+<em>/proc</em> directory contains information about currently running
+processes as well as some kernel parameters.</p>
+<h3 id="run"><strong><em>/run</em></strong></h3>
+<p>Contains runtime data specific to the system, including certain
+process IDs, socket files, status records, and, in many cases, system
+logging. This is a relatively recent addition to the root directory; in
+older systems, you can find it in <em>/var/run</em>. On newer systems,
+<em>/var/run</em> is a symbolic link to <em>/run</em>.</p>
+<h3 id="sys"><strong><em>/sys</em></strong></h3>
+<p>This directory is similar to <em>/proc</em> in that is provides a
+device and system interface.</p>
+<h3 id="sbin"><strong><em>/sbin</em></strong></h3>
+<p>The place for system executables. Programs in <em>/sbin</em>
+directories relate to system management, so regular users usually do not
+have <em>/sbin</em> components in their command paths. Many of the
+utilities found here don’t work if not run as root.</p>
+<h3 id="tmp"><strong><em>/tmp</em></strong></h3>
+<p>A storage area for smaller, temporary files that you don’t care much
+about. Any user may read to and write from <em>/tmp</em>, but many users
+may not have permission to access another user’s files there. Many
+programs use this directory as a workspace. If something is extremely
+important, don’t put it in <em>/tmp</em> because most distributions
+clear <em>/tmp</em> when the machine boots and some even remove its old
+files periodically. Also, don’t let <em>/tmp</em> fill up with garbage
+because its space is usually shared with something critical (the rest of
+<em>/</em>, for example).</p>
+<h3 id="usr"><strong><em>/usr</em></strong></h3>
+<p>Although pronounced “user”, this subdirectory has no user files.
+Instead, it contains a large directory hierarchy, including the bulk of
+the Linux system. Many of the directory names in <em>/usr</em> are the
+same as those in the root directory (like <em>/usr/bin</em> and
+<em>/usr/lib</em>), and they hold the same type of files. (The reason
+that the root directory does not contain the complete system is
+primarily historic - in the past, it was to keep space requirements low
+for the root.)</p>
+<blockquote>
+<p>The <em>/usr</em> directory may look relatively clean at first
+glance, but a quick look at <em>/usr/bin</em> and <em>/usr/lib</em>
+reveals that there’s a lot here; <em>/usr</em> is where most of the
+user-space programs and date reside. In addition to <em>/usr/bin</em>,
+<em>/usr/sbin</em> and <em>/usr/lib</em>, <em>/usr</em> contains the
+following:</p>
+<h4 id="usrinclude"><strong><em>/usr/include</em></strong></h4>
+<p>Holds header files used by the C compiler.</p>
+<h4 id="usrlocal"><strong><em>/usr/local</em></strong></h4>
+<p>Is where admins can install their own software. Its structure should
+like like that of <em>/</em> and <em>/usr</em>.</p>
+<h4 id="usrman"><strong><em>/usr/man</em></strong></h4>
+<p>Contains manual pages.</p>
+<h4 id="usrshare"><strong><em>/usr/share</em></strong></h4>
+<p>Contains files that should work on other kinds of Unix machines with
+no loss of functionality. These are usually auxiliary data files that
+programs and libraries read as necessary. In the past, networks of
+machines would share this directory from a file server, but today a
+<em>share</em> directory used in this manner is rare because there are
+no realistic space restraints for these kinds of files on contemporary
+systems. Instead, on Linux distributions, you’ll find <em>/man</em>,
+<em>/info</em>, and many other subdirectories here because it is an
+easily understood convention.</p>
+</blockquote>
+<h3 id="var"><strong><em>/var</em></strong></h3>
+<p>The variable subdirectory, where programs record information that can
+change over the course of time. System logging, user tracking, caches,
+and other files that system programs create and manage are here. (You’ll
+notice a <em>/var/tmp</em> directory here, but the system doesn’t wipe
+it on boot.)</p>
+<h3 id="boot"><strong><em>/boot</em></strong></h3>
+<p>Contains kernel boot loader files. These files pertain only to the
+very first stage of the Linux startup procedure, so you won’t find
+information about how Linux starts up its services in this
+directory.</p>
+<h3 id="media"><strong><em>/media</em></strong></h3>
+<p>A base attachment point for removable media such as flash drives that
+is found in many distributions.</p>
+<h3 id="opt"><strong><em>/opt</em></strong></h3>
+<p>This may contain additional third-party software. Many systems don’t
+use <em>/opt</em>.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://nostarch.com/howlinuxworks3">How Linux Works - 3rd
+Edition</a></li>
 </ul>
+
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
 
     </main>
   </div>

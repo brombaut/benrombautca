@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="After a few months of researching how AI-generated code fails, the most important finding was not a new category of defect. It is that when code becomes cheaper to produce than to justify, old quality signals start pointing the wrong way and Chesterton&amp;#39;s Fence stops holding. This post covers that shift and what teams seem to be converging on in response.">
+  <title>When Code Is Cheaper to Produce Than to Justify | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20260626_ai_slop_phase_transition/">
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ben Rombaut">
+  <meta property="og:title" content="When Code Is Cheaper to Produce Than to Justify | Ben Rombaut">
+  <meta property="og:description" content="After a few months of researching how AI-generated code fails, the most important finding was not a new category of defect. It is that when code becomes cheaper to produce than to justify, old quality signals start pointing the wrong way and Chesterton&amp;#39;s Fence stops holding. This post covers that shift and what teams seem to be converging on in response.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20260626_ai_slop_phase_transition/">
+  <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body>
+  
+<header class="topbar">
+  <p class="topbar__name"><a href="/">Ben Rombaut</a></p>
+
+  <details class="topnav">
+    <summary>Menu</summary>
+    <ul class="topnav__list">
+      
+        <li>
+          <a href="/"
+            >About</a>
+        </li>
+      
+        <li>
+          <a href="/bio/"
+            >Bio</a>
+        </li>
+      
+        <li>
+          <a href="/blog/"
+            >Blog</a>
+        </li>
+      
+        <li>
+          <a href="/publications/"
+            >Publications</a>
+        </li>
+      
+        <li>
+          <a href="/bookshelf/"
+            >Bookshelf</a>
+        </li>
+      
+        <li>
+          <a href="/running/"
+            >Running</a>
+        </li>
+      
+        <li>
+          <a href="/hiking/"
+            >Hiking</a>
+        </li>
+      
+      <li><ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+</li>
+    </ul>
+  </details>
+</header>
+
+
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div>
+      <p class="sidebar__name"><a href="/">Ben Rombaut</a></p>
+      <p class="sidebar__role">Senior AI Engineer</p>
+
+      <nav aria-label="Main">
+        <ul class="sidenav">
+          
+            <li>
+              <a href="/"
+                >About</a>
+            </li>
+          
+            <li>
+              <a href="/bio/"
+                >Bio</a>
+            </li>
+          
+            <li>
+              <a href="/blog/"
+                >Blog</a>
+            </li>
+          
+            <li>
+              <a href="/publications/"
+                >Publications</a>
+            </li>
+          
+            <li>
+              <a href="/bookshelf/"
+                >Bookshelf</a>
+            </li>
+          
+            <li>
+              <a href="/running/"
+                >Running</a>
+            </li>
+          
+            <li>
+              <a href="/hiking/"
+                >Hiking</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+
+    <ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+
+  </div>
+</aside>
+
+
+    <main class="content">
+      <article>
+  
+    <p class="post-series">AI Slop &middot; Part 1</p>
+  
+  <h1>When Code Is Cheaper to Produce Than to Justify</h1>
+  <p class="hero__lede">After a few months of researching how AI-generated code fails, the most important finding was not a new category of defect. It is that when code becomes cheaper to produce than to justify, old quality signals start pointing the wrong way and Chesterton&#39;s Fence stops holding. This post covers that shift and what teams seem to be converging on in response.</p>
+  <p class="post-meta">
+    <time datetime="2026-06-26T00:00:00.000Z">June 26, 2026</time>
+    &middot; 8 min read
+  </p>
+
+  <div class="article-body">
+    <p>I’ve spent the last few months researching how AI-generated code
+fails. Not the obvious stuff, like syntax errors or hallucinated APIs,
+but the subtler patterns that accumulate in codebases where AI agents do
+most of the writing. This post covers what I think is the most important
+finding: the problem isn’t mainly about new kinds of defects. A
+follow-up post catalogs what slop actually looks like across eleven
+families.</p>
+<h2 id="three-tiers-of-ai-code-quality">Three Tiers of AI Code
+Quality</h2>
+<p>The instinct is to think of “AI slop” as a new category of defect.
+And there is a genuinely new category: narrator comments that explain
+what the model just did, hallucinated imports of packages that don’t
+exist, cross-language contamination where Python idioms leak into
+JavaScript, fake-done stubs where a function claims to enforce a rate
+limit but just returns <code>True</code>. These are real, and they’re
+distinctive to AI.</p>
+<p>But they’re not the whole story. When I scanned AI-generated
+repositories against human-written reference solutions for the same
+tasks, several old patterns showed up at elevated rates in the AI
+output: unused imports at 2.8x the reference rate, broad exception
+handlers at 2.1x. A survey of 70+ AI code quality tools reinforced the
+same picture. Of the 575 individual rules I cataloged across 42 tools,
+109 fell into a gray zone: patterns that predate AI but appear
+disproportionately in AI output. Swallowed exceptions flagged by 18
+tools, unused declarations by 12, broad/bare except by 10. These are
+AI-focused tools that bundle traditional smell detection alongside their
+AI-specific rules because practitioners found AI makes those old
+problems worse.</p>
+<p>AI code quality has three tiers: traditional smells (the same ones
+we’ve always had), gray smells (old patterns at elevated rates), and
+AI-specific slop (genuinely new defects). A useful quality tool can’t
+only target the new stuff.</p>
+<p>The AI-specific tier is the strange one because the code can look
+like progress while quietly changing the truth of the system:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> enforce_rate_limit(user_id: <span class="bu">str</span>, action: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">&quot;&quot;&quot;Return whether the user is allowed to perform this action.&quot;&quot;&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># </span><span class="al">TODO</span><span class="co">: integrate with Redis-backed limiter</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">True</span></span></code></pre></div>
+<p>That is not just an incomplete TODO. It is an executable success
+path. Everything downstream can now behave as if rate limiting exists,
+while every request is actually permitted.</p>
+<h2 id="boredom-was-a-quality-control">Boredom Was a Quality
+Control</h2>
+<p>The deeper question is <em>why</em> AI produces these patterns. The
+answer comes down to economics.</p>
+<p>Clean code was a scarcity discipline. Everything about the pre-AI
+quality movement was engineered against the failure modes of a specific
+producer: a human working under human economics. Think about what we
+brought to the table that we never recognized as quality mechanisms.
+Typing cost made verbosity self-limiting. Boredom was a built-in
+repetition detector (“I’m sick of writing this, I’ll extract a helper”).
+Fatigue was a stopping rule. Shame was a pre-commit hook. Knowing the
+codebase was the deduplicator. Consequence ownership made gaming your
+own tests self-harm. And critically, in humans the ability to produce
+large volumes of code correlated with the seniority to know better.
+Juniors with poor judgment were slow, which capped their blast
+radius.</p>
+<p>When we replaced the human producer with an LLM agent, we lost all of
+these limiters at once. The quality mechanisms were bundled with the
+producer, and we automated away both.</p>
+<p>The result is a producer whose characteristic failures are the
+opposite of human failures. Humans fail by omission: too few tests,
+missing documentation, copy-paste instead of careful abstraction. AI
+fails by commission: too much code, too many tests, too many comments,
+the same logic written from scratch because the model doesn’t remember
+it exists, hedging compiled into control flow because the model doesn’t
+know the correct type, and code that looks correct but silently does
+nothing.</p>
+<p>The hedging often shows up as “careful” code that has no relationship
+to the actual contract:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> customerId <span class="op">=</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  request<span class="op">?.</span><span class="at">body</span><span class="op">?.</span><span class="at">customer</span><span class="op">?.</span><span class="at">id</span> <span class="op">??</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  request<span class="op">?.</span><span class="at">query</span><span class="op">?.</span><span class="at">customerId</span> <span class="op">??</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  request<span class="op">?.</span><span class="at">headers</span><span class="op">?.</span>[<span class="st">&quot;x-customer-id&quot;</span>] <span class="op">??</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;unknown&quot;</span><span class="op">;</span></span></code></pre></div>
+<p>If the route contract says <code>customer.id</code> is required, this
+fallback chain is not robustness. It is uncertainty compiled into
+production behavior.</p>
+<h2 id="chestertons-fence-falls">Chesterton’s Fence Falls</h2>
+<p>There’s a classical principle that says you shouldn’t remove
+something until you understand why it was put there, because its
+existence is evidence that someone had a reason. This works when
+building is expensive. If building a fence required effort, finding one
+standing was genuine evidence of intent.</p>
+<p>When building the fence is nearly free, the principle breaks. The
+model produces abstractions, guard clauses, helper functions, and entire
+modules at no cost to itself, with no memory of why and no stake in
+whether they serve a purpose. Existence no longer carries evidence of
+intent. The presumption reverses: instead of “justify why you want to
+remove this,” the default becomes “justify why this should stay.”</p>
+<p>For the first time in the history of the discipline, code is cheaper
+to produce than to justify.</p>
+<h2 id="when-good-metrics-go-bad">When Good Metrics Go Bad</h2>
+<p>One consequence of this shift is that signals traditionally used to
+measure code quality now point in the wrong direction. This one
+genuinely caught me off guard.</p>
+<p>Comment density was a positive signal when humans were too lazy to
+document. Under model overproduction, dense comments signal noise:
+restating comments, narrator comments, step-by-step annotations that add
+nothing beyond what the code already says.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check if the user is active</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> user.is_active:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Send the welcome email</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    send_welcome_email(user.email)</span></code></pre></div>
+<p>There is nothing to preserve here. The comments are not design
+intent, business context, or a warning about a non-obvious edge case.
+They are a transcript of the next line.</p>
+<p>Code coverage was positive when humans skipped writing tests. Under
+model overproduction, high coverage can mean tests that verify the type
+system, the framework, or mock behavior rather than business logic.
+nWave documents ten patterns of fake tests, including a circular
+verification pattern where the test recomputes the expected value using
+the same formula as the production code, making failure impossible.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_calculate_tax():</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    amount <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    rate <span class="op">=</span> <span class="fl">0.15</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    expected <span class="op">=</span> amount <span class="op">*</span> rate</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> calculate_tax(amount, rate) <span class="op">==</span> expected</span></code></pre></div>
+<p>This test raises coverage, but it does not protect behavior. If the
+production implementation uses the same wrong formula, the test stays
+green.</p>
+<p>Clone detection shows the same inversion. Traditional detectors look
+for copy-paste duplication: textual similarity. But models don’t
+copy-paste. When a model needs a helper that already exists, it writes a
+new one from scratch. Same logic, different names, different structure,
+different file. Traditional clone detectors catch the shrinking fraction
+(human-style copy-paste) and miss the growing fraction (model-style
+regeneration).</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">formatDuration</span>(ms<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> seconds <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(ms <span class="op">/</span> <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> minutes <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(seconds <span class="op">/</span> <span class="dv">60</span>)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>minutes<span class="sc">}</span><span class="vs">m </span><span class="sc">${</span>seconds <span class="op">%</span> <span class="dv">60</span><span class="sc">}</span><span class="vs">s`</span><span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode typescript"><code class="sourceCode typescript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">humanizeElapsedTime</span>(milliseconds<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> totalSeconds <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">trunc</span>(milliseconds <span class="op">/</span> <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mins <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">trunc</span>(totalSeconds <span class="op">/</span> <span class="dv">60</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> secs <span class="op">=</span> totalSeconds <span class="op">-</span> mins <span class="op">*</span> <span class="dv">60</span><span class="op">;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>mins<span class="sc">}</span><span class="vs">m </span><span class="sc">${</span>secs<span class="sc">}</span><span class="vs">s`</span><span class="op">;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Textually, these are different enough to evade simple clone
+detection. Semantically, the second function probably should not
+exist.</p>
+<h2 id="what-real-teams-are-seeing">What Real Teams Are Seeing</h2>
+<p>The theoretical argument is interesting on its own. What makes it
+concrete is that teams are already dealing with this at scale.</p>
+<p><strong>OpenClaw</strong> (378K stars, roughly 150 commits per day
+from AI agents). One maintainer deleted 11,903 lines of dead code in a
+single cleanup pass: orphaned provider integrations, duplicate barrel
+files, dead extension subsystems. All of it less than 7 months old. He
+then spent 34 hours over two days on 50+ dedup commits, consolidating
+local helpers agents had regenerated instead of reusing. The
+<code>r: too-many-prs</code> label has been applied to 1,892 PRs.</p>
+<blockquote>
+<p>“We’ve been hit with waves of spammy PRs: AI slop posted across
+dozens of PRs, duplicates of the same change, and low-effort noise that
+burns reviewer time.”</p>
+</blockquote>
+<p><strong>OpenAI Harness</strong> (internal, zero manually-written
+code, roughly 1M lines). The team spent every Friday, 20% of the week,
+cleaning up AI slop. The primary pain was architectural drift: agents
+building on guessed shapes instead of reusing shared utilities.</p>
+<blockquote>
+<p>“Our team used to spend every Friday (20% of the week) cleaning up
+‘AI slop.’ Unsurprisingly, that didn’t scale.”</p>
+</blockquote>
+<p><strong>GitLab Orbit</strong> (135K-line Rust codebase, roughly 95%
+AI-generated). Pain escalated over 5 months from “use this skill to
+clean up” to “do not write in the first place.” A cleanup found 41
+identical test blocks, a wildcard check duplicated 4 times, and 21
+unused dependencies, in a codebase only 4 months old.</p>
+<p><strong>Superpowers</strong> (229K stars). The maintainer audited the
+last 100 closed PRs and found a 94% rejection rate. Open issues document
+agents fabricating entire subagent dialogues instead of dispatching real
+tool calls.</p>
+<blockquote>
+<p>“About every other day we get somebody submitting a pull request that
+is 60,000 lines of diff.”</p>
+</blockquote>
+<p>Industry-scale data supports the pattern. LinearB’s study of 8.1
+million PRs found AI PRs accepted at 32.7% versus 84.4% for human PRs,
+with agentic PRs waiting 5.3x longer for pickup. GitClear found
+copy-pasted lines rising while moved/refactored lines dropped. Google’s
+DORA report estimated that for every 25% increase in AI adoption,
+delivery stability drops 7.2%, even as reported code quality increases
+3.4%.</p>
+<h2 id="what-teams-are-converging-on">What Teams Are Converging On</h2>
+<p>The most interesting finding wasn’t the problem but how teams
+independently arrive at the same solutions.</p>
+<p><strong>Prompt-only approaches don’t work.</strong> A SciPy
+maintainer tested an AGENTS.md with soft guidelines against a stripped
+version. The agent completed the work under both. Soft guidelines had
+zero deterrent effect. Another project found that negative instructions
+(“don’t do X”) degraded overall quality: the model became hesitant about
+everything.</p>
+<p><strong>Two focused agents beat one constrained agent.</strong>
+Multiple teams independently converged on cleanup as a pipeline stage,
+not a prompt constraint. Generate first, then clean in a separate pass
+with a separate agent.</p>
+<p><strong>Deterministic plus LLM is the production
+architecture.</strong> Every team that gets serious about slop arrives
+at deterministic pre-filtering (AST analysis, module graphs, regex
+patterns) combined with LLM judgment as a later stage. Pure-prompt
+approaches are absent from the top of every ranking.</p>
+<p>Cleanup needs to be a recurring development phase, not a post-hoc
+report. The question isn’t whether to clean, but when and how often.</p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/nWave-ai/nWave"
+class="uri">https://github.com/nWave-ai/nWave</a></li>
+<li><a href="https://github.com/openclaw/openclaw/issues/38283"
+class="uri">https://github.com/openclaw/openclaw/issues/38283</a></li>
+<li><a href="https://github.com/openclaw/openclaw/pull/91020"
+class="uri">https://github.com/openclaw/openclaw/pull/91020</a></li>
+<li><a href="https://openai.com/index/harness-engineering/"
+class="uri">https://openai.com/index/harness-engineering/</a></li>
+<li><a
+href="https://gitlab.com/gitlab-org/orbit/knowledge-graph/-/blob/main/AGENTS.md"
+class="uri">https://gitlab.com/gitlab-org/orbit/knowledge-graph/-/blob/main/AGENTS.md</a></li>
+<li><a href="https://blog.fsck.com/2026/03/31/slop-prs/"
+class="uri">https://blog.fsck.com/2026/03/31/slop-prs/</a></li>
+<li><a href="https://github.com/obra/superpowers/issues/1749"
+class="uri">https://github.com/obra/superpowers/issues/1749</a></li>
+<li><a href="https://github.com/obra/superpowers/issues/1701"
+class="uri">https://github.com/obra/superpowers/issues/1701</a></li>
+<li><a href="https://linearb.io/resources/engineering-benchmarks"
+class="uri">https://linearb.io/resources/engineering-benchmarks</a></li>
+<li><a
+href="https://www.gitclear.com/ai_assistant_code_quality_2025_research"
+class="uri">https://www.gitclear.com/ai_assistant_code_quality_2025_research</a></li>
+<li><a href="https://dora.dev/research/2024/dora-report/"
+class="uri">https://dora.dev/research/2024/dora-report/</a></li>
+<li><a
+href="https://discuss.scientific-python.org/t/agents-md-and-claude-md-addition-to-scipy-repository/2233"
+class="uri">https://discuss.scientific-python.org/t/agents-md-and-claude-md-addition-to-scipy-repository/2233</a></li>
+</ul>
+
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
+
+    </main>
+  </div>
+
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Q99mXo-xiPCKbsApT4FWdYQCY7RuCZM9nyNspx6iAmI&amp;cl=ffffff&amp;w=a"></script>
+</body>
+
+</html>

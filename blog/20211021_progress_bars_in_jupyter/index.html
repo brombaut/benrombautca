@@ -5,65 +5,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="description" content="Ben Rombaut&#39;s personal website.">
-  <title>Ben Rombaut | Senior AI Engineer</title>
-  <link rel="canonical" href="https://www.benrombaut.ca/">
+  <title>Progress Bars in Jupyter | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20211021_progress_bars_in_jupyter/">
 
   
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ben Rombaut">
-  <meta property="og:title" content="Ben Rombaut | Senior AI Engineer">
+  <meta property="og:title" content="Progress Bars in Jupyter | Ben Rombaut">
   <meta property="og:description" content="Ben Rombaut&#39;s personal website.">
-  <meta property="og:url" content="https://www.benrombaut.ca/">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20211021_progress_bars_in_jupyter/">
   <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
   <meta name="twitter:card" content="summary">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-
-<script>
-  (function () {
-    // Explicit table. The old router sent /, /about-me, /work and /education
-    // to the same About component; the About content is now the home page and
-    // the work/education history is the Bio page (#545). The software section is
-    // deleted and isn't coming back, so it lands on About too.
-    var map = {
-      "/": "/",
-      "/about-me": "/",
-      "/work": "/bio/",
-      "/education": "/bio/",
-      "/software": "/",
-      "/blog": "/blog/",
-      // /#/articles was in the old sitemap but never matched a router route.
-      "/articles": "/blog/",
-      "/publications": "/publications/",
-      "/bookshelf": "/bookshelf/",
-      "/running": "/running/",
-      "/hiking": "/hiking/"
-    };
-
-    function redirect() {
-      if (location.hash.slice(0, 2) !== "#/") return;
-      var path = location.hash.slice(1).split("?")[0].replace(/\/+$/, "") || "/";
-      var target = map[path];
-      if (!target) {
-        var post = /^\/blog\/([A-Za-z0-9_-]+)$/.exec(path);
-        // The /#/articles/<slug> ids lack the date prefix real post ids have
-        // ("prime_numbers" vs "20200510_prime_numbers"), so they can't be mapped
-        // to a post; they go to the index.
-        if (post) target = "/blog/" + post[1] + "/";
-        else if (path.indexOf("/articles/") === 0) target = "/blog/";
-        else if (path.indexOf("/software/") === 0) target = "/";
-      }
-      if (target) location.replace(target);
-    }
-
-    // A hash-only change doesn't reload the page, so a hash URL followed while
-    // already on this page needs the listener as well as the call.
-    window.addEventListener("hashchange", redirect);
-    redirect();
-  })();
-</script>
 
 </head>
 
@@ -78,7 +34,7 @@
       
         <li>
           <a href="/"
-            aria-current="page">About</a>
+            >About</a>
         </li>
       
         <li>
@@ -158,7 +114,7 @@
           
             <li>
               <a href="/"
-                aria-current="page">About</a>
+                >About</a>
             </li>
           
             <li>
@@ -229,59 +185,50 @@
 
 
     <main class="content">
-      <section class="hero">
-  <h1>Hi, I'm Ben.</h1>
-  <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
-  <p>I'm a Senior AI Engineer at <a href="https://www.medfarsolutions.com/en/" rel="noopener" target="_blank">MEDFAR Clinical Solutions</a> in Montreal, where I lead prompt and model evaluation for AI features used by physicians. Before that I was an AI and software engineering researcher at Huawei Canada's Centre for Software Excellence. I have an M.Sc. in Computing from Queen's University and a B.Sc. in Software Engineering from UNB.</p>
-<p>My interests are AI for software engineering, software engineering for AI systems, AI in healthcare, and how LLMs work under the hood. More on my professional career can be found in my <a href="/bio/">bio</a> and my <a href="/publications/">publications</a>. Outside work, I <a href="/running/">run</a>, <a href="/hiking/">hike</a>, and <a href="/bookshelf/">read</a>.</p>
-</section>
+      <article>
+  
+  <h1>Progress Bars in Jupyter</h1>
+  
+  <p class="post-meta">
+    <time datetime="2021-10-21">October 21, 2021</time>
+    &middot; 1 min read
+  </p>
 
-<hr class="separator">
+  <div class="article-body">
+    <h2 id="tqdm">TQDM</h2>
+<p>I’ve found myself mapping functions onto large data sets lately,
+which sometimes takes minutes or even hours to complete. Using <a
+href="https://github.com/tqdm/tqdm">TQDM</a> has been super helpful for
+giving me an idea of how long these operations can take. Of course the
+next step is to parallelize everything…</p>
+<h2 id="quick-bonus-pip-install-from-a-notebook">[Quick Bonus] Pip
+Install from a Notebook</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m pip install ipywidgets</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># If using Jupyter Labs</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">!</span>{sys.executable} <span class="op">-</span>m jupyter labextension install <span class="op">@</span>jupyter<span class="op">-</span>widgets<span class="op">/</span>jupyterlab<span class="op">-</span>manager</span></code></pre></div>
+<h2 id="import-tqdm-and-setup">Import TQDM and Setup</h2>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tqdm.notebook <span class="im">import</span> tqdm, trange</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>tqdm.pandas()</span></code></pre></div>
+<h2 id="now-you-can-use-progress-bars">Now you can use progress
+bars</h2>
+<p>For loops:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, row <span class="kw">in</span> tqdm(df.iterrows()):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Do something on each row</span></span></code></pre></div>
+<p>Apply on DataFrame:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> foo(row):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Do something on each row</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.progress_apply(foo, axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div>
 
-<h2>News</h2>
-<ul class="dated-list">
-  
-    <li>
-      <time datetime="2026-09-21">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/bio/">Joined MEDFAR Clinical Solutions as a Senior AI Engineer</a>
-        <p class="dated-list__meta">Career</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-18">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/blog/20260918_learning_llms_3_mixture_of_experts/">🧠 What a Mixture of Experts Layer Actually Costs</a>
-        <p class="dated-list__meta">New blog post</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-16">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Pico Grande via Caminho Real da Encumeada (PR12)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-15">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Ponta de São Lourenço Trail (PR8)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-14">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Porto da Cruz - Boca do Risco via Vereda do Larano</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-</ul>
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
 
     </main>
   </div>

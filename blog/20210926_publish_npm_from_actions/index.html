@@ -4,66 +4,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Ben Rombaut&#39;s personal website.">
-  <title>Ben Rombaut | Senior AI Engineer</title>
-  <link rel="canonical" href="https://www.benrombaut.ca/">
+  <meta name="description" content="Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.">
+  <title>Publish NPM package from GitHub Actions | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20210926_publish_npm_from_actions/">
 
   
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ben Rombaut">
-  <meta property="og:title" content="Ben Rombaut | Senior AI Engineer">
-  <meta property="og:description" content="Ben Rombaut&#39;s personal website.">
-  <meta property="og:url" content="https://www.benrombaut.ca/">
+  <meta property="og:title" content="Publish NPM package from GitHub Actions | Ben Rombaut">
+  <meta property="og:description" content="Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20210926_publish_npm_from_actions/">
   <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
   <meta name="twitter:card" content="summary">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-
-<script>
-  (function () {
-    // Explicit table. The old router sent /, /about-me, /work and /education
-    // to the same About component; the About content is now the home page and
-    // the work/education history is the Bio page (#545). The software section is
-    // deleted and isn't coming back, so it lands on About too.
-    var map = {
-      "/": "/",
-      "/about-me": "/",
-      "/work": "/bio/",
-      "/education": "/bio/",
-      "/software": "/",
-      "/blog": "/blog/",
-      // /#/articles was in the old sitemap but never matched a router route.
-      "/articles": "/blog/",
-      "/publications": "/publications/",
-      "/bookshelf": "/bookshelf/",
-      "/running": "/running/",
-      "/hiking": "/hiking/"
-    };
-
-    function redirect() {
-      if (location.hash.slice(0, 2) !== "#/") return;
-      var path = location.hash.slice(1).split("?")[0].replace(/\/+$/, "") || "/";
-      var target = map[path];
-      if (!target) {
-        var post = /^\/blog\/([A-Za-z0-9_-]+)$/.exec(path);
-        // The /#/articles/<slug> ids lack the date prefix real post ids have
-        // ("prime_numbers" vs "20200510_prime_numbers"), so they can't be mapped
-        // to a post; they go to the index.
-        if (post) target = "/blog/" + post[1] + "/";
-        else if (path.indexOf("/articles/") === 0) target = "/blog/";
-        else if (path.indexOf("/software/") === 0) target = "/";
-      }
-      if (target) location.replace(target);
-    }
-
-    // A hash-only change doesn't reload the page, so a hash URL followed while
-    // already on this page needs the listener as well as the call.
-    window.addEventListener("hashchange", redirect);
-    redirect();
-  })();
-</script>
 
 </head>
 
@@ -78,7 +34,7 @@
       
         <li>
           <a href="/"
-            aria-current="page">About</a>
+            >About</a>
         </li>
       
         <li>
@@ -158,7 +114,7 @@
           
             <li>
               <a href="/"
-                aria-current="page">About</a>
+                >About</a>
             </li>
           
             <li>
@@ -229,59 +185,56 @@
 
 
     <main class="content">
-      <section class="hero">
-  <h1>Hi, I'm Ben.</h1>
-  <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
-  <p>I'm a Senior AI Engineer at <a href="https://www.medfarsolutions.com/en/" rel="noopener" target="_blank">MEDFAR Clinical Solutions</a> in Montreal, where I lead prompt and model evaluation for AI features used by physicians. Before that I was an AI and software engineering researcher at Huawei Canada's Centre for Software Excellence. I have an M.Sc. in Computing from Queen's University and a B.Sc. in Software Engineering from UNB.</p>
-<p>My interests are AI for software engineering, software engineering for AI systems, AI in healthcare, and how LLMs work under the hood. More on my professional career can be found in my <a href="/bio/">bio</a> and my <a href="/publications/">publications</a>. Outside work, I <a href="/running/">run</a>, <a href="/hiking/">hike</a>, and <a href="/bookshelf/">read</a>.</p>
-</section>
+      <article>
+  
+  <h1>Publish NPM package from GitHub Actions</h1>
+  <p class="hero__lede">Explains how to set up a manually triggerable GitHub Actions file that bumps the patch, minor, or major version of an NPM package and publishes it to the NPM registry.</p>
+  <p class="post-meta">
+    <time datetime="2021-09-26">September 26, 2021</time>
+    &middot; 1 min read
+  </p>
 
-<hr class="separator">
+  <div class="article-body">
+    <h2 id="add-npm-access-token">Add NPM access token</h2>
+<p>Follow the steps at <a
+href="https://docs.npmjs.com/about-access-tokens">https://docs.npmjs.com/about-access-tokens</a>.</p>
+<h2 id="create-a-dispatchable-github-actions-yaml-file.">Create a
+dispatchable GitHub Actions YAML file.</h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .github/workflows/npm_publish.yml</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish new version to NPM</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">inputs</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">version_update_type</span><span class="kw">:</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">description</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;SemVer update version type (patch, minor, or major)&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">required</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">default</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;patch&quot;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">publish_to_npm</span><span class="kw">:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v2</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> git config --global user.name &#39;Ben Rombaut&#39;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> git config --global user.email &#39;rombaut.benj@gmail.com&#39;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> npm ci</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> npm version ${{ github.event.inputs.version_update_type }}</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-node@v2</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">node-version</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;16&quot;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">registry-url</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;https://registry.npmjs.org&quot;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">run</span><span class="kw">:</span><span class="at"> npm publish --access public</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">env</span><span class="kw">:</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">NODE_AUTH_TOKEN</span><span class="kw">:</span><span class="at"> ${{ secrets.NPM_TOKEN }}</span></span></code></pre></div>
+<p>You can now manually trigger this GitHub Action from the Actions tab
+on the GiHub Repo, specifying whether you should bump a patch, minor, or
+major version of your package.</p>
 
-<h2>News</h2>
-<ul class="dated-list">
-  
-    <li>
-      <time datetime="2026-09-21">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/bio/">Joined MEDFAR Clinical Solutions as a Senior AI Engineer</a>
-        <p class="dated-list__meta">Career</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-18">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/blog/20260918_learning_llms_3_mixture_of_experts/">🧠 What a Mixture of Experts Layer Actually Costs</a>
-        <p class="dated-list__meta">New blog post</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-16">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Pico Grande via Caminho Real da Encumeada (PR12)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-15">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Ponta de São Lourenço Trail (PR8)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-14">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Porto da Cruz - Boca do Risco via Vereda do Larano</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-</ul>
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
 
     </main>
   </div>

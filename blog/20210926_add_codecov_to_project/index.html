@@ -4,66 +4,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="description" content="Ben Rombaut&#39;s personal website.">
-  <title>Ben Rombaut | Senior AI Engineer</title>
-  <link rel="canonical" href="https://www.benrombaut.ca/">
+  <meta name="description" content="Explains how to track testing coverage with CodeCov and publish the results both from your local machine and automatically using GitHub Actions.">
+  <title>Track and Publish Test Coverage with CodeCov | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20210926_add_codecov_to_project/">
 
   
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
   <meta property="og:site_name" content="Ben Rombaut">
-  <meta property="og:title" content="Ben Rombaut | Senior AI Engineer">
-  <meta property="og:description" content="Ben Rombaut&#39;s personal website.">
-  <meta property="og:url" content="https://www.benrombaut.ca/">
+  <meta property="og:title" content="Track and Publish Test Coverage with CodeCov | Ben Rombaut">
+  <meta property="og:description" content="Explains how to track testing coverage with CodeCov and publish the results both from your local machine and automatically using GitHub Actions.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20210926_add_codecov_to_project/">
   <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
   <meta name="twitter:card" content="summary">
 
   <link rel="icon" href="/favicon.ico">
   <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles/main.css">
-
-<script>
-  (function () {
-    // Explicit table. The old router sent /, /about-me, /work and /education
-    // to the same About component; the About content is now the home page and
-    // the work/education history is the Bio page (#545). The software section is
-    // deleted and isn't coming back, so it lands on About too.
-    var map = {
-      "/": "/",
-      "/about-me": "/",
-      "/work": "/bio/",
-      "/education": "/bio/",
-      "/software": "/",
-      "/blog": "/blog/",
-      // /#/articles was in the old sitemap but never matched a router route.
-      "/articles": "/blog/",
-      "/publications": "/publications/",
-      "/bookshelf": "/bookshelf/",
-      "/running": "/running/",
-      "/hiking": "/hiking/"
-    };
-
-    function redirect() {
-      if (location.hash.slice(0, 2) !== "#/") return;
-      var path = location.hash.slice(1).split("?")[0].replace(/\/+$/, "") || "/";
-      var target = map[path];
-      if (!target) {
-        var post = /^\/blog\/([A-Za-z0-9_-]+)$/.exec(path);
-        // The /#/articles/<slug> ids lack the date prefix real post ids have
-        // ("prime_numbers" vs "20200510_prime_numbers"), so they can't be mapped
-        // to a post; they go to the index.
-        if (post) target = "/blog/" + post[1] + "/";
-        else if (path.indexOf("/articles/") === 0) target = "/blog/";
-        else if (path.indexOf("/software/") === 0) target = "/";
-      }
-      if (target) location.replace(target);
-    }
-
-    // A hash-only change doesn't reload the page, so a hash URL followed while
-    // already on this page needs the listener as well as the call.
-    window.addEventListener("hashchange", redirect);
-    redirect();
-  })();
-</script>
 
 </head>
 
@@ -78,7 +34,7 @@
       
         <li>
           <a href="/"
-            aria-current="page">About</a>
+            >About</a>
         </li>
       
         <li>
@@ -158,7 +114,7 @@
           
             <li>
               <a href="/"
-                aria-current="page">About</a>
+                >About</a>
             </li>
           
             <li>
@@ -229,59 +185,61 @@
 
 
     <main class="content">
-      <section class="hero">
-  <h1>Hi, I'm Ben.</h1>
-  <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
-  <p>I'm a Senior AI Engineer at <a href="https://www.medfarsolutions.com/en/" rel="noopener" target="_blank">MEDFAR Clinical Solutions</a> in Montreal, where I lead prompt and model evaluation for AI features used by physicians. Before that I was an AI and software engineering researcher at Huawei Canada's Centre for Software Excellence. I have an M.Sc. in Computing from Queen's University and a B.Sc. in Software Engineering from UNB.</p>
-<p>My interests are AI for software engineering, software engineering for AI systems, AI in healthcare, and how LLMs work under the hood. More on my professional career can be found in my <a href="/bio/">bio</a> and my <a href="/publications/">publications</a>. Outside work, I <a href="/running/">run</a>, <a href="/hiking/">hike</a>, and <a href="/bookshelf/">read</a>.</p>
-</section>
+      <article>
+  
+  <h1>Track and Publish Test Coverage with CodeCov</h1>
+  <p class="hero__lede">Explains how to track testing coverage with CodeCov and publish the results both from your local machine and automatically using GitHub Actions.</p>
+  <p class="post-meta">
+    <time datetime="2021-09-26">September 26, 2021</time>
+    &middot; 1 min read
+  </p>
 
-<hr class="separator">
-
-<h2>News</h2>
-<ul class="dated-list">
-  
-    <li>
-      <time datetime="2026-09-21">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/bio/">Joined MEDFAR Clinical Solutions as a Senior AI Engineer</a>
-        <p class="dated-list__meta">Career</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-18">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/blog/20260918_learning_llms_3_mixture_of_experts/">🧠 What a Mixture of Experts Layer Actually Costs</a>
-        <p class="dated-list__meta">New blog post</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-16">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Pico Grande via Caminho Real da Encumeada (PR12)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-15">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Ponta de São Lourenço Trail (PR8)</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
-    <li>
-      <time datetime="2026-09-14">Sep 2026</time>
-      <div>
-        <a class="dated-list__title" href="/hiking/">Porto da Cruz - Boca do Risco via Vereda do Larano</a>
-        <p class="dated-list__meta">Hiked</p>
-      </div>
-    </li>
-  
+  <div class="article-body">
+    <h2 id="install-codecov">Install <a
+href="https://www.npmjs.com/package/codecov">Codecov</a></h2>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> install codecov <span class="at">--save-dev</span></span></code></pre></div>
+<h2 id="get-codecov-token-for-repo">Get Codecov Token for Repo</h2>
+<p>Navigate directly to the specific repository using:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">https://codecov.io/</span><span class="op">&lt;</span>repo-provider<span class="op">&gt;</span>/<span class="op">&lt;</span>account-name<span class="op">&gt;</span>/<span class="op">&lt;</span>repo-name<span class="op">&gt;</span></span></code></pre></div>
+<p>E.g., <a
+href="https://app.codecov.io/gh/brombaut/article-scraper">https://app.codecov.io/gh/brombaut/article-scraper</a></p>
+<h2 id="uploading-from-local-machine">Uploading From Local Machine</h2>
+<p>Run the following command on your local machine to upload local
+coverage statistics:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./node_modules/.bin/codecov</span> <span class="at">--token</span><span class="op">=&lt;</span>your_repo_token<span class="op">&gt;</span></span></code></pre></div>
+<h2 id="uploading-from-github-actions">Uploading From GitHub
+Actions</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode yml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># .github/workflows/publish_codecov.yml</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Publish coverage results to Codecov</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span><span class="at"> workflow_dispatch</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">publish_to_npm</span><span class="kw">:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Upload coverage to Codecov</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> codecov/codecov-action@v1</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">token</span><span class="kw">:</span><span class="at"> ${{ secrets.CODECOV_TOKEN }}</span></span></code></pre></div>
+<h2 id="adding-repository-badge">Adding Repository Badge</h2>
+<p>The following markdown provides an example for how to add a badge to
+a README file for CodeCov.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[![Codecov]</span><span class="er">(</span><span class="ex">https://img.shields.io/codecov/c/github/brombaut/article-scraper</span><span class="kw">)</span><span class="ex">]</span><span class="er">(</span><span class="ex">https://app.codecov.io/gh/brombaut/article-scraper</span><span class="kw">)</span></span></code></pre></div>
+<h2 id="references">References</h2>
+<ul>
+<li><a
+href="https://docs.codecov.com/docs/quick-start">https://docs.codecov.com/docs/quick-start</a></li>
 </ul>
+
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
 
     </main>
   </div>

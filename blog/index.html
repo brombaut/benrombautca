@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Writing about software engineering, AI, and things I&#39;ve built.">
+  <title>Blog | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/">
+
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ben Rombaut">
+  <meta property="og:title" content="Blog | Ben Rombaut">
+  <meta property="og:description" content="Writing about software engineering, AI, and things I&#39;ve built.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/">
+  <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body>
+  
+<header class="topbar">
+  <p class="topbar__name"><a href="/">Ben Rombaut</a></p>
+
+  <details class="topnav">
+    <summary>Menu</summary>
+    <ul class="topnav__list">
+      
+        <li>
+          <a href="/"
+            >About</a>
+        </li>
+      
+        <li>
+          <a href="/bio/"
+            >Bio</a>
+        </li>
+      
+        <li>
+          <a href="/blog/"
+            aria-current="page">Blog</a>
+        </li>
+      
+        <li>
+          <a href="/publications/"
+            >Publications</a>
+        </li>
+      
+        <li>
+          <a href="/bookshelf/"
+            >Bookshelf</a>
+        </li>
+      
+        <li>
+          <a href="/running/"
+            >Running</a>
+        </li>
+      
+        <li>
+          <a href="/hiking/"
+            >Hiking</a>
+        </li>
+      
+      <li><ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+</li>
+    </ul>
+  </details>
+</header>
+
+
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div>
+      <p class="sidebar__name"><a href="/">Ben Rombaut</a></p>
+      <p class="sidebar__role">Senior AI Engineer</p>
+
+      <nav aria-label="Main">
+        <ul class="sidenav">
+          
+            <li>
+              <a href="/"
+                >About</a>
+            </li>
+          
+            <li>
+              <a href="/bio/"
+                >Bio</a>
+            </li>
+          
+            <li>
+              <a href="/blog/"
+                aria-current="page">Blog</a>
+            </li>
+          
+            <li>
+              <a href="/publications/"
+                >Publications</a>
+            </li>
+          
+            <li>
+              <a href="/bookshelf/"
+                >Bookshelf</a>
+            </li>
+          
+            <li>
+              <a href="/running/"
+                >Running</a>
+            </li>
+          
+            <li>
+              <a href="/hiking/"
+                >Hiking</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+
+    <ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+
+  </div>
+</aside>
+
+
+    <main class="content">
+      <h1>Blog</h1>
+<p class="hero__lede">Writing about software engineering, AI, and things I've built.</p>
+
+<ul class="post-list">
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">Learning LLMs &middot; Part 3</p>
+        
+        <a class="post-card__title" href="/blog/20260918_learning_llms_3_mixture_of_experts/">🧠 What a Mixture of Experts Layer Actually Costs</a>
+        <p class="post-card__description">Implementing sparse Mixture of Experts routing: a one-line bug that silently froze the router, why sparse computation was not faster, and what an auxiliary load-balancing loss fixes.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-09-18T00:00:00.000Z">September 18, 2026</time>
+          &middot; 9 min read
+        </p>
+      </div>
+      
+        
+        <img class="post-card__thumb" src="/blog-images/learning-llms-3/moe-block-explained.png" alt="" loading="lazy">
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">Learning LLMs &middot; Part 2</p>
+        
+        <a class="post-card__title" href="/blog/20260904_learning_llms_2_architecture_variations/">🧠 Learning What Transformer Architecture Choices Actually Do</a>
+        <p class="post-card__description">Changing model capacity, normalization, positional encoding, and attention structure one experiment at a time, and what each change actually did.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-09-04T00:00:00.000Z">September 4, 2026</time>
+          &middot; 7 min read
+        </p>
+      </div>
+      
+        
+        <img class="post-card__thumb" src="/blog-images/learning-llms-2/architecture-variation-loss-curves.png" alt="" loading="lazy">
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">Learning LLMs &middot; Part 1</p>
+        
+        <a class="post-card__title" href="/blog/20260903_building_a_gpt_from_scratch/">🧠 Learning How GPTs Work by Building One from Scratch</a>
+        <p class="post-card__description">Building a small GPT first with scalar Python and hand-written autograd, then in PyTorch, and reflecting on what made backpropagation, attention, and batching click.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-09-03T00:00:00.000Z">September 3, 2026</time>
+          &middot; 9 min read
+        </p>
+      </div>
+      
+        
+        <img class="post-card__thumb" src="/blog-images/building-a-gpt-from-scratch/autograd-gradient-accumulation.png" alt="" loading="lazy">
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+        <a class="post-card__title" href="/blog/20260710_aiware_observability/">🔭 AIware Observability: Monitoring and Understanding AI Systems</a>
+        <p class="post-card__description">Traditional observability tells you that an agent was slow or expensive, but not why it decided what it did. This post works through what breaks when you point ordinary metrics, logs, and traces at LLM-powered agents, and what cognitive observability adds on top. Based on my Watson paper and the AIware Leadership Bootcamp slides, rewritten for a general audience.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-07-10T00:00:00.000Z">July 10, 2026</time>
+          &middot; 10 min read
+        </p>
+      </div>
+      
+        
+        <img class="post-card__thumb" src="/blog-images/aiware-observability/slide_05_observability.webp" alt="" loading="lazy">
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">AI Experience &middot; Part 3</p>
+        
+        <a class="post-card__title" href="/blog/20260701_ai_tools_q2_2026/">🧭 My Experience Learning to Use AI for Software Development: Q2 2026</a>
+        <p class="post-card__description">Q2 was less about adopting a new tool and more about which habits survived once the novelty wore off. Codex became my daily driver, Claude Code stayed for the heavier work, and context management turned into the thing I think about constantly. Also covers comprehension debt, the code that ships without anyone really understanding it.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-07-01T00:00:00.000Z">July 1, 2026</time>
+          &middot; 9 min read
+        </p>
+      </div>
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">AI Slop &middot; Part 2</p>
+        
+        <a class="post-card__title" href="/blog/20260626_ai_slop_eleven_families/">🧹 Eleven Families of AI Code Slop</a>
+        <p class="post-card__description">The practical companion to the first slop post: what AI code slop actually looks like, organized into eleven families by the kind of damage each one does. The taxonomy came from surveying 70+ AI code quality tools, analyzing 42 of them in depth, and cataloging 575 individual rules. The families run from hygiene debris and annotation noise to fake-done implementations and naming drift.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-06-27T00:00:00.000Z">June 27, 2026</time>
+          &middot; 6 min read
+        </p>
+      </div>
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">AI Slop &middot; Part 1</p>
+        
+        <a class="post-card__title" href="/blog/20260626_ai_slop_phase_transition/">🧹 When Code Is Cheaper to Produce Than to Justify</a>
+        <p class="post-card__description">After a few months of researching how AI-generated code fails, the most important finding was not a new category of defect. It is that when code becomes cheaper to produce than to justify, old quality signals start pointing the wrong way and Chesterton&#39;s Fence stops holding. This post covers that shift and what teams seem to be converging on in response.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-06-26T00:00:00.000Z">June 26, 2026</time>
+          &middot; 8 min read
+        </p>
+      </div>
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">AI Experience &middot; Part 2</p>
+        
+        <a class="post-card__title" href="/blog/20260401_ai_tools_q1_2026/">🧭 My Experience Learning to Use AI for Software Development: Q1 2026</a>
+        <p class="post-card__description">Q1 2026 was not about adopting anything new, it was about going deeper with Claude Code: running several sessions at once in tmux, building an observability tool for my own agent runs, and trying a few agent command centers. Most of the new tools did not stick, and the post is honest about which ones and why.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-04-17T00:00:00.000Z">April 17, 2026</time>
+          &middot; 5 min read
+        </p>
+      </div>
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">SWE-bench Architecture &middot; Part 3</p>
+        
+        <a class="post-card__title" href="/blog/20260409_from_checklists_to_prose_verdicts/">🏗️ From Checklists to Prose Verdicts: Building an Architectural Evaluation Pipeline</a>
+        <p class="post-card__description">The other two articles in this series describe what the architectural evaluation pipeline produced. This one is the development story: 12 experiments, what broke along the way, and how the design moved from brittle rubric checklists to prose verdicts. The question stayed the same throughout, which is whether an agent can infer what architecturally good means for a codebase and then judge a patch against it.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-04-09T00:00:00.000Z">April 9, 2026</time>
+          &middot; 15 min read
+        </p>
+      </div>
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">SWE-bench Architecture &middot; Part 2</p>
+        
+        <a class="post-card__title" href="/blog/20260319_claude_architectural_rubrics/">🏗️ What Does Claude Think Is Architecturally Important?</a>
+        <p class="post-card__description">I wanted to know what a frontier model actually values in code architecture when it is looking at a real codebase with a real problem, not answering a generic prompt about best practices. So I had Claude Code generate 500 architectural rubrics, one for every instance in SWE-bench Verified, then analyzed all of them to see which structural properties it reaches for and how much they vary by repo.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-03-27T00:00:00.000Z">March 27, 2026</time>
+          &middot; 13 min read
+        </p>
+      </div>
+      
+        
+        <img class="post-card__thumb" src="/blog-images/claude-architectural-rubrics/section_a_overview.png" alt="" loading="lazy">
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">SWE-bench Architecture &middot; Part 1</p>
+        
+        <a class="post-card__title" href="/blog/20260320_swebench_architectural_complexity/">🏗️ Most of SWE-bench Verified Doesn&#39;t Require Deep Architectural Understanding</a>
+        <p class="post-card__description">How architecturally demanding is SWE-bench Verified, really? I had Claude Code evaluate all 500 instances for how much codebase-specific architectural understanding a correct fix would require. 62% came back trivial or low, which says something about what the benchmark is actually measuring.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-03-26T00:00:00.000Z">March 26, 2026</time>
+          &middot; 18 min read
+        </p>
+      </div>
+      
+        
+        <img class="post-card__thumb" src="/blog-images/swebench-architectural-complexity/verdict_distribution.png" alt="" loading="lazy">
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+        <a class="post-card__title" href="/blog/coding-agent-architectures/">🤖 Inside 13 Coding Agents: Control Loops, Tools, and Tradeoffs</a>
+        <p class="post-card__description">Coding agents all promise roughly the same thing, so I wanted to know whether they are all just an LLM wrapped in a ReAct loop. This analysis cloned 13 open-source agents and traced their control loops, tool registrations, state management, and context strategies through the actual source code, not the READMEs. They are not all ReAct loops, and the design space is wider than it looks from the outside.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-03-19">March 19, 2026</time>
+          &middot; 13 min read
+        </p>
+      </div>
+      
+    </li>
+  
+    <li class="post-card">
+      <div class="post-card__text">
+        
+          <p class="post-series">AI Experience &middot; Part 1</p>
+        
+        <a class="post-card__title" href="/blog/20260305_learning_to_use_ai_coding_tools/">🧭 My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025</a>
+        <p class="post-card__description">The first post in this series, covering early 2023 through the end of 2025. It is a rough timeline of how I went from pasting stack traces into ChatGPT out of curiosity to making AI tools a core part of how I build software. Not a guide or a set of recommendations, just an honest account of how the habits shifted.</p>
+        <p class="post-card__meta">
+          <time datetime="2026-03-05">March 5, 2026</time>
+          &middot; 5 min read
+        </p>
+      </div>
+      
+    </li>
+  
+</ul>
+
+    </main>
+  </div>
+
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Q99mXo-xiPCKbsApT4FWdYQCY7RuCZM9nyNspx6iAmI&amp;cl=ffffff&amp;w=a"></script>
+</body>
+
+</html>

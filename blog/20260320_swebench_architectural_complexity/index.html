@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="How architecturally demanding is SWE-bench Verified, really? I had Claude Code evaluate all 500 instances for how much codebase-specific architectural understanding a correct fix would require. 62% came back trivial or low, which says something about what the benchmark is actually measuring.">
+  <title>Most of SWE-bench Verified Doesn&amp;#39;t Require Deep Architectural Understanding | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20260320_swebench_architectural_complexity/">
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ben Rombaut">
+  <meta property="og:title" content="Most of SWE-bench Verified Doesn&amp;#39;t Require Deep Architectural Understanding | Ben Rombaut">
+  <meta property="og:description" content="How architecturally demanding is SWE-bench Verified, really? I had Claude Code evaluate all 500 instances for how much codebase-specific architectural understanding a correct fix would require. 62% came back trivial or low, which says something about what the benchmark is actually measuring.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20260320_swebench_architectural_complexity/">
+  <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body>
+  
+<header class="topbar">
+  <p class="topbar__name"><a href="/">Ben Rombaut</a></p>
+
+  <details class="topnav">
+    <summary>Menu</summary>
+    <ul class="topnav__list">
+      
+        <li>
+          <a href="/"
+            >About</a>
+        </li>
+      
+        <li>
+          <a href="/bio/"
+            >Bio</a>
+        </li>
+      
+        <li>
+          <a href="/blog/"
+            >Blog</a>
+        </li>
+      
+        <li>
+          <a href="/publications/"
+            >Publications</a>
+        </li>
+      
+        <li>
+          <a href="/bookshelf/"
+            >Bookshelf</a>
+        </li>
+      
+        <li>
+          <a href="/running/"
+            >Running</a>
+        </li>
+      
+        <li>
+          <a href="/hiking/"
+            >Hiking</a>
+        </li>
+      
+      <li><ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+</li>
+    </ul>
+  </details>
+</header>
+
+
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div>
+      <p class="sidebar__name"><a href="/">Ben Rombaut</a></p>
+      <p class="sidebar__role">Senior AI Engineer</p>
+
+      <nav aria-label="Main">
+        <ul class="sidenav">
+          
+            <li>
+              <a href="/"
+                >About</a>
+            </li>
+          
+            <li>
+              <a href="/bio/"
+                >Bio</a>
+            </li>
+          
+            <li>
+              <a href="/blog/"
+                >Blog</a>
+            </li>
+          
+            <li>
+              <a href="/publications/"
+                >Publications</a>
+            </li>
+          
+            <li>
+              <a href="/bookshelf/"
+                >Bookshelf</a>
+            </li>
+          
+            <li>
+              <a href="/running/"
+                >Running</a>
+            </li>
+          
+            <li>
+              <a href="/hiking/"
+                >Hiking</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+
+    <ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+
+  </div>
+</aside>
+
+
+    <main class="content">
+      <article>
+  
+    <p class="post-series">SWE-bench Architecture &middot; Part 1</p>
+  
+  <h1>Most of SWE-bench Verified Doesn&#39;t Require Deep Architectural Understanding</h1>
+  <p class="hero__lede">How architecturally demanding is SWE-bench Verified, really? I had Claude Code evaluate all 500 instances for how much codebase-specific architectural understanding a correct fix would require. 62% came back trivial or low, which says something about what the benchmark is actually measuring.</p>
+  <p class="post-meta">
+    <time datetime="2026-03-26T00:00:00.000Z">March 26, 2026</time>
+    &middot; 18 min read
+  </p>
+
+  <div class="article-body">
+    <p>I wanted to know how architecturally demanding SWE-bench Verified
+actually is. Not whether the problems are <em>hard</em> in general, but
+specifically: how much do you need to understand about a codebase’s
+architecture to solve them?</p>
+<p>So I had Claude Code with Opus 4.6 evaluate all 500 instances in
+SWE-bench Verified. For each one, the model explored the repository,
+examined the problem, and rendered a verdict: how much codebase-specific
+architectural understanding would a developer need to produce a correct
+fix? The verdicts range from <code>trivial</code> (fix is derivable from
+the changed file alone using general programming knowledge) to
+<code>expert</code> (requires comprehensive understanding of the
+system’s architecture, both deep structural knowledge and wide
+exploration).</p>
+<h2 id="the-pipeline">The Pipeline</h2>
+<p>The verdicts come from an architectural evaluation pipeline I’ve been
+building. It has three stages:</p>
+<p><strong>Stage 1</strong> is what we’re analyzing here. For each
+SWE-bench Verified instance, the model receives the problem statement,
+the gold patch, and full access to the source repository. It judges how
+much codebase-specific architectural understanding a developer would
+need to produce a correct fix, outputting a complexity verdict from
+<code>trivial</code> to <code>expert</code>.</p>
+<p><strong>Stage 2</strong> generates architectural rubrics. For each
+instance, the model explores the codebase, identifies its architectural
+patterns and critical boundaries, and produces a structured YAML rubric
+describing which structural properties matter most for evaluating a
+patch.</p>
+<p><strong>Stage 3</strong> takes a patch and evaluates it against the
+rubric, producing a categorical verdict on architectural
+conformance.</p>
+<p>This article covers Stage 1.</p>
+<p>All three stages run Opus 4.6 inside Docker containers, one per
+SWE-bench Verified instance. Everything is static structural analysis,
+no code execution.</p>
+<h3 id="how-stage-1-works">How Stage 1 Works</h3>
+<p>The evaluator receives three inputs: a problem statement, the gold
+patch (the known-correct fix), and the full source repository. The patch
+isn’t being evaluated. It’s used as a guide. The model uses it to know
+where to start exploring, then works outward to assess how much
+architectural context a cold-start engineer would need to arrive at that
+fix independently.</p>
+<p>The core question: imagine a skilled engineer who knows Python, knows
+the relevant libraries, knows the domain, but has never seen this
+codebase before. How much would they need to learn about <em>this
+codebase’s specific architecture</em> before they could produce the
+correct patch?</p>
+<p>The evaluation proceeds in steps. First, the model reads the problem
+statement and patch to identify what changed and where. If the patch is
+purely cosmetic (comments, docs, formatting), it fast-paths to
+<code>trivial</code> without further exploration. Otherwise, it
+dispatches an exploration subagent.</p>
+<p>The subagent starts from the files changed in the patch and explores
+outward. For each changed file, it traces callers and callees until it
+crosses an architectural boundary or the relevant context is clear,
+examines interfaces and contracts the changed code participates in,
+identifies shared state or invariants, and looks at sibling
+implementations that establish conventions a solver would need to
+follow. It also identifies rejected fix paths: plausible-but-wrong
+approaches that a cold-start engineer might try, and why each would fail
+due to codebase-specific architecture.</p>
+<p>Based on the exploration, the model assesses five independent
+axes:</p>
+<ul>
+<li><strong>Scope of context</strong>: How much of the codebase do you
+need to read? From <code>minimal</code> (just the changed file) to
+<code>system_spanning</code> (the overall system architecture).</li>
+<li><strong>Dependency chain depth</strong>: How many architectural
+boundary crossings from the change site? Intra-file hops don’t count.
+From <code>shallow</code> (0-1 hops) to <code>deep</code> (4+ layers of
+abstraction).</li>
+<li><strong>Implicit knowledge</strong>: How much codebase-specific
+knowledge isn’t obvious from the changed code? From <code>minimal</code>
+(locally understandable) to <code>deep_invariants</code> (system-wide
+implicit contracts emergent from structure).</li>
+<li><strong>Coordination complexity</strong>: How many components need
+to work together? Assessed at two levels: <em>changes</em> coordination
+(do the edits themselves span boundaries?) and <em>reasoning</em>
+coordination (does understanding <em>why</em> the fix is correct require
+cross-boundary knowledge?). The final label takes the higher of the
+two.</li>
+<li><strong>Insight density</strong>: How hard is it to extract the
+relevant architectural understanding, assuming you already know which
+files to read? From <code>low</code> (documented or directly visible) to
+<code>expert</code> (emergent from synthesizing multiple design
+decisions at runtime).</li>
+</ul>
+<p>It also assesses structural depth (localized to system-wide) and
+exploration surface area (how many files need substantive reading), and
+synthesizes everything into a final verdict: <code>trivial</code>,
+<code>low</code>, <code>moderate</code>, <code>high</code>, or
+<code>expert</code>.</p>
+<p>An important scope constraint runs through the entire evaluation:
+only codebase-specific knowledge counts. General language semantics,
+external library APIs, domain knowledge, and algorithmic complexity are
+all out of scope. “You need to understand how OAuth works” doesn’t
+count. “You need to understand how <em>this codebase</em> routes
+authentication through its middleware stack” does.</p>
+<p>The output for each instance is a YAML file with this structure
+(prose fields trimmed for brevity):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">metadata</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">instance_id</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;django__django-16139&quot;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">evaluator</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;architectural-understanding-evaluation-v4&quot;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fast_path</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">multi_change_patch</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">structural_depth</span><span class="kw">:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">label</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;component_scoped&quot;</span><span class="co">  # localized | component_scoped | cross_component | system_wide</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">  rationale</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    Why this structural depth was assigned, grounded in exploration findings.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">nearest_alternatives</span><span class="kw">:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">localized</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Why localized was ruled out.&quot;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">cross_component</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Why cross_component was ruled out.&quot;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">exploration_surface_area</span><span class="kw">:</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">label</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;moderate&quot;</span><span class="co">  # low | moderate | high | extensive</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">file_count</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">area_count</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">  rationale</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    How much of the codebase needed to be navigated and why.</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">final_verdict</span><span class="kw">:</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">label</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;moderate&quot;</span><span class="co">  # trivial | low | moderate | high | expert</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">  rationale</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    How structural depth, surface area, and insight density combine</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    to produce this verdict.</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">rejected_fix_paths</span><span class="kw">:</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">path</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Description of a plausible-but-wrong approach&quot;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">why_wrong</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Why it fails due to codebase-specific architecture&quot;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">axes</span><span class="kw">:</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">scope_of_context</span><span class="kw">:</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">level</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;single_component&quot;</span><span class="co">  # minimal | single_component | multiple_components | system_spanning</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">assessment</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Prose assessment referencing specific modules and components.&quot;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">key_evidence</span><span class="kw">:</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="st">&quot;path/to/file.py — why this was relevant&quot;</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dependency_chain_depth</span><span class="kw">:</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">level</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;moderate&quot;</span><span class="co">  # shallow | moderate | deep</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">assessment</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Prose assessment describing the chains traced.&quot;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">implicit_knowledge</span><span class="kw">:</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">level</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;some_conventions&quot;</span><span class="co">  # minimal | some_conventions | architectural_conventions | deep_invariants</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">assessment</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Prose assessment of non-obvious codebase-specific knowledge required.&quot;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">coordination_complexity</span><span class="kw">:</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">level</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;cross_boundary&quot;</span><span class="co">  # independent | locally_coordinated | cross_boundary | system_wide</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">changes_coordination</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;locally_coordinated&quot;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">reasoning_coordination</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;cross_boundary&quot;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="fu">    assessment</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      Prose assessment addressing both levels. The edits are local to one</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>      component, but understanding why they&#39;re correct requires reading</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>      across the boundary into the calling code.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">insight_density</span><span class="kw">:</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">level</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;moderate&quot;</span><span class="co">  # low | moderate | high | expert</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">assessment</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Prose assessment of how hard it is to extract the relevant understanding.&quot;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="fu">files_explored</span><span class="kw">:</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">&quot;path/to/file1.py&quot;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">&quot;path/to/file2.py&quot;</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="st">&quot;path/to/file3.py&quot;</span></span></code></pre></div>
+<p>Each axis includes its own scale definitions and key evidence in the
+full output. The coordination axis is the only one assessed at two
+sub-levels (changes vs reasoning), which is where the divergence
+analysis later in this article comes from.</p>
+<h3 id="how-the-evaluation-was-developed">How the Evaluation Was
+Developed</h3>
+<p>The skill described above is the result of several iterations, and
+the design choices reflect specific problems I encountered along the
+way.</p>
+<p>The earliest versions didn’t use the gold patch at all. The model
+explored blind from just the problem statement, which meant it had to
+figure out where in the codebase the problem lived before it could
+assess architectural complexity. This worked but was expensive. Giving
+it the gold patch as a starting reference, just to know which files are
+involved, cut exploration costs significantly without changing the thing
+being measured. The model still has to explore outward to assess how
+much architectural context surrounds the change; it just doesn’t have to
+spend tokens finding the change site.</p>
+<p>The biggest conceptual shift came early. Initial versions were
+measuring something closer to “how hard is this problem” than “how much
+codebase-specific architectural understanding does it require.” The
+model would rate an XSS-related issue as highly architecturally complex
+because XSS involves understanding multiple technology layers (browsers,
+HTTP, encoding, injection vectors). But actually fixing the issue in the
+codebase was straightforward, a localized change in one file. The
+problem was hard in a domain-knowledge sense, not in a
+codebase-architecture sense. This is what led to the cold-start engineer
+framing and the repeated scope constraint that only codebase-specific
+knowledge counts. General domain knowledge, external library APIs,
+language semantics: all explicitly excluded.</p>
+<p>The five axes evolved significantly across iterations. Early versions
+tried to be too specific about what counts as architecturally important,
+which ended up biasing the model toward my own thinking about
+architecture. That’s not what I wanted. The goal was to let the model
+assess architectural complexity on its own terms, based on what it found
+during exploration, not to have it confirm my priors about what “good
+architecture” looks like. So I iterated toward more general axes that
+ask open-ended questions (how much context? how much implicit knowledge?
+how much coordination?) rather than prescribing specific architectural
+concerns.</p>
+<p>The skill includes an unusually long “Common Mistakes to Avoid” table
+(19 entries) and a “Red Flags” section listing assessment smells. Some
+of these were anticipated during design, but many were added reactively
+after watching the model get things wrong on real instances. The
+scope-creep guards (don’t count Python’s GIL as architectural knowledge,
+don’t count external library APIs) came directly from seeing the model
+inflate scores by treating general technical knowledge as
+codebase-specific understanding. The “small patch does not equal low
+understanding” guard came from watching the model assume one-line fixes
+were trivial without exploring.</p>
+<p>The trivial fast-path (skip exploration entirely if the patch only
+touches comments, docs, or formatting) is a cost optimization. Running
+full exploration on a patch that changes a docstring is a waste of
+compute. This is a pragmatic shortcut, and as discussed in “What I’d
+Change,” it comes with a tradeoff: we never actually verify those
+instances on the axes.</p>
+<h2 id="trivial-or-low">62% Trivial or Low</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/verdict_distribution.png"
+alt="Verdict distribution" /></p>
+<p>The model considers most SWE-bench Verified problems architecturally
+simple. 62% of instances land at trivial (20%) or low (42%), problems
+where you could produce a correct fix by reading the problem statement
+and at most one component. Only 35% reach moderate, and just 13
+instances (2.6%) hit high. Zero instances received an expert
+verdict.</p>
+<p>The model never once judged that a SWE-bench Verified problem
+required deep understanding of undocumented invariants across multiple
+subsystems. This is a statement about the benchmark, not about
+real-world software engineering. SWE-bench Verified selects for issues
+with clear problem statements and known fixes. The kind of architectural
+reasoning that makes senior engineers valuable (understanding implicit
+contracts, anticipating ripple effects, recognizing when a “simple” fix
+will break something subtle) is mostly not what this benchmark
+tests.</p>
+<h2 id="two-dimensions-determine-the-verdict">Two Dimensions Determine
+the Verdict</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/depth_surface_verdict.png"
+alt="Depth x surface area" /></p>
+<p>Each cell shows the dominant verdict and instance count for a given
+combination of structural depth and exploration surface area. The
+mapping is nearly deterministic: if the fix is localized and touches few
+files, the verdict is trivial or low; if it spans components, it’s
+moderate or higher.</p>
+<p>The five detailed axes refine the picture, but these two coarse
+dimensions carry most of the signal. You could predict the final verdict
+from this 3x3 grid alone and be right almost every time.</p>
+<h2 id="the-axes-arent-really-independent">The Axes Aren’t Really
+Independent</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/correlation_heatmap.png"
+alt="Correlation heatmap" /></p>
+<p><img
+src="/blog-images/swebench-architectural-complexity/axis_verdict_correlation.png"
+alt="Axis correlation with verdict" /></p>
+<p>The evaluation schema presents five axes as independent dimensions.
+The correlation matrix shows they’re not. Every axis correlates with
+every other at r &gt;= 0.58. The lollipop chart ranks each axis by how
+well it predicts the final verdict.</p>
+<p>The most striking finding: <strong>structural depth and scope of
+context have a perfect correlation of r = 1.00</strong>. They encode
+identical information and should have been one axis. Implicit knowledge
+is the strongest predictor of the verdict (r = 0.85). Dependency chain
+depth is the weakest (r = 0.67), partly because the model barely uses
+it: 74% of instances get “shallow.” It’s almost a constant.</p>
+<h2 id="trivial-is-a-floor-not-a-grade">Trivial Is a Floor, Not a
+Grade</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/axes_by_verdict.png"
+alt="Axes by verdict" /></p>
+<p>Mean axis values grouped by verdict level. Trivial instances have
+<em>every axis at literally zero</em>: minimal scope, shallow
+dependencies, minimal implicit knowledge, independent coordination, low
+insight density. The model isn’t grading them on a curve; it’s making a
+binary call: “this problem is self-evident, nothing to evaluate.”</p>
+<p>The real action is in the jump from low to moderate. That’s where
+implicit knowledge doubles (0.83 to 1.64) and coordination jumps sixfold
+(0.25 to 1.56). The model’s threshold for “this requires architectural
+understanding” is driven by implicit knowledge and coordination, not by
+how deep the dependency chain goes.</p>
+<h2 id="you-need-to-understand-more-than-you-need-to-change">You Need to
+Understand More Than You Need to Change</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/coordination_divergence.png"
+alt="Coordination divergence" /></p>
+<p>The coordination axis is assessed at two levels: <em>changes</em>
+coordination (how many components your fix actually touches) and
+<em>reasoning</em> coordination (how many components you need to
+understand to know the fix is correct). This chart shows how many
+instances fall at each level for each sub-dimension.</p>
+<p>In 28% of instances the two diverge, and the direction is almost
+always the same: 132 out of 141 divergent cases have reasoning &gt;
+changes. Most bugs live in one place but understanding <em>why</em>
+they’re bugs requires reading more widely. You touch one function but
+you need to understand three call sites to know your fix doesn’t break
+something.</p>
+<h2 id="scikit-learn-is-the-easiest-matplotlib-the-hardest">scikit-learn
+Is the Easiest, matplotlib the Hardest</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/verdict_by_repo.png"
+alt="Verdict by repo" /></p>
+<p>Verdict distribution per repository, sorted by mean verdict. The
+stacked bars show what percentage of each repo’s instances fall at each
+verdict level.</p>
+<p>scikit-learn stands out at the bottom. 84% of its instances are
+trivial or low. Its strict estimator API means most fixes are localized:
+you know exactly which method to change, and the interface contract
+tells you what the fix should do. matplotlib sits at the other end. Its
+rendering pipeline crosses more boundaries, and bugs tend to involve
+understanding how state flows through the artist/renderer/backend
+hierarchy. The differences aren’t huge in absolute terms (0.88 to 1.40
+on a 0-4 scale), but they’re consistent with what you’d expect from
+working in these codebases.</p>
+<h2 id="the-model-barely-uses-the-top-of-its-scales">The Model Barely
+Uses the Top of Its Scales</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/axis_utilization.png"
+alt="Axis utilization" /></p>
+<p>Distribution of levels within each axis across all 500 instances.
+Every axis has 3-4 possible levels; the model clusters at the bottom of
+each one.</p>
+<p>The scales were designed for a wider range of software engineering
+problems than SWE-bench Verified contains. Or the model is conservative
+about using high levels. Probably both. Either way, the effective range
+of most axes is 2-3 levels out of 4, which limits how much
+discriminating power the evaluation can have. Dependency chain depth is
+the most extreme case: 74% shallow, 26% moderate, and exactly one
+instance rated deep.</p>
+<h2 id="harder-problems-have-more-rejected-fix-paths">Harder Problems
+Have More Rejected Fix Paths</h2>
+<p>Every instance includes rejected fix paths: plausible-but-wrong
+approaches the model identified during exploration. Trivial instances
+average 1.1 rejected paths. Moderate instances average 2.8. High
+instances average 3.0.</p>
+<p>Problems that require architectural understanding are exactly the
+ones where naive approaches break something subtle. A trivial bug has
+one obvious fix. A moderate bug has two or three reasonable-looking
+approaches that fail for different architectural reasons.</p>
+<h2 id="harder-problems-require-more-file-exploration">Harder Problems
+Require More File Exploration</h2>
+<p><img
+src="/blog-images/swebench-architectural-complexity/files_by_verdict.png"
+alt="Files by verdict" /></p>
+<p>Number of files the model explored during evaluation, grouped by
+verdict. The vertical bar marks the median; each dot is one
+instance.</p>
+<p>The scaling is clean: trivial instances average 1.9 files, low
+averages 2.9, moderate 4.3, and high 6.5. This is reassuring as a sanity
+check. The model explores more code for problems it considers more
+architecturally complex. The outliers are interesting too: one moderate
+instance required 14 files, suggesting a problem that was sprawling in
+footprint but not deeply architectural.</p>
+<h2
+id="comparison-with-swe-bench-verifieds-difficulty-labels">Comparison
+with SWE-bench Verified’s Difficulty Labels</h2>
+<p>SWE-bench Verified ships with a human-estimated
+<code>difficulty</code> field based on expected time-to-fix:
+<code>&lt;15 min fix</code>, <code>15 min - 1 hour</code>,
+<code>1-4 hours</code>, <code>&gt;4 hours</code>. This measures
+something fundamentally different from the architectural complexity
+verdict. One is about how long a fix takes, the other is about how much
+codebase-specific structural understanding you need. Comparing the two
+shows where they agree and where they diverge.</p>
+<p><img
+src="/blog-images/swebench-architectural-complexity/difficulty_vs_verdict.png"
+alt="Difficulty vs verdict" /></p>
+<p>The left panel is a heatmap of counts (with row percentages) crossing
+the two scales. The right panel shows every instance as a dot, with the
+diamond marking the mean architectural verdict for each difficulty
+level.</p>
+<p>The two scales correlate at r = 0.48, positive but not strong. They
+agree directionally: <code>&lt;15 min</code> fixes average a verdict of
+0.78 (between trivial and low), while <code>1-4 hour</code> fixes
+average 2.02 (solidly moderate). But they diverge on individual
+instances, and the divergences are informative.</p>
+<p><strong>Quick fixes that require real architectural
+understanding.</strong> 28 instances are rated
+<code>&lt;15 min fix</code> by the SWE-bench annotators but
+<code>moderate</code> or higher by the model. Looking at these cases: 20
+of the 28 involve cross-component structural depth, 20 require
+cross-boundary coordination, and 16 need architectural-conventions-level
+implicit knowledge. These are problems where a maintainer who already
+understands the architecture can apply a small, targeted fix in minutes,
+but someone approaching the codebase cold would need to trace
+interactions across module boundaries first. The time estimate assumes
+familiarity that the architectural verdict doesn’t.</p>
+<p>A few examples:</p>
+<ul>
+<li><p><strong><code>django__django-13109</code></strong>:
+<code>ForeignKey.validate()</code> should use <code>_base_manager</code>
+instead of <code>_default_manager</code>. The fix is literally a single
+token change. But arriving at it requires understanding that Django’s
+ORM distinguishes between these two managers and <em>why</em>:
+<code>_default_manager</code> may apply filters that exclude valid
+foreign key targets, while <code>_base_manager</code> is the unfiltered
+view. Patch: 4 changed lines. Architectural verdict: moderate
+(component-scoped depth, architectural-conventions implicit
+knowledge).</p></li>
+<li><p><strong><code>matplotlib__matplotlib-23476</code></strong>:
+Figure DPI doubles after unpickling on M1 Mac. The fix is one line in
+<code>__getstate__</code>, but you need to understand the
+<code>_dpi</code> / <code>_original_dpi</code> contract between
+<code>Figure</code> and <code>FigureCanvasBase</code>, and that the
+canvas’s DPI-ratio callback re-applies a scaling factor when the figure
+is restored. Patch: 5 changed lines. Architectural verdict: moderate
+(cross-component depth, cross-boundary coordination).</p></li>
+<li><p><strong><code>django__django-11490</code></strong>: Composed
+queries can’t change columns with
+<code>values()</code>/<code>values_list()</code>. The fix is a single
+line: clone before mutating. But you need to know that
+<code>_combinator_query</code> stores <em>direct references</em> to
+<code>Query</code> objects in <code>combined_queries</code>, so mutating
+one query silently corrupts the other. Patch: 3 changed lines.
+Architectural verdict: moderate (cross-component depth, cross-boundary
+coordination).</p></li>
+</ul>
+<p><strong>Slow fixes that are architecturally trivial.</strong> 30
+instances go the other way: rated <code>15 min - 1 hour</code> but
+<code>trivial</code> architecturally. All 30 are localized in depth,
+with minimal implicit knowledge and independent coordination. The time
+cost comes from mechanical work (reading the problem, understanding the
+specific behavior, writing the implementation), not from structural
+reasoning.</p>
+<p>A few examples:</p>
+<ul>
+<li><p><strong><code>django__django-11276</code></strong>: Replace
+Django’s custom <code>html.escape()</code> with Python’s stdlib
+<code>html.escape()</code>. Pure mechanical substitution. Patch: 28
+changed lines. Architecturally trivial: localized, no coordination, no
+implicit knowledge needed.</p></li>
+<li><p><strong><code>django__django-10973</code></strong>: Modernize the
+postgres backend client to use <code>subprocess.run</code> and
+<code>PGPASSWORD</code>. Straightforward stdlib upgrade. Patch: 39
+changed lines. The large patch size reflects implementation effort, not
+architectural complexity.</p></li>
+<li><p><strong><code>sympy__sympy-20154</code></strong>: Make
+<code>partitions()</code> stop reusing output dictionaries. The fix is
+self-contained within a single iterator function. Patch: 25 changed
+lines. No understanding of sympy’s broader architecture
+required.</p></li>
+</ul>
+<p>The <code>1-4 hours</code> bucket is where the two scales align best:
+74% of those instances land at <code>moderate</code> architectural
+complexity, and 14% at <code>high</code>. The <code>&gt;4 hours</code>
+bucket has only 3 instances, too few to draw conclusions.</p>
+<p>The pattern makes sense: <em>time-to-fix conflates architectural
+difficulty with implementation effort</em>. A quick fix can still
+require genuine architectural understanding (if the fixer already has
+it), and a slow fix can be architecturally trivial (if the slowness
+comes from mechanical work). The architectural complexity verdict
+isolates the structural dimension that time-to-fix bundles together with
+everything else.</p>
+<h2 id="what-i-take-away">What I Take Away</h2>
+<p>SWE-bench Verified, through the lens of architectural complexity, is
+mostly a test of localized bug fixing. 62% of problems require
+understanding at most one component. The benchmark’s value is real,
+these are genuine bugs from real projects, but it’s not testing the kind
+of architectural reasoning that distinguishes senior engineers. If you
+built an AI system that was great at understanding cross-component
+interactions and implicit codebase conventions, SWE-bench Verified would
+only exercise that capability on about a third of its instances.</p>
+<p>The evaluation schema itself has some redundancy. Structural depth
+and scope of context are the same axis. Dependency chain depth is nearly
+constant. The five “independent” axes all correlate above r = 0.58. A
+simpler schema with three dimensions (structural depth, implicit
+knowledge, and coordination) would capture most of the signal.</p>
+<p>The most interesting finding, to me, is the coordination divergence.
+The consistent pattern that reasoning coordination exceeds changes
+coordination captures something real about software engineering: the
+hardest part of fixing a bug is often not writing the fix, but knowing
+the fix is correct. That requires understanding more of the system than
+you actually touch.</p>
+<h2 id="what-id-change">What I’d Change</h2>
+<p>Some of these are clear rubric design issues. Others might just be
+SWE-bench Verified not containing enough architecturally complex
+problems to exercise the full evaluation range, and it’s hard to tell
+from one dataset.</p>
+<p><strong>Merge structural depth and scope of context.</strong> This
+one is unambiguously a rubric problem. They’re perfectly correlated at r
+= 1.00. The model answers them identically every time. They ask the same
+question in different words (“how deep in the system?” vs “how much of
+the system?”). One axis with a clearer name, something like
+<em>structural reach</em>, would capture the same information.</p>
+<p><strong>Dependency chain depth is nearly constant, but that might be
+the benchmark.</strong> 74% of instances land at “shallow” and only a
+single instance reaches “deep.” This could mean the axis is poorly
+defined, or it could mean SWE-bench Verified problems genuinely don’t
+involve deep dependency chains. Most SWE-bench Verified issues have
+clear problem statements that point you close to the fix, so you rarely
+need to traverse four layers of abstraction to understand what’s going
+on. I’d want to test on a harder dataset before concluding the axis
+itself is broken. If it’s still flat on problems that clearly involve
+deep dependency chains, then the definition of “hop” needs
+rethinking.</p>
+<p><strong>The unused top of every scale might be correctly
+unused.</strong> Zero <code>system_wide</code> verdicts, zero
+<code>extensive</code> surface areas, zero <code>expert</code> insight
+densities. My first instinct was that the scales are miscalibrated, but
+the more honest read is that SWE-bench Verified probably just doesn’t
+contain system-wide architectural problems. It selects for issues with
+clear problem statements and known fixes, which filters out the kind of
+sprawling, ambiguous problems where you’d genuinely need to understand
+an entire system’s architecture. A finer-grained scale at the low end
+would give more resolution on the problems we actually have, but that’s
+an adaptation to the dataset, not a fix to the rubric.</p>
+<p><strong>Separate the trivial fast-path from the axis
+assessment.</strong> Right now, trivial instances get all axes set to
+zero by fiat because they’re fast-pathed before exploration even runs.
+This means “trivial” is a process shortcut, not a measured verdict. It
+might be right, but we can’t know because the model never actually
+assessed those instances on the axes. In the next version, I’d run full
+exploration on everything and let trivial emerge naturally from the axis
+values, even if it’s slower.</p>
+<p><strong>Address the lack of inter-rater reliability.</strong> Each
+instance is evaluated once by one model. There’s no way to know how
+stable the verdicts are. If you ran the same instance twice, would you
+get the same verdict? The high axis correlations suggest the model is
+applying a consistent template, which is encouraging, but it could also
+mean the model has a systematic bias (e.g., always conservative) that
+would be invisible without a second evaluation. Running a subset twice
+with different random seeds, or with a different model, would give some
+signal on this.</p>
+<p><strong>The gold patch biases which architecture gets
+explored.</strong> The skill explicitly treats the patch as a guide, not
+the subject of evaluation. It measures the architectural understanding
+needed to solve the <em>problem</em>, not to produce the specific patch.
+But the exploration still starts from the files the patch changed and
+works outward. A different correct fix might touch different files,
+cross different boundaries, and require different architectural context.
+The evaluation captures the architectural complexity surrounding one
+particular solution path, which may not represent the full landscape of
+what the problem demands. For SWE-bench, where there’s typically one
+canonical fix, this is probably fine. For a more general evaluation, it
+would be a real limitation.</p>
+
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
+
+    </main>
+  </div>
+
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Q99mXo-xiPCKbsApT4FWdYQCY7RuCZM9nyNspx6iAmI&amp;cl=ffffff&amp;w=a"></script>
+</body>
+
+</html>

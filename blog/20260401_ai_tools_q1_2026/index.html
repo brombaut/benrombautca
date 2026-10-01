@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Q1 2026 was not about adopting anything new, it was about going deeper with Claude Code: running several sessions at once in tmux, building an observability tool for my own agent runs, and trying a few agent command centers. Most of the new tools did not stick, and the post is honest about which ones and why.">
+  <title>My Experience Learning to Use AI for Software Development: Q1 2026 | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20260401_ai_tools_q1_2026/">
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ben Rombaut">
+  <meta property="og:title" content="My Experience Learning to Use AI for Software Development: Q1 2026 | Ben Rombaut">
+  <meta property="og:description" content="Q1 2026 was not about adopting anything new, it was about going deeper with Claude Code: running several sessions at once in tmux, building an observability tool for my own agent runs, and trying a few agent command centers. Most of the new tools did not stick, and the post is honest about which ones and why.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20260401_ai_tools_q1_2026/">
+  <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body>
+  
+<header class="topbar">
+  <p class="topbar__name"><a href="/">Ben Rombaut</a></p>
+
+  <details class="topnav">
+    <summary>Menu</summary>
+    <ul class="topnav__list">
+      
+        <li>
+          <a href="/"
+            >About</a>
+        </li>
+      
+        <li>
+          <a href="/bio/"
+            >Bio</a>
+        </li>
+      
+        <li>
+          <a href="/blog/"
+            >Blog</a>
+        </li>
+      
+        <li>
+          <a href="/publications/"
+            >Publications</a>
+        </li>
+      
+        <li>
+          <a href="/bookshelf/"
+            >Bookshelf</a>
+        </li>
+      
+        <li>
+          <a href="/running/"
+            >Running</a>
+        </li>
+      
+        <li>
+          <a href="/hiking/"
+            >Hiking</a>
+        </li>
+      
+      <li><ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+</li>
+    </ul>
+  </details>
+</header>
+
+
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div>
+      <p class="sidebar__name"><a href="/">Ben Rombaut</a></p>
+      <p class="sidebar__role">Senior AI Engineer</p>
+
+      <nav aria-label="Main">
+        <ul class="sidenav">
+          
+            <li>
+              <a href="/"
+                >About</a>
+            </li>
+          
+            <li>
+              <a href="/bio/"
+                >Bio</a>
+            </li>
+          
+            <li>
+              <a href="/blog/"
+                >Blog</a>
+            </li>
+          
+            <li>
+              <a href="/publications/"
+                >Publications</a>
+            </li>
+          
+            <li>
+              <a href="/bookshelf/"
+                >Bookshelf</a>
+            </li>
+          
+            <li>
+              <a href="/running/"
+                >Running</a>
+            </li>
+          
+            <li>
+              <a href="/hiking/"
+                >Hiking</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+
+    <ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+
+  </div>
+</aside>
+
+
+    <main class="content">
+      <article>
+  
+    <p class="post-series">AI Experience &middot; Part 2</p>
+  
+  <h1>My Experience Learning to Use AI for Software Development: Q1 2026</h1>
+  <p class="hero__lede">Q1 2026 was not about adopting anything new, it was about going deeper with Claude Code: running several sessions at once in tmux, building an observability tool for my own agent runs, and trying a few agent command centers. Most of the new tools did not stick, and the post is honest about which ones and why.</p>
+  <p class="post-meta">
+    <time datetime="2026-04-17T00:00:00.000Z">April 17, 2026</time>
+    &middot; 5 min read
+  </p>
+
+  <div class="article-body">
+    <p>This is the second in what I expect will be a recurring series about
+my experience using AI tools for software development. The first article
+covered early 2023 through the end of 2025, ending with Claude Code
+becoming my primary tool and the general feeling that software
+development had become fun again. This one picks up from January 2026
+and covers Q1.</p>
+<h2 id="januaryfebruary-going-deeper-with-claude-code">January–February
+— Going Deeper with Claude Code</h2>
+<p>By January, Claude Code was firmly my main tool. The shift this
+quarter wasn’t about adopting something new, it was about going deeper
+with what I already had.</p>
+<p>The biggest change was how I started working with multiple sessions.
+I was running tmux with several Claude Code sessions going at once,
+sometimes within the same repo, sometimes across completely different
+projects. This meant a lot of context switching, constantly flipping
+between panes to check which sessions were waiting for input and which
+were still working.</p>
+<p>That friction is what led me to build the Claude Code Radar. The idea
+started simple: a timeline view showing what a single session was doing.
+But it kept growing. I added subagent tracking, tool call visibility,
+input and output capture, token usage, failure rates. It became a full
+observability tool for watching your Claude Code sessions from a single
+dashboard. It was genuinely fun to build and satisfying to look at while
+agents worked. But I’ll be honest, it didn’t actually change how I
+managed my sessions day to day. It was more of a cool thing to watch
+than a workflow improvement. By the end of March I’d stopped using
+it.</p>
+<p>Around the same time I started reading Steve Yegge’s articles on
+Medium, pieces on Gastown, Beads, the AI Vampire, The Anthropic Hive
+Mind. I also watched a few interviews with him. He comes across as a
+smart, slightly crazy guy whose excitement about this stuff is
+contagious. His writing about Beads in particular got me interested in
+trying it for issue tracking, with the idea that if you set up your
+issues and dependencies well enough upfront, agents can pick up work
+more independently and you spend less time manually checking in on
+them.</p>
+<p>I started using Beads in a few of my smaller projects. It’s useful,
+but I’m definitely still in the “trying it out” phase. The main issues
+I’ve run into are keeping the work pipeline full and tracking issues
+across different clones. I think these are growing pains more than
+fundamental problems. I want to try it on a larger project where I can
+actually sustain a queue of work for a while, which is what Beads is
+really designed for.</p>
+<h2 id="the-terminal-as-home-base">The Terminal as Home Base</h2>
+<p>My setup solidified this quarter. On my Windows work computer I use
+Tabby, which makes it easy to save and quickly connect to SSH profiles
+on different servers. On my personal Mac I use Ghostty. Both are
+full-time terminal emulators, not VS Code’s integrated terminal.</p>
+<p>VS Code’s role has shrunk to almost nothing. I use it to look at data
+and browse file systems, but I don’t write code in it anymore.
+Everything goes through Claude Code in the terminal. This is a
+significant shift from even six months ago, when I still had VS Code
+open side by side as a visual anchor while agents worked.</p>
+<h2 id="things-that-didnt-stick">Things That Didn’t Stick</h2>
+<p>A recurring theme this quarter was experimenting with new tools and
+workflows, getting excited about them, and then quietly going back to
+what I was already doing.</p>
+<p>Kintsugi was my first try at using an “agent command center,” a UI
+layer that sits on top of tmux and tries to organize agent sessions in a
+more structured way. It was very cool at first, but the habit didn’t
+stick and I ended up back in plain tmux.</p>
+<p>The Claude Code Radar followed the same arc, exciting to build,
+interesting to look at, but not essential enough to keep using.</p>
+<p>I also tried a couple of workflow experiments that didn’t survive the
+quarter. One was recording paper summaries in a repo for work-related
+reading, the idea being I’d come back later and ask questions about
+specific papers. The other was a similar concept for meetings and random
+ideas: quick conversations with Claude Code to capture thoughts for
+later. In both cases, I rarely came back to what I’d saved. The capture
+was easy but the retrieval habit never formed.</p>
+<h2 id="march-branching-out-briefly">March — Branching Out
+(Briefly)</h2>
+<p>In March I briefly tried other coding agent tools. OpenCode caught my
+eye after reading an article comparing it to Claude Code from a CTO’s
+perspective. The thing that stood out wasn’t really about capabilities,
+it was about cost. With OpenCode you can define different models for
+different types of tasks, so you’re not locked into expensive models for
+everything. That model-per-role routing idea is genuinely interesting,
+and I’ll probably come back to it in the coming months. But I didn’t
+give OpenCode much of a chance this quarter. I already had a Claude Code
+subscription and kept naturally gravitating back to it.</p>
+<p>Codex is a different story. I genuinely try it every once in a while,
+usually when my Claude Code quota runs out, which happens two or three
+times per week. But I just don’t get the same results. Too often I find
+myself typing things like “WHY DID YOU DO THAT, I TOLD YOU TO DO THIS
+THING” or stopping it mid-task as it goes down some weird rabbit hole.
+The frustration-to-productivity ratio is too high compared to Claude
+Code.</p>
+<h2 id="where-things-stand">Where Things Stand</h2>
+<p>At the end of Q1 2026, I’m still using tmux and Claude Code as my
+main setup. I’m not writing code anymore. I describe what I want, review
+the results, and manage context. The skills that matter now are
+different from what I’d have called “coding skills” a year ago: knowing
+how to structure prompts, when to compact a session, how to write
+handoff documents so an agent can pick up where another left off, how to
+keep multiple parallel sessions productive without losing track of what
+each one is doing.</p>
+<p>I’m more deliberate about context management than I was in January. I
+compact sessions at natural break points instead of waiting for the
+context window to fill up. I have a handoff skill that saves a markdown
+summary of what the agent accomplished, so the next session can start
+with full context rather than re-exploring the codebase from
+scratch.</p>
+<p>I’m looking into more agent command centers and orchestration tools
+to try next quarter. The tmux setup works, but I suspect there’s a
+better way to manage five or six parallel agent sessions. Kintsugi
+didn’t stick, but the problem it was trying to solve is real.</p>
+<p>The honest summary of Q1 is: I went deeper with the tool I already
+had, tried a bunch of new things on the side, and most of those new
+things didn’t stick. That’s fine. The core workflow is strong and keeps
+getting better. The experiments that didn’t survive still taught me
+something about what I actually need versus what just looks
+interesting.</p>
+
+  </div>
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
+
+    </main>
+  </div>
+
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Q99mXo-xiPCKbsApT4FWdYQCY7RuCZM9nyNspx6iAmI&amp;cl=ffffff&amp;w=a"></script>
+</body>
+
+</html>
