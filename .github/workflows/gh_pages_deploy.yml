@@ -10,6 +10,10 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # `workflow_run` fires on completion regardless of outcome, so without this a
+    # failed bookshelf-syncer run would still deploy. The push trigger is unguarded
+    # because a push has no conclusion to check.
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v4

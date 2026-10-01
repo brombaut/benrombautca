@@ -339,7 +339,19 @@ rather than by a separate `sass` CLI process, so one command covers build,
 
 Triggers:
 - Push to `main` branch
-- Completion of `bookshelf-syncer` workflow
+- Successful completion of the `bookshelf-syncer` workflow
+
+The `workflow_run` trigger is **not** redundant with the push trigger, and must not
+be removed. `sync_bookshelf.yml` pushes to `main` using the built-in `GITHUB_TOKEN`,
+and GitHub deliberately does not start workflow runs from `GITHUB_TOKEN` pushes, so
+that push never fires the `push` trigger. `workflow_run` is the only thing that
+deploys a bookshelf sync; 14 of the first 195 deploys came through it. A sync
+therefore deploys once, not twice.
+
+`workflow_run` fires on completion whatever the outcome, so the job carries an
+`if:` guard that requires `conclusion == 'success'`. Without it a failed sync still
+deployed. On a `workflow_run` event `actions/checkout` takes the default branch
+(`main`), which is what this needs.
 
 Steps:
 1. Checkout code
