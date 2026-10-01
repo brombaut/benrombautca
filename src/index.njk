@@ -13,7 +13,7 @@ layout: base.njk
 <ul class="dated-list">
   {% for item in news %}
     <li>
-      <time datetime="{{ item.date }}">{{ item.date | monthYear }}</time>
+      <time datetime="{{ item.date }}">{{ item.date }}</time>
       <div>
         <a class="dated-list__title" href="{{ item.url }}">{{ item.title }}</a>
         <p class="dated-list__meta">{{ item.kind }}</p>
