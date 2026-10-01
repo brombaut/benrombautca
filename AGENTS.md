@@ -343,11 +343,24 @@ Triggers:
 
 Steps:
 1. Checkout code
-2. Install and Build - runs `npm install`, then `npm run lint`, then `npm run build`
+2. Setup Node - `actions/setup-node@v4` pinned to Node 24, with the npm cache on
+3. Install and Build - runs `npm ci`, then `npm run lint`, then `npm run build`
    (lint is enforced here; a violation fails the deploy)
-3. Install Playwright Chromium
-4. Smoke Test - runs `npm run test:smoke` against the build (a failure blocks the deploy)
-5. Deploy to `gh-pages` branch
+4. Install Playwright Chromium
+5. Smoke Test - runs `npm run test:smoke` against the build (a failure blocks the deploy)
+6. Deploy to `gh-pages` branch
+
+Both this workflow and `install_lint_build.yml` pin the Node version explicitly and
+install with `npm ci`, not `npm install`. Before that they used whatever Node
+`ubuntu-latest` happened to ship and let npm re-resolve the tree, so CI could build
+against different dependency versions than a local run and `package-lock.json` was
+effectively advisory. `npm ci` fails loudly on any lockfile drift instead. Keep the
+two workflows on the same Node version, and bump them together.
+
+The deploy action is `JamesIves/github-pages-deploy-action@v4` with `folder: dist`.
+It defaults to `clean: true`, so each deploy replaces the whole `gh-pages` tree
+rather than layering onto it. `dist/CNAME` is what keeps the custom domain working,
+so it must stay in the passthrough copy list.
 
 ### Static Asset Copying
 `eleventy.config.js` uses passthrough copy for:
@@ -620,4 +633,4 @@ npm run sync-articles      # Sync blog content
 
 **Last Updated**: 2026-09-29
 **Eleventy Version**: 3.1.6
-**Node Version**: 20+ (required by Eleventy and Playwright)
+**Node Version**: 20+ required by Eleventy and Playwright; CI pins 24
