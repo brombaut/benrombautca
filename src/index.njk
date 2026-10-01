@@ -1,0 +1,23 @@
+---
+layout: base.njk
+---
+<section class="hero">
+  <h1>Hi, I'm Ben.</h1>
+  <img class="hero__photo" src="/images/benrombaut.webp" alt="Ben Rombaut" width="192" height="192">
+  {{ aboutMe.description | safe }}
+</section>
+
+<hr class="separator">
+
+<h2>News</h2>
+<ul class="dated-list">
+  {% for item in news %}
+    <li>
+      <time datetime="{{ item.date }}">{{ item.date | monthYear }}</time>
+      <div>
+        <a class="dated-list__title" href="{{ item.url }}">{{ item.title }}</a>
+        <p class="dated-list__meta">{{ item.kind }}</p>
+      </div>
+    </li>
+  {% endfor %}
+</ul>

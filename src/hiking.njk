@@ -1,0 +1,63 @@
+---
+layout: base.njk
+title: Hiking
+description: Some of the hikes I've done over the years.
+permalink: /hiking/
+---
+{% from "gallery.njk" import gallery %}
+
+{% macro hikeEntry(hike) %}
+  <article class="entry">
+    <h3 class="entry__title">{{ hike.name }}</h3>
+    <p class="entry__meta">{{ hike.date | longDate }} &middot; {{ hike.location }}</p>
+    {{ hike.description | safe }}
+    {{ gallery(hike.images, hike.name) }}
+  </article>
+{% endmacro %}
+
+<h1>Hiking</h1>
+<p class="hero__lede">{{ description }}</p>
+
+<div class="highlights">
+  <h2>Highlights</h2>
+  <ul>
+    <li>Summited Mount Kilimanjaro via the Lemosho route, 7 days to reach 19,341 feet,
+      the highest point on the African continent. An incredible experience!</li>
+    <li>A multi-week east-to-west coast road trip with my sister through national parks
+      across the northern US, including Maquoketa Caves, Badlands, Grand Teton,
+      Yellowstone, Glacier, and Mount Rainier, before finishing with hiking in British
+      Columbia and driving back through Canada.</li>
+    <li>Watched the sunrise from Pico do Areeiro in Madeira, then hiked PR1 along the
+      ridge to Pico Ruivo, the highest peak on the island, including the trail's
+      "Stairway to Heaven" section.</li>
+    <li>Working towards completing all 46 Adirondack High Peaks (the "46ers"),
+      the 46 mountains in the Adirondacks over 4,000 feet.
+      <p class="peaks">
+        {# One tick per peak, filled ones first. Built at compile time, so it is
+           46 empty spans and no script. #}
+        <span class="peaks__ticks" role="img"
+              aria-label="{{ outdoors.peaks.completed }} of {{ outdoors.peaks.total }} peaks summited">
+          {%- for i in range(0, outdoors.peaks.total) -%}
+            <span class="peaks__tick{% if i < outdoors.peaks.completed %} peaks__tick--done{% endif %}"></span>
+          {%- endfor -%}
+        </span>
+        <span class="peaks__count">{{ outdoors.peaks.completed }} / {{ outdoors.peaks.total }}</span>
+      </p>
+    </li>
+  </ul>
+</div>
+
+{% set shown = outdoors.hikes %}
+
+{% for hike in shown.slice(0, 10) %}
+  {{ hikeEntry(hike) }}
+{% endfor %}
+
+{% if shown.length > 10 %}
+  <details class="disclosure">
+    <summary>Earlier hikes ({{ shown.length - 10 }})</summary>
+    {% for hike in shown.slice(10) %}
+      {{ hikeEntry(hike) }}
+    {% endfor %}
+  </details>
+{% endif %}

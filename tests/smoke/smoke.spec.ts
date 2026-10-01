@@ -1,14 +1,38 @@
 /* eslint-disable no-restricted-syntax -- sequential for...of loops are clearer for browser steps */
-import { test as base, expect, Page } from "@playwright/test";
-import blogPostsMeta from "../../src/blog/blog_posts_meta.json";
-import softwareMeta from "../../src/software/software_articles_meta.json";
+import { test as base, expect } from "@playwright/test";
+
+/*
+ * Smoke coverage for the static site (#544): every section page and every blog
+ * post URL, the sidebar nav above the 782px breakpoint and the <details> top bar
+ * below it, the passthrough-copied assets, and the #518 redirects/sitemap/404.
+ */
+
+// The sidebar/top bar nav, and the full set of section pages. Mirrors
+// src/_data/nav.js; there is no software section in the rewrite.
+const sections: [string, string][] = [
+  ["About", "/"],
+  ["Bio", "/bio/"],
+  ["Blog", "/blog/"],
+  ["Publications", "/publications/"],
+  ["Bookshelf", "/bookshelf/"],
+  ["Running", "/running/"],
+  ["Hiking", "/hiking/"],
+];
+
+// Representative posts: one with tables and many code blocks, one with diagrams.
+const samplePosts = [
+  "/blog/20220626_titanic_dataset/",
+  "/blog/20260904_learning_llms_2_architecture_variations/",
+];
+
+const MOBILE = { width: 390, height: 844 };
 
 // Console errors that are known and harmless. Add a substring here, with a
 // comment explaining why, rather than loosening the check.
 const ALLOWED_CONSOLE_ERRORS: string[] = [];
 
 // Fails any test that logs a console error, throws an uncaught exception, or
-// gets a failed response for a same-origin asset (JS chunk, image, PDF, ...).
+// gets a failed response for a same-origin asset (CSS, image, PDF, ...).
 const test = base.extend<{ pageProblems: string[] }>({
   pageProblems: [async ({ page, baseURL }, use) => {
     const problems: string[] = [];
@@ -46,73 +70,206 @@ const test = base.extend<{ pageProblems: string[] }>({
   }, { auto: true }],
 });
 
-const firstBlogPost = blogPostsMeta.find((p) => p._show && !p._archived);
-const firstSoftware = softwareMeta.find((s) => s._show);
+const horizontalOverflow = (page: import("@playwright/test").Page) =>
+  page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
 
-interface RouteCase {
-  path: string;
-  // Ids of the <section> elements that must be visible with a title.
-  sections: string[];
-}
-
-const routes: RouteCase[] = [
-  { path: "/", sections: ["about-me", "work-education"] },
-  { path: "/about-me", sections: ["about-me", "work-education"] },
-  { path: "/work", sections: ["about-me", "work-education"] },
-  { path: "/education", sections: ["about-me", "work-education"] },
-  { path: "/bookshelf", sections: ["bookshelf"] },
-  { path: "/blog", sections: ["blog"] },
-  { path: `/blog/${firstBlogPost?._id}`, sections: ["selected-article"] },
-  { path: "/software", sections: ["software"] },
-  { path: `/software/${firstSoftware?._id}`, sections: ["selected-software"] },
-  { path: "/publications", sections: ["publications"] },
-  { path: "/running", sections: ["races"] },
-  { path: "/hiking", sections: ["hikes"] },
-];
-
-async function expectSectionsVisible(page: Page, sections: string[]): Promise<void> {
-  await expect(page.locator("#site-header")).toBeVisible();
-  for (const id of sections) {
-    const section = page.locator(`section#${id}`);
-    await expect(section).toBeVisible();
-    await expect(section.locator(".section-title").first()).toBeVisible();
-    await expect(section.locator(".section-title").first()).not.toBeEmpty();
-  }
-}
-
-test("test data has a visible blog post and software project", () => {
-  expect(firstBlogPost, "no visible blog post in blog_posts_meta.json").toBeDefined();
-  expect(firstSoftware, "no visible project in software_articles_meta.json").toBeDefined();
+test("the home page renders with its stylesheet", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("main h1")).toBeVisible();
+  await expect(page).toHaveTitle(/Ben Rombaut/);
+  await expect(page.locator(".sidebar .sidenav a")).toHaveCount(sections.length);
+  const stylesheet = await page.request.get("/styles/main.css");
+  expect(stylesheet.ok(), "main.css is served").toBe(true);
+  await page.waitForLoadState("networkidle");
 });
 
-for (const route of routes) {
-  test(`renders ${route.path}`, async ({ page }) => {
-    await page.goto(`/#${route.path}`);
-    await expectSectionsVisible(page, route.sections);
-    // Let lazy-loaded images and late errors surface before the fixture checks.
-    await page.waitForLoadState("networkidle");
-  });
-}
-
-const navItems: { text: string; path: string; sections: string[] }[] = [
-  { text: "Publications", path: "/publications", sections: ["publications"] },
-  { text: "Bookshelf", path: "/bookshelf", sections: ["bookshelf"] },
-  { text: "Blog", path: "/blog", sections: ["blog"] },
-  { text: "Running", path: "/running", sections: ["races"] },
-  { text: "Hiking", path: "/hiking", sections: ["hikes"] },
-  { text: "About Me", path: "/about-me", sections: ["about-me", "work-education"] },
+// Passthrough copy is easy to break silently, and every section that follows
+// depends on these paths. One representative file from each copied tree.
+const copiedAssets = [
+  "/CNAME",
+  "/favicon.ico",
+  "/robots.txt",
+  "/images/benrombaut.webp",
+  "/fonts/albert-sans-latin.woff2",
+  "/resumes/BenRombaut_Resume.pdf",
+  "/publications/Rombaut_Benjamin_J_202205_MSc.pdf",
+  "/hiking-images/19_01_katahdin/19_katahdin1.webp",
+  "/running-images/22fredericton_06.webp",
+  "/blog-images/learning-llms-2/gqa-kv-cache-explained.svg",
+  "/book_thumbnails_v2/10284614-the-clean-coder.webp",
 ];
 
-test("header nav links reach every section", async ({ page }) => {
-  await page.goto("/#/");
-  await expectSectionsVisible(page, ["about-me"]);
-
-  const navLinks = page.locator(".full-navbar .full-nav-item");
-  await expect(navLinks).toHaveCount(navItems.length);
-
-  for (const item of navItems) {
-    await navLinks.filter({ hasText: item.text }).click();
-    await expect(page).toHaveURL(new RegExp(`#${item.path}$`));
-    await expectSectionsVisible(page, item.sections);
+test("static assets are copied to their expected paths", async ({ page }) => {
+  for (const path of copiedAssets) {
+    const res = await page.request.get(path);
+    expect(res.ok(), `${path} is served`).toBe(true);
   }
+});
+
+test("every section page renders with a heading, a title and its nav marked", async ({ page }) => {
+  for (const [label, url] of sections) {
+    await page.goto(url);
+    await expect(page.locator("main h1")).toBeVisible();
+    await expect(page).toHaveTitle(/Ben Rombaut/);
+    await expect(page.locator(`.sidebar .sidenav a[aria-current="page"]`)).toHaveText(label);
+    expect(await horizontalOverflow(page), `no horizontal page scroll on ${url}`).toBeLessThanOrEqual(0);
+    await page.waitForLoadState("networkidle");
+  }
+});
+
+test("the sidebar nav reaches every section", async ({ page }) => {
+  await page.goto("/");
+  for (const [label, url] of sections) {
+    await page.locator(".sidebar .sidenav a", { hasText: label }).click();
+    await expect(page).toHaveURL(new RegExp(`${url.replace(/\//g, "\\/")}$`));
+    await expect(page.locator("main h1")).toBeVisible();
+  }
+});
+
+test("the top bar nav takes over below the breakpoint", async ({ page }) => {
+  await page.setViewportSize(MOBILE);
+  await page.goto("/");
+  await expect(page.locator(".sidebar")).toBeHidden();
+  await expect(page.locator(".topbar")).toBeVisible();
+
+  // The menu is a <details>, so it opens with no JavaScript.
+  const menu = page.locator(".topnav");
+  await expect(menu.locator(".topnav__list")).toBeHidden();
+  await menu.locator("summary").click();
+  await expect(menu.locator("a")).toHaveCount(sections.length + 3); // + social links
+
+  await menu.locator("a", { hasText: "Bookshelf" }).click();
+  await expect(page).toHaveURL(/\/bookshelf\/$/);
+  await expect(page.locator("main h1")).toHaveText("Bookshelf");
+});
+
+test("pages fit the mobile viewport", async ({ page }) => {
+  await page.setViewportSize(MOBILE);
+  for (const url of [...sections.map(([, u]) => u), ...samplePosts]) {
+    await page.goto(url);
+    await expect(page.locator("main h1")).toBeVisible();
+    expect(await horizontalOverflow(page), `no horizontal page scroll on ${url}`).toBeLessThanOrEqual(0);
+    await page.waitForLoadState("networkidle");
+  }
+});
+
+test("the blog index lists posts and links to pages that exist", async ({ page }) => {
+  await page.goto("/blog/");
+  await expect(page.locator("h1")).toHaveText("Blog");
+
+  // Only the `listed` posts appear here; the unlisted ones still get a page.
+  const links = await page.locator("a.post-card__title").evaluateAll(
+    (els) => els.map((el) => (el as HTMLAnchorElement).getAttribute("href") as string),
+  );
+  expect(links.length, "posts are listed").toBeGreaterThan(10);
+  for (const href of links) {
+    expect((await page.request.get(href)).ok(), `${href} is built`).toBe(true);
+  }
+
+  // Card thumbnails are pulled out of the post bodies, so a change to that
+  // regex could silently drop every one of them. The images themselves are
+  // same-origin, so a broken path already fails the failed-request check.
+  expect(
+    await page.locator(".post-card__thumb").count(),
+    "cards show a thumbnail",
+  ).toBeGreaterThan(3);
+});
+
+// A post page that fails to build is invisible from the index (most posts are
+// unlisted), so walk every post URL the sitemap advertises instead.
+test("every blog post URL in the sitemap is built", async ({ page }) => {
+  const xml = await (await page.request.get("/sitemap.xml")).text();
+  const posts = [...xml.matchAll(/<loc>[^<]*(\/blog\/[^<]+\/)<\/loc>/g)].map((m) => m[1]);
+  expect(posts.length, "posts are in the sitemap").toBe(42);
+  for (const url of posts) {
+    const res = await page.request.get(url);
+    expect(res.ok(), `${url} is built`).toBe(true);
+    expect(await res.text(), `${url} has a body`).toContain("article-body");
+  }
+});
+
+// One post with the lot: code blocks, tables and images. The old build sized
+// every <pre> in JavaScript to stop it blowing out the layout; this asserts the
+// CSS replacement holds, since nothing would throw if it didn't.
+
+test("a post renders its body without overflowing the page", async ({ page }) => {
+  await page.goto("/blog/20220626_titanic_dataset/");
+  await expect(page.locator(".article-body")).toBeVisible();
+  expect(await horizontalOverflow(page), "no horizontal page scroll").toBeLessThanOrEqual(0);
+  await page.waitForLoadState("networkidle");
+});
+
+test("the publications page lists both groups and serves its PDFs", async ({ page }) => {
+  await page.goto("/publications/");
+  expect(await page.locator(".pub-list > li").count()).toBe(13);
+  await expect(page.locator(".pub-authors__me").first()).toBeVisible();
+  const pdf = await page.locator(".pub-links a[href^='/publications/']").first().getAttribute("href");
+  expect((await page.request.get(pdf as string)).ok(), `${pdf} is served`).toBe(true);
+});
+
+test("the bookshelf renders books grouped by year", async ({ page }) => {
+  await page.goto("/bookshelf/");
+  await expect(page.locator("h1")).toHaveText("Bookshelf");
+  expect(await page.locator(".book").count()).toBeGreaterThan(100);
+  await expect(page.locator(".book__cover").first()).toBeVisible();
+  await page.waitForLoadState("networkidle");
+});
+
+test("hiking and running render their entries and scroll galleries internally", async ({ page }) => {
+  await page.goto("/hiking/");
+  expect(await page.locator(".entry").count()).toBe(37);
+  // One tick per Adirondack peak, the filled ones counted from the data layer.
+  expect(await page.locator(".peaks__tick").count()).toBe(46);
+  expect(await page.locator(".peaks__tick--done").count()).toBeGreaterThan(0);
+
+  await page.goto("/running/");
+  expect(await page.locator(".entry").count()).toBe(5);
+  // The image strip must scroll inside itself, not widen the page.
+  const gallery = page.locator(".gallery").first();
+  const scrolls = await gallery.evaluate((el) => el.scrollWidth > el.clientWidth);
+  expect(scrolls, "gallery scrolls horizontally").toBe(true);
+  expect(await horizontalOverflow(page), "no horizontal page scroll").toBeLessThanOrEqual(0);
+  await page.waitForLoadState("networkidle");
+});
+
+// #518. Old hash URLs all request "/", so an inline script in the home page's
+// <head> does the mapping. These are the URLs that exist in the wild.
+const hashRedirects: [string, string][] = [
+  ["/#/about-me", "/"],
+  ["/#/work", "/bio/"],
+  ["/#/education", "/bio/"],
+  ["/#/blog", "/blog/"],
+  ["/#/blog/20210624_deploy_ghpages_actions", "/blog/20210624_deploy_ghpages_actions/"],
+  ["/#/articles", "/blog/"],
+  ["/#/articles/prime_numbers", "/blog/"],
+  ["/#/software", "/"],
+  ["/#/software/game_of_life", "/"],
+  ["/#/publications", "/publications/"],
+  ["/#/bookshelf", "/bookshelf/"],
+  ["/#/running", "/running/"],
+  ["/#/hiking", "/hiking/"],
+];
+
+test("old hash URLs redirect to their real paths", async ({ page, baseURL }) => {
+  for (const [from, to] of hashRedirects) {
+    await page.goto(from);
+    await page.waitForURL(new URL(to, baseURL).href);
+    await expect(page.locator("main h1")).toBeVisible();
+  }
+});
+
+test("the sitemap is generated from the page list", async ({ page }) => {
+  const res = await page.request.get("/sitemap.xml");
+  expect(res.ok(), "sitemap.xml is served").toBe(true);
+  const xml = await res.text();
+  expect(xml, "no stale hash URLs").not.toContain("/#/");
+  expect(xml).toContain("<loc>https://www.benrombaut.ca/blog/20210624_deploy_ghpages_actions/</loc>");
+  // Every built page, and nothing else: 7 sections plus one page per post.
+  expect(xml.match(/<url>/g)?.length).toBe(49);
+});
+
+test("404.html is a real page with a way back", async ({ page }) => {
+  await page.goto("/404.html");
+  await expect(page.locator("main h1")).toHaveText("Page not found");
+  await expect(page.locator(".buttons a[href='/']")).toBeVisible();
 });

@@ -1,0 +1,71 @@
+// Bookshelf grid. The densest grid on the site, so auto-fill columns rather
+// than the old flex wrapping with three hand-tuned card sizes.
+
+.books {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1.5rem 1rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+// Grid rows stretch to their tallest card, so making each card a column lets
+// the rating sit at the bottom and line up across the row, whatever length the
+// title and author run to.
+.book {
+  display: flex;
+  flex-direction: column;
+  max-width: none;
+  font-size: var(--text-tiny);
+  line-height: 1.35;
+}
+
+.book a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover .book__title {
+    color: var(--primary);
+  }
+}
+
+// Goodreads thumbnails vary from 0.55 to 0.80 wide-to-tall, so the box is a
+// fixed book-ish ratio and the cover is contained inside it. Nothing crops and
+// nothing distorts. The tinted background also means a cover that fails to load
+// degrades to a neutral tile showing the title, with no onerror handler.
+.book__cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;
+  background: var(--quaternary);
+}
+
+// Titles clip at two lines. The full title stays in the DOM and only the
+// display is clipped, which handles every long title rather than the old
+// cut-at-the-first-colon rule.
+.book__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  min-height: 2.7em; // 2 lines at the 1.35 line-height above
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+.book__author,
+.book__rating {
+  display: block;
+  color: var(--secondary);
+}
+
+.book__rating {
+  margin-top: auto;
+  padding-top: 0.2rem;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+}

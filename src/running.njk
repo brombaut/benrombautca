@@ -1,0 +1,23 @@
+---
+layout: base.njk
+title: Running
+description: I got into running while the pandemic had the gyms closed. Now I'd like to make a habit of running a different marathon every few years, with some other races every now and then.
+permalink: /running/
+---
+{% from "gallery.njk" import gallery %}
+
+<h1>Running</h1>
+<p class="hero__lede">{{ description }}</p>
+
+{% for race in outdoors.races %}
+  <article class="entry">
+    <h3 class="entry__title">{% if race.link %}<a href="{{ race.link }}" target="_blank" rel="noopener noreferrer">{{ race.name }}</a>{% else %}{{ race.name }}{% endif %}</h3>
+    <p class="entry__meta">{{ race.date | longDate }}</p>
+    <dl class="entry__facts">
+      {% if race.runningTime %}<dt>Official time</dt><dd>{{ race.runningTime | safe }}</dd>{% endif %}
+      {% if race.placement %}<dt>Placement</dt><dd>{{ race.placement | safe }}</dd>{% endif %}
+    </dl>
+    {{ race.description | safe }}
+    {{ gallery(race.images, race.name) }}
+  </article>
+{% endfor %}

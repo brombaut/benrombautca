@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="{{ description or site.description }}">
+  <title>{% set pageTitle = title + " | " + site.author if title else site.title %}{{ pageTitle }}</title>
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+
+  {# Enough for a readable link preview; not a meta-tag framework. #}
+  <meta property="og:type" content="{{ "article" if post else "website" }}">
+  <meta property="og:site_name" content="{{ site.author }}">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/images/benrombaut.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+{% if page.url == "/" %}{% include "hash-redirect.njk" %}{% endif %}
+</head>
+
+<body>
+  {% include "topbar.njk" %}
+
+  <div class="layout">
+    {% include "sidebar.njk" %}
+
+    <main class="content">
+      {{ content | safe }}
+    </main>
+  </div>
+
+  <script type="text/javascript" id="clustrmaps" src="{{ site.clustrmapsSrc }}"></script>
+</body>
+
+</html>

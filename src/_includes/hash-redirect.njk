@@ -1,0 +1,49 @@
+{#
+  Old hash URLs (/#/blog/<id>) never reach the server: every one of them requests
+  "/", so the mapping has to happen in the browser. Included in <head> on the
+  home page only, so it runs before paint, and it uses location.replace so the
+  dead URL doesn't land in history. #518.
+#}
+<script>
+  (function () {
+    // Explicit table. The old router sent /, /about-me, /work and /education
+    // to the same About component; the About content is now the home page and
+    // the work/education history is the Bio page (#545). The software section is
+    // deleted and isn't coming back, so it lands on About too.
+    var map = {
+      "/": "/",
+      "/about-me": "/",
+      "/work": "/bio/",
+      "/education": "/bio/",
+      "/software": "/",
+      "/blog": "/blog/",
+      // /#/articles was in the old sitemap but never matched a router route.
+      "/articles": "/blog/",
+      "/publications": "/publications/",
+      "/bookshelf": "/bookshelf/",
+      "/running": "/running/",
+      "/hiking": "/hiking/"
+    };
+
+    function redirect() {
+      if (location.hash.slice(0, 2) !== "#/") return;
+      var path = location.hash.slice(1).split("?")[0].replace(/\/+$/, "") || "/";
+      var target = map[path];
+      if (!target) {
+        var post = /^\/blog\/([A-Za-z0-9_-]+)$/.exec(path);
+        // The /#/articles/<slug> ids lack the date prefix real post ids have
+        // ("prime_numbers" vs "20200510_prime_numbers"), so they can't be mapped
+        // to a post; they go to the index.
+        if (post) target = "/blog/" + post[1] + "/";
+        else if (path.indexOf("/articles/") === 0) target = "/blog/";
+        else if (path.indexOf("/software/") === 0) target = "/";
+      }
+      if (target) location.replace(target);
+    }
+
+    // A hash-only change doesn't reload the page, so a hash URL followed while
+    // already on this page needs the listener as well as the call.
+    window.addEventListener("hashchange", redirect);
+    redirect();
+  })();
+</script>

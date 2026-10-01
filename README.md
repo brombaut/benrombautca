@@ -2,9 +2,14 @@
 
 [![deploy](https://github.com/brombaut/benrombautca/actions/workflows/gh_pages_deploy.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/gh_pages_deploy.yml)
 [![bookshelf-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_bookshelf.yml)
-[![software-syncer](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml/badge.svg)](https://github.com/brombaut/benrombautca/actions/workflows/sync_software.yml)
 
-Personal portfolio website built with Vue 3 and TypeScript. Visit the live site at [benrombaut.ca](https://www.benrombaut.ca).
+Personal portfolio website, built as a framework-free static site with
+[Eleventy](https://www.11ty.dev/). Visit the live site at
+[benrombaut.ca](https://www.benrombaut.ca).
+
+> **This branch is mid-rewrite.** `redesign/static-rewrite` is replacing the
+> Vue 3 SPA that still runs on `main`. See issue #501 for the plan and
+> `AGENTS.md` for the current state of the build.
 
 ## Site Features
 
@@ -16,9 +21,6 @@ Books I've read and am currently reading, synced from [Goodreads](https://www.go
 
 ### Articles
 Technical how-to guides and notes written in Markdown, converted to HTML using [Pandoc](https://pandoc.org/). Articles cover various programming topics and serve as personal references.
-
-### Software Projects
-Showcases README files from my GitHub projects, automatically synced and converted to HTML for display.
 
 ### Publications
 Academic publications and research papers.
@@ -32,8 +34,9 @@ This is a personal portfolio site, but suggestions and bug reports are welcome v
 
 ## Testing
 
-Browser smoke tests load every page of the production build in headless Chromium and fail on
-any rendering failure, console error, or broken asset:
+Browser smoke tests load the production build in headless Chromium and fail on any
+rendering failure, console error, or broken asset. They cover every section page and
+every blog post, the desktop and mobile nav, and the old hash-URL redirects.
 
 ```bash
 npx playwright install chromium   # one-time
@@ -46,7 +49,7 @@ They also run in CI on every pull request and before each deploy. See `AGENTS.md
 
 - **[AGENTS.md](./AGENTS.md)** - Comprehensive AI assistant guide with detailed architecture, patterns, and development workflows
 - **[CLAUDE.md](./CLAUDE.md)** - Symlink to `AGENTS.md`, so Claude Code reads the same guidance
-- **[PROJECT_TODOS.md](./PROJECT_TODOS.md)** - Technical debt tracking and improvement opportunities
+- **[ISSUES.md](./ISSUES.md)** - GitHub Issues label conventions and the `gh` command reference
 
 ## License
 

@@ -1,0 +1,19 @@
+{#
+  Horizontal image strip, scrolled natively with CSS scroll-snap. No JavaScript,
+  and real swipe support on touch, which the old carousel never had.
+
+  Captions are rendered only where they exist: every race image has one, no hike
+  image does.
+#}
+{% macro gallery(images, label) %}
+  {% if images.length %}
+    <div class="gallery" role="group" aria-label="{{ label }}" tabindex="0">
+      {% for img in images %}
+        <figure class="gallery__item">
+          <img src="/{{ img.src }}" alt="{{ img.caption or label }}" loading="lazy" decoding="async">
+          {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endmacro %}

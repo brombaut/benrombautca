@@ -1,0 +1,30 @@
+---
+layout: base.njk
+title: Blog
+description: Writing about software engineering, AI, and things I've built.
+permalink: /blog/
+---
+<h1>Blog</h1>
+<p class="hero__lede">Writing about software engineering, AI, and things I've built.</p>
+
+<ul class="post-list">
+  {% for post in blog.listed %}
+    <li class="post-card">
+      <div class="post-card__text">
+        {% if post.series %}
+          <p class="post-series">{{ post.series.name }} &middot; Part {{ post.series.part }}</p>
+        {% endif %}
+        <a class="post-card__title" href="{{ post.url }}">{{ post.emoji }} {{ post.displayTitle }}</a>
+        {% if post.description %}<p class="post-card__description">{{ post.description }}</p>{% endif %}
+        <p class="post-card__meta">
+          <time datetime="{{ post.createdAt }}">{{ post.createdAt | longDate }}</time>
+          &middot; {{ post.readingMinutes }} min read
+        </p>
+      </div>
+      {% if post.image %}
+        {# Decorative: the title beside it already names the post. #}
+        <img class="post-card__thumb" src="{{ post.image }}" alt="" loading="lazy">
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

@@ -1,0 +1,9 @@
+<ul class="social">
+  {% for link in nav.social %}
+    <li>
+      <a href="{{ link.url }}" aria-label="{{ link.label }}" rel="me noopener" target="_blank">
+        {% include "icons/" + link.icon + ".svg" %}
+      </a>
+    </li>
+  {% endfor %}
+</ul>

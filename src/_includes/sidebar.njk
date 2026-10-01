@@ -1,0 +1,22 @@
+{# Shown above 782px. The name sits at the top, social links at the bottom. #}
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div>
+      <p class="sidebar__name"><a href="/">{{ site.author }}</a></p>
+      <p class="sidebar__role">{{ site.role }}</p>
+
+      <nav aria-label="Main">
+        <ul class="sidenav">
+          {% for item in nav.items %}
+            <li>
+              <a href="{{ item.url }}"
+                {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.label }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+
+    {% include "social.njk" %}
+  </div>
+</aside>
