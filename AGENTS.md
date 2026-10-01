@@ -125,13 +125,16 @@ computation happens once per build, not per render:
 | File | What it provides |
 | --- | --- |
 | `hikes.json`, `races.json`, `publications.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
-| `work.json`, `education.json` | Source notes only. Nothing renders them: #543 was dropped, so there is no Work/Education section and the history is hand-written prose in `src/bio.njk` |
 | `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, and the `all` / `listed` split |
 | `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year |
 | `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list |
 | `news.js` | The home page News list: the 5 newest dated items across listed blog posts, publications, hikes, past races and `milestones.json`. Books are left out on purpose |
 | `milestones.json` | Hand-authored one-off events for News that no other file records, e.g. job changes |
 | `site.js` | Site title, description, canonical URL, ClustrMaps script src |
+
+There is no `work.json` / `education.json`. #543 was dropped, so there is no
+Work/Education section: the career history is hand-written prose in `src/bio.njk`,
+and the two source-note files were deleted once nothing read them.
 
 The JSON written by the Python and GitHub Actions syncers stays exactly where
 those syncers put it (`src/blog/`, `src/bookshelf/syncer_v2/`)
