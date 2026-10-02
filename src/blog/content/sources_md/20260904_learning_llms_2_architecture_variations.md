@@ -101,7 +101,7 @@ I also noticed my implementation had an initial normalization left over from
 the scalar model and no proper final normalization. A good reminder that
 comparing two named choices doesn't mean either one is a clean implementation.
 
-## RoPE Was the First Real Surprise
+## Swapping in RoPE
 
 The baseline used learned absolute position embeddings: a learned vector per
 position, added to the token embedding at the start. For RoPE, I dropped that

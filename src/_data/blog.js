@@ -11,10 +11,10 @@
  *                appear on the blog index.
  *
  * Each post also carries `image`: the first blog image in its body, used as the
- * index card's thumbnail. Seven of the 13 listed posts have no image at all, so
+ * index card's thumbnail. Seven of the 14 listed posts have no image at all, so
  * templates must handle it being null.
  *
- * `_show` and `_archived` are separate on purpose: 29 of the 42 shown posts are
+ * `_show` and `_archived` are separate on purpose: 29 of the 43 shown posts are
  * archived, and the old hash router still resolved a URL for every one of them
  * even though the index hid them. Keeping a page for each preserves those links,
  * which #518 depends on.

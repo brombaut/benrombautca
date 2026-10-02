@@ -8,10 +8,10 @@ it sound like a fundamentally different architecture. Implementing it took
 about eighty lines.
 
 What I didn't expect was that the two most useful things I learned would have
-almost nothing to do with Mixture of Experts. Both were about how convincingly
-a broken component can imitate a working one.
+almost nothing to do with Mixture of Experts. Both were about how easily a broken
+component can look like a working one.
 
-## Four MLPs Where There Was One
+## How the Layer Works
 
 Each transformer block in my model ran attention, then a single MLP shared by
 every token. A Mixture of Experts layer replaces that MLP with several, plus a
@@ -36,7 +36,7 @@ Those 128 numbers are four directions in the embedding space, one per expert,
 and a token's score for an expert is its dot product with that direction.
 Training the router means learning how to carve up the space.
 
-## Turning the Dispatch Loop Inside Out
+## Batching the Dispatch
 
 The obvious implementation loops over tokens and runs each one through its
 expert. That's 1,024 tiny calls per layer, which wastes hardware built for
@@ -56,13 +56,13 @@ This is also what sparse actually means here. Tokens that didn't choose an
 expert never enter its matrix multiplication. It isn't computing all four and
 discarding three.
 
-## A Router That Never Trained
+## The Router Never Trained
 
 My first working version trained fine. The loss fell, and the routing
 distribution moved for about 500 steps and then went flat. I wrote that down as
 the router settling into a stable partition.
 
-It hadn't settled. It had never moved at all. The dispatch computed the
+It hadn't settled, it had never moved at all. The dispatch computed the
 router's weight like this:
 
 ```python
@@ -108,13 +108,13 @@ random initialization, unchanged after 5,000 steps. Even the early drift had a
 different explanation: token representations sliding around under a partition
 that never moved.
 
-Checking took one command. Print the gradient and see whether it's zero.
+Checking it took one command: print the gradient and see whether it's zero.
 
-## Sparse Does Not Mean Fast
+## Runtime and Memory Costs
 
 I had absorbed the idea that Mixture of Experts gives you capacity for free.
-Counting arithmetic supports that. The clock doesn't. The dense run took 73.8
-seconds for 5,000 steps, and the one-expert Mixture of Experts run took 81.0.
+Counting arithmetic supports that, but the wall clock doesn't. The dense run
+took 73.8 seconds for 5,000 steps, and the one-expert Mixture of Experts run took 81.0.
 
 Memory is the obvious cost. All four experts stay resident, so the model holds
 76,608 parameters to do the arithmetic of about 27,200. That's the same ratio
@@ -138,7 +138,7 @@ The runtime didn't double because attention, normalization, embeddings, loss,
 and the optimizer still cost what they did before. Doubling one part and seeing
 52.5% more runtime tells you roughly how much that part owned.
 
-## Reading My Own Routing Chart Wrong
+## Measuring Expert Balance
 
 With two experts per token, my routing chart looked healthy. The first block's
 experts sat at roughly 0.24, 0.27, 0.27, and 0.22 of assignments.
@@ -152,7 +152,7 @@ lopsided: two experts at 85.5% and 90.6%, one at 8.3%.
 
 ![The same expert reads as 0.35 of assignments or 70% of tokens, depending on the denominator](images/learning-llms-3/routing-metric-explained.png)
 
-## Why Routers Collapse
+## Router Collapse and the Balance Loss
 
 The router couldn't have known better, because balance appears nowhere in the
 loss. It's trained only on whether the next character was predicted well.
@@ -184,14 +184,15 @@ away, not a partition worth keeping.
 ![The rich-get-richer routing loop, and what a 0.01 balance term changed](images/learning-llms-3/load-balance-explained.png)
 
 The loss curves below compare normalized top-2 routing with and without the
-balance term. They're worth looking at because they're so boring.
+balance term. They're worth looking at because almost nothing happens in
+them.
 
 ![Validation and training loss for normalized top-2 routing with and without the load-balancing term](images/learning-llms-3/moe-load-balance-loss-curves.png)
 
 Almost the only visible difference is a slight separation over the last
 thousand steps. Underneath, one expert went from nearly unused to carrying a
-normal share of the traffic. The number I was ranking runs by shows almost none
-of what the experiment was about.
+normal share of the traffic. Validation loss, which is what I was ranking runs by, shows
+almost none of what the experiment was about.
 
 Balanced doesn't mean identical: the second block still picked one expert for
 62.1% of tokens and the others for 45 to 47%. And at this size, balancing isn't
@@ -200,7 +201,7 @@ another, so here it just keeps neglected experts learning. In a real
 deployment, with experts in parallel on different devices and limited capacity
 each, it's an operational requirement.
 
-## What It Cost and What It Bought
+## Whether It Was Worth It at This Scale
 
 Mixture of Experts wasn't worth it at this scale. My best run reached 1.7467
 with 76,608 parameters. Extending the context window from 16 to 32 characters
@@ -208,12 +209,12 @@ took the dense model from 1.848 to 1.7789 with 29,760. That's 2.6 times the para
 for about 0.03 over a much simpler change.
 
 That's not an argument against the technique. It says my model was limited by
-context, not capacity, and something that works at 47 billion parameters is
-under no obligation to help at 76 thousand. I'd rather have this result than a
-flattering one. It separates knowing how a mechanism works from knowing when to
-reach for it.
+context, not capacity, and something that works at 47 billion parameters doesn't
+have to help at 76 thousand. I'd rather have this result than a flattering one,
+since knowing how a mechanism works and knowing when to use it are different
+things.
 
-## A Failure I Could Rule Out
+## The Newline-Only Generation Bug
 
 Every run here generated nothing but newlines, the same degenerate behavior I
 hit with rotary positional embeddings last time. Better validation loss didn't

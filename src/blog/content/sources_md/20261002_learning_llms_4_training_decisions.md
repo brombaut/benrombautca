@@ -4,8 +4,8 @@ something in my notes. The axes and curves are what matter.*
 
 My last post ended with a list of things I wanted to try that had nothing to do
 with architecture: learning rate schedules, Adam vs AdamW, dropout, batch size,
-and reduced precision. The model would stay exactly where it was. Only the
-training would change.
+and reduced precision. The model would stay exactly where it was, and only the training would
+change.
 
 I expected this to be the tidy part. Every one of those decisions has a
 standard recommendation, and I mostly wanted to watch them come true on a model
@@ -18,7 +18,7 @@ reversed completely once I pinned that second thing down. So this post is less
 about what learning rate schedules do than about how hard it is to change
 exactly one thing.
 
-## The Model That Would Not Overfit
+## Getting the Baseline to Overfit
 
 Half the decisions on my list are regularizers, and a regularizer has nothing
 to show on a model that's still underfitting. So I needed a baseline that
@@ -54,14 +54,14 @@ held-out story is nearly as predictable as a memorized one. Shakespeare's
 dialogue and proper nouns are much richer, so repeated exposure eventually
 pushed the model from learning the style to learning specific byte sequences.
 What surprised me was the ordering: two increases in model size did nothing,
-and one change of dataset did it immediately. When a model won't overfit, check
-the data before the parameter count.
+and one change of dataset did it immediately. Next time a model won't overfit,
+I'll look at the dataset before the parameter count.
 
 The generated text also still looked fine at the end, with correct speaker tags
 and plausible archaic phrasing. Overfitting was obvious in the loss for half
 the run and never showed up in the samples at all.
 
-## When the Learning Rate Moves, So Does the Weight Decay
+## Learning Rate Schedules and Weight Decay
 
 Some vocabulary first. The optimizer takes each step's gradients and decides
 how to change each weight. The learning rate is how far it moves them, and a
@@ -82,8 +82,8 @@ toward zero on every weight at every step, and its strength isn't the
 `weight_decay` setting alone. It's `learning_rate * weight_decay`. At my
 baseline's constant `3e-4` and `0.1`, that's a steady `3e-5` shrink per step.
 Cosine takes the learning rate from `3e-4` down to `3e-5`, so by the end the
-actual pull is `3e-6`. The regularization had quietly decayed to a tenth of its
-strength, right when I needed it most.
+actual pull is `3e-6`. The regularization had decayed to a tenth of its strength over the
+course of the run, and the back half is where the overfitting happens.
 
 So I ran a third arm that scales `weight_decay` up as the learning rate comes
 down, holding the product at `3e-5`. If both effects mattered, it should land
@@ -99,11 +99,11 @@ fixed, the smaller late steps turned into a small independent win.
 
 That doesn't make cosine decay bad. Both cosine runs matched the baseline's
 *best* validation loss; they only damaged what came after the point where I
-should have stopped anyway. The lesson is that a schedule named after one
-hyperparameter changed two, and I couldn't tell which one mattered from the
-curve. It took a run designed to hold one still.
+should have stopped anyway. The schedule is named after one hyperparameter but
+changed two, and the curve on its own doesn't separate them. It took a third
+run holding the decay fixed to tell which one mattered.
 
-## Two Optimizers, Two Different Failures
+## SGD, Adam, and AdamW
 
 Next I compared plain SGD, plain Adam, and the AdamW baseline at the same
 learning rate. SGD moves every weight by a fixed fraction of its gradient. Adam
@@ -148,11 +148,12 @@ tuned for Adam is far too small for SGD. I left it untuned on purpose so the
 optimizer was the only change, which makes this less a verdict on SGD than a
 measure of how much of Adam's value comes from per-parameter step sizes.
 
-By final loss, those two runs look the same, both around 2.8 to 3.0. They're
-nothing alike. One was underpowered from the first step, the other destabilized
-and never recovered, and only the early part of the curve shows the difference.
+By final loss, those two runs look the same, both around 2.8 to 3.0, but they
+failed for different reasons. One was underpowered from the first step and the
+other destabilized and never recovered, and that difference only shows up in
+the early part of the curve.
 
-## Clipping the Wrong Quantity
+## Gradient Clipping
 
 A gradient norm spiked, so the obvious next move was gradient clipping: cap the
 total norm at a threshold and rescale anything larger. I picked 2.0 from the
@@ -182,10 +183,11 @@ never capped at all.
 
 So the run rules out the raw loss gradients alone being the problem, but can't
 say whether the remaining issue is a step that's too big or one pointed the
-wrong way. The quantity I was measuring and the one that mattered weren't the
-same, and only the order of operations in the loop showed that.
+wrong way. The quantity I was clipping and the quantity the optimizer used weren't the
+same, and that isn't visible in the results, only in the order of operations
+in the loop.
 
-## Dropout Buys Time, Not Immunity
+## Sweeping the Dropout Rate
 
 Dropout randomly switches off a fraction of activations during training, so no
 neuron can rely on a specific partner always being there. The textbook framing
@@ -199,11 +201,12 @@ tie, 1.4694 against 0.3's 1.4689. At 0.5 it broke: best, final validation, and f
 rose, which makes it real underfitting. The samples picked up small
 disfluencies too, like "this are not delight".
 
-So the sweet spot was 0.3 to 0.4, with a ceiling just past it. That was the
-finding, and it was wrong.
+So the sweet spot was 0.3 to 0.4, with a ceiling just past it. That turned out
+to be wrong.
 
-The problem was 0.3's best checkpoint: step 28,750 of 29,410. Its curve hadn't
-turned. It had run out of room. So I reran it for twice as many steps.
+The problem was 0.3's best checkpoint: step 28,750 of 29,410. The curve hadn't
+turned over yet, it had just run out of steps, so I reran it with twice the
+budget.
 
 ![Validation loss keeps improving past the original budget, then turns](images/learning-llms-4/024-dropout-extended-budget.png)
 
@@ -214,9 +217,9 @@ falling, the same overfitting signature as the baseline, ending at 1.4997.
 
 Dropout didn't remove overfitting. It postponed it, from step 8,250 to about
 38,750. What I'd read as a ceiling was a curve that hadn't turned yet, and
-nothing in the original plot could have told those apart. A curve that stops
-improving at the edge of a fixed budget is a fact about the budget until
-someone runs it longer.
+nothing in the original plot distinguishes those two cases. When a run stops
+improving right at the end of its budget, the budget is the likelier
+explanation, and extending it is the only way to check.
 
 Two smaller things. The generalization gap shrank at every rate, including 0.5,
 which was worse at both training and validation. It narrowed there because
@@ -263,7 +266,7 @@ Separately, all three batch-32 runs were about 15% faster, going from the baseli
 overhead over more tokens. That part holds
 regardless of the loss.
 
-## One Result That Held Up
+## Mixed Precision with bfloat16
 
 The last experiment was mixed precision: run the forward pass in bfloat16 and
 keep the weights, gradients, and optimizer state in float32. bfloat16 has much
@@ -289,7 +292,7 @@ size of what bfloat16 actually changes. After five experiments where the
 appealing number had something hiding behind it, this one just worked as
 advertised.
 
-## A Late Addition: Swapping the MLP
+## Swapping the MLP for SwiGLU
 
 Later, after the training-systems work in the next post, I came back to this
 baseline for one change that is not a training decision at all: the
@@ -336,7 +339,7 @@ single check, and it finished at 2.0798 against 1.9037.
 What SwiGLU really changed was speed. It reached every validation milestone in
 55 to 60 percent of the steps the GELU model needed: 1.60 at step 2,000
 instead of 3,500, and 1.55 at step 3,250 instead of 5,750. Then it hit the same
-floor and started memorizing, faster.
+floor and started memorizing sooner than the GELU model did.
 
 That fits the dropout result more than it contradicts the paper. Shazeer
 measured at equal training steps on a corpus so large that nothing is ever
@@ -344,8 +347,8 @@ seen twice, and there, learning more per step simply *is* a better model. Here
 the model reads the same megabyte of Shakespeare thirty times, and the limit
 was never the MLP. It was how much there is to learn from that megabyte before
 the only thing left is memorizing it. Dropout pushed that point later, and
-SwiGLU reached it sooner. Neither moved the floor. How much an architectural
-improvement buys depends on what is limiting you. Here the limit was the data.
+SwiGLU reached it sooner. Neither moved the floor. What an architectural improvement
+buys depends on what is limiting the model, and here that was the data.
 
 ## Where I Ended Up
 
@@ -353,20 +356,19 @@ I can now explain what a cosine schedule does to weight decay, why coupled and
 decoupled decay aren't the same thing, what dropout buys and costs, and why I
 check `lscpu` before believing a speedup.
 
-But what I actually took away was the shape of the mistake, because it was the
-same every time. A schedule that changes the learning rate also changes the
+The more useful takeaway was that the mistake was the same every time. A schedule that changes the learning rate also changes the
 regularization. A doubled learning rate doubles it too. Clipping before the
 optimizer step doesn't cover what the step adds. A sweep with a fixed budget
 measures the budget as much as the setting. Each time I changed one named thing
 and something unnamed came along, and twice the result flipped once I held it
 still.
 
-None of those results looked broken. They looked like findings. I only caught
-them because the numbers were slightly better than they had any right to be,
-and the control run was cheap. So the habit I'm keeping is to ask what else a
+None of those results looked broken; they looked like findings. I only caught
+them because the numbers were slightly better than I expected and the control
+run was cheap. So the habit I'm keeping is to ask what else a
 setting is arithmetically tied to before running the comparison, and to treat
-any pleasant surprise as a possible confound. Both times I did that here, there
-was one.
+a better-than-expected result as a possible confound. I checked that twice
+here and found a confound both times.
 
 Next I looked at training as a system rather than a set of settings: where the
 time goes in a step, whether a run can be stopped and resumed without changing

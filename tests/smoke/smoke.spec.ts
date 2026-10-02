@@ -179,7 +179,7 @@ test("the blog index lists posts and links to pages that exist", async ({ page }
 test("every blog post URL in the sitemap is built", async ({ page }) => {
   const xml = await (await page.request.get("/sitemap.xml")).text();
   const posts = [...xml.matchAll(/<loc>[^<]*(\/blog\/[^<]+\/)<\/loc>/g)].map((m) => m[1]);
-  expect(posts.length, "posts are in the sitemap").toBe(42);
+  expect(posts.length, "posts are in the sitemap").toBe(43);
   for (const url of posts) {
     const res = await page.request.get(url);
     expect(res.ok(), `${url} is built`).toBe(true);
@@ -264,7 +264,7 @@ test("the sitemap is generated from the page list", async ({ page }) => {
   expect(xml, "no stale hash URLs").not.toContain("/#/");
   expect(xml).toContain("<loc>https://www.benrombaut.ca/blog/20210624_deploy_ghpages_actions/</loc>");
   // Every built page, and nothing else: 7 sections plus one page per post.
-  expect(xml.match(/<url>/g)?.length).toBe(49);
+  expect(xml.match(/<url>/g)?.length).toBe(50);
 });
 
 test("404.html is a real page with a way back", async ({ page }) => {
