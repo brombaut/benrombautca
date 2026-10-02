@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.benrombaut.ca/bio/</loc></url>
+  <url><loc>https://www.benrombaut.ca/blog/20261002_learning_llms_4_training_decisions/</loc></url>
   <url><loc>https://www.benrombaut.ca/blog/20260918_learning_llms_3_mixture_of_experts/</loc></url>
   <url><loc>https://www.benrombaut.ca/blog/20260904_learning_llms_2_architecture_variations/</loc></url>
   <url><loc>https://www.benrombaut.ca/blog/20260903_building_a_gpt_from_scratch/</loc></url>
