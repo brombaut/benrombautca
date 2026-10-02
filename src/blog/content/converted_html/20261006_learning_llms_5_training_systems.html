@@ -9,8 +9,8 @@ goes, whether a run can be stopped and restarted without changing what
 it learns, what happens when the numbers go bad, where the memory goes,
 and how many CPU threads I should have been using all along.</p>
 <p>None of the five experiments here changes a line of the model or the
-training math. Each one adds an instrument, points it at the loop, and
-reads what comes back.</p>
+training math. Each one adds an instrument to the loop and reads what
+comes back.</p>
 <p>What they had in common surprised me more than any single result. In
 four of the five, something had been wrong for a while and was invisible
 in the one number I was watching. A mishandled restart keeps producing a
@@ -18,8 +18,8 @@ falling loss. A memory estimate can be off by a factor of 27 while every
 run completes. A thread count can be wrong for four experiments in a row
 without a symptom. The loss curve measures the model, and almost
 everything in this post is a property of the process running it.</p>
-<h2 id="reading-a-number-the-operating-system-already-had">Reading a
-Number the Operating System Already Had</h2>
+<h2 id="memory-and-profiler-instrumentation">Memory and Profiler
+Instrumentation</h2>
 <p>The training script already logged step time, tokens per second,
 gradient norm, and loss. The one gap was memory: nothing recorded how
 much RAM the process used, or whether that stayed put over a
@@ -29,7 +29,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> resource.getrusage(resource.RUSAGE_SELF).ru_maxrss <span class="op">/</span> <span class="dv">1024</span></span></code></pre></div>
 <p><code>ru_maxrss</code> is peak resident set size, the most physical
 memory the process has had in use since it started. The operating system
-tracks it whether anyone reads it or not. I just finally looked.</p>
+tracks it whether anyone reads it or not, and I had simply never read
+it.</p>
 <p><img src="blog-images/learning-llms-5/027-observability.png"
 alt="Peak memory over the full run, a zoom on the early one-time allocation, and the profiled operator breakdown" /></p>
 <p>The chart shows peak memory over the full run, a zoom on the first
@@ -44,7 +45,7 @@ for forty minutes is different from assuming it.</p>
 CPU spends its time in a forward and backward pass. It reports self time
 (time in an operation’s own code) and total time (including operations
 it calls into). I read self time throughout, because it credits time to
-whoever actually burned the cycles.</p>
+the operation that actually spent the cycles.</p>
 <p>Matrix multiplies dominating was expected, since attention
 projections and linear layers are nearly the whole model. But their
 share moved a lot between two runs: 81% in a short smoke test and 59.85%
@@ -55,12 +56,12 @@ post.</p>
 asking how much of that model’s runtime was real expert work versus the
 masking and gathering around it. This pass profiled the dense baseline,
 so that’s still open.</p>
-<p>The number that mattered most was one I couldn’t explain. Peak memory
-was around 2.56GB, but parameters, gradients, and optimizer state for a
+<p>The number I couldn’t explain was the peak itself. Peak memory was
+around 2.56GB, but parameters, gradients, and optimizer state for a
 5,837,056-parameter model account for about 93MB. That factor of 27 is
 why the memory experiment further down exists.</p>
-<h2 id="a-model-checkpoint-is-not-a-training-checkpoint">A Model
-Checkpoint Is Not a Training Checkpoint</h2>
+<h2 id="what-a-checkpoint-has-to-contain">What a Checkpoint Has to
+Contain</h2>
 <p>Weights alone reproduce the model’s output exactly. They aren’t
 enough to keep training it identically, because the optimizer carries
 state the next update depends on. AdamW keeps two running averages per
@@ -116,10 +117,9 @@ but bounded gap of roughly 0.0005 to 0.02 that never ran away. A fresh
 Adam isn’t broken, just less warmed up.</p>
 <p>That’s the more unsettling version. The loss goes down, nothing
 crashes, and the run looks healthy. You’d need a control run beside it
-to notice, and in a real training run the control is the one thing you
-don’t have.</p>
-<h2 id="the-last-good-checkpoint-was-already-ruined">The Last Good
-Checkpoint Was Already Ruined</h2>
+to notice, and a real training run doesn’t have one.</p>
+<h2 id="detecting-non-finite-failures">Detecting Non-Finite
+Failures</h2>
 <p>A training run can fail in two ways. The coupled weight decay run in
 the last post was slow: it climbed, peaked, and settled onto a worse
 plateau without ever producing a non-finite number. The other kind is a
@@ -151,8 +151,8 @@ catastrophic updates, and those alone doomed the next forward pass
 whatever learning rate came after.</p>
 <p>“Keep the last checkpoint from before things went wrong” assumes the
 failure was gradual. Here the last known-good checkpoint was already two
-bad updates deep. Detecting non-finite values is the easy part. Knowing
-how far back to rewind is not.</p>
+bad updates deep. Detecting non-finite values is easy; knowing how far
+back to rewind is the harder question.</p>
 <p>Gradient clipping, the standard fix for instability, made no
 difference: the clipped run still failed at step 3.
 <code>clip_grad_norm_</code> scales by
@@ -161,8 +161,7 @@ infinite that scale is 0, and 0 times infinity is NaN. Clipping doesn’t
 skip an overflowing gradient, it turns <code>inf</code> into
 <code>nan</code>. An overflowed gradient has no finite magnitude left to
 bound.</p>
-<h2 id="where-the-memory-actually-went">Where the Memory Actually
-Went</h2>
+<h2 id="the-memory-breakdown">The Memory Breakdown</h2>
 <p>This experiment explains the factor of 27, and it starts by splitting
 memory into three parts that behave very differently:</p>
 <ul>
@@ -187,10 +186,10 @@ model, data, or optimizer existed, the process was already at 215.67MB,
 optimizer state. By the time the optimizer was constructed, it was at
 324.11MB. Those numbers were within a third of a megabyte across every
 arm.</p>
-<p>The activation result was one I got wrong out loud. I predicted
-context length would scale worse than batch size, since the attention
-score matrix is quadratic in context length. It didn’t. An eight-fold
-batch increase grew forward-pass memory by 8.008 times the control’s. An
+<p>I got the activation result wrong in my prediction. I expected
+context length to scale worse than batch size, since the attention score
+matrix is quadratic in context length. It didn’t. An eight-fold batch
+increase grew forward-pass memory by 8.008 times the control’s. An
 eight-fold context increase grew it by 8.006 times.</p>
 <p>Both sweeps multiply tokens per step by eight, and that’s what memory
 tracked. Either the CPU kernel never materializes the full attention
@@ -203,8 +202,7 @@ The earlier run did 29,410 steps instead of 500 and had the profiler
 attached. Either could plausibly explain the gap, through profiler
 overhead or allocator fragmentation, and I don’t have the data to say
 how it splits.</p>
-<h2 id="twelve-threads-not-twenty-four">Twelve Threads, Not
-Twenty-Four</h2>
+<h2 id="choosing-the-thread-count">Choosing the Thread Count</h2>
 <p>Back to the loose end from the first section. Every experiment so far
 had used 20 threads, a number nobody had chosen deliberately or
 measured.</p>

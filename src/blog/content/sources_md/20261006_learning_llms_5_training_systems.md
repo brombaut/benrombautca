@@ -10,8 +10,8 @@ what happens when the numbers go bad, where the memory goes, and how many
 CPU threads I should have been using all along.
 
 None of the five experiments here changes a line of the model or the
-training math. Each one adds an instrument, points it at the loop, and reads
-what comes back.
+training math. Each one adds an instrument to the loop and reads what comes
+back.
 
 What they had in common surprised me more than any single result. In four of
 the five, something had been wrong for a while and was invisible in the one
@@ -21,7 +21,7 @@ thread count can be wrong for four experiments in a row without a symptom.
 The loss curve measures the model, and almost everything in this post is a
 property of the process running it.
 
-## Reading a Number the Operating System Already Had
+## Memory and Profiler Instrumentation
 
 The training script already logged step time, tokens per second, gradient
 norm, and loss. The one gap was memory: nothing recorded how much RAM the
@@ -35,7 +35,7 @@ def peak_memory_mb() -> float:
 
 `ru_maxrss` is peak resident set size, the most physical memory the process
 has had in use since it started. The operating system tracks it whether
-anyone reads it or not. I just finally looked.
+anyone reads it or not, and I had simply never read it.
 
 ![Peak memory over the full run, a zoom on the early one-time allocation, and the profiled operator breakdown](images/learning-llms-5/027-observability.png)
 
@@ -51,8 +51,8 @@ different from assuming it.
 The second instrument was PyTorch's profiler, which shows where the CPU
 spends its time in a forward and backward pass. It reports self time (time
 in an operation's own code) and total time (including operations it calls
-into). I read self time throughout, because it credits time to whoever
-actually burned the cycles.
+into). I read self time throughout, because it credits time to the operation that
+actually spent the cycles.
 
 Matrix multiplies dominating was expected, since attention projections and
 linear layers are nearly the whole model. But their share moved a lot
@@ -65,12 +65,12 @@ how much of that model's runtime was real expert work versus the masking and
 gathering around it. This pass profiled the dense baseline, so that's still
 open.
 
-The number that mattered most was one I couldn't explain. Peak memory was
+The number I couldn't explain was the peak itself. Peak memory was
 around 2.56GB, but parameters, gradients, and optimizer state for a
 5,837,056-parameter model account for about 93MB. That factor of 27 is why
 the memory experiment further down exists.
 
-## A Model Checkpoint Is Not a Training Checkpoint
+## What a Checkpoint Has to Contain
 
 Weights alone reproduce the model's output exactly. They aren't enough to
 keep training it identically, because the optimizer carries state the next
@@ -132,10 +132,10 @@ bounded gap of roughly 0.0005 to 0.02 that never ran away. A fresh Adam isn't
 broken, just less warmed up.
 
 That's the more unsettling version. The loss goes down, nothing crashes, and
-the run looks healthy. You'd need a control run beside it to notice, and in a
-real training run the control is the one thing you don't have.
+the run looks healthy. You'd need a control run beside it to notice, and a real
+training run doesn't have one.
 
-## The Last Good Checkpoint Was Already Ruined
+## Detecting Non-Finite Failures
 
 A training run can fail in two ways. The coupled weight decay run in the last
 post was slow: it climbed, peaked, and settled onto a worse plateau without
@@ -173,8 +173,8 @@ alone doomed the next forward pass whatever learning rate came after.
 
 "Keep the last checkpoint from before things went wrong" assumes the failure
 was gradual. Here the last known-good checkpoint was already two bad updates
-deep. Detecting non-finite values is the easy part. Knowing how far back to
-rewind is not.
+deep. Detecting non-finite values is easy; knowing how far back to
+rewind is the harder question.
 
 Gradient clipping, the standard fix for instability, made no difference: the
 clipped run still failed at step 3. `clip_grad_norm_` scales by
@@ -183,7 +183,7 @@ clipped run still failed at step 3. `clip_grad_norm_` scales by
 turns `inf` into `nan`. An overflowed gradient has no finite magnitude left
 to bound.
 
-## Where the Memory Actually Went
+## The Memory Breakdown
 
 This experiment explains the factor of 27, and it starts by splitting memory
 into three parts that behave very differently:
@@ -210,8 +210,8 @@ estimate for parameters, gradients, and optimizer state. By the time the
 optimizer was constructed, it was at 324.11MB. Those numbers were within a
 third of a megabyte across every arm.
 
-The activation result was one I got wrong out loud. I predicted context length
-would scale worse than batch size, since the attention score matrix is
+I got the activation result wrong in my prediction. I expected context length
+to scale worse than batch size, since the attention score matrix is
 quadratic in context length. It didn't. An eight-fold batch increase grew
 forward-pass memory by 8.008 times the control's. An eight-fold context
 increase grew it by 8.006 times.
@@ -228,7 +228,7 @@ did 29,410 steps instead of 500 and had the profiler attached. Either could
 plausibly explain the gap, through profiler overhead or allocator
 fragmentation, and I don't have the data to say how it splits.
 
-## Twelve Threads, Not Twenty-Four
+## Choosing the Thread Count
 
 Back to the loose end from the first section. Every experiment so far had used
 20 threads, a number nobody had chosen deliberately or measured.
