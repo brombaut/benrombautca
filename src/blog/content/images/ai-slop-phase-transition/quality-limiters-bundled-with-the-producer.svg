@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1400" viewBox="0 0 1600 1400">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1400" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1370" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Boredom was a quality control</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">The same path from intent to committed code. Only the gates on it differ.</text>
+  <rect x="70" y="200" width="705" height="1094" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">HUMAN PRODUCER</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Six limiters, each a gate on the path</text>
+  <path d="M422.5 384 V428" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M422.5 490 V518" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M422.5 580 V608" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M422.5 670 V698" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M422.5 760 V788" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M422.5 850 V878" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M422.5 940 V1000" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGreen)"/>
+  <rect x="110" y="428" width="625" height="62" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="134" y="467" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">typing cost</text>
+  <text x="711" y="467" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">verbosity was self-limiting</text>
+  <rect x="110" y="518" width="625" height="62" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="134" y="557" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">boredom</text>
+  <text x="711" y="557" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">a repetition detector</text>
+  <rect x="110" y="608" width="625" height="62" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="134" y="647" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">fatigue</text>
+  <text x="711" y="647" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">a stopping rule</text>
+  <rect x="110" y="698" width="625" height="62" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="134" y="737" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">shame</text>
+  <text x="711" y="737" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">a pre-commit hook</text>
+  <rect x="110" y="788" width="625" height="62" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="134" y="827" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">knowing the codebase</text>
+  <text x="711" y="827" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">the deduplicator</text>
+  <rect x="110" y="878" width="625" height="62" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="134" y="917" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">consequence ownership</text>
+  <text x="711" y="917" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">your tests, your pain</text>
+  <rect x="297.5" y="318" width="250" height="66" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="422.5" y="359.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">intent</text>
+  <rect x="262.5" y="1000" width="320" height="70" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="422.5" y="1043.4" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1a6b45" text-anchor="middle">committed code</text>
+  <text x="110" y="1112" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">Too few tests, missing docs, copy-paste instead of careful</text>
+  <text x="110" y="1141" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">abstraction.</text>
+  <rect x="110" y="1192" width="625" height="54" rx="14" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="422.5" y="1228" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">Fails by omission</text>
+  <rect x="825" y="200" width="705" height="1094" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">LLM PRODUCER</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">The same path, every gate gone</text>
+  <rect x="865" y="428" width="625" height="62" rx="14" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5" stroke-dasharray="9 8"/>
+  <text x="889" y="467" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="start">typing cost</text>
+  <text x="1466" y="467" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="end">no cost</text>
+  <rect x="865" y="518" width="625" height="62" rx="14" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5" stroke-dasharray="9 8"/>
+  <text x="889" y="557" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="start">boredom</text>
+  <text x="1466" y="557" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="end">never bored</text>
+  <rect x="865" y="608" width="625" height="62" rx="14" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5" stroke-dasharray="9 8"/>
+  <text x="889" y="647" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="start">fatigue</text>
+  <text x="1466" y="647" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="end">never tired</text>
+  <rect x="865" y="698" width="625" height="62" rx="14" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5" stroke-dasharray="9 8"/>
+  <text x="889" y="737" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="start">shame</text>
+  <text x="1466" y="737" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="end">no shame</text>
+  <rect x="865" y="788" width="625" height="62" rx="14" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5" stroke-dasharray="9 8"/>
+  <text x="889" y="827" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="start">knowing the codebase</text>
+  <text x="1466" y="827" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="end">no memory</text>
+  <rect x="865" y="878" width="625" height="62" rx="14" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5" stroke-dasharray="9 8"/>
+  <text x="889" y="917" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="start">consequence ownership</text>
+  <text x="1466" y="917" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="end">no stake</text>
+  <path d="M1177.5 384 V1000" fill="none" stroke="#2f9e68" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGreen)"/>
+  <rect x="1052.5" y="318" width="250" height="66" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1177.5" y="359.75" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">intent</text>
+  <rect x="1017.5" y="1000" width="320" height="70" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1177.5" y="1043.4" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1a6b45" text-anchor="middle">committed code</text>
+  <text x="865" y="1112" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">Too much code, too many tests, logic rewritten from scratch,</text>
+  <text x="865" y="1141" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">hedging compiled into control flow.</text>
+  <rect x="865" y="1192" width="625" height="54" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="1177.5" y="1228" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">Fails by commission</text>
+  <text x="800" y="1340" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">In humans, high output correlated with the seniority to know better, which capped a junior's blast radius. That went too.</text>
+</svg>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1100" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1070" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Where I sit in the loop: early 2023, and the end of 2025</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">The same three stages both times. What moves is who holds the middle one, and what I actually review.</text>
+  <rect x="70" y="200" width="705" height="800" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">EARLY 2023</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">I write the code, the agent is consulted</text>
+  <text x="315" y="352" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#64718a" text-anchor="middle" letter-spacing="1.6">IN THE LOOP</text>
+  <text x="630" y="352" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#64718a" text-anchor="middle" letter-spacing="1.6">ON THE SIDE</text>
+  <text x="198" y="424" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="end">intent</text>
+  <rect x="220" y="376" width="190" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="315" y="412" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">me</text>
+  <text x="315" y="439" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">what I want</text>
+  <text x="198" y="554" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="end">code</text>
+  <rect x="220" y="506" width="190" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="315" y="542" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">me</text>
+  <text x="315" y="569" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">I write it</text>
+  <path d="M315 456 V506" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <text x="198" y="684" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="end">review</text>
+  <rect x="220" y="636" width="190" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="315" y="672" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">me</text>
+  <text x="315" y="699" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">I read the output</text>
+  <path d="M315 586 V636" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <rect x="525" y="506" width="210" height="80" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="630" y="542" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">ChatGPT</text>
+  <text x="630" y="569" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">in a browser tab</text>
+  <path d="M416 533 H521" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="6 6"/>
+  <path d="M521 559 H416" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="6 6"/>
+  <text x="467.5" y="584" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#64718a" text-anchor="middle">copy-paste</text>
+  <text x="220" y="776" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">UNIT OF REVIEW</text>
+  <rect x="220" y="792" width="515" height="76" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="477.5" y="839" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">a pasted function, read line by line</text>
+  <rect x="110" y="906" width="625" height="56" rx="14" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <text x="422.5" y="943" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">"Google was still my default"</text>
+  <rect x="825" y="200" width="705" height="800" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">END OF 2025</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">The agent writes the code, I describe and review</text>
+  <text x="1070" y="352" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#64718a" text-anchor="middle" letter-spacing="1.6">IN THE LOOP</text>
+  <text x="1385" y="352" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#64718a" text-anchor="middle" letter-spacing="1.6">ON THE SIDE</text>
+  <text x="953" y="424" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="end">intent</text>
+  <rect x="975" y="376" width="190" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1070" y="412" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">me</text>
+  <text x="1070" y="439" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">what I want</text>
+  <text x="953" y="554" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="end">code</text>
+  <rect x="975" y="506" width="190" height="80" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1070" y="542" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#4b3193" text-anchor="middle">agent</text>
+  <text x="1070" y="569" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">it writes it</text>
+  <path d="M1070 456 V506" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <text x="953" y="684" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="end">review</text>
+  <rect x="975" y="636" width="190" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1070" y="672" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">me</text>
+  <text x="1070" y="699" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">I read the output</text>
+  <path d="M1070 586 V636" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <rect x="1280" y="506" width="210" height="80" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="1385" y="542" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">chat tools</text>
+  <text x="1385" y="569" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">open, off the path</text>
+  <text x="975" y="776" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">UNIT OF REVIEW</text>
+  <rect x="975" y="792" width="515" height="76" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="1232.5" y="838.28" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#8a5905" text-anchor="middle">a described outcome, judged as a whole</text>
+  <rect x="865" y="906" width="625" height="56" rx="14" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="1177.5" y="943" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">"barely resembles what I'd have called coding"</text>
+  <text x="800" y="1046" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Activation energy is what changed most: starting used to mean holding the codebase in my head, now it means starting a conversation.</text>
+</svg>

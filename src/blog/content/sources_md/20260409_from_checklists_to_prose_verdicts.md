@@ -180,7 +180,15 @@ The final major experiment is where the project stopped trying to squeeze everyt
 
 By this point, the numeric system had shown both its value and its limits. It offered finer-grained ranking, it was easy to aggregate and compare, and it imposed useful structure on the evaluation. But it encouraged false precision, it sometimes rewarded mechanism matching instead of property satisfaction, and it could miss semantic architectural failures if those failures weren't cleanly represented in axis criteria.
 
-So I replaced numeric 0-5 scoring with prose-based evaluation and categorical verdicts like High, Acceptable, and Low. Here's what an evaluation looked like in the new format, for the same Astropy WCS issue:
+So I replaced numeric 0-5 scoring with prose-based evaluation and categorical verdicts like High, Acceptable, and Low.
+
+The two forms side by side, on one axis from the Astropy WCS issue. Both panels run the same three stages: the axis being judged, what the evaluator fills in, and what comes out. Only the middle and bottom stages change. The prose side is the evaluation I actually ran; I never scored this axis as a checklist, so the left panel is a reconstruction of what that would have looked like.
+
+![An itemized checklist and a prose assessment of the same rubric axis. Both panels show the same axis chip, then what the evaluator fills in, then the output: three weighted pass/fail items summing to 0.71 on the left, one prose paragraph with a Primary priority and a categorical verdict of High on the right.](images/from-checklists-to-prose-verdicts/rubric-forms-compared.png)
+
+The failing item on the left is the whole argument. WDI3 asks for a specific helper, the patch reaches the same structural guarantee by another route, and the checklist has no way to record that. The prose form can record it, and then has nothing finer than "High" to say next.
+
+Here's what an evaluation looked like in the new format, for the same Astropy WCS issue:
 
 ```yaml
 verdict:

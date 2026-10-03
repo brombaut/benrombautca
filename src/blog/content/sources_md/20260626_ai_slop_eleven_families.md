@@ -150,4 +150,10 @@ def process_data(input_data):
 
 Every family is a different surface where the same fundamental property shows up: models optimize for plausible output rather than durable code. Comments that look helpful, tests that look thorough, structure that looks professional, error handling that looks robust. The code *looks right* because the model is optimized to produce text that looks right. Whether it serves the project is a question the model has no mechanism to answer.
 
+![The eleven slop families mapped against the three tooling modes](images/ai-slop-eleven-families/slop-families-tooling-modes.png)
+
+This map puts the three tooling modes described below in one column each, with a row per family and the damage that family does. A card that bridges two columns is a family that lands in both, depending on which rule you are looking at.
+
+Five of the eleven straddle a boundary, and naming drift lands in none of the three lists. The mode is a property of the individual rule rather than of the family, so a system that assigns one mode per family will clean the easy half and leave the rest.
+
 These families fall into three tooling modes. Some can often be cleaned deterministically or CI-gated: hygiene debris, many annotation-noise rules, obvious error-swallowing, shallow integrity stubs, type escape hatches, and direct cross-language leakage. Some need candidate generation plus judgment: structural bloat, semantic duplication, redundant guarding, test slop, semantic error-swallowing, and deep integrity violations. And some are better prevented through workflow control: kinetic slop, test weakening, verification gaming, search-before-write failures, and repeated architecture reinvention. A useful system needs all three.

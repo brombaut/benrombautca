@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1290" viewBox="0 0 1600 1290">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1290" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1260" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">What stuck in Q1 2026, and what did not</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Everything I dropped was a thing to look at. Everything I kept was a change to how I work.</text>
+  <rect x="70" y="200" width="705" height="800" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">TRIED AND DROPPED</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Five things, none still in use</text>
+  <rect x="110" y="352" width="272" height="74" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="246" y="385" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">Claude Code Radar</text>
+  <text x="246" y="412" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">a dashboard I built</text>
+  <text x="404" y="383.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">Fun to build, satisfying to watch. It</text>
+  <text x="404" y="409.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">never changed how I ran a session.</text>
+  <rect x="110" y="464" width="272" height="74" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="246" y="497" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">Kintsugi</text>
+  <text x="246" y="524" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">agent command center</text>
+  <text x="404" y="482.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">Very cool at first. The habit did not</text>
+  <text x="404" y="508.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">stick and I went back to plain</text>
+  <text x="404" y="534.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">tmux.</text>
+  <rect x="110" y="576" width="272" height="74" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="246" y="609" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">OpenCode</text>
+  <text x="246" y="636" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">model-per-role routing</text>
+  <text x="404" y="594.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">The cost idea is genuinely</text>
+  <text x="404" y="620.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">interesting. I kept drifting back to</text>
+  <text x="404" y="646.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">Claude Code.</text>
+  <rect x="110" y="688" width="272" height="74" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="246" y="721" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="middle">Paper summaries repo</text>
+  <text x="246" y="748" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">for work reading</text>
+  <text x="404" y="719.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">Capture was easy. I almost never</text>
+  <text x="404" y="745.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">came back to read any of it.</text>
+  <rect x="110" y="800" width="272" height="74" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="246" y="833" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="middle">Meeting and idea notes</text>
+  <text x="246" y="860" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">quick Claude Code chats</text>
+  <text x="404" y="831.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">Same shape as the papers. The</text>
+  <text x="404" y="857.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">retrieval habit never formed.</text>
+  <rect x="110" y="906" width="625" height="58" rx="14" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5"/>
+  <text x="422.5" y="944" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">The ones that were fun to watch.</text>
+  <rect x="825" y="200" width="705" height="800" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">KEPT</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Three things, all still in use</text>
+  <rect x="865" y="464" width="272" height="74" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1001" y="497" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">tmux and Claude Code</text>
+  <text x="1001" y="524" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">the main setup</text>
+  <text x="1159" y="482.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">Several sessions at once, in the</text>
+  <text x="1159" y="508.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">terminal. This is where the work</text>
+  <text x="1159" y="534.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">happens.</text>
+  <rect x="865" y="576" width="272" height="74" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1001" y="609" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">Compacting early</text>
+  <text x="1001" y="636" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">at natural break points</text>
+  <text x="1159" y="594.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">I compact at a break instead of</text>
+  <text x="1159" y="620.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">waiting for the context window to</text>
+  <text x="1159" y="646.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">fill.</text>
+  <rect x="865" y="688" width="272" height="74" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1001" y="721" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">Handoff skill</text>
+  <text x="1001" y="748" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">a markdown summary</text>
+  <text x="1159" y="706.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">The next session starts with full</text>
+  <text x="1159" y="732.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">context instead of re-reading the</text>
+  <text x="1159" y="758.2" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">repo.</text>
+  <rect x="865" y="906" width="625" height="58" rx="14" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="1177.5" y="944" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">The ones that changed how I work.</text>
+  <path d="M800 230 V1032" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="9 11"/>
+  <rect x="70" y="1040" width="1460" height="158" rx="26" fill="#fbfcfe" stroke="#d08a1e" stroke-width="2.5" stroke-dasharray="10 10"/>
+  <text x="110" y="1088" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">SITS ON THE LINE</text>
+  <path d="M800 1060 V1178" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="9 11"/>
+  <rect x="650" y="1092" width="300" height="74" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="800" y="1125" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#8a5905" text-anchor="middle">Beads</text>
+  <text x="800" y="1152" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">issue tracking</text>
+  <text x="110" y="1137" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">Useful, and I am still in the trying-it-out phase.</text>
+  <text x="980" y="1122" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">Keeping the pipeline full and tracking issues across</text>
+  <text x="980" y="1149" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">clones are real problems. I think they are growing</text>
+  <text x="980" y="1176" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">pains.</text>
+  <text x="800" y="1250" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Beads is the one I cannot file yet: it changes how I work when it works, and I am still deciding whether it does.</text>
+</svg>

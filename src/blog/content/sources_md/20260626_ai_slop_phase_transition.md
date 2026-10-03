@@ -27,6 +27,10 @@ Clean code was a scarcity discipline. Everything about the pre-AI quality moveme
 
 When we replaced the human producer with an LLM agent, we lost all of these limiters at once. The quality mechanisms were bundled with the producer, and we automated away both.
 
+![The same path from intent to committed code, with the human quality limiters as gates on it and then with every gate gone](images/ai-slop-phase-transition/quality-limiters-bundled-with-the-producer.png)
+
+Both panels trace the same path, from intent to committed code. On the left, each limiter sits on that path as a gate, in amber. On the right, the path is identical and every gate is gone, because none of them were properties of the work. They were properties of who was doing it.
+
 The result is a producer whose characteristic failures are the opposite of human failures. Humans fail by omission: too few tests, missing documentation, copy-paste instead of careful abstraction. AI fails by commission: too much code, too many tests, too many comments, the same logic written from scratch because the model doesn't remember it exists, hedging compiled into control flow because the model doesn't know the correct type, and code that looks correct but silently does nothing.
 
 The hedging often shows up as "careful" code that has no relationship to the actual contract:

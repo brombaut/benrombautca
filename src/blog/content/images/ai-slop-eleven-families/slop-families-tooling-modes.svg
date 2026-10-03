@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1244" viewBox="0 0 1600 1244">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1244" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1214" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Eleven slop families, three ways to fix them</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">The grouping from the conclusion, and the families that straddle it</text>
+  <text x="70" y="250" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="2">FAMILY</text>
+  <text x="70" y="282" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#94a3b8" text-anchor="start">and the damage it does</text>
+  <rect x="600" y="332" width="304" height="742" rx="18" fill="#f7f9fd" stroke="#dbe3ef" stroke-width="2"/>
+  <rect x="918" y="332" width="304" height="742" rx="18" fill="#f7f9fd" stroke="#dbe3ef" stroke-width="2"/>
+  <rect x="1236" y="332" width="304" height="742" rx="18" fill="#f7f9fd" stroke="#dbe3ef" stroke-width="2"/>
+  <rect x="600" y="196" width="304" height="128" rx="18" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="752" y="240" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#1a6b45" text-anchor="middle">Deterministic</text>
+  <text x="752" y="272" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">A linter, an AST pass or a CI</text>
+  <text x="752" y="297" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">gate can clear it</text>
+  <rect x="918" y="196" width="304" height="128" rx="18" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="1070" y="240" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#8a5905" text-anchor="middle">Needs judgment</text>
+  <text x="1070" y="272" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">A tool proposes candidates, a</text>
+  <text x="1070" y="297" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">person decides</text>
+  <rect x="1236" y="196" width="304" height="128" rx="18" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2.5"/>
+  <text x="1388" y="240" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#4b3193" text-anchor="middle">Workflow control</text>
+  <text x="1388" y="272" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">Cheaper to prevent than to</text>
+  <text x="1388" y="297" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">detect afterwards</text>
+  <circle cx="92" cy="373" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="381" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">1</text>
+  <text x="126" y="366" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Hygiene Debris</text>
+  <text x="126" y="391" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">dead weight left in the tree</text>
+  <rect x="612" y="354" width="280" height="38" rx="11" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2"/>
+  <text x="752" y="380" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#1a6b45" text-anchor="middle">static, no LLM needed</text>
+  <circle cx="92" cy="439" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="447" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">2</text>
+  <text x="126" y="432" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Annotation Noise</text>
+  <text x="126" y="457" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">noise in the comment layer</text>
+  <rect x="612" y="420" width="280" height="38" rx="11" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2"/>
+  <text x="752" y="446" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#1a6b45" text-anchor="middle">many rules, not all</text>
+  <circle cx="92" cy="505" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="513" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">3</text>
+  <text x="126" y="498" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Redundant Guarding</text>
+  <text x="126" y="523" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">obscures the real invariants</text>
+  <rect x="930" y="486" width="280" height="38" rx="11" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2"/>
+  <text x="1070" y="512" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#8a5905" text-anchor="middle">needs type context</text>
+  <circle cx="92" cy="571" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="579" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">4</text>
+  <text x="126" y="564" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Structural Bloat</text>
+  <text x="126" y="589" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">indirection without payoff</text>
+  <rect x="922" y="544" width="614" height="54" rx="15" fill="#e6ecf5" stroke="#9aabc3" stroke-width="2.5"/>
+  <rect x="1206" y="562" width="46" height="18" rx="5" fill="#9aabc3" stroke="none" stroke-width="3"/>
+  <rect x="930" y="552" width="280" height="38" rx="11" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2"/>
+  <text x="1070" y="578" font-family="Noto Sans, sans-serif" font-size="19" font-weight="600" fill="#8a5905" text-anchor="middle">is the abstraction earned?</text>
+  <rect x="1248" y="552" width="280" height="38" rx="11" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2"/>
+  <text x="1388" y="578" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#4b3193" text-anchor="middle">architecture reinvention</text>
+  <circle cx="92" cy="637" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="645" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">5</text>
+  <text x="126" y="630" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Duplication by Regeneration</text>
+  <text x="126" y="655" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">many copies of one idea</text>
+  <rect x="922" y="610" width="614" height="54" rx="15" fill="#e6ecf5" stroke="#9aabc3" stroke-width="2.5"/>
+  <rect x="1206" y="628" width="46" height="18" rx="5" fill="#9aabc3" stroke="none" stroke-width="3"/>
+  <rect x="930" y="618" width="280" height="38" rx="11" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2"/>
+  <text x="1070" y="644" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#8a5905" text-anchor="middle">semantic clones</text>
+  <rect x="1248" y="618" width="280" height="38" rx="11" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2"/>
+  <text x="1388" y="644" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#4b3193" text-anchor="middle">search before write</text>
+  <circle cx="92" cy="703" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="711" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">6</text>
+  <text x="126" y="696" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Test Slop</text>
+  <text x="126" y="721" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">tests that cannot fail</text>
+  <rect x="922" y="676" width="614" height="54" rx="15" fill="#e6ecf5" stroke="#9aabc3" stroke-width="2.5"/>
+  <rect x="1206" y="694" width="46" height="18" rx="5" fill="#9aabc3" stroke="none" stroke-width="3"/>
+  <rect x="930" y="684" width="280" height="38" rx="11" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2"/>
+  <text x="1070" y="710" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#8a5905" text-anchor="middle">circular, zero-assertion</text>
+  <rect x="1248" y="684" width="280" height="38" rx="11" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2"/>
+  <text x="1388" y="710" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#4b3193" text-anchor="middle">test weakening</text>
+  <circle cx="92" cy="769" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="777" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">7</text>
+  <text x="126" y="762" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Integrity and Fake-Done</text>
+  <text x="126" y="787" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">false claims of done</text>
+  <rect x="604" y="742" width="932" height="54" rx="15" fill="#e6ecf5" stroke="#9aabc3" stroke-width="2.5"/>
+  <rect x="888" y="760" width="46" height="18" rx="5" fill="#9aabc3" stroke="none" stroke-width="3"/>
+  <rect x="1206" y="760" width="46" height="18" rx="5" fill="#9aabc3" stroke="none" stroke-width="3"/>
+  <rect x="612" y="750" width="280" height="38" rx="11" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2"/>
+  <text x="752" y="776" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#1a6b45" text-anchor="middle">shallow stubs, leakage</text>
+  <rect x="930" y="750" width="280" height="38" rx="11" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2"/>
+  <text x="1070" y="776" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#8a5905" text-anchor="middle">deep violations</text>
+  <rect x="1248" y="750" width="280" height="38" rx="11" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2"/>
+  <text x="1388" y="776" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#4b3193" text-anchor="middle">verification gaming</text>
+  <circle cx="92" cy="835" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="843" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">8</text>
+  <text x="126" y="828" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Error-Swallowing</text>
+  <text x="126" y="853" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">errors that never surface</text>
+  <rect x="604" y="808" width="614" height="54" rx="15" fill="#e6ecf5" stroke="#9aabc3" stroke-width="2.5"/>
+  <rect x="888" y="826" width="46" height="18" rx="5" fill="#9aabc3" stroke="none" stroke-width="3"/>
+  <rect x="612" y="816" width="280" height="38" rx="11" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2"/>
+  <text x="752" y="842" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#1a6b45" text-anchor="middle">empty catch, bare except</text>
+  <rect x="930" y="816" width="280" height="38" rx="11" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2"/>
+  <text x="1070" y="842" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#8a5905" text-anchor="middle">semantic swallowing</text>
+  <circle cx="92" cy="901" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="909" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">9</text>
+  <text x="126" y="894" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Type Laxity</text>
+  <text x="126" y="919" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">type guarantees voided</text>
+  <rect x="612" y="882" width="280" height="38" rx="11" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2"/>
+  <text x="752" y="908" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#1a6b45" text-anchor="middle">as any, double cast</text>
+  <circle cx="92" cy="967" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="975" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">10</text>
+  <text x="126" y="960" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Kinetic Slop</text>
+  <text x="126" y="985" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">diffs wider than the request</text>
+  <rect x="1248" y="948" width="280" height="38" rx="11" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2"/>
+  <text x="1388" y="974" font-family="Noto Sans, sans-serif" font-size="20" font-weight="600" fill="#4b3193" text-anchor="middle">scope held at the harness</text>
+  <circle cx="92" cy="1033" r="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="92" y="1041" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#64718a" text-anchor="middle">11</text>
+  <text x="126" y="1026" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="start">Naming Drift</text>
+  <text x="126" y="1051" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">names that carry no meaning</text>
+  <rect x="600" y="1006" width="940" height="54" rx="14" fill="none" stroke="#94a3b8" stroke-width="2.5" stroke-dasharray="9 8"/>
+  <text x="1070" y="1040" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#94a3b8" text-anchor="middle">the post's three lists do not place it</text>
+  <rect x="70" y="1104" width="1470" height="66" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="805" y="1146.36" font-family="Noto Sans, sans-serif" font-size="26" font-weight="700" fill="#8a5905" text-anchor="middle">Five of the eleven sit in more than one column: the mode is a property of the rule</text>
+  <text x="800" y="1208" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Sub-patterns from the post's lists are folded into their parent family; cross-language leakage sits under Integrity.</text>
+</svg>

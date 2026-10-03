@@ -24,6 +24,10 @@ There's also unexpected convergence in edit interfaces. OpenHands, SWE-agent, DA
 
 The convergence story is about capabilities. The divergence story is about *architecture*, how agents compose those capabilities into systems.
 
+![The 13 coding agents placed on a control-flow spectrum, from fixed pipeline through user-driven, phased and sequential loops to tree search](images/coding-agent-architectures/agent-autonomy-spectrum.png)
+
+The columns are control-flow bands, running left to right from a pipeline that never loops to a search that compares branches, and each agent sits in the band its control loop puts it in. The number and bar on each chip are a second, separate thing: the tools the LLM can actually call. The dashed chips are the three agents where that count points the wrong way, so the bar is worth reading as tool count and nothing more. Calling some of these agents and others not-agents misses the point. The question is where a design sits on this axis, and what that position costs it.
+
 ### Control Loop: Pipeline to Tree Search
 
 The most fundamental architectural axis isn't "which tools does the agent have?" but "how does the agent decide what to do next?"
