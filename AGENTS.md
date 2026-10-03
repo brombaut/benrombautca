@@ -353,6 +353,20 @@ built-in `GITHUB_TOKEN`.
 - **Deployment**: Automatic on push to `main` via GitHub Actions
 - **Protected Branch**: Deploys to `gh-pages` branch
 
+**Work on `main` for everything unless Ben says otherwise.** Commit and push
+straight to `main`. Do not create a feature branch, and do not open a pull
+request, unless he asks for one on that specific piece of work. This holds even
+though pushing `main` deploys: that is the normal way work ships here, and it is
+not a reason to branch defensively.
+
+The cost of this is that `install_lint_build.yml` only runs on pull requests, so
+work that goes straight to `main` gets no CI before `gh_pages_deploy.yml` builds
+it. Verify locally instead, and always before pushing: `npm run lint` and
+`npm run test:smoke:build`, plus `python3 scripts/diagrams/build.py` when a
+diagram generator changed and the blog converter and syncer when a post changed.
+A failure in the deploy workflow takes the site down, so local verification is
+doing the job CI would otherwise do.
+
 ## Coding Conventions
 
 ### TypeScript/JavaScript
