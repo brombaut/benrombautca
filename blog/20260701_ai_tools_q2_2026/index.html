@@ -357,6 +357,15 @@ upfront. Before implementation, I often ask the agent to investigate the
 codebase and write a plan. I review the plan, the intended files, the
 expected shape of the change, and the assumptions. Then the agent
 implements.</p>
+<p>The two panels below show the same pipeline, task to merged code,
+with the human review gate in amber. In late 2025 it sat after the
+implementation. Now it sits after the plan, and the purple bars are the
+comprehension debt that builds up downstream of it.</p>
+<p><img src="/blog-images/ai-tools-q2-2026/review-gate-placement.png"
+alt="Where the human review gate sits, late 2025 compared to Q2 2026" /></p>
+<p>What stands out is how little else changes. The stages are the same
+and they run in the same order. Moving one checkpoint earlier is the
+entire adjustment, and the debt is what it costs.</p>
 <p>That means I am shifting from verifying implementation to verifying
 intent.</p>
 <p>I still need to inspect code, but the highest-leverage review often

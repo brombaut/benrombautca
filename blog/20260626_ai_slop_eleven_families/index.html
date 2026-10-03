@@ -193,7 +193,7 @@
   <p class="hero__lede">The practical companion to the first slop post: what AI code slop actually looks like, organized into eleven families by the kind of damage each one does. The taxonomy came from surveying 70+ AI code quality tools, analyzing 42 of them in depth, and cataloging 575 individual rules. The families run from hygiene debris and annotation noise to fake-done implementations and naming drift.</p>
   <p class="post-meta">
     <time datetime="2026-06-27T00:00:00.000Z">June 27, 2026</time>
-    &middot; 6 min read
+    &middot; 7 min read
   </p>
 
   <div class="article-body">
@@ -387,6 +387,17 @@ structure that looks professional, error handling that looks robust. The
 code <em>looks right</em> because the model is optimized to produce text
 that looks right. Whether it serves the project is a question the model
 has no mechanism to answer.</p>
+<p><img
+src="/blog-images/ai-slop-eleven-families/slop-families-tooling-modes.png"
+alt="The eleven slop families mapped against the three tooling modes" /></p>
+<p>This map puts the three tooling modes described below in one column
+each, with a row per family and the damage that family does. A card that
+bridges two columns is a family that lands in both, depending on which
+rule you are looking at.</p>
+<p>Five of the eleven straddle a boundary, and naming drift lands in
+none of the three lists. The mode is a property of the individual rule
+rather than of the family, so a system that assigns one mode per family
+will clean the easy half and leave the rest.</p>
 <p>These families fall into three tooling modes. Some can often be
 cleaned deterministically or CI-gated: hygiene debris, many
 annotation-noise rules, obvious error-swallowing, shallow integrity

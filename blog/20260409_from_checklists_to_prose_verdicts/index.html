@@ -193,7 +193,7 @@
   <p class="hero__lede">The other two articles in this series describe what the architectural evaluation pipeline produced. This one is the development story: 12 experiments, what broke along the way, and how the design moved from brittle rubric checklists to prose verdicts. The question stayed the same throughout, which is whether an agent can infer what architecturally good means for a codebase and then judge a patch against it.</p>
   <p class="post-meta">
     <time datetime="2026-04-09T00:00:00.000Z">April 9, 2026</time>
-    &middot; 15 min read
+    &middot; 16 min read
   </p>
 
   <div class="article-body">
@@ -531,9 +531,23 @@ instead of property satisfaction, and it could miss semantic
 architectural failures if those failures weren’t cleanly represented in
 axis criteria.</p>
 <p>So I replaced numeric 0-5 scoring with prose-based evaluation and
-categorical verdicts like High, Acceptable, and Low. Here’s what an
-evaluation looked like in the new format, for the same Astropy WCS
-issue:</p>
+categorical verdicts like High, Acceptable, and Low.</p>
+<p>The two forms side by side, on one axis from the Astropy WCS issue.
+Both panels run the same three stages: the axis being judged, what the
+evaluator fills in, and what comes out. Only the middle and bottom
+stages change. The prose side is the evaluation I actually ran; I never
+scored this axis as a checklist, so the left panel is a reconstruction
+of what that would have looked like.</p>
+<p><img
+src="/blog-images/from-checklists-to-prose-verdicts/rubric-forms-compared.png"
+alt="An itemized checklist and a prose assessment of the same rubric axis. Both panels show the same axis chip, then what the evaluator fills in, then the output: three weighted pass/fail items summing to 0.71 on the left, one prose paragraph with a Primary priority and a categorical verdict of High on the right." /></p>
+<p>The failing item on the left is the whole argument. WDI3 asks for a
+specific helper, the patch reaches the same structural guarantee by
+another route, and the checklist has no way to record that. The prose
+form can record it, and then has nothing finer than “High” to say
+next.</p>
+<p>Here’s what an evaluation looked like in the new format, for the same
+Astropy WCS issue:</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">verdict</span><span class="kw">:</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">classification</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;High&quot;</span></span>

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1350" viewBox="0 0 1600 1350">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1350" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1320" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">The same axis, scored two ways</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">One Astropy WCS patch, one architectural axis. The prose form is the one I shipped; the checklist is reconstructed.</text>
+  <rect x="70" y="200" width="705" height="1046" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">ITEMIZED CHECKLIST</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">How many boxes did the patch check?</text>
+  <text x="110" y="340" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">THE AXIS</text>
+  <rect x="110" y="356" width="390" height="76" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="305" y="390" font-family="DejaVu Sans Mono, monospace" font-size="21" font-weight="700" fill="#1a4d8f" text-anchor="middle">wrapper_delegation_integrity</text>
+  <text x="305" y="412" font-family="Noto Sans, sans-serif" font-size="15" font-weight="400" fill="#64718a" text-anchor="middle">the three-step expand, delegate, contract pattern</text>
+  <path d="M110 470 H735" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="110" y="508" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT THE EVALUATOR FILLS IN</text>
+  <rect x="110" y="526" width="390" height="112" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="124" y="539" width="66" height="30" rx="9" fill="#e8f1fc" stroke="#3381db" stroke-width="2"/>
+  <text x="157" y="560" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" fill="#1a4d8f" text-anchor="middle">WDI1</text>
+  <text x="202" y="560" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#94a3b8" text-anchor="start">weight 3</text>
+  <rect x="398" y="539" width="88" height="30" rx="15" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2"/>
+  <path d="M411 556 l 6 7 l 11 -14" fill="none" stroke="#2f9e68" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="473" y="560" font-family="Noto Sans, sans-serif" font-size="18" font-weight="700" fill="#1a6b45" text-anchor="end">PASS</text>
+  <text x="124" y="592" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">All changes stay inside</text>
+  <text x="124" y="617" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">world_to_pixel_values and its helpers.</text>
+  <rect x="110" y="656" width="390" height="112" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="124" y="669" width="66" height="30" rx="9" fill="#e8f1fc" stroke="#3381db" stroke-width="2"/>
+  <text x="157" y="690" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" fill="#1a4d8f" text-anchor="middle">WDI2</text>
+  <text x="202" y="690" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#94a3b8" text-anchor="start">weight 2</text>
+  <rect x="398" y="669" width="88" height="30" rx="15" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2"/>
+  <path d="M411 686 l 6 7 l 11 -14" fill="none" stroke="#2f9e68" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="473" y="690" font-family="Noto Sans, sans-serif" font-size="18" font-weight="700" fill="#1a6b45" text-anchor="end">PASS</text>
+  <text x="124" y="722" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Delegation call and output contraction</text>
+  <text x="124" y="747" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">left unmodified.</text>
+  <rect x="110" y="786" width="390" height="112" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="124" y="799" width="66" height="30" rx="9" fill="#e8f1fc" stroke="#3381db" stroke-width="2"/>
+  <text x="157" y="820" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" fill="#1a4d8f" text-anchor="middle">WDI3</text>
+  <text x="202" y="820" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#94a3b8" text-anchor="start">weight 2</text>
+  <rect x="398" y="799" width="88" height="30" rx="15" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2"/>
+  <path d="M411 808 l 15 15 M426 808 l -15 15" fill="none" stroke="#d08a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="473" y="820" font-family="Noto Sans, sans-serif" font-size="18" font-weight="700" fill="#8a5905" text-anchor="end">FAIL</text>
+  <text x="124" y="852" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Dropped dimensions read through the</text>
+  <text x="124" y="877" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">helper the rubric named.</text>
+  <text x="520" y="562" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Every item is a binary</text>
+  <text x="520" y="591" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">call against its own</text>
+  <text x="520" y="620" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">threshold, then</text>
+  <text x="520" y="649" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">weighted.</text>
+  <path d="M110 936 H735" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="110" y="974" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT COMES OUT</text>
+  <rect x="110" y="990" width="390" height="86" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="305" y="1029" font-family="Noto Sans, sans-serif" font-size="40" font-weight="700" fill="#8a5905" text-anchor="middle">0.71</text>
+  <text x="305" y="1056" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">weighted pass rate</text>
+  <text x="110" y="1108" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#94a3b8" text-anchor="start">5 of 7 points, comparable across patches</text>
+  <text x="520" y="1004" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">WDI3 names a</text>
+  <text x="520" y="1032" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">mechanism, not a</text>
+  <text x="520" y="1060" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">property. An</text>
+  <text x="520" y="1088" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">equivalent route</text>
+  <text x="520" y="1116" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">scores as a miss.</text>
+  <rect x="110" y="1150" width="625" height="56" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="422.5" y="1187" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">Precise, and some of that precision is false.</text>
+  <rect x="825" y="200" width="705" height="1046" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">PROSE ASSESSMENT</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Did the patch preserve the property?</text>
+  <text x="865" y="340" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">THE AXIS</text>
+  <rect x="865" y="356" width="390" height="76" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1060" y="390" font-family="DejaVu Sans Mono, monospace" font-size="21" font-weight="700" fill="#1a4d8f" text-anchor="middle">wrapper_delegation_integrity</text>
+  <text x="1060" y="412" font-family="Noto Sans, sans-serif" font-size="15" font-weight="400" fill="#64718a" text-anchor="middle">the three-step expand, delegate, contract pattern</text>
+  <path d="M865 470 H1490" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="865" y="508" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT THE EVALUATOR FILLS IN</text>
+  <rect x="865" y="526" width="390" height="372" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="879" y="539" width="104" height="30" rx="9" fill="#ddf2f0" stroke="#109188" stroke-width="2"/>
+  <text x="931" y="560" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" fill="#0a5f59" text-anchor="middle">PRIMARY</text>
+  <text x="1241" y="560" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#94a3b8" text-anchor="end">no items, no thresholds</text>
+  <text x="879" y="596" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">Maintains the three-step delegation</text>
+  <text x="879" y="624" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">pattern. Only the expansion step is</text>
+  <text x="879" y="652" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">modified; the delegation call and the</text>
+  <text x="879" y="680" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">output contraction are untouched.</text>
+  <text x="879" y="708" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">Dropped-dimension values are</text>
+  <text x="879" y="736" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">computed on the fly through an</text>
+  <text x="879" y="764" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">existing helper, so no new state is</text>
+  <text x="879" y="792" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">introduced. The mechanism differs</text>
+  <text x="879" y="820" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">from the one the checklist itemized,</text>
+  <text x="879" y="848" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">and it reaches the same structural</text>
+  <text x="879" y="876" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#1f2430" text-anchor="start">guarantee.</text>
+  <text x="1275" y="562" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">One judgment about</text>
+  <text x="1275" y="591" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">the whole axis, with a</text>
+  <text x="1275" y="620" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">priority in place of a</text>
+  <text x="1275" y="649" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">weight.</text>
+  <path d="M865 936 H1490" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="865" y="974" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT COMES OUT</text>
+  <rect x="865" y="990" width="390" height="86" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1060" y="1029" font-family="Noto Sans, sans-serif" font-size="40" font-weight="700" fill="#1a6b45" text-anchor="middle">High</text>
+  <text x="1060" y="1056" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">architectural conformance</text>
+  <text x="865" y="1108" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#94a3b8" text-anchor="start">architecture only, not a correctness claim</text>
+  <text x="1275" y="1004" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="start">An equivalent route</text>
+  <text x="1275" y="1032" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="start">to the same</text>
+  <text x="1275" y="1060" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="start">property, not a</text>
+  <text x="1275" y="1088" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1a6b45" text-anchor="start">miss.</text>
+  <rect x="865" y="1150" width="625" height="56" rx="14" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="1177.5" y="1187" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">Better reasoning, some distinctions flattened.</text>
+  <text x="800" y="1292" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">High covers everything from solid to exemplary, so the top tier stops separating. That is the cost the hybrid is meant to buy back.</text>
+</svg>
