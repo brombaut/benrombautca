@@ -8,6 +8,12 @@ But they're not the whole story. When I scanned AI-generated repositories agains
 
 AI code quality has three tiers: traditional smells (the same ones we've always had), gray smells (old patterns at elevated rates), and AI-specific slop (genuinely new defects). A useful quality tool can't only target the new stuff.
 
+The three tiers are easier to see as regions than as a list.
+
+![Three tier cards, traditional smells, gray smells and AI-specific slop, enclosed by two overlapping regions: predates AI covers the first two, distinctive to AI output covers the last two, and the gray tier sits inside both](images/ai-slop-phase-transition/three-tiers-of-smells.png)
+
+They do not nest. Gray smells are old patterns, which is why they fall inside both regions, and that overlap is the part a tool built only for the new tier cannot see.
+
 The AI-specific tier is the strange one because the code can look like progress while quietly changing the truth of the system:
 
 ```python
@@ -120,7 +126,11 @@ The theoretical argument is interesting on its own. What makes it concrete is th
 
 > "About every other day we get somebody submitting a pull request that is 60,000 lines of diff."
 
-Industry-scale data supports the pattern. LinearB's study of 8.1 million PRs found AI PRs accepted at 32.7% versus 84.4% for human PRs, with agentic PRs waiting 5.3x longer for pickup. GitClear found copy-pasted lines rising while moved/refactored lines dropped. Google's DORA report estimated that for every 25% increase in AI adoption, delivery stability drops 7.2%, even as reported code quality increases 3.4%.
+Industry-scale data supports the pattern. LinearB's study of 8.1 million PRs splits them by who wrote them. The left panel below is the share of each author's PRs that got accepted; the right is how long each waited before a reviewer picked it up, in multiples of the human wait.
+
+![Two bar charts from LinearB's 8.1 million pull requests. Acceptance rate: human PRs 84.4 percent, AI PRs 32.7 percent. Pickup delay: agentic PRs wait 5.3 times longer than human PRs before a reviewer picks them up](images/ai-slop-phase-transition/pr-acceptance-rates.png)
+
+Both measures move the same way. AI PRs are less likely to land and slower to get looked at, so each one costs more reviewer attention than it returns. GitClear found copy-pasted lines rising while moved/refactored lines dropped. Google's DORA report estimated that for every 25% increase in AI adoption, delivery stability drops 7.2%, even as reported code quality increases 3.4%.
 
 ## What Teams Are Converging On
 

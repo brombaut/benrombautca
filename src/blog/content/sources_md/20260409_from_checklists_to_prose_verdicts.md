@@ -168,6 +168,12 @@ Even when Claude Code generated both the rubrics and the patches, the patches di
 
 The rubric-generation workflow naturally involved deep architectural reconnaissance. The patch-generation workflow could still lapse into implementation search. So the system could often *describe* the right architectural move without actually *taking* it when writing the patch.
 
+Both workflows start from the same issue in the same codebase, and both open the affected area. Only one of them reliably explores it before changing anything.
+
+![Two panels showing the same model on the same issue. Both start from the same card, one issue, one codebase, one model, and reach the same point, open the affected area, with the same two branches: reconnaissance first and implementation search. Rubric generation takes reconnaissance, explores the codebase, names the structural property and commits it to the rubric. Patch generation takes implementation search, locates the failing behaviour and writes a change that works, with the reconnaissance branch greyed out as not taken.](images/from-checklists-to-prose-verdicts/know-vs-do-gap.png)
+
+The reconnaissance branch is available to both. Nothing in the patch-generation task forces it, so the model can hold the right architectural standard and still not route through it.
+
 I found this genuinely interesting. It's not just a patch-generation bug. It says something broader: architectural understanding and architectural execution are related, but they're not identical capabilities. The model can articulate what the right structural approach looks like and then not follow it. A "know vs do" gap.
 
 The response was practical. I updated the patch-generation prompt with a simple but strategically important instruction: before implementing, understand the patterns in the affected area and prefer extending existing mechanisms over building new ones. That sentence tries to import the reconnaissance behavior from rubric generation into patch generation. I also restructured the rubric-generation workflow operationally, delegating YAML generation and validation to subagents with isolated context to reduce contamination from the main conversation.
@@ -221,6 +227,12 @@ Prose evaluation was genuinely better at catching semantic architectural errors,
 But it was worse at fine-grained separation within the top tier, producing neat aggregate statistics, and constraining evaluator judgment in a reproducible way.
 
 The tradeoff is clear. Numeric scoring gives you precision, but some of it is false. Prose verdicts give you better reasoning depth, but some of the nuance collapses into broad categories. The right system probably combines prose judgment with better anchors, not pure numbers or pure freeform narrative.
+
+The six forms the rubric took, each one labelled with the failure that forced it rather than the feature it added.
+
+![Six rubric forms laid out as a ladder. Each row pairs the failure that forced the change on the left with the form adopted in response on the right: a passing test says nothing about design logic leads to a rubric existing at all; mixing clean with correct leads to architecture being split from correctness; the checklist rewarding local compliance leads to holistic 0-5 axis scoring; drifting baselines and uneven exploration at 9 issues lead to committed methodology; prompts overfit to Django and Astropy lead to codebase-derived axes; numeric scores implying false precision lead to prose verdicts.](images/from-checklists-to-prose-verdicts/twelve-experiment-arc.png)
+
+Read down the right column and it looks like a plan. The left column is what it actually was: every form was a response to the thing that had just broken.
 
 ## What Held Up Across All 12 Experiments
 

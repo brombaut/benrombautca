@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1668" viewBox="0 0 1600 1668">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1668" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1638" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Know versus do: one model, two workflows</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Claude Code wrote both the rubrics and the patches. Only one workflow did the reconnaissance.</text>
+  <rect x="70" y="200" width="705" height="1348" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">RUBRIC GENERATION</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">What does the architecture look like here?</text>
+  <text x="110" y="340" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">THE SHARED START</text>
+  <rect x="110" y="356" width="390" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="305" y="392" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">one issue, one codebase, one model</text>
+  <text x="305" y="417" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#64718a" text-anchor="middle">Claude Code on both sides of the pipeline</text>
+  <path d="M110 474 H735" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="110" y="512" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHERE THEY DIVERGE</text>
+  <rect x="110" y="530" width="390" height="54" rx="16" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="305" y="565.05" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="middle">open the affected area</text>
+  <path d="M305 584 V600 H152 V669 H172" fill="none" stroke="#109188" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aTeal)"/>
+  <rect x="172" y="628" width="328" height="82" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="336" y="665" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#0a5f59" text-anchor="middle">reconnaissance first</text>
+  <text x="336" y="692" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">map the pattern, then write</text>
+  <path d="M267 584 V616 H130 V773 H172" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="9 9"/>
+  <rect x="172" y="732" width="328" height="82" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="8 8"/>
+  <text x="336" y="769" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">implementation search</text>
+  <text x="336" y="796" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#8d9ab0" text-anchor="middle">find a change that works</text>
+  <text x="498" y="841" font-family="Noto Sans, sans-serif" font-size="18" font-weight="700" fill="#94a3b8" text-anchor="end">not taken</text>
+  <text x="520" y="658" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="start">Describing the</text>
+  <text x="520" y="686" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="start">architecture</text>
+  <text x="520" y="714" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="start">requires exploring</text>
+  <text x="520" y="742" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="start">it. This workflow</text>
+  <text x="520" y="770" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="start">explores by</text>
+  <text x="520" y="798" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#0a5f59" text-anchor="start">construction.</text>
+  <path d="M110 858 H735" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="110" y="896" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT THE WORKFLOW DOES</text>
+  <rect x="110" y="912" width="390" height="88" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="110" y="926" width="5" height="60" rx="3" fill="#109188" stroke="none" stroke-width="3"/>
+  <text x="132" y="946" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#94a3b8" text-anchor="start">1</text>
+  <text x="158" y="946" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Explore the codebase</text>
+  <text x="158" y="974" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Read the wrapper, the delegation</text>
+  <text x="158" y="999" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">call, the layers around it.</text>
+  <rect x="110" y="1014" width="390" height="88" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="110" y="1028" width="5" height="60" rx="3" fill="#109188" stroke="none" stroke-width="3"/>
+  <text x="132" y="1048" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#94a3b8" text-anchor="start">2</text>
+  <text x="158" y="1048" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Name the structural property</text>
+  <text x="158" y="1076" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Expand, delegate, contract. The</text>
+  <text x="158" y="1101" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">pattern a patch has to preserve.</text>
+  <rect x="110" y="1116" width="390" height="88" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="110" y="1130" width="5" height="60" rx="3" fill="#109188" stroke="none" stroke-width="3"/>
+  <text x="132" y="1150" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#94a3b8" text-anchor="start">3</text>
+  <text x="158" y="1150" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Commit it to the rubric</text>
+  <text x="158" y="1178" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">The axis, its priority, the baseline</text>
+  <text x="158" y="1203" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">and how it was measured.</text>
+  <text x="520" y="946" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Deep architectural</text>
+  <text x="520" y="974" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">reconnaissance,</text>
+  <text x="520" y="1002" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">because the output is</text>
+  <text x="520" y="1030" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">a description of the</text>
+  <text x="520" y="1058" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">architecture.</text>
+  <path d="M110 1242 H735" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="110" y="1276" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT COMES OUT</text>
+  <rect x="110" y="1292" width="390" height="90" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="305" y="1333" font-family="Noto Sans, sans-serif" font-size="34" font-weight="700" fill="#0a5f59" text-anchor="middle">a rubric</text>
+  <text x="305" y="1358" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#64718a" text-anchor="middle">the right architectural move, written down</text>
+  <text x="110" y="1414" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#94a3b8" text-anchor="start">expand, delegate, contract</text>
+  <rect x="110" y="1452" width="625" height="56" rx="14" fill="#ddf2f0" stroke="#109188" stroke-width="2.5"/>
+  <text x="422.5" y="1489" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#0a5f59" text-anchor="middle">The model can describe the move.</text>
+  <rect x="825" y="200" width="705" height="1348" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">PATCH GENERATION</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">What change makes this issue go away?</text>
+  <text x="865" y="340" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">THE SHARED START</text>
+  <rect x="865" y="356" width="390" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1060" y="392" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">one issue, one codebase, one model</text>
+  <text x="1060" y="417" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#64718a" text-anchor="middle">Claude Code on both sides of the pipeline</text>
+  <path d="M865 474 H1490" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="865" y="512" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHERE THEY DIVERGE</text>
+  <rect x="865" y="530" width="390" height="54" rx="16" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="1060" y="565.05" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="middle">open the affected area</text>
+  <path d="M1060 584 V600 H907 V669 H927" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="9 9"/>
+  <rect x="927" y="628" width="328" height="82" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="8 8"/>
+  <text x="1091" y="665" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">reconnaissance first</text>
+  <text x="1091" y="692" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#8d9ab0" text-anchor="middle">map the pattern, then write</text>
+  <text x="1253" y="617" font-family="Noto Sans, sans-serif" font-size="18" font-weight="700" fill="#94a3b8" text-anchor="end">not taken</text>
+  <path d="M1022 584 V616 H885 V773 H927" fill="none" stroke="#d08a1e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <rect x="927" y="732" width="328" height="82" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1091" y="769" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">implementation search</text>
+  <text x="1091" y="796" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">find a change that works</text>
+  <text x="1275" y="658" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">Nothing in the task</text>
+  <text x="1275" y="686" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">forces that</text>
+  <text x="1275" y="714" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">exploration, so this</text>
+  <text x="1275" y="742" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">workflow can lapse</text>
+  <text x="1275" y="770" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8a5905" text-anchor="start">into search.</text>
+  <path d="M865 858 H1490" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="865" y="896" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT THE WORKFLOW DOES</text>
+  <rect x="865" y="912" width="390" height="88" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="865" y="926" width="5" height="60" rx="3" fill="#d08a1e" stroke="none" stroke-width="3"/>
+  <text x="887" y="946" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#94a3b8" text-anchor="start">1</text>
+  <text x="913" y="946" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Locate the failing behaviour</text>
+  <text x="913" y="974" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Find the code path that produces</text>
+  <text x="913" y="999" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the wrong result.</text>
+  <rect x="865" y="1014" width="390" height="88" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="865" y="1028" width="5" height="60" rx="3" fill="#d08a1e" stroke="none" stroke-width="3"/>
+  <text x="887" y="1048" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#94a3b8" text-anchor="start">2</text>
+  <text x="913" y="1048" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Search for a change that works</text>
+  <text x="913" y="1076" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Candidate edits, judged by whether</text>
+  <text x="913" y="1101" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the issue goes away.</text>
+  <rect x="865" y="1116" width="390" height="88" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <rect x="865" y="1130" width="5" height="60" rx="3" fill="#d08a1e" stroke="none" stroke-width="3"/>
+  <text x="887" y="1150" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#94a3b8" text-anchor="start">3</text>
+  <text x="913" y="1150" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Write the patch</text>
+  <text x="913" y="1178" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">No pass that asks which existing</text>
+  <text x="913" y="1203" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">mechanism to extend.</text>
+  <text x="1275" y="946" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">The same</text>
+  <text x="1275" y="974" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">reconnaissance is</text>
+  <text x="1275" y="1002" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">available here. It just</text>
+  <text x="1275" y="1030" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">is not where the</text>
+  <text x="1275" y="1058" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">workflow starts.</text>
+  <path d="M865 1242 H1490" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="865" y="1276" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.6">WHAT COMES OUT</text>
+  <rect x="865" y="1292" width="390" height="90" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1060" y="1333" font-family="Noto Sans, sans-serif" font-size="34" font-weight="700" fill="#8a5905" text-anchor="middle">a patch</text>
+  <text x="1060" y="1356" font-family="Noto Sans, sans-serif" font-size="16" font-weight="400" fill="#64718a" text-anchor="middle">that need not match the move the rubric named</text>
+  <text x="865" y="1414" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#94a3b8" text-anchor="start">scored by the rubric the same model wrote</text>
+  <rect x="865" y="1452" width="625" height="56" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="1177.5" y="1489" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">It does not reliably take it.</text>
+  <text x="800" y="1594" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">The fix was one sentence in the patch-generation prompt: understand the patterns in the affected area before implementing.</text>
+</svg>

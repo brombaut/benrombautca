@@ -215,11 +215,23 @@ def tool_use_repair(issue, file_content):
     return apply_edits(edits, file_content)         # apply all at once at the end
 ```
 
+Put next to a loop that actually executes, the difference is one box.
+
+![Two panels comparing a real tool loop with Agentless's Anthropic path: both run LLM, str_replace_editor call, a middle step and a tool result fed back round the loop, but the right panel's middle step is a dashed "no execution" box whose edit is appended to a list, its tool result is the constant string "File is successfully edited.", and the collected edits are applied only after the loop ends](images/coding-agent-architectures/agentless-hardcoded-tool-loop.png)
+
+Both sides run the same five steps, and the model has no way to tell which one it is in.
+
 The LLM never sees actual file state. It's structured output extraction disguised as tool use. The expectation that tool use means tool *execution* doesn't always hold.
 
 ### Context Compaction: Five Strategies
 
-Long coding sessions generate more context than fits in a model's context window. Five distinct strategies emerged:
+Long coding sessions generate more context than fits in a model's context window. Five distinct strategies emerged.
+
+The grid below puts the same ten-message history down the left and gives each strategy a column, so each cell is what that strategy does with that message: keep it, replace it with a placeholder, fold it into a summary, or never put it in the list at all. The three rows underneath carry what the grid cannot, which is what pulls the trigger, what it costs in extra LLM calls, and what it loses.
+
+![The same ten-message agent history under five compaction strategies: no compaction keeps every message, rule-based truncation replaces old observations with placeholders, LLM summarization and Cline's condense tool fold six messages into one summary, and structural isolation never puts another node's messages in the list](images/coding-agent-architectures/compaction-strategies.png)
+
+Only two of the five columns ever ask an LLM what to drop, and they are the only two that can tell a dead observation from a useful one. Cline's column is identical to the summarization column, because the strategy is the same and only the trigger moved.
 
 **No compaction (mini-swe-agent).** The message list grows until context overflow crashes the agent. Combined with cost and step limits, this works for bounded tasks. Not every problem needs a sophisticated solution.
 
