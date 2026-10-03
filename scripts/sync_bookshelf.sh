@@ -3,9 +3,6 @@
 # exit when any command fails
 set -e;
 
-echo "Install virtualenv"
-pip3 install virtualenv;
-
 echo "Create venv-bookshelf-syncer"
 python3 -m venv ./venvs/venv-bookshelf-syncer;
 

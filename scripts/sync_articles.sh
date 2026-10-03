@@ -3,9 +3,6 @@
 # exit when any command fails
 set -e;
 
-echo "Install virtualenv"
-pip3 install virtualenv;
-
 echo "Create venv-articles-syncer"
 # Recreate from scratch: pypandoc and pypandoc_binary ship the same module, so a
 # leftover unpinned pypandoc in a reused venv would clash with the pin (#548).
