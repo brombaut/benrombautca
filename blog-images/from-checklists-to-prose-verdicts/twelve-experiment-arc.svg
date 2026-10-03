@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1374" viewBox="0 0 1600 1374">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1374" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1344" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Twelve experiments, six rubric forms</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Every form was adopted because the previous one failed under comparison.</text>
+  <text x="70" y="228" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">WHAT BROKE</text>
+  <text x="740" y="228" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">WHAT THE RUBRIC BECAME</text>
+  <rect x="70" y="262" width="600" height="123" rx="18" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="96" y="311.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">A passing test says nothing about design</text>
+  <text x="96" y="343.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">logic</text>
+  <rect x="740" y="262" width="790" height="123" rx="18" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <circle cx="786" cy="323.5" r="25" fill="#ffffff" stroke="#3381db" stroke-width="2.5"/>
+  <text x="786" y="332.5" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">1</text>
+  <text x="838" y="311.78" font-family="Noto Sans, sans-serif" font-size="29" font-weight="700" fill="#1a4d8f" text-anchor="start">A rubric exists at all</text>
+  <text x="838" y="352" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Two skills, primitive structure, rubric logic left in the prompt</text>
+  <path d="M670 323.5 H740" fill="none" stroke="#d08a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <rect x="70" y="431" width="600" height="123" rx="18" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="96" y="480.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">A rubric that mixes clean with correct</text>
+  <text x="96" y="512.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">measures neither</text>
+  <rect x="740" y="431" width="790" height="123" rx="18" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <circle cx="786" cy="492.5" r="25" fill="#ffffff" stroke="#3381db" stroke-width="2.5"/>
+  <text x="786" y="501.5" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">2</text>
+  <text x="838" y="480.78" font-family="Noto Sans, sans-serif" font-size="29" font-weight="700" fill="#1a4d8f" text-anchor="start">Architecture split from correctness</text>
+  <text x="838" y="521" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Correctness out of scope, weighted 0-1 items per axis</text>
+  <path d="M670 492.5 H740" fill="none" stroke="#d08a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <rect x="70" y="600" width="600" height="123" rx="18" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="96" y="649.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">The checklist rewarded local compliance and</text>
+  <text x="96" y="681.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">missed parallel mechanisms</text>
+  <rect x="740" y="600" width="790" height="123" rx="18" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <circle cx="786" cy="661.5" r="25" fill="#ffffff" stroke="#3381db" stroke-width="2.5"/>
+  <text x="786" y="670.5" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">3</text>
+  <text x="838" y="649.78" font-family="Noto Sans, sans-serif" font-size="29" font-weight="700" fill="#1a4d8f" text-anchor="start">Holistic 0-5 axis scoring</text>
+  <text x="838" y="690" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Discrete levels read as descriptions, one judgment per axis</text>
+  <path d="M670 661.5 H740" fill="none" stroke="#d08a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <rect x="70" y="769" width="600" height="123" rx="18" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="96" y="818.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">At 9 issues: drifting baselines, no removal</text>
+  <text x="96" y="850.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">check, uneven exploration</text>
+  <rect x="740" y="769" width="790" height="123" rx="18" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <circle cx="786" cy="830.5" r="25" fill="#ffffff" stroke="#3381db" stroke-width="2.5"/>
+  <text x="786" y="839.5" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">4</text>
+  <text x="838" y="818.78" font-family="Noto Sans, sans-serif" font-size="29" font-weight="700" fill="#1a4d8f" text-anchor="start">Committed methodology</text>
+  <text x="838" y="859" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Baselines committed, removals checked, depth held uniform</text>
+  <path d="M670 830.5 H740" fill="none" stroke="#d08a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <rect x="70" y="938" width="600" height="123" rx="18" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="96" y="987.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">The audit found the prompts overfit to</text>
+  <text x="96" y="1019.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">Django and Astropy</text>
+  <rect x="740" y="938" width="790" height="123" rx="18" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <circle cx="786" cy="999.5" r="25" fill="#ffffff" stroke="#3381db" stroke-width="2.5"/>
+  <text x="786" y="1008.5" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">5</text>
+  <text x="838" y="987.78" font-family="Noto Sans, sans-serif" font-size="29" font-weight="700" fill="#1a4d8f" text-anchor="start">Codebase-derived axes</text>
+  <text x="838" y="1028" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Exploration picks the axes, boundary calls documented</text>
+  <path d="M670 999.5 H740" fill="none" stroke="#d08a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <rect x="70" y="1107" width="600" height="123" rx="18" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="96" y="1156.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">Numeric scores implied precision the process</text>
+  <text x="96" y="1188.18" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#8a5905" text-anchor="start">could not support</text>
+  <rect x="740" y="1107" width="790" height="123" rx="18" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <circle cx="786" cy="1168.5" r="25" fill="#ffffff" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="786" y="1177.5" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">6</text>
+  <text x="838" y="1156.78" font-family="Noto Sans, sans-serif" font-size="29" font-weight="700" fill="#1a6b45" text-anchor="start">Prose verdicts</text>
+  <text x="838" y="1197" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Prose per-axis assessments, verdicts of High, Acceptable, Low</text>
+  <path d="M670 1168.5 H740" fill="none" stroke="#d08a1e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)"/>
+  <path d="M786 385 V431" fill="none" stroke="#7d8ba3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M786 554 V600" fill="none" stroke="#7d8ba3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M786 723 V769" fill="none" stroke="#7d8ba3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M786 892 V938" fill="none" stroke="#7d8ba3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M786 1061 V1107" fill="none" stroke="#7d8ba3" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <text x="740" y="1274" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="start">Prose is where it stands now, not where it ends.</text>
+  <text x="800" y="1322" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Three experiments produced no new rubric: the first 6-issue run, the scale-up to 9, and the consistency audit. They produced the failures.</text>
+</svg>

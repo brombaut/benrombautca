@@ -229,6 +229,12 @@ problems worse.</p>
 we’ve always had), gray smells (old patterns at elevated rates), and
 AI-specific slop (genuinely new defects). A useful quality tool can’t
 only target the new stuff.</p>
+<p>The three tiers are easier to see as regions than as a list.</p>
+<p><img src="/blog-images/ai-slop-phase-transition/three-tiers-of-smells.png"
+alt="Three tier cards, traditional smells, gray smells and AI-specific slop, enclosed by two overlapping regions: predates AI covers the first two, distinctive to AI output covers the last two, and the gray tier sits inside both" /></p>
+<p>They do not nest. Gray smells are old patterns, which is why they
+fall inside both regions, and that overlap is the part a tool built only
+for the new tier cannot see.</p>
 <p>The AI-specific tier is the strange one because the code can look
 like progress while quietly changing the truth of the system:</p>
 <div class="sourceCode" id="cb1"><pre
@@ -391,12 +397,18 @@ tool calls.</p>
 is 60,000 lines of diff.”</p>
 </blockquote>
 <p>Industry-scale data supports the pattern. LinearB’s study of 8.1
-million PRs found AI PRs accepted at 32.7% versus 84.4% for human PRs,
-with agentic PRs waiting 5.3x longer for pickup. GitClear found
-copy-pasted lines rising while moved/refactored lines dropped. Google’s
-DORA report estimated that for every 25% increase in AI adoption,
-delivery stability drops 7.2%, even as reported code quality increases
-3.4%.</p>
+million PRs splits them by who wrote them. The left panel below is the
+share of each author’s PRs that got accepted; the right is how long each
+waited before a reviewer picked it up, in multiples of the human
+wait.</p>
+<p><img src="/blog-images/ai-slop-phase-transition/pr-acceptance-rates.png"
+alt="Two bar charts from LinearB’s 8.1 million pull requests. Acceptance rate: human PRs 84.4 percent, AI PRs 32.7 percent. Pickup delay: agentic PRs wait 5.3 times longer than human PRs before a reviewer picks them up" /></p>
+<p>Both measures move the same way. AI PRs are less likely to land and
+slower to get looked at, so each one costs more reviewer attention than
+it returns. GitClear found copy-pasted lines rising while
+moved/refactored lines dropped. Google’s DORA report estimated that for
+every 25% increase in AI adoption, delivery stability drops 7.2%, even
+as reported code quality increases 3.4%.</p>
 <h2 id="what-teams-are-converging-on">What Teams Are Converging On</h2>
 <p>The most interesting finding wasn’t the problem but how teams
 independently arrive at the same solutions.</p>

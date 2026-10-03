@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1200" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1170" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Agentless's hardcoded tool loop</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Both loops issue tool calls. Only one of them executes anything.</text>
+  <rect x="70" y="200" width="705" height="900" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">A REAL TOOL LOOP</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">The environment answers the call</text>
+  <rect x="180" y="340" width="364" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="362" y="376" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">LLM</text>
+  <text x="362" y="403" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">picks the next edit</text>
+  <rect x="180" y="464" width="364" height="74" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="362" y="497" font-family="DejaVu Sans Mono, monospace" font-size="20" font-weight="700" fill="#4b3193" text-anchor="middle">str_replace_editor</text>
+  <text x="362" y="524" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">tool call</text>
+  <rect x="180" y="582" width="364" height="88" rx="16" fill="#ddf2f0" stroke="#109188" stroke-width="3"/>
+  <text x="362" y="622" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#0a5f59" text-anchor="middle">the environment</text>
+  <text x="362" y="649" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">applies the edit to the file</text>
+  <rect x="180" y="714" width="364" height="88" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="362" y="754" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8a5905" text-anchor="middle">the edited file</text>
+  <text x="362" y="781" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">tool result, read from disk</text>
+  <rect x="180" y="876" width="364" height="92" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="362" y="918" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">nothing left to apply</text>
+  <text x="362" y="945" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">the file changed as the loop ran</text>
+  <path d="M362 420 V464" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M362 538 V582" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M362 670 V714" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <text x="180" y="832" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="1.6">AFTER THE LOOP</text>
+  <path d="M180 846 H544" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 8"/>
+  <path d="M180 758 H134 V380 H180" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <circle cx="180" cy="758" r="7" fill="#7d8ba3" stroke="none" stroke-width="3"/>
+  <text x="564" y="394" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Every iteration</text>
+  <text x="564" y="419" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">starts from what</text>
+  <text x="564" y="444" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the last one</text>
+  <text x="564" y="469" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">actually did.</text>
+  <text x="564" y="736" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">The model reads</text>
+  <text x="564" y="761" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">real file state</text>
+  <text x="564" y="786" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">before its next</text>
+  <text x="564" y="811" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">call.</text>
+  <text x="564" y="906" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Each call already</text>
+  <text x="564" y="931" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">changed the file,</text>
+  <text x="564" y="956" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">so there is nothing</text>
+  <text x="564" y="981" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">to replay.</text>
+  <rect x="110" y="1016" width="625" height="56" rx="14" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="422.5" y="1053" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a6b45" text-anchor="middle">The model's next call answers to real file state.</text>
+  <rect x="825" y="200" width="705" height="900" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">AGENTLESS, ANTHROPIC PATH</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">A constant answers the call</text>
+  <rect x="935" y="340" width="364" height="80" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1117" y="376" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">LLM</text>
+  <text x="1117" y="403" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">picks the next edit</text>
+  <rect x="935" y="464" width="364" height="74" rx="16" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1117" y="497" font-family="DejaVu Sans Mono, monospace" font-size="20" font-weight="700" fill="#4b3193" text-anchor="middle">str_replace_editor</text>
+  <text x="1117" y="524" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">tool call</text>
+  <rect x="935" y="582" width="364" height="88" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="9 7"/>
+  <text x="1117" y="622" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#8d9ab0" text-anchor="middle">no execution</text>
+  <text x="1117" y="649" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">the edit is appended to a list</text>
+  <rect x="935" y="714" width="364" height="88" rx="16" fill="#fdf2dd" stroke="#d08a1e" stroke-width="3"/>
+  <text x="1117" y="754" font-family="DejaVu Sans Mono, monospace" font-size="18" font-weight="700" fill="#8a5905" text-anchor="middle">"File is successfully edited."</text>
+  <text x="1117" y="781" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">tool result, every time</text>
+  <rect x="935" y="876" width="364" height="92" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="3"/>
+  <text x="1117" y="918" font-family="DejaVu Sans Mono, monospace" font-size="20" font-weight="700" fill="#1a6b45" text-anchor="middle">apply_edits(...)</text>
+  <text x="1117" y="945" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">every collected edit, applied at once</text>
+  <path d="M1117 420 V464" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M1117 538 V582" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M1117 670 V714" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <text x="935" y="832" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="1.6">AFTER THE LOOP</text>
+  <path d="M935 846 H1299" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="9 8"/>
+  <path d="M935 758 H889 V380 H935" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <circle cx="935" cy="758" r="7" fill="#7d8ba3" stroke="none" stroke-width="3"/>
+  <text x="1319" y="394" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Ten iterations at</text>
+  <text x="1319" y="419" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">most, and it ends</text>
+  <text x="1319" y="444" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">as soon as the</text>
+  <text x="1319" y="469" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">model stops</text>
+  <text x="1319" y="494" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">calling the tool.</text>
+  <text x="1319" y="736" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">The same string</text>
+  <text x="1319" y="761" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">comes back</text>
+  <text x="1319" y="786" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">whatever the call</text>
+  <text x="1319" y="811" font-family="Noto Sans, sans-serif" font-size="19" font-weight="700" fill="#8a5905" text-anchor="start">asked for.</text>
+  <text x="1319" y="906" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">The edits land on</text>
+  <text x="1319" y="931" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the file only here,</text>
+  <text x="1319" y="956" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">all at once, after</text>
+  <text x="1319" y="981" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the model has</text>
+  <text x="1319" y="1006" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">stopped.</text>
+  <rect x="865" y="1016" width="625" height="56" rx="14" fill="#fdf2dd" stroke="#d08a1e" stroke-width="2.5"/>
+  <text x="1177.5" y="1052.28" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#8a5905" text-anchor="middle">Structured output extraction disguised as tool use.</text>
+  <text x="800" y="1146" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Only Agentless's Anthropic code path does this. Its default path registers no tools at all, so there is no loop to fake.</text>
+</svg>

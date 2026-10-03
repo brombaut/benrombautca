@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1014" viewBox="0 0 1600 1014">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1014" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="984" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">AI pull requests are accepted less, and wait longer</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">LinearB's study of 8.1 million pull requests. Bars are grouped by who wrote the PR.</text>
+  <rect x="70" y="200" width="705" height="716" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="110" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">ACCEPTANCE</text>
+  <text x="110" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">Share of pull requests that get accepted</text>
+  <text x="110" y="348" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="1.8">PR AUTHOR</text>
+  <text x="110" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">0</text>
+  <path d="M235 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="235" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">20</text>
+  <path d="M360 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="360" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">40</text>
+  <path d="M485 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="485" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">60</text>
+  <path d="M610 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="610" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">80</text>
+  <path d="M735 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="735" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">100</text>
+  <path d="M110 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M110 640 H735" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="110" y="712" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">share of that author's PRs accepted (%)</text>
+  <text x="110" y="406" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#1f2430" text-anchor="start">Human PRs</text>
+  <rect x="110" y="422" width="625" height="74" rx="12" fill="#fbfcfe" stroke="#dbe3ef" stroke-width="2"/>
+  <rect x="110" y="422" width="527.5" height="74" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <text x="619.5" y="471" font-family="Noto Sans, sans-serif" font-size="34" font-weight="700" fill="#1a4d8f" text-anchor="end">84.4%</text>
+  <text x="110" y="530" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#1f2430" text-anchor="start">AI PRs</text>
+  <rect x="110" y="546" width="625" height="74" rx="12" fill="#fbfcfe" stroke="#dbe3ef" stroke-width="2"/>
+  <rect x="110" y="546" width="204.375" height="74" rx="12" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2.5"/>
+  <text x="296.375" y="595" font-family="Noto Sans, sans-serif" font-size="34" font-weight="700" fill="#4b3193" text-anchor="end">32.7%</text>
+  <text x="110" y="766" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">The track behind each bar is every PR that author opened.</text>
+  <text x="110" y="795" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">Two of three AI PRs never land.</text>
+  <rect x="110" y="822" width="625" height="60" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <text x="422.5" y="861" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="middle">Under half the human rate</text>
+  <rect x="825" y="200" width="705" height="716" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="865" y="252" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#64718a" text-anchor="start" letter-spacing="1.8">PICKUP DELAY</text>
+  <text x="865" y="297" font-family="Noto Sans, sans-serif" font-size="28" font-weight="700" fill="#1f2430" text-anchor="start">How long a pull request waits to be picked up</text>
+  <text x="865" y="348" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="1.8">PR AUTHOR</text>
+  <text x="865" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">0</text>
+  <path d="M969.167 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="969.167" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">1</text>
+  <path d="M1073.33 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1073.33" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">2</text>
+  <path d="M1177.5 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1177.5" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">3</text>
+  <path d="M1281.67 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1281.67" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">4</text>
+  <path d="M1385.83 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1385.83" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">5</text>
+  <path d="M1490 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1490" y="672" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">6</text>
+  <path d="M865 408 V640" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M865 640 H1490" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="865" y="712" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">wait before pickup, in multiples of the human wait</text>
+  <text x="865" y="406" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#1f2430" text-anchor="start">Human PRs</text>
+  <rect x="865" y="422" width="104.167" height="74" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <text x="987.167" y="471" font-family="Noto Sans, sans-serif" font-size="34" font-weight="700" fill="#1a4d8f" text-anchor="start">1.0x</text>
+  <text x="865" y="530" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#1f2430" text-anchor="start">Agentic PRs</text>
+  <rect x="865" y="546" width="552.083" height="74" rx="12" fill="#efe9fd" stroke="#7a5ad0" stroke-width="2.5"/>
+  <text x="1399.08" y="595" font-family="Noto Sans, sans-serif" font-size="34" font-weight="700" fill="#4b3193" text-anchor="end">5.3x</text>
+  <text x="865" y="766" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">LinearB reports this one as a ratio, not a duration, so the</text>
+  <text x="865" y="795" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">human wait is the unit and there is no absolute scale.</text>
+  <rect x="865" y="822" width="625" height="60" rx="14" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="2.5"/>
+  <text x="1177.5" y="861" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1f2430" text-anchor="middle">5.3x longer before a reviewer looks</text>
+  <text x="800" y="962" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Acceptance is measured per author across all 8.1 million PRs. The pickup figure is reported for agentic PRs specifically.</text>
+</svg>

@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1380" viewBox="0 0 1600 1380">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1380" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1350" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">The workflow is the product</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">The loop around the agent, and the workflow pinned to each stage of it</text>
+  <rect x="665" y="354" width="270" height="92" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="800" y="396" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">Planning</text>
+  <text x="800" y="423" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">shape the task</text>
+  <rect x="950.788" y="524" width="270" height="92" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1085.79" y="566" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">Delegation</text>
+  <text x="1085.79" y="593" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">hand it to an agent</text>
+  <rect x="950.788" y="864" width="270" height="92" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1085.79" y="906" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">Verification</text>
+  <text x="1085.79" y="933" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">verify intent</text>
+  <rect x="665" y="1034" width="270" height="92" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="800" y="1076" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">Memory</text>
+  <text x="800" y="1103" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">project state</text>
+  <rect x="379.212" y="864" width="270" height="92" rx="16" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="514.212" y="906" font-family="Noto Sans, sans-serif" font-size="25" font-weight="700" fill="#1a4d8f" text-anchor="middle">Summarization</text>
+  <text x="514.212" y="933" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">a recoverable thread</text>
+  <rect x="379.212" y="524" width="270" height="92" rx="16" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3"/>
+  <text x="514.212" y="566" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#8d9ab0" text-anchor="middle">Knowing when to stop</text>
+  <text x="514.212" y="593" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="middle">the open problem</text>
+  <path d="M949.8 437.1 A330 340 0 0 1 1042.3 509.2" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M1112.5 630.7 A330 340 0 0 1 1112.5 849.3" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M1042.3 970.8 A330 340 0 0 1 949.8 1042.9" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M650.2 1042.9 A330 340 0 0 1 557.7 970.8" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M487.5 849.3 A330 340 0 0 1 487.5 630.7" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <path d="M557.7 509.2 A330 340 0 0 1 650.2 437.1" fill="none" stroke="#7d8ba3" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aGrey)"/>
+  <rect x="660" y="692" width="280" height="96" rx="16" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="800" y="736" font-family="Noto Sans, sans-serif" font-size="27" font-weight="700" fill="#1f2430" text-anchor="middle">the agent</text>
+  <text x="800" y="762" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="middle">only one part of the system</text>
+  <text x="800" y="238" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a4d8f" text-anchor="middle">research-junshi and research-checkin</text>
+  <text x="800" y="272" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="middle">A daily digest of related papers, nearby ideas and possible next steps, built from the project's</text>
+  <text x="800" y="301" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="middle">current state.</text>
+  <path d="M800.0 325.3 L800.0 346.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="7 8"/>
+  <text x="1520" y="495" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a4d8f" text-anchor="end">the tool split</text>
+  <text x="1520" y="529" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">Codex for light and</text>
+  <text x="1520" y="558" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">medium engineering</text>
+  <text x="1520" y="587" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">work. Claude Code for</text>
+  <text x="1520" y="616" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">heavier work and the</text>
+  <text x="1520" y="645" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">skills I built around it.</text>
+  <text x="1520" y="674" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">Chat for thinking outside</text>
+  <text x="1520" y="703" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">the repo.</text>
+  <path d="M1258.4 570.0 L1230.8 570.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="7 8"/>
+  <text x="1520" y="835" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a4d8f" text-anchor="end">the planning pass</text>
+  <text x="1520" y="869" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">The agent investigates</text>
+  <text x="1520" y="898" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">the codebase and writes</text>
+  <text x="1520" y="927" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">a plan. I review the</text>
+  <text x="1520" y="956" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">intended files, the shape</text>
+  <text x="1520" y="985" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">of the change and the</text>
+  <text x="1520" y="1014" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="end">assumptions.</text>
+  <path d="M1261.5 910.0 L1230.8 910.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="7 8"/>
+  <text x="800" y="1200" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a4d8f" text-anchor="middle">the weekly summary</text>
+  <text x="800" y="1234" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="middle">The dailies rolled up into a multi-day view by day and project. A durable record instead of terminal</text>
+  <text x="800" y="1263" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="middle">scrollback.</text>
+  <path d="M800.0 1159.0 L800.0 1134.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="7 8"/>
+  <text x="80" y="835" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1a4d8f" text-anchor="start">the daily summary</text>
+  <text x="80" y="869" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Scans the day's session</text>
+  <text x="80" y="898" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">transcripts into a recap:</text>
+  <text x="80" y="927" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">projects touched,</text>
+  <text x="80" y="956" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">accomplishments,</text>
+  <text x="80" y="985" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">trouble spots, follow-up</text>
+  <text x="80" y="1014" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">work.</text>
+  <path d="M329.8 910.0 L369.2 910.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="7 8"/>
+  <text x="80" y="495" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#8d9ab0" text-anchor="start">nothing covers this one</text>
+  <text x="80" y="529" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">The AI Vampire. Starting</text>
+  <text x="80" y="558" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">work costs almost</text>
+  <text x="80" y="587" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">nothing, so stopping is</text>
+  <text x="80" y="616" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">the harder action. I can</text>
+  <text x="80" y="645" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">tell when it is happening.</text>
+  <text x="80" y="674" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">Awareness is not a</text>
+  <text x="80" y="703" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">boundary.</text>
+  <path d="M343.3 570.0 L369.2 570.0" fill="none" stroke="#94a3b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aFaint)" stroke-dasharray="7 8"/>
+  <path d="M612.5 483.9 L589.1 453.9" fill="none" stroke="#d08a1e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="80" y="300" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#8a5905" text-anchor="start">the handoff doc</text>
+  <text x="80" y="334" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">What context needs to</text>
+  <text x="80" y="363" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#64718a" text-anchor="start">survive compaction.</text>
+  <path d="M321.6 365.3 L556.8 444.9" fill="none" stroke="#d08a1e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#aAmber)" stroke-dasharray="7 8"/>
+  <text x="800" y="1330" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Five of the six stages have a workflow I actually use. The sixth is the one I have no answer for.</text>
+</svg>

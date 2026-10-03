@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1524" viewBox="0 0 1600 1524">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1524" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1494" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Five ways to compact a coding agent's history</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Rows are messages, columns are strategies. Every column starts from the same ten-message history on the left.</text>
+  <text x="70" y="212" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">The same history</text>
+  <text x="70" y="242" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">ten messages, one run</text>
+  <rect x="70" y="322" width="264" height="4" rx="2" fill="#dbe3ef" stroke="none" stroke-width="3"/>
+  <rect x="70" y="344" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="371" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">system prompt</text>
+  <rect x="70" y="392" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="419" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">the issue text</text>
+  <rect x="70" y="440" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="467" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">act 1: grep</text>
+  <rect x="70" y="488" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="515" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">obs 1: 200 lines</text>
+  <rect x="70" y="536" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="563" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">act 2: read file</text>
+  <rect x="70" y="584" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="611" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">obs 2: 400 lines</text>
+  <rect x="70" y="632" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="659" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">act 3: edit</text>
+  <rect x="70" y="680" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="707" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">obs 3: diff applied</text>
+  <rect x="70" y="728" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="755" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">act 4: run tests</text>
+  <rect x="70" y="776" width="264" height="40" rx="12" fill="#fbfcfe" stroke="#c8d3e2" stroke-width="3"/>
+  <text x="202" y="803" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1f2430" text-anchor="middle">obs 4: 3 failures</text>
+  <text x="354" y="212" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">No compaction</text>
+  <text x="354" y="244" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">mini-swe-agent</text>
+  <rect x="354" y="322" width="224" height="4" rx="2" fill="#d08a1e" stroke="none" stroke-width="3"/>
+  <text x="592" y="212" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">Rule-based</text>
+  <text x="592" y="242" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">truncation</text>
+  <text x="592" y="274" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">SWE-agent, DARS-Agent</text>
+  <rect x="592" y="322" width="224" height="4" rx="2" fill="#b6c1d2" stroke="none" stroke-width="3"/>
+  <text x="830" y="212" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">LLM</text>
+  <text x="830" y="242" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">summarization</text>
+  <text x="830" y="274" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Aider, OpenHands,</text>
+  <text x="830" y="298" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">OpenCode</text>
+  <rect x="830" y="322" width="224" height="4" rx="2" fill="#7a5ad0" stroke="none" stroke-width="3"/>
+  <text x="1068" y="212" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">Structural</text>
+  <text x="1068" y="242" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">isolation</text>
+  <text x="1068" y="274" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Prometheus</text>
+  <rect x="1068" y="322" width="224" height="4" rx="2" fill="#2f9e68" stroke="none" stroke-width="3"/>
+  <text x="1306" y="212" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">LLM-initiated</text>
+  <text x="1306" y="242" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">compaction</text>
+  <text x="1306" y="274" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">Cline</text>
+  <rect x="1306" y="322" width="224" height="4" rx="2" fill="#7a5ad0" stroke="none" stroke-width="3"/>
+  <rect x="354" y="344" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="371" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="392" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="419" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="440" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="467" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="488" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="515" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="536" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="563" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="584" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="611" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="632" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="659" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="680" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="707" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="728" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="755" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="354" y="776" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="466" y="803" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="344" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="371" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="392" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="419" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="440" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="467" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="488" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="704" y="515" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">placeholder</text>
+  <rect x="592" y="536" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="563" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="584" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="704" y="611" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">placeholder</text>
+  <rect x="592" y="632" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="659" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="680" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="707" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="728" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="755" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="592" y="776" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="704" y="803" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="830" y="344" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="942" y="371" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="830" y="392" width="224" height="280" rx="12" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="942" y="528" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#4b3193" text-anchor="middle">one summary</text>
+  <text x="942" y="553" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#64718a" text-anchor="middle">six messages in</text>
+  <rect x="830" y="680" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="942" y="707" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="830" y="728" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="942" y="755" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="830" y="776" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="942" y="803" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1068" y="344" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1180" y="371" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1068" y="392" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1180" y="419" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1068" y="440" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="1180" y="467" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">another node</text>
+  <rect x="1068" y="488" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="1180" y="515" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">another node</text>
+  <rect x="1068" y="536" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="1180" y="563" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">another node</text>
+  <rect x="1068" y="584" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="1180" y="611" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">another node</text>
+  <rect x="1068" y="632" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="1180" y="659" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">another node</text>
+  <rect x="1068" y="680" width="224" height="40" rx="12" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="3" stroke-dasharray="7 6"/>
+  <text x="1180" y="707" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">another node</text>
+  <rect x="1068" y="728" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1180" y="755" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1068" y="776" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1180" y="803" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1306" y="344" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1418" y="371" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1306" y="392" width="224" height="280" rx="12" fill="#efe9fd" stroke="#7a5ad0" stroke-width="3"/>
+  <text x="1418" y="528" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#4b3193" text-anchor="middle">one summary</text>
+  <text x="1418" y="553" font-family="Noto Sans, sans-serif" font-size="18" font-weight="400" fill="#64718a" text-anchor="middle">six messages in</text>
+  <rect x="1306" y="680" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1418" y="707" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1306" y="728" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1418" y="755" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <rect x="1306" y="776" width="224" height="40" rx="12" fill="#e8f1fc" stroke="#3381db" stroke-width="3"/>
+  <text x="1418" y="803" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">kept</text>
+  <text x="334" y="864" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="end">Triggered by</text>
+  <rect x="354" y="832" width="224" height="72" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="365" y="862" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">nobody; the list just</text>
+  <text x="365" y="887" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">grows</text>
+  <rect x="592" y="832" width="224" height="72" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="603" y="862" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">a fixed rule, on every</text>
+  <text x="603" y="887" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">step</text>
+  <rect x="830" y="832" width="224" height="72" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="841" y="862" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">a token threshold in</text>
+  <text x="841" y="887" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the scaffold</text>
+  <rect x="1068" y="832" width="224" height="72" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="1079" y="862" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the graph, at build</text>
+  <text x="1079" y="887" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">time</text>
+  <rect x="1306" y="832" width="224" height="72" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="1317" y="862" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the LLM, mid-task, via</text>
+  <text x="1317" y="887" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">a condense tool</text>
+  <text x="334" y="948" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="end">Extra LLM calls</text>
+  <rect x="354" y="916" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="365" y="946" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">none</text>
+  <rect x="592" y="916" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="603" y="946" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">none; it is pure Python</text>
+  <rect x="830" y="916" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="841" y="946" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">a summarizer call,</text>
+  <text x="841" y="971" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">often on a cheaper</text>
+  <text x="841" y="996" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">model</text>
+  <rect x="1068" y="916" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="1079" y="946" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">none; nothing is</text>
+  <text x="1079" y="971" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">compacted</text>
+  <rect x="1306" y="916" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="1317" y="946" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">a condense call, when</text>
+  <text x="1317" y="971" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the LLM asks for one</text>
+  <text x="334" y="1057" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="end">What it loses</text>
+  <rect x="354" y="1025" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="365" y="1055" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">nothing, until the</text>
+  <text x="365" y="1080" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">window overflows and</text>
+  <text x="365" y="1105" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the run dies</text>
+  <rect x="592" y="1025" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="603" y="1055" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">whole observations,</text>
+  <text x="603" y="1080" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">all or nothing</text>
+  <rect x="830" y="1025" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="841" y="1055" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">detail, and whatever</text>
+  <text x="841" y="1080" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the summarizer</text>
+  <text x="841" y="1105" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">judges wrong</text>
+  <rect x="1068" y="1025" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="1079" y="1055" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">nothing it needed, if</text>
+  <text x="1079" y="1080" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the graph is drawn</text>
+  <text x="1079" y="1105" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">right</text>
+  <rect x="1306" y="1025" width="224" height="97" rx="12" fill="#ffffff" stroke="#dbe3ef" stroke-width="2"/>
+  <text x="1317" y="1055" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">the same as</text>
+  <text x="1317" y="1080" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">summarizing, on the</text>
+  <text x="1317" y="1105" font-family="Noto Sans, sans-serif" font-size="19" font-weight="400" fill="#64718a" text-anchor="start">LLM's timing</text>
+  <rect x="70" y="1144" width="1460" height="204" rx="20" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="98" y="1186" font-family="Noto Sans, sans-serif" font-size="24" font-weight="700" fill="#1f2430" text-anchor="start">What the five columns do not show</text>
+  <text x="98" y="1226" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Gemini CLI checks its own work.</text>
+  <text x="98" y="1252" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">After summarizing it runs a verification probe, a</text>
+  <text x="98" y="1277" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">self-correction turn that asks whether anything</text>
+  <text x="98" y="1302" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">critical was dropped. No other agent validates</text>
+  <text x="98" y="1327" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">its own compaction.</text>
+  <text x="574" y="1226" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">The three summarizers disagree.</text>
+  <text x="574" y="1252" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">Aider overwrites the originals in place.</text>
+  <text x="574" y="1277" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">OpenHands keeps the raw events beside the</text>
+  <text x="574" y="1302" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">summary. OpenCode prunes verbose tool</text>
+  <text x="574" y="1327" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">output first, then summarizes what is left.</text>
+  <text x="1050" y="1226" font-family="Noto Sans, sans-serif" font-size="21" font-weight="700" fill="#1f2430" text-anchor="start">Doing nothing is a real choice.</text>
+  <text x="1050" y="1252" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">mini-swe-agent never compacts. With step and</text>
+  <text x="1050" y="1277" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">cost limits in place, a bounded task finishes</text>
+  <text x="1050" y="1302" font-family="Noto Sans, sans-serif" font-size="20" font-weight="400" fill="#64718a" text-anchor="start">before the context window fills.</text>
+  <rect x="70" y="1366" width="1460" height="62" rx="16" fill="#e7f6ee" stroke="#2f9e68" stroke-width="2.5"/>
+  <text x="800" y="1404.92" font-family="Noto Sans, sans-serif" font-size="22" font-weight="700" fill="#1a6b45" text-anchor="middle">A rule cannot tell an irrelevant old observation from the one holding the key insight. An LLM can, and sometimes gets it wrong.</text>
+  <text x="800" y="1474" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">SWE-agent's rule keeps the first user message and the last five observations; the grid shows the last two, over a ten-message history.</text>
+</svg>
