@@ -162,9 +162,9 @@ Concretely, I removed the fixed six-axis template, the issue-type weight table, 
 
 This was an important maturation step. Instead of asking the evaluator to fill in a pre-labeled scorecard, it asked the evaluator to infer the scorecard from the system under study.
 
-The skills became more codebase-driven and less obviously biased by prior experiments. But this experiment also produced the biggest surprise of the whole project.
+The skills became more codebase-driven and less obviously biased by prior experiments.
 
-Even when Claude Code generated both the rubrics and the patches, the patches did not reliably match the architectural ideal described by the rubrics.
+**The main finding:** even when Claude Code generated both the rubrics and the patches, the patches did not reliably match the architectural ideal described by the rubrics.
 
 The rubric-generation workflow naturally involved deep architectural reconnaissance. The patch-generation workflow could still lapse into implementation search. So the system could often *describe* the right architectural move without actually *taking* it when writing the patch.
 
@@ -174,11 +174,11 @@ Both workflows start from the same issue in the same codebase, and both open the
 
 The reconnaissance branch is available to both. Nothing in the patch-generation task forces it, so the model can hold the right architectural standard and still not route through it.
 
-I found this genuinely interesting. It's not just a patch-generation bug. It says something broader: architectural understanding and architectural execution are related, but they're not identical capabilities. The model can articulate what the right structural approach looks like and then not follow it. A "know vs do" gap.
+This goes wider than patch generation. Architectural understanding and architectural execution are related, but they're not identical capabilities. The model can articulate what the right structural approach looks like and then not follow it.
 
 The response was practical. I updated the patch-generation prompt with a simple but strategically important instruction: before implementing, understand the patterns in the affected area and prefer extending existing mechanisms over building new ones. That sentence tries to import the reconnaissance behavior from rubric generation into patch generation. I also restructured the rubric-generation workflow operationally, delegating YAML generation and validation to subagents with isolated context to reduce contamination from the main conversation.
 
-Some problems aren't rubric-theory problems. They're workflow problems.
+That made it a workflow problem rather than a rubric-theory problem.
 
 ## Numeric Scores Reach Their Limits
 
@@ -266,7 +266,7 @@ If I had to distill 12 experiments into a handful of durable lessons:
 
 **A rubric should describe architectural properties, not prescribe specific mechanisms.** If the rubric says "the correct patch calls this specific function," it stops evaluating architecture and starts evaluating imitation. A stronger rubric asks whether the patch preserves the relevant structural property, even if it reaches that property by a different but architecturally sound route.
 
-**The evaluation stack itself needs architecture.** By the later experiments, the work was not just about patch architecture. It was also about evaluation architecture: when do subagents help, what context should be isolated, what gets committed into the rubric, what gets recalculated, where does calibration happen. The quality of the evaluation depended heavily on the structure of the evaluation process.
+**The evaluation stack itself needs architecture.** By the later experiments, the work was about evaluation architecture as much as patch architecture: when do subagents help, what context should be isolated, what gets committed into the rubric, what gets recalculated, where does calibration happen. The quality of the evaluation depended heavily on the structure of the evaluation process.
 
 ## Where It's Heading
 

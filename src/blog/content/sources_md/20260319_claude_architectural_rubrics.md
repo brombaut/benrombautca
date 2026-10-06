@@ -149,9 +149,9 @@ A butterfly chart showing primary axes (right) vs minor axes (left) for each the
 
 ## The Model Invents Its Own Pattern Vocabulary
 
-This one surprised me. Out of 2,034 total pattern identifications, 1,935 names are unique. "Template Method" appears 49 times, "Mixin Composition" 9 times, and after that it's basically all one-offs. Names like "Dimensional Bookkeeping via Index Arrays," "Precedence-Based Parenthesization," "Relaxed-mode Column Building."
+Out of 2,034 total pattern identifications, 1,935 names are unique. "Template Method" appears 49 times, "Mixin Composition" 9 times, and after that it's basically all one-offs. Names like "Dimensional Bookkeeping via Index Arrays," "Precedence-Based Parenthesization," "Relaxed-mode Column Building."
 
-The model isn't reaching for a GoF cheat sheet. It's coining terms for the structures it actually finds.
+The model is coining terms for the structures it actually finds rather than reaching for a GoF cheat sheet.
 
 ![Pattern families](images/claude-architectural-rubrics/section_b_pattern_families.png)
 
@@ -163,7 +163,7 @@ The heatmap shows how often each pattern family appears per instance, broken dow
 
 ## Different Codebases, Different Concerns
 
-The model doesn't just identify different patterns per repo, it worries about different things too.
+The model identifies different patterns per repo, and worries about different things too.
 
 ![Axis themes by repo](images/claude-architectural-rubrics/section_e_theme_repo_heatmap.png)
 
@@ -175,7 +175,7 @@ Each cell shows how many axes of a given theme appear per instance in that repo.
 
 Three panels showing how rubric complexity (patterns, axes, and boundaries per instance) scales with the model's own risk assessment. Each dot is one instance, diamonds mark the mean. The model generates richer rubrics for harder problems: high-risk instances average 4.9 axes vs 4.0 for low-risk, and 3.0 boundaries vs 2.4.
 
-The biggest jump is in affected components (not shown in this chart but visible in the dataset overview): 1.6 for low-risk to 4.3 for high-risk. When a problem touches more of the codebase, the model responds with more evaluation dimensions and more primary axes. It's not just stamping out the same rubric every time.
+The biggest jump is in affected components (not shown in this chart but visible in the dataset overview): 1.6 for low-risk to 4.3 for high-risk. When a problem touches more of the codebase, the model responds with more evaluation dimensions and more primary axes. It isn't stamping out the same rubric every time.
 
 ## The Template Is Fixed, the Content Isn't
 
@@ -201,9 +201,9 @@ The model is confident about everything. There's no discriminating signal here. 
 
 ## What I Take Away
 
-The model has a real architectural perspective. It's not random, not generic, and not just parroting textbook patterns. It prioritizes contracts and delegation over diff size and test conventions. It adapts its pattern vocabulary per codebase. It generates richer rubrics for harder problems.
+The model has a real architectural perspective. It's not random, not generic, and not a recitation of textbook patterns. It prioritizes contracts and delegation over diff size and test conventions. It adapts its pattern vocabulary per codebase. It generates richer rubrics for harder problems.
 
-Whether this perspective is *correct* is a different question, and one that Stage 3 of the pipeline is designed to help answer. But as a window into what a frontier model thinks "good architecture" means, I found this more interesting than I expected.
+Whether this perspective is *correct* is a different question, and one that Stage 3 of the pipeline is designed to help answer. But it's a usable window into what a frontier model thinks "good architecture" means.
 
 ## What I'd Change
 

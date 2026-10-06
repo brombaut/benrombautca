@@ -238,13 +238,13 @@ Infrastructure skew heavily left. You could disagree with this ranking,
 but it’s clearly a <em>position</em>, not randomness.</p>
 <h2 id="the-model-invents-its-own-pattern-vocabulary">The Model Invents
 Its Own Pattern Vocabulary</h2>
-<p>This one surprised me. Out of 2,034 total pattern identifications,
-1,935 names are unique. “Template Method” appears 49 times, “Mixin
-Composition” 9 times, and after that it’s basically all one-offs. Names
-like “Dimensional Bookkeeping via Index Arrays,” “Precedence-Based
-Parenthesization,” “Relaxed-mode Column Building.”</p>
-<p>The model isn’t reaching for a GoF cheat sheet. It’s coining terms
-for the structures it actually finds.</p>
+<p>Out of 2,034 total pattern identifications, 1,935 names are unique.
+“Template Method” appears 49 times, “Mixin Composition” 9 times, and
+after that it’s basically all one-offs. Names like “Dimensional
+Bookkeeping via Index Arrays,” “Precedence-Based Parenthesization,”
+“Relaxed-mode Column Building.”</p>
+<p>The model is coining terms for the structures it actually finds
+rather than reaching for a GoF cheat sheet.</p>
 <p><img
 src="blog-images/claude-architectural-rubrics/section_b_pattern_families.png"
 alt="Pattern families" /></p>
@@ -268,8 +268,8 @@ you’ve worked in any of these codebases, the fingerprints probably look
 about right.</p>
 <h2 id="different-codebases-different-concerns">Different Codebases,
 Different Concerns</h2>
-<p>The model doesn’t just identify different patterns per repo, it
-worries about different things too.</p>
+<p>The model identifies different patterns per repo, and worries about
+different things too.</p>
 <p><img
 src="blog-images/claude-architectural-rubrics/section_e_theme_repo_heatmap.png"
 alt="Axis themes by repo" /></p>
@@ -292,8 +292,8 @@ vs 4.0 for low-risk, and 3.0 boundaries vs 2.4.</p>
 <p>The biggest jump is in affected components (not shown in this chart
 but visible in the dataset overview): 1.6 for low-risk to 4.3 for
 high-risk. When a problem touches more of the codebase, the model
-responds with more evaluation dimensions and more primary axes. It’s not
-just stamping out the same rubric every time.</p>
+responds with more evaluation dimensions and more primary axes. It isn’t
+stamping out the same rubric every time.</p>
 <h2 id="the-template-is-fixed-the-content-isnt">The Template Is Fixed,
 the Content Isn’t</h2>
 <p><img
@@ -337,14 +337,14 @@ instances where the model struggled to read the architecture, this isn’t
 going to help.</p>
 <h2 id="what-i-take-away">What I Take Away</h2>
 <p>The model has a real architectural perspective. It’s not random, not
-generic, and not just parroting textbook patterns. It prioritizes
+generic, and not a recitation of textbook patterns. It prioritizes
 contracts and delegation over diff size and test conventions. It adapts
 its pattern vocabulary per codebase. It generates richer rubrics for
 harder problems.</p>
 <p>Whether this perspective is <em>correct</em> is a different question,
-and one that Stage 3 of the pipeline is designed to help answer. But as
-a window into what a frontier model thinks “good architecture” means, I
-found this more interesting than I expected.</p>
+and one that Stage 3 of the pipeline is designed to help answer. But
+it’s a usable window into what a frontier model thinks “good
+architecture” means.</p>
 <h2 id="what-id-change">What I’d Change</h2>
 <p><strong>The “Other / Domain-Specific” bucket is too large.</strong> A
 third of all pattern identifications and a quarter of all boundary types
