@@ -268,18 +268,18 @@ gradient, and they have to be summed to get the expected derivative of
 6. In a neural network, one weight can affect the loss through many
 paths, and its gradient is the sum of all of them. PyTorch does this
 with tensors and many more operations, but the process is the same.</p>
-<p>After that, <code>loss.backward()</code> felt a lot less magical.</p>
+<p>After that, I knew what <code>loss.backward()</code> was doing.</p>
 <p><img
 src="/blog-images/building-a-gpt-from-scratch/autograd-gradient-accumulation.png"
 alt="The two paths through x times x both contribute to the gradient for x" /></p>
 <h2 id="putting-the-transformer-together">Putting the Transformer
 Together</h2>
 <p>With linear layers, softmax, and RMSNorm implemented, I could
-assemble the GPT. What surprised me was how little new machinery that
-needed. A linear layer is multiplication and addition. Softmax is
-exponentials, addition, and division. RMSNorm is squares, an average,
-and a square root. Autograd already supported all of those, so the full
-model just built one much bigger calculation graph.</p>
+assemble the GPT. It needed very little new machinery. A linear layer is
+multiplication and addition. Softmax is exponentials, addition, and
+division. RMSNorm is squares, an average, and a square root. Autograd
+already supported all of those, so the full model just built one much
+bigger calculation graph.</p>
 <p>At a high level, the model looked like this:</p>
 <pre class="text"><code>token and position embeddings
   -&gt; attention
@@ -347,7 +347,7 @@ parameters, one attention head, one layer, and a context of eight words.
 An untrained model choosing between 57 tokens should start at a loss of
 about <code>4.04</code>, and after 100 steps it was down to
 <code>2.36</code>.</p>
-<p>Some generated sentences were surprisingly reasonable:</p>
+<p>Some generated sentences were reasonable:</p>
 <pre class="text"><code>the seed is shy
 the brave bell is scared
 the gray house</code></pre>
