@@ -106,8 +106,8 @@ patch range (<code>x.y.*</code>), minor range (<code>x.*.*</code>), or
 major range (<code>*.*.*</code>) that updated to the same target. This
 borrows the logic of semantic versioning: an update from 2.0.1 to 2.0.4
 and one from 2.0.2 to 2.0.4 should behave about the same. Using the
-minor range gave the median score 5x as many candidates, and the major
-range 10x. The share of 3-tuple scores that reach the 5-candidate
+minor range gave the median 3-tuple score 5x as many candidates, and the
+major range 10x. The share of 3-tuple scores that reach the 5-candidate
 threshold went from 17% to 39%, 68% and 78% for the patch, minor and
 major ranges. The cost is that the wider the range, the less the score
 describes the exact update in front of the maintainer, and major ranges
@@ -136,7 +136,7 @@ client history model 0.76, and both combined 0.80.</p>
 <p>The chart below shows each model’s AUC across the 100 bootstrap runs,
 as a gain over the baseline’s median.</p>
 <p><img src="blog-images/dependabot-compatibility-score/model-auc-gain.png"
-alt="“The project’s own history predicts merges best”: horizontal box plots of AUC gain over the baseline, on an axis from 0% to +30%. The raw score baseline sits around 0%, labelled with its median AUC of 0.62. Origin version ranges sit at a median of +2.4%, client history at +21.5%, and both combined at +27.4%. Each box is narrow, spanning about one to two percentage points" /></p>
+alt="“The project’s own history predicts merges best”: horizontal box plots of AUC gain over the baseline, on an axis from 0% to +30%. The raw score baseline sits around 0%, labelled with its median AUC of 0.62. Origin version ranges sit at a median of +2.4%, client history at +21.5%, and both combined at +27.4%. Each box is narrow, about one percentage point wide" /></p>
 <p><strong>The main finding:</strong> the project’s own history predicts
 whether it’ll accept an update much better than the crowd does. The
 single most important feature in the client history model was how many
