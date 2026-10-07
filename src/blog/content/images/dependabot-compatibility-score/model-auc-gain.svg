@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="798" viewBox="0 0 1600 798">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="798" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="768" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">The project's own history predicts merges best</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Gain in AUC for predicting whether a project merges the PR, across 100 bootstrap runs</text>
+  <rect x="40" y="180" width="1520" height="528" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <path d="M534.412 224 V598" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="534.412" y="632" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">0%</text>
+  <path d="M691.765 224 V598" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="691.765" y="632" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">+5%</text>
+  <path d="M849.118 224 V598" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="849.118" y="632" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">+10%</text>
+  <path d="M1006.47 224 V598" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1006.47" y="632" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">+15%</text>
+  <path d="M1163.82 224 V598" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1163.82" y="632" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">+20%</text>
+  <path d="M1321.18 224 V598" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1321.18" y="632" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">+25%</text>
+  <path d="M1478.53 224 V598" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1478.53" y="632" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">+30%</text>
+  <path d="M440 598 H1510" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="975" y="674" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="middle">AUC gain over the baseline's median AUC</text>
+  <text x="70" y="281" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">Raw score (baseline)</text>
+  <path d="M484.059 273 H518.991" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M544.168 273 H573.435" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M484.059 262 V284" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M573.435 262 V284" fill="none" stroke="#b6c1d2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="518.991" y="254" width="25.1765" height="38" rx="7" fill="#f4f7fb" stroke="#b6c1d2" stroke-width="2.5"/>
+  <path d="M534.412 249 V297" fill="none" stroke="#8d9ab0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="534.412" y="242" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8d9ab0" text-anchor="middle">median AUC 0.62</text>
+  <text x="70" y="373" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">Origin version ranges</text>
+  <path d="M547.629 365 H593.576" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M629.768 365 H671.309" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M547.629 354 V376" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M671.309 354 V376" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="593.576" y="346" width="36.1912" height="38" rx="7" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <path d="M609.941 341 V389" fill="none" stroke="#1a4d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="609.941" y="334" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">+2.4%</text>
+  <text x="70" y="465" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">Client history</text>
+  <path d="M1133.61 457 H1191.52" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M1232.11 457 H1292.54" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M1133.61 446 V468" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1292.54 446 V468" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="1191.52" y="438" width="40.5971" height="38" rx="7" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <path d="M1211.03 433 V481" fill="none" stroke="#1a4d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1211.03" y="426" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">+21.5%</text>
+  <text x="70" y="557" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">Both combined</text>
+  <path d="M1337.23 549 H1374.68" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M1414.96 549 H1467.83" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M1337.23 538 V560" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1467.83 538 V560" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="1374.68" y="530" width="40.2824" height="38" rx="7" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <path d="M1396.71 525 V573" fill="none" stroke="#1a4d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1396.71" y="518" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">+27.4%</text>
+  <text x="800" y="750" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Redrawn from Figure 6 of the paper. Box: middle half of runs. Heavy line: median.</text>
+</svg>

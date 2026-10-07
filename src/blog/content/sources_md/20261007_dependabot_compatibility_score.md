@@ -39,7 +39,15 @@ Only 17% of the updates in the 3-tuple dataset reached the 5-candidate threshold
 
 The 4-tuple dataset, which skews towards popular packages and versions, did better: 57% had enough candidates for a badge, with a median of 41 candidates.
 
-When a badge does appear, it almost always reads high. Among scores with at least 5 candidates, 76% (3-tuple) and 89% (4-tuple) were above 90%. A maintainer looking at these badges is mostly choosing between 94% and 100%, which isn't much of a range to make a decision with.
+The chart below shows how many candidate updates sit behind each score in both datasets, on a log scale, with a dashed line at the 5-candidate threshold. Three quarters of the 3-tuple scores have 3 candidates or fewer, so most of that box sits left of the line.
+
+!["Most updates have too few candidates for a badge": horizontal box plots of candidate updates per compatibility score on a log scale from 1 to 10,000. The 3-tuple box runs from 1 to 3 with a median of 1 and a whisker to about 15. The 4-tuple box runs from about 7 to about 220 with a median of 41 and a whisker to about 4,700. A dashed vertical line marks the badge threshold at 5](images/dependabot-compatibility-score/candidate-updates.png)
+
+When a badge does appear, it almost always reads high. The next chart shows the scores themselves for the updates with at least 5 candidates.
+
+!["The scores that do get shown sit near 100%": horizontal box plots of compatibility scores on an axis from 0% to 100%. The 3-tuple box runs from 90% to 100% with its median at 100% and a whisker down to 75%. The 4-tuple box runs from 95% to 100% with a median of 98% and a whisker down to 88%](images/dependabot-compatibility-score/shown-scores.png)
+
+Among these scores, 76% (3-tuple) and 89% (4-tuple) were above 90%. A maintainer looking at these badges is mostly choosing between scores in the 90s, which isn't much of a range to make a decision with.
 
 ## Widening the Crowd, and Looking at the Client
 
@@ -47,16 +55,17 @@ Since the crowd is usually too thin, we looked at two other sources of informati
 
 The first widens the crowd. Instead of only counting candidates from the exact origin version, count every origin version within the same patch range (`x.y.*`), minor range (`x.*.*`), or major range (`*.*.*`) that updated to the same target. This borrows the logic of semantic versioning: an update from 2.0.1 to 2.0.4 and one from 2.0.2 to 2.0.4 should behave about the same. Using the minor range gave the median score 5x as many candidates, and the major range 10x. The share of 3-tuple scores that reach the 5-candidate threshold went from 17% to 39%, 68% and 78% for the patch, minor and major ranges. The cost is that the wider the range, the less the score describes the exact update in front of the maintainer, and major ranges can include intentional breaking changes.
 
+The chart below shows, for each range, how many candidates the range score draws on as a multiple of the exact-version score. The gain is much smaller for the 4-tuple scores, with medians of 1x, 1.5x and 1.9x.
+
+!["Wider origin version ranges draw on more candidates": horizontal box plots, grouped into patch, minor and major ranges, each with a 3-tuple and a 4-tuple row, on a log scale from 1x to over 1,000x. The 3-tuple medians are 1x, 5x and 10x, with upper whiskers reaching about 15x, 1,100x and 2,100x. The 4-tuple medians are 1x, 1.5x and 1.9x, with upper whiskers reaching about 2x, 13x and 26x](images/dependabot-compatibility-score/origin-version-ranges.png)
+
 The second looks at the project's own history with Dependabot: how many of its earlier Dependabot PRs passed CI, and how many it merged, both overall and for this particular provider.
 
-To test whether either helps, we trained random forest models to predict whether the project merged the PR, on 4-tuple PRs that had fewer than 5 candidates (the cases where the badge says "unknown"). We used the merge decision rather than the CI result because CI is a poor label on its own: in 28% of Dependabot PRs with failing CI, the project merged the update anyway, presumably because they knew the failure had nothing to do with the dependency. Each model was evaluated with the median AUC over 100 out-of-sample bootstrap iterations.
+To test whether either helps, we trained random forest models to predict whether the project merged the PR, on 4-tuple PRs that had fewer than 5 candidates (the cases where the badge says "unknown"). We used the merge decision rather than the CI result because CI is a poor label on its own: in 28% of Dependabot PRs with failing CI, the project merged the update anyway, presumably because they knew the failure had nothing to do with the dependency. Each model was evaluated with the median AUC over 100 out-of-sample bootstrap iterations. The baseline used only the raw compatibility score, on PRs with 5 or more candidates, and reached a median AUC of 0.62. The origin version range model reached 0.64, the client history model 0.76, and both combined 0.80.
 
-| Model | Median AUC |
-| --- | --- |
-| Raw compatibility score only (baseline, on PRs with 5+ candidates) | 0.62 |
-| Origin version range scores | 0.64 |
-| Client history of updates | 0.76 |
-| Both combined | 0.80 |
+The chart below shows each model's AUC across the 100 bootstrap runs, as a gain over the baseline's median.
+
+!["The project's own history predicts merges best": horizontal box plots of AUC gain over the baseline, on an axis from 0% to +30%. The raw score baseline sits around 0%, labelled with its median AUC of 0.62. Origin version ranges sit at a median of +2.4%, client history at +21.5%, and both combined at +27.4%. Each box is narrow, spanning about one to two percentage points](images/dependabot-compatibility-score/model-auc-gain.png)
 
 **The main finding:** the project's own history predicts whether it'll accept an update much better than the crowd does. The single most important feature in the client history model was how many Dependabot PRs the project had merged before. The widened crowd scores helped only a little on their own, though they added to the combined model. When we ran the same models on PRs that did have 5 or more candidates, the combined model still reached 0.78, against the baseline's 0.62, so the client's history helps even when the crowd is big enough to show a badge.
 
@@ -64,7 +73,11 @@ To test whether either helps, we trained random forest models to predict whether
 
 A score of 100% from 5 candidates and a score of 99% from 100 candidates get the same badge, and the first looks better. The second is much stronger evidence.
 
-To put a number on that, we computed a 90% confidence interval for each score from its candidate and successful counts, and measured how far the furthest bound sat from the score. For half of the 3-tuple scores with at least 5 candidates, that distance was more than 15 percentage points. In the 4-tuple dataset, with more candidates per score, the median distance was 3.5 points. The badge looks the same either way.
+To put a number on that, we computed a 90% confidence interval for each score from its candidate and successful counts, and measured how far the furthest bound sat from the score. For half of the 3-tuple scores with at least 5 candidates, that distance was more than 15 percentage points. In the 4-tuple dataset, with more candidates per score, the median distance was 3.5 points. The chart below shows that distance across all scores with at least 5 candidates.
+
+!["Many shown scores come with a wide confidence interval": horizontal box plots of the distance from each score to the furthest bound of its 90% confidence interval, in percentage points from 0 to 35. The 3-tuple box runs from about 9 to 20 with a median of 15 and a whisker to about 29. The 4-tuple box runs from about 1 to 9 with a median of 3.5 and a whisker to about 21](images/dependabot-compatibility-score/confidence-interval-width.png)
+
+The badge looks the same either way.
 
 The quantity of candidates is half of it; the quality is the other half. A candidate whose CI is only a linter counts exactly as much as one with build, unit, integration and deploy checks. Most candidates (94%) had at least a build or test check, though earlier research by Hejderup and Gousios found that project test suites often barely exercise their dependencies. A quarter of candidates had at least one useless check in their pipeline, and 1% had nothing but useless checks. Those useless-only PRs passed 94% of the time, slightly more than the 88% for PRs with a build check. They count as successful updates without having tested the dependency at all.
 
