@@ -14,7 +14,15 @@ Not every PR counts. A PR is a *candidate update* only if the project has CI con
 
 The score is shown as a badge on the PR, but only once an update has at least 5 candidate updates. Below that, the badge says "unknown".
 
+Here's what that looks like on a real Dependabot PR. The title names the provider, origin version and target version, and the badge in the PR description shows the score for that update.
+
+![A Dependabot pull request titled "Bump husky from 6.0.0 to 7.0.4", with the provider name, origin version and target version boxed in red in the title, and a "compatibility 94%" badge boxed in red in the PR description](images/dependabot-compatibility-score/fig1_dependabot_pr.webp)
+
 ## How We Measured It
+
+The diagram below shows the whole collection pipeline, from finding projects on BigQuery to the two datasets the analysis runs on.
+
+![A four-stage flowchart. Stage 1 uses Google BigQuery to find packages that use Dependabot and filters them down to 7,733 client packages. Stage 2 uses GitHub to collect 579,206 Dependabot pull requests, their 1,667,463 check runs (1,530,695 after classification), and 15,654 provider packages. Stage 3 queries Dependabot for 618,045 compatibility scores. Stage 4 combines these into a 3-tuple dataset (P, V_O, V_T) and a 4-tuple dataset (C, P, V_O, V_T), which feed the paper's three research questions](images/dependabot-compatibility-score/fig2_data_collection.webp)
 
 We used Google BigQuery to find GitHub projects with commits authored by Dependabot, then kept non-forked projects with at least 100 commits. That left 7,733 projects. From those we pulled every Dependabot PR between June 2017 and June 2021 through the GitHub API: 579,206 PRs. For each PR we parsed the provider, origin and target versions out of the title and collected the CI checks that ran on it.
 
