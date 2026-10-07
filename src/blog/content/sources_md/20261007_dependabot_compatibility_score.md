@@ -37,7 +37,7 @@ Only 38% of the Dependabot PRs had any CI configured at all, so most PRs never b
 
 Only 17% of the updates in the 3-tuple dataset reached the 5-candidate threshold. The other 83% show "unknown". That's despite Dependabot opening hundreds of PRs for some new releases: the candidates for a provider get split across every origin version projects happen to be on, so each (origin, target) pair gets only a few. The real proportion is probably lower still, since Dependabot's API only returns updates with at least one candidate.
 
-The 4-tuple dataset, which skews towards popular packages and versions, did better: 57% had enough candidates for a badge, with a median of 41 candidates.
+The 4-tuple dataset, which skews towards popular packages and versions, did better: 83% had enough candidates for a badge, with a median of 41 candidates.
 
 The chart below shows how many candidate updates sit behind each score in both datasets, on a log scale, with a dashed line at the 5-candidate threshold. Three quarters of the 3-tuple scores have 3 candidates or fewer, so most of that box sits left of the line.
 
