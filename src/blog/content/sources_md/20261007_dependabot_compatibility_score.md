@@ -81,6 +81,37 @@ The badge looks the same either way.
 
 The quantity of candidates is half of it; the quality is the other half. A candidate whose CI is only a linter counts exactly as much as one with build, unit, integration and deploy checks. Most candidates (94%) had at least a build or test check, though earlier research by Hejderup and Gousios found that project test suites often barely exercise their dependencies. A quarter of candidates had at least one useless check in their pipeline, and 1% had nothing but useless checks. Those useless-only PRs passed 94% of the time, slightly more than the 88% for PRs with a build check. They count as successful updates without having tested the dependency at all.
 
+### An Aside: Where the Interval Comes From
+
+The score is a ratio from a handful of trials, so the question worth asking isn't what the ratio is, it's what true pass rate could plausibly have produced it. We answered that with Bayesian inference: treat the true rate as unknown, and treat the passes and failures we observed as evidence about it.
+
+The distribution to put over that true rate is the beta distribution, which is defined on 0 to 1, the range a ratio lives in. Before any PRs have run there's nothing to go on, so the prior is Beta(1, 1), the uniform case where every true rate is equally plausible. The successes are then binomial: for N candidate updates and an unknown true rate p, the number that pass is S ~ Binomial(N, p). Beta and binomial are conjugate, which means the posterior is another beta distribution and its parameters are just the counts:
+
+```python
+a = 1 + successful_updates
+b = 1 + failed_updates
+```
+
+So an update where 9 of 10 candidates passed has a Beta(10, 2) posterior, and one where 450 of 500 passed, the same 90% score, has a Beta(451, 51). Both are centred in the same place; the second is far narrower.
+
+The chart below puts four such updates on a shared axis. Every one of them scores 90%, and the only thing that changes down the rows is how many candidates produced that score, from 10 up to 500. Each row shows the posterior for that update, scaled to its own height, with a solid line at the score and dashed lines at the bounds of the interval. The range of pass rates the evidence can't rule out shrinks as candidates accumulate, from plus or minus 17.1 points at 10 candidates to 2.2 points at 500.
+
+![Four stacked posterior distributions, labelled A to D, over an axis from 40% to 100%. All four score 90%. A, from 9 of 10 candidates passing, is a wide hump spanning most of the axis with an interval of 17.1 points. B, 27 of 30, is narrower at 9.5 points. C, 90 of 100, is 5.0 points. D, 450 of 500, is a narrow spike at 2.2 points. A solid line marks the score and dashed lines mark the interval bounds on each row](images/dependabot-compatibility-score/posterior-narrowing.png)
+
+From there we took a normal approximation to the posterior's standard deviation, scaled it by the critical value for a 90% confidence level, and read the bounds off around the score:
+
+```python
+sigma = sqrt(a * b / ((a + b) ** 2 * (a + b + 1)))
+precision = 1.65 * sigma
+interval = [max(score - precision, 0), min(score + precision, 1)]
+```
+
+Row A's upper bound in the chart above lands exactly on 100% because of that clamp; the formula would otherwise put it past 107%.
+
+Plotting that `precision` directly gives the second chart: the width of the interval against the number of candidates on a log axis, for three observed scores, with the two medians above marked as horizontal lines. At the 5-candidate threshold where the badge first appears, the interval is at least 20 points wide whatever the score. Getting it down to the 3.5 points that the 4-tuple scores reach at their median takes somewhere north of 100 candidates, and the curve has flattened out well before 1,000.
+
+![Three curves of confidence interval width against candidate updates, on a log axis from 5 to 5,000 candidates and a vertical axis from 0 to 30 percentage points. All three fall steeply and then flatten. At 5 candidates they sit between 20 and 24 points; at 100 candidates between 1.6 and 5 points; by 1,000 all three are under 2. Dashed horizontal lines mark the 3-tuple median of 15 points and the 4-tuple median of 3.5 points](images/dependabot-compatibility-score/precision-vs-candidates.png)
+
 ## What the Score Tells a Maintainer
 
 Put together, here's how I'd read the badge as a maintainer:
