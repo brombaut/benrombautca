@@ -1,5 +1,7 @@
 /* eslint-disable no-restricted-syntax -- sequential for...of loops are clearer for browser steps */
 import { test as base, expect } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
 
 /*
  * Smoke coverage for the static site (#544): every section page and every blog
@@ -229,6 +231,25 @@ test("hiking and running render their entries and scroll galleries internally", 
   expect(scrolls, "gallery scrolls horizontally").toBe(true);
   expect(await horizontalOverflow(page), "no horizontal page scroll").toBeLessThanOrEqual(0);
   await page.waitForLoadState("networkidle");
+});
+
+// Gallery photos display at most 28rem wide, so anything past 800px is wasted
+// bytes. Full-resolution originals (several MB each) once slipped in and stalled
+// the top of the hiking page; scripts/reduce_image_size.py shrinks them.
+const MAX_GALLERY_IMAGE_BYTES = 1024 * 1024;
+
+test("gallery images have been resized for the web", () => {
+  const oversized: string[] = [];
+  for (const dir of ["hiking-images", "running-images"]) {
+    const root = path.join(__dirname, "../../dist", dir);
+    for (const file of fs.readdirSync(root, { recursive: true }) as string[]) {
+      const full = path.join(root, file);
+      if (fs.statSync(full).isFile() && fs.statSync(full).size > MAX_GALLERY_IMAGE_BYTES) {
+        oversized.push(path.join(dir, file));
+      }
+    }
+  }
+  expect(oversized, "run python3 scripts/reduce_image_size.py").toEqual([]);
 });
 
 // #518. Old hash URLs all request "/", so an inline script in the home page's
