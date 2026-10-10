@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="650" viewBox="0 0 1600 650">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="650" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="620" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Many shown scores come with a wide confidence interval</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Scores with at least 5 candidate updates</text>
+  <rect x="40" y="180" width="1520" height="380" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="440" y="217" width="34" height="24" rx="6" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <text x="486" y="236" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">3-tuple: every score Dependabot recorded</text>
+  <rect x="964.609" y="217" width="34" height="24" rx="6" fill="#fcefdc" stroke="#c2741a" stroke-width="2.5"/>
+  <text x="1010.61" y="236" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">4-tuple: scores tied to a PR in our projects</text>
+  <path d="M440 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="440" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">0</text>
+  <path d="M592.857 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="592.857" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">5</text>
+  <path d="M745.714 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="745.714" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">10</text>
+  <path d="M898.571 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="898.571" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">15</text>
+  <path d="M1051.43 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1051.43" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">20</text>
+  <path d="M1204.29 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1204.29" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">25</text>
+  <path d="M1357.14 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1357.14" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">30</text>
+  <path d="M1510 260 V450" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1510" y="484" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">35</text>
+  <path d="M440 450 H1510" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="975" y="526" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="middle">percentage points from the score to its furthest 90% bound</text>
+  <text x="70" y="317" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">3-tuple</text>
+  <path d="M449.171 309 H711.474" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M1063.35 309 H1323.21" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M449.171 298 V320" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1323.21 298 V320" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="711.474" y="290" width="351.877" height="38" rx="7" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <path d="M896.126 285 V333" fill="none" stroke="#1a4d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="896.126" y="278" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">median 15</text>
+  <text x="70" y="409" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">4-tuple</text>
+  <path d="M450.394 401 H481.577" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M718.811 401 H1068.55" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M450.394 390 V412" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1068.55 390 V412" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="481.577" y="382" width="237.234" height="38" rx="7" fill="#fcefdc" stroke="#c2741a" stroke-width="2.5"/>
+  <path d="M545.777 377 V425" fill="none" stroke="#8a4f0c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="545.777" y="370" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8a4f0c" text-anchor="middle">median 3.5</text>
+  <text x="800" y="602" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Redrawn from Figure 8 of the paper. Box: middle half of scores. Heavy line: median.</text>
+</svg>
