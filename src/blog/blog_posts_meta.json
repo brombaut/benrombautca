@@ -354,7 +354,7 @@
     {
         "_id": "20261007_dependabot_compatibility_score",
         "_title": "Can the Crowd Tell You If a Dependency Update Is Safe?",
-        "_createdAt": "2026-10-07",
+        "_createdAt": "2026-03-01",
         "_description": "What my paper on Dependabot's compatibility score found: most updates never get a score, the ones shown are nearly all above 90%, and a project's own update history predicts better than the crowd.",
         "_show": true,
         "_archived": false
