@@ -1,0 +1,251 @@
+<p>In 2022, as part of my master’s work at Queen’s, I wrote a paper with
+Filipe Cogo and Ahmed Hassan on the compatibility score that Dependabot
+attaches to its dependency update pull requests: <a
+href="https://arxiv.org/abs/2403.09012">Leveraging the Crowd for
+Dependency Management: An Empirical Study on the Dependabot
+Compatibility Score</a> (<a
+href="publications/Rombaut_Benjamin_J_202203_DependabotCompatibilityScore.pdf">PDF</a>).
+The score is an attempt to answer a question every maintainer faces when
+a bot opens an update PR: is this new version safe to take? This post
+walks through what the score is, how we measured it, and what we found
+it can and can’t tell a maintainer.</p>
+<h2 id="what-the-compatibility-score-is">What the Compatibility Score
+Is</h2>
+<p>Dependabot watches the dependencies a project declares. When one of
+them releases a new version, Dependabot opens a PR that bumps the
+dependency from the version the project uses (the origin version) to the
+new one (the target version), and the project’s CI runs against that
+branch.</p>
+<p>Because Dependabot opens the same kind of PR in many projects at
+once, it sees how that update fared across all of them. The
+compatibility score is that crowd’s verdict. For a given update,
+identified by the tuple (provider package, origin version, target
+version), it’s the fraction of PRs whose CI passed:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>compatibility_score <span class="op">=</span> successful_updates <span class="op">/</span> candidate_updates</span></code></pre></div>
+<p>Not every PR counts. A PR is a <em>candidate update</em> only if the
+project has CI configured and its main branch was passing before the
+update, so that a failure can reasonably be blamed on the dependency. A
+candidate is <em>successful</em> if CI still passes with the update
+applied. The project doesn’t have to merge the PR for it to count.</p>
+<p>The score is shown as a badge on the PR, but only once an update has
+at least 5 candidate updates. Below that, the badge says “unknown”.</p>
+<p>Here’s what that looks like on a real Dependabot PR. The title names
+the provider, origin version and target version, and the badge in the PR
+description shows the score for that update.</p>
+<p><img
+src="blog-images/dependabot-compatibility-score/fig1_dependabot_pr.webp"
+alt="A Dependabot pull request titled “Bump husky from 6.0.0 to 7.0.4”, with the provider name, origin version and target version boxed in red in the title, and a “compatibility 94%” badge boxed in red in the PR description" /></p>
+<h2 id="how-we-measured-it">How We Measured It</h2>
+<p>The diagram below shows the whole collection pipeline, from finding
+projects on BigQuery to the two datasets the analysis runs on.</p>
+<p><img
+src="blog-images/dependabot-compatibility-score/fig2_data_collection.webp"
+alt="A four-stage flowchart. Stage 1 uses Google BigQuery to find packages that use Dependabot and filters them down to 7,733 client packages. Stage 2 uses GitHub to collect 579,206 Dependabot pull requests, their 1,667,463 check runs (1,530,695 after classification), and 15,654 provider packages. Stage 3 queries Dependabot for 618,045 compatibility scores. Stage 4 combines these into a 3-tuple dataset (P, V_O, V_T) and a 4-tuple dataset (C, P, V_O, V_T), which feed the paper’s three research questions" /></p>
+<p>We used Google BigQuery to find GitHub projects with commits authored
+by Dependabot, then kept non-forked projects with at least 100 commits.
+That left 7,733 projects. From those we pulled every Dependabot PR
+between June 2017 and June 2021 through the GitHub API: 579,206 PRs. For
+each PR we parsed the provider, origin and target versions out of the
+title and collected the CI checks that ran on it.</p>
+<p>We then queried Dependabot’s own API for every compatibility score it
+had recorded for each provider package we saw, which gave us 618,045
+score records. That produced two datasets:</p>
+<ul>
+<li>The <strong>3-tuple dataset</strong> is every score Dependabot had
+recorded, keyed by (provider, origin, target). It’s the complete picture
+of what scores exist, but it doesn’t say which projects contributed to
+them.</li>
+<li>The <strong>4-tuple dataset</strong> links each score back to a
+specific Dependabot PR in one of our projects, keyed by (client,
+provider, origin, target). It’s smaller and skews towards popular
+updates, but it lets us ask whether the project merged the PR.</li>
+</ul>
+<p>Only 38% of the Dependabot PRs had any CI configured at all, so most
+PRs never become candidates. To judge what the candidates were actually
+testing, I classified each CI check by its name into build, test, lint,
+deploy, security analysis, or “useless”, meaning checks that say nothing
+about compatibility, like one that labels the PR or uploads logs
+somewhere. Build checks were the most common at 58%, mostly because many
+projects run their whole pipeline as a single check, and 11% of checks
+were useless.</p>
+<h2 id="most-updates-never-get-a-score">Most Updates Never Get a
+Score</h2>
+<p>Only 17% of the updates in the 3-tuple dataset reached the
+5-candidate threshold. The other 83% show “unknown”. That’s despite
+Dependabot opening hundreds of PRs for some new releases: the candidates
+for a provider get split across every origin version projects happen to
+be on, so each (origin, target) pair gets only a few. The real
+proportion is probably lower still, since Dependabot’s API only returns
+updates with at least one candidate.</p>
+<p>The 4-tuple dataset, which skews towards popular packages and
+versions, did better: 83% had enough candidates for a badge, with a
+median of 41 candidates.</p>
+<p>The chart below shows how many candidate updates sit behind each
+score in both datasets, on a log scale, with a dashed line at the
+5-candidate threshold. Three quarters of the 3-tuple scores have 3
+candidates or fewer, so most of that box sits left of the line.</p>
+<p><img
+src="blog-images/dependabot-compatibility-score/candidate-updates.png"
+alt="“Most updates have too few candidates for a badge”: horizontal box plots of candidate updates per compatibility score on a log scale from 1 to 10,000. The 3-tuple box runs from 1 to 3 with a median of 1 and a whisker to about 15. The 4-tuple box runs from about 7 to about 220 with a median of 41 and a whisker to about 4,700. A dashed vertical line marks the badge threshold at 5" /></p>
+<p>When a badge does appear, it almost always reads high. The next chart
+shows the scores themselves for the updates with at least 5
+candidates.</p>
+<p><img src="blog-images/dependabot-compatibility-score/shown-scores.png"
+alt="“The scores that do get shown sit near 100%”: horizontal box plots of compatibility scores on an axis from 0% to 100%. The 3-tuple box runs from 90% to 100% with its median at 100% and a whisker down to 75%. The 4-tuple box runs from 95% to 100% with a median of 98% and a whisker down to 88%" /></p>
+<p>Among these scores, 76% (3-tuple) and 89% (4-tuple) were above 90%. A
+maintainer looking at these badges is mostly choosing between scores in
+the 90s, which isn’t much of a range to make a decision with.</p>
+<h2 id="widening-the-crowd-and-looking-at-the-client">Widening the
+Crowd, and Looking at the Client</h2>
+<p>Since the crowd is usually too thin, we looked at two other sources
+of information Dependabot already has.</p>
+<p>The first widens the crowd. Instead of only counting candidates from
+the exact origin version, count every origin version within the same
+patch range (<code>x.y.*</code>), minor range (<code>x.*.*</code>), or
+major range (<code>*.*.*</code>) that updated to the same target. This
+borrows the logic of semantic versioning: an update from 2.0.1 to 2.0.4
+and one from 2.0.2 to 2.0.4 should behave about the same. Using the
+minor range gave the median 3-tuple score 5x as many candidates, and the
+major range 10x. The share of 3-tuple scores that reach the 5-candidate
+threshold went from 17% to 39%, 68% and 78% for the patch, minor and
+major ranges. The cost is that the wider the range, the less the score
+describes the exact update in front of the maintainer, and major ranges
+can include intentional breaking changes.</p>
+<p>The chart below shows, for each range, how many candidates the range
+score draws on as a multiple of the exact-version score. The gain is
+much smaller for the 4-tuple scores, with medians of 1x, 1.5x and
+1.9x.</p>
+<p><img
+src="blog-images/dependabot-compatibility-score/origin-version-ranges.png"
+alt="“Wider origin version ranges draw on more candidates”: horizontal box plots, grouped into patch, minor and major ranges, each with a 3-tuple and a 4-tuple row, on a log scale from 1x to over 1,000x. The 3-tuple medians are 1x, 5x and 10x, with upper whiskers reaching about 15x, 1,100x and 2,100x. The 4-tuple medians are 1x, 1.5x and 1.9x, with upper whiskers reaching about 2x, 13x and 26x" /></p>
+<p>The second looks at the project’s own history with Dependabot: how
+many of its earlier Dependabot PRs passed CI, and how many it merged,
+both overall and for this particular provider.</p>
+<p>To test whether either helps, we trained random forest models to
+predict whether the project merged the PR, on 4-tuple PRs that had fewer
+than 5 candidates (the cases where the badge says “unknown”). We used
+the merge decision rather than the CI result because CI is a poor label
+on its own: in 28% of Dependabot PRs with failing CI, the project merged
+the update anyway, presumably because they knew the failure had nothing
+to do with the dependency. Each model was evaluated with the median AUC
+over 100 out-of-sample bootstrap iterations. The baseline used only the
+raw compatibility score, on PRs with 5 or more candidates, and reached a
+median AUC of 0.62. The origin version range model reached 0.64, the
+client history model 0.76, and both combined 0.80.</p>
+<p>The chart below shows each model’s AUC across the 100 bootstrap runs,
+as a gain over the baseline’s median.</p>
+<p><img src="blog-images/dependabot-compatibility-score/model-auc-gain.png"
+alt="“The project’s own history predicts merges best”: horizontal box plots of AUC gain over the baseline, on an axis from 0% to +30%. The raw score baseline sits around 0%, labelled with its median AUC of 0.62. Origin version ranges sit at a median of +2.4%, client history at +21.5%, and both combined at +27.4%. Each box is narrow, about one percentage point wide" /></p>
+<p><strong>The main finding:</strong> the project’s own history predicts
+whether it’ll accept an update much better than the crowd does. The
+single most important feature in the client history model was how many
+Dependabot PRs the project had merged before. The widened crowd scores
+helped only a little on their own, though they added to the combined
+model. When we ran the same models on PRs that did have 5 or more
+candidates, the combined model still reached 0.78, against the
+baseline’s 0.62, so the client’s history helps even when the crowd is
+big enough to show a badge.</p>
+<h2 id="how-much-to-trust-a-score">How Much to Trust a Score</h2>
+<p>A score of 100% from 5 candidates and a score of 99% from 100
+candidates get the same badge, and the first looks better. The second is
+much stronger evidence.</p>
+<p>To put a number on that, we computed a 90% confidence interval for
+each score from its candidate and successful counts, and measured how
+far the furthest bound sat from the score. For half of the 3-tuple
+scores with at least 5 candidates, that distance was more than 15
+percentage points. In the 4-tuple dataset, with more candidates per
+score, the median distance was 3.5 points. The chart below shows that
+distance across all scores with at least 5 candidates.</p>
+<p><img
+src="blog-images/dependabot-compatibility-score/confidence-interval-width.png"
+alt="“Many shown scores come with a wide confidence interval”: horizontal box plots of the distance from each score to the furthest bound of its 90% confidence interval, in percentage points from 0 to 35. The 3-tuple box runs from about 9 to 20 with a median of 15 and a whisker to about 29. The 4-tuple box runs from about 1 to 9 with a median of 3.5 and a whisker to about 21" /></p>
+<p>The badge looks the same either way.</p>
+<p>The quantity of candidates is half of it; the quality is the other
+half. A candidate whose CI is only a linter counts exactly as much as
+one with build, unit, integration and deploy checks. Most candidates
+(94%) had at least a build or test check, though earlier research by
+Hejderup and Gousios found that project test suites often barely
+exercise their dependencies. A quarter of candidates had at least one
+useless check in their pipeline, and 1% had nothing but useless checks.
+Those useless-only PRs passed 94% of the time, slightly more than the
+88% for PRs with a build check. They count as successful updates without
+having tested the dependency at all.</p>
+<h3 id="an-aside-where-the-interval-comes-from">An Aside: Where the
+Interval Comes From</h3>
+<p>The score is a ratio from a handful of trials, so the question worth
+asking isn’t what the ratio is, it’s what true pass rate could plausibly
+have produced it. We answered that with Bayesian inference: treat the
+true rate as unknown, and treat the passes and failures we observed as
+evidence about it.</p>
+<p>The distribution to put over that true rate is the beta distribution,
+which is defined on 0 to 1, the range a ratio lives in. Before any PRs
+have run there’s nothing to go on, so the prior is Beta(1, 1), the
+uniform case where every true rate is equally plausible. The successes
+are then binomial: for N candidate updates and an unknown true rate p,
+the number that pass is S ~ Binomial(N, p). Beta and binomial are
+conjugate, which means the posterior is another beta distribution and
+its parameters are just the counts:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> successful_updates</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">1</span> <span class="op">+</span> failed_updates</span></code></pre></div>
+<p>So an update where 9 of 10 candidates passed has a Beta(10, 2)
+posterior, and one where 450 of 500 passed, the same 90% score, has a
+Beta(451, 51). Both are centred in the same place; the second is far
+narrower.</p>
+<p>The chart below puts four such updates on a shared axis. Every one of
+them scores 90%, and the only thing that changes down the rows is how
+many candidates produced that score, from 10 up to 500. Each row shows
+the posterior for that update, scaled to its own height, with a solid
+line at the score and dashed lines at the bounds of the interval. The
+range of pass rates the evidence can’t rule out shrinks as candidates
+accumulate, from plus or minus 17.1 points at 10 candidates to 2.2
+points at 500.</p>
+<p><img
+src="blog-images/dependabot-compatibility-score/posterior-narrowing.png"
+alt="Four stacked posterior distributions, labelled A to D, over an axis from 40% to 100%. All four score 90%. A, from 9 of 10 candidates passing, is a wide hump spanning most of the axis with an interval of 17.1 points. B, 27 of 30, is narrower at 9.5 points. C, 90 of 100, is 5.0 points. D, 450 of 500, is a narrow spike at 2.2 points. A solid line marks the score and dashed lines mark the interval bounds on each row" /></p>
+<p>From there we took a normal approximation to the posterior’s standard
+deviation, scaled it by the critical value for a 90% confidence level,
+and read the bounds off around the score:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> sqrt(a <span class="op">*</span> b <span class="op">/</span> ((a <span class="op">+</span> b) <span class="op">**</span> <span class="dv">2</span> <span class="op">*</span> (a <span class="op">+</span> b <span class="op">+</span> <span class="dv">1</span>)))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>precision <span class="op">=</span> <span class="fl">1.65</span> <span class="op">*</span> sigma</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>interval <span class="op">=</span> [<span class="bu">max</span>(score <span class="op">-</span> precision, <span class="dv">0</span>), <span class="bu">min</span>(score <span class="op">+</span> precision, <span class="dv">1</span>)]</span></code></pre></div>
+<p>Row A’s upper bound in the chart above lands exactly on 100% because
+of that clamp; the formula would otherwise put it past 107%.</p>
+<p>Plotting that <code>precision</code> directly gives the second chart:
+the width of the interval against the number of candidates on a log
+axis, for three observed scores, with the two medians above marked as
+horizontal lines. At the 5-candidate threshold where the badge first
+appears, the interval is at least 20 points wide whatever the score.
+Getting it down to the 3.5 points that the 4-tuple scores reach at their
+median takes somewhere north of 100 candidates, and the curve has
+flattened out well before 1,000.</p>
+<p><img
+src="blog-images/dependabot-compatibility-score/precision-vs-candidates.png"
+alt="Three curves of confidence interval width against candidate updates, on a log axis from 5 to 5,000 candidates and a vertical axis from 0 to 30 percentage points. All three fall steeply and then flatten. At 5 candidates they sit between 20 and 24 points; at 100 candidates between 1.6 and 5 points; by 1,000 all three are under 2. Dashed horizontal lines mark the 3-tuple median of 15 points and the 4-tuple median of 3.5 points" /></p>
+<h2 id="what-the-score-tells-a-maintainer">What the Score Tells a
+Maintainer</h2>
+<p>Put together, here’s how I’d read the badge as a maintainer:</p>
+<ul>
+<li>“Unknown” is the usual case, not an edge case.</li>
+<li>A high score with few candidates is weak evidence, and most shown
+scores are high.</li>
+<li>A passing candidate may not have tested anything. The project
+contributing that pass could have a pipeline that only labels PRs.</li>
+<li>If the project’s own CI passes, that’s another data point, but the
+project’s own PR is also one of the candidates in the score, so the two
+aren’t independent.</li>
+</ul>
+<p>The paper closes with four recommendations for anyone building a
+dependency bot that leans on the crowd:</p>
+<ol type="1">
+<li>When an exact update has too few candidates, widen to a range of
+origin versions, and say clearly that the score is for the range.</li>
+<li>When even that isn’t enough, use the client’s own update history to
+give a personalized score.</li>
+<li>Show a confidence interval or similar next to the score, so a 100%
+from 5 candidates doesn’t look better than a 99% from 100.</li>
+<li>Weight candidates by the quality of their CI, so that a pipeline
+that never touches the dependency doesn’t count as a pass.</li>
+</ol>

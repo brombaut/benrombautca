@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1224" viewBox="0 0 1600 1224">
+  <defs>
+    <marker id="aGrey" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7d8ba3"/></marker>
+    <marker id="aGreen" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#2f9e68"/></marker>
+    <marker id="aAmber" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#d08a1e"/></marker>
+    <marker id="aPurple" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#7a5ad0"/></marker>
+    <marker id="aTeal" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#109188"/></marker>
+    <marker id="aFaint" markerUnits="userSpaceOnUse" markerWidth="15" markerHeight="14" refX="14" refY="7" orient="auto"><path d="M0,0.5 L14,7 L0,13.5 Z" fill="#b6c1d2"/></marker>
+  </defs>
+  <rect width="1600" height="1224" fill="#ffffff"/>
+  <rect x="15" y="15" width="1570" height="1194" rx="34" fill="#f8fafc" stroke="#dbe3ef" stroke-width="2.5"/>
+  <text x="80" y="100" font-family="Noto Sans, sans-serif" font-size="44" font-weight="700" fill="#1f2430" text-anchor="start">Wider origin version ranges draw on more candidates</text>
+  <text x="80" y="148" font-family="Noto Sans, sans-serif" font-size="27" font-weight="400" fill="#64718a" text-anchor="start">Candidate updates behind each range score, relative to the exact-version score</text>
+  <rect x="40" y="180" width="1520" height="954" rx="26" fill="#ffffff" stroke="#dbe3ef" stroke-width="2.5"/>
+  <rect x="440" y="217" width="34" height="24" rx="6" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <text x="486" y="236" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">3-tuple: every score Dependabot recorded</text>
+  <rect x="964.609" y="217" width="34" height="24" rx="6" fill="#fcefdc" stroke="#c2741a" stroke-width="2.5"/>
+  <text x="1010.61" y="236" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#64718a" text-anchor="start">4-tuple: scores tied to a PR in our projects</text>
+  <path d="M469.013 260 V1024" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="469.013" y="1058" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">1x</text>
+  <path d="M768.395 260 V1024" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="768.395" y="1058" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">10x</text>
+  <path d="M1067.78 260 V1024" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1067.78" y="1058" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">100x</text>
+  <path d="M1367.16 260 V1024" fill="none" stroke="#dbe3ef" stroke-width="2" stroke-linecap="butt" stroke-linejoin="round" stroke-dasharray="5 8"/>
+  <text x="1367.16" y="1058" font-family="Noto Sans, sans-serif" font-size="21" font-weight="400" fill="#94a3b8" text-anchor="middle">1,000x</text>
+  <path d="M440 1024 H1510" fill="none" stroke="#dbe3ef" stroke-width="2.5" stroke-linecap="butt" stroke-linejoin="round"/>
+  <text x="975" y="1100" font-family="Noto Sans, sans-serif" font-size="23" font-weight="400" fill="#64718a" text-anchor="middle">candidates as a multiple of the exact-version score (log scale)</text>
+  <text x="70" y="294" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="1.8">PATCH RANGE  x.y.*</text>
+  <text x="70" y="363" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">3-tuple</text>
+  <path d="M611.855 355 H825.377" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M469.013 344 V366" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M825.377 344 V366" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="469.013" y="336" width="142.841" height="38" rx="7" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <path d="M469.013 331 V379" fill="none" stroke="#1a4d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="469.013" y="324" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="start">median 1x</text>
+  <text x="70" y="455" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">4-tuple</text>
+  <path d="M510.89 447 H573.871" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M469.013 436 V458" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M573.871 436 V458" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="469.013" y="428" width="41.8773" height="38" rx="7" fill="#fcefdc" stroke="#c2741a" stroke-width="2.5"/>
+  <path d="M469.013 423 V471" fill="none" stroke="#8a4f0c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="469.013" y="416" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8a4f0c" text-anchor="start">median 1x</text>
+  <text x="70" y="558" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="1.8">MINOR RANGE  x.*.*</text>
+  <text x="70" y="627" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">3-tuple</text>
+  <path d="M469.013 619 H520.862" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M864.862 619 H1378.36" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M469.013 608 V630" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1378.36 608 V630" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="520.862" y="600" width="344" height="38" rx="7" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <path d="M678.272 595 V643" fill="none" stroke="#1a4d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="678.272" y="588" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">median 5x</text>
+  <text x="70" y="719" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">4-tuple</text>
+  <path d="M469.013 711 H483.748" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M609.228 711 H798.444" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M469.013 700 V722" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M798.444 700 V722" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="483.748" y="692" width="125.48" height="38" rx="7" fill="#fcefdc" stroke="#c2741a" stroke-width="2.5"/>
+  <path d="M521.732 687 V735" fill="none" stroke="#8a4f0c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="521.732" y="680" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8a4f0c" text-anchor="middle">median 1.5x</text>
+  <text x="70" y="822" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#94a3b8" text-anchor="start" letter-spacing="1.8">MAJOR RANGE  *.*.*</text>
+  <text x="70" y="891" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">3-tuple</text>
+  <path d="M469.013 883 H576.741" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M931.65 883 H1462.38" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M469.013 872 V894" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1462.38 872 V894" fill="none" stroke="#3381db" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="576.741" y="864" width="354.909" height="38" rx="7" fill="#e8f1fc" stroke="#3381db" stroke-width="2.5"/>
+  <path d="M768.395 859 V907" fill="none" stroke="#1a4d8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="768.395" y="852" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#1a4d8f" text-anchor="middle">median 10x</text>
+  <text x="70" y="983" font-family="Noto Sans, sans-serif" font-size="23" font-weight="700" fill="#1f2430" text-anchor="start">4-tuple</text>
+  <path d="M469.013 975 H502.122" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M657.447 975 H890.615" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="butt" stroke-linejoin="round"/>
+  <path d="M469.013 964 V986" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M890.615 964 V986" fill="none" stroke="#c2741a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="502.122" y="956" width="155.325" height="38" rx="7" fill="#fcefdc" stroke="#c2741a" stroke-width="2.5"/>
+  <path d="M548.295 951 V999" fill="none" stroke="#8a4f0c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="548.295" y="944" font-family="Noto Sans, sans-serif" font-size="20" font-weight="700" fill="#8a4f0c" text-anchor="middle">median 1.9x</text>
+  <text x="800" y="1176" font-family="Noto Sans, sans-serif" font-size="22" font-weight="400" fill="#94a3b8" text-anchor="middle">Redrawn from Figure 5 of the paper. Box: middle half of scores. Heavy line: median.</text>
+</svg>
