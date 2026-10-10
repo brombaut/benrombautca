@@ -254,7 +254,7 @@ bar with a hamburger. See #501 and #277.
 - **Before writing or editing a post, a diagram label or image alt text, load the
   `blog-writing` skill** (`.agents/skills/blog-writing/SKILL.md`). It holds the
   writing style agreed under #550, the steps for adding a post and its images,
-  and the pandoc pin. None of that is repeated here, so that sessions which never
+  the pandoc pin and the diagram pipeline. None of that is repeated here, so that sessions which never
   touch the blog do not carry it
 
 #### Archived posts are frozen
@@ -278,19 +278,12 @@ under `src/blog/`, which is what actually enforces the above. The blog pipeline
 is otherwise local-only.
 
 ### Blog Diagrams
-- **Source**: Python generators in `scripts/diagrams/` (one `d_*.py` per diagram)
-- **Output**: `.svg` and `.png` written to `src/blog/content/images/<POST>/`, where
-  each generator sets `POST` to its own post slug
-- **Rebuild**: `python3 scripts/diagrams/build.py`, or a single `d_*.py`
-- **IMPORTANT**: Never hand-edit a *generated* SVG. Edit the `d_*.py` and rebuild,
-  the same rule that applies to `blog_posts_content.json`.
-- **Only three diagrams are generated**: the `learning-llms-2` ones. The nine under
-  `learning-llms-{3,4,5}` have no `d_*.py` and `build.py` does not touch them, so
-  that rule cannot apply to them. `scripts/diagrams/README.md` says what to do with
-  those instead.
-- Boxes are sized from real font metrics, so text cannot silently overflow. The build
-  prints `!!` warnings when something does not fit.
-- See `scripts/diagrams/README.md` for dependencies, the layout skeleton, and the palette.
+- **IMPORTANT**: Never hand-edit a *generated* SVG. Edit its `d_*.py` in
+  `scripts/diagrams/` and rebuild with `python3 scripts/diagrams/build.py`
+- Only the three `learning-llms-2` diagrams are generated. The nine under
+  `learning-llms-{3,4,5}` have no generator, so that rule cannot apply to them;
+  `scripts/diagrams/README.md` says what to do with those
+- The rest is in the `blog-writing` skill and `scripts/diagrams/README.md`
 
 ### Bookshelf
 - **Source**: Goodreads user profile (web scraping)
@@ -551,12 +544,6 @@ its passthrough-copy entry were removed. Re-adding them means adding the link to
 
 ### Technical Debt
 - No unit tests (only browser smoke tests)
-- **Nine blog diagrams have no generator.** Those under
-  `src/blog/content/images/learning-llms-{3,4,5}/` were committed as finished
-  SVG + PNG pairs by an earlier, uncommitted variant of `scripts/diagrams/`, so
-  `build.py` cannot rebuild them and the "edit the generator, never the SVG" rule
-  does not apply to them. Only the three `learning-llms-2` diagrams have a
-  `d_*.py`. See `scripts/diagrams/README.md`
 - **There are no scratch TODO files in this repo, by design.** `PROJECT_TODOS.md`,
   `TODO.md`, `GITHUB_ISSUES_TO_CREATE.md`, `dependency_upgrade_todos.md`,
   `scratch_ideas.md` and `plans/` were all deleted: they drifted out of date and

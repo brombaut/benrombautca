@@ -1,13 +1,13 @@
 ---
 name: blog-writing
-description: House writing style and content pipeline for benrombaut.ca blog posts. Use when outlining, drafting, editing or reviewing a blog post, writing diagram labels or image alt text for one, or adding, converting or syncing a post and its images.
+description: House writing style and content pipeline for benrombaut.ca blog posts. Use when outlining, drafting, editing or reviewing a blog post, writing diagram labels or image alt text for one, adding, converting or syncing a post and its images, or building or changing a blog diagram.
 ---
 
 # Blog writing
 
 Moved out of `AGENTS.md` so it only loads when a post is being worked on. The
-hard prohibitions (never hand-edit `blog_posts_content.json`, never reconvert
-the archived posts) stay in `AGENTS.md`, because a task that has nothing to do
+hard prohibitions (never hand-edit `blog_posts_content.json` or a generated
+diagram SVG, never reconvert the archived posts) stay in `AGENTS.md`, because a task that has nothing to do
 with the blog can still break them.
 
 ## Writing style
@@ -206,3 +206,20 @@ There is no `download_pandoc()` fallback; a missing bundled binary is a hard err
 
 The converter writes a `.html` only when the generated content differs, so
 editing one post produces a one-post diff instead of rewriting every file.
+
+## Diagrams
+
+- **Source**: Python generators in `scripts/diagrams/` (one `d_*.py` per diagram)
+- **Output**: `.svg` and `.png` written to `src/blog/content/images/<POST>/`, where
+  each generator sets `POST` to its own post slug
+- **Rebuild**: `python3 scripts/diagrams/build.py`, or a single `d_*.py`
+- **IMPORTANT**: Never hand-edit a *generated* SVG. Edit the `d_*.py` and rebuild,
+  the same rule that applies to `blog_posts_content.json`.
+- **Only three diagrams are generated**: the `learning-llms-2` ones. The nine under
+  `src/blog/content/images/learning-llms-{3,4,5}/` were committed as finished
+  SVG + PNG pairs by an earlier, uncommitted variant of `scripts/diagrams/`.
+  They have no `d_*.py` and `build.py` cannot rebuild them, so that rule cannot
+  apply to them. `scripts/diagrams/README.md` says what to do with those instead.
+- Boxes are sized from real font metrics, so text cannot silently overflow. The build
+  prints `!!` warnings when something does not fit.
+- See `scripts/diagrams/README.md` for dependencies, the layout skeleton, and the palette.
