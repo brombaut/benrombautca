@@ -10,6 +10,9 @@
  *   blog.listed  the subset that is also not `_archived`, newest first. These
  *                appear on the blog index.
  *
+ * A series post also carries `seriesPosts`: every listed part of its series, in
+ * part order, for the series nav on the post page (#551).
+ *
  * Each post also carries `image`: the first blog image in its body, used as the
  * index card's thumbnail. Seven of the 14 listed posts have no image at all, so
  * templates must handle it being null.
@@ -115,5 +118,17 @@ const all = meta
   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
 const listed = all.filter((p) => !p.archived);
+
+// Sorted by part, not date: parts aren't always published in order. Built from
+// `listed` so an archived post is never linked to, and skipped when a series
+// has only one part showing, since a list of one links nowhere.
+for (const post of listed) {
+  if (!post.series) continue;
+  const parts = listed
+    .filter((p) => p.series && p.series.name === post.series.name)
+    .sort((a, b) => a.series.part - b.series.part)
+    .map((p) => ({ part: p.series.part, displayTitle: p.displayTitle, url: p.url }));
+  if (parts.length > 1) post.seriesPosts = parts;
+}
 
 module.exports = { all, listed };

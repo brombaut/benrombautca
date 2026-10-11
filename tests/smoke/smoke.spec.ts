@@ -200,6 +200,37 @@ test("a post renders its body without overflowing the page", async ({ page }) =>
   await page.waitForLoadState("networkidle");
 });
 
+// The series nav (#551) sits above and below the body. Part order is the point:
+// it comes from the title prefix, not the date, and the two can disagree.
+test("a series post links the other parts of its series in order", async ({ page }) => {
+  const url = "/blog/20260904_learning_llms_2_architecture_variations/";
+  await page.goto(url);
+  const navs = page.locator(".series-nav");
+  await expect(navs).toHaveCount(2);
+
+  const top = navs.first();
+  const parts = await top.locator("li").evaluateAll(
+    (els) => els.map((el) => (el as HTMLLIElement).value),
+  );
+  expect(parts.length, "the series has several parts").toBeGreaterThan(2);
+  expect(parts, "parts are in order").toEqual([...parts].sort((a, b) => a - b));
+
+  // Every part but this one is a link, and none of them links back here.
+  await expect(top.locator("[aria-current=page]")).toHaveCount(1);
+  await expect(top.locator("li[value='2'] [aria-current=page]")).toHaveCount(1);
+  await expect(top.locator("a")).toHaveCount(parts.length - 1);
+  await expect(top.locator(`a[href="${url}"]`)).toHaveCount(0);
+  for (const href of await top.locator("a").evaluateAll(
+    (els) => els.map((el) => el.getAttribute("href") as string),
+  )) {
+    expect((await page.request.get(href)).ok(), `${href} is built`).toBe(true);
+  }
+
+  // A post outside any series is unchanged.
+  await page.goto("/blog/20220626_titanic_dataset/");
+  await expect(page.locator(".series-nav")).toHaveCount(0);
+});
+
 test("the publications page lists both groups and serves its PDFs", async ({ page }) => {
   await page.goto("/publications/");
   expect(await page.locator(".pub-list > li").count()).toBe(13);

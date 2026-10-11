@@ -23,9 +23,13 @@ eleventyComputed:
     &middot; {{ post.readingMinutes }} min read
   </p>
 
+  {% include "series-nav.njk" %}
+
   <div class="article-body">
     {{ post.body | safe }}
   </div>
+
+  {% include "series-nav.njk" %}
 
   <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
 </article>

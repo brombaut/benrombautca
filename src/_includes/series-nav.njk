@@ -1,0 +1,19 @@
+{# The other parts of a post's series (#551). Included above and below the body
+   of a series post; `post.seriesPosts` is built in src/_data/blog.js. #}
+{% if post.seriesPosts %}
+  <nav class="series-nav" aria-label="{{ post.series.name }} series">
+    <p class="series-nav__title">The {{ post.series.name }} series</p>
+    {# `value` rather than the list's own counter: a part can be unpublished. #}
+    <ol>
+      {% for part in post.seriesPosts %}
+        <li value="{{ part.part }}">
+          {% if part.url == post.url %}
+            <span aria-current="page">{{ part.displayTitle }}</span>
+          {% else %}
+            <a href="{{ part.url }}">{{ part.displayTitle }}</a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}
