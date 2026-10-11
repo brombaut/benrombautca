@@ -358,5 +358,13 @@
         "_description": "What my paper on Dependabot's compatibility score found: most updates never get a score, the ones shown are nearly all above 90%, and a project's own update history predicts better than the crowd.",
         "_show": true,
         "_archived": false
+    },
+    {
+        "_id": "20261001_ai_tools_q3_2026",
+        "_title": "[AI Experience 4] My Experience Learning to Use AI for Software Development: Q3 2026",
+        "_createdAt": "2026-10-01T00:00:00.000Z",
+        "_description": "Q3 had less experimenting in it than the earlier quarters. I tried OpenCode in July, spent August using AI to get through work without looking closely at how, and changed jobs in September. Claude Code is my default again, and the daily and weekly summaries from Q2 are still in use.",
+        "_show": true,
+        "_archived": false
     }
 ]
