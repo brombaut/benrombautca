@@ -483,16 +483,14 @@ hr {
   font-size: var(--text-tiny);
 }
 
-// One fixed box so the text column's right edge stays put down the page. These
-// are plots and diagrams rather than photos, and a `cover` crop of one is an
-// unreadable fragment of somebody's axis labels, so `contain` fits the whole
-// figure instead. The box is white because the figures are.
+// One fixed width so the text column's right edge stays put down the page. The
+// height follows the image: most of these are plots and diagrams, where a crop
+// is an unreadable fragment of somebody's axis labels, and a fixed box put
+// white bars around any thumbnail that has a background of its own.
 .post-card__thumb {
   align-self: center;
   width: 11rem;
-  aspect-ratio: 4 / 3;
-  object-fit: contain;
-  background: #fff;
+  height: auto;
   border: 1px solid var(--tertiary);
 }
 
