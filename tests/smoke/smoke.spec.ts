@@ -1,5 +1,7 @@
 /* eslint-disable no-restricted-syntax -- sequential for...of loops are clearer for browser steps */
 import { test as base, expect } from "@playwright/test";
+import fs from "node:fs";
+import path from "node:path";
 
 /*
  * Smoke coverage for the static site (#544): every section page and every blog
@@ -198,6 +200,37 @@ test("a post renders its body without overflowing the page", async ({ page }) =>
   await page.waitForLoadState("networkidle");
 });
 
+// The series nav (#551) sits above and below the body. Part order is the point:
+// it comes from the title prefix, not the date, and the two can disagree.
+test("a series post links the other parts of its series in order", async ({ page }) => {
+  const url = "/blog/20260904_learning_llms_2_architecture_variations/";
+  await page.goto(url);
+  const navs = page.locator(".series-nav");
+  await expect(navs).toHaveCount(2);
+
+  const top = navs.first();
+  const parts = await top.locator("li").evaluateAll(
+    (els) => els.map((el) => (el as HTMLLIElement).value),
+  );
+  expect(parts.length, "the series has several parts").toBeGreaterThan(2);
+  expect(parts, "parts are in order").toEqual([...parts].sort((a, b) => a - b));
+
+  // Every part but this one is a link, and none of them links back here.
+  await expect(top.locator("[aria-current=page]")).toHaveCount(1);
+  await expect(top.locator("li[value='2'] [aria-current=page]")).toHaveCount(1);
+  await expect(top.locator("a")).toHaveCount(parts.length - 1);
+  await expect(top.locator(`a[href="${url}"]`)).toHaveCount(0);
+  for (const href of await top.locator("a").evaluateAll(
+    (els) => els.map((el) => el.getAttribute("href") as string),
+  )) {
+    expect((await page.request.get(href)).ok(), `${href} is built`).toBe(true);
+  }
+
+  // A post outside any series is unchanged.
+  await page.goto("/blog/20220626_titanic_dataset/");
+  await expect(page.locator(".series-nav")).toHaveCount(0);
+});
+
 test("the publications page lists both groups and serves its PDFs", async ({ page }) => {
   await page.goto("/publications/");
   expect(await page.locator(".pub-list > li").count()).toBe(13);
@@ -229,6 +262,25 @@ test("hiking and running render their entries and scroll galleries internally", 
   expect(scrolls, "gallery scrolls horizontally").toBe(true);
   expect(await horizontalOverflow(page), "no horizontal page scroll").toBeLessThanOrEqual(0);
   await page.waitForLoadState("networkidle");
+});
+
+// Gallery photos display at most 28rem wide, so anything past 800px is wasted
+// bytes. Full-resolution originals (several MB each) once slipped in and stalled
+// the top of the hiking page; scripts/reduce_image_size.py shrinks them.
+const MAX_GALLERY_IMAGE_BYTES = 1024 * 1024;
+
+test("gallery images have been resized for the web", () => {
+  const oversized: string[] = [];
+  for (const dir of ["hiking-images", "running-images"]) {
+    const root = path.join(__dirname, "../../dist", dir);
+    for (const file of fs.readdirSync(root, { recursive: true }) as string[]) {
+      const full = path.join(root, file);
+      if (fs.statSync(full).isFile() && fs.statSync(full).size > MAX_GALLERY_IMAGE_BYTES) {
+        oversized.push(path.join(dir, file));
+      }
+    }
+  }
+  expect(oversized, "run python3 scripts/reduce_image_size.py").toEqual([]);
 });
 
 // #518. Old hash URLs all request "/", so an inline script in the home page's

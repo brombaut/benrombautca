@@ -510,6 +510,37 @@ hr {
   font-size: var(--text-tiny);
 }
 
+// The parts of a series, above and below a series post's body (#551). The
+// current part is plain text; the rest are links.
+.series-nav {
+  margin: 2.5rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--quaternary);
+  border-left: 3px solid var(--primary);
+  font-size: var(--text-tiny);
+
+  ol {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+
+  li + li {
+    margin-top: 0.25rem;
+  }
+
+  // The global [aria-current] rule is the nav's, and would colour this like a link.
+  [aria-current] {
+    color: var(--foreground);
+    font-weight: 600;
+  }
+}
+
+.series-nav__title {
+  margin: 0 0 0.5rem;
+  color: var(--secondary);
+  font-weight: 600;
+}
+
 .post-back {
   margin-top: 3rem;
   padding-top: 1.25rem;
