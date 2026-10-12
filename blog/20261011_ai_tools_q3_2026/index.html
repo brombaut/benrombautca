@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Q3 had less experimenting in it than the earlier quarters. I tried OpenCode in July, spent August using AI to get through work without looking closely at how, and changed jobs in September. Claude Code is my default again, and the daily and weekly summaries from Q2 are still in use.">
+  <title>My Experience Learning to Use AI for Software Development: Q3 2026 | Ben Rombaut</title>
+  <link rel="canonical" href="https://www.benrombaut.ca/blog/20261011_ai_tools_q3_2026/">
+
+  
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Ben Rombaut">
+  <meta property="og:title" content="My Experience Learning to Use AI for Software Development: Q3 2026 | Ben Rombaut">
+  <meta property="og:description" content="Q3 had less experimenting in it than the earlier quarters. I tried OpenCode in July, spent August using AI to get through work without looking closely at how, and changed jobs in September. Claude Code is my default again, and the daily and weekly summaries from Q2 are still in use.">
+  <meta property="og:url" content="https://www.benrombaut.ca/blog/20261011_ai_tools_q3_2026/">
+  <meta property="og:image" content="https://www.benrombaut.ca/images/benrombaut.webp">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" href="/fonts/albert-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+
+</head>
+
+<body>
+  
+<header class="topbar">
+  <p class="topbar__name"><a href="/">Ben Rombaut</a></p>
+
+  <details class="topnav">
+    <summary>Menu</summary>
+    <ul class="topnav__list">
+      
+        <li>
+          <a href="/"
+            >About</a>
+        </li>
+      
+        <li>
+          <a href="/bio/"
+            >Bio</a>
+        </li>
+      
+        <li>
+          <a href="/blog/"
+            >Blog</a>
+        </li>
+      
+        <li>
+          <a href="/publications/"
+            >Publications</a>
+        </li>
+      
+        <li>
+          <a href="/bookshelf/"
+            >Bookshelf</a>
+        </li>
+      
+        <li>
+          <a href="/running/"
+            >Running</a>
+        </li>
+      
+        <li>
+          <a href="/hiking/"
+            >Hiking</a>
+        </li>
+      
+      <li><ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+</li>
+    </ul>
+  </details>
+</header>
+
+
+  <div class="layout">
+    
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div>
+      <p class="sidebar__name"><a href="/">Ben Rombaut</a></p>
+      <p class="sidebar__role">Senior AI Engineer</p>
+
+      <nav aria-label="Main">
+        <ul class="sidenav">
+          
+            <li>
+              <a href="/"
+                >About</a>
+            </li>
+          
+            <li>
+              <a href="/bio/"
+                >Bio</a>
+            </li>
+          
+            <li>
+              <a href="/blog/"
+                >Blog</a>
+            </li>
+          
+            <li>
+              <a href="/publications/"
+                >Publications</a>
+            </li>
+          
+            <li>
+              <a href="/bookshelf/"
+                >Bookshelf</a>
+            </li>
+          
+            <li>
+              <a href="/running/"
+                >Running</a>
+            </li>
+          
+            <li>
+              <a href="/hiking/"
+                >Hiking</a>
+            </li>
+          
+        </ul>
+      </nav>
+    </div>
+
+    <ul class="social">
+  
+    <li>
+      <a href="https://github.com/brombaut" aria-label="GitHub" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "github" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 496 512" aria-hidden="true" focusable="false"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-25.4 16-31-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.3-8.5 62.4-8.5s42.4 2.9 62.4 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://www.linkedin.com/in/benjamin-rombaut/" aria-label="LinkedIn" rel="me noopener" target="_blank">
+        <!-- Font Awesome Free 6 brands "linkedin-in" (CC BY 4.0, fontawesome.com/license/free) -->
+<svg viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-12.7-58.4-43.7-58.4-23.7 0-37.8 15.9-44 31.3-2.3 5.5-2.9 13.2-2.9 20.9V448h-92.8s1.2-241.1 0-267.1h92.8v37.8c12.3-19 34.4-46.1 83.7-46.1 61.1 0 106.9 39.9 106.9 125.7z"/></svg>
+
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://scholar.google.ca/citations?user=hBX9eycAAAAJ&amp;hl=en" aria-label="Google Scholar" rel="me noopener" target="_blank">
+        <!-- Google Scholar mark, redrawn as a simple graduation cap so the sidebar has
+     no external icon dependency. -->
+<svg viewBox="0 0 512 512" aria-hidden="true" focusable="false"><path d="M256 32 0 176l256 144 256-144L256 32zm0 184.7L95.6 126.4 256 76.8l160.4 49.6L256 216.7z"/><path d="M96 262.4v90.9c0 45.3 71.6 82 160 82s160-36.7 160-82v-90.9l-160 90-160-90z"/></svg>
+
+      </a>
+    </li>
+  
+</ul>
+
+  </div>
+</aside>
+
+
+    <main class="content">
+      <article>
+  
+    <p class="post-series">AI Experience &middot; Part 4</p>
+  
+  <h1>My Experience Learning to Use AI for Software Development: Q3 2026</h1>
+  <p class="hero__lede">Q3 had less experimenting in it than the earlier quarters. I tried OpenCode in July, spent August using AI to get through work without looking closely at how, and changed jobs in September. Claude Code is my default again, and the daily and weekly summaries from Q2 are still in use.</p>
+  <p class="post-meta">
+    <time datetime="2026-10-11T00:00:00.000Z">October 11, 2026</time>
+    &middot; 6 min read
+  </p>
+
+  
+
+  <nav class="series-nav" aria-label="AI Experience series">
+    <p class="series-nav__title">The AI Experience series</p>
+    
+    <ol>
+      
+        <li value="1">
+          
+            <a href="/blog/20260305_learning_to_use_ai_coding_tools/">My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025</a>
+          
+        </li>
+      
+        <li value="2">
+          
+            <a href="/blog/20260401_ai_tools_q1_2026/">My Experience Learning to Use AI for Software Development: Q1 2026</a>
+          
+        </li>
+      
+        <li value="3">
+          
+            <a href="/blog/20260701_ai_tools_q2_2026/">My Experience Learning to Use AI for Software Development: Q2 2026</a>
+          
+        </li>
+      
+        <li value="4">
+          
+            <span aria-current="page">My Experience Learning to Use AI for Software Development: Q3 2026</span>
+          
+        </li>
+      
+    </ol>
+  </nav>
+
+
+
+  <div class="article-body">
+    <p><img src="/blog-images/ai-tools-q3-2026/juggling-coding-agents.webp"
+alt="Cartoon of me in a black t-shirt juggling three small robots labelled Claude Code, OpenCode and Gemini, while a fourth robot labelled Codex walks out the door carrying a box of its things and waving" /></p>
+<p>This is the fourth post in my recurring series about using AI tools
+for software development. The first covered early 2023 through the end
+of 2025. The second covered Q1 2026, when I went deeper with Claude Code
+and started running several sessions at once. The third covered Q2, when
+Codex became my default tool, Claude Code stayed for heavier work, and
+keeping track of context across sessions turned into the main
+problem.</p>
+<p>Q3 had less experimenting in it than the earlier quarters. I tried
+one new tool in July, spent August using AI to get through work without
+paying much attention to how I was using it, and changed jobs in
+September. The short version is that Claude Code is my default again,
+OpenCode is where I go to try other models, and the daily and weekly
+summaries from Q2 are still in use.</p>
+<h2 id="july-trying-opencode">July — Trying OpenCode</h2>
+<p>At the start of July I started using OpenCode, and I deliberately
+made myself stick with it for a while instead of going back to the tools
+I already knew.</p>
+<p>What I wanted from it was more control over the workflow. OpenCode
+isn’t tied to one model provider, so I hoped it would push me toward
+routing work to different models, bringing the cost down, and building a
+better feel for which models are good at which kinds of work.</p>
+<p>I was already into the experiment when I read Steve Yegge’s <a
+href="https://steve-yegge.medium.com/the-flat-curve-society-36c8b01eb33b">The
+Flat Curve Society</a>, and it made me more interested in what I was
+doing. His argument is that model capability will keep growing, but most
+people will stop seeing it. Part of that is access: he expects the most
+capable models to be restricted. The other part is the user. He
+describes two ceilings. One is set by the hardest problem I bring, since
+an easy problem gives a stronger model no room to do better than a
+weaker one. The other is set by the hardest answer I can judge, since
+past that point I can’t tell whether the model is right.</p>
+<p>From there he gets to skills. People first have to learn to spend
+tokens, which means actually using agents for real work. After that, the
+skill is spending fewer of them for the same outcome. At the far end of
+that is routing every task to the least capable model that can handle
+it, and only escalating the work that needs more. He also argues that a
+plateau in the models most people can use is a good thing for this,
+because techniques have time to settle instead of being replaced at
+every model release.</p>
+<p>That lined up with what I’d hoped to get from OpenCode, and I think
+it’s a good point.</p>
+<p>I didn’t stay on OpenCode as my main tool. I drifted back. But I go
+back to it on purpose every so often, usually for easy tasks or when I
+want to try one of the cheaper models that doesn’t come from Anthropic.
+It’s fun to try them out. It has also given me the motivation to look
+properly at how much the choice of model and the choice of harness
+affect the result, which will probably be a theme next quarter.</p>
+<h2 id="august-getting-things-done-without-looking-closely">August —
+Getting Things Done Without Looking Closely</h2>
+<p>August was busy. I had my day job, and I was also working on getting
+into a new one.</p>
+<p>I was still using AI very heavily, but mostly as a tool to get things
+done. I wasn’t putting in the effort I normally do to understand what
+was happening, evaluate how I was using the tools, or try anything
+new.</p>
+<p>In July I’d read Annie Vella’s <a
+href="https://annievella.com/posts/the-productivity-experience-paradox/">The
+Productivity-Experience Paradox</a>. Her argument is that AI tools raise
+perceived productivity while wearing down the experience of the work:
+flow, concentration, the sense of craft. Output gets separated from
+mastery. It resonated when I read it, and August is what it looked like
+for me.</p>
+<p>This is in the back of my head a lot now when I work, and I need to
+make a deliberate effort to push against it.</p>
+<h2
+id="september-a-new-job-a-vacation-and-learning-how-llms-work">September
+— A New Job, a Vacation, and Learning How LLMs Work</h2>
+<p>In September I left my job and started a new one. That took up a lot
+of my time, and I used LLMs to get through the tasks that came with it
+quickly.</p>
+<p>I also took a vacation, and planned a lot of it with LLMs. That meant
+asking questions and finding places to go in a chat window, the way
+someone who doesn’t write code uses these tools.</p>
+<p>The other thing I did in September was start the Learning LLMs series
+on this site, which began with building a small GPT from scratch. The
+reason was that I wanted to better understand the tools I’m working
+with.</p>
+<h2 id="what-stuck-for-tracking">What Stuck for Tracking</h2>
+<p>At the start of the quarter I wanted to pay attention to how I track
+AI-assisted work, and which methods I’d still be using three months
+later.</p>
+<p>The daily and weekly summaries from Q2 stuck, and I used them often.
+The daily summary reads the day’s agent session transcripts and produces
+a recap by project. The weekly one rolls those up. Their main use this
+quarter was picking a project back up. When I had to leave something for
+a while to deal with higher priority work, the summaries told me what
+I’d been doing and where I’d left off.</p>
+<p>In Q2 they only read Claude Code sessions, which left out anything I
+did elsewhere. This quarter I got them reading Codex and OpenCode
+sessions too, so they cover everything. They also record token usage
+now, alongside what the agents did.</p>
+<p>Observability tooling didn’t stick. I built a dashboard for watching
+my own agent sessions in Q1 and had stopped using it by the end of that
+quarter, and I didn’t pick the idea back up in Q3. I’m thinking about
+coming back to agent trajectory viewers next quarter.</p>
+<p>I also moved my issue tracking from Beads to GitHub Issues. Beads is
+Steve Yegge’s issue tracker built for agents, and in Q1 I hadn’t decided
+whether to keep it. For the less complex projects I have, I think it’s
+overkill. It’s a lot of machinery for a small backlog, and GitHub Issues
+are somewhere I can see them.</p>
+<h2 id="the-ai-vampire-and-comprehension-debt">The AI Vampire and
+Comprehension Debt</h2>
+<p>Two problems from the Q2 post are still here.</p>
+<p>The AI vampire is still very much a thing. I find myself getting
+pulled into work at night and putting off going to bed because things
+are getting done.</p>
+<p>Comprehension debt is also real, but I don’t worry about it too much.
+I’ve accepted that it’s part of how this work goes now. I’m still
+looking for how other people describe their experience with it, and for
+how they think it might be dealt with.</p>
+<h2 id="where-things-stand">Where Things Stand</h2>
+<p>For most of Q3, Codex and Claude Code were about even for me. The
+split changed because of the job. Codex came through my employer, and so
+did Claude Code, but I also have a personal Claude Code subscription.
+When I left, I stopped using Codex.</p>
+<p>So at the end of Q3, Claude Code is my default, and OpenCode is where
+I experiment with other models.</p>
+<p>That may not last. My new employer provides Gemini as well as Claude
+Code and OpenAI’s tools, so I’ll see whether my habits change there.</p>
+<p>Next quarter I expect to spend more time on model and harness
+selection, and possibly on trajectory viewers.</p>
+
+  </div>
+
+  
+
+  <nav class="series-nav" aria-label="AI Experience series">
+    <p class="series-nav__title">The AI Experience series</p>
+    
+    <ol>
+      
+        <li value="1">
+          
+            <a href="/blog/20260305_learning_to_use_ai_coding_tools/">My Experience Learning to Use AI for Software Development: Early 2023 to End of 2025</a>
+          
+        </li>
+      
+        <li value="2">
+          
+            <a href="/blog/20260401_ai_tools_q1_2026/">My Experience Learning to Use AI for Software Development: Q1 2026</a>
+          
+        </li>
+      
+        <li value="3">
+          
+            <a href="/blog/20260701_ai_tools_q2_2026/">My Experience Learning to Use AI for Software Development: Q2 2026</a>
+          
+        </li>
+      
+        <li value="4">
+          
+            <span aria-current="page">My Experience Learning to Use AI for Software Development: Q3 2026</span>
+          
+        </li>
+      
+    </ol>
+  </nav>
+
+
+
+  <p class="post-back"><a href="/blog/">&larr; All posts</a></p>
+</article>
+
+    </main>
+  </div>
+
+  <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=Q99mXo-xiPCKbsApT4FWdYQCY7RuCZM9nyNspx6iAmI&amp;cl=ffffff&amp;w=a"></script>
+</body>
+
+</html>
