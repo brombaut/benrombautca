@@ -10,8 +10,9 @@
  *   blog.listed  the subset that is also not `_archived`, newest first. These
  *                appear on the blog index.
  *
- * A series post also carries `seriesPosts`: every listed part of its series, in
- * part order, for the series nav on the post page (#551).
+ * A series post also carries `seriesPrevious` and `seriesNext`: the listed parts
+ * either side of it in part order, for the series nav on the post page (#555).
+ * Either is undefined at the end of a series.
  *
  * Each post also carries `image`: the first blog image in its body, used as the
  * index card's thumbnail. Seven of the 14 listed posts have no image at all, so
@@ -119,16 +120,37 @@ const all = meta
 
 const listed = all.filter((p) => !p.archived);
 
-// Sorted by part, not date: parts aren't always published in order. Built from
-// `listed` so an archived post is never linked to, and skipped when a series
-// has only one part showing, since a list of one links nowhere.
+// The previous and next parts of each series post. Ordered by part, not date:
+// parts aren't always published in order. Built from `listed`, so an archived or
+// unpublished part is skipped rather than linked to.
+//
+// The series name is only ever typed into a title, so a typo would quietly
+// start a new one-part series with no nav. Every series has an icon, which
+// makes SERIES_EMOJI the list of known names; fail the build on anything else,
+// and on two posts claiming the same part (#555).
+const seriesParts = new Map();
 for (const post of listed) {
   if (!post.series) continue;
-  const parts = listed
-    .filter((p) => p.series && p.series.name === post.series.name)
-    .sort((a, b) => a.series.part - b.series.part)
-    .map((p) => ({ part: p.series.part, displayTitle: p.displayTitle, url: p.url }));
-  if (parts.length > 1) post.seriesPosts = parts;
+  const { name, part } = post.series;
+  if (!SERIES_EMOJI[name]) {
+    throw new Error(`blog.js: "${post.id}" is in unknown series "${name}". Fix the title prefix or add the series to SERIES_EMOJI.`);
+  }
+  if (!seriesParts.has(name)) seriesParts.set(name, []);
+  const clash = seriesParts.get(name).find((p) => p.series.part === part);
+  if (clash) {
+    throw new Error(`blog.js: "${post.id}" and "${clash.id}" are both part ${part} of "${name}".`);
+  }
+  seriesParts.get(name).push(post);
+}
+
+const seriesLink = (p) => p && { part: p.series.part, displayTitle: p.displayTitle, url: p.url };
+
+for (const parts of seriesParts.values()) {
+  parts.sort((a, b) => a.series.part - b.series.part);
+  parts.forEach((post, i) => {
+    post.seriesPrevious = seriesLink(parts[i - 1]);
+    post.seriesNext = seriesLink(parts[i + 1]);
+  });
 }
 
 module.exports = { all, listed };

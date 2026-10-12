@@ -1,19 +1,14 @@
-{# The other parts of a post's series (#551). Included above and below the body
-   of a series post; `post.seriesPosts` is built in src/_data/blog.js. #}
-{% if post.seriesPosts %}
+{# The parts either side of a post in its series (#555). Included above and
+   below the body of a series post; `post.seriesPrevious` and `post.seriesNext`
+   are built in src/_data/blog.js. A line is left out at either end of a series. #}
+{% if post.seriesPrevious or post.seriesNext %}
   <nav class="series-nav" aria-label="{{ post.series.name }} series">
     <p class="series-nav__title">The {{ post.series.name }} series</p>
-    {# `value` rather than the list's own counter: a part can be unpublished. #}
-    <ol>
-      {% for part in post.seriesPosts %}
-        <li value="{{ part.part }}">
-          {% if part.url == post.url %}
-            <span aria-current="page">{{ part.displayTitle }}</span>
-          {% else %}
-            <a href="{{ part.url }}">{{ part.displayTitle }}</a>
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ol>
+    {% if post.seriesPrevious %}
+      <p>Previous: <a rel="prev" href="{{ post.seriesPrevious.url }}">{{ post.seriesPrevious.part }}. {{ post.seriesPrevious.displayTitle }}</a></p>
+    {% endif %}
+    {% if post.seriesNext %}
+      <p>Next: <a rel="next" href="{{ post.seriesNext.url }}">{{ post.seriesNext.part }}. {{ post.seriesNext.displayTitle }}</a></p>
+    {% endif %}
   </nav>
 {% endif %}

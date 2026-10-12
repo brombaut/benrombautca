@@ -129,7 +129,7 @@ computation happens once per build, not per render:
 | File | What it provides |
 | --- | --- |
 | `hikes.json`, `races.json`, `publications.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
-| `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, the `all` / `listed` split, and each series post's `seriesPosts` |
+| `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, the `all` / `listed` split, each series post's `seriesPrevious` / `seriesNext`, and a build failure on an unknown series name or a duplicate part (#555) |
 | `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year. Exports only `readByYear` and `currentlyReading`; the to-read shelf is deliberately not shown |
 | `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list |
 | `news.js` | The home page News list: the 5 newest dated items across listed blog posts, publications, hikes, past races and `milestones.json`. Books are left out on purpose |
@@ -190,8 +190,9 @@ Shared markup lives in `src/_includes/` as layouts and partials:
   `linkedin`, `google-scholar`. Named by `icon` in `src/_data/nav.js`
 - `gallery.njk` - The `gallery()` macro behind the Running and Hiking photo
   strips: a CSS scroll-snap row, no JavaScript
-- `series-nav.njk` - The list of a series' parts, in part order (#551). Included
-  above and below the body of a series post; reads `post.seriesPosts`
+- `series-nav.njk` - The previous and next parts of a series, each with its part
+  number (#555). Included above and below the body of a series post; reads
+  `post.seriesPrevious` and `post.seriesNext`, and leaves a line out at either end
 - `hash-redirect.njk` - The old-hash-URL redirect script (#518), included on `/` only
 
 #501 ruled that not every old shared component needed an equivalent.
@@ -472,7 +473,7 @@ against the real nested paths (#544). What runs:
   content-heavy posts
 - Every blog post URL in the sitemap is built with a body (most posts are
   unlisted, so the index alone doesn't cover them)
-- A series post lists every part of its series in part order, linking all but itself
+- A series post links the previous and next parts of its series, and the first part has no previous link
 - Every old hash URL redirects to its real path, `/sitemap.xml` has no hash URLs,
   and `/404.html` renders
 - Any `console.error`, uncaught exception, or failed same-origin request
@@ -628,6 +629,6 @@ npm run sync-articles      # Sync blog content
 
 ---
 
-**Last Updated**: 2026-10-09
+**Last Updated**: 2026-10-12
 **Eleventy Version**: 3.1.6
 **Node Version**: 20+ required by Eleventy and Playwright; both Node workflows pin 24

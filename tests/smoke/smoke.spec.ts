@@ -200,31 +200,29 @@ test("a post renders its body without overflowing the page", async ({ page }) =>
   await page.waitForLoadState("networkidle");
 });
 
-// The series nav (#551) sits above and below the body. Part order is the point:
-// it comes from the title prefix, not the date, and the two can disagree.
-test("a series post links the other parts of its series in order", async ({ page }) => {
-  const url = "/blog/20260904_learning_llms_2_architecture_variations/";
-  await page.goto(url);
+// The series nav (#555) sits above and below the body and links the parts
+// either side of this one. Part order is the point: it comes from the title
+// prefix, not the date, and the two can disagree.
+test("a series post links the previous and next parts of its series", async ({ page }) => {
+  await page.goto("/blog/20260904_learning_llms_2_architecture_variations/");
   const navs = page.locator(".series-nav");
   await expect(navs).toHaveCount(2);
 
-  const top = navs.first();
-  const parts = await top.locator("li").evaluateAll(
-    (els) => els.map((el) => (el as HTMLLIElement).value),
-  );
-  expect(parts.length, "the series has several parts").toBeGreaterThan(2);
-  expect(parts, "parts are in order").toEqual([...parts].sort((a, b) => a - b));
-
-  // Every part but this one is a link, and none of them links back here.
-  await expect(top.locator("[aria-current=page]")).toHaveCount(1);
-  await expect(top.locator("li[value='2'] [aria-current=page]")).toHaveCount(1);
-  await expect(top.locator("a")).toHaveCount(parts.length - 1);
-  await expect(top.locator(`a[href="${url}"]`)).toHaveCount(0);
-  for (const href of await top.locator("a").evaluateAll(
+  for (const nav of [navs.first(), navs.last()]) {
+    await expect(nav.locator("a")).toHaveCount(2);
+    await expect(nav.locator("a[rel=prev]")).toHaveText(/^1\. /);
+    await expect(nav.locator("a[rel=next]")).toHaveText(/^3\. /);
+  }
+  for (const href of await navs.first().locator("a").evaluateAll(
     (els) => els.map((el) => el.getAttribute("href") as string),
   )) {
     expect((await page.request.get(href)).ok(), `${href} is built`).toBe(true);
   }
+
+  // The first part has nothing before it, so that line is left out.
+  await page.goto("/blog/20260903_building_a_gpt_from_scratch/");
+  await expect(navs.first().locator("a[rel=prev]")).toHaveCount(0);
+  await expect(navs.first().locator("a[rel=next]")).toHaveText(/^2\. /);
 
   // A post outside any series is unchanged.
   await page.goto("/blog/20220626_titanic_dataset/");
