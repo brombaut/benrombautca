@@ -176,6 +176,53 @@
     ]
   },
   {
+    "name": "2026 Marathon Beneva de Québec - 21.1km",
+    "link": "https://www.jecoursqc.com/en/beneva-quebec-city-marathon-presented-by-montellier/races/",
+    "orderDate": "2026-10-04",
+    "date": "2026-10-04",
+    "runningTime": "1:21:06<br><a href='https://sportstats.one/event/marathon-ssq-de-quebec/leaderboard/145998?focus=9702&type=pid' target='_blank'>[Official Times]</a>",
+    "placement": "19th of 6478 overall, 6th of 980 in the M30-39 category",
+    "description": "",
+    "images": [
+      {
+        "src": "running-images/26quebec21_01.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_02.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_03.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_04.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_05.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_06.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_07.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_08.webp",
+        "caption": ""
+      },
+      {
+        "src": "running-images/26quebec21_09.webp",
+        "caption": "The race map"
+      }
+    ]
+  },
+  {
     "name": "2024 21k de Montréal",
     "link": "https://canadarunningseries.com/21k-de-montreal/",
     "orderDate": "2024-04-20",
