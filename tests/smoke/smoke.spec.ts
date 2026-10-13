@@ -253,7 +253,7 @@ test("hiking and running render their entries and scroll galleries internally", 
   expect(await page.locator(".peaks__tick--done").count()).toBeGreaterThan(0);
 
   await page.goto("/running/");
-  expect(await page.locator(".entry").count()).toBe(5);
+  expect(await page.locator(".entry").count()).toBe(6);
   // The image strip must scroll inside itself, not widen the page.
   const gallery = page.locator(".gallery").first();
   const scrolls = await gallery.evaluate((el) => el.scrollWidth > el.clientWidth);
