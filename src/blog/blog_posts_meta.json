@@ -336,11 +336,11 @@
         "_archived": false
     },
     {
-        "_id": "20261006_learning_llms_5_training_systems",
+        "_id": "20261013_learning_llms_5_training_systems",
         "_title": "[Learning LLMs 5] What the Loss Curve Doesn't Tell You",
-        "_createdAt": "2026-10-06",
+        "_createdAt": "2026-10-13",
         "_description": "Instrumenting the training loop instead of the model: memory high-water marks, what a checkpoint has to contain, a failure that was already unrecoverable when it was detected, where the memory goes, and the right CPU thread count.",
-        "_show": false,
+        "_show": true,
         "_archived": false
     },
     {

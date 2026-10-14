@@ -3,8 +3,8 @@ their titles carry labels like "Experiment 027" that only mean something in
 my notes. The axes and curves are what matter.*
 
 My last post was about training decisions like schedules, optimizers,
-dropout, and batch size. This one looks at training as a system: not what
-the model computes, but the process that runs it. Where the time goes,
+dropout, and batch size. This one looks at training as a system, the
+process that runs the model. Where the time goes,
 whether a run can be stopped and restarted without changing what it learns,
 what happens when the numbers go bad, where the memory goes, and how many
 CPU threads I should have been using all along.
@@ -13,8 +13,7 @@ None of the five experiments here changes a line of the model or the
 training math. Each one adds an instrument to the loop and reads what comes
 back.
 
-What they had in common surprised me more than any single result. In four of
-the five, something had been wrong for a while and was invisible in the one
+In four of the five, something had been wrong for a while and was invisible in the one
 number I was watching. A mishandled restart keeps producing a falling loss. A
 memory estimate can be off by a factor of 27 while every run completes. A
 thread count can be wrong for four experiments in a row without a symptom.
@@ -51,8 +50,8 @@ different from assuming it.
 The second instrument was PyTorch's profiler, which shows where the CPU
 spends its time in a forward and backward pass. It reports self time (time
 in an operation's own code) and total time (including operations it calls
-into). I read self time throughout, because it credits time to the operation that
-actually spent the cycles.
+into). I read self time throughout, because it credits time to the operation
+that actually spent the cycles.
 
 Matrix multiplies dominating was expected, since attention projections and
 linear layers are nearly the whole model. But their share moved a lot
@@ -115,8 +114,7 @@ restores everything *except* the optimizer state.
 ![Control, resume, and fresh-optimizer resume, with each arm's difference from the control below](images/learning-llms-5/028-resume-correctness.png)
 
 The top panel shows loss for each arm, and the bottom shows each arm's
-difference from the control. The correct resume matched the control exactly,
-not closely but identically, at all 161 logged training steps and 17
+difference from the control. The correct resume matched the control exactly, at all 161 logged training steps and 17
 evaluations after step 2,000, and the generated text was byte-for-byte the
 same.
 
@@ -126,13 +124,13 @@ the comparison. No ramp into it: the first update already used the wrong `m`,
 `v`, and `t`. I confirmed the mechanism directly: the saved optimizer's step
 field is 2,000, and a fresh one's is 0.
 
-What I got wrong was the shape. I expected something dramatic, like the
+What I got wrong was the shape. I expected a large divergence, like the
 optimizer instability in the last post. Instead it was a persistent but
 bounded gap of roughly 0.0005 to 0.02 that never ran away. A fresh Adam isn't
 broken, just less warmed up.
 
-That's the more unsettling version. The loss goes down, nothing crashes, and
-the run looks healthy. You'd need a control run beside it to notice, and a real
+That's the harder version to catch. The loss goes down, nothing crashes, and
+the run looks healthy. I'd need a control run beside it to notice, and a real
 training run doesn't have one.
 
 ## Detecting Non-Finite Failures
@@ -150,13 +148,12 @@ if not (math.isfinite(loss_value) and math.isfinite(grad_norm)):
     break  # never call optimizer.step() on this
 ```
 
-Alongside it, a periodic safety checkpoint, overwritten in place, so there's
-always a recent state to go back to.
+Alongside it I added a periodic safety checkpoint, overwritten in place, so
+there's always a recent state to go back to.
 
 Finding a trigger took a search. A learning rate of 8.0 stayed finite for
 500-plus steps, with a chaotic loss but no overflow. Every value from 8.05 to
-10.0 overflowed by step 3, every time. That's a sharp edge, not a gradual
-ramp, so I picked 9.0 and expected a fast failure.
+10.0 overflowed by step 3, every time. That's a sharp edge, so I picked 9.0 and expected a fast failure.
 
 ![The slow bounded instability from the optimizer experiment next to this one's overflow within three steps, on a log scale](images/learning-llms-5/029-failure-modes.png)
 
@@ -179,8 +176,8 @@ rewind is the harder question.
 Gradient clipping, the standard fix for instability, made no difference: the
 clipped run still failed at step 3. `clip_grad_norm_` scales by
 `max_norm / total_norm`, and with `total_norm` infinite that scale is 0, and
-0 times infinity is NaN. Clipping doesn't skip an overflowing gradient, it
-turns `inf` into `nan`. An overflowed gradient has no finite magnitude left
+0 times infinity is NaN. Clipping turns an overflowing gradient from `inf` into
+`nan`. An overflowed gradient has no finite magnitude left
 to bound.
 
 ## The Memory Breakdown
@@ -220,7 +217,7 @@ Both sweeps multiply tokens per step by eight, and that's what memory
 tracked. Either the CPU kernel never materializes the full attention score
 tensor, or it's too small at this model size to register. Either way,
 quadratic compute and quadratic memory are separate claims, and it's worth
-measuring which one you actually have.
+measuring which one actually applies.
 
 One loose end I can't close. This experiment's control peaked at 681.98MB,
 against the observability run's 2,564MB at the same settings. The earlier run
@@ -251,7 +248,7 @@ to below. The raw numbers:
 24 threads    7,684.50 tokens/sec    2.35x
 ```
 
-Twelve wins easily, and going past it doesn't plateau, it regresses. With 24
+Twelve wins easily, and throughput falls past it. With 24
 threads, the same matrix multiplies took nearly twice as long, from 0.862s to
 1.564s of self time.
 
@@ -262,10 +259,10 @@ machine during those runs, which hits the 24-thread arm hardest because it
 claims every logical CPU. So I reran it with the machine idle.
 
 Both explanations were partly right. Going idle brought 24 threads from
-7,684.50 up to 11,540.09 tokens per second, so the competing processes really were a factor.
-But it was still 1.259 times slower than 12 threads, with matrix multiply self
-time still higher at 1.003s against 0.862s. That residual is the cost of two threads sharing
-a core. A confounded result was worth rerunning cleanly rather than trusting
+7,684.50 up to 11,540.09 tokens per second, so the competing processes really
+were a factor. But it was still 1.259 times slower than 12 threads, with matrix
+multiply self time still higher at 1.003s against 0.862s. That residual is the
+cost of two threads sharing a core. A confounded result was worth rerunning cleanly rather than trusting
 it or throwing it out.
 
 One trap in reading the profiler here. The matrix multiply's share of time

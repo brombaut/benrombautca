@@ -3,21 +3,21 @@ records, so their titles carry labels like “Experiment 027” that only
 mean something in my notes. The axes and curves are what
 matter.</em></p>
 <p>My last post was about training decisions like schedules, optimizers,
-dropout, and batch size. This one looks at training as a system: not
-what the model computes, but the process that runs it. Where the time
-goes, whether a run can be stopped and restarted without changing what
-it learns, what happens when the numbers go bad, where the memory goes,
-and how many CPU threads I should have been using all along.</p>
+dropout, and batch size. This one looks at training as a system, the
+process that runs the model. Where the time goes, whether a run can be
+stopped and restarted without changing what it learns, what happens when
+the numbers go bad, where the memory goes, and how many CPU threads I
+should have been using all along.</p>
 <p>None of the five experiments here changes a line of the model or the
 training math. Each one adds an instrument to the loop and reads what
 comes back.</p>
-<p>What they had in common surprised me more than any single result. In
-four of the five, something had been wrong for a while and was invisible
-in the one number I was watching. A mishandled restart keeps producing a
-falling loss. A memory estimate can be off by a factor of 27 while every
-run completes. A thread count can be wrong for four experiments in a row
-without a symptom. The loss curve measures the model, and almost
-everything in this post is a property of the process running it.</p>
+<p>In four of the five, something had been wrong for a while and was
+invisible in the one number I was watching. A mishandled restart keeps
+producing a falling loss. A memory estimate can be off by a factor of 27
+while every run completes. A thread count can be wrong for four
+experiments in a row without a symptom. The loss curve measures the
+model, and almost everything in this post is a property of the process
+running it.</p>
 <h2 id="memory-and-profiler-instrumentation">Memory and Profiler
 Instrumentation</h2>
 <p>The training script already logged step time, tokens per second,
@@ -102,22 +102,21 @@ restores everything <em>except</em> the optimizer state.</p>
 alt="Control, resume, and fresh-optimizer resume, with each arm’s difference from the control below" /></p>
 <p>The top panel shows loss for each arm, and the bottom shows each
 arm’s difference from the control. The correct resume matched the
-control exactly, not closely but identically, at all 161 logged training
-steps and 17 evaluations after step 2,000, and the generated text was
-byte-for-byte the same.</p>
+control exactly, at all 161 logged training steps and 17 evaluations
+after step 2,000, and the generated text was byte-for-byte the same.</p>
 <p>The fresh-optimizer arm diverged at the very first logged step after
 the resume, with a 0.019 gap at step 2,025, the largest single-step
 difference in the comparison. No ramp into it: the first update already
 used the wrong <code>m</code>, <code>v</code>, and <code>t</code>. I
 confirmed the mechanism directly: the saved optimizer’s step field is
 2,000, and a fresh one’s is 0.</p>
-<p>What I got wrong was the shape. I expected something dramatic, like
+<p>What I got wrong was the shape. I expected a large divergence, like
 the optimizer instability in the last post. Instead it was a persistent
 but bounded gap of roughly 0.0005 to 0.02 that never ran away. A fresh
 Adam isn’t broken, just less warmed up.</p>
-<p>That’s the more unsettling version. The loss goes down, nothing
-crashes, and the run looks healthy. You’d need a control run beside it
-to notice, and a real training run doesn’t have one.</p>
+<p>That’s the harder version to catch. The loss goes down, nothing
+crashes, and the run looks healthy. I’d need a control run beside it to
+notice, and a real training run doesn’t have one.</p>
 <h2 id="detecting-non-finite-failures">Detecting Non-Finite
 Failures</h2>
 <p>A training run can fail in two ways. The coupled weight decay run in
@@ -131,12 +130,12 @@ pass and the optimizer step:</p>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> (math.isfinite(loss_value) <span class="kw">and</span> math.isfinite(grad_norm)):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span>  <span class="co"># never call optimizer.step() on this</span></span></code></pre></div>
-<p>Alongside it, a periodic safety checkpoint, overwritten in place, so
-there’s always a recent state to go back to.</p>
+<p>Alongside it I added a periodic safety checkpoint, overwritten in
+place, so there’s always a recent state to go back to.</p>
 <p>Finding a trigger took a search. A learning rate of 8.0 stayed finite
 for 500-plus steps, with a chaotic loss but no overflow. Every value
 from 8.05 to 10.0 overflowed by step 3, every time. That’s a sharp edge,
-not a gradual ramp, so I picked 9.0 and expected a fast failure.</p>
+so I picked 9.0 and expected a fast failure.</p>
 <p><img src="blog-images/learning-llms-5/029-failure-modes.png"
 alt="The slow bounded instability from the optimizer experiment next to this one’s overflow within three steps, on a log scale" /></p>
 <p>The chart puts the slow failure from the last post next to this one’s
@@ -157,10 +156,9 @@ back to rewind is the harder question.</p>
 difference: the clipped run still failed at step 3.
 <code>clip_grad_norm_</code> scales by
 <code>max_norm / total_norm</code>, and with <code>total_norm</code>
-infinite that scale is 0, and 0 times infinity is NaN. Clipping doesn’t
-skip an overflowing gradient, it turns <code>inf</code> into
-<code>nan</code>. An overflowed gradient has no finite magnitude left to
-bound.</p>
+infinite that scale is 0, and 0 times infinity is NaN. Clipping turns an
+overflowing gradient from <code>inf</code> into <code>nan</code>. An
+overflowed gradient has no finite magnitude left to bound.</p>
 <h2 id="the-memory-breakdown">The Memory Breakdown</h2>
 <p>This experiment explains the factor of 27, and it starts by splitting
 memory into three parts that behave very differently:</p>
@@ -195,7 +193,7 @@ eight-fold context increase grew it by 8.006 times.</p>
 tracked. Either the CPU kernel never materializes the full attention
 score tensor, or it’s too small at this model size to register. Either
 way, quadratic compute and quadratic memory are separate claims, and
-it’s worth measuring which one you actually have.</p>
+it’s worth measuring which one actually applies.</p>
 <p>One loose end I can’t close. This experiment’s control peaked at
 681.98MB, against the observability run’s 2,564MB at the same settings.
 The earlier run did 29,410 steps instead of 500 and had the profiler
@@ -219,9 +217,9 @@ I’ll get to below. The raw numbers:</p>
 <pre class="text"><code> 1 thread     3,274.22 tokens/sec    1.00x
 12 threads   14,528.50 tokens/sec    4.44x
 24 threads    7,684.50 tokens/sec    2.35x</code></pre>
-<p>Twelve wins easily, and going past it doesn’t plateau, it regresses.
-With 24 threads, the same matrix multiplies took nearly twice as long,
-from 0.862s to 1.564s of self time.</p>
+<p>Twelve wins easily, and throughput falls past it. With 24 threads,
+the same matrix multiplies took nearly twice as long, from 0.862s to
+1.564s of self time.</p>
 <p><img src="blog-images/learning-llms-5/threads-and-cores.png"
 alt="Twelve threads, one per physical core, against twenty-four sharing the same execution hardware" /></p>
 <p>There was a confound worth keeping in. I had other things running on
