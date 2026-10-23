@@ -4,15 +4,20 @@
 
   Captions are not shown. Where an image has one (the race images do, the hike
   images don't) it is used as the alt text.
+
+  The wrapper only exists to position the strip's ::scroll-button arrows, which
+  are generated as siblings of the strip rather than inside it.
 #}
 {% macro gallery(images, label) %}
   {% if images.length %}
-    <div class="gallery" role="group" aria-label="{{ label }}" tabindex="0">
-      {% for img in images %}
-        <figure class="gallery__item">
-          <img src="/{{ img.src }}" alt="{{ img.caption or label }}" loading="lazy" decoding="async">
-        </figure>
-      {% endfor %}
+    <div class="gallery-wrap">
+      <div class="gallery" role="group" aria-label="{{ label }}" tabindex="0">
+        {% for img in images %}
+          <figure class="gallery__item">
+            <img src="/{{ img.src }}" alt="{{ img.caption or label }}" width="{{ img.width }}" height="{{ img.height }}" loading="lazy" decoding="async">
+          </figure>
+        {% endfor %}
+      </div>
     </div>
   {% endif %}
 {% endmacro %}

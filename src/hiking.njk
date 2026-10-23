@@ -9,7 +9,7 @@ permalink: /hiking/
 {% macro hikeEntry(hike) %}
   <article class="entry">
     <h3 class="entry__title">{{ hike.name }}</h3>
-    <p class="entry__meta">{{ hike.date | longDate }} &middot; {{ hike.location }}</p>
+    <p class="entry__meta">{{ hike.date | longDate }} &middot; {{ hike.location }}{% if hike.images.length %} &middot; {{ hike.images.length }} photos{% endif %}</p>
     {{ hike.description | safe }}
     {{ gallery(hike.images, hike.name) }}
   </article>

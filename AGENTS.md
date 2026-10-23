@@ -131,7 +131,7 @@ computation happens once per build, not per render:
 | `hikes.json`, `races.json`, `publications.json`, `aboutMe.json` | Hand-authored content, migrated out of the old `.ts` files |
 | `blog.js` | Merges `blog_posts_meta.json` + `blog_posts_content.json`; series parsing, emoji, reading time, sorting, the `all` / `listed` split, each series post's `seriesPrevious` / `seriesNext`, and a build failure on an unknown series name or a duplicate part (#555) |
 | `books.js` | Splits `all_books_flattened.json` by shelf and groups read books by year. Exports only `readByYear` and `currentlyReading`; the to-read shelf is deliberately not shown |
-| `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list |
+| `outdoors.js` | Hikes and races, sorted newest first; the 46er count and the upcoming-race list; each gallery image's width and height, read from its WebP header (#557) |
 | `news.js` | The home page News list: the 5 newest dated items across listed blog posts, publications, hikes, past races and `milestones.json`. Books are left out on purpose |
 | `milestones.json` | Hand-authored one-off events for News that no other file records, e.g. job changes |
 | `site.js` | Site title, description, canonical URL, author, role, ClustrMaps script src |

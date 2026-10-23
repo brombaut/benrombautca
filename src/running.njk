@@ -12,7 +12,7 @@ permalink: /running/
 {% for race in outdoors.races %}
   <article class="entry">
     <h3 class="entry__title">{% if race.link %}<a href="{{ race.link }}" target="_blank" rel="noopener noreferrer">{{ race.name }}</a>{% else %}{{ race.name }}{% endif %}</h3>
-    <p class="entry__meta">{{ race.date | longDate }}</p>
+    <p class="entry__meta">{{ race.date | longDate }}{% if race.images.length %} &middot; {{ race.images.length }} photos{% endif %}</p>
     <dl class="entry__facts">
       {% if race.runningTime %}<dt>Official time</dt><dd>{{ race.runningTime | safe }}</dd>{% endif %}
       {% if race.placement %}<dt>Placement</dt><dd>{{ race.placement | safe }}</dd>{% endif %}

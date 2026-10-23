@@ -262,7 +262,7 @@ test("hiking and running render their entries and scroll galleries internally", 
   await page.waitForLoadState("networkidle");
 });
 
-// Gallery photos display at most 28rem wide, so anything past 800px is wasted
+// Gallery photos display at most 18rem tall, so anything past 800px is wasted
 // bytes. Full-resolution originals (several MB each) once slipped in and stalled
 // the top of the hiking page; scripts/reduce_image_size.py shrinks them.
 const MAX_GALLERY_IMAGE_BYTES = 1024 * 1024;
